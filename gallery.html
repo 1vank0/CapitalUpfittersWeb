@@ -23,6 +23,7 @@
   <meta name="description" content="Browse Capital Upfitters' work portfolio — spray-on bedliners, ceramic coatings, hitches, undercoating, fleet upfitting, and more.">
   <link rel="stylesheet" href="./base.css">
   <link rel="stylesheet" href="./style.css">
+  <script src="/cms-integration.js" defer></script>
 
   <style>
     /* Gallery page specific */
@@ -755,6 +756,72 @@ lightbox.addEventListener('touchend', e => {
     else openLightbox((currentIdx - 1 + v.length) % v.length);
   }
 });
+</script>
+
+<!-- CMS: Gallery Wire -->
+<script>
+(function() {
+  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+
+  function reinitFilter() {
+    var filterBtns = document.querySelectorAll('.gallery-filter-btn');
+    var countEl = document.getElementById('gallery-count');
+    function updateCount() {
+      var vis = document.querySelectorAll('.gallery-item:not(.hidden)').length;
+      var total = document.querySelectorAll('.gallery-item').length;
+      if (countEl) countEl.textContent = 'Showing ' + vis + ' of ' + total + ' projects';
+    }
+    filterBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        filterBtns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var cat = btn.dataset.filter;
+        document.querySelectorAll('.gallery-item').forEach(function(item) {
+          if (cat === 'all' || item.dataset.cat === cat) item.classList.remove('hidden');
+          else item.classList.add('hidden');
+        });
+        updateCount();
+      });
+    });
+    updateCount();
+  }
+
+  fetch(CMS_BASE + '/api/public/gallery')
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      var images = data.docs || [];
+      // Only replace if we have real images with actual url fields
+      var realImages = images.filter(function(img) {
+        return img.url && img.url.startsWith('http');
+      });
+      if (realImages.length === 0) {
+        // No real images — keep placeholders, just update count
+        var countEl = document.getElementById('gallery-count');
+        if (countEl) {
+          var total = document.querySelectorAll('.gallery-item').length;
+          countEl.textContent = 'Showing ' + total + ' of ' + total + ' projects';
+        }
+        return;
+      }
+      // Replace gallery grid content
+      var grid = document.querySelector('.gallery-grid');
+      if (!grid) return;
+      grid.innerHTML = realImages.map(function(img) {
+        var cat = img.category || img.cat || 'all';
+        var alt = img.alt || img.altText || img.title || 'Capital Upfitters work';
+        return '<div class="gallery-item" data-cat="' + cat + '" role="listitem" tabindex="0">' +
+          '<img src="' + img.url + '" alt="' + alt + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;">' +
+          '<div class="gallery-item-overlay"><span class="gallery-item-label">' + alt + '</span></div>' +
+          '</div>';
+      }).join('');
+      // Update count badge
+      var countEl = document.getElementById('gallery-count');
+      if (countEl) countEl.textContent = 'Showing ' + realImages.length + ' of ' + realImages.length + ' projects';
+      // Re-init filter
+      reinitFilter();
+    })
+    .catch(function() { /* Graceful fallback — keep existing gallery */ });
+})();
 </script>
 </body>
 </html>

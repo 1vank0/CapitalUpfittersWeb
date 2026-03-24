@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="../base.css">
 <link rel="stylesheet" href="../style.css">
+<script src="../cms-integration.js" defer></script>
 
 <!-- JSON-LD -->
 <script type="application/ld+json">
@@ -498,6 +499,24 @@
 <script>
 (function(){const b=document.getElementById('hamburger'),m=document.getElementById('nav-mobile'),c=document.getElementById('nav-close');if(b&&m){b.addEventListener('click',()=>{m.classList.add('open');b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'});if(c)c.addEventListener('click',()=>{m.classList.remove('open');b.setAttribute('aria-expanded','false');document.body.style.overflow=''})}})();
 (function(){const e=document.querySelectorAll('.reveal');if(!e.length)return;const i=new IntersectionObserver(v=>{v.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');i.unobserve(el.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});e.forEach(el=>i.observe(el))})();
+</script>
+
+<!-- CMS: Geo Page Wire — bethesda-md -->
+<script>
+(function() {
+  var GEO_SLUG = 'bethesda-md';
+  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+  function applyGeoData(geo) {
+    if (!geo) return;
+    if (geo.heroHeadline) { document.querySelectorAll('h1, .hero-headline, [data-cms="headline"]').forEach(function(el) { el.textContent = geo.heroHeadline; }); }
+    if (geo.localIntro) { document.querySelectorAll('.geo-intro, [data-cms="intro"]').forEach(function(el) { el.textContent = geo.localIntro; }); }
+    if (geo.seo && geo.seo.metaDescription) { var m = document.querySelector('meta[name="description"]'); if (m) m.setAttribute('content', geo.seo.metaDescription); }
+    if (geo.seo && geo.seo.metaTitle) { document.title = geo.seo.metaTitle; }
+    if (geo.nearbyAreas && geo.nearbyAreas.length) { document.querySelectorAll('.nearby-areas, .pill-links').forEach(function(c) { c.innerHTML = geo.nearbyAreas.map(function(a) { var t = typeof a === 'string' ? a : (a.name || a.label || String(a)); return '<span class="pill">' + t + '</span>'; }).join(''); }); }
+  }
+  fetch(CMS_BASE + '/api/public/geo-pages?slug=' + GEO_SLUG).then(function(r) { return r.json(); }).then(function(d) { applyGeoData(d.docs && d.docs[0] ? d.docs[0] : d); }).catch(function() {});
+  document.addEventListener('DOMContentLoaded', function() { var f = document.querySelector('form'); if (f && !f.dataset.cmsForm) f.setAttribute('data-cms-form', 'retail'); });
+})();
 </script>
 </body>
 </html>

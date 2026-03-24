@@ -29,6 +29,7 @@
 
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
+<script src="/cms-integration.js" defer></script>
 
 <!-- JSON-LD LocalBusiness -->
 <script type="application/ld+json">
@@ -819,6 +820,78 @@
   const path = window.location.pathname;
   document.querySelectorAll('.nav-links a').forEach(a => {
     if(a.getAttribute('href') && path.includes(a.getAttribute('href').replace('./','').replace('.html',''))) a.classList.add('active');
+  });
+})();
+</script>
+
+<!-- CMS: Homepage Wire -->
+<script>
+(function() {
+  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+
+  // ─── Settings: phone, hours, urgency banner ──────────────────────────────
+  fetch(CMS_BASE + '/api/public/settings')
+    .then(function(res) { return res.json(); })
+    .then(function(settings) {
+      if (!settings) return;
+      // Phone numbers
+      if (settings.contact && settings.contact.phone) {
+        var phone = settings.contact.phone;
+        var phoneRaw = phone.replace(/\D/g, '');
+        document.querySelectorAll('a[href^="tel:"]').forEach(function(a) {
+          a.href = 'tel:' + phoneRaw;
+          // Only update visible text if it looks like a phone number
+          if (/[\d\(\)\-\s\.\+]{7,}/.test(a.textContent)) a.textContent = phone;
+        });
+      }
+      // Hours
+      if (settings.hours && settings.hours.weekdays) {
+        document.querySelectorAll('.hours-text, [data-cms="hours"]').forEach(function(el) {
+          el.textContent = settings.hours.weekdays;
+        });
+      }
+      // Urgency banner
+      if (settings.urgency && settings.urgency.enabled && settings.urgency.message1) {
+        var banner = document.querySelector('.announce-bar p, .cro-bar-msg');
+        if (!banner) {
+          // Try first child text of announce-bar
+          var bar = document.querySelector('.announce-bar');
+          if (bar) {
+            var firstText = bar.querySelector('p');
+            if (firstText) firstText.textContent = settings.urgency.message1;
+          }
+        } else {
+          banner.textContent = settings.urgency.message1;
+        }
+      }
+    })
+    .catch(function() { /* Graceful fallback */ });
+
+  // ─── Featured testimonials ───────────────────────────────────────────────
+  fetch(CMS_BASE + '/api/public/testimonials?featured=true')
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      var testimonials = data.docs || [];
+      if (testimonials.length === 0) return;
+      var grid = document.querySelector('.testimonials-grid, .testimonial-cards');
+      if (!grid) return;
+      grid.innerHTML = testimonials.map(function(t) {
+        var quote = t.quote || t.text || t.body || '';
+        var name = t.name || t.author || '';
+        var title = t.title || t.role || t.subtitle || '';
+        return '<div class="testimonial-card">' +
+          '<div class="testimonial-stars">★★★★★</div>' +
+          '<p class="testimonial-quote">“' + quote + '”</p>' +
+          '<div class="testimonial-author">' + name + (title ? ' — ' + title : '') + '</div>' +
+          '</div>';
+      }).join('');
+    })
+    .catch(function() { /* Graceful fallback */ });
+
+  // ─── Tag main quote form ─────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', function() {
+    var form = document.querySelector('form');
+    if (form && !form.dataset.cmsForm) form.setAttribute('data-cms-form', 'retail');
   });
 })();
 </script>

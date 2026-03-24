@@ -23,6 +23,7 @@
   <meta name="description" content="Get a free upfitting quote from Capital Upfitters. We respond within 24 hours — usually the same business day. Personal vehicle, fleet, or dealer/government requests welcome.">
   <link rel="stylesheet" href="./base.css">
   <link rel="stylesheet" href="./style.css">
+  <script src="/cms-integration.js" defer></script>
 
   <style>
     /* Quote page styles */
@@ -401,7 +402,7 @@
           <div id="form-retail-body">
             <div class="form-panel-title">Personal Vehicle Quote</div>
             <div class="form-panel-sub">Tell us about your vehicle and what you're looking for. No commitment required.</div>
-            <form id="quote-retail" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="form-body" novalidate>
+            <form id="quote-retail" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="form-body" novalidate data-cms-form="retail">
               <div class="form-row">
                 <div class="form-field">
                   <label class="form-label" for="r-fname">First Name *</label>
@@ -481,7 +482,7 @@
           <div id="form-fleet-body">
             <div class="form-panel-title">Fleet / Business Quote</div>
             <div class="form-panel-sub">Tell us about your business and fleet requirements. A fleet account specialist will respond within one business day.</div>
-            <form id="quote-fleet" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="form-body" novalidate>
+            <form id="quote-fleet" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="form-body" novalidate data-cms-form="fleet">
               <div class="form-row">
                 <div class="form-field">
                   <label class="form-label" for="f-biz">Business Name *</label>
@@ -557,7 +558,7 @@
           <div id="form-dealer-body">
             <div class="form-panel-title">Dealer / Government Inquiry</div>
             <div class="form-panel-sub">Apply for a dealer account or submit a government/municipal inquiry. Alternatively, <a href="https://upfit-portal-58190af9.base44.app/DealerRegister" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent);">register directly in the Upfit Portal</a>.</div>
-            <form id="quote-dealer" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="form-body" novalidate>
+            <form id="quote-dealer" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="form-body" novalidate data-cms-form="dealer">
               <div class="form-row">
                 <div class="form-field">
                   <label class="form-label" for="d-biz">Business/Agency Name *</label>
