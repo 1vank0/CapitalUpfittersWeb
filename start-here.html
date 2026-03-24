@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="/cms-integration.js" defer></script>
 <!--
   Capital Upfitters — Phase 1
   Built with Perplexity Computer (https://www.perplexity.ai/computer)
@@ -551,5 +552,38 @@
   }
 })();
 </script>
+
+<script>
+(function() {
+  const CMS = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+  fetch(CMS + '/api/public/settings').then(r => r.json()).then(s => {
+    if (!s) return;
+    // Phone
+    if (s.contact && s.contact.phone) {
+      document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+        a.href = 'tel:' + s.contact.phone.replace(/\D/g,'');
+        if (a.textContent.match(/\d{3}/)) a.textContent = s.contact.phone;
+      });
+    }
+    // Hours
+    if (s.hours && s.hours.weekdays) {
+      document.querySelectorAll('.hours-text,[data-cms="hours"]').forEach(el => el.textContent = s.hours.weekdays);
+    }
+    // Urgency banner
+    if (s.urgency && s.urgency.enabled && s.urgency.message1) {
+      document.querySelectorAll('.announce-bar p,.cro-bar-msg,[data-urgency-banner]').forEach(el => el.textContent = s.urgency.message1);
+    }
+    // Portal URLs
+    if (s.portal && s.portal.url) {
+      document.querySelectorAll('a[href*="base44.app"]').forEach(a => {
+        if (a.href.includes('DealerRegister')) a.href = s.portal.registerUrl || a.href;
+        else if (a.href.includes('PortalChoice')) a.href = s.portal.loginUrl || a.href;
+        else a.href = s.portal.url || a.href;
+      });
+    }
+  }).catch(() => {});
+})();
+</script>
+
 </body>
 </html>
