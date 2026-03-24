@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /assets/private/
+Sitemap: https://www.capitalupfitters.com/sitemap.xml

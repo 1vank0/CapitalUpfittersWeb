@@ -1,0 +1,760 @@
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery & Portfolio — Capital Upfitters | Rockville MD</title>
+  <meta name="description" content="Browse Capital Upfitters' work portfolio — spray-on bedliners, ceramic coatings, hitches, undercoating, fleet upfitting, and more.">
+  <link rel="stylesheet" href="./base.css">
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    /* Gallery page specific */
+    .gallery-section {
+      padding: var(--space-16) 0 var(--space-24);
+      background: var(--color-bg);
+    }
+
+    .gallery-filter-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-10);
+      padding-bottom: var(--space-6);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    /* Override gallery-grid from style.css with the specified CSS columns approach */
+    .gallery-grid {
+      columns: 3;
+      column-gap: 1rem;
+    }
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-item .gallery-placeholder {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .gallery-placeholder {
+      background: linear-gradient(135deg, #1a2332, #203055);
+    }
+    .gallery-placeholder.tall  { height: 380px; }
+    .gallery-placeholder.med   { height: 260px; }
+    .gallery-placeholder.short { height: 200px; }
+    .gallery-item:hover .gallery-placeholder { transform: scale(1.04); }
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(17,24,39,0.85) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-label {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .gallery-item.hidden { display: none; }
+    @media(max-width: 860px) { .gallery-grid { columns: 2; } }
+    @media(max-width: 480px) { .gallery-grid { columns: 1; } }
+
+    /* Gradient themes per category */
+    .bg-bedliner    { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+    .bg-bedliner-2  { background: linear-gradient(160deg, #0f0e17, #1a1a2e); }
+    .bg-bedliner-3  { background: linear-gradient(135deg, #16213e, #0f3460); }
+    .bg-ceramic     { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); }
+    .bg-ceramic-2   { background: linear-gradient(150deg, #1a2a3a, #2c5364); }
+    .bg-hitch       { background: linear-gradient(135deg, #1a1a1a, #363636); }
+    .bg-hitch-2     { background: linear-gradient(160deg, #242424, #3a3a3a); }
+    .bg-undercoat   { background: linear-gradient(135deg, #1c1c1c, #2d4a22); }
+    .bg-undercoat-2 { background: linear-gradient(150deg, #141a10, #2d4a22); }
+    .bg-fleet       { background: linear-gradient(135deg, #2d1b69, #11998e); }
+    .bg-fleet-2     { background: linear-gradient(160deg, #1a0f3a, #0d7a6e); }
+    .bg-accessories { background: linear-gradient(135deg, #373b44, #4286f4); }
+    .bg-accessories-2 { background: linear-gradient(150deg, #2a2d34, #3a76e0); }
+
+    /* Gallery placeholder inner content */
+    .placeholder-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: var(--space-3);
+      opacity: 0.35;
+    }
+    .placeholder-inner svg { color: rgba(255,255,255,0.5); }
+    .placeholder-tag {
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.97);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-8);
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner {
+      position: relative;
+      max-width: 900px;
+      width: 100%;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: var(--space-6);
+      right: var(--space-6);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.8);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+      z-index: 1;
+    }
+    .lightbox-close:hover { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
+    .lightbox-display {
+      width: 100%;
+      min-height: 300px;
+      max-height: 70vh;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+    .lightbox-placeholder {
+      width: 100%;
+      height: 500px;
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      z-index: 2;
+    }
+    .lightbox-nav:hover { background: var(--color-accent); border-color: var(--color-accent); }
+    .lightbox-prev { left: -70px; }
+    .lightbox-next { right: -70px; }
+    .lightbox-caption {
+      text-align: center;
+      margin-top: var(--space-5);
+      font-family: var(--font-display);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .lightbox-counter {
+      font-size: var(--text-xs);
+      color: rgba(255,255,255,0.3);
+      margin-top: var(--space-2);
+    }
+    @media (max-width: 860px) {
+      .lightbox-prev, .lightbox-next { display: none; }
+    }
+
+    /* Category cards below gallery */
+    .cat-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+      margin-top: var(--space-10);
+    }
+    .cat-card {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      position: relative;
+      height: 180px;
+      text-decoration: none;
+      display: block;
+      transition: transform var(--transition-base);
+    }
+    .cat-card:hover { transform: translateY(-3px); }
+    .cat-card-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .cat-card-body {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(17,24,39,0.85) 0%, transparent 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-5);
+    }
+    .cat-card-name {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #fff;
+    }
+    .cat-card-link {
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-top: var(--space-1);
+    }
+    @media (max-width: 860px) {
+      .cat-cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .cat-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar" id="announce-bar">Same-week appointments &mdash; <a href="tel:3013041419">(301) 304-1419</a><button class="announce-close" onclick="document.getElementById('announce-bar').remove()" aria-label="Close">&times;</button></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation"><div class="nav-inner">
+  <a href="./index.html" class="nav-logo" aria-label="Capital Upfitters home"><div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div><div class="nav-logo-text">Capital<span>Upfitters</span></div></a>
+  <ul class="nav-links"><li><a href="./services/index.html">Services</a></li><li><a href="./fleet.html">Fleet & Commercial</a></li><li><a href="./dealer-government.html">Dealer & Gov</a></li><li><a href="./gallery.html" class="active">Gallery</a></li><li><a href="./contact.html">Contact</a></li></ul>
+  <div class="nav-actions"><a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="nav-portal-link">Portal Login</a><a href="./quote.html" class="nav-cta">Get a Quote</a></div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Mobile menu"><button class="nav-mobile-close" id="nav-close" aria-label="Close menu">&times;</button><nav class="nav-mobile-links"><a href="./services/index.html">Services</a><a href="./fleet.html">Fleet & Commercial</a><a href="./dealer-government.html">Dealer & Gov</a><a href="./gallery.html">Gallery</a><a href="./contact.html">Contact</a></nav><div class="nav-mobile-actions"><a href="./quote.html" class="btn btn-primary">Get a Quote</a><a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Portal Login</a></div></div>
+
+<!-- PAGE HERO (compact 40vh) -->
+<section class="page-hero" style="min-height: 40vh; display: flex; align-items: center;">
+  <div class="page-hero-bg" style="background: linear-gradient(135deg, #0d1117 0%, #1a2332 50%, #203055 100%);"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="./index.html">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Gallery</span>
+    </nav>
+    <h1 class="reveal">OUR WORK <em>SPEAKS FOR ITSELF.</em></h1>
+    <p class="page-hero-sub reveal reveal-delay-1">Browse our portfolio of installed services — bedliners, ceramic coatings, hitches, undercoating, fleet builds, and more.</p>
+  </div>
+</section>
+
+<!-- GALLERY SECTION -->
+<section class="gallery-section">
+  <div class="container container--wide">
+
+    <!-- FILTER BAR -->
+    <div class="gallery-filter-row">
+      <button class="gallery-filter-btn active" data-filter="all">All</button>
+      <button class="gallery-filter-btn" data-filter="bedliner">Bedliners</button>
+      <button class="gallery-filter-btn" data-filter="ceramic">Ceramic Coating</button>
+      <button class="gallery-filter-btn" data-filter="hitch">Hitches</button>
+      <button class="gallery-filter-btn" data-filter="undercoating">Undercoating</button>
+      <button class="gallery-filter-btn" data-filter="fleet">Fleet</button>
+      <button class="gallery-filter-btn" data-filter="accessories">Accessories</button>
+      <span class="gallery-count" id="gallery-count"></span>
+    </div>
+
+    <!-- MASONRY GALLERY — 24 items -->
+    <div class="gallery-grid" role="list">
+
+      <!-- BEDLINERS — 6 items -->
+      <div class="gallery-item" data-cat="bedliner" data-label="Spray-On Bedliner" role="listitem" tabindex="0">
+        <div class="gallery-placeholder tall bg-bedliner">
+          <div class="placeholder-inner">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="13" width="22" height="7" rx="1"/><path d="M1 13l3-7h12l3 7"/><circle cx="7" cy="20" r="2"/><circle cx="17" cy="20" r="2"/></svg>
+            <span class="placeholder-tag">Bedliner</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Spray-On Bedliner</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="ceramic" data-label="Ceramic Coating" role="listitem" tabindex="0">
+        <div class="gallery-placeholder med bg-ceramic">
+          <div class="placeholder-inner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l9.5-9.5"/><path d="M16 6l4-4 2 2-4 4"/></svg>
+            <span class="placeholder-tag">Ceramic</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Ceramic Coating</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="bedliner" data-label="Spray-On Bedliner — Ram 1500" role="listitem" tabindex="0">
+        <div class="gallery-placeholder short bg-bedliner-2">
+          <div class="placeholder-inner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="13" width="22" height="7" rx="1"/><path d="M1 13l3-7h12l3 7"/></svg>
+            <span class="placeholder-tag">Bedliner</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Bedliner — Ram 1500</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="hitch" data-label="Stealth Hitch Install" role="listitem" tabindex="0">
+        <div class="gallery-placeholder med bg-hitch">
+          <div class="placeholder-inner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="18" r="3"/><path d="M18 15V6"/><path d="M6 9h12"/><path d="M6 9a3 3 0 1 1 0-6h12"/></svg>
+            <span class="placeholder-tag">Hitch</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Stealth Hitch Install</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="undercoating" data-label="Rubberized Undercoating" role="listitem" tabindex="0">
+        <div class="gallery-placeholder tall bg-undercoat">
+          <div class="placeholder-inner">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="8" width="20" height="10" rx="2"/><path d="M7 8V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3"/><circle cx="8" cy="18" r="2"/><circle cx="16" cy="18" r="2"/></svg>
+            <span class="placeholder-tag">Undercoating</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Rubberized Undercoating</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="fleet" data-label="Fleet Build — Work Trucks" role="listitem" tabindex="0">
+        <div class="gallery-placeholder med bg-fleet">
+          <div class="placeholder-inner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="11" width="22" height="9" rx="1"/><path d="M1 11l3-7h12l3 7"/><circle cx="7" cy="20" r="2"/><circle cx="17" cy="20" r="2"/></svg>
+            <span class="placeholder-tag">Fleet</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Fleet Build — Work Trucks</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="bedliner" data-label="F-150 Bedliner" role="listitem" tabindex="0">
+        <div class="gallery-placeholder short bg-bedliner-3">
+          <div class="placeholder-inner">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="13" width="22" height="7" rx="1"/><path d="M1 13l3-7h12l3 7"/></svg>
+            <span class="placeholder-tag">Bedliner</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">F-150 Bedliner</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="accessories" data-label="Running Boards Install" role="listitem" tabindex="0">
+        <div class="gallery-placeholder med bg-accessories">
+          <div class="placeholder-inner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 12l3-3M3 12l3 3M21 12l-3-3M21 12l-3 3"/></svg>
+            <span class="placeholder-tag">Accessories</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Running Boards Install</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="ceramic" data-label="Ceramic Coating — SUV" role="listitem" tabindex="0">
+        <div class="gallery-placeholder tall bg-ceramic-2">
+          <div class="placeholder-inner">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M15 9l-6 6"/><path d="M9 9h6v6"/></svg>
+            <span class="placeholder-tag">Ceramic</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Ceramic Coating — SUV</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="hitch" data-label="Trailer Hitch — Silverado" role="listitem" tabindex="0">
+        <div class="gallery-placeholder short bg-hitch-2">
+          <div class="placeholder-inner">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="18" r="3"/><path d="M18 15V6"/></svg>
+            <span class="placeholder-tag">Hitch</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Trailer Hitch — Silverado</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="undercoating" data-label="Full Undercoating Package" role="listitem" tabindex="0">
+        <div class="gallery-placeholder med bg-undercoat-2">
+          <div class="placeholder-inner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="8" width="20" height="10" rx="2"/><circle cx="8" cy="18" r="2"/><circle cx="16" cy="18" r="2"/></svg>
+            <span class="placeholder-tag">Undercoating</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Full Undercoating Package</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="fleet" data-label="Van Fleet — Interior Org" role="listitem" tabindex="0">
+        <div class="gallery-placeholder tall bg-fleet-2">
+          <div class="placeholder-inner">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="8" width="22" height="12" rx="2"/><path d="M1 12h22"/><circle cx="7" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+            <span class="placeholder-tag">Fleet</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Van Fleet — Interior Org</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="bedliner" data-label="Tacoma Bedliner" role="listitem" tabindex="0">
+        <div class="gallery-placeholder med bg-bedliner">
+          <div class="placeholder-inner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="13" width="22" height="7" rx="1"/><path d="M1 13l3-7h12l3 7"/></svg>
+            <span class="placeholder-tag">Bedliner</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Tacoma Bedliner</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="accessories" data-label="Tonneau Cover Install" role="listitem" tabindex="0">
+        <div class="gallery-placeholder short bg-accessories-2">
+          <div class="placeholder-inner">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            <span class="placeholder-tag">Accessories</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Tonneau Cover Install</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="ceramic" data-label="Ceramic — Full Detail" role="listitem" tabindex="0">
+        <div class="gallery-placeholder med bg-ceramic">
+          <div class="placeholder-inner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <span class="placeholder-tag">Ceramic</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Ceramic — Full Detail</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="hitch" data-label="Invisible Hitch Install" role="listitem" tabindex="0">
+        <div class="gallery-placeholder tall bg-hitch">
+          <div class="placeholder-inner">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="18" r="3"/><path d="M18 15V6"/><path d="M6 6h12"/></svg>
+            <span class="placeholder-tag">Hitch</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Invisible Hitch Install</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="bedliner" data-label="Spray Bedliner — Tundra" role="listitem" tabindex="0">
+        <div class="gallery-placeholder short bg-bedliner-2">
+          <div class="placeholder-inner">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="13" width="22" height="7" rx="1"/><path d="M1 13l3-7h12l3 7"/></svg>
+            <span class="placeholder-tag">Bedliner</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Bedliner — Tundra</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="undercoating" data-label="Corrosion Protection" role="listitem" tabindex="0">
+        <div class="gallery-placeholder med bg-undercoat">
+          <div class="placeholder-inner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span class="placeholder-tag">Undercoating</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Corrosion Protection</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="fleet" data-label="DOT Fleet Compliance" role="listitem" tabindex="0">
+        <div class="gallery-placeholder short bg-fleet">
+          <div class="placeholder-inner">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+            <span class="placeholder-tag">Fleet</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">DOT Fleet Compliance</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="accessories" data-label="LED Light Bar Install" role="listitem" tabindex="0">
+        <div class="gallery-placeholder med bg-accessories">
+          <div class="placeholder-inner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            <span class="placeholder-tag">Accessories</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">LED Light Bar Install</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="hitch" data-label="Class IV Hitch — F-250" role="listitem" tabindex="0">
+        <div class="gallery-placeholder short bg-hitch-2">
+          <div class="placeholder-inner">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="18" r="3"/><path d="M18 15V9"/></svg>
+            <span class="placeholder-tag">Hitch</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Class IV Hitch — F-250</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="undercoating" data-label="Truck Undercoating" role="listitem" tabindex="0">
+        <div class="gallery-placeholder tall bg-undercoat-2">
+          <div class="placeholder-inner">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="8" width="20" height="10" rx="2"/><circle cx="8" cy="18" r="2"/><circle cx="16" cy="18" r="2"/></svg>
+            <span class="placeholder-tag">Undercoating</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Truck Undercoating</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="ceramic" data-label="Paint Protection + Ceramic" role="listitem" tabindex="0">
+        <div class="gallery-placeholder med bg-ceramic-2">
+          <div class="placeholder-inner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 10 10"/></svg>
+            <span class="placeholder-tag">Ceramic</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Paint Protection + Ceramic</span></div>
+      </div>
+
+      <div class="gallery-item" data-cat="bedliner" data-label="Canyon Bedliner" role="listitem" tabindex="0">
+        <div class="gallery-placeholder med bg-bedliner-3">
+          <div class="placeholder-inner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="13" width="22" height="7" rx="1"/><path d="M1 13l3-7h12l3 7"/></svg>
+            <span class="placeholder-tag">Bedliner</span>
+          </div>
+        </div>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Canyon Bedliner</span></div>
+      </div>
+
+    </div><!-- end .gallery-grid -->
+  </div>
+</section>
+
+<!-- CATEGORIES SECTION -->
+<section class="section section--surface">
+  <div class="container">
+    <p class="section-label">Browse by Service</p>
+    <h2 class="reveal">Explore Our Services</h2>
+    <div class="cat-cards">
+      <a href="./services/bedliner.html" class="cat-card reveal">
+        <div class="cat-card-bg bg-bedliner"></div>
+        <div class="cat-card-body">
+          <div class="cat-card-name">Spray-On Bedliners</div>
+          <div class="cat-card-link">View service →</div>
+        </div>
+      </a>
+      <a href="./services/ceramic-coating.html" class="cat-card reveal reveal-delay-1">
+        <div class="cat-card-bg bg-ceramic"></div>
+        <div class="cat-card-body">
+          <div class="cat-card-name">Ceramic Coating</div>
+          <div class="cat-card-link">View service →</div>
+        </div>
+      </a>
+      <a href="./services/hitches.html" class="cat-card reveal reveal-delay-2">
+        <div class="cat-card-bg bg-hitch"></div>
+        <div class="cat-card-body">
+          <div class="cat-card-name">Hitches & Towing</div>
+          <div class="cat-card-link">View service →</div>
+        </div>
+      </a>
+      <a href="./services/undercoating.html" class="cat-card reveal">
+        <div class="cat-card-bg bg-undercoat"></div>
+        <div class="cat-card-body">
+          <div class="cat-card-name">Undercoating</div>
+          <div class="cat-card-link">View service →</div>
+        </div>
+      </a>
+      <a href="./fleet.html" class="cat-card reveal reveal-delay-1">
+        <div class="cat-card-bg bg-fleet"></div>
+        <div class="cat-card-body">
+          <div class="cat-card-name">Fleet Upfitting</div>
+          <div class="cat-card-link">View service →</div>
+        </div>
+      </a>
+      <a href="./services/tonneau.html" class="cat-card reveal reveal-delay-2">
+        <div class="cat-card-bg bg-accessories"></div>
+        <div class="cat-card-body">
+          <div class="cat-card-name">Accessories</div>
+          <div class="cat-card-link">View service →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-content">
+    <h2 class="reveal">Ready to get work like this done on your vehicle?</h2>
+    <p class="reveal reveal-delay-1">Get a free, no-obligation quote. We respond the same business day.</p>
+    <div class="cta-banner-actions reveal reveal-delay-2">
+      <a href="./quote.html" class="btn btn-primary btn-lg">Get a Quote</a>
+      <a href="tel:3013041419" class="btn btn-outline btn-lg">Call Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">&times;</button>
+  <div class="lightbox-inner">
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="lightbox-display" id="lightbox-display"></div>
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo"><div class="container"><div class="footer-grid">
+<div><a href="./index.html" class="footer-brand-logo"><div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div><div class="footer-brand-name">Capital<span>Upfitters</span></div></a><p class="footer-tagline">Family-owned vehicle upfitting in Rockville, MD. Authorized Patriot Liner dealer. DMV's most trusted upfitter.</p><div class="footer-contact"><a href="tel:3013041419" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel St, Rockville MD 20852</div></div></div>
+<div><div class="footer-col-title">Services</div><ul class="footer-links"><li><a href="./services/bedliner.html">Spray-On Bedliners</a></li><li><a href="./services/hitches.html">Hitches & Towing</a></li><li><a href="./services/ceramic-coating.html">Ceramic Coating</a></li><li><a href="./services/undercoating.html">Undercoating</a></li><li><a href="./services/tonneau.html">Tonneau Covers</a></li><li><a href="./services/running-boards.html">Running Boards</a></li></ul></div>
+<div><div class="footer-col-title">Business</div><ul class="footer-links"><li><a href="./fleet.html">Fleet Upfitting</a></li><li><a href="./dealer-government.html">Dealer & Gov</a></li><li><a href="./gallery.html">Gallery</a></li><li><a href="./quote.html">Get a Quote</a></li><li><a href="https://upfit-portal-58190af9.base44.app" target="_blank" rel="noopener noreferrer">Upfit Portal</a></li></ul></div>
+<div><div class="footer-col-title">Locations</div><ul class="footer-links"><li><a href="./locations/rockville-md.html">Rockville, MD</a></li><li><a href="./locations/bethesda-md.html">Bethesda, MD</a></li><li><a href="./locations/silver-spring-md.html">Silver Spring, MD</a></li><li><a href="./locations/gaithersburg-md.html">Gaithersburg, MD</a></li></ul></div>
+</div><div class="footer-bottom"><p class="footer-copyright">&copy; 2026 Capital Auto Upfitters & Protective Coatings. All rights reserved.</p><nav class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></nav><p class="footer-pplx"><a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a></p></div></div></footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta-bar" aria-hidden="true">
+  <a href="tel:3013041419" class="btn btn-outline">Call Now</a>
+  <a href="./quote.html" class="btn btn-primary">Get a Quote</a>
+</div>
+
+<script>
+(function(){const b=document.getElementById('hamburger'),m=document.getElementById('nav-mobile'),c=document.getElementById('nav-close');if(b&&m){b.addEventListener('click',()=>{m.classList.add('open');b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'});if(c)c.addEventListener('click',()=>{m.classList.remove('open');b.setAttribute('aria-expanded','false');document.body.style.overflow=''})}})();
+(function(){const e=document.querySelectorAll('.reveal');if(!e.length)return;const i=new IntersectionObserver(v=>{v.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');i.unobserve(el.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});e.forEach(el=>i.observe(el))})();
+
+// Gallery filter
+const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+const items = document.querySelectorAll('.gallery-item');
+const countEl = document.getElementById('gallery-count');
+function updateCount(){
+  const vis = document.querySelectorAll('.gallery-item:not(.hidden)').length;
+  if(countEl) countEl.textContent = 'Showing ' + vis + ' of ' + items.length + ' projects';
+}
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.filter;
+    items.forEach(item => {
+      if(cat === 'all' || item.dataset.cat === cat) item.classList.remove('hidden');
+      else item.classList.add('hidden');
+    });
+    updateCount();
+  });
+});
+updateCount();
+
+// Lightbox
+const lightbox = document.getElementById('lightbox');
+const lbDisplay = document.getElementById('lightbox-display');
+const lbCaption = document.getElementById('lightbox-caption');
+const lbCounter = document.getElementById('lightbox-counter');
+const lbClose = document.getElementById('lightbox-close');
+const lbPrev = document.getElementById('lightbox-prev');
+const lbNext = document.getElementById('lightbox-next');
+let currentIdx = 0;
+
+function getVisibleItems() {
+  return Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+}
+
+function openLightbox(idx) {
+  const visible = getVisibleItems();
+  if (!visible[idx]) return;
+  currentIdx = idx;
+  const item = visible[idx];
+  const ph = item.querySelector('.gallery-placeholder');
+  const label = item.dataset.label || 'Capital Upfitters';
+  const style = ph ? ph.getAttribute('style') || '' : '';
+  const bgClass = ph ? Array.from(ph.classList).filter(c => c.startsWith('bg-')).join(' ') : '';
+  const heightClass = ph ? (ph.classList.contains('tall') ? 'tall' : ph.classList.contains('short') ? 'short' : 'med') : 'med';
+  const heights = { tall: '460px', med: '380px', short: '340px' };
+  const h = heights[heightClass] || '380px';
+  lbDisplay.innerHTML = `<div class="lightbox-placeholder ${bgClass}" style="height:${h}; ${style}"><div style="display:flex;align-items:center;justify-content:center;height:100%;"><span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.25);">${label}</span></div></div>`;
+  lbCaption.textContent = label;
+  lbCounter.textContent = (idx + 1) + ' / ' + visible.length;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+items.forEach((item, _) => {
+  item.addEventListener('click', () => {
+    const visible = getVisibleItems();
+    const idx = visible.indexOf(item);
+    if (idx > -1) openLightbox(idx);
+  });
+  item.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
+  });
+});
+
+lbClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+lbPrev.addEventListener('click', e => { e.stopPropagation(); const v = getVisibleItems(); openLightbox((currentIdx - 1 + v.length) % v.length); });
+lbNext.addEventListener('click', e => { e.stopPropagation(); const v = getVisibleItems(); openLightbox((currentIdx + 1) % v.length); });
+
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') { const v = getVisibleItems(); openLightbox((currentIdx - 1 + v.length) % v.length); }
+  if (e.key === 'ArrowRight') { const v = getVisibleItems(); openLightbox((currentIdx + 1) % v.length); }
+});
+
+// Touch swipe for lightbox
+let touchStartX = 0;
+lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+lightbox.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) {
+    const v = getVisibleItems();
+    if (dx < 0) openLightbox((currentIdx + 1) % v.length);
+    else openLightbox((currentIdx - 1 + v.length) % v.length);
+  }
+});
+</script>
+</body>
+</html>
