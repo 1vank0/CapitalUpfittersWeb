@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="/cms-integration.js" defer></script>
+
 <!--
   Capital Upfitters — Undercoating Service Page
   Built with Perplexity Computer (https://www.perplexity.ai/computer)
@@ -499,6 +501,147 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
     if(!expanded){btn.setAttribute('aria-expanded','true');document.getElementById(btn.getAttribute('aria-controls')).classList.add('open');}
   });
 });
+</script>
+
+<script>
+/* CMS hydration — undercoating */
+(function () {
+  'use strict';
+  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+  var SLUG = 'undercoating';
+
+  /* ── helpers ── */
+  function setText(selectors, value) {
+    if (!value) return;
+    selectors.forEach(function (sel) {
+      document.querySelectorAll(sel).forEach(function (el) {
+        el.textContent = value;
+      });
+    });
+  }
+
+  function updateJsonLd(priceFrom, priceTo) {
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(function (tag) {
+      try {
+        var data = JSON.parse(tag.textContent);
+        var graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
+        graph.forEach(function (node) {
+          if (node.offers && node.offers['@type'] === 'AggregateOffer') {
+            if (priceFrom) node.offers.lowPrice  = String(priceFrom);
+            if (priceTo)   node.offers.highPrice = String(priceTo);
+          }
+        });
+        tag.textContent = JSON.stringify(data);
+      } catch (e) {}
+    });
+  }
+
+  function buildFaqHtml(faqs) {
+    return faqs.map(function (faq, i) {
+      var q = faq.question || faq.name || '';
+      var a = faq.answer   || (faq.acceptedAnswer && faq.acceptedAnswer.text) || '';
+      var id = 'cms-faq-' + i;
+      return [
+        '<div class="faq-item">',
+        '  <button class="faq-btn" aria-expanded="false" aria-controls="' + id + '">',
+        '    <span class="faq-question">' + escHtml(q) + '</span>',
+        '    <span class="faq-icon" aria-hidden="true">',
+        '      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">',
+        '        <line x1="12" y1="5" x2="12" y2="19"/>',
+        '        <line x1="5"  y1="12" x2="19" y2="12"/>',
+        '      </svg>',
+        '    </span>',
+        '  </button>',
+        '  <div class="faq-answer" id="' + id + '">',
+        '    <p>' + escHtml(a) + '</p>',
+        '  </div>',
+        '</div>'
+      ].join('\n');
+    }).join('\n');
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function wireFaqAccordion(container) {
+    container.querySelectorAll('.faq-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        var answerId = btn.getAttribute('aria-controls');
+        var answer   = answerId ? document.getElementById(answerId) : null;
+        if (!answer) answer = btn.parentElement.querySelector('.faq-answer');
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if (answer) answer.classList.toggle('open', !expanded);
+      });
+    });
+  }
+
+  /* ── tag main form ── */
+  var mainForm = document.querySelector('form');
+  if (mainForm && !mainForm.hasAttribute('data-cms-form')) {
+    mainForm.setAttribute('data-cms-form', 'retail');
+  }
+
+  /* ── fetch service data ── */
+  fetch(CMS_BASE + '/api/public/services?slug=' + SLUG)
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (!data) return;
+      var service = data.docs ? data.docs[0] : data;
+      if (!service) return;
+
+      /* price */
+      var priceLabel = service.priceLabel ||
+        (service.priceFrom ? 'From $' + service.priceFrom : null);
+      setText(['.service-price', '[data-cms="price"]'], priceLabel);
+
+      /* tagline */
+      setText(['.service-tagline', '[data-cms="tagline"]'], service.tagline);
+
+      /* turnaround */
+      setText(['.service-turnaround', '[data-cms="turnaround"]'], service.turnaround);
+
+      /* warranty */
+      setText(['.service-warranty', '[data-cms="warranty"]'], service.warranty);
+
+      /* SEO */
+      if (service.seo) {
+        if (service.seo.metaTitle)       document.title = service.seo.metaTitle;
+        if (service.seo.metaDescription) {
+          var metaDesc = document.querySelector('meta[name="description"]');
+          if (metaDesc) metaDesc.setAttribute('content', service.seo.metaDescription);
+        }
+      }
+
+      /* JSON-LD prices */
+      if (service.priceFrom || service.priceTo) {
+        updateJsonLd(service.priceFrom, service.priceTo);
+      }
+    })
+    .catch(function () { /* CMS unavailable — hardcoded content remains */ });
+
+  /* ── fetch FAQs ── */
+  fetch(CMS_BASE + '/api/public/faqs?service=' + SLUG)
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (!data) return;
+      var faqs = data.docs || data;
+      if (!Array.isArray(faqs) || faqs.length === 0) return;
+
+      /* find the FAQ container — support both class names used across pages */
+      var container = document.querySelector('.faq-list, .faq-accordion');
+      if (!container) return;
+
+      container.innerHTML = buildFaqHtml(faqs);
+      wireFaqAccordion(container);
+    })
+    .catch(function () { /* CMS unavailable — hardcoded FAQs remain */ });
+}());
 </script>
 </body>
 </html>
