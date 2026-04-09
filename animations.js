@@ -33,6 +33,8 @@
   .benefits-grid > *,
   .vehicle-types-grid > *,
   .related-grid > *,
+  .services-hub-grid > *,
+  .why-compact-grid > *,
   .grid-3 > *,
   .grid-4 > * {
     opacity: 0;
@@ -44,17 +46,26 @@
   /* Stagger delays via nth-child */
   .funnel-grid > *:nth-child(2),
   .benefits-grid > *:nth-child(2),
+  .services-hub-grid > *:nth-child(2),
+  .why-compact-grid > *:nth-child(2),
   .grid-3 > *:nth-child(2),
   .grid-4 > *:nth-child(2) { animation-delay: 60ms; }
 
   .funnel-grid > *:nth-child(3),
   .benefits-grid > *:nth-child(3),
+  .services-hub-grid > *:nth-child(3),
+  .why-compact-grid > *:nth-child(3),
   .grid-3 > *:nth-child(3),
   .grid-4 > *:nth-child(3) { animation-delay: 120ms; }
 
   .funnel-grid > *:nth-child(4),
   .benefits-grid > *:nth-child(4),
+  .services-hub-grid > *:nth-child(4),
   .grid-4 > *:nth-child(4) { animation-delay: 180ms; }
+
+  .services-hub-grid > *:nth-child(5) { animation-delay: 240ms; }
+  .services-hub-grid > *:nth-child(6) { animation-delay: 300ms; }
+  .services-hub-grid > *:nth-child(7) { animation-delay: 360ms; }
 
   /* Service cards — clip-path wipe from bottom (no layout shift) */
   .service-card,
