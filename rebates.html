@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="/cms-integration.js" defer></script>
+
+<!--
+  Capital Upfitters — Current Rebates & Offers Page
+  Built by IVANKODev (https://IVANKODevelopment.com)
+  Design system: Barlow Condensed + Inter, #111827 / #203055 palette
+-->
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="shortcut icon" href="./favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Current Rebates &amp; Offers | Capital Upfitters Rockville MD</title>
+<meta name="description" content="Active manufacturer rebates and limited-time offers on bedliners, tonneau covers, hitches, ceramic coating, and more. Capital Upfitters, Rockville MD. Updated regularly.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.capitalupfitters.com/rebates/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.capitalupfitters.com/rebates/">
+<meta property="og:title" content="Current Rebates &amp; Offers | Capital Upfitters Rockville MD">
+<meta property="og:description" content="Active manufacturer rebates and limited-time offers on bedliners, tonneau covers, hitches, ceramic coating, and more. Capital Upfitters, Rockville MD. Updated regularly.">
+<meta property="og:image" content="https://www.capitalupfitters.com/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting Rockville MD">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+
+<!-- JSON-LD: Breadcrumb -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.capitalupfitters.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Rebates & Offers",
+      "item": "https://www.capitalupfitters.com/rebates/"
+    }
+  ]
+}
+</script>
+
+<!-- JSON-LD: LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Capital Upfitters",
+  "description": "Active manufacturer rebates and limited-time offers on bedliners, tonneau covers, hitches, ceramic coating, and more.",
+  "telephone": "+13013041419",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "12019 Nebel St",
+    "addressLocality": "Rockville",
+    "addressRegion": "MD",
+    "postalCode": "20852"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "96",
+    "bestRating": "5"
+  },
+  "areaServed": [
+    {"@type": "City", "name": "Rockville", "sameAs": "https://en.wikipedia.org/wiki/Rockville,_Maryland"},
+    {"@type": "City", "name": "Bethesda", "sameAs": "https://en.wikipedia.org/wiki/Bethesda,_Maryland"},
+    {"@type": "City", "name": "Silver Spring", "sameAs": "https://en.wikipedia.org/wiki/Silver_Spring,_Maryland"},
+    {"@type": "City", "name": "Gaithersburg", "sameAs": "https://en.wikipedia.org/wiki/Gaithersburg,_Maryland"},
+    {"@type": "City", "name": "Potomac", "sameAs": "https://en.wikipedia.org/wiki/Potomac,_Maryland"},
+    {"@type": "City", "name": "North Bethesda", "sameAs": "https://en.wikipedia.org/wiki/North_Bethesda,_Maryland"}
+  ],
+  "creator": {"@type": "Organization", "name": "IVANKODev", "url": "https://IVANKODevelopment.com"}
+}
+</script>
+
+<style>
+/* ── REBATES PAGE STYLES ─────────────────────────────── */
+
+/* Hero background */
+.rebates-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #111827 0%, #203055 100%);
+}
+.rebates-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* Last updated note strip */
+.rebates-note-strip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 1rem;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  margin-top: var(--space-6);
+}
+.rebates-note-strip::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+}
+
+/* ── REBATE GRID ─────────────────────────────────────── */
+.rebate-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+  margin-top: var(--space-10);
+}
+.rebate-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+.rebate-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.rebate-card-header {
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.rebate-brand {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--color-accent);
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+}
+.rebate-expiry {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+}
+.rebate-expiry.urgent {
+  background: #fee2e2;
+  color: #dc2626;
+}
+.rebate-expiry.ongoing {
+  background: #d1fae5;
+  color: #059669;
+}
+.rebate-expiry.exclusive {
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+}
+.rebate-expiry.seasonal {
+  background: #fef3c7;
+  color: #d97706;
+}
+.rebate-body {
+  padding: var(--space-6);
+}
+.rebate-headline {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+  line-height: 1.1;
+}
+.rebate-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  margin-bottom: var(--space-5);
+}
+
+/* ── HOW IT WORKS ────────────────────────────────────── */
+.how-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-10);
+  position: relative;
+}
+.how-steps::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: calc(16.67% + 28px);
+  right: calc(16.67% + 28px);
+  height: 1px;
+  background: var(--color-border);
+}
+.how-step {
+  text-align: center;
+  position: relative;
+}
+.how-step-num {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-5);
+  position: relative;
+  z-index: 1;
+}
+.how-step-title {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+.how-step-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+/* ── CTA BANNER ──────────────────────────────────────── */
+.rebates-cta-banner {
+  background: linear-gradient(135deg, #111827 0%, #203055 100%);
+  border-radius: var(--radius-xl);
+  padding: var(--space-12) var(--space-10);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.rebates-cta-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+.rebates-cta-banner h2 {
+  color: #fff;
+  position: relative;
+}
+.rebates-cta-banner p {
+  color: rgba(255,255,255,0.7);
+  max-width: 520px;
+  margin: var(--space-3) auto var(--space-8);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  position: relative;
+}
+.rebates-cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  position: relative;
+}
+
+/* ── URGENCY ACCENT ON URGENT CARDS ─────────────────── */
+.rebate-card.card-urgent {
+  border-color: rgba(220, 38, 38, 0.25);
+}
+.rebate-card.card-urgent:hover {
+  border-color: rgba(220, 38, 38, 0.4);
+}
+.rebate-card.card-exclusive {
+  border-color: rgba(32, 48, 85, 0.35);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 700px) {
+  .rebate-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 860px) {
+  .how-steps {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-inline: auto;
+  }
+  .how-steps::before { display: none; }
+  .rebates-cta-banner { padding: var(--space-10) var(--space-6); }
+}
+@media (max-width: 560px) {
+  .rebates-cta-banner { padding: var(--space-8) var(--space-5); }
+}
+</style>
+
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar" id="announce-bar">
+  Same-week appointments available &mdash; <a href="tel:3013041419">(301) 304-1419</a>
+  <button class="announce-close" onclick="document.getElementById('announce-bar').remove()" aria-label="Close">&times;</button>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="./index.html" class="nav-logo" aria-label="Capital Upfitters home">
+      <div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div>
+      <div class="nav-logo-text">Capital<span>Upfitters</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="./services/">Services</a></li>
+      <li><a href="./fleet.html">Fleet &amp; Commercial</a></li>
+      <li><a href="./dealer-government.html">Dealer &amp; Gov</a></li>
+      <li><a href="./gallery.html">Gallery</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="nav-portal-link">Portal Login</a>
+      <a href="./quote.html" class="nav-cta">Get a Quote</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Mobile menu">
+  <button class="nav-mobile-close" id="nav-close" aria-label="Close menu">&times;</button>
+  <nav class="nav-mobile-links">
+    <a href="./services/">Services</a>
+    <a href="./fleet.html">Fleet &amp; Commercial</a>
+    <a href="./dealer-government.html">Dealer &amp; Gov</a>
+    <a href="./gallery.html">Gallery</a>
+    <a href="./contact.html">Contact</a>
+  </nav>
+  <div class="nav-mobile-actions">
+    <a href="./quote.html" class="btn btn-primary">Get a Quote</a>
+    <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Portal Login</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PAGE HERO
+═══════════════════════════════════════════════════════ -->
+<section class="page-hero" aria-labelledby="hero-heading">
+  <div class="rebates-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="./index.html">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">/</span>
+      <span aria-current="page">Rebates &amp; Offers</span>
+    </nav>
+    <div class="badge" style="margin-bottom: var(--space-5); background: rgba(32,48,85,0.7); border: 1px solid rgba(255,255,255,0.15);">Limited Time Deals</div>
+    <h1 id="hero-heading">CURRENT REBATES &amp; OFFERS.</h1>
+    <p class="page-hero-sub">Manufacturer rebates, package deals, and seasonal specials. All applied at time of service &mdash; no waiting, no mailing checks. Updated regularly.</p>
+    <div class="hero-ctas">
+      <a href="./quote.html" class="btn btn-primary btn-lg">Get a Free Quote</a>
+      <a href="tel:3013041419" class="btn btn-outline btn-lg">Call (301) 304-1419</a>
+    </div>
+    <div class="rebates-note-strip" aria-label="Last updated notice">
+      Last updated: April 2026 &nbsp;&middot;&nbsp; New deals added monthly
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     ACTIVE REBATES GRID
+═══════════════════════════════════════════════════════ -->
+<section class="section" aria-labelledby="rebates-heading">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label" style="justify-content:center;">Savings Available Now</div>
+      <h2 id="rebates-heading">ACTIVE MANUFACTURER OFFERS</h2>
+      <p style="max-width:560px; margin: var(--space-3) auto 0; color: var(--color-text-secondary);">Current rebates and promotions available at Capital Upfitters. Mention the offer when booking to confirm eligibility.</p>
+    </div>
+
+    <div class="rebate-grid">
+
+      <!-- 1: Patriot Liner Lifetime Warranty -->
+      <div class="rebate-card">
+        <div class="rebate-card-header">
+          <span class="rebate-brand">Patriot Liner</span>
+          <span class="rebate-expiry ongoing">Ongoing &middot; No Expiry</span>
+        </div>
+        <div class="rebate-body">
+          <div class="rebate-headline">LIFETIME WARRANTY &mdash; INCLUDED</div>
+          <p class="rebate-desc">Every Patriot Liner spray-on bedliner comes with a manufacturer lifetime warranty. No expiration. No registration required. The only bedliner backed for life.</p>
+          <a href="./quote.html?service=bedliner" class="btn btn-primary" style="width:100%; text-align:center;">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 2: BAKFlip MX4 -->
+      <div class="rebate-card card-urgent">
+        <div class="rebate-card-header">
+          <span class="rebate-brand">BAKFlip MX4</span>
+          <span class="rebate-expiry urgent">Expires: Apr 30, 2026 &middot; Limited Time</span>
+        </div>
+        <div class="rebate-body">
+          <div class="rebate-headline">UP TO $150 BACK</div>
+          <p class="rebate-desc">Buy and install a BAKFlip MX4 Gen 3 tonneau cover and receive up to $150 cash back via manufacturer rebate. Must be submitted within 30 days of install.</p>
+          <a href="./quote.html?service=tonneau" class="btn btn-primary" style="width:100%; text-align:center;">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 3: TruXedo -->
+      <div class="rebate-card card-urgent">
+        <div class="rebate-card-header">
+          <span class="rebate-brand">TruXedo</span>
+          <span class="rebate-expiry urgent">Expires: May 15, 2026</span>
+        </div>
+        <div class="rebate-body">
+          <div class="rebate-headline">$75 INSTANT SAVINGS</div>
+          <p class="rebate-desc">Save $75 instantly on any TruXedo Pro X15 or TruXport tonneau cover installation. Applied at time of service &mdash; no mail-in required.</p>
+          <a href="./quote.html?service=tonneau" class="btn btn-primary" style="width:100%; text-align:center;">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 4: IGL Coatings -->
+      <div class="rebate-card">
+        <div class="rebate-card-header">
+          <span class="rebate-brand">IGL Coatings</span>
+          <span class="rebate-expiry ongoing">Ongoing &middot; Included with every install</span>
+        </div>
+        <div class="rebate-body">
+          <div class="rebate-headline">FREE MAINTENANCE KIT ($120 VALUE)</div>
+          <p class="rebate-desc">All IGL ceramic coating packages include a complimentary 6-month maintenance kit &mdash; pH-neutral shampoo, ceramic spray topper, and microfiber set. A $120 value included with every ceramic coating install.</p>
+          <a href="./quote.html?service=ceramic-coating" class="btn btn-primary" style="width:100%; text-align:center;">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 5: Bedliner + Tonneau Bundle -->
+      <div class="rebate-card card-exclusive">
+        <div class="rebate-card-header">
+          <span class="rebate-brand">Bedliner + Tonneau Bundle</span>
+          <span class="rebate-expiry exclusive">Capital Upfitters Exclusive &middot; While slots available</span>
+        </div>
+        <div class="rebate-body">
+          <div class="rebate-headline">SAVE $125 ON THE COMBO</div>
+          <p class="rebate-desc">Book a Patriot Liner spray-on bedliner AND any tonneau cover in the same appointment and save $125 off the combined service price. Same day. One shop. One discount.</p>
+          <a href="./quote.html?service=bundle" class="btn btn-primary" style="width:100%; text-align:center;">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 6: AMP Research PowerStep -->
+      <div class="rebate-card">
+        <div class="rebate-card-header">
+          <span class="rebate-brand">AMP Research</span>
+          <span class="rebate-expiry urgent">Expires: June 30, 2026</span>
+        </div>
+        <div class="rebate-body">
+          <div class="rebate-headline">$100 REBATE</div>
+          <p class="rebate-desc">AMP Research offers a $100 consumer rebate on PowerStep electric running board purchases. Applies to all Plug-N-Play models. Submit within 30 days.</p>
+          <a href="./quote.html?service=running-boards" class="btn btn-primary" style="width:100%; text-align:center;">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 7: Undercoating Pre-Winter Special -->
+      <div class="rebate-card">
+        <div class="rebate-card-header">
+          <span class="rebate-brand">Undercoating Special</span>
+          <span class="rebate-expiry seasonal">Seasonal &middot; October&ndash;December</span>
+        </div>
+        <div class="rebate-body">
+          <div class="rebate-headline">FREE RUST NEUTRALIZER ($50 VALUE)</div>
+          <p class="rebate-desc">Book any full undercoating package and receive a free rust neutralizer pre-treatment (normally $50 additional). Prep your vehicle before Maryland's winter salt season.</p>
+          <a href="./quote.html?service=undercoating" class="btn btn-primary" style="width:100%; text-align:center;">Get a Quote</a>
+        </div>
+      </div>
+
+      <!-- 8: Fleet Discount -->
+      <div class="rebate-card card-exclusive">
+        <div class="rebate-card-header">
+          <span class="rebate-brand">Fleet Discount</span>
+          <span class="rebate-expiry ongoing">Ongoing &middot; Fleet accounts</span>
+        </div>
+        <div class="rebate-body">
+          <div class="rebate-headline">10% OFF 3+ VEHICLES</div>
+          <p class="rebate-desc">Fleet accounts booking 3 or more vehicles for the same service receive 10% off total. Available for bedliners, undercoating, tonneau covers, and running boards. Call for fleet scheduling.</p>
+          <a href="./fleet.html" class="btn btn-primary" style="width:100%; text-align:center;">Get a Quote</a>
+        </div>
+      </div>
+
+    </div><!-- /.rebate-grid -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     HOW REBATES WORK
+═══════════════════════════════════════════════════════ -->
+<section class="section section--surface" aria-labelledby="how-heading">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label" style="justify-content:center;">Simple Process</div>
+      <h2 id="how-heading">HOW IT WORKS</h2>
+      <p style="max-width:520px; margin: var(--space-3) auto 0; color: var(--color-text-secondary);">Getting your rebate is straightforward. No hoops, no hassle.</p>
+    </div>
+    <div class="how-steps">
+
+      <div class="how-step">
+        <div class="how-step-num" aria-hidden="true">1</div>
+        <div class="how-step-title">Book Your Service</div>
+        <p class="how-step-desc">Call or get a quote online. Mention the rebate when booking &mdash; we'll confirm eligibility.</p>
+      </div>
+
+      <div class="how-step">
+        <div class="how-step-num" aria-hidden="true">2</div>
+        <div class="how-step-title">Get Your Install</div>
+        <p class="how-step-desc">We complete your service and provide documentation needed for any manufacturer mail-in submissions.</p>
+      </div>
+
+      <div class="how-step">
+        <div class="how-step-num" aria-hidden="true">3</div>
+        <div class="how-step-title">Save</div>
+        <p class="how-step-desc">Manufacturer rebates are either applied at time of service (no mail-in) or we provide the submission paperwork with your receipt.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     CTA BANNER
+═══════════════════════════════════════════════════════ -->
+<section class="section" aria-labelledby="cta-heading">
+  <div class="container">
+    <div class="rebates-cta-banner reveal">
+      <div class="section-label" style="justify-content:center; color: rgba(255,255,255,0.55);">Always Expanding</div>
+      <h2 id="cta-heading">DON'T SEE YOUR SERVICE?</h2>
+      <p>New deals are added regularly. Call us to ask about current pricing specials and fleet discounts.</p>
+      <div class="rebates-cta-actions">
+        <a href="tel:3013041419" class="btn btn-outline btn-lg" style="color:#fff; border-color: rgba(255,255,255,0.4);">Call (301) 304-1419</a>
+        <a href="./quote.html" class="btn btn-primary btn-lg">Get a Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="./index.html" class="footer-brand-logo">
+          <div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div>
+          <div class="footer-brand-name">Capital<span>Upfitters</span></div>
+        </a>
+        <p class="footer-tagline">Family-owned vehicle upfitting shop in Rockville, MD. Authorized Patriot Liner dealer. Serving the DMV 30+ years.</p>
+        <div class="footer-contact">
+          <a href="tel:3013041419" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a>
+          <div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel St, Rockville MD 20852</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="./services/bedliner.html">Spray-On Bedliners</a></li>
+          <li><a href="./services/hitches.html">Hitches &amp; Towing</a></li>
+          <li><a href="./services/ceramic-coating.html">Ceramic Coating</a></li>
+          <li><a href="./services/undercoating.html">Undercoating</a></li>
+          <li><a href="./services/tonneau.html">Tonneau Covers</a></li>
+          <li><a href="./services/running-boards.html">Running Boards</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Business</div>
+        <ul class="footer-links">
+          <li><a href="./fleet.html">Fleet Upfitting</a></li>
+          <li><a href="./dealer-government.html">Dealer Program</a></li>
+          <li><a href="./gallery.html">Gallery</a></li>
+          <li><a href="./quote.html">Get a Quote</a></li>
+          <li><a href="./rebates.html">Rebates &amp; Offers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Locations</div>
+        <ul class="footer-links">
+          <li><a href="./locations/rockville-md.html">Rockville, MD</a></li>
+          <li><a href="./locations/bethesda-md.html">Bethesda, MD</a></li>
+          <li><a href="./locations/silver-spring-md.html">Silver Spring, MD</a></li>
+          <li><a href="./locations/gaithersburg-md.html">Gaithersburg, MD</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2026 Capital Auto Upfitters &amp; Protective Coatings. All rights reserved.</p>
+      <nav class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a></nav>
+      <p class="footer-pplx"><a href="https://IVANKODevelopment.com" target="_blank" rel="noopener noreferrer">Built by IVANKODev</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta-bar" aria-label="Quick actions">
+  <a href="tel:3013041419" class="btn btn-outline">Call Now</a>
+  <a href="./quote.html" class="btn btn-primary">Get Quote</a>
+</div>
+
+<script>
+(function(){const btn=document.getElementById('hamburger'),mob=document.getElementById('nav-mobile'),cls=document.getElementById('nav-close');if(btn&&mob){btn.addEventListener('click',()=>{mob.classList.add('open');btn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'});if(cls)cls.addEventListener('click',()=>{mob.classList.remove('open');btn.setAttribute('aria-expanded','false');document.body.style.overflow=''})}})();
+(function(){const els=document.querySelectorAll('.reveal');if(!els.length)return;const io=new IntersectionObserver((e)=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');io.unobserve(el.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});els.forEach(el=>io.observe(el))})();
+</script>
+
+<script src="./animations.js" defer></script>
+</body>
+</html>

@@ -11,8 +11,8 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="shortcut icon" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Running Boards & Steps Rockville MD | Capital Upfitters</title>
-<meta name="description" content="Nerf bars, power running boards, tube steps, and rock sliders for trucks and SUVs in Rockville, MD. 150+ brands from $250. (301) 304-1419.">
+<title>Running Boards & Steps | Powered & Manual | Capital Upfitters Rockville MD</title>
+<meta name="description" content="Running boards, nerf bars, and AMP Research PowerStep electric running boards installed in Rockville MD. Manual and powered options for all trucks and SUVs. Serving Rockville, Bethesda, Silver Spring, Gaithersburg and the DMV.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.capitalupfitters.com/services/running-boards.html">
 
@@ -161,6 +161,7 @@
 }
 @media (max-width: 860px) {
   .geo-grid { grid-template-columns: 1fr !important; }
+  .power-step-card { grid-template-columns:1fr; } .power-step-cta { align-items:flex-start; }
 }
 @media (max-width: 560px) {
   .step-card { flex-direction: column; }
@@ -168,6 +169,23 @@
   .faq-btn { padding: var(--space-5); }
   .faq-answer { padding: 0 var(--space-5) var(--space-5); }
 }
+
+.category-sep { display:flex; align-items:center; gap: var(--space-4); margin: var(--space-12) 0 var(--space-6); }
+.category-sep-label { font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color: var(--color-text-muted); padding: 0.3rem 1rem; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-pill); white-space:nowrap; }
+.category-sep-line { flex:1; height:1px; background: var(--color-border); }
+.power-step-card { background: linear-gradient(135deg, #0f1a2e 0%, #1a2c4e 60%, #203055 100%); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-2xl); padding: var(--space-8); display:grid; grid-template-columns: 1fr auto; gap: var(--space-8); align-items:center; position:relative; overflow:hidden; margin-top: var(--space-8); }
+.power-step-card::before { content:''; position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size:60px 60px; pointer-events:none; }
+.power-step-badge { position:absolute; top: var(--space-4); left: var(--space-6); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius-pill); padding: 0.25rem 0.875rem; font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.85); }
+.power-step-title { font-family: var(--font-display); font-size: clamp(var(--text-xl), 2.5vw, var(--text-3xl)); font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color:#fff; line-height:1.1; margin-bottom: var(--space-3); margin-top: var(--space-6); position:relative; }
+.power-step-desc { font-size: var(--text-base); color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom: var(--space-6); position:relative; }
+.power-step-features { display:flex; flex-direction:column; gap: var(--space-3); position:relative; }
+.power-step-item { display:flex; align-items:center; gap: var(--space-3); font-size: var(--text-sm); color:rgba(255,255,255,0.8); }
+.power-step-check { width:20px; height:20px; border-radius:50%; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.power-step-cta { display:flex; flex-direction:column; align-items:center; gap: var(--space-4); position:relative; white-space:nowrap; }
+.power-step-price-label { font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.45); }
+.power-step-price { font-family: var(--font-display); font-size: var(--text-5xl); font-weight:800; color:#fff; line-height:1; }
+.power-step-price sup { font-size: var(--text-2xl); vertical-align:top; margin-top:0.4rem; }
+.power-step-price-sub { font-size: var(--text-xs); color:rgba(255,255,255,0.45); }
 </style>
 
 <script type="application/ld+json">
@@ -324,6 +342,10 @@
       <h2 id="pricing-heading">A STEP UP FOR EVERY BUDGET.</h2>
       <p style="max-width:520px; margin: var(--space-3) auto 0;">Pricing varies by vehicle and product. These are starting prices for installed hardware. Contact us with your specific vehicle for an accurate quote.</p>
     </div>
+    <div class="category-sep">
+      <span class="category-sep-label">Manual Running Boards &amp; Steps</span>
+      <div class="category-sep-line"></div>
+    </div>
     <div class="step-types">
       <div class="step-card">
         <div class="step-icon" aria-hidden="true">
@@ -366,6 +388,48 @@
         </div>
       </div>
     </div>
+    <!-- Powered Running Boards -->
+    <div class="category-sep" style="margin-top: var(--space-12);">
+      <span class="category-sep-label">Powered / Electric Running Boards</span>
+      <div class="category-sep-line"></div>
+    </div>
+
+    <div class="power-step-card">
+      <span class="power-step-badge">Premium Upgrade</span>
+      <div>
+        <div class="power-step-title">AMP Research PowerStep&#8482;</div>
+        <p class="power-step-desc">The #1 selling electric running board in North America. Deploys automatically when your door opens — retracts flush with the body when you close it. No step visible when driving. Factory-integrated look, Plug-N-Play install on most trucks.</p>
+        <div class="power-step-features">
+          <div class="power-step-item">
+            <div class="power-step-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Auto-deploys on door open — retracts flush when closed
+          </div>
+          <div class="power-step-item">
+            <div class="power-step-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Plug-N-Play — no cutting or splicing wires on most vehicles
+          </div>
+          <div class="power-step-item">
+            <div class="power-step-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Supports up to 600 lbs — aircraft-grade aluminum construction
+          </div>
+          <div class="power-step-item">
+            <div class="power-step-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Vehicle-specific fit — F-150, Silverado, Sierra, RAM, Tundra, Tahoe &amp; more
+          </div>
+          <div class="power-step-item">
+            <div class="power-step-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            3-year warranty &middot; Made in the USA
+          </div>
+        </div>
+      </div>
+      <div class="power-step-cta">
+        <div class="power-step-price-label">Starting From</div>
+        <div class="power-step-price"><sup>$</sup>1,799</div>
+        <div class="power-step-price-sub">Installed &middot; vehicle-specific pricing</div>
+        <a href="../quote.html?service=amp-powerstep" class="btn btn-primary" style="margin-top: var(--space-2); background:#fff; color: var(--color-accent); border-color:#fff;">Get a Quote</a>
+      </div>
+    </div>
+
     <div class="pricing-note reveal">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0; margin-top:1px; color: var(--color-accent);" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <span>Prices vary by vehicle and brand. All installs use factory-compatible mounting hardware — no drilling into your rocker panels or frame. Contact us for a vehicle-specific quote.</span>
@@ -543,6 +607,15 @@
         </button>
         <div class="faq-answer" id="faq-4">
           <p>Standard nerf bars and tube steps typically take 1–2 hours. Flat running boards are similar. Power step installations take 2–3 hours due to wiring. Rock sliders can take 2–3 hours depending on complexity. We'll give you an accurate time estimate when you schedule.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-question">Do you install powered / electric running boards?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Yes — we install AMP Research PowerStep electric running boards. They deploy automatically when your door opens and retract flush when you close it. Plug-N-Play install on most trucks — no wire cutting required. Pricing starts from $1,799 installed. Call us to confirm fitment for your specific vehicle.</p>
         </div>
       </div>
     </div>

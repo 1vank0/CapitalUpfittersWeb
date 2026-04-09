@@ -89,9 +89,51 @@
   </url>
   <url>
     <loc>https://www.capitalupfitters.com/services/running-boards.html</loc>
-    <lastmod>2026-03-23</lastmod>
+    <lastmod>2026-04-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.capitalupfitters.com/services/camper-shells.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.capitalupfitters.com/services/toolboxes.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.capitalupfitters.com/services/suspension.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.capitalupfitters.com/services/exterior.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.capitalupfitters.com/services/lighting.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://www.capitalupfitters.com/rebates.html</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- Secondary pages -->
