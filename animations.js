@@ -529,3 +529,21 @@
   }
 
 })();
+
+// ── Floating Quote CTA ───────────────────────────────────────
+(function() {
+  const el = document.querySelector('.float-cta');
+  if (!el) return;
+  let visible = false;
+  const toggle = () => {
+    const scrolled = window.scrollY > 420;
+    const nearBottom = (window.innerHeight + window.scrollY) >= (document.body.scrollHeight - 120);
+    const shouldShow = scrolled && !nearBottom;
+    if (shouldShow !== visible) {
+      visible = shouldShow;
+      el.classList.toggle('visible', visible);
+    }
+  };
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+})();

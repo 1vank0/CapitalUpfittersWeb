@@ -162,6 +162,64 @@
       border-top: 1px solid var(--color-border);
       flex-wrap: wrap;
     }
+
+    /* VIN lookup */
+    .vin-lookup-row { display: flex; gap: var(--space-3); align-items: stretch; }
+    .vin-lookup-row .form-input { flex: 1; min-width: 0; }
+    .vin-lookup-btn {
+      display: flex; align-items: center; gap: 6px;
+      padding: 0 var(--space-5);
+      background: var(--color-accent); color: #fff;
+      border: none; border-radius: var(--radius-lg);
+      font-family: var(--font-display); font-size: var(--text-sm);
+      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer; white-space: nowrap; flex-shrink: 0;
+      transition: background 140ms ease;
+    }
+    .vin-lookup-btn:hover { background: #1a2742; }
+    .vin-lookup-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .spin-icon { animation: vin-spin 0.8s linear infinite; transform-origin: center; }
+    @keyframes vin-spin { to { transform: rotate(360deg); } }
+    .vin-result {
+      margin-top: var(--space-3);
+      padding: var(--space-4) var(--space-5);
+      border-radius: var(--radius-lg);
+      font-size: var(--text-sm); line-height: 1.55;
+    }
+    .vin-result.success { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+    .vin-result.error   { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; }
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+    /* Photo upload */
+    .photo-upload-zone {
+      border: 2px dashed var(--color-border); border-radius: var(--radius-xl);
+      padding: var(--space-8) var(--space-6); text-align: center;
+      cursor: pointer; position: relative; background: var(--color-surface);
+      transition: border-color 180ms, background 180ms;
+    }
+    .photo-upload-zone:hover, .photo-upload-zone.drag-over { border-color: var(--color-accent); background: #f0f4ff; }
+    .photo-upload-icon { color: var(--color-text-muted); margin-bottom: var(--space-3); }
+    .photo-upload-text { font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-2); }
+    .photo-upload-link { color: var(--color-accent); font-weight: 600; text-decoration: underline; }
+    .photo-upload-hint { font-size: var(--text-xs); color: var(--color-text-muted); }
+    .photo-upload-input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .photo-preview-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-3); margin-top: var(--space-4); }
+    .photo-preview-item { position: relative; aspect-ratio: 1; border-radius: var(--radius-md); overflow: hidden; background: var(--color-surface-2); }
+    .photo-preview-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-preview-remove {
+      position: absolute; top: 4px; right: 4px;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(0,0,0,0.65); color: #fff; border: none;
+      cursor: pointer; font-size: 13px; display: flex;
+      align-items: center; justify-content: center;
+    }
+    @media (max-width: 480px) { .photo-preview-grid { grid-template-columns: repeat(3, 1fr); } }
+    .vin-lookup-row .form-input { font-family: monospace; }
     .form-privacy {
       font-size: var(--text-xs);
       color: var(--color-text-faint);
@@ -455,19 +513,108 @@
                 <label class="form-label" for="r-zip">ZIP Code</label>
                 <input class="form-input" type="text" id="r-zip" name="ZIP" placeholder="20852" maxlength="10">
               </div>
+              <!-- VIN LOOKUP ───────────────────────────────── -->
+              <div class="form-field">
+                <label class="form-label" for="r-vin">VIN <span style="font-weight:400; color: var(--color-text-muted);">— optional, auto-fills vehicle info</span></label>
+                <div class="vin-lookup-row">
+                  <input class="form-input" type="text" id="r-vin" name="VIN" placeholder="e.g. 1FTFW1ET5DFA12345" maxlength="17" autocomplete="off" style="font-family: monospace; letter-spacing: 0.05em; text-transform: uppercase;">
+                  <button type="button" class="vin-lookup-btn" id="vin-lookup-btn" aria-label="Look up VIN">
+                    <span class="vin-lookup-label">Look Up</span>
+                    <span class="vin-lookup-spinner" hidden>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="spin-icon"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke-opacity="0.3"/><path d="M21 12a9 9 0 0 0-9-9"/></svg>
+                    </span>
+                  </button>
+                </div>
+                <div class="vin-result" id="vin-result" hidden></div>
+              </div>
+
+              <!-- LICENSE PLATE ────────────────────────── -->
               <div class="form-row">
                 <div class="form-field">
-                  <label class="form-label" for="r-year">Vehicle Year</label>
-                  <input class="form-input" type="text" id="r-year" name="Vehicle Year" placeholder="2024">
+                  <label class="form-label" for="r-plate">License Plate <span style="font-weight:400; color: var(--color-text-muted);">— optional</span></label>
+                  <input class="form-input" type="text" id="r-plate" name="License Plate" placeholder="MD: ABC1234" maxlength="12" style="text-transform: uppercase;">
                 </div>
                 <div class="form-field">
-                  <label class="form-label" for="r-make">Vehicle Make</label>
-                  <input class="form-input" type="text" id="r-make" name="Vehicle Make" placeholder="Ford">
+                  <label class="form-label" for="r-plate-state">Plate State</label>
+                  <select class="form-input form-select" id="r-plate-state" name="Plate State">
+                    <option value="">State (optional)</option>
+                    <option value="MD" selected>Maryland</option>
+                    <option value="VA">Virginia</option>
+                    <option value="DC">Washington DC</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="DE">Delaware</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
               </div>
+
+              <!-- VEHICLE INFO (Year / Make / Model / Trim) ─────── -->
+              <div class="vehicle-fields" id="vehicle-fields">
+                <div class="form-row">
+                  <div class="form-field">
+                    <label class="form-label" for="r-year">Year *</label>
+                    <select class="form-input form-select" id="r-year" name="Vehicle Year">
+                      <option value="">Select year</option>
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label class="form-label" for="r-make">Make *</label>
+                    <select class="form-input form-select" id="r-make" name="Vehicle Make">
+                      <option value="">Select make</option>
+                      <option>Ford</option>
+                      <option>Chevrolet</option>
+                      <option>GMC</option>
+                      <option>RAM</option>
+                      <option>Toyota</option>
+                      <option>Nissan</option>
+                      <option>Honda</option>
+                      <option>Jeep</option>
+                      <option>Dodge</option>
+                      <option>Subaru</option>
+                      <option>Hyundai</option>
+                      <option>Kia</option>
+                      <option>Volkswagen</option>
+                      <option>BMW</option>
+                      <option>Mercedes-Benz</option>
+                      <option>Audi</option>
+                      <option>Lexus</option>
+                      <option>Mazda</option>
+                      <option>Mitsubishi</option>
+                      <option>Tesla</option>
+                      <option>Rivian</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-field">
+                    <label class="form-label" for="r-model">Model *</label>
+                    <input class="form-input" type="text" id="r-model" name="Vehicle Model" placeholder="F-150, Silverado, Ram 1500…">
+                  </div>
+                  <div class="form-field">
+                    <label class="form-label" for="r-trim">Trim / Config <span style="font-weight:400; color: var(--color-text-muted);">optional</span></label>
+                    <input class="form-input" type="text" id="r-trim" name="Vehicle Trim" placeholder="XLT, Crew Cab, 4x4…">
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="r-color">Exterior Color <span style="font-weight:400; color: var(--color-text-muted);">optional — helps with paint match</span></label>
+                  <input class="form-input" type="text" id="r-color" name="Vehicle Color" placeholder="e.g. Oxford White, Magnetic Gray, Rapid Red…">
+                </div>
+              </div>
+
+              <!-- VEHICLE PHOTOS ─────────────────────────── -->
               <div class="form-field">
-                <label class="form-label" for="r-model">Vehicle Model</label>
-                <input class="form-input" type="text" id="r-model" name="Vehicle Model" placeholder="F-150 XLT">
+                <label class="form-label">Vehicle Photos <span style="font-weight:400; color: var(--color-text-muted);">optional — up to 5 photos help us quote accurately</span></label>
+                <div class="photo-upload-zone" id="photo-drop-zone" tabindex="0" role="button" aria-label="Upload vehicle photos">
+                  <div class="photo-upload-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  </div>
+                  <div class="photo-upload-text">Drop photos here or <span class="photo-upload-link">browse</span></div>
+                  <div class="photo-upload-hint">JPG, PNG, HEIC up to 10 MB each &middot; Max 5 photos</div>
+                  <input type="file" id="r-photos" name="Vehicle Photos" accept="image/*" multiple class="photo-upload-input" aria-label="Upload vehicle photos">
+                </div>
+                <div class="photo-preview-grid" id="photo-preview-grid"></div>
               </div>
               <div class="form-field">
                 <label class="form-label">Services Needed</label>
@@ -792,5 +939,212 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success');
 </script>
 
 <script src="animations.js" defer></script>
+
+<script>
+// ── Populate Year dropdown ────────────────────────────────
+(function() {
+  const sel = document.getElementById('r-year');
+  if (!sel) return;
+  const now = new Date().getFullYear() + 1;
+  for (let y = now; y >= 1990; y--) {
+    const opt = document.createElement('option');
+    opt.value = y;
+    opt.textContent = y;
+    sel.appendChild(opt);
+  }
+})();
+
+// ── VIN Lookup via NHTSA free API ────────────────────────
+(function() {
+  const vinInput   = document.getElementById('r-vin');
+  const btn        = document.getElementById('vin-lookup-btn');
+  const resultBox  = document.getElementById('vin-result');
+  const yearSel    = document.getElementById('r-year');
+  const makeSel    = document.getElementById('r-make');
+  const modelInput = document.getElementById('r-model');
+  const trimInput  = document.getElementById('r-trim');
+
+  if (!vinInput || !btn) return;
+
+  // Auto-uppercase VIN as typed
+  vinInput.addEventListener('input', () => {
+    vinInput.value = vinInput.value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g, '');
+  });
+
+  // Trigger on button click
+  btn.addEventListener('click', lookupVIN);
+
+  // Trigger on Enter key in VIN field
+  vinInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); lookupVIN(); }
+  });
+
+  async function lookupVIN() {
+    const vin = vinInput.value.trim();
+    if (vin.length !== 17) {
+      showResult('error', 'VIN must be exactly 17 characters.');
+      return;
+    }
+
+    setLoading(true);
+    resultBox.hidden = true;
+    resultBox.className = 'vin-result';
+
+    try {
+      const url = `https://vpic.nhtsa.dot.gov/api/vehicles/decodevinvalues/${vin}?format=json`;
+      const res  = await fetch(url);
+      const data = await res.json();
+      const v    = data.Results?.[0];
+
+      if (!v || v.ErrorCode === '0' && !v.Make) {
+        showResult('error', 'VIN not found. Please check and try again, or fill in vehicle details manually.');
+        return;
+      }
+
+      const year  = v.ModelYear?.trim();
+      const make  = v.Make?.trim();
+      const model = v.Model?.trim();
+      const trim  = [v.Trim, v.Series, v.BodyClass].filter(Boolean).join(' · ');
+      const plant = v.PlantCountry ? `· Made in ${v.PlantCountry}` : '';
+
+      // Auto-fill form fields
+      if (year && yearSel) {
+        yearSel.value = year;
+        if (!yearSel.value) { // year not in dropdown range
+          const opt = new Option(year, year);
+          yearSel.insertBefore(opt, yearSel.options[1]);
+          yearSel.value = year;
+        }
+      }
+      if (make && makeSel) {
+        const normalized = make.charAt(0) + make.slice(1).toLowerCase();
+        // Try exact match first, then normalized
+        let matched = false;
+        for (const opt of makeSel.options) {
+          if (opt.value.toLowerCase() === make.toLowerCase()) {
+            makeSel.value = opt.value;
+            matched = true;
+            break;
+          }
+        }
+        if (!matched) {
+          const opt = new Option(normalized, normalized, true, true);
+          makeSel.insertBefore(opt, makeSel.options[1]);
+          makeSel.value = normalized;
+        }
+      }
+      if (model && modelInput) modelInput.value = model;
+      if (trim  && trimInput)  trimInput.value  = trim;
+
+      const summary = [
+        year && `<strong>${year}</strong>`,
+        make  && `<strong>${make.charAt(0)+make.slice(1).toLowerCase()}</strong>`,
+        model && `<strong>${model}</strong>`,
+        trim  ? `&mdash; ${trim}` : ''
+      ].filter(Boolean).join(' ');
+
+      showResult('success', `✓ Vehicle found: ${summary} ${plant}<br><span style="font-size:.85em;opacity:.75;">Vehicle details have been filled in below. Please verify and correct if needed.</span>`);
+
+    } catch (err) {
+      showResult('error', 'Could not reach the VIN database. Please fill in vehicle details manually.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function setLoading(loading) {
+    btn.disabled = loading;
+    btn.querySelector('.vin-lookup-label').hidden = loading;
+    btn.querySelector('.vin-lookup-spinner').hidden = !loading;
+  }
+
+  function showResult(type, html) {
+    resultBox.className = `vin-result ${type}`;
+    resultBox.innerHTML = html;
+    resultBox.hidden = false;
+  }
+})();
+
+// ── Photo Upload & Preview ─────────────────────────────
+(function() {
+  const zone    = document.getElementById('photo-drop-zone');
+  const input   = document.getElementById('r-photos');
+  const grid    = document.getElementById('photo-preview-grid');
+  if (!zone || !input || !grid) return;
+
+  const MAX_FILES = 5;
+  const MAX_MB    = 10;
+  let uploadedFiles = [];
+
+  function refreshGrid() {
+    grid.innerHTML = '';
+    uploadedFiles.forEach((file, i) => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const item = document.createElement('div');
+        item.className = 'photo-preview-item';
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.alt = file.name;
+        const btn = document.createElement('button');
+        btn.className = 'photo-preview-remove';
+        btn.type = 'button';
+        btn.setAttribute('aria-label', `Remove ${file.name}`);
+        btn.textContent = '×';
+        btn.addEventListener('click', () => {
+          uploadedFiles.splice(i, 1);
+          refreshGrid();
+          updateHint();
+        });
+        item.appendChild(img);
+        item.appendChild(btn);
+        grid.appendChild(item);
+      };
+      reader.readAsDataURL(file);
+    });
+    updateHint();
+  }
+
+  function updateHint() {
+    const hint = zone.querySelector('.photo-upload-hint');
+    if (uploadedFiles.length > 0) {
+      hint.textContent = `${uploadedFiles.length}/${MAX_FILES} photo${uploadedFiles.length > 1 ? 's' : ''} selected`;
+    } else {
+      hint.textContent = `JPG, PNG, HEIC up to ${MAX_MB} MB each · Max ${MAX_FILES} photos`;
+    }
+  }
+
+  function addFiles(files) {
+    const remaining = MAX_FILES - uploadedFiles.length;
+    const toAdd = Array.from(files).slice(0, remaining).filter(f => {
+      const ok = f.size <= MAX_MB * 1024 * 1024;
+      if (!ok) alert(`“${f.name}” exceeds ${MAX_MB} MB and was skipped.`);
+      return ok;
+    });
+    uploadedFiles = uploadedFiles.concat(toAdd);
+    refreshGrid();
+  }
+
+  input.addEventListener('change', () => addFiles(input.files));
+
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    addFiles(e.dataTransfer.files);
+  });
+
+  // Keyboard accessible
+  zone.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); }
+  });
+})();
+
+// ── Floating CTA ──────────────────────────────────────
+// No float CTA on the quote page itself — user is already quoting
+</script>
+
+<!-- Floating quote CTA (hidden on quote page) -->
 </body>
 </html>

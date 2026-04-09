@@ -213,10 +213,34 @@
       <div class="nav-logo-text">Capital<span>Upfitters</span></div>
     </a>
     <ul class="nav-links">
-      <li><a href="./services/index.html">Services</a></li>
-      <li><a href="./fleet.html">Fleet & Commercial</a></li>
-      <li><a href="./dealer-government.html">Dealer & Gov</a></li>
+      <li class="nav-item">
+        <a href="./services/index.html">Services
+          <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
+        </a>
+        <div class="nav-dropdown" role="menu">
+          <span class="nav-dropdown-label">Core Services</span>
+          <a href="./services/bedliner.html">Spray-On Bedliners</a>
+          <a href="./services/hitches.html">Hitches &amp; Towing</a>
+          <a href="./services/ceramic-coating.html">Ceramic Coating &amp; PPF</a>
+          <a href="./services/undercoating.html">Undercoating</a>
+          <a href="./services/tonneau.html">Tonneau Covers</a>
+          <a href="./services/running-boards.html">Running Boards</a>
+          <a href="./services/commercial-wraps.html">Commercial Wraps</a>
+          <div class="nav-dropdown-divider"></div>
+          <span class="nav-dropdown-label">More Services</span>
+          <a href="./services/camper-shells.html">Camper Shells &amp; Caps</a>
+          <a href="./services/toolboxes.html">Toolboxes &amp; Storage</a>
+          <a href="./services/suspension.html">Suspension &amp; Lifts</a>
+          <a href="./services/exterior.html">Exterior Accessories</a>
+          <a href="./services/lighting.html">LED Lighting</a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="./rebates.html" style="color: rgba(255,200,100,0.85);">🏷 Rebates &amp; Offers</a>
+        </div>
+      </li>
+      <li><a href="./fleet.html">Fleet &amp; Commercial</a></li>
+      <li><a href="./dealer-government.html">Dealer &amp; Gov</a></li>
       <li><a href="./gallery.html">Gallery</a></li>
+      <li><a href="./rebates.html">Rebates</a></li>
       <li><a href="./contact.html">Contact</a></li>
     </ul>
     <div class="nav-actions">
@@ -233,10 +257,16 @@
 <div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Mobile menu">
   <button class="nav-mobile-close" id="nav-close" aria-label="Close menu">&times;</button>
   <nav class="nav-mobile-links">
-    <a href="./services/index.html">Services</a>
-    <a href="./fleet.html">Fleet & Commercial</a>
-    <a href="./dealer-government.html">Dealer & Gov</a>
+    <a href="./services/index.html">All Services</a>
+    <a href="./services/bedliner.html" style="padding-left:1.2rem;font-size:.85em;opacity:.8;">↳ Bedliners</a>
+    <a href="./services/hitches.html" style="padding-left:1.2rem;font-size:.85em;opacity:.8;">↳ Hitches</a>
+    <a href="./services/ceramic-coating.html" style="padding-left:1.2rem;font-size:.85em;opacity:.8;">↳ Ceramic Coating</a>
+    <a href="./services/camper-shells.html" style="padding-left:1.2rem;font-size:.85em;opacity:.8;">↳ Camper Shells</a>
+    <a href="./services/suspension.html" style="padding-left:1.2rem;font-size:.85em;opacity:.8;">↳ Suspension &amp; Lifts</a>
+    <a href="./fleet.html">Fleet &amp; Commercial</a>
+    <a href="./dealer-government.html">Dealer &amp; Gov</a>
     <a href="./gallery.html">Gallery</a>
+    <a href="./rebates.html">🏷 Rebates &amp; Offers</a>
     <a href="./contact.html">Contact</a>
   </nav>
   <div class="nav-mobile-actions">
@@ -918,5 +948,13 @@
 </script>
 
 <script src="animations.js" defer></script>
+
+<!-- Floating quote CTA -->
+<div class="float-cta" aria-hidden="true">
+  <a href="./quote.html" class="float-cta-btn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    Get a Quote
+  </a>
+</div>
 </body>
 </html>
