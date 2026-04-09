@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  Capital Upfitters — 404 Not Found
+  Built by IVANKODev (https://IVANKODevelopment.com)
+-->
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="shortcut icon" href="./favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found | Capital Upfitters</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@400;500&display=swap">
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+<style>
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface-dark);
+  position: relative;
+  overflow: hidden;
+}
+.not-found-page::before {
+  content: '404';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 25vw, 20rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: rgba(255,255,255,0.03);
+  pointer-events: none;
+  white-space: nowrap;
+  user-select: none;
+}
+.not-found-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16) var(--space-8);
+  position: relative;
+  z-index: 1;
+}
+.not-found-inner {
+  text-align: center;
+  max-width: 560px;
+}
+.not-found-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: var(--space-6);
+  padding: var(--space-2) var(--space-5);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-pill);
+}
+.not-found-inner h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: var(--space-5);
+}
+.not-found-inner h1 em {
+  font-style: normal;
+  color: rgba(255,255,255,0.3);
+}
+.not-found-inner p {
+  font-size: var(--text-base);
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  margin-bottom: var(--space-10);
+}
+.not-found-actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-12);
+}
+.not-found-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  max-width: 480px;
+  margin: 0 auto;
+}
+.nf-link {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-4);
+  text-decoration: none;
+  transition: all 180ms cubic-bezier(0.16,1,0.3,1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  text-align: left;
+}
+.nf-link:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+}
+.nf-link-label {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+.nf-link-title {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.2;
+}
+@media (max-width: 500px) {
+  .not-found-links { grid-template-columns: 1fr 1fr; }
+  .not-found-actions { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body data-theme="dark">
+
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="./index.html" class="nav-logo" aria-label="Capital Upfitters home">
+      <div class="nav-logo-mark">
+        <svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">Capital<span>Upfitters</span></div>
+    </a>
+    <div class="nav-actions">
+      <a href="./quote.html" class="nav-cta">Get a Quote</a>
+    </div>
+  </div>
+</nav>
+
+<main class="not-found-page">
+  <div class="not-found-content">
+    <div class="not-found-inner">
+      <div class="not-found-badge">Error 404</div>
+      <h1>Page Not Found.<br><em>But Your Truck Can Be.</em></h1>
+      <p>That page doesn't exist or has moved. Head back to the homepage or jump straight to a service — we'll get you sorted.</p>
+      <div class="not-found-actions">
+        <a href="./index.html" class="btn btn-primary btn-lg">Back to Home</a>
+        <a href="tel:3013041419" class="btn btn-outline btn-lg">Call (301) 304-1419</a>
+      </div>
+      <div class="not-found-links">
+        <a href="./services/bedliner.html" class="nf-link">
+          <span class="nf-link-label">Service</span>
+          <span class="nf-link-title">Bedliners</span>
+        </a>
+        <a href="./services/hitches.html" class="nf-link">
+          <span class="nf-link-label">Service</span>
+          <span class="nf-link-title">Hitches</span>
+        </a>
+        <a href="./services/ceramic-coating.html" class="nf-link">
+          <span class="nf-link-label">Service</span>
+          <span class="nf-link-title">Ceramic</span>
+        </a>
+        <a href="./fleet.html" class="nf-link">
+          <span class="nf-link-label">Commercial</span>
+          <span class="nf-link-title">Fleet</span>
+        </a>
+        <a href="./gallery.html" class="nf-link">
+          <span class="nf-link-label">Portfolio</span>
+          <span class="nf-link-title">Gallery</span>
+        </a>
+        <a href="./quote.html" class="nf-link">
+          <span class="nf-link-label">Start Here</span>
+          <span class="nf-link-title">Get Quote</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2026 Capital Auto Upfitters &amp; Protective Coatings.</p>
+      <p class="footer-pplx"><a href="https://IVANKODevelopment.com" target="_blank" rel="noopener noreferrer">Built by IVANKODev</a></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
