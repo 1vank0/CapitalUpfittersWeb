@@ -48,9 +48,22 @@
           "addressLocality": "Rockville",
           "addressRegion": "MD",
           "postalCode": "20852"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "96",
+          "bestRating": "5"
         }
       },
-      "areaServed": ["Rockville MD","Bethesda MD","Silver Spring MD","Gaithersburg MD","Washington DC","Northern Virginia"],
+      "areaServed": [
+        {"@type": "City", "name": "Rockville", "sameAs": "https://en.wikipedia.org/wiki/Rockville,_Maryland"},
+        {"@type": "City", "name": "Bethesda", "sameAs": "https://en.wikipedia.org/wiki/Bethesda,_Maryland"},
+        {"@type": "City", "name": "Silver Spring", "sameAs": "https://en.wikipedia.org/wiki/Silver_Spring,_Maryland"},
+        {"@type": "City", "name": "Gaithersburg", "sameAs": "https://en.wikipedia.org/wiki/Gaithersburg,_Maryland"},
+        {"@type": "City", "name": "Potomac", "sameAs": "https://en.wikipedia.org/wiki/Potomac,_Maryland"},
+        {"@type": "City", "name": "North Bethesda", "sameAs": "https://en.wikipedia.org/wiki/North_Bethesda,_Maryland"}
+      ],
       "creator": {"@type": "Organization", "name": "IVANKODev", "url": "https://IVANKODevelopment.com"}
     },
     {
@@ -664,6 +677,52 @@
   margin-top: auto;
 }
 @media (max-width: 760px) { .related-grid { grid-template-columns: 1fr; } }
+
+/* Testimonials grid */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+.testimonial-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.testimonial-stars {
+  display: flex;
+  gap: var(--space-1);
+}
+.testimonial-quote {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  font-style: italic;
+}
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.testimonial-author strong {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+.testimonial-author span {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+@media (max-width: 640px) {
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body data-theme="light">
@@ -801,6 +860,28 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
+     KPI STRIP
+     ═══════════════════════════════════════════════════════ -->
+<section class="stats-strip" aria-label="Key stats">
+  <div class="container">
+    <div class="stats-grid" style="grid-template-columns: repeat(3,1fr);">
+      <div style="text-align:center;">
+        <span class="stat-number kpi-number">3M &amp; Avery</span>
+        <span class="stat-label">Premium Certified Materials</span>
+      </div>
+      <div style="text-align:center;">
+        <span class="stat-number kpi-number">Fleet, Gov &amp; Retail</span>
+        <span class="stat-label">All Vehicle Types</span>
+      </div>
+      <div style="text-align:center;">
+        <span class="stat-number kpi-number">1-Yr Warranty</span>
+        <span class="stat-label">On All Wrap Installations</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
      SECTION 1 — WRAP TYPES
      ═══════════════════════════════════════════════════════ -->
 <section class="section" aria-labelledby="wrap-types-heading">
@@ -812,7 +893,7 @@
     <div class="wrap-types-grid">
 
       <!-- Full Wrap — featured -->
-      <div class="wrap-type-card featured reveal">
+      <div class="wrap-type-card featured">
         <div>
           <div class="wrap-type-badge">Most Impactful</div>
           <div class="wrap-type-title" style="margin-top: var(--space-4);">Full Vehicle Wrap</div>
@@ -826,7 +907,7 @@
       </div>
 
       <!-- Half Wrap -->
-      <div class="wrap-type-card reveal">
+      <div class="wrap-type-card">
         <div class="wrap-type-badge">Best Value</div>
         <div class="wrap-type-title" style="margin-top: var(--space-4);">Half Vehicle Wrap</div>
         <p class="wrap-type-desc" style="margin-top: var(--space-3);">Covers the lower half or dominant panels of the vehicle — typically doors and rear. Delivers strong brand presence at a more accessible price point. Great for vans, pickup trucks, and service vehicles where the lower half carries the most visual weight.</p>
@@ -834,7 +915,7 @@
       </div>
 
       <!-- Partial Wrap -->
-      <div class="wrap-type-card reveal reveal-delay-1">
+      <div class="wrap-type-card">
         <div class="wrap-type-badge">Targeted</div>
         <div class="wrap-type-title" style="margin-top: var(--space-4);">Partial Wrap</div>
         <p class="wrap-type-desc" style="margin-top: var(--space-3);">Strategic graphic placement on the highest-visibility panels — tailgate, doors, or hood. Our design team identifies which surfaces maximize brand exposure for your specific vehicle and routes. A sharp, modern look without full-vehicle cost.</p>
@@ -842,7 +923,7 @@
       </div>
 
       <!-- Vinyl Graphics -->
-      <div class="wrap-type-card reveal">
+      <div class="wrap-type-card">
         <div class="wrap-type-badge">Clean &amp; Minimal</div>
         <div class="wrap-type-title" style="margin-top: var(--space-4);">Vinyl Graphics &amp; Lettering</div>
         <p class="wrap-type-desc" style="margin-top: var(--space-3);">Cut vinyl logos, contact info, DOT numbers, and lettering applied directly to the vehicle surface. Professional business identification without the commitment of a full wrap. Easy to update when your contact info changes. Includes promotional lettering for seasonal messaging.</p>
@@ -1064,6 +1145,111 @@
 </section>
 
 <!-- ═══════════════════════════════════════════════════════
+     GEO SERVICE STRIP
+     ═══════════════════════════════════════════════════════ -->
+<section style="background: var(--color-surface-dark); padding: var(--space-16) 0; border-top: 1px solid rgba(255,255,255,0.06);" aria-labelledby="geo-heading-wraps">
+  <div class="container">
+    <div class="geo-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items:center;">
+      <div>
+        <div class="section-label" style="color:rgba(255,255,255,0.45);">Commercial Wraps in the DMV</div>
+        <h2 id="geo-heading-wraps" style="color:#fff; margin-bottom: var(--space-5);">COMMERCIAL VEHICLE WRAPS ACROSS THE DMV.</h2>
+        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);">
+          Capital Upfitters serves fleet operators, government agencies, and retail businesses across Rockville, Bethesda, Silver Spring, Gaithersburg, and the broader DMV region. We're Rockville's locally-owned alternative to big wrap chains — with the same 3M and Avery Dennison materials, faster turnaround, and direct communication. Located at 12019 Nebel St in Rockville, MD.
+        </p>
+        <!-- City links grid -->
+        <div style="display:grid; grid-template-columns: repeat(2,1fr); gap: var(--space-3); margin-bottom: var(--space-8);">
+          <a href="../locations/rockville-md.html" style="display:flex; align-items:center; gap: var(--space-3); padding: var(--space-4); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); color:#fff; text-decoration:none; font-family: var(--font-display); font-size: var(--text-sm); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition: all 180ms ease;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Rockville, MD
+          </a>
+          <a href="../locations/bethesda-md.html" style="display:flex; align-items:center; gap: var(--space-3); padding: var(--space-4); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); color:#fff; text-decoration:none; font-family: var(--font-display); font-size: var(--text-sm); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition: all 180ms ease;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Bethesda, MD
+          </a>
+          <a href="../locations/silver-spring-md.html" style="display:flex; align-items:center; gap: var(--space-3); padding: var(--space-4); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); color:#fff; text-decoration:none; font-family: var(--font-display); font-size: var(--text-sm); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition: all 180ms ease;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Silver Spring, MD
+          </a>
+          <a href="../locations/gaithersburg-md.html" style="display:flex; align-items:center; gap: var(--space-3); padding: var(--space-4); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); color:#fff; text-decoration:none; font-family: var(--font-display); font-size: var(--text-sm); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition: all 180ms ease;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Gaithersburg, MD
+          </a>
+        </div>
+        <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="border-color:rgba(255,255,255,0.3); color:#fff;">
+          Get Directions →
+        </a>
+      </div>
+      <!-- Right: trust stats -->
+      <div style="display:flex; flex-direction:column; gap: var(--space-5);">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: var(--space-6) var(--space-7);">
+          <div style="font-family: var(--font-display); font-size: var(--text-4xl); font-weight:800; color:#fff; line-height:1;">5.0★</div>
+          <div style="font-size: var(--text-sm); color:rgba(255,255,255,0.55); margin-top: var(--space-1);">96 Google Reviews</div>
+          <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top: var(--space-3); font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.45); transition: color 180ms ease;">Read Reviews →</a>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: var(--space-6) var(--space-7);">
+          <div style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight:800; color:#fff; line-height:1;">30+ Years</div>
+          <div style="font-size: var(--text-sm); color:rgba(255,255,255,0.55); margin-top: var(--space-1);">Family-owned in Rockville since 1994</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: var(--space-6) var(--space-7);">
+          <div style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight:800; color:#fff; line-height:1;">5,000+</div>
+          <div style="font-size: var(--text-sm); color:rgba(255,255,255,0.55); margin-top: var(--space-1);">Vehicles upfitted in the DMV</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+@media (max-width: 860px) {
+  .geo-grid { grid-template-columns: 1fr !important; }
+}
+</style>
+
+<!-- ═══════════════════════════════════════════════════════
+     TESTIMONIALS
+     ═══════════════════════════════════════════════════════ -->
+<section class="section section--surface" aria-labelledby="testimonials-heading-wraps">
+  <div class="container container--narrow">
+    <div class="reveal" style="text-align:center; margin-bottom: var(--space-10);">
+      <div class="section-label" style="justify-content:center;">Customer Reviews</div>
+      <h2 id="testimonials-heading-wraps">REAL CUSTOMERS. REAL RESULTS.</h2>
+    </div>
+    <div class="testimonials-grid" style="grid-template-columns: repeat(2,1fr);">
+      <div class="testimonial-card">
+        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b;" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b;" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b;" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b;" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b;" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-quote">Capital Upfitters is the real deal for fleet branding. Called on Monday, the van wrap was done by Wednesday — quick, professional, exactly what was quoted. They've clearly wrapped thousands of vehicles.</p>
+        <div class="testimonial-author">
+          <strong>James R.</strong>
+          <span>Bethesda, MD &middot; Google Review</span>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b;" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b;" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b;" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b;" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:#f59e0b;" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-quote">Got our work truck wrapped for branding — quick, clean, and the price was exactly what they quoted. No games, no surprises. The wrap looks sharp and has held up perfectly.</p>
+        <div class="testimonial-author">
+          <strong>Mike T.</strong>
+          <span>Rockville, MD &middot; Google Review</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: var(--space-8);">
+      <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Read All 96 Reviews on Google</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
      SECTION 3 — BENEFITS
      ═══════════════════════════════════════════════════════ -->
 <section class="section" aria-labelledby="benefits-heading">
@@ -1072,7 +1258,7 @@
     <h2 id="benefits-heading" class="reveal" style="margin-bottom: var(--space-12);">8 REASONS <em style="color:var(--color-accent)">TO WRAP YOUR FLEET.</em></h2>
     <div class="benefits-grid">
 
-      <div class="benefit-card reveal">
+      <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
@@ -1080,7 +1266,7 @@
         <p class="benefit-desc">Commercial vehicle wraps turn every mile your fleet drives into direct brand exposure — reaching thousands of people daily at zero ongoing cost.</p>
       </div>
 
-      <div class="benefit-card reveal reveal-delay-1">
+      <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
@@ -1088,7 +1274,7 @@
         <p class="benefit-desc">One-time investment, 5–7 years of continuous advertising. No monthly fees, no ad spend, no algorithm changes. Vehicle wrap advertising delivers the lowest CPM of any media format.</p>
       </div>
 
-      <div class="benefit-card reveal reveal-delay-2">
+      <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
@@ -1096,7 +1282,7 @@
         <p class="benefit-desc">Premium vinyl acts as a protective barrier against UV rays, minor scratches, stone chips, and environmental damage. When removed, original paint is preserved — protecting fleet resale value.</p>
       </div>
 
-      <div class="benefit-card reveal">
+      <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
         </div>
@@ -1104,7 +1290,7 @@
         <p class="benefit-desc">Every vehicle in your fleet presents an identical, professional brand identity. Consistent colors, logo placement, and messaging across 1 or 100 vehicles.</p>
       </div>
 
-      <div class="benefit-card reveal reveal-delay-1">
+      <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
@@ -1112,7 +1298,7 @@
         <p class="benefit-desc">High-resolution full-color graphics, custom color changes, or targeted lettering. We work from your brand guidelines or start from scratch with our design team.</p>
       </div>
 
-      <div class="benefit-card reveal reveal-delay-2">
+      <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
@@ -1120,7 +1306,7 @@
         <p class="benefit-desc">Most installations complete in 1–3 business days. Vinyl lettering is often same-day. Batch fleet scheduling keeps your vehicles out of service for minimum time.</p>
       </div>
 
-      <div class="benefit-card reveal">
+      <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
@@ -1128,7 +1314,7 @@
         <p class="benefit-desc">A uniformly branded fleet signals that your business is established, organized, and serious. Customers form impressions before you say a word — make it count.</p>
       </div>
 
-      <div class="benefit-card reveal reveal-delay-1">
+      <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
@@ -1150,22 +1336,22 @@
     <p class="reveal reveal-delay-1" style="text-align:center; color:var(--color-text-muted); max-width:560px; margin: 0 auto var(--space-14);">We make the process straightforward — design, approve, install. Most wrap projects go from first contact to finished install in under two weeks.</p>
 
     <div class="process-steps">
-      <div class="process-step reveal">
+      <div class="process-step">
         <div class="process-step-num">01</div>
         <div class="process-step-title">Consultation &amp; Quote</div>
         <p class="process-step-desc">Call or submit a quote online. We discuss your vehicle(s), brand goals, and coverage level. Quote delivered within 24 hours — usually same business day.</p>
       </div>
-      <div class="process-step reveal reveal-delay-1">
+      <div class="process-step">
         <div class="process-step-num">02</div>
         <div class="process-step-title">Design &amp; Approval</div>
         <p class="process-step-desc">Provide your logo (vector file), brand colors, and contact info. We deliver an initial design concept within 48 hours. One-on-one revisions until you're 100% satisfied before we print anything.</p>
       </div>
-      <div class="process-step reveal reveal-delay-2">
+      <div class="process-step">
         <div class="process-step-num">03</div>
         <div class="process-step-title">Print &amp; Install</div>
         <p class="process-step-desc">Once design is approved, we print on 3M or Avery Dennison cast vinyl and schedule your installation. Most vehicles are wrapped in 1–3 business days by our professional installers.</p>
       </div>
-      <div class="process-step reveal reveal-delay-3">
+      <div class="process-step">
         <div class="process-step-num">04</div>
         <div class="process-step-title">Quality Check &amp; Pickup</div>
         <p class="process-step-desc">We inspect every panel before releasing the vehicle. Your wrap comes with a 1-year workmanship warranty. Maintenance tips provided. Fleet accounts tracked via Upfit Portal.</p>

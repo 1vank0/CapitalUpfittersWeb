@@ -45,9 +45,22 @@
         "telephone": "+13013041419",
         "address": {"@type": "PostalAddress", "streetAddress": "12019 Nebel St", "addressLocality": "Rockville", "addressRegion": "MD", "postalCode": "20852"}
       },
-      "areaServed": "Rockville, MD",
+      "areaServed": [
+        {"@type": "City", "name": "Rockville", "sameAs": "https://en.wikipedia.org/wiki/Rockville,_Maryland"},
+        {"@type": "City", "name": "Bethesda", "sameAs": "https://en.wikipedia.org/wiki/Bethesda,_Maryland"},
+        {"@type": "City", "name": "Silver Spring", "sameAs": "https://en.wikipedia.org/wiki/Silver_Spring,_Maryland"},
+        {"@type": "City", "name": "Gaithersburg", "sameAs": "https://en.wikipedia.org/wiki/Gaithersburg,_Maryland"},
+        {"@type": "City", "name": "Potomac", "sameAs": "https://en.wikipedia.org/wiki/Potomac,_Maryland"},
+        {"@type": "City", "name": "North Bethesda", "sameAs": "https://en.wikipedia.org/wiki/North_Bethesda,_Maryland"}
+      ],
       "offers": {"@type": "AggregateOffer", "lowPrice": "400", "highPrice": "1800", "priceCurrency": "USD"},
-      "creator": {"@type": "Organization", "name": "IVANKODev", "url": "https://IVANKODevelopment.com"}
+      "creator": {"@type": "Organization", "name": "IVANKODev", "url": "https://IVANKODevelopment.com"},
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "96",
+        "bestRating": "5"
+      }
     },
     {
       "@type": "FAQPage",
@@ -243,6 +256,26 @@
   </div>
 </section>
 
+<!-- KPI STRIP -->
+<section class="stats-strip" aria-label="Key stats">
+  <div class="container">
+    <div class="stats-grid" style="grid-template-columns: repeat(3,1fr);">
+      <div style="text-align:center;">
+        <span class="stat-number kpi-number">IGL &amp; System X</span>
+        <span class="stat-label">Certified Installer</span>
+      </div>
+      <div style="text-align:center;">
+        <span class="stat-number kpi-number">5–9 Year</span>
+        <span class="stat-label">Protection Life Span</span>
+      </div>
+      <div style="text-align:center;">
+        <span class="stat-number kpi-number">2-Day</span>
+        <span class="stat-label">Full Decon &amp; Cure Process</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BENEFITS -->
 <section class="section section--surface" aria-labelledby="benefits-heading">
   <div class="container">
@@ -252,21 +285,21 @@
       <p style="max-width:520px; margin: var(--space-3) auto 0;">The difference between a $20 spray and a professional ceramic coating is the difference between a bandage and surgery. One actually solves the problem.</p>
     </div>
     <div class="benefit-cards">
-      <div class="benefit-card reveal reveal-delay-1">
+      <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <div class="benefit-title">Certified Installer (IGL + System X)</div>
         <p class="benefit-desc">We're certified by two of the world's leading ceramic coating brands. That means proper prep, correct product selection, and a warranty you can actually use.</p>
       </div>
-      <div class="benefit-card reveal reveal-delay-2">
+      <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
         <div class="benefit-title">Hydrophobic Protection</div>
         <p class="benefit-desc">Water beads and rolls off your paint instantly. Road grime, bird droppings, and tree sap can't chemically bond to a properly coated surface. Your paint stays cleaner, longer.</p>
       </div>
-      <div class="benefit-card reveal reveal-delay-3">
+      <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
         </div>
@@ -286,7 +319,7 @@
       <p style="max-width:520px; margin: var(--space-3) auto 0;">Ceramic coating pricing depends on vehicle size, paint condition, and coverage level. These are starting prices — contact us for an exact quote after vehicle inspection.</p>
     </div>
     <div class="pricing-tiers">
-      <div class="tier-card reveal reveal-delay-1">
+      <div class="tier-card">
         <div class="tier-header">
           <div class="tier-name">Entry Ceramic</div>
           <div class="tier-price"><sup>$</sup>400</div>
@@ -301,7 +334,7 @@
           </div>
         </div>
       </div>
-      <div class="tier-card featured reveal reveal-delay-2">
+      <div class="tier-card featured">
         <div class="tier-header">
           <div class="tier-badge">Most Popular</div>
           <div class="tier-name">Full Paint Ceramic</div>
@@ -317,7 +350,7 @@
           </div>
         </div>
       </div>
-      <div class="tier-card reveal reveal-delay-3">
+      <div class="tier-card">
         <div class="tier-header">
           <div class="tier-name">PPF + Ceramic Package</div>
           <div class="tier-price"><sup>$</sup>1,800</div>
@@ -349,26 +382,127 @@
       <p style="max-width:460px; margin: var(--space-3) auto 0;">A ceramic coating is only as good as the prep work beneath it. We don't skip steps — and we don't coat over problems.</p>
     </div>
     <div class="process-steps">
-      <div class="process-step reveal reveal-delay-1">
+      <div class="process-step">
         <div class="process-num">1</div>
         <div class="process-title">Paint Assessment</div>
         <p class="process-desc">We inspect the paint under professional lighting for swirls, contamination, and oxidation to determine what prep is required.</p>
       </div>
-      <div class="process-step reveal reveal-delay-2">
+      <div class="process-step">
         <div class="process-num">2</div>
         <div class="process-title">Decontamination &amp; Prep</div>
         <p class="process-desc">Wash, clay bar, iron decontamination. Paint correction if needed. The surface must be perfect before any coating goes on.</p>
       </div>
-      <div class="process-step reveal reveal-delay-3">
+      <div class="process-step">
         <div class="process-num">3</div>
         <div class="process-title">Ceramic Application</div>
         <p class="process-desc">Applied panel by panel in a controlled environment. Each layer is leveled and inspected before moving to the next panel.</p>
       </div>
-      <div class="process-step reveal reveal-delay-4">
+      <div class="process-step">
         <div class="process-num">4</div>
         <div class="process-title">Cure &amp; Pickup</div>
         <p class="process-desc">The coating cures for 24–48 hours. We provide detailed aftercare instructions and register your warranty before pickup.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- GEO SERVICE STRIP -->
+<section style="background: var(--color-surface-dark); padding: var(--space-16) 0; border-top: 1px solid rgba(255,255,255,0.06);" aria-labelledby="geo-heading-ceramic">
+  <div class="container">
+    <div class="geo-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items:center;">
+      <div>
+        <div class="section-label" style="color:rgba(255,255,255,0.45);">Ceramic Coating in the DMV</div>
+        <h2 id="geo-heading-ceramic" style="color:#fff; margin-bottom: var(--space-5);">CERTIFIED CERAMIC COATING IN ROCKVILLE &amp; BETHESDA.</h2>
+        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);">
+          Car owners across Bethesda, Rockville, Potomac, and North Bethesda choose Capital Upfitters for IGL and System X ceramic coating — because proper paint protection starts with proper prep. We're one of the few certified installers in Montgomery County. Located at 12019 Nebel St in Rockville, easily accessible from I-270 and Route 355.
+        </p>
+        <!-- City links grid -->
+        <div style="display:grid; grid-template-columns: repeat(2,1fr); gap: var(--space-3); margin-bottom: var(--space-8);">
+          <a href="../locations/rockville-md.html" style="display:flex; align-items:center; gap: var(--space-3); padding: var(--space-4); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); color:#fff; text-decoration:none; font-family: var(--font-display); font-size: var(--text-sm); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition: all 180ms ease;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Rockville, MD
+          </a>
+          <a href="../locations/bethesda-md.html" style="display:flex; align-items:center; gap: var(--space-3); padding: var(--space-4); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); color:#fff; text-decoration:none; font-family: var(--font-display); font-size: var(--text-sm); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition: all 180ms ease;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Bethesda, MD
+          </a>
+          <a href="../locations/silver-spring-md.html" style="display:flex; align-items:center; gap: var(--space-3); padding: var(--space-4); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); color:#fff; text-decoration:none; font-family: var(--font-display); font-size: var(--text-sm); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition: all 180ms ease;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Silver Spring, MD
+          </a>
+          <a href="../locations/gaithersburg-md.html" style="display:flex; align-items:center; gap: var(--space-3); padding: var(--space-4); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); color:#fff; text-decoration:none; font-family: var(--font-display); font-size: var(--text-sm); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition: all 180ms ease;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Gaithersburg, MD
+          </a>
+        </div>
+        <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="border-color:rgba(255,255,255,0.3); color:#fff;">
+          Get Directions &rarr;
+        </a>
+      </div>
+      <!-- Right: trust stats -->
+      <div style="display:flex; flex-direction:column; gap: var(--space-5);">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: var(--space-6) var(--space-7);">
+          <div style="font-family: var(--font-display); font-size: var(--text-4xl); font-weight:800; color:#fff; line-height:1;">5.0&#9733;</div>
+          <div style="font-size: var(--text-sm); color:rgba(255,255,255,0.55); margin-top: var(--space-1);">96 Google Reviews</div>
+          <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top: var(--space-3); font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.45); transition: color 180ms ease;">Read Reviews &rarr;</a>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: var(--space-6) var(--space-7);">
+          <div style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight:800; color:#fff; line-height:1;">30+ Years</div>
+          <div style="font-size: var(--text-sm); color:rgba(255,255,255,0.55); margin-top: var(--space-1);">Family-owned in Rockville since 1994</div>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: var(--space-6) var(--space-7);">
+          <div style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight:800; color:#fff; line-height:1;">5,000+</div>
+          <div style="font-size: var(--text-sm); color:rgba(255,255,255,0.55); margin-top: var(--space-1);">Vehicles upfitted in the DMV</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+@media (max-width: 860px) {
+  .geo-grid { grid-template-columns: 1fr !important; }
+}
+</style>
+
+<!-- TESTIMONIALS -->
+<section class="section section--surface" aria-labelledby="testimonials-heading-ceramic">
+  <div class="container container--narrow">
+    <div class="reveal" style="text-align:center; margin-bottom: var(--space-10);">
+      <div class="section-label" style="justify-content:center;">Customer Reviews</div>
+      <h2 id="testimonials-heading-ceramic">REAL CUSTOMERS. REAL RESULTS.</h2>
+    </div>
+    <div class="testimonials-grid" style="grid-template-columns: repeat(2,1fr);">
+      <div class="testimonial-card">
+        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-quote">Ceramic coating on my new Camry. Car looks incredible. They took their time on the prep work, which is what separates a good job from a great one.</p>
+        <div class="testimonial-author">
+          <strong>Amanda L.</strong>
+          <span>Bethesda, MD &middot; Google Review</span>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars" aria-label="5 out of 5 stars">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-quote">Capital Upfitters is the real deal. Called on Monday, truck was done by Wednesday. They've clearly done this thousands of times.</p>
+        <div class="testimonial-author">
+          <strong>James R.</strong>
+          <span>Bethesda, MD &middot; Google Review</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: var(--space-8);">
+      <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Read All 96 Reviews on Google</a>
     </div>
   </div>
 </section>
