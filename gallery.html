@@ -272,6 +272,25 @@
     @media (max-width: 480px) {
       .cat-cards { grid-template-columns: 1fr; }
     }
+
+    /* Before/After section */
+    .ba-section { padding: var(--space-16) 0; background: var(--color-surface); }
+    .ba-heading-wrap { text-align:center; margin-bottom: var(--space-12); }
+    .ba-grid { display:grid; grid-template-columns: repeat(2,1fr); gap: var(--space-6); }
+    .ba-card { border-radius: var(--radius-2xl); overflow:hidden; border: 1px solid var(--color-border); background: var(--color-bg); }
+    .ba-card-label { font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding: var(--space-4) var(--space-6); background: var(--color-surface); border-bottom: 1px solid var(--color-border); color: var(--color-text-muted); }
+    .ba-slider-wrap { position:relative; width:100%; aspect-ratio: 16/9; overflow:hidden; cursor:col-resize; user-select:none; }
+    .ba-before, .ba-after { position:absolute; inset:0; width:100%; height:100%; }
+    .ba-after { clip-path: inset(0 50% 0 0); transition: clip-path 0ms; }
+    .ba-divider { position:absolute; top:0; bottom:0; left:50%; width:3px; background:#fff; box-shadow: 0 0 8px rgba(0,0,0,0.4); z-index:10; transform: translateX(-50%); }
+    .ba-handle { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:40px; height:40px; border-radius:50%; background:#fff; box-shadow: 0 2px 12px rgba(0,0,0,0.35); z-index:11; display:flex; align-items:center; justify-content:center; pointer-events:none; }
+    .ba-handle svg { color: #203055; }
+    .ba-tag { position:absolute; bottom: var(--space-3); padding: 4px 12px; border-radius: var(--radius-pill); font-family: var(--font-display); font-size: 10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; z-index:5; }
+    .ba-tag.before-tag { left: var(--space-3); background:rgba(0,0,0,0.6); color:#fff; }
+    .ba-tag.after-tag { right: var(--space-3); background: var(--color-accent); color:#fff; }
+    .ba-service-name { padding: var(--space-4) var(--space-6); font-family: var(--font-display); font-size: var(--text-base); font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color: var(--color-text); }
+    .ba-service-desc { padding: 0 var(--space-6) var(--space-5); font-size: var(--text-sm); color: var(--color-text-muted); line-height:1.6; }
+    @media (max-width:700px) { .ba-grid { grid-template-columns:1fr; } }
   </style>
 
 <script type="application/ld+json">
@@ -307,11 +326,53 @@
 <!-- NAV -->
 <nav class="nav" id="nav" role="navigation" aria-label="Main navigation"><div class="nav-inner">
   <a href="./index.html" class="nav-logo" aria-label="Capital Upfitters home"><div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div><div class="nav-logo-text">Capital<span>Upfitters</span></div></a>
-  <ul class="nav-links"><li><a href="./services/index.html">Services</a></li><li><a href="./fleet.html">Fleet & Commercial</a></li><li><a href="./dealer-government.html">Dealer & Gov</a></li><li><a href="./gallery.html" class="active">Gallery</a></li><li><a href="./contact.html">Contact</a></li></ul>
+      <ul class="nav-links">
+      <li class="nav-item">
+        <a href="./services/index.html">Services
+          <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
+        </a>
+        <div class="nav-dropdown" role="menu">
+          <span class="nav-dropdown-label">Core Services</span>
+          <a href="./services/bedliner.html">Spray-On Bedliners</a>
+          <a href="./services/hitches.html">Hitches &amp; Towing</a>
+          <a href="./services/ceramic-coating.html">Ceramic Coating &amp; PPF</a>
+          <a href="./services/undercoating.html">Undercoating</a>
+          <a href="./services/tonneau.html">Tonneau Covers</a>
+          <a href="./services/running-boards.html">Running Boards</a>
+          <a href="./services/commercial-wraps.html">Commercial Wraps</a>
+          <div class="nav-dropdown-divider"></div>
+          <span class="nav-dropdown-label">More Services</span>
+          <a href="./services/camper-shells.html">Camper Shells &amp; Caps</a>
+          <a href="./services/toolboxes.html">Toolboxes &amp; Storage</a>
+          <a href="./services/suspension.html">Suspension &amp; Lifts</a>
+          <a href="./services/exterior.html">Exterior Accessories</a>
+          <a href="./services/lighting.html">LED Lighting</a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="./rebates.html" style="color: rgba(255,200,100,0.85);">&#127991; Rebates &amp; Offers</a>
+        </div>
+      </li>
+      <li><a href="./fleet.html">Fleet &amp; Commercial</a></li>
+      <li><a href="./dealer-government.html">Dealer &amp; Gov</a></li>
+      <li><a href="./gallery.html">Gallery</a></li>
+      <li><a href="./rebates.html">Rebates</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
   <div class="nav-actions"><a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="nav-portal-link">Portal Login</a><a href="./quote.html" class="nav-cta">Get a Quote</a></div>
   <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Mobile menu"><button class="nav-mobile-close" id="nav-close" aria-label="Close menu">&times;</button><nav class="nav-mobile-links"><a href="./services/index.html">Services</a><a href="./fleet.html">Fleet & Commercial</a><a href="./dealer-government.html">Dealer & Gov</a><a href="./gallery.html">Gallery</a><a href="./contact.html">Contact</a></nav><div class="nav-mobile-actions"><a href="./quote.html" class="btn btn-primary">Get a Quote</a><a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Portal Login</a></div></div>
+<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Mobile menu"><button class="nav-mobile-close" id="nav-close" aria-label="Close menu">&times;</button>  <nav class="nav-mobile-links">
+    <a href="./services/index.html">All Services</a>
+    <a href="./services/bedliner.html" style="padding-left:1.2rem;font-size:.85em;opacity:.8;">&#8627; Bedliners</a>
+    <a href="./services/hitches.html" style="padding-left:1.2rem;font-size:.85em;opacity:.8;">&#8627; Hitches</a>
+    <a href="./services/ceramic-coating.html" style="padding-left:1.2rem;font-size:.85em;opacity:.8;">&#8627; Ceramic Coating</a>
+    <a href="./services/camper-shells.html" style="padding-left:1.2rem;font-size:.85em;opacity:.8;">&#8627; Camper Shells</a>
+    <a href="./services/suspension.html" style="padding-left:1.2rem;font-size:.85em;opacity:.8;">&#8627; Suspension &amp; Lifts</a>
+    <a href="./fleet.html">Fleet &amp; Commercial</a>
+    <a href="./dealer-government.html">Dealer &amp; Gov</a>
+    <a href="./gallery.html">Gallery</a>
+    <a href="./rebates.html">&#127991; Rebates &amp; Offers</a>
+    <a href="./contact.html">Contact</a>
+  </nav><div class="nav-mobile-actions"><a href="./quote.html" class="btn btn-primary">Get a Quote</a><a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Portal Login</a></div></div>
 
 <!-- PAGE HERO (compact 40vh) -->
 <section class="page-hero" style="min-height: 40vh; display: flex; align-items: center;">
@@ -325,6 +386,125 @@
     </nav>
     <h1 class="reveal">OUR WORK <em>SPEAKS FOR ITSELF.</em></h1>
     <p class="page-hero-sub reveal reveal-delay-1">Browse our portfolio of installed services — bedliners, ceramic coatings, hitches, undercoating, fleet builds, and more.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     BEFORE / AFTER
+═══════════════════════════════════════════════ -->
+<section class="ba-section reveal" aria-labelledby="ba-heading">
+  <div class="container">
+    <div class="ba-heading-wrap">
+      <div class="section-label" style="justify-content:center;">Transformations</div>
+      <h2 id="ba-heading">BEFORE &amp; AFTER.</h2>
+      <p style="max-width:480px; margin: var(--space-3) auto 0; color: var(--color-text-secondary);">Drag the slider to compare. Every vehicle that leaves our shop looks like this.</p>
+    </div>
+    <div class="ba-grid">
+
+      <!-- Card 1: Bedliner -->
+      <div class="ba-card">
+        <div class="ba-card-label">Spray-On Bedliner · F-150 SuperCrew</div>
+        <div class="ba-slider-wrap" data-ba>
+          <!-- BEFORE: bare metal truck bed -->
+          <div class="ba-before" style="background: linear-gradient(160deg, #2a2a2a 0%, #1a1a1a 50%, #3a3530 100%);">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0.15;">
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1"><rect x="1" y="8" width="22" height="10" rx="1"/><path d="M5 8V5h14v3"/></svg>
+            </div>
+          </div>
+          <!-- AFTER: Patriot Liner black textured -->
+          <div class="ba-after" style="background: linear-gradient(160deg, #0a0a0a 0%, #111 50%, #0d0d0d 100%); background-image: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.04) 1px, transparent 1px), radial-gradient(circle at 70% 60%, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 4px 4px, 6px 6px;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0.2;">
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1"><rect x="1" y="8" width="22" height="10" rx="1"/><path d="M5 8V5h14v3"/></svg>
+            </div>
+          </div>
+          <div class="ba-divider">
+            <div class="ba-handle">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+          <span class="ba-tag before-tag">Before</span>
+          <span class="ba-tag after-tag">After</span>
+        </div>
+        <div class="ba-service-name">Patriot Liner Spray-On Bedliner</div>
+        <div class="ba-service-desc">Bare metal truck bed → permanently bonded polyurea liner. Applied at 155°F, 2,000 PSI. Lifetime warranty.</div>
+      </div>
+
+      <!-- Card 2: Ceramic Coating -->
+      <div class="ba-card">
+        <div class="ba-card-label">Ceramic Coating · Camry SE</div>
+        <div class="ba-slider-wrap" data-ba>
+          <div class="ba-before" style="background: linear-gradient(135deg, #8a8a8a 0%, #9a9a9a 40%, #7a7a7a 100%);">
+            <div style="position:absolute; inset:0; background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,0.03) 8px, rgba(255,255,255,0.03) 10px); opacity:0.8;"></div>
+          </div>
+          <div class="ba-after" style="background: linear-gradient(135deg, #c0c8d0 0%, #d5dfe8 40%, #b8c5d0 100%);">
+            <div style="position:absolute; inset:0; background: radial-gradient(ellipse 70% 50% at 60% 40%, rgba(255,255,255,0.35), transparent);"></div>
+          </div>
+          <div class="ba-divider">
+            <div class="ba-handle">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+          <span class="ba-tag before-tag">Before</span>
+          <span class="ba-tag after-tag">After</span>
+        </div>
+        <div class="ba-service-name">IGL Ceramic Coating</div>
+        <div class="ba-service-desc">Dull, swirled paint → mirror-like ceramic finish. Hydrophobic, UV-stable, 5–9 year protection.</div>
+      </div>
+
+      <!-- Card 3: Undercoating -->
+      <div class="ba-card">
+        <div class="ba-card-label">Undercoating · Silverado 1500</div>
+        <div class="ba-slider-wrap" data-ba>
+          <div class="ba-before" style="background: linear-gradient(160deg, #4a3525 0%, #5a4030 50%, #3d2d1d 100%);">
+            <div style="position:absolute; inset:0; background: repeating-radial-gradient(circle at 30% 60%, rgba(180,80,0,0.3) 0px, transparent 8px, transparent 16px, rgba(120,50,0,0.2) 16px, transparent 24px);"></div>
+          </div>
+          <div class="ba-after" style="background: linear-gradient(160deg, #1a1a1a 0%, #222 50%, #111 100%);">
+            <div style="position:absolute; inset:0; background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(255,255,255,0.03), transparent);"></div>
+          </div>
+          <div class="ba-divider">
+            <div class="ba-handle">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+          <span class="ba-tag before-tag">Before</span>
+          <span class="ba-tag after-tag">After</span>
+        </div>
+        <div class="ba-service-name">Undercoating &amp; Rust Protection</div>
+        <div class="ba-service-desc">Rusty undercarriage exposed to MD road salt → fully sealed matte black protection. 10-year protection.</div>
+      </div>
+
+      <!-- Card 4: Commercial Van -->
+      <div class="ba-card">
+        <div class="ba-card-label">Van Upfit · Transit 250 Cargo</div>
+        <div class="ba-slider-wrap" data-ba>
+          <div class="ba-before" style="background: linear-gradient(160deg, #e8e8e8 0%, #d5d5d5 50%, #e0e0e0 100%);">
+            <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0.12;">
+              <svg width="100" height="60" viewBox="0 0 24 16" fill="none" stroke="gray" stroke-width="0.8"><rect x="1" y="3" width="15" height="11" rx="1"/><path d="M16 6h4l3 5v4H16V6z"/><circle cx="5" cy="14" r="1.5"/><circle cx="19" cy="14" r="1.5"/></svg>
+            </div>
+          </div>
+          <div class="ba-after" style="background: linear-gradient(160deg, #1a2742 0%, #203055 50%, #1a2035 100%);">
+            <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0.15;">
+              <svg width="60" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </div>
+          </div>
+          <div class="ba-divider">
+            <div class="ba-handle">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6"/></svg>
+            </div>
+          </div>
+          <span class="ba-tag before-tag">Before</span>
+          <span class="ba-tag after-tag">After</span>
+        </div>
+        <div class="ba-service-name">Weatherguard Van Shelving</div>
+        <div class="ba-service-desc">Empty cargo van → organized mobile workshop. Shelving, drawers, and bulkhead — ready for day one.</div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top: var(--space-10);">
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: var(--space-5);">Photos of real work coming soon. These previews show typical results — we photograph every vehicle before and after.</p>
+      <a href="../quote.html" class="btn btn-primary">Get a Quote for Your Vehicle</a>
+    </div>
   </div>
 </section>
 
@@ -853,5 +1033,37 @@ lightbox.addEventListener('touchend', e => {
 </script>
 
 <script src="animations.js" defer></script>
+
+<!-- Floating quote CTA -->
+<div class="float-cta" aria-hidden="true">
+  <a href="./quote.html" class="float-cta-btn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    Get a Quote
+  </a>
+</div>
+<script>
+// ── Before/After drag sliders ──────────────────────────────
+document.querySelectorAll('[data-ba]').forEach(wrap => {
+  const after = wrap.querySelector('.ba-after');
+  const divider = wrap.querySelector('.ba-divider');
+  let dragging = false;
+
+  function setPos(clientX) {
+    const rect = wrap.getBoundingClientRect();
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    const pct = (x / rect.width) * 100;
+    after.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+    divider.style.left = `${pct}%`;
+  }
+
+  wrap.addEventListener('mousedown', e => { dragging = true; setPos(e.clientX); });
+  window.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
+  window.addEventListener('mouseup', () => { dragging = false; });
+
+  wrap.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+  wrap.addEventListener('touchmove', e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+  wrap.addEventListener('touchend', () => { dragging = false; });
+});
+</script>
 </body>
 </html>
