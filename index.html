@@ -369,6 +369,40 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
+     VEHICLE SELECTOR
+═══════════════════════════════════════════════════════ -->
+<section class="vehicle-selector-section" aria-labelledby="vs-heading">
+  <div class="container">
+    <div class="vehicle-selector-inner">
+      <div class="vehicle-selector-label" id="vs-heading">Find My Fit</div>
+      <div class="vehicle-selector-fields">
+        <select class="vs-select" id="vs-year" aria-label="Select year">
+          <option value="">Year</option>
+        </select>
+        <select class="vs-select" id="vs-make" aria-label="Select make" disabled>
+          <option value="">Make</option>
+        </select>
+        <select class="vs-select" id="vs-model" aria-label="Select model" disabled>
+          <option value="">Model</option>
+        </select>
+      </div>
+      <button class="vs-btn" id="vs-btn" disabled aria-label="Find services for this vehicle">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Find Services
+      </button>
+    </div>
+    <div class="vehicle-selector-hint">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Select your vehicle to see compatible services and get a pre-filled quote
+    </div>
+    <div class="vs-results" id="vs-results" aria-live="polite">
+      <div class="vs-results-label" id="vs-results-label">Services for your vehicle</div>
+      <div class="vs-service-chips" id="vs-chips"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
      START HERE FUNNEL
 ═══════════════════════════════════════════════════════ -->
 <section class="funnel-section" aria-labelledby="funnel-heading">
@@ -952,6 +986,197 @@
 </script>
 
 <script src="animations.js" defer></script>
+
+<!-- VEHICLE SELECTOR SCRIPT -->
+<script>
+(function() {
+  // ── Service map by vehicle type ──────────────────────────
+  // Keys: truck, suv, van, car, ev, other
+  const SERVICE_MAP = {
+    truck: [
+      { name: 'Spray-On Bedliner', url: './services/bedliner.html', icon: '🛡️' },
+      { name: 'Tonneau Cover', url: './services/tonneau.html', icon: '🔒' },
+      { name: 'Hitches & Towing', url: './services/hitches.html', icon: '🔗' },
+      { name: 'Running Boards', url: './services/running-boards.html', icon: '⤵️' },
+      { name: 'Toolboxes & Storage', url: './services/toolboxes.html', icon: '🧰' },
+      { name: 'Camper Shell', url: './services/camper-shells.html', icon: '⛺' },
+      { name: 'Undercoating', url: './services/undercoating.html', icon: '🛡️' },
+      { name: 'Suspension & Lifts', url: './services/suspension.html', icon: '⬆️' },
+      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
+      { name: 'Exterior Accessories', url: './services/exterior.html', icon: '🔧' },
+    ],
+    suv: [
+      { name: 'Running Boards', url: './services/running-boards.html', icon: '⤵️' },
+      { name: 'Hitches & Towing', url: './services/hitches.html', icon: '🔗' },
+      { name: 'Ceramic Coating', url: './services/ceramic-coating.html', icon: '✨' },
+      { name: 'Undercoating', url: './services/undercoating.html', icon: '🛡️' },
+      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
+      { name: 'Exterior Accessories', url: './services/exterior.html', icon: '🔧' },
+      { name: 'Suspension & Lifts', url: './services/suspension.html', icon: '⬆️' },
+    ],
+    van: [
+      { name: 'Van Shelving (Weatherguard)', url: './fleet.html', icon: '📦' },
+      { name: 'Ladder Racks', url: './fleet.html', icon: '🚜' },
+      { name: 'Spray-On Bedliner (Cargo Floor)', url: './services/bedliner.html', icon: '🛡️' },
+      { name: 'Commercial Wraps', url: './services/commercial-wraps.html', icon: '🎨' },
+      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
+      { name: 'LED Work Lights', url: './services/lighting.html', icon: '💡' },
+      { name: 'Hitches & Towing', url: './services/hitches.html', icon: '🔗' },
+    ],
+    car: [
+      { name: 'Ceramic Coating & PPF', url: './services/ceramic-coating.html', icon: '✨' },
+      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
+      { name: 'Undercoating', url: './services/undercoating.html', icon: '🛡️' },
+      { name: 'Hitches & Towing', url: './services/hitches.html', icon: '🔗' },
+    ],
+    ev: [
+      { name: 'Ceramic Coating & PPF', url: './services/ceramic-coating.html', icon: '✨' },
+      { name: 'Window Tinting (Ceramic)', url: './services/window-tinting.html', icon: '🕳️' },
+      { name: 'Running Boards', url: './services/running-boards.html', icon: '⤵️' },
+      { name: 'Exterior Accessories', url: './services/exterior.html', icon: '🔧' },
+    ],
+    other: [
+      { name: 'Spray-On Bedliner', url: './services/bedliner.html', icon: '🛡️' },
+      { name: 'Undercoating', url: './services/undercoating.html', icon: '🛡️' },
+      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
+      { name: 'Commercial Wraps', url: './services/commercial-wraps.html', icon: '🎨' },
+    ],
+  };
+
+  // Vehicle type mapping by make+model keywords
+  const TRUCK_MAKES = ['ford', 'gmc', 'ram', 'chevrolet', 'chevy', 'toyota', 'nissan', 'honda', 'jeep', 'dodge'];
+  const TRUCK_MODELS = ['f-150','f150','f-250','f250','f-350','f350','silverado','sierra','ranger','tacoma','tundra','frontier','ridgeline','maverick','canyon','colorado','gladiator','ram 1500','ram 2500','ram 3500'];
+  const SUV_MODELS = ['expedition','tahoe','suburban','yukon','navigator','explorer','pilot','odyssey','4runner','sequoia','highlander','armada','pathfinder','qx80','qx60','gx','lx','rx','cx-9','cx-5','traverse','equinox','blazer','wrangler','grand cherokee','commander','telluride','palisade','sorento','santa fe'];
+  const VAN_MODELS = ['transit','sprinter','promaster','express','nv','savana','sienna','odyssey','metris','econoline','e-series','e-250','e-350'];
+  const EV_MODELS = ['model 3','model s','model x','model y','cybertruck','lightning','f-150 lightning','silverado ev','gmc hummer','rivian','r1t','r1s','ioniq','id.4','mach-e','mustang mach-e','lyriq','eq','i4','i7','ix'];
+
+  function detectType(make, model) {
+    const m = model.toLowerCase(), mk = make.toLowerCase();
+    if (VAN_MODELS.some(v => m.includes(v))) return 'van';
+    if (EV_MODELS.some(e => m.includes(e))) return 'ev';
+    if (TRUCK_MODELS.some(t => m.includes(t))) return 'truck';
+    if (SUV_MODELS.some(s => m.includes(s))) return 'suv';
+    // Guess by body class if model not recognized
+    if (['pickup', 'truck'].some(t => m.includes(t))) return 'truck';
+    if (['suv', 'crossover', 'wagon'].some(s => m.includes(s))) return 'suv';
+    if (['van', 'minivan'].some(v => m.includes(v))) return 'van';
+    return 'car';
+  }
+
+  // ── DOM refs ──────────────────────────────────────────────
+  const yearSel  = document.getElementById('vs-year');
+  const makeSel  = document.getElementById('vs-make');
+  const modelSel = document.getElementById('vs-model');
+  const btn      = document.getElementById('vs-btn');
+  const results  = document.getElementById('vs-results');
+  const label    = document.getElementById('vs-results-label');
+  const chips    = document.getElementById('vs-chips');
+
+  if (!yearSel) return;
+
+  // ── Populate years ────────────────────────────────────────
+  const now = new Date().getFullYear() + 1;
+  for (let y = now; y >= 1995; y--) {
+    yearSel.add(new Option(y, y));
+  }
+
+  // ── Fetch makes when year selected ───────────────────────
+  yearSel.addEventListener('change', async () => {
+    const yr = yearSel.value;
+    makeSel.innerHTML = '<option value="">Make</option>';
+    modelSel.innerHTML = '<option value="">Model</option>';
+    makeSel.disabled = !yr;
+    modelSel.disabled = true;
+    btn.disabled = true;
+    results.classList.remove('visible');
+    if (!yr) return;
+
+    try {
+      const res = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?year=${yr}&format=json`);
+      const data = await res.json();
+      const makes = (data.Results || []).map(r => r.MakeName).sort();
+      // Prioritise popular truck/SUV makes first
+      const priority = ['Ford','Chevrolet','GMC','RAM','Toyota','Nissan','Honda','Jeep','Dodge','Subaru','Hyundai','Kia','Volkswagen','BMW','Mercedes-Benz','Audi','Lexus','Mazda','Tesla','Rivian'];
+      const prioritised = priority.filter(p => makes.some(m => m.toLowerCase() === p.toLowerCase()));
+      const rest = makes.filter(m => !priority.some(p => p.toLowerCase() === m.toLowerCase()));
+      [...prioritised, ...rest].forEach(name => makeSel.add(new Option(name, name)));
+      makeSel.disabled = false;
+    } catch (e) {
+      // Fallback static list
+      ['Ford','Chevrolet','GMC','RAM','Toyota','Nissan','Honda','Jeep','Dodge','Subaru','Hyundai','Kia','Volkswagen','BMW','Mercedes-Benz','Audi','Lexus','Mazda','Tesla','Rivian','Other'].forEach(n => makeSel.add(new Option(n, n)));
+      makeSel.disabled = false;
+    }
+  });
+
+  // ── Fetch models when make selected ──────────────────────
+  makeSel.addEventListener('change', async () => {
+    const yr = yearSel.value, mk = makeSel.value;
+    modelSel.innerHTML = '<option value="">Model</option>';
+    modelSel.disabled = !mk;
+    btn.disabled = true;
+    results.classList.remove('visible');
+    if (!mk) return;
+
+    try {
+      const res = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${encodeURIComponent(mk)}/modelyear/${yr}?format=json`);
+      const data = await res.json();
+      const models = [...new Set((data.Results || []).map(r => r.Model_Name))].sort();
+      models.forEach(name => modelSel.add(new Option(name, name)));
+      modelSel.disabled = false;
+    } catch (e) {
+      modelSel.add(new Option('(Enter manually)', 'unknown'));
+      modelSel.disabled = false;
+    }
+  });
+
+  modelSel.addEventListener('change', () => {
+    btn.disabled = !modelSel.value;
+  });
+
+  // ── Show results ──────────────────────────────────────────
+  btn.addEventListener('click', () => {
+    const yr = yearSel.value, mk = makeSel.value, mdl = modelSel.value;
+    if (!yr || !mk || !mdl) return;
+
+    const type = detectType(mk, mdl);
+    const services = SERVICE_MAP[type] || SERVICE_MAP.other;
+
+    label.textContent = `Popular services for your ${yr} ${mk} ${mdl}`;
+    chips.innerHTML = '';
+
+    services.forEach(svc => {
+      const url = new URL(svc.url, window.location.href);
+      url.searchParams.set('year', yr);
+      url.searchParams.set('make', mk);
+      url.searchParams.set('model', mdl);
+      const a = document.createElement('a');
+      a.className = 'vs-chip';
+      a.href = url.toString();
+      a.innerHTML = `<span class="vs-chip-icon" aria-hidden="true">${svc.icon}</span>${svc.name}`;
+      chips.appendChild(a);
+    });
+
+    // Add universal quote chip
+    const qUrl = `./quote.html?year=${encodeURIComponent(yr)}&make=${encodeURIComponent(mk)}&model=${encodeURIComponent(mdl)}`;
+    const qa = document.createElement('a');
+    qa.className = 'vs-chip';
+    qa.href = qUrl;
+    qa.style.cssText = 'background:var(--color-accent); border-color:var(--color-accent); color:#fff; font-weight:700;';
+    qa.innerHTML = '<span aria-hidden="true">✉️</span> Get a Quote for This Vehicle';
+    chips.appendChild(qa);
+
+    results.classList.add('visible');
+    results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  // ── Auto-populate from URL params (from vehicle-specific links) ──
+  const params = new URLSearchParams(window.location.search);
+  // Also auto-fill quote form if returning from selector
+  if (params.get('year') && params.get('make') && params.get('model')) {
+    // handled by quote.html
+  }
+})();
+</script>
 
 <!-- Floating quote CTA -->
 <div class="float-cta" aria-hidden="true">

@@ -438,6 +438,7 @@
           <a href="./services/suspension.html">Suspension &amp; Lifts</a>
           <a href="./services/exterior.html">Exterior Accessories</a>
           <a href="./services/lighting.html">LED Lighting</a>
+          <a href="./services/window-tinting.html">Window Tinting</a>
           <div class="nav-dropdown-divider"></div>
           <a href="./rebates.html" style="color: rgba(255,200,100,0.85);">&#127991; Rebates &amp; Offers</a>
         </div>
@@ -674,6 +675,7 @@
                   <label class="form-checkbox-item"><input type="checkbox" name="services" value="Exterior Accessories"> Exterior Accessories</label>
                   <label class="form-checkbox-item"><input type="checkbox" name="services" value="LED Lighting"> LED Lighting</label>
                   <label class="form-checkbox-item"><input type="checkbox" name="services" value="Commercial Wraps"> Commercial Wraps</label>
+                  <label class="form-checkbox-item"><input type="checkbox" name="services" value="Window Tinting"> Window Tinting</label>
                   <label class="form-checkbox-item"><input type="checkbox" name="services" value="Other"> Other</label>
                 </div>
               </div>
@@ -983,7 +985,7 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success');
 <script src="animations.js" defer></script>
 
 <script>
-// ── Populate Year dropdown ────────────────────────────────
+// ── Populate Year dropdown + auto-fill from URL params ────────
 (function() {
   const sel = document.getElementById('r-year');
   if (!sel) return;
@@ -993,6 +995,64 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success');
     opt.value = y;
     opt.textContent = y;
     sel.appendChild(opt);
+  }
+
+  // Auto-populate from vehicle selector URL params
+  const params = new URLSearchParams(window.location.search);
+  const pYear  = params.get('year');
+  const pMake  = params.get('make');
+  const pModel = params.get('model');
+  const pSvc   = params.get('service');
+
+  if (pYear) {
+    sel.value = pYear;
+    if (!sel.value) {
+      const opt = new Option(pYear, pYear, true, true);
+      sel.insertBefore(opt, sel.options[1]);
+      sel.value = pYear;
+    }
+  }
+  if (pMake) {
+    const makeSel = document.getElementById('r-make');
+    if (makeSel) {
+      let matched = false;
+      for (const opt of makeSel.options) {
+        if (opt.value.toLowerCase() === pMake.toLowerCase()) {
+          makeSel.value = opt.value;
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) {
+        const opt = new Option(pMake, pMake, true, true);
+        makeSel.insertBefore(opt, makeSel.options[1]);
+        makeSel.value = pMake;
+      }
+    }
+  }
+  if (pModel) {
+    const modelIn = document.getElementById('r-model');
+    if (modelIn) modelIn.value = pModel;
+  }
+  if (pSvc) {
+    // Pre-check the matching service checkbox
+    const checkboxes = document.querySelectorAll('input[name="services"]');
+    const slug = pSvc.toLowerCase().replace(/-/g, ' ');
+    checkboxes.forEach(cb => {
+      if (cb.value.toLowerCase().includes(slug) || slug.includes(cb.value.toLowerCase().split(' ')[0])) {
+        cb.checked = true;
+      }
+    });
+  }
+
+  // Show confirmation banner if auto-filled
+  if (pYear && pMake && pModel) {
+    const vinResult = document.getElementById('vin-result');
+    if (vinResult) {
+      vinResult.className = 'vin-result success';
+      vinResult.innerHTML = `✓ Vehicle pre-filled from your selection: <strong>${pYear} ${pMake} ${pModel}</strong><br><span style="font-size:.85em;opacity:.75;">Please verify and update if needed.</span>`;
+      vinResult.hidden = false;
+    }
   }
 })();
 
