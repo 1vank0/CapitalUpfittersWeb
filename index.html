@@ -1027,25 +1027,27 @@
 
 <!-- HERO IDLE DIM -->
 <style>
-/* hero-content and hero-stats both transition opacity */
+/* Default: fast snap-back (0.3s) */
 .hero-content,
-.hero-stats {
-  transition: opacity 1.4s ease;
+.hero-stats,
+.hero-content h1 {
+  transition: opacity 0.3s ease;
 }
-/* Class lives on the <section.hero> so it reaches both siblings */
-.hero.watching .hero-content {
-  opacity: 0.15;
-}
-.hero.watching .hero-content h1 {
-  opacity: 0.02 !important;
-}
+/* Watching: slow fade-out (1.8s) */
+.hero.watching .hero-content,
 .hero.watching .hero-stats {
   opacity: 0.15;
+  transition: opacity 1.8s ease;
+}
+/* H1 fades to 95% — nearly invisible */
+.hero.watching .hero-content h1 {
+  opacity: 0.05 !important;
+  transition: opacity 1.8s ease;
 }
 </style>
 <script>
 (function() {
-  var IDLE_MS = 4000;
+  var IDLE_MS = 2500;  // 2.5 seconds
   var hero    = document.querySelector('.hero');
   if (!hero) return;
 
@@ -1065,7 +1067,6 @@
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         idleTimer = setTimeout(startWatching, IDLE_MS);
-        // Mouse, touch, keypress restore — scroll does NOT
         document.addEventListener('mousemove', stopWatching);
         document.addEventListener('touchstart', stopWatching);
         document.addEventListener('keydown', stopWatching);
