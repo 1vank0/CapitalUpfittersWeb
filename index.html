@@ -93,13 +93,11 @@
   pointer-events: none;
   border: none;
 }
-/* Dark overlay — matches original image treatment */
+/* Light global dim — video ~30% darker, still vivid */
 .hero-video-overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(135deg, rgba(17,24,39,0.82) 0%, rgba(32,48,85,0.55) 55%, rgba(17,24,39,0.70) 100%),
-    rgba(17,24,39,0.35);
+  background: rgba(17,24,39,0.30);
   pointer-events: none;
 }
 /* Fallback: keep image visible until video loads */
