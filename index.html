@@ -1124,13 +1124,72 @@
 
   if (!yearSel) return;
 
-  // ── Populate years ────────────────────────────────────────
+  // ── US-market makes: popular group + rest group (both A→Z) ─────
+  // Popular: brands every DMV-area truck/SUV/car owner recognizes
+  const POPULAR_MAKES = [
+    'Acura','Audi','BMW','Buick','Cadillac','Chevrolet','Chrysler',
+    'Dodge','Ford','Genesis','GMC','Honda','Hyundai','Infiniti',
+    'Jeep','Kia','Lexus','Lincoln','Mazda','Mercedes-Benz',
+    'Nissan','RAM','Rivian','Subaru','Tesla','Toyota','Volkswagen'
+  ].sort();
+
+  // All other US-market brands sold since 1980
+  const OTHER_MAKES = [
+    'Alfa Romeo','AM General','American Motors','Aston Martin',
+    'Bentley','Bugatti','FIAT','Fisker','Freightliner',
+    'Geo','Hummer','Isuzu','Jaguar','Land Rover',
+    'Lamborghini','Lucid','McLaren','Mercury','Maserati',
+    'MINI','Mitsubishi','Oldsmobile','Polestar','Pontiac',
+    'Porsche','Rolls-Royce','Saab','Saturn','Scion',
+    'Smart','Sterling','Suzuki','Volvo','Yugo'
+  ].sort();
+
+  function populateMakes(makes) {
+    makeSel.innerHTML = '<option value="">Make</option>';
+
+    // Match against NHTSA results (case-insensitive) or use static list
+    function matchList(list) {
+      if (!makes) return list; // use static when no API data
+      return list.filter(name =>
+        makes.some(m => m.toLowerCase() === name.toLowerCase())
+      );
+    }
+
+    const popularGroup = document.createElement('optgroup');
+    popularGroup.label = '★ Popular';
+    matchList(makes ? POPULAR_MAKES : null).forEach(name => {
+      popularGroup.appendChild(new Option(name, name));
+    });
+
+    const divider = document.createElement('optgroup');
+    divider.label = '─────────────────';
+    divider.disabled = true;
+
+    const otherGroup = document.createElement('optgroup');
+    otherGroup.label = 'All Manufacturers';
+
+    // Merge: POPULAR + OTHER, filtered to what NHTSA returned
+    // Then exclude anything already in popular group
+    const allUS = [...POPULAR_MAKES, ...OTHER_MAKES].sort();
+    const popularLower = new Set(POPULAR_MAKES.map(n => n.toLowerCase()));
+    matchList(makes ? allUS : null).forEach(name => {
+      if (!popularLower.has(name.toLowerCase())) {
+        otherGroup.appendChild(new Option(name, name));
+      }
+    });
+
+    if (popularGroup.children.length) makeSel.appendChild(popularGroup);
+    if (divider) makeSel.appendChild(divider);
+    if (otherGroup.children.length) makeSel.appendChild(otherGroup);
+  }
+
+  // ── Populate years (1980 → current+1) ────────────────────
   const now = new Date().getFullYear() + 1;
-  for (let y = now; y >= 1995; y--) {
+  for (let y = now; y >= 1980; y--) {
     yearSel.add(new Option(y, y));
   }
 
-  // ── Fetch makes when year selected ───────────────────────
+  // ── Load makes when year selected ───────────────────────
   yearSel.addEventListener('change', async () => {
     const yr = yearSel.value;
     makeSel.innerHTML = '<option value="">Make</option>';
@@ -1144,16 +1203,12 @@
     try {
       const res = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?year=${yr}&format=json`);
       const data = await res.json();
-      const makes = (data.Results || []).map(r => r.MakeName).sort();
-      // Prioritise popular truck/SUV makes first
-      const priority = ['Ford','Chevrolet','GMC','RAM','Toyota','Nissan','Honda','Jeep','Dodge','Subaru','Hyundai','Kia','Volkswagen','BMW','Mercedes-Benz','Audi','Lexus','Mazda','Tesla','Rivian'];
-      const prioritised = priority.filter(p => makes.some(m => m.toLowerCase() === p.toLowerCase()));
-      const rest = makes.filter(m => !priority.some(p => p.toLowerCase() === m.toLowerCase()));
-      [...prioritised, ...rest].forEach(name => makeSel.add(new Option(name, name)));
+      const makes = (data.Results || []).map(r => r.MakeName);
+      populateMakes(makes);
       makeSel.disabled = false;
     } catch (e) {
-      // Fallback static list
-      ['Ford','Chevrolet','GMC','RAM','Toyota','Nissan','Honda','Jeep','Dodge','Subaru','Hyundai','Kia','Volkswagen','BMW','Mercedes-Benz','Audi','Lexus','Mazda','Tesla','Rivian','Other'].forEach(n => makeSel.add(new Option(n, n)));
+      // Fallback: show full static list without filtering
+      populateMakes(null);
       makeSel.disabled = false;
     }
   });
