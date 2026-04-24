@@ -1027,73 +1027,83 @@
 
 <!-- HERO IDLE DIM -->
 <style>
-/* Recovery: 0.8s — all text elements */
+/* Transitions applied via JS — defined here as defaults */
 .hero-label,
+.hero-content h1,
 .hero-sub,
 .hero-stats,
-.hero-content h1,
-.hero-content p,
-.hero-content div:not(.hero-ctas) {
-  transition: opacity 0.8s ease;
-}
-/* All text fades to 95% (opacity 0.05) — buttons exempt */
-.hero.watching .hero-label,
-.hero.watching .hero-sub,
-.hero.watching .hero-stats,
-.hero.watching .hero-content h1 {
-  opacity: 0.05;
-  transition: opacity 1.2s ease;
-}
-/* CTAs stay fully visible at all times */
-.hero.watching .hero-ctas {
-  opacity: 1 !important;
-  transition: none;
-}
-/* Overlays: slow dim with text, fast restore with text */
 .hero-video-overlay,
 .hero-overlay {
-  transition: opacity 0.8s ease;
-}
-.hero.watching .hero-video-overlay {
-  opacity: 0.10;
-  transition: opacity 1.2s ease;
-}
-.hero.watching .hero-overlay {
-  opacity: 0.10;
-  transition: opacity 1.2s ease;
+  will-change: opacity;
 }
 </style>
 <script>
 (function() {
-  var IDLE_MS = 2500;  // 2.5 seconds
-  var hero    = document.querySelector('.hero');
+  var IDLE_MS   = 2500;   // trigger after 2.5s idle
+  var FADE_DUR  = '1.2s'; // fade out
+  var RECOV_DUR = '0.8s'; // snap back
+
+  // Text elements to dim (NOT the CTA buttons)
+  var TEXT_SELS = ['.hero-label', '.hero-content h1', '.hero-sub', '.hero-stats'];
+  // Overlays to clear
+  var OVL_SELS  = ['.hero-video-overlay', '.hero-overlay'];
+
+  var hero = document.querySelector('.hero');
   if (!hero) return;
 
   var idleTimer = null;
+  var watching  = false;
 
-  function startWatching() {
-    hero.classList.add('watching');
+  function getEls(sels) {
+    return sels.map(function(s) { return hero.querySelector(s); }).filter(Boolean);
   }
 
-  function stopWatching() {
-    hero.classList.remove('watching');
+  function applyFade() {
+    if (watching) return;
+    watching = true;
+    getEls(TEXT_SELS).forEach(function(el) {
+      // Stop any running CSS animation so inline opacity wins
+      el.style.animation = 'none';
+      el.style.transition = 'opacity ' + FADE_DUR + ' ease';
+      el.style.opacity = '0.05';
+    });
+    getEls(OVL_SELS).forEach(function(el) {
+      el.style.transition = 'opacity ' + FADE_DUR + ' ease';
+      el.style.opacity = '0.10';
+    });
+  }
+
+  function applyRestore() {
     clearTimeout(idleTimer);
-    idleTimer = setTimeout(startWatching, IDLE_MS);
+    if (watching) {
+      watching = false;
+      getEls(TEXT_SELS).forEach(function(el) {
+        el.style.transition = 'opacity ' + RECOV_DUR + ' ease';
+        el.style.opacity = '1';
+      });
+      getEls(OVL_SELS).forEach(function(el) {
+        el.style.transition = 'opacity ' + RECOV_DUR + ' ease';
+        el.style.opacity = '';
+      });
+    }
+    idleTimer = setTimeout(applyFade, IDLE_MS);
   }
 
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
-        idleTimer = setTimeout(startWatching, IDLE_MS);
-        document.addEventListener('mousemove', stopWatching);
-        document.addEventListener('touchstart', stopWatching);
-        document.addEventListener('keydown', stopWatching);
+        idleTimer = setTimeout(applyFade, IDLE_MS);
+        document.addEventListener('mousemove', applyRestore);
+        document.addEventListener('touchstart', applyRestore);
+        document.addEventListener('keydown', applyRestore);
       } else {
         clearTimeout(idleTimer);
-        hero.classList.remove('watching');
-        document.removeEventListener('mousemove', stopWatching);
-        document.removeEventListener('touchstart', stopWatching);
-        document.removeEventListener('keydown', stopWatching);
+        watching = false;
+        getEls(TEXT_SELS).forEach(function(el) { el.style.transition = 'none'; el.style.opacity = ''; });
+        getEls(OVL_SELS).forEach(function(el)  { el.style.transition = 'none'; el.style.opacity = ''; });
+        document.removeEventListener('mousemove', applyRestore);
+        document.removeEventListener('touchstart', applyRestore);
+        document.removeEventListener('keydown', applyRestore);
       }
     });
   }, { threshold: 0.5 });
