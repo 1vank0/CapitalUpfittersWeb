@@ -1075,13 +1075,17 @@
       if (entry.isIntersecting) {
         // Start idle timer when hero is visible
         idleTimer = setTimeout(startWatching, IDLE_MS);
-        // Only scroll restores text
-        document.addEventListener('scroll', stopWatching, { passive: true });
+        // Mouse, touch, keypress restore — scroll does NOT
+        document.addEventListener('mousemove', stopWatching);
+        document.addEventListener('touchstart', stopWatching);
+        document.addEventListener('keydown', stopWatching);
       } else {
         // Hero scrolled away — clean up
         clearTimeout(idleTimer);
         content.classList.remove('watching');
-        document.removeEventListener('scroll', stopWatching);
+        document.removeEventListener('mousemove', stopWatching);
+        document.removeEventListener('touchstart', stopWatching);
+        document.removeEventListener('keydown', stopWatching);
       }
     });
   }, { threshold: 0.5 });
