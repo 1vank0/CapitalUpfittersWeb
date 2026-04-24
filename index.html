@@ -1044,6 +1044,19 @@
   opacity: 0.05 !important;
   transition: opacity 1.8s ease;
 }
+/* Overlays: slow dim with text, fast restore with text */
+.hero-video-overlay,
+.hero-overlay {
+  transition: opacity 0.3s ease;
+}
+.hero.watching .hero-video-overlay {
+  opacity: 0.4;  /* 0.30 × ~0.5 — video 50% more visible */
+  transition: opacity 1.8s ease;
+}
+.hero.watching .hero-overlay {
+  opacity: 0.4;  /* left-side gradient lightens in sync */
+  transition: opacity 1.8s ease;
+}
 </style>
 <script>
 (function() {
