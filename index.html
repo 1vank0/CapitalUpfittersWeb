@@ -1025,6 +1025,77 @@
 
 <script src="animations.js" defer></script>
 
+<!-- HERO IDLE DIM -->
+<style>
+.hero-content {
+  transition: opacity 1.2s ease;
+}
+.hero-content.watching .hero-label,
+.hero-content.watching .hero-sub,
+.hero-content.watching .hero-ctas,
+.hero-content.watching .hero-stats {
+  opacity: 0.5;
+  transition: opacity 1.2s ease;
+}
+.hero-content.watching h1 {
+  opacity: 0.3;
+  transition: opacity 1.2s ease;
+}
+.hero-content .hero-label,
+.hero-content .hero-sub,
+.hero-content .hero-ctas,
+.hero-content .hero-stats,
+.hero-content h1 {
+  transition: opacity 1.2s ease;
+}
+</style>
+<script>
+(function() {
+  var IDLE_MS  = 4000;  // start dim after 4s of no movement
+  var WAKE_MS  = 400;   // restore quickly on any interaction
+  var hero     = document.querySelector('.hero');
+  var content  = document.querySelector('.hero-content');
+  if (!hero || !content) return;
+
+  var idleTimer = null;
+
+  function startWatching() {
+    content.classList.add('watching');
+  }
+
+  function stopWatching() {
+    content.classList.remove('watching');
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(startWatching, IDLE_MS);
+  }
+
+  // Only activate when hero is in viewport
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        // Start idle timer when hero is visible
+        idleTimer = setTimeout(startWatching, IDLE_MS);
+        // Any movement cancels dim
+        document.addEventListener('mousemove', stopWatching);
+        document.addEventListener('touchstart', stopWatching);
+        document.addEventListener('keydown', stopWatching);
+        document.addEventListener('scroll', stopWatching, { passive: true });
+      } else {
+        // Hero scrolled away — clean up
+        clearTimeout(idleTimer);
+        content.classList.remove('watching');
+        document.removeEventListener('mousemove', stopWatching);
+        document.removeEventListener('touchstart', stopWatching);
+        document.removeEventListener('keydown', stopWatching);
+        document.removeEventListener('scroll', stopWatching);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(hero);
+})();
+</script>
+
 <!-- HERO VIDEO FALLBACK FADE -->
 <script>
 (function() {
