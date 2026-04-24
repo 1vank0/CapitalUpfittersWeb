@@ -297,9 +297,9 @@
   <!-- Fallback static image (fades out once video plays) -->
   <div class="hero-bg-gradient" id="hero-bg-fallback"></div>
 
-  <!-- MP4 video background -->
+  <!-- MP4 video background — chains Patriot Liner → AMP PowerStep → repeat -->
   <div class="hero-video-wrap" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="auto">
+    <video id="hero-vid" autoplay muted playsinline preload="auto">
       <source src="https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4" type="video/mp4">
     </video>
   </div>
@@ -1122,15 +1122,32 @@
 })();
 </script>
 
-<!-- HERO VIDEO FALLBACK FADE -->
+<!-- HERO VIDEO CHAIN + FALLBACK FADE -->
 <script>
 (function() {
-  var vid = document.querySelector('.hero-video-wrap video');
+  var vid = document.getElementById('hero-vid');
   var fb  = document.getElementById('hero-bg-fallback');
-  if (!vid || !fb) return;
+  if (!vid) return;
+
+  // Playlist: Patriot Liner first, then AMP PowerStep, then repeat
+  var PLAYLIST = [
+    'https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4',
+    './assets/amp-powerstep.mp4'
+  ];
+  var current = 0;
+
+  // Fade out fallback image on first play
   vid.addEventListener('playing', function() {
-    setTimeout(function() { fb.classList.add('hidden'); }, 600);
+    if (fb) setTimeout(function() { fb.classList.add('hidden'); }, 600);
   }, { once: true });
+
+  // On video end, switch to next in playlist
+  vid.addEventListener('ended', function() {
+    current = (current + 1) % PLAYLIST.length;
+    vid.src = PLAYLIST[current];
+    vid.load();
+    vid.play().catch(function() {});
+  });
 })();
 </script>
 
