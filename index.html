@@ -73,28 +73,46 @@
 <style>
 /* ── INDEX-SPECIFIC ─────────────────────────────────────── */
 
-/* Hero — real photo background with parallax support */
+/* Hero — YouTube video background */
+.hero-video-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;   /* clicks pass through to content */
+}
+.hero-video-wrap iframe {
+  position: absolute;
+  /* Oversized to fill all aspect ratios without letterboxing */
+  top: 50%;
+  left: 50%;
+  width: 177.78vh;  /* 16/9 * 100vh */
+  height: 56.25vw;  /* 9/16 * 100vw */
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border: none;
+}
+/* Dark overlay — matches original image treatment */
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(17,24,39,0.82) 0%, rgba(32,48,85,0.55) 55%, rgba(17,24,39,0.70) 100%),
+    rgba(17,24,39,0.35);
+  pointer-events: none;
+}
+/* Fallback: keep image visible until video loads */
 .hero-bg-gradient {
   position: absolute;
   inset: 0;
   background: url('./assets/hero-bg.png') center top / cover no-repeat;
-  filter: brightness(0.42);
+  filter: brightness(0.35);
   transform-origin: center top;
   will-change: transform;
+  transition: opacity 1.2s ease;
 }
-/* Dark gradient overlay for text legibility */
-.hero-bg-gradient::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(17,24,39,0.75) 0%,
-    rgba(32,48,85,0.45) 60%,
-    transparent 100%
-  );
-  pointer-events: none;
-}
+.hero-bg-gradient.hidden { opacity: 0; }
 
 /* Funnel card gradient placeholders */
 .funnel-card-bg-1 {
@@ -279,7 +297,16 @@
      HERO
 ═══════════════════════════════════════════════════════ -->
 <section class="hero" aria-label="Hero">
-  <div class="hero-bg-gradient"></div>
+  <!-- Fallback static image (fades out once video plays) -->
+  <div class="hero-bg-gradient" id="hero-bg-fallback"></div>
+
+  <!-- YouTube video background -->
+  <div class="hero-video-wrap" aria-hidden="true">
+    <div id="hero-yt-player"></div>
+  </div>
+
+  <!-- Dark color overlay matching brand -->
+  <div class="hero-video-overlay"></div>
   <div class="hero-overlay"></div>
 
   <div class="hero-content container">
@@ -998,6 +1025,56 @@
 </script>
 
 <script src="animations.js" defer></script>
+
+<!-- HERO YOUTUBE VIDEO BACKGROUND -->
+<script>
+// YouTube IFrame API — hero background video
+// Video: S9T-8mUi8s0, starts at 0:36, muted autoplay loop
+var tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+var firstScript = document.getElementsByTagName('script')[0];
+firstScript.parentNode.insertBefore(tag, firstScript);
+
+var heroPlayer;
+function onYouTubeIframeAPIReady() {
+  heroPlayer = new YT.Player('hero-yt-player', {
+    videoId: 'S9T-8mUi8s0',
+    playerVars: {
+      autoplay: 1,
+      mute: 1,
+      loop: 1,
+      playlist: 'S9T-8mUi8s0',  // required for loop
+      start: 36,                  // start at 0:36
+      controls: 0,
+      disablekb: 1,
+      modestbranding: 1,
+      rel: 0,
+      showinfo: 0,
+      iv_load_policy: 3,          // hide annotations
+      enablejsapi: 1,
+      origin: window.location.origin
+    },
+    events: {
+      onReady: function(e) {
+        e.target.mute();
+        e.target.playVideo();
+        // Fade out fallback image once video starts
+        setTimeout(function() {
+          var fb = document.getElementById('hero-bg-fallback');
+          if (fb) fb.classList.add('hidden');
+        }, 800);
+      },
+      onStateChange: function(e) {
+        // Re-seek to 36s when video ends (loop back to start point)
+        if (e.data === YT.PlayerState.ENDED) {
+          e.target.seekTo(36);
+          e.target.playVideo();
+        }
+      }
+    }
+  });
+}
+</script>
 
 <!-- VEHICLE SELECTOR SCRIPT -->
 <script>
