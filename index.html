@@ -1027,22 +1027,21 @@
 
 <!-- HERO IDLE DIM -->
 <style>
-/* Recovery: 0.8s */
+/* Recovery: 0.8s — all text elements */
 .hero-label,
 .hero-sub,
 .hero-stats,
-.hero-content h1 {
+.hero-content h1,
+.hero-content p,
+.hero-content div:not(.hero-ctas) {
   transition: opacity 0.8s ease;
 }
-/* Fade out: 1.2s */
+/* All text fades to 95% (opacity 0.05) — buttons exempt */
 .hero.watching .hero-label,
 .hero.watching .hero-sub,
-.hero.watching .hero-stats {
-  opacity: 0.05;
-  transition: opacity 1.2s ease;
-}
+.hero.watching .hero-stats,
 .hero.watching .hero-content h1 {
-  opacity: 0.05 !important;
+  opacity: 0.05;
   transition: opacity 1.2s ease;
 }
 /* CTAs stay fully visible at all times */
