@@ -1027,62 +1027,51 @@
 
 <!-- HERO IDLE DIM -->
 <style>
-.hero-content {
-  transition: opacity 1.2s ease;
+/* hero-content and hero-stats both transition opacity */
+.hero-content,
+.hero-stats {
+  transition: opacity 1.4s ease;
 }
-.hero-content.watching .hero-label,
-.hero-content.watching .hero-sub,
-.hero-content.watching .hero-ctas,
-.hero-content.watching .hero-stats {
+/* Class lives on the <section.hero> so it reaches both siblings */
+.hero.watching .hero-content {
   opacity: 0.15;
-  transition: opacity 1.4s ease;
 }
-.hero-content.watching h1 {
-  opacity: 0.02;
-  transition: opacity 1.4s ease;
+.hero.watching .hero-content h1 {
+  opacity: 0.02 !important;
 }
-.hero-content .hero-label,
-.hero-content .hero-sub,
-.hero-content .hero-ctas,
-.hero-content .hero-stats,
-.hero-content h1 {
-  transition: opacity 1.2s ease;
+.hero.watching .hero-stats {
+  opacity: 0.15;
 }
 </style>
 <script>
 (function() {
-  var IDLE_MS  = 4000;  // start dim after 4s of no movement
-  var WAKE_MS  = 400;   // restore quickly on any interaction
-  var hero     = document.querySelector('.hero');
-  var content  = document.querySelector('.hero-content');
-  if (!hero || !content) return;
+  var IDLE_MS = 4000;
+  var hero    = document.querySelector('.hero');
+  if (!hero) return;
 
   var idleTimer = null;
 
   function startWatching() {
-    content.classList.add('watching');
+    hero.classList.add('watching');
   }
 
   function stopWatching() {
-    content.classList.remove('watching');
+    hero.classList.remove('watching');
     clearTimeout(idleTimer);
     idleTimer = setTimeout(startWatching, IDLE_MS);
   }
 
-  // Only activate when hero is in viewport
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
-        // Start idle timer when hero is visible
         idleTimer = setTimeout(startWatching, IDLE_MS);
         // Mouse, touch, keypress restore — scroll does NOT
         document.addEventListener('mousemove', stopWatching);
         document.addEventListener('touchstart', stopWatching);
         document.addEventListener('keydown', stopWatching);
       } else {
-        // Hero scrolled away — clean up
         clearTimeout(idleTimer);
-        content.classList.remove('watching');
+        hero.classList.remove('watching');
         document.removeEventListener('mousemove', stopWatching);
         document.removeEventListener('touchstart', stopWatching);
         document.removeEventListener('keydown', stopWatching);
