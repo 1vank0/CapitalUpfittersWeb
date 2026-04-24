@@ -1027,24 +1027,23 @@
 
 <!-- HERO IDLE DIM -->
 <style>
-/* Default: fast snap-back (0.3s) */
+/* Recovery: 0.8s */
 .hero-label,
 .hero-sub,
 .hero-stats,
 .hero-content h1 {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.8s ease;
 }
-/* Watching: slow fade-out (1.8s) — NOT the CTA buttons */
+/* Fade out: 1.2s */
 .hero.watching .hero-label,
 .hero.watching .hero-sub,
 .hero.watching .hero-stats {
   opacity: 0.05;
-  transition: opacity 1.8s ease;
+  transition: opacity 1.2s ease;
 }
-/* H1 fades to 95% — nearly invisible */
 .hero.watching .hero-content h1 {
   opacity: 0.05 !important;
-  transition: opacity 1.8s ease;
+  transition: opacity 1.2s ease;
 }
 /* CTAs stay fully visible at all times */
 .hero.watching .hero-ctas {
@@ -1054,15 +1053,15 @@
 /* Overlays: slow dim with text, fast restore with text */
 .hero-video-overlay,
 .hero-overlay {
-  transition: opacity 0.3s ease;
+  transition: opacity 0.8s ease;
 }
 .hero.watching .hero-video-overlay {
   opacity: 0.10;
-  transition: opacity 1.8s ease;
+  transition: opacity 1.2s ease;
 }
 .hero.watching .hero-overlay {
   opacity: 0.10;
-  transition: opacity 1.8s ease;
+  transition: opacity 1.2s ease;
 }
 </style>
 <script>
