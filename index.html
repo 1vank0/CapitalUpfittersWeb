@@ -1034,12 +1034,12 @@
 .hero-content.watching .hero-sub,
 .hero-content.watching .hero-ctas,
 .hero-content.watching .hero-stats {
-  opacity: 0.5;
-  transition: opacity 1.2s ease;
+  opacity: 0.15;
+  transition: opacity 1.4s ease;
 }
 .hero-content.watching h1 {
-  opacity: 0.3;
-  transition: opacity 1.2s ease;
+  opacity: 0.02;
+  transition: opacity 1.4s ease;
 }
 .hero-content .hero-label,
 .hero-content .hero-sub,
@@ -1075,18 +1075,12 @@
       if (entry.isIntersecting) {
         // Start idle timer when hero is visible
         idleTimer = setTimeout(startWatching, IDLE_MS);
-        // Any movement cancels dim
-        document.addEventListener('mousemove', stopWatching);
-        document.addEventListener('touchstart', stopWatching);
-        document.addEventListener('keydown', stopWatching);
+        // Only scroll restores text
         document.addEventListener('scroll', stopWatching, { passive: true });
       } else {
         // Hero scrolled away — clean up
         clearTimeout(idleTimer);
         content.classList.remove('watching');
-        document.removeEventListener('mousemove', stopWatching);
-        document.removeEventListener('touchstart', stopWatching);
-        document.removeEventListener('keydown', stopWatching);
         document.removeEventListener('scroll', stopWatching);
       }
     });
