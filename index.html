@@ -1028,21 +1028,28 @@
 <!-- HERO IDLE DIM -->
 <style>
 /* Default: fast snap-back (0.3s) */
-.hero-content,
+.hero-label,
+.hero-sub,
 .hero-stats,
 .hero-content h1 {
   transition: opacity 0.3s ease;
 }
-/* Watching: slow fade-out (1.8s) */
-.hero.watching .hero-content,
+/* Watching: slow fade-out (1.8s) — NOT the CTA buttons */
+.hero.watching .hero-label,
+.hero.watching .hero-sub,
 .hero.watching .hero-stats {
-  opacity: 0.15;
+  opacity: 0.05;
   transition: opacity 1.8s ease;
 }
 /* H1 fades to 95% — nearly invisible */
 .hero.watching .hero-content h1 {
   opacity: 0.05 !important;
   transition: opacity 1.8s ease;
+}
+/* CTAs stay fully visible at all times */
+.hero.watching .hero-ctas {
+  opacity: 1 !important;
+  transition: none;
 }
 /* Overlays: slow dim with text, fast restore with text */
 .hero-video-overlay,
