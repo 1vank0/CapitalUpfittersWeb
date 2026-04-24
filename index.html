@@ -73,31 +73,30 @@
 <style>
 /* ── INDEX-SPECIFIC ─────────────────────────────────────── */
 
-/* Hero — YouTube video background */
+/* Hero — MP4 video background */
 .hero-video-wrap {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  pointer-events: none;   /* clicks pass through to content */
+  pointer-events: none;
 }
-.hero-video-wrap iframe {
+.hero-video-wrap video {
   position: absolute;
-  /* Oversized to fill all aspect ratios without letterboxing */
   top: 50%;
   left: 50%;
-  width: 177.78vh;  /* 16/9 * 100vh */
-  height: 56.25vw;  /* 9/16 * 100vw */
+  width: 177.78vh;  /* 16/9 × 100vh */
+  height: 56.25vw;  /* 9/16 × 100vw */
   min-width: 100%;
   min-height: 100%;
   transform: translate(-50%, -50%);
+  object-fit: cover;
   pointer-events: none;
-  border: none;
 }
-/* Light global dim — video ~30% darker, still vivid */
+/* 40% global dim — vivid but controlled */
 .hero-video-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(17,24,39,0.30);
+  background: rgba(17,24,39,0.40);
   pointer-events: none;
 }
 /* Fallback: keep image visible until video loads */
@@ -298,9 +297,11 @@
   <!-- Fallback static image (fades out once video plays) -->
   <div class="hero-bg-gradient" id="hero-bg-fallback"></div>
 
-  <!-- YouTube video background -->
+  <!-- MP4 video background -->
   <div class="hero-video-wrap" aria-hidden="true">
-    <div id="hero-yt-player"></div>
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4" type="video/mp4">
+    </video>
   </div>
 
   <!-- Dark color overlay matching brand -->
@@ -1024,54 +1025,16 @@
 
 <script src="animations.js" defer></script>
 
-<!-- HERO YOUTUBE VIDEO BACKGROUND -->
+<!-- HERO VIDEO FALLBACK FADE -->
 <script>
-// YouTube IFrame API — hero background video
-// Video: S9T-8mUi8s0, starts at 0:36, muted autoplay loop
-var tag = document.createElement('script');
-tag.src = 'https://www.youtube.com/iframe_api';
-var firstScript = document.getElementsByTagName('script')[0];
-firstScript.parentNode.insertBefore(tag, firstScript);
-
-var heroPlayer;
-function onYouTubeIframeAPIReady() {
-  heroPlayer = new YT.Player('hero-yt-player', {
-    videoId: 'S9T-8mUi8s0',
-    playerVars: {
-      autoplay: 1,
-      mute: 1,
-      loop: 1,
-      playlist: 'S9T-8mUi8s0',  // required for loop
-      start: 36,                  // start at 0:36
-      controls: 0,
-      disablekb: 1,
-      modestbranding: 1,
-      rel: 0,
-      showinfo: 0,
-      iv_load_policy: 3,          // hide annotations
-      enablejsapi: 1,
-      origin: window.location.origin
-    },
-    events: {
-      onReady: function(e) {
-        e.target.mute();
-        e.target.playVideo();
-        // Fade out fallback image once video starts
-        setTimeout(function() {
-          var fb = document.getElementById('hero-bg-fallback');
-          if (fb) fb.classList.add('hidden');
-        }, 800);
-      },
-      onStateChange: function(e) {
-        // Re-seek to 36s when video ends (loop back to start point)
-        if (e.data === YT.PlayerState.ENDED) {
-          e.target.seekTo(36);
-          e.target.playVideo();
-        }
-      }
-    }
-  });
-}
+(function() {
+  var vid = document.querySelector('.hero-video-wrap video');
+  var fb  = document.getElementById('hero-bg-fallback');
+  if (!vid || !fb) return;
+  vid.addEventListener('playing', function() {
+    setTimeout(function() { fb.classList.add('hidden'); }, 600);
+  }, { once: true });
+})();
 </script>
 
 <!-- VEHICLE SELECTOR SCRIPT -->

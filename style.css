@@ -324,13 +324,13 @@
 .hero-overlay {
   position: absolute;
   inset: 0;
-  /* Strong dark only on the left (text side) — fades to transparent right */
+  /* 88% dark on text side, tapers to 15% on right */
   background: linear-gradient(
     to right,
     rgba(17,24,39,0.88) 0%,
-    rgba(17,24,39,0.72) 35%,
-    rgba(17,24,39,0.30) 65%,
-    rgba(17,24,39,0.10) 100%
+    rgba(17,24,39,0.70) 35%,
+    rgba(17,24,39,0.25) 65%,
+    rgba(17,24,39,0.15) 100%
   );
 }
 .hero-content {
