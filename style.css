@@ -1701,3 +1701,151 @@
 .service-hub-card[data-hidden="true"] {
   display: none;
 }
+
+/* ══════════════════════════════════════════════════════════
+   NAV FIX v3 — spacing, dropdown positioning, mobile z-index
+   ══════════════════════════════════════════════════════════ */
+
+/* 1. Tighten nav-inner so items don't cramp */
+.nav-inner {
+  width: 95%;
+  max-width: 1400px;
+}
+.nav-links {
+  gap: var(--space-6);
+}
+.nav-links a {
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+}
+/* Portal login smaller at mid-widths */
+.nav-portal-link {
+  font-size: 11px;
+}
+
+/* 2. Hide portal login below 1160px to prevent cramping */
+@media (max-width: 1160px) {
+  .nav-portal-link { display: none !important; }
+  .nav-links { gap: var(--space-5); }
+}
+
+/* 3. Hamburger breakpoint — keep nav visible down to 960px */
+@media (max-width: 960px) {
+  .nav-links, .nav-portal-link { display: none !important; }
+  .nav-hamburger { display: flex !important; }
+}
+/* Override the old 900px breakpoint */
+@media (min-width: 961px) and (max-width: 1160px) {
+  .nav-links { display: flex !important; }
+  .nav-hamburger { display: none !important; }
+}
+
+/* 4. Mega dropdown: left-align to nav-item, not centered — prevents clipping */
+.nav-item:nth-child(1) .nav-dropdown.nav-mega {
+  left: 0;
+  right: auto;
+  transform: translateX(0) translateY(-6px);
+}
+.nav-item:nth-child(1):hover .nav-dropdown.nav-mega,
+.nav-item:nth-child(1):focus-within .nav-dropdown.nav-mega {
+  transform: translateX(0) translateY(0);
+}
+
+/* Fleet & Business dropdown — also left-aligned */
+.nav-item:nth-child(2) .nav-dropdown.nav-mega {
+  left: 0;
+  right: auto;
+  transform: translateX(0) translateY(-6px);
+}
+.nav-item:nth-child(2):hover .nav-dropdown.nav-mega,
+.nav-item:nth-child(2):focus-within .nav-dropdown.nav-mega {
+  transform: translateX(0) translateY(0);
+}
+
+/* Dealer & Gov — right-aligned to prevent right-edge clip */
+.nav-item:nth-child(4) .nav-dropdown {
+  left: auto !important;
+  right: 0;
+  transform: translateX(0) translateY(-6px) !important;
+}
+.nav-item:nth-child(4):hover .nav-dropdown,
+.nav-item:nth-child(4):focus-within .nav-dropdown {
+  transform: translateX(0) translateY(0) !important;
+}
+
+/* 5. Ensure mega panels don't overflow viewport */
+.nav-mega {
+  max-width: calc(100vw - 40px);
+}
+
+/* 6. Mobile nav — fix z-index and sub-link rendering */
+.nav-mobile {
+  z-index: 9999 !important;
+  background: #111827 !important;
+}
+.nav-mobile-links {
+  overflow-y: auto;
+  flex: 1;
+  -webkit-overflow-scrolling: touch;
+}
+.nav-mobile-section-body {
+  overflow: hidden;
+}
+.nav-mobile-sub-link {
+  padding-left: var(--space-5) !important;
+  font-size: 0.9rem !important;
+  font-family: var(--font-body) !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  color: rgba(255,255,255,0.7) !important;
+  border-bottom: none !important;
+  padding-bottom: 10px !important;
+  padding-top: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+.nav-mobile-sub-link:hover { color: #fff !important; }
+
+/* 7. Industrial direct link — fix sizing in mobile */
+.nav-mobile-direct {
+  font-family: var(--font-display) !important;
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  padding: var(--space-5) 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+/* 8. Nav mega col links — ensure no line-height issues */
+.nav-mega-col a {
+  line-height: 1.4;
+  white-space: normal;
+  min-height: 34px;
+  align-items: center;
+}
+
+/* 9. Bundle banner link text shouldn't wrap oddly */
+.nav-bundle-banner {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 1100px) {
+  .nav-bundle-banner {
+    font-size: 10px;
+    padding: 8px 14px;
+  }
+}
+
+/* 10. Nav mega column header dot fix */
+.nav-mega-col-header {
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 4px;
+  padding-bottom: 8px;
+}

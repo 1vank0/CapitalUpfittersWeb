@@ -174,6 +174,7 @@
     </button>
   </div>
 </nav>
+<!-- MOBILE NAV -->
 <div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Mobile menu">
   <button class="nav-mobile-close" id="nav-close" aria-label="Close menu">&times;</button>
   <nav class="nav-mobile-links">
@@ -185,7 +186,7 @@
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       <div class="nav-mobile-section-body" id="mob-services">
-        <div class="nav-mobile-group-label nav-mobile-group-label--gold">★ Bundle: Bedliner + Tonneau + Running Boards</div>
+        <div class="nav-mobile-group-label nav-mobile-group-label--gold">&#9733; Bundle: Bedliner + Tonneau + Running Boards</div>
         <a href="../services/bedliner.html" class="nav-mobile-sub-link">Spray-On Bedliners <span class="nav-mobile-sub-badge">Top Seller</span></a>
         <a href="../services/tonneau.html" class="nav-mobile-sub-link">Tonneau / Bed Covers <span class="nav-mobile-sub-badge">Bundle</span></a>
         <a href="../services/running-boards.html" class="nav-mobile-sub-link">Running Boards &amp; Steps <span class="nav-mobile-sub-badge">Bundle</span></a>
@@ -202,7 +203,7 @@
         <a href="../services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="../services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="../services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4); margin-top: 4px;">View All Services →</a>
+        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -224,11 +225,11 @@
         <a href="../services/undercoating.html" class="nav-mobile-sub-link">Fleet Undercoating</a>
         <a href="../services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="../services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
-        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4); margin-top: 4px;">Open Fleet Account →</a>
+        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
-    <!-- Industrial — direct link -->
+    <!-- Industrial direct link -->
     <a href="../services/industrial-coatings.html" class="nav-mobile-direct">Industrial</a>
 
     <!-- Dealer & Gov accordion -->
@@ -249,8 +250,8 @@
       </div>
     </div>
 
-    <a href="../gallery.html" class="nav-mobile-direct" style="color: rgba(255,255,255,0.85) !important; font-size: 1.4rem !important; border-color: rgba(255,255,255,0.08) !important;">Gallery</a>
-    <a href="../contact.html" class="nav-mobile-direct" style="color: rgba(255,255,255,0.85) !important; font-size: 1.4rem !important; border-color: rgba(255,255,255,0.08) !important;">Contact</a>
+    <a href="../gallery.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;border-color:rgba(255,255,255,0.08)!important;">Gallery</a>
+    <a href="../contact.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;border-color:rgba(255,255,255,0.08)!important;">Contact</a>
 
   </nav>
   <div class="nav-mobile-actions">
@@ -259,17 +260,6 @@
   </div>
 </div>
 
-
-
-    <!-- Services accordion -->
-    <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services">
-        Services
-        <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="nav-mobile-section-body" id="mob-services">
-        <div class="nav-mobile-group-label nav-mobile-group-label--gold">★ Bundle: Bedliner + Tonneau + Running Boards</div>
-<div class="nav-overlay" id="nav-overlay"></div>
 
 <section class="page-hero article-hero">
   <div class="page-hero-inner">
@@ -376,6 +366,7 @@
 <div class="float-cta" aria-hidden="true"><a href="../quote.html" class="float-cta-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Get a Quote</a></div>
 <script src="../animations.js" defer></script>
 
+
   <!-- Mobile nav accordion v3 -->
   <script>
   (function(){
@@ -384,17 +375,20 @@
         var targetId = btn.getAttribute('data-target');
         var body = document.getElementById(targetId);
         var isOpen = body && body.classList.contains('open');
-        // Close all
         document.querySelectorAll('.nav-mobile-section-body').forEach(function(b){ b.classList.remove('open'); });
         document.querySelectorAll('.nav-mobile-section-trigger').forEach(function(b){ b.classList.remove('open'); b.setAttribute('aria-expanded','false'); });
-        // Open clicked if it was closed
-        if(!isOpen && body){
-          body.classList.add('open');
-          btn.classList.add('open');
-          btn.setAttribute('aria-expanded','true');
-        }
+        if(!isOpen && body){ body.classList.add('open'); btn.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
       });
     });
+    var hamburger = document.getElementById('hamburger');
+    var navMobile = document.getElementById('nav-mobile');
+    var navClose = document.getElementById('nav-close');
+    if(hamburger && navMobile){
+      hamburger.addEventListener('click', function(){ navMobile.classList.add('open'); document.body.style.overflow='hidden'; });
+    }
+    if(navClose && navMobile){
+      navClose.addEventListener('click', function(){ navMobile.classList.remove('open'); document.body.style.overflow=''; });
+    }
   })();
   </script>
 
