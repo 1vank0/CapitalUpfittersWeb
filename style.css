@@ -1885,3 +1885,230 @@
 
 /* Prevent chevron rotation lag causing flicker */
 .nav-item:focus-within .nav-chevron { transform: rotate(180deg); }
+
+/* ══════════════════════════════════════════════════════════
+   ALIGNMENT FIX — nav vertical centering + card grid
+   ══════════════════════════════════════════════════════════ */
+
+/* 1. NAV — force all list items to be inline-flex centered
+      The mismatch was: .nav-item (li) uses block layout
+      while direct <li> children of .nav-links use inline.
+      Fix: make ALL nav-links children flex-centered */
+.nav-links {
+  align-items: center;
+  height: 100%;
+}
+.nav-links > li {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  list-style: none;
+}
+.nav-links > li > a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  /* Remove conflicting padding overrides from dwell fix */
+  padding-top: 0;
+  padding-bottom: 0;
+  /* Use margin trick instead for dwell area */
+}
+
+/* 2. Industrial link — fix vertical alignment specifically */
+.nav-industrial-link {
+  display: flex !important;
+  align-items: center;
+  height: 100%;
+  padding-left: 12px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 3. Dwell fix using height on li instead of padding on a */
+.nav-links > li {
+  /* Extend clickable area via li height already full nav height */
+  cursor: pointer;
+}
+/* Re-implement dwell bridge on ::after of li, not a */
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+}
+
+/* 4. Dropdown top offset — must clear the nav border */
+.nav-dropdown {
+  top: calc(100% + 6px) !important;
+}
+
+/* 5. Remove conflicting padding from previous dwell fix */
+.nav-links > li > a,
+.nav-links > .nav-item > a {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.nav-item > a {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ══════════════════════════════════════════
+   SERVICE HUB CARDS — equal height grid rows
+   ══════════════════════════════════════════ */
+
+/* Each card is already fixed 360px — ensure consistent layout */
+.service-hub-card {
+  height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Ensure card body stacks content and pins button to bottom */
+.service-hub-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+}
+
+.service-hub-card-desc {
+  flex: 1;
+}
+
+/* ══════════════════════════════════════════
+   SERVICE PAGE CARDS — equal height in grids
+   (bedliner, tonneau, etc service option cards)
+   ══════════════════════════════════════════ */
+
+/* Any grid of cards should be equal height */
+.svc-grid,
+.feature-grid,
+[class*="grid-"] .svc-card,
+[class*="grid-"] .feature-card,
+[class*="grid-"] .brand-card,
+[class*="grid-"] .option-card,
+[class*="grid-"] .coating-card {
+  height: 100%;
+}
+
+/* Grid containers — equal height rows via align-items stretch */
+.grid-2,
+.grid-3,
+.grid-4 {
+  align-items: stretch;
+}
+
+/* Generic card pattern — ensure inner content fills */
+.svc-card,
+.feature-card,
+.option-card,
+.brand-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ══════════════════════════════════════════
+   FLEET PAGE — service tab cards equal height
+   ══════════════════════════════════════════ */
+
+.fleet-svc-grid,
+.fleet-svc-card,
+.dg-svc-card,
+.dg-svc-grid {
+  height: 100%;
+}
+
+/* ══════════════════════════════════════════
+   KPI STRIPS — consistent alignment
+   ══════════════════════════════════════════ */
+
+.kpi-strip,
+.stat-strip,
+.stats-grid {
+  align-items: center;
+}
+
+/* ══════════════════════════════════════════
+   PAGE HERO — consistent left-margin
+   ══════════════════════════════════════════ */
+
+.page-hero-content {
+  max-width: var(--container-max);
+  width: 90%;
+  margin-inline: auto;
+}
+
+/* ══════════════════════════════════════════
+   INDUSTRIAL KPI BAR — equal column widths
+   ══════════════════════════════════════════ */
+
+.ind-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-6);
+  align-items: center;
+}
+
+/* ══════════════════════════════════════════
+   DETAILING KPI BAR — prevent text overflow
+   ══════════════════════════════════════════ */
+
+.detail-kpi-item {
+  text-align: center;
+  overflow: hidden;
+}
+
+.detail-kpi-value {
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-5xl));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ══════════════════════════════════════════
+   CONTAINER CONSISTENCY — all pages same width
+   ══════════════════════════════════════════ */
+
+.container {
+  width: 90%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+/* ══════════════════════════════════════════
+   ANNOUNCE BAR — fix z-index stacking  
+   ══════════════════════════════════════════ */
+
+.announce-bar {
+  position: relative;
+  z-index: 101;
+}
+
+/* ══════════════════════════════════════════════════════════
+   KPI STRIP FIX — long text wraps cleanly, no overflow
+   ══════════════════════════════════════════════════════════ */
+
+/* stat-number used in KPI strips — clamp font for long text */
+.stat-number.kpi-number {
+  font-size: clamp(var(--text-2xl), 3vw, var(--text-5xl));
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  white-space: normal;
+  line-height: 1.15;
+}
+
+/* Stats grid cells should not overflow their column */
+.stats-grid > div {
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* Align stats grid to top so variable-height cells start together */
+.stats-grid {
+  align-items: start;
+}
