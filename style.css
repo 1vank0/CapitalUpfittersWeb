@@ -1849,3 +1849,39 @@
   margin-bottom: 4px;
   padding-bottom: 8px;
 }
+
+/* ══════════════════════════════════════════════════════════
+   DROPDOWN DWELL FIX — bridge gap between nav item and panel
+   ══════════════════════════════════════════════════════════ */
+
+/* Add invisible padding-bottom to nav links to bridge the 14px gap */
+.nav-item > a {
+  padding-bottom: 18px;
+  margin-bottom: -18px;
+}
+
+/* Extend the dropdown upward to overlap with the nav-item padding */
+.nav-dropdown {
+  top: calc(100% + 4px);
+}
+
+/* Add a pseudo-element bridge above the dropdown */
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: transparent;
+}
+
+/* Increase hover detection — slightly larger hit area on nav links */
+.nav-links > li > a,
+.nav-links > .nav-item > a {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/* Prevent chevron rotation lag causing flicker */
+.nav-item:focus-within .nav-chevron { transform: rotate(180deg); }

@@ -861,7 +861,6 @@
   <button class="nav-mobile-close" id="nav-close" aria-label="Close menu">&times;</button>
   <nav class="nav-mobile-links">
 
-    <!-- Services accordion -->
     <div class="nav-mobile-section">
       <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services">
         Services
@@ -889,7 +888,6 @@
       </div>
     </div>
 
-    <!-- Fleet & Business accordion -->
     <div class="nav-mobile-section">
       <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet">
         Fleet &amp; Business
@@ -911,10 +909,8 @@
       </div>
     </div>
 
-    <!-- Industrial direct link -->
     <a href="../services/industrial-coatings.html" class="nav-mobile-direct">Industrial</a>
 
-    <!-- Dealer & Gov accordion -->
     <div class="nav-mobile-section">
       <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer">
         Dealer &amp; Gov
@@ -932,8 +928,8 @@
       </div>
     </div>
 
-    <a href="../gallery.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;border-color:rgba(255,255,255,0.08)!important;">Gallery</a>
-    <a href="../contact.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;border-color:rgba(255,255,255,0.08)!important;">Contact</a>
+    <a href="../gallery.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;">Gallery</a>
+    <a href="../contact.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;">Contact</a>
 
   </nav>
   <div class="nav-mobile-actions">
@@ -1949,26 +1945,17 @@
   <script>
   (function(){
     document.querySelectorAll('.nav-mobile-section-trigger').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        var targetId = btn.getAttribute('data-target');
-        var body = document.getElementById(targetId);
-        var isOpen = body && body.classList.contains('open');
-        document.querySelectorAll('.nav-mobile-section-body').forEach(function(b){ b.classList.remove('open'); });
-        document.querySelectorAll('.nav-mobile-section-trigger').forEach(function(b){ b.classList.remove('open'); b.setAttribute('aria-expanded','false'); });
-        if(!isOpen && body){ body.classList.add('open'); btn.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+      btn.addEventListener('click',function(){
+        var id=btn.getAttribute('data-target'),body=document.getElementById(id),open=body&&body.classList.contains('open');
+        document.querySelectorAll('.nav-mobile-section-body').forEach(function(b){b.classList.remove('open');});
+        document.querySelectorAll('.nav-mobile-section-trigger').forEach(function(b){b.classList.remove('open');b.setAttribute('aria-expanded','false');});
+        if(!open&&body){body.classList.add('open');btn.classList.add('open');btn.setAttribute('aria-expanded','true');}
       });
     });
-    var hamburger = document.getElementById('hamburger');
-    var navMobile = document.getElementById('nav-mobile');
-    var navClose = document.getElementById('nav-close');
-    if(hamburger && navMobile){
-      hamburger.addEventListener('click', function(){ navMobile.classList.add('open'); document.body.style.overflow='hidden'; });
-    }
-    if(navClose && navMobile){
-      navClose.addEventListener('click', function(){ navMobile.classList.remove('open'); document.body.style.overflow=''; });
-    }
+    var h=document.getElementById('hamburger'),m=document.getElementById('nav-mobile'),c=document.getElementById('nav-close');
+    if(h&&m){h.addEventListener('click',function(){m.classList.add('open');document.body.style.overflow='hidden';});}
+    if(c&&m){c.addEventListener('click',function(){m.classList.remove('open');document.body.style.overflow='';});}
   })();
   </script>
-
 </body>
 </html>
