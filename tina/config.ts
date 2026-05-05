@@ -1,10 +1,12 @@
 import { defineConfig } from 'tinacms'
 
-const branch =
+// Tina expects a plain branch name (e.g. 'main'). Strip any leading 'refs/heads/' or path segments.
+const rawBranch =
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
   'main'
+const branch = rawBranch.replace(/^refs\/heads\//, '').replace(/^.*\//, '') || 'main'
 
 export default defineConfig({
   branch,
