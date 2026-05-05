@@ -6,7 +6,7 @@ const rawBranch =
   process.env.VERCEL_GIT_COMMIT_REF ||
   process.env.HEAD ||
   'main'
-const branch = rawBranch.replace(/^refs\/heads\//, '').replace(/^.*\//, '') || 'main'
+const branch = rawBranch.trim().replace(/[\r\n]/g, '').replace(/^refs\/heads\//, '').replace(/^.*\//, '') || 'main'
 
 export default defineConfig({
   branch,
