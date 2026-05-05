@@ -65,13 +65,22 @@ function _get(obj, path) {
   return norm.split('.').reduce((acc, key) => (acc == null ? undefined : acc[key]), obj)
 }
 
+// Apply optional prefix/suffix to a value. Used for things like
+// data-cms-bind="priceFrom" data-cms-bind-prefix="Starting from $".
+function _formatValue(v, el) {
+  if (v == null || v === '') return v
+  const prefix = el.getAttribute('data-cms-bind-prefix') || ''
+  const suffix = el.getAttribute('data-cms-bind-suffix') || ''
+  return `${prefix}${v}${suffix}`
+}
+
 // Set a value on an element using whatever data-cms-bind* hooks are present.
 function _applyBinding(el, ctx) {
   // textContent binding (preserves child elements like inline SVG icons)
   const txtPath = el.getAttribute('data-cms-bind')
   if (txtPath) {
     const v = _get(ctx, txtPath)
-    if (v != null && v !== '') _setTextPreserveChildren(el, v)
+    if (v != null && v !== '') _setTextPreserveChildren(el, _formatValue(v, el))
   }
   // href binding (with optional prefix like "tel:" or "mailto:")
   const hrefPath = el.getAttribute('data-cms-bind-href')
@@ -87,13 +96,28 @@ function _applyBinding(el, ctx) {
     if (v != null && v !== '') el.innerHTML = v
   }
   // arbitrary attribute binding: data-cms-bind-attr="src:image,alt:caption"
+  // Special attr names: 'class' appends (space-separated), 'style-bg-image'
+  // sets `background-image: url(value)` on inline style.
   const attrSpec = el.getAttribute('data-cms-bind-attr')
   if (attrSpec) {
     attrSpec.split(',').forEach((pair) => {
       const [attrName, path] = pair.split(':').map((s) => s && s.trim())
       if (!attrName || !path) return
       const v = _get(ctx, path)
-      if (v != null && v !== '') el.setAttribute(attrName, v)
+      if (v == null || v === '') return
+      if (attrName === 'class') {
+        el.classList.add(...String(v).split(/\s+/).filter(Boolean))
+      } else if (attrName === 'style-bg-image') {
+        el.style.backgroundImage = `url(${v})`
+        el.classList.add('has-bg-image')
+      } else if (attrName === 'class-prefix') {
+        // Used like data-cms-bind-attr="class-prefix:hero.textAlign"
+        // with data-cms-bind-class-prefix="hero-align-" → adds hero-align-left
+        const prefix = el.getAttribute('data-cms-bind-class-prefix') || ''
+        el.classList.add(`${prefix}${v}`)
+      } else {
+        el.setAttribute(attrName, v)
+      }
     })
   }
   // show/hide
@@ -230,7 +254,11 @@ window.CU_CMS = {
   },
 
   async getGallery() {
-    return []
+    return (await _loadData()).gallery || []
+  },
+
+  async getBrands() {
+    return (await _loadData()).brands || []
   },
 
   // ─── Auto-wire all forms on the page ──────────────────────────────────────
@@ -301,30 +329,141 @@ window.CU_CMS = {
     }
   },
 
+  // Render the homepage / services-index card grid from CMS data.
+  // The container needs `data-cms-services-grid`; optional attributes:
+  //   data-cms-services-limit="6"        → cap how many cards
+  //   data-cms-services-link-prefix="./services/"  → prefix for each link
   async syncServicesGrid() {
-    const grid = document.querySelector('[data-cms-services-grid]')
-    if (!grid) return
+    const grids = document.querySelectorAll('[data-cms-services-grid]')
+    if (!grids.length) return
     const services = await window.CU_CMS.getServices()
     if (!services || services.length < 4) return
-    const cards = services.slice(0, 6).map((s, i) => {
-      const slug = s.slug || ''
-      const title = s.title || ''
-      const blurb = s.summary || ''
-      const tag = s.category || ''
-      const price = s.priceFrom || ''
-      return (
-        '<a href="./services/' + slug + '.html" class="service-card reveal reveal-delay-' + ((i % 4) + 1) + '">' +
-        '<div class="service-card-overlay"></div>' +
-        '<div class="service-card-body">' +
-        (tag ? '<div class="service-card-tag">' + tag + '</div>' : '') +
-        '<div class="service-card-title">' + title + '</div>' +
-        '<p class="service-card-desc">' + blurb + '</p>' +
-        (price ? '<div class="service-card-price">Starting from <strong>$' + price + '</strong></div>' : '') +
-        '</div>' +
-        '</a>'
-      )
+    grids.forEach((grid) => {
+      const limit = parseInt(grid.getAttribute('data-cms-services-limit') || '0', 10)
+      const linkPrefix = grid.getAttribute('data-cms-services-link-prefix') || './services/'
+      const list = limit > 0 ? services.slice(0, limit) : services
+      const cards = list.map((s, i) => {
+        const slug = s.slug || ''
+        const title = s.title || ''
+        const blurb = s.summary || ''
+        const tag = s.category || ''
+        const price = s.priceFrom
+        const img = s.image || (s.hero && s.hero.backgroundImage) || ''
+        const bgStyle = img ? ' style="background-image:url(' + img + ');background-size:cover;background-position:center;"' : ''
+        return (
+          '<a href="' + linkPrefix + slug + '.html" class="service-card reveal reveal-delay-' + ((i % 4) + 1) + '"' + bgStyle + '>' +
+          '<div class="service-card-overlay"></div>' +
+          '<div class="service-card-body">' +
+          (tag ? '<div class="service-card-tag">' + tag + '</div>' : '') +
+          '<div class="service-card-title">' + title + '</div>' +
+          '<p class="service-card-desc">' + blurb + '</p>' +
+          (price ? '<div class="service-card-price">Starting from <strong>$' + price + '</strong></div>' : '') +
+          '</div>' +
+          '</a>'
+        )
+      })
+      grid.innerHTML = cards.join('')
     })
-    grid.innerHTML = cards.join('')
+  },
+
+  // Render a brand-logo strip from CMS data.
+  // Container: <div data-cms-brand-strip [data-cms-brand-keys="key1,key2"]>
+  //   - When data-cms-brand-keys is set, only those brands render (in that order).
+  //   - Otherwise, all brands render.
+  // On a service page, brand keys are auto-pulled from the service's brandKeys field.
+  async syncBrandStrip() {
+    const strips = document.querySelectorAll('[data-cms-brand-strip]')
+    if (!strips.length) return
+    const data = await _loadData()
+    const allBrands = data.brands || []
+    if (!allBrands.length) return
+    const byKey = Object.fromEntries(allBrands.map((b) => [b.key, b]))
+
+    // Service page context: pull brandKeys off the current service
+    let serviceBrandKeys = []
+    const body = document.body
+    if (body.getAttribute('data-cms-page') === 'service') {
+      const svc = (data.services || []).find((s) => s.slug === body.getAttribute('data-cms-slug'))
+      if (svc && Array.isArray(svc.brandKeys)) serviceBrandKeys = svc.brandKeys
+    }
+
+    strips.forEach((strip) => {
+      const explicit = strip.getAttribute('data-cms-brand-keys')
+      let keys = []
+      if (explicit && explicit.trim()) {
+        keys = explicit.split(',').map((s) => s.trim()).filter(Boolean)
+      } else if (serviceBrandKeys.length) {
+        keys = serviceBrandKeys
+      } else {
+        keys = allBrands.map((b) => b.key)
+      }
+      const brands = keys.map((k) => byKey[k]).filter(Boolean)
+      if (!brands.length) return // keep fallback markup
+
+      strip.innerHTML = brands.map((b) => {
+        const logo = b.logo
+          ? '<img src="' + b.logo + '" alt="' + (b.name || '') + ' logo" loading="lazy">'
+          : '<div class="brand-logo-text">' + (b.name || '') + '</div>'
+        const tagline = b.tagline ? '<span class="brand-tagline">' + b.tagline + '</span>' : ''
+        const inner = '<div class="brand-logo">' + logo + '</div>' +
+          '<div class="brand-meta"><strong>' + (b.name || '') + '</strong>' + tagline + '</div>'
+        return b.url
+          ? '<a class="brand-item" href="' + b.url + '" target="_blank" rel="noopener">' + inner + '</a>'
+          : '<div class="brand-item">' + inner + '</div>'
+      }).join('')
+    })
+  },
+
+  // Render the gallery grid from CMS data.
+  // Container: <div data-cms-gallery-grid>  — child filter pills with
+  // data-cat="all|<category>" continue to work via the existing gallery.html JS.
+  async syncGallery() {
+    const grids = document.querySelectorAll('[data-cms-gallery-grid]')
+    if (!grids.length) return
+    const items = await window.CU_CMS.getGallery()
+    if (!items || !items.length) return
+    grids.forEach((grid) => {
+      grid.innerHTML = items.map((item) => {
+        const cat = item.category || ''
+        const label = item.label || ''
+        const sizeClass = item.size ? ' ' + item.size : ' med'
+        const img = item.image
+        const inner = img
+          ? '<img src="' + img + '" alt="' + label + '" loading="lazy" class="gallery-photo">'
+          : '<div class="gallery-placeholder' + sizeClass + '"><div class="placeholder-inner">' +
+            '<span class="placeholder-tag">' + (cat || 'Project') + '</span></div></div>'
+        return (
+          '<div class="gallery-item" data-cat="' + cat + '" data-label="' + label + '" role="listitem" tabindex="0">' +
+          inner +
+          '<div class="gallery-item-overlay"><span class="gallery-item-label">' + label + '</span></div>' +
+          '</div>'
+        )
+      }).join('')
+    })
+  },
+
+  // Apply hero alignment + background-image. Driven by attributes on the hero element:
+  //   <section class="hero" data-cms-hero>
+  // Reads pageCtx.hero.textAlign and pageCtx.hero.backgroundImage when present.
+  async syncHeroStyling() {
+    const heroes = document.querySelectorAll('[data-cms-hero]')
+    if (!heroes.length) return
+    const data = await _loadData()
+    const ctx = _findPageContext(data)
+    if (!ctx || !ctx.hero) return
+    heroes.forEach((hero) => {
+      if (ctx.hero.backgroundImage) {
+        hero.style.backgroundImage = `linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)), url(${ctx.hero.backgroundImage})`
+        hero.style.backgroundSize = 'cover'
+        hero.style.backgroundPosition = 'center'
+        hero.classList.add('has-bg-image')
+      }
+      if (ctx.hero.textAlign) {
+        hero.classList.remove('hero-align-left', 'hero-align-center', 'hero-align-right')
+        hero.classList.add(`hero-align-${ctx.hero.textAlign}`)
+        hero.style.textAlign = ctx.hero.textAlign
+      }
+    })
   },
 
   async syncTestimonials() {
@@ -355,6 +494,9 @@ function __cuInit() {
   window.CU_CMS.syncUrgencyBanner()
   window.CU_CMS.syncServicesGrid()
   window.CU_CMS.syncTestimonials()
+  window.CU_CMS.syncBrandStrip()
+  window.CU_CMS.syncGallery()
+  window.CU_CMS.syncHeroStyling()
 }
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', __cuInit)

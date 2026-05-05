@@ -23,6 +23,23 @@ const heroFields = [
     description: 'Small label shown above the headline (e.g. "Authorized Patriot Liner Dealer"). Optional.',
   },
   {
+    type: 'image',
+    name: 'backgroundImage',
+    label: 'Hero Background Image',
+    description: 'Optional background photo behind the hero. Shown with a dark overlay for legibility.',
+  },
+  {
+    type: 'string',
+    name: 'textAlign',
+    label: 'Hero Text Alignment',
+    description: 'How the hero text lines up — left, center, or right.',
+    options: [
+      { value: 'left', label: 'Left' },
+      { value: 'center', label: 'Center' },
+      { value: 'right', label: 'Right' },
+    ],
+  },
+  {
     type: 'string',
     name: 'headline',
     label: 'Hero Headline',
@@ -120,6 +137,52 @@ export default defineConfig({
   schema: {
     collections: [
       // ────────────────────────────────────────────────────────
+      // BRAND LIBRARY (global)
+      // Each brand has a key, name, logo image, and link.
+      // Service pages reference brands by key via `brandKeys`.
+      // ────────────────────────────────────────────────────────
+      {
+        name: 'brand',
+        label: 'Brand Library',
+        path: 'content/brands',
+        format: 'json',
+        ui: {
+          filename: { readonly: false, slugify: (values: any) => `${(values?.key || values?.name || 'brand').toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}` },
+        },
+        fields: [
+          { type: 'string', name: 'key', label: 'Brand Key', required: true, isTitle: true, description: 'Short ID (lowercase, dashes only). Used to link this brand from a service.' },
+          { type: 'string', name: 'name', label: 'Brand Name', required: true, description: 'Display name shown under the logo (e.g. "Patriot Liner").' },
+          { type: 'string', name: 'tagline', label: 'Tagline', description: 'Short subtitle shown next to/under the logo (e.g. "Authorized Dealer"). Optional.' },
+          { type: 'image', name: 'logo', label: 'Logo Image', description: 'Brand logo. PNG/SVG with transparent background works best.' },
+          { type: 'string', name: 'url', label: 'Brand Website', description: 'Optional link out to the brand’s site.' },
+          { type: 'number', name: 'sortOrder', label: 'Sort Order', description: 'Lower numbers appear first.' },
+        ],
+      },
+
+      // ────────────────────────────────────────────────────────
+      // GALLERY (project photos / portfolio)
+      // Each item has an image, caption, category, tags.
+      // ────────────────────────────────────────────────────────
+      {
+        name: 'galleryItem',
+        label: 'Gallery',
+        path: 'content/gallery',
+        format: 'json',
+        ui: {
+          filename: { readonly: false, slugify: (values: any) => `${(values?.label || values?.caption || 'photo').toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60)}-${Date.now().toString(36).slice(-4)}` },
+        },
+        fields: [
+          { type: 'string', name: 'label', label: 'Short Label', required: true, isTitle: true, description: 'Caption shown on hover (e.g. "Spray-On Bedliner — Ram 1500").' },
+          { type: 'string', name: 'category', label: 'Category', description: 'Filter group (e.g. "bedliner", "ceramic", "hitch", "window-tint"). Used by the gallery filter pills.' },
+          { type: 'image', name: 'image', label: 'Photo', description: 'The gallery photo. Landscape works best.' },
+          { type: 'string', name: 'tags', label: 'Tags', list: true, description: 'Optional tags for searching/grouping.' },
+          { type: 'string', name: 'size', label: 'Tile Size', description: 'Visual height in the grid.', options: [{ value: 'short', label: 'Short' }, { value: 'med', label: 'Medium' }, { value: 'tall', label: 'Tall' }] },
+          { type: 'number', name: 'sortOrder', label: 'Sort Order', description: 'Lower numbers appear first.' },
+          { type: 'boolean', name: 'active', label: 'Visible on Site', description: 'Uncheck to temporarily hide.' },
+        ],
+      },
+
+      // ────────────────────────────────────────────────────────
       // SERVICES
       // ────────────────────────────────────────────────────────
       {
@@ -136,6 +199,8 @@ export default defineConfig({
           { type: 'string', name: 'title', label: 'Service Name', required: true, isTitle: true, description: 'How the service appears in menus and listings (e.g. "Spray-In Bedliner").' },
           { type: 'string', name: 'slug', label: 'URL Slug', required: true, description: 'Used in the URL: /services/<slug>.html. Lowercase, dashes only.' },
           { type: 'string', name: 'category', label: 'Category', description: 'Group used for filtering — e.g. "bedliners", "protection", "truck-accessories".' },
+          { type: 'string', name: 'brandKeys', label: 'Brands Used', list: true, description: 'Brand keys (from the Brand Library) shown as a logo strip on this service page. E.g. ["patriot-liner","line-x"].' },
+          { type: 'image', name: 'image', label: 'Card / Hero Image', description: 'Optional photo used in service cards and as the hero background.' },
           aiAssistField({ type: 'string', name: 'summary', label: 'Short Summary', ui: { component: 'textarea' }, description: 'One-sentence description shown in service cards on the homepage and listings.' }, { lines: 2, maxTokens: 200, promptHint: 'e.g. "under 20 words", "more SEO-friendly", "highlight warranty"' }),
           {
             type: 'string',

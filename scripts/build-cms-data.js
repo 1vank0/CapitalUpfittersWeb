@@ -26,6 +26,23 @@ function readDir(rel) {
     })
 }
 
+function readJsonDir(rel) {
+  const dir = path.join(CONTENT, rel)
+  if (!fs.existsSync(dir)) return []
+  return fs.readdirSync(dir)
+    .filter(f => f.endsWith('.json'))
+    .map(f => {
+      try {
+        const raw = fs.readFileSync(path.join(dir, f), 'utf8')
+        return { ...JSON.parse(raw), _file: f }
+      } catch (e) {
+        console.warn('  ! skipped invalid JSON:', f, e.message)
+        return null
+      }
+    })
+    .filter(Boolean)
+}
+
 function readJson(rel) {
   const p = path.join(CONTENT, 'globals', rel)
   if (!fs.existsSync(p)) return null
@@ -42,6 +59,10 @@ const data = {
   faqs: readDir('faqs').sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0)),
   contentBlocks: readDir('content-blocks'),
   pages: readDir('pages'),
+  brands: readJsonDir('brands').sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0)),
+  gallery: readJsonDir('gallery')
+    .filter(g => g.active !== false)
+    .sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0)),
   settings: readJson('settings.json'),
   aiProfile: readJson('ai-profile.json'),
   organization: readJson('organization.json'),
@@ -49,4 +70,4 @@ const data = {
 
 fs.writeFileSync(OUT, JSON.stringify(data, null, 2))
 console.log(`✓ wrote ${OUT}`)
-console.log(`  services=${data.services.length} geoPages=${data.geoPages.length} testimonials=${data.testimonials.length} faqs=${data.faqs.length} blocks=${data.contentBlocks.length}`)
+console.log(`  services=${data.services.length} geoPages=${data.geoPages.length} testimonials=${data.testimonials.length} faqs=${data.faqs.length} blocks=${data.contentBlocks.length} brands=${data.brands.length} gallery=${data.gallery.length}`)

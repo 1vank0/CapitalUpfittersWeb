@@ -475,7 +475,9 @@
 ═══════════════════════════════════════════════════════ -->
 <div class="trust-bar" role="region" aria-label="Trust indicators">
   <div class="container">
-    <div class="trust-bar-inner">
+    <!-- Brand strip is rendered from CMS → Brand Library when brands exist.
+         The existing trust items below stay as fallback if no brands are added. -->
+    <div class="trust-bar-inner" data-cms-brand-strip>
       <div class="trust-item">
         <div class="trust-item-icon" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
@@ -654,7 +656,9 @@
       <p style="max-width: 520px; margin-top: var(--space-4);">From bedliner bundles and truck accessories to fleet upfitting and industrial coatings. Authorized installers for top brands. Same-week availability.</p>
     </div>
 
-    <div class="grid-3" style="margin-top: var(--space-12);">
+    <!-- Service cards: rendered from CMS Services collection when 4+ exist.
+         The hardcoded cards below remain as fallback. -->
+    <div class="grid-3" style="margin-top: var(--space-12);" data-cms-services-grid data-cms-services-limit="6" data-cms-services-link-prefix="./services/">
 
       <!-- Bedliners -->
       <a href="./services/bedliner.html" class="service-card reveal reveal-delay-1" aria-label="Spray-On Bedliners">

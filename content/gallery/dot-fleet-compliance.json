@@ -1,0 +1,10 @@
+{
+  "label": "DOT Fleet Compliance",
+  "category": "fleet",
+  "size": "short",
+  "tags": [
+    "fleet"
+  ],
+  "sortOrder": 190,
+  "active": true
+}

@@ -1,0 +1,10 @@
+{
+  "label": "Van Fleet — Interior Org",
+  "category": "fleet",
+  "size": "tall",
+  "tags": [
+    "fleet"
+  ],
+  "sortOrder": 120,
+  "active": true
+}

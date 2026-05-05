@@ -1,0 +1,10 @@
+{
+  "label": "Fleet Build — Work Trucks",
+  "category": "fleet",
+  "size": "med",
+  "tags": [
+    "fleet"
+  ],
+  "sortOrder": 60,
+  "active": true
+}
