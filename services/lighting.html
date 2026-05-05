@@ -869,8 +869,8 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Why Upgrade</div>
-      <h2 id="benefits-heading">WHY UPGRADE TO LED LIGHTING?</h2>
-      <p style="max-width: 520px; margin: var(--space-3) auto 0;">Factory lighting wasn't built for job sites, off-road trails, or long rural drives after dark. Here's what a quality LED upgrade changes.</p>
+      <h2 id="benefits-heading" data-cms-bind="benefits.heading">WHY UPGRADE TO LED LIGHTING?</h2>
+      <p style="max-width: 520px; margin: var(--space-3) auto 0;" data-cms-bind="benefits.intro">Factory lighting wasn't built for job sites, off-road trails, or long rural drives after dark. Here's what a quality LED upgrade changes.</p>
     </div>
     <div class="benefit-cards">
       <div class="benefit-card">
@@ -878,24 +878,24 @@
           <!-- Eye / visibility icon -->
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
-        <div class="benefit-title">See the Road</div>
-        <p class="benefit-desc">LED light bars throw 10–20&times; more usable light than factory fog lights. Essential for rural driving, construction sites, and off-road use after dark.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[0].title">See the Road</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[0].description">LED light bars throw 10–20&times; more usable light than factory fog lights. Essential for rural driving, construction sites, and off-road use after dark.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <!-- Hard hat / safety icon -->
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="benefit-title">Work Site Safety</div>
-        <p class="benefit-desc">Work lights mounted on trucks, vans, and equipment let your crew work safely after dark. Required on many commercial job sites and government contracts.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[1].title">Work Site Safety</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[1].description">Work lights mounted on trucks, vans, and equipment let your crew work safely after dark. Required on many commercial job sites and government contracts.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <!-- Infinity / longevity icon -->
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-2-2.5-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.5 6-4z"/><path d="M12 12c2 2.5 4 4 6 4a4 4 0 1 0 0-8c-2 0-4 1.5-6 4z"/></svg>
         </div>
-        <div class="benefit-title">Last Forever</div>
-        <p class="benefit-desc">Quality LED lights last 50,000+ hours with minimal power draw. No bulbs to replace. No heat damage to housings.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[2].title">Last Forever</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[2].description">Quality LED lights last 50,000+ hours with minimal power draw. No bulbs to replace. No heat damage to housings.</p>
       </div>
     </div>
   </div>
@@ -1032,7 +1032,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">How It Works</div>
-      <h2 id="process-heading">PROFESSIONALLY INSTALLED. EVERY TIME.</h2>
+      <h2 id="process-heading" data-cms-bind="sectionTitles.process">PROFESSIONALLY INSTALLED. EVERY TIME.</h2>
       <p style="max-width: 500px; margin: var(--space-3) auto 0; color: var(--color-text-secondary);">No wire-tap shortcuts. No exposed runs. Every lighting install gets a dedicated circuit with proper relay and fuse protection.</p>
     </div>
     <div class="process-steps" data-cms-list="process">
@@ -1069,8 +1069,8 @@
     <div class="geo-grid" style="display:grid; grid-template-columns: 1fr 360px; gap: var(--space-12); align-items:start;">
       <div>
         <div class="section-label">Service Area</div>
-        <h2 id="geo-heading" style="margin-bottom: var(--space-5);">LED LIGHTING INSTALLED ACROSS THE DMV.</h2>
-        <p style="color: var(--color-text-secondary); line-height: 1.75; margin-bottom: var(--space-6);">Fleet operators, contractors, first responders, and off-road enthusiasts from Rockville, Gaithersburg, Bethesda, and Silver Spring count on Capital Upfitters for professional LED lighting installs. We're at 12019 Nebel St in Rockville, minutes from I-270. Government and fleet accounts welcome.</p>
+        <h2 id="geo-heading" style="margin-bottom: var(--space-5);" data-cms-bind="geoCallout.heading">LED LIGHTING INSTALLED ACROSS THE DMV.</h2>
+        <p style="color: var(--color-text-secondary); line-height: 1.75; margin-bottom: var(--space-6);" data-cms-bind="geoCallout.body">Fleet operators, contractors, first responders, and off-road enthusiasts from Rockville, Gaithersburg, Bethesda, and Silver Spring count on Capital Upfitters for professional LED lighting installs. We're at 12019 Nebel St in Rockville, minutes from I-270. Government and fleet accounts welcome.</p>
         <div style="display:flex; flex-wrap:wrap; gap: var(--space-3);">
           <a href="../rockville.html" class="btn btn-ghost btn-sm">Rockville MD</a>
           <a href="../bethesda.html" class="btn btn-ghost btn-sm">Bethesda MD</a>
@@ -1175,7 +1175,7 @@
   <div class="container" style="max-width: 860px;">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Common Questions</div>
-      <h2 id="faq-heading">LED LIGHTING FAQ.</h2>
+      <h2 id="faq-heading" data-cms-bind="sectionTitles.faqs">LED LIGHTING FAQ.</h2>
     </div>
     <div class="faq-list" role="list">
 

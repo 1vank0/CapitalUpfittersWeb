@@ -86,6 +86,21 @@ const faqItemFields = [
   { type: 'string', name: 'answer', label: 'Answer', ui: { component: 'textarea' }, description: 'A clear, friendly answer in 1–3 sentences.' },
 ] as const
 
+// Generic 3-up benefit card (icon + title + description)
+const benefitCardFields = [
+  { type: 'string', name: 'icon', label: 'Icon', description: 'Lucide icon name (e.g. "shield", "clock", "award"). Optional.' },
+  { type: 'string', name: 'title', label: 'Card Title', description: 'Short, punchy headline (e.g. "150+ Brands in Stock").' },
+  { type: 'string', name: 'description', label: 'Card Description', ui: { component: 'textarea' }, description: '1–2 sentences explaining the benefit.' },
+] as const
+
+// Larger feature card (icon + title + subtitle + description)
+const featureCardFields = [
+  { type: 'string', name: 'icon', label: 'Icon', description: 'Lucide icon name. Optional.' },
+  { type: 'string', name: 'title', label: 'Card Title', description: 'E.g. "5th Wheel Prep & Install".' },
+  { type: 'string', name: 'subtitle', label: 'Card Subtitle', description: 'Short context line below the title (e.g. "For full-size pickup trucks").' },
+  { type: 'string', name: 'description', label: 'Card Description', ui: { component: 'textarea' }, description: '2–3 sentence explanation.' },
+] as const
+
 export default defineConfig({
   branch,
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID || '',
@@ -190,6 +205,75 @@ export default defineConfig({
             list: true,
             ui: { itemProps: (i: any) => ({ label: i?.question || 'New FAQ' }) },
             fields: [...faqItemFields],
+          },
+
+          // Benefits / value-prop card grid (typically 3 cards under an H2)
+          {
+            type: 'object',
+            name: 'benefits',
+            label: 'Benefits Section (3-Up Cards)',
+            description: 'The first card grid below the hero — e.g. “The Right Hitch, Installed Right.” Leave fields blank to keep current page text.',
+            fields: [
+              { type: 'string', name: 'heading', label: 'Section Heading', description: 'The H2 above the cards (e.g. “THE RIGHT HITCH, INSTALLED RIGHT.”).' },
+              { type: 'string', name: 'intro', label: 'Section Intro', ui: { component: 'textarea' }, description: 'Short paragraph below the heading.' },
+              {
+                type: 'object',
+                name: 'cards',
+                label: 'Benefit Cards',
+                list: true,
+                ui: { itemProps: (i: any) => ({ label: i?.title || 'New benefit' }) },
+                fields: [...benefitCardFields],
+              },
+            ],
+          },
+
+          // Larger feature/expansion section (e.g. “Beyond the Standard Hitch”, “Choose Your Film”)
+          {
+            type: 'object',
+            name: 'featureSection',
+            label: 'Feature / Expansion Section',
+            description: 'A second card grid further down the page — e.g. “BEYOND THE STANDARD HITCH.” Leave blank to keep current page text.',
+            fields: [
+              { type: 'string', name: 'heading', label: 'Section Heading' },
+              { type: 'string', name: 'intro', label: 'Section Intro', ui: { component: 'textarea' } },
+              {
+                type: 'object',
+                name: 'cards',
+                label: 'Feature Cards',
+                list: true,
+                ui: { itemProps: (i: any) => ({ label: i?.title || 'New feature' }) },
+                fields: [...featureCardFields],
+              },
+            ],
+          },
+
+          // Local-SEO / geo callout block (the “servicing the DMV” strip)
+          {
+            type: 'object',
+            name: 'geoCallout',
+            label: 'Geo / Service Area Callout',
+            description: 'The local-SEO band that lists cities served — e.g. “HITCH INSTALLATION ACROSS THE DMV.”',
+            fields: [
+              { type: 'string', name: 'heading', label: 'Section Heading' },
+              { type: 'string', name: 'body', label: 'Body Paragraph', ui: { component: 'textarea' }, description: 'The descriptive paragraph under the heading.' },
+            ],
+          },
+
+          // Final about / closing paragraph
+          { type: 'string', name: 'aboutBody', label: 'About / Closing Paragraph', ui: { component: 'textarea' }, description: 'A wrap-up paragraph near the bottom of the page (often near the footer CTA).' },
+
+          // Override section H2s without re-tagging cards
+          {
+            type: 'object',
+            name: 'sectionTitles',
+            label: 'Section Headings (Optional Overrides)',
+            description: 'Quick-edit the H2 text for the standard sections. Leave blank to keep the current heading on the page.',
+            fields: [
+              { type: 'string', name: 'pricing', label: 'Pricing Section Heading' },
+              { type: 'string', name: 'process', label: 'Process Section Heading' },
+              { type: 'string', name: 'testimonials', label: 'Testimonials Heading' },
+              { type: 'string', name: 'faqs', label: 'FAQs Heading' },
+            ],
           },
 
           // SEO

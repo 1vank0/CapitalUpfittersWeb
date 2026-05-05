@@ -56,10 +56,13 @@ async function _loadData() {
   return _cachedData
 }
 
-// Resolve a dotted path like "hero.subheadline" or "settings.phone" against a context object
+// Resolve a dotted path like "hero.subheadline", "settings.phone", or
+// "benefits.cards[0].title" (bracket notation) against a context object.
 function _get(obj, path) {
   if (!obj || !path) return undefined
-  return path.split('.').reduce((acc, key) => (acc == null ? undefined : acc[key]), obj)
+  // Normalize bracket notation "cards[0]" -> "cards.0" before splitting on "."
+  const norm = path.replace(/\[(\d+)\]/g, '.$1')
+  return norm.split('.').reduce((acc, key) => (acc == null ? undefined : acc[key]), obj)
 }
 
 // Set a value on an element using whatever data-cms-bind* hooks are present.

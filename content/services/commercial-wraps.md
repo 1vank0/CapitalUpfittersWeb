@@ -3,9 +3,8 @@ title: Turn Your Vehicles Into Moving Billboards
 slug: commercial-wraps
 category: fleet
 summary: >-
-  Commercial vehicle wraps, fleet branding, and vinyl advertising graphics for
-  retail owners, commercial fleets, and government agencies. Premium 3M and
-  Avery Dennison materials. Professionally installed in Rockville, MD.
+  Commercial vehicle wraps, fleet branding, and vinyl advertising graphics for retail owners, commercial fleets, and government agencies. Premium 3M and Avery Dennison materials. Professionally
+  installed in Rockville, MD.
 icon: palette
 sortOrder: 14
 active: true
@@ -13,9 +12,8 @@ hero:
   badge: Fleet & Advertising
   headline: TURN YOUR VEHICLES INTO MOVING BILLBOARDS.
   subheadline: >-
-    Commercial vehicle wraps, fleet branding, and vinyl advertising graphics for
-    retail owners, commercial fleets, and government agencies. Premium 3M and
-    Avery Dennison materials. Professionally installed in Rockville, MD.
+    Commercial vehicle wraps, fleet branding, and vinyl advertising graphics for retail owners, commercial fleets, and government agencies. Premium 3M and Avery Dennison materials. Professionally
+    installed in Rockville, MD.
   primaryCtaLabel: Get a Free Quote
   primaryCtaUrl: ../quote.html?service=commercial-wraps
   secondaryCtaLabel: Call (301) 304-1419
@@ -28,9 +26,36 @@ kpis:
   - value: 1-Yr Warranty
     label: On All Wrap Installations
 seoTitle: Commercial Vehicle Wraps Rockville MD | Fleet Branding
-seoDescription: >-
-  Commercial vehicle wraps and fleet branding in Rockville, MD. Full wraps,
-  partial wraps, vinyl lettering for retail, fleet, and government. 3M & Avery.
+seoDescription: 'Commercial vehicle wraps and fleet branding in Rockville, MD. Full wraps, partial wraps, vinyl lettering for retail, fleet, and government. 3M & Avery.'
+benefits:
+  heading: 8 REASONS TO WRAP YOUR FLEET.
+  intro: Why Wraps Work
+  cards:
+    - title: Moving Billboards
+      description: Commercial vehicle wraps turn every mile your fleet drives into direct brand exposure — reaching thousands of people daily at zero ongoing cost.
+    - title: Cost-Effective Advertising
+      description: 'One-time investment, 5–7 years of continuous advertising. No monthly fees, no ad spend, no algorithm changes. Vehicle wrap advertising delivers the lowest CPM of any media format.'
+    - title: Paint Protection
+      description: 'Premium vinyl acts as a protective barrier against UV rays, minor scratches, stone chips, and environmental damage. When removed, original paint is preserved — protecting fleet resale value.'
+    - title: Brand Consistency
+      description: 'Every vehicle in your fleet presents an identical, professional brand identity. Consistent colors, logo placement, and messaging across 1 or 100 vehicles.'
+    - title: Customizable Design
+      description: 'High-resolution full-color graphics, custom color changes, or targeted lettering. We work from your brand guidelines or start from scratch with our design team.'
+    - title: Fast Turnaround
+      description: Most installations complete in 1–3 business days. Vinyl lettering is often same-day. Batch fleet scheduling keeps your vehicles out of service for minimum time.
+    - title: Professional Appearance
+      description: 'A uniformly branded fleet signals that your business is established, organized, and serious. Customers form impressions before you say a word — make it count.'
+    - title: Long-Lasting Durability
+      description: '3M and Avery Dennison cast vinyl is rated for outdoor UV exposure, weather resistance, and commercial use. Properly installed and maintained wraps last 5–7 years in the DMV climate.'
+geoCallout:
+  heading: COMMERCIAL VEHICLE WRAPS ACROSS THE DMV.
+  body: >-
+    Capital Upfitters serves fleet operators, government agencies, and retail businesses across Rockville, Bethesda, Silver Spring, Gaithersburg, and the broader DMV region. We're Rockville's
+    locally-owned alternative to big wrap chains — with the same 3M and Avery Dennison materials, faster turnaround, and direct communication. Located at 12019 Nebel St in Rockville, MD.
+sectionTitles:
+  process: FROM FIRST CALL TO BRANDED FLEET.
+  faqs: COMMON QUESTIONS.
+  testimonials: REAL CUSTOMERS. REAL RESULTS.
 ---
 Commercial vehicle wraps, fleet branding, and vinyl advertising graphics for retail owners, commercial fleets, and government agencies. Premium 3M and Avery Dennison materials. Professionally installed in Rockville, MD.
 

@@ -464,30 +464,30 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Why Undercoat</div>
-      <h2 id="benefits-heading">MARYLAND ROADS EAT METAL.</h2>
-      <p style="max-width:520px; margin: var(--space-3) auto 0;">The DMV gets heavy salt treatment every winter. That salt works into every seam, every crevice, every surface your vehicle touches the road with. Undercoating is the only reliable defense.</p>
+      <h2 id="benefits-heading" data-cms-bind="benefits.heading">MARYLAND ROADS EAT METAL.</h2>
+      <p style="max-width:520px; margin: var(--space-3) auto 0;" data-cms-bind="benefits.intro">The DMV gets heavy salt treatment every winter. That salt works into every seam, every crevice, every surface your vehicle touches the road with. Undercoating is the only reliable defense.</p>
     </div>
     <div class="benefit-cards">
       <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="benefit-title">Maryland Road Salt Protection</div>
-        <p class="benefit-desc">Road salt accelerates corrosion dramatically. Our undercoating creates a sealed barrier between your vehicle's metal and the caustic salt and moisture that come with every winter.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[0].title">Maryland Road Salt Protection</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[0].description">Road salt accelerates corrosion dramatically. Our undercoating creates a sealed barrier between your vehicle's metal and the caustic salt and moisture that come with every winter.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="22" height="18" rx="2"/><path d="M1 9h22"/></svg>
         </div>
-        <div class="benefit-title">Permanent Rubberized Barrier</div>
-        <p class="benefit-desc">Rubberized undercoating bonds to metal and cures into a thick, flexible shield that doesn't crack, peel, or wash away. Applied right, it lasts the life of the vehicle.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[1].title">Permanent Rubberized Barrier</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[1].description">Rubberized undercoating bonds to metal and cures into a thick, flexible shield that doesn't crack, peel, or wash away. Applied right, it lasts the life of the vehicle.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
         </div>
-        <div class="benefit-title">Deadens Road Noise</div>
-        <p class="benefit-desc">A welcome side effect: rubberized undercoating acts as a sound damper. Many customers notice a noticeably quieter ride after undercoating — especially on highway surfaces.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[2].title">Deadens Road Noise</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[2].description">A welcome side effect: rubberized undercoating acts as a sound damper. Many customers notice a noticeably quieter ride after undercoating — especially on highway surfaces.</p>
       </div>
     </div>
   </div>
@@ -498,7 +498,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Pricing</div>
-      <h2 id="pricing-heading">STRAIGHTFORWARD PRICING.</h2>
+      <h2 id="pricing-heading" data-cms-bind="sectionTitles.pricing">STRAIGHTFORWARD PRICING.</h2>
       <p style="max-width:520px; margin: var(--space-3) auto 0;">Priced by vehicle class. New vehicles quoted below. Used vehicles may require additional prep work — we'll let you know before starting.</p>
     </div>
     <div class="pricing-grid" data-cms-list="pricing">
@@ -555,7 +555,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Our Process</div>
-      <h2 id="process-heading">THOROUGH EVERY TIME.</h2>
+      <h2 id="process-heading" data-cms-bind="sectionTitles.process">THOROUGH EVERY TIME.</h2>
     </div>
     <div class="process-steps" data-cms-list="process">
       <template data-cms-item><div class="process-step"><div class="process-num"></div><div class="process-title" data-cms-bind="title"></div><p class="process-desc" data-cms-bind="description"></p></div></template>
@@ -589,8 +589,8 @@
     <div class="geo-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items:center;">
       <div>
         <div class="section-label" style="color:rgba(255,255,255,0.45);">Undercoating in the DMV</div>
-        <h2 id="geo-heading-undercoating" style="color:#fff; margin-bottom: var(--space-5);">PROTECTING DMV VEHICLES FROM MARYLAND SALT.</h2>
-        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);">
+        <h2 id="geo-heading-undercoating" style="color:#fff; margin-bottom: var(--space-5);" data-cms-bind="geoCallout.heading">PROTECTING DMV VEHICLES FROM MARYLAND SALT.</h2>
+        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);" data-cms-bind="geoCallout.body">
           Maryland roads are salted heavily every winter — and that salt works into every seam, every frame rail, every exposed metal surface on your vehicle. Drivers from Rockville, Silver Spring, Gaithersburg, and Bethesda bring their trucks, SUVs, and cars to us before the first freeze for full undercarriage protection. We're at 12019 Nebel St in Rockville, minutes from I-270.
         </p>
         <!-- City links grid -->
@@ -641,7 +641,7 @@
   <div class="container container--narrow">
     <div class="reveal" style="text-align:center; margin-bottom: var(--space-10);">
       <div class="section-label" style="justify-content:center;">Customer Reviews</div>
-      <h2 id="testimonials-heading-undercoating">REAL CUSTOMERS. REAL RESULTS.</h2>
+      <h2 id="testimonials-heading-undercoating" data-cms-bind="sectionTitles.testimonials">REAL CUSTOMERS. REAL RESULTS.</h2>
     </div>
     <div class="testimonials-grid" style="grid-template-columns: repeat(2,1fr);">
       <div class="testimonial-card">
@@ -684,7 +684,7 @@
   <div class="container container--narrow">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">FAQ</div>
-      <h2 id="faq-heading">COMMON QUESTIONS.</h2>
+      <h2 id="faq-heading" data-cms-bind="sectionTitles.faqs">COMMON QUESTIONS.</h2>
     </div>
     <div class="faq-list reveal" data-cms-list="faqs"><template data-cms-item><div class="faq-item"><button class="faq-btn" aria-expanded="false"><span class="faq-question" data-cms-bind="question"></span><span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><p data-cms-bind="answer"></p></div></div></template>
       <div class="faq-item">
@@ -849,147 +849,6 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
     if(!expanded){btn.setAttribute('aria-expanded','true');document.getElementById(btn.getAttribute('aria-controls')).classList.add('open');}
   });
 });
-</script>
-
-<script>
-/* CMS hydration — undercoating */
-(function () {
-  'use strict';
-  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
-  var SLUG = 'undercoating';
-
-  /* ── helpers ── */
-  function setText(selectors, value) {
-    if (!value) return;
-    selectors.forEach(function (sel) {
-      document.querySelectorAll(sel).forEach(function (el) {
-        el.textContent = value;
-      });
-    });
-  }
-
-  function updateJsonLd(priceFrom, priceTo) {
-    document.querySelectorAll('script[type="application/ld+json"]').forEach(function (tag) {
-      try {
-        var data = JSON.parse(tag.textContent);
-        var graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
-        graph.forEach(function (node) {
-          if (node.offers && node.offers['@type'] === 'AggregateOffer') {
-            if (priceFrom) node.offers.lowPrice  = String(priceFrom);
-            if (priceTo)   node.offers.highPrice = String(priceTo);
-          }
-        });
-        tag.textContent = JSON.stringify(data);
-      } catch (e) {}
-    });
-  }
-
-  function buildFaqHtml(faqs) {
-    return faqs.map(function (faq, i) {
-      var q = faq.question || faq.name || '';
-      var a = faq.answer   || (faq.acceptedAnswer && faq.acceptedAnswer.text) || '';
-      var id = 'cms-faq-' + i;
-      return [
-        '<div class="faq-item">',
-        '  <button class="faq-btn" aria-expanded="false" aria-controls="' + id + '">',
-        '    <span class="faq-question">' + escHtml(q) + '</span>',
-        '    <span class="faq-icon" aria-hidden="true">',
-        '      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">',
-        '        <line x1="12" y1="5" x2="12" y2="19"/>',
-        '        <line x1="5"  y1="12" x2="19" y2="12"/>',
-        '      </svg>',
-        '    </span>',
-        '  </button>',
-        '  <div class="faq-answer" id="' + id + '">',
-        '    <p>' + escHtml(a) + '</p>',
-        '  </div>',
-        '</div>'
-      ].join('\n');
-    }).join('\n');
-  }
-
-  function escHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
-  function wireFaqAccordion(container) {
-    container.querySelectorAll('.faq-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var expanded = btn.getAttribute('aria-expanded') === 'true';
-        var answerId = btn.getAttribute('aria-controls');
-        var answer   = answerId ? document.getElementById(answerId) : null;
-        if (!answer) answer = btn.parentElement.querySelector('.faq-answer');
-        btn.setAttribute('aria-expanded', String(!expanded));
-        if (answer) answer.classList.toggle('open', !expanded);
-      });
-    });
-  }
-
-  /* ── tag main form ── */
-  var mainForm = document.querySelector('form');
-  if (mainForm && !mainForm.hasAttribute('data-cms-form')) {
-    mainForm.setAttribute('data-cms-form', 'retail');
-  }
-
-  /* ── fetch service data ── */
-  fetch(CMS_BASE + '/api/public/services?slug=' + SLUG)
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data) return;
-      var service = data.docs ? data.docs[0] : data;
-      if (!service) return;
-
-      /* price */
-      var priceLabel = service.priceLabel ||
-        (service.priceFrom ? 'From $' + service.priceFrom : null);
-      setText(['.service-price', '[data-cms="price"]'], priceLabel);
-
-      /* tagline */
-      setText(['.service-tagline', '[data-cms="tagline"]'], service.tagline);
-
-      /* turnaround */
-      setText(['.service-turnaround', '[data-cms="turnaround"]'], service.turnaround);
-
-      /* warranty */
-      setText(['.service-warranty', '[data-cms="warranty"]'], service.warranty);
-
-      /* SEO */
-      if (service.seo) {
-        if (service.seo.metaTitle)       document.title = service.seo.metaTitle;
-        if (service.seo.metaDescription) {
-          var metaDesc = document.querySelector('meta[name="description"]');
-          if (metaDesc) metaDesc.setAttribute('content', service.seo.metaDescription);
-        }
-      }
-
-      /* JSON-LD prices */
-      if (service.priceFrom || service.priceTo) {
-        updateJsonLd(service.priceFrom, service.priceTo);
-      }
-    })
-    .catch(function () { /* CMS unavailable — hardcoded content remains */ });
-
-  /* ── fetch FAQs ── */
-  fetch(CMS_BASE + '/api/public/faqs?service=' + SLUG)
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data) return;
-      var faqs = data.docs || data;
-      if (!Array.isArray(faqs) || faqs.length === 0) return;
-
-      /* find the FAQ container — support both class names used across pages */
-      var container = document.querySelector('.faq-list, .faq-accordion');
-      if (!container) return;
-
-      container.innerHTML = buildFaqHtml(faqs);
-      wireFaqAccordion(container);
-    })
-    .catch(function () { /* CMS unavailable — hardcoded FAQs remain */ });
-}());
 </script>
 
 <script src="../animations.js" defer></script>

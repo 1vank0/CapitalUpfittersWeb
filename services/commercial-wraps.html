@@ -1313,8 +1313,8 @@
     <div class="geo-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items:center;">
       <div>
         <div class="section-label" style="color:rgba(255,255,255,0.45);">Commercial Wraps in the DMV</div>
-        <h2 id="geo-heading-wraps" style="color:#fff; margin-bottom: var(--space-5);">COMMERCIAL VEHICLE WRAPS ACROSS THE DMV.</h2>
-        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);">
+        <h2 id="geo-heading-wraps" style="color:#fff; margin-bottom: var(--space-5);" data-cms-bind="geoCallout.heading">COMMERCIAL VEHICLE WRAPS ACROSS THE DMV.</h2>
+        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);" data-cms-bind="geoCallout.body">
           Capital Upfitters serves fleet operators, government agencies, and retail businesses across Rockville, Bethesda, Silver Spring, Gaithersburg, and the broader DMV region. We're Rockville's locally-owned alternative to big wrap chains — with the same 3M and Avery Dennison materials, faster turnaround, and direct communication. Located at 12019 Nebel St in Rockville, MD.
         </p>
         <!-- City links grid -->
@@ -1372,7 +1372,7 @@
   <div class="container container--narrow">
     <div class="reveal" style="text-align:center; margin-bottom: var(--space-10);">
       <div class="section-label" style="justify-content:center;">Customer Reviews</div>
-      <h2 id="testimonials-heading-wraps">REAL CUSTOMERS. REAL RESULTS.</h2>
+      <h2 id="testimonials-heading-wraps" data-cms-bind="sectionTitles.testimonials">REAL CUSTOMERS. REAL RESULTS.</h2>
     </div>
     <div class="testimonials-grid" style="grid-template-columns: repeat(2,1fr);">
       <div class="testimonial-card">
@@ -1416,71 +1416,71 @@
 <section class="section" aria-labelledby="benefits-heading">
   <div class="container">
     <p class="section-label">Why Wraps Work</p>
-    <h2 id="benefits-heading" class="reveal" style="margin-bottom: var(--space-12);">8 REASONS <em style="color:var(--color-accent)">TO WRAP YOUR FLEET.</em></h2>
+    <h2 id="benefits-heading" class="reveal" style="margin-bottom: var(--space-12);" data-cms-bind="benefits.heading">8 REASONS <em style="color:var(--color-accent)">TO WRAP YOUR FLEET.</em></h2>
     <div class="benefits-grid">
 
       <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <div class="benefit-title">Moving Billboards</div>
-        <p class="benefit-desc">Commercial vehicle wraps turn every mile your fleet drives into direct brand exposure — reaching thousands of people daily at zero ongoing cost.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[0].title">Moving Billboards</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[0].description">Commercial vehicle wraps turn every mile your fleet drives into direct brand exposure — reaching thousands of people daily at zero ongoing cost.</p>
       </div>
 
       <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
-        <div class="benefit-title">Cost-Effective Advertising</div>
-        <p class="benefit-desc">One-time investment, 5–7 years of continuous advertising. No monthly fees, no ad spend, no algorithm changes. Vehicle wrap advertising delivers the lowest CPM of any media format.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[1].title">Cost-Effective Advertising</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[1].description">One-time investment, 5–7 years of continuous advertising. No monthly fees, no ad spend, no algorithm changes. Vehicle wrap advertising delivers the lowest CPM of any media format.</p>
       </div>
 
       <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="benefit-title">Paint Protection</div>
-        <p class="benefit-desc">Premium vinyl acts as a protective barrier against UV rays, minor scratches, stone chips, and environmental damage. When removed, original paint is preserved — protecting fleet resale value.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[2].title">Paint Protection</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[2].description">Premium vinyl acts as a protective barrier against UV rays, minor scratches, stone chips, and environmental damage. When removed, original paint is preserved — protecting fleet resale value.</p>
       </div>
 
       <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
         </div>
-        <div class="benefit-title">Brand Consistency</div>
-        <p class="benefit-desc">Every vehicle in your fleet presents an identical, professional brand identity. Consistent colors, logo placement, and messaging across 1 or 100 vehicles.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[3].title">Brand Consistency</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[3].description">Every vehicle in your fleet presents an identical, professional brand identity. Consistent colors, logo placement, and messaging across 1 or 100 vehicles.</p>
       </div>
 
       <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
-        <div class="benefit-title">Customizable Design</div>
-        <p class="benefit-desc">High-resolution full-color graphics, custom color changes, or targeted lettering. We work from your brand guidelines or start from scratch with our design team.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[4].title">Customizable Design</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[4].description">High-resolution full-color graphics, custom color changes, or targeted lettering. We work from your brand guidelines or start from scratch with our design team.</p>
       </div>
 
       <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
-        <div class="benefit-title">Fast Turnaround</div>
-        <p class="benefit-desc">Most installations complete in 1–3 business days. Vinyl lettering is often same-day. Batch fleet scheduling keeps your vehicles out of service for minimum time.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[5].title">Fast Turnaround</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[5].description">Most installations complete in 1–3 business days. Vinyl lettering is often same-day. Batch fleet scheduling keeps your vehicles out of service for minimum time.</p>
       </div>
 
       <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <div class="benefit-title">Professional Appearance</div>
-        <p class="benefit-desc">A uniformly branded fleet signals that your business is established, organized, and serious. Customers form impressions before you say a word — make it count.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[6].title">Professional Appearance</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[6].description">A uniformly branded fleet signals that your business is established, organized, and serious. Customers form impressions before you say a word — make it count.</p>
       </div>
 
       <div class="benefit-card">
         <div class="benefit-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <div class="benefit-title">Long-Lasting Durability</div>
-        <p class="benefit-desc">3M and Avery Dennison cast vinyl is rated for outdoor UV exposure, weather resistance, and commercial use. Properly installed and maintained wraps last 5–7 years in the DMV climate.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[7].title">Long-Lasting Durability</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[7].description">3M and Avery Dennison cast vinyl is rated for outdoor UV exposure, weather resistance, and commercial use. Properly installed and maintained wraps last 5–7 years in the DMV climate.</p>
       </div>
 
     </div>
@@ -1493,8 +1493,8 @@
 <section class="section section--surface" aria-labelledby="process-heading">
   <div class="container">
     <p class="section-label" style="justify-content:center; display:flex;">How It Works</p>
-    <h2 id="process-heading" class="reveal" style="text-align:center; margin: 0 auto var(--space-4); max-width:700px;">FROM FIRST CALL TO <em style="color:var(--color-accent)">BRANDED FLEET.</em></h2>
-    <p class="reveal reveal-delay-1" style="text-align:center; color:var(--color-text-muted); max-width:560px; margin: 0 auto var(--space-14);">We make the process straightforward — design, approve, install. Most wrap projects go from first contact to finished install in under two weeks.</p>
+    <h2 id="process-heading" class="reveal" style="text-align:center; margin: 0 auto var(--space-4); max-width:700px;" data-cms-bind="sectionTitles.process">FROM FIRST CALL TO <em style="color:var(--color-accent)">BRANDED FLEET.</em></h2>
+    <p class="reveal reveal-delay-1" style="text-align:center; color:var(--color-text-muted); max-width:560px; margin: 0 auto var(--space-14);" data-cms-bind="benefits.intro">We make the process straightforward — design, approve, install. Most wrap projects go from first contact to finished install in under two weeks.</p>
 
     <div class="process-steps" data-cms-list="process">
       <template data-cms-item><div class="process-step"><div class="process-num"></div><div class="process-title" data-cms-bind="title"></div><p class="process-desc" data-cms-bind="description"></p></div></template>
@@ -1533,7 +1533,7 @@
 <section class="section" aria-labelledby="faq-heading">
   <div class="container container--narrow">
     <p class="section-label">Questions</p>
-    <h2 id="faq-heading" class="reveal" style="margin-bottom:var(--space-10);">COMMON QUESTIONS.</h2>
+    <h2 id="faq-heading" class="reveal" style="margin-bottom:var(--space-10);" data-cms-bind="sectionTitles.faqs">COMMON QUESTIONS.</h2>
 
     <div class="faq-list" id="faq-list">
 
@@ -1788,147 +1788,6 @@
     });
   });
 })();
-</script>
-
-<script>
-/* CMS hydration — commercial-wraps */
-(function () {
-  'use strict';
-  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
-  var SLUG = 'commercial-wraps';
-
-  /* ── helpers ── */
-  function setText(selectors, value) {
-    if (!value) return;
-    selectors.forEach(function (sel) {
-      document.querySelectorAll(sel).forEach(function (el) {
-        el.textContent = value;
-      });
-    });
-  }
-
-  function updateJsonLd(priceFrom, priceTo) {
-    document.querySelectorAll('script[type="application/ld+json"]').forEach(function (tag) {
-      try {
-        var data = JSON.parse(tag.textContent);
-        var graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
-        graph.forEach(function (node) {
-          if (node.offers && node.offers['@type'] === 'AggregateOffer') {
-            if (priceFrom) node.offers.lowPrice  = String(priceFrom);
-            if (priceTo)   node.offers.highPrice = String(priceTo);
-          }
-        });
-        tag.textContent = JSON.stringify(data);
-      } catch (e) {}
-    });
-  }
-
-  function buildFaqHtml(faqs) {
-    return faqs.map(function (faq, i) {
-      var q = faq.question || faq.name || '';
-      var a = faq.answer   || (faq.acceptedAnswer && faq.acceptedAnswer.text) || '';
-      var id = 'cms-faq-' + i;
-      return [
-        '<div class="faq-item">',
-        '  <button class="faq-btn" aria-expanded="false" aria-controls="' + id + '">',
-        '    <span class="faq-question">' + escHtml(q) + '</span>',
-        '    <span class="faq-icon" aria-hidden="true">',
-        '      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">',
-        '        <line x1="12" y1="5" x2="12" y2="19"/>',
-        '        <line x1="5"  y1="12" x2="19" y2="12"/>',
-        '      </svg>',
-        '    </span>',
-        '  </button>',
-        '  <div class="faq-answer" id="' + id + '">',
-        '    <p>' + escHtml(a) + '</p>',
-        '  </div>',
-        '</div>'
-      ].join('\n');
-    }).join('\n');
-  }
-
-  function escHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
-  function wireFaqAccordion(container) {
-    container.querySelectorAll('.faq-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var expanded = btn.getAttribute('aria-expanded') === 'true';
-        var answerId = btn.getAttribute('aria-controls');
-        var answer   = answerId ? document.getElementById(answerId) : null;
-        if (!answer) answer = btn.parentElement.querySelector('.faq-answer');
-        btn.setAttribute('aria-expanded', String(!expanded));
-        if (answer) answer.classList.toggle('open', !expanded);
-      });
-    });
-  }
-
-  /* ── tag main form ── */
-  var mainForm = document.querySelector('form');
-  if (mainForm && !mainForm.hasAttribute('data-cms-form')) {
-    mainForm.setAttribute('data-cms-form', 'retail');
-  }
-
-  /* ── fetch service data ── */
-  fetch(CMS_BASE + '/api/public/services?slug=' + SLUG)
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data) return;
-      var service = data.docs ? data.docs[0] : data;
-      if (!service) return;
-
-      /* price */
-      var priceLabel = service.priceLabel ||
-        (service.priceFrom ? 'From $' + service.priceFrom : null);
-      setText(['.service-price', '[data-cms="price"]'], priceLabel);
-
-      /* tagline */
-      setText(['.service-tagline', '[data-cms="tagline"]'], service.tagline);
-
-      /* turnaround */
-      setText(['.service-turnaround', '[data-cms="turnaround"]'], service.turnaround);
-
-      /* warranty */
-      setText(['.service-warranty', '[data-cms="warranty"]'], service.warranty);
-
-      /* SEO */
-      if (service.seo) {
-        if (service.seo.metaTitle)       document.title = service.seo.metaTitle;
-        if (service.seo.metaDescription) {
-          var metaDesc = document.querySelector('meta[name="description"]');
-          if (metaDesc) metaDesc.setAttribute('content', service.seo.metaDescription);
-        }
-      }
-
-      /* JSON-LD prices */
-      if (service.priceFrom || service.priceTo) {
-        updateJsonLd(service.priceFrom, service.priceTo);
-      }
-    })
-    .catch(function () { /* CMS unavailable — hardcoded content remains */ });
-
-  /* ── fetch FAQs ── */
-  fetch(CMS_BASE + '/api/public/faqs?service=' + SLUG)
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data) return;
-      var faqs = data.docs || data;
-      if (!Array.isArray(faqs) || faqs.length === 0) return;
-
-      /* find the FAQ container — support both class names used across pages */
-      var container = document.querySelector('.faq-list, .faq-accordion');
-      if (!container) return;
-
-      container.innerHTML = buildFaqHtml(faqs);
-      wireFaqAccordion(container);
-    })
-    .catch(function () { /* CMS unavailable — hardcoded FAQs remain */ });
-}());
 </script>
 
 <script src="../animations.js" defer></script>

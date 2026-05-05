@@ -1006,7 +1006,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Our Process</div>
-      <h2 id="process-heading">HOW IT WORKS.</h2>
+      <h2 id="process-heading" data-cms-bind="sectionTitles.process">HOW IT WORKS.</h2>
       <p style="max-width:460px; margin: var(--space-3) auto 0;">Four simple steps from booking to a clean vehicle — all without leaving your home or office.</p>
     </div>
     <div class="process-steps" data-cms-list="process">
@@ -1043,8 +1043,8 @@
     <div class="geo-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items:center;">
       <div>
         <div class="section-label" style="color:rgba(255,255,255,0.45);">Mobile Detailing in the DMV</div>
-        <h2 id="geo-heading-detailing" style="color:#fff; margin-bottom: var(--space-5);">MOBILE DETAILING ACROSS THE DMV.</h2>
-        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);">Our mobile detailing crew serves residential customers, businesses, and government facilities across Rockville, Bethesda, Gaithersburg, and Silver Spring. We bring the equipment to you — no drop-off required. Fleet and government accounts served at your facility throughout Montgomery County and the broader DMV region.</p>
+        <h2 id="geo-heading-detailing" style="color:#fff; margin-bottom: var(--space-5);" data-cms-bind="geoCallout.heading">MOBILE DETAILING ACROSS THE DMV.</h2>
+        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);" data-cms-bind="geoCallout.body">Our mobile detailing crew serves residential customers, businesses, and government facilities across Rockville, Bethesda, Gaithersburg, and Silver Spring. We bring the equipment to you — no drop-off required. Fleet and government accounts served at your facility throughout Montgomery County and the broader DMV region.</p>
         <!-- City links grid -->
         <div style="display:grid; grid-template-columns: repeat(2,1fr); gap: var(--space-3); margin-bottom: var(--space-8);">
           <a href="../locations/rockville-md.html" style="display:flex; align-items:center; gap: var(--space-3); padding: var(--space-4); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); color:#fff; text-decoration:none; font-family: var(--font-display); font-size: var(--text-sm); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition: all 180ms ease;">
@@ -1095,7 +1095,7 @@
   <div class="container container--narrow">
     <div class="reveal" style="text-align:center; margin-bottom: var(--space-10);">
       <div class="section-label" style="justify-content:center;">Customer Reviews</div>
-      <h2 id="testimonials-heading-detailing">REAL CUSTOMERS. REAL RESULTS.</h2>
+      <h2 id="testimonials-heading-detailing" data-cms-bind="sectionTitles.testimonials">REAL CUSTOMERS. REAL RESULTS.</h2>
     </div>
     <div class="testimonials-grid">
       <div class="testimonial-card">
@@ -1346,116 +1346,6 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
     if(!expanded){btn.setAttribute('aria-expanded','true');const id=btn.getAttribute('aria-controls');if(id)document.getElementById(id).classList.add('open');}
   });
 });
-</script>
-
-<script>
-/* CMS hydration — mobile-detailing */
-(function () {
-  'use strict';
-  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
-  var SLUG = 'mobile-detailing';
-
-  function setText(selectors, value) {
-    if (!value) return;
-    selectors.forEach(function (sel) {
-      document.querySelectorAll(sel).forEach(function (el) { el.textContent = value; });
-    });
-  }
-
-  function updateJsonLd(priceFrom, priceTo) {
-    document.querySelectorAll('script[type="application/ld+json"]').forEach(function (tag) {
-      try {
-        var data = JSON.parse(tag.textContent);
-        var graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
-        graph.forEach(function (node) {
-          if (node.offers && node.offers['@type'] === 'AggregateOffer') {
-            if (priceFrom) node.offers.lowPrice  = String(priceFrom);
-            if (priceTo)   node.offers.highPrice = String(priceTo);
-          }
-        });
-        tag.textContent = JSON.stringify(data);
-      } catch (e) {}
-    });
-  }
-
-  function buildFaqHtml(faqs) {
-    return faqs.map(function (faq, i) {
-      var q = faq.question || faq.name || '';
-      var a = faq.answer   || (faq.acceptedAnswer && faq.acceptedAnswer.text) || '';
-      var id = 'cms-faq-detail-' + i;
-      return [
-        '<div class="faq-item">',
-        '  <button class="faq-btn" aria-expanded="false" aria-controls="' + id + '">',
-        '    <span class="faq-question">' + escHtml(q) + '</span>',
-        '    <span class="faq-icon" aria-hidden="true">',
-        '      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">',
-        '        <line x1="12" y1="5" x2="12" y2="19"/>',
-        '        <line x1="5"  y1="12" x2="19" y2="12"/>',
-        '      </svg>',
-        '    </span>',
-        '  </button>',
-        '  <div class="faq-answer" id="' + id + '">',
-        '    <p>' + escHtml(a) + '</p>',
-        '  </div>',
-        '</div>'
-      ].join('\n');
-    }).join('\n');
-  }
-
-  function escHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
-  function wireFaqAccordion(container) {
-    container.querySelectorAll('.faq-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var expanded = btn.getAttribute('aria-expanded') === 'true';
-        var answerId = btn.getAttribute('aria-controls');
-        var answer   = answerId ? document.getElementById(answerId) : null;
-        if (!answer) answer = btn.parentElement.querySelector('.faq-answer');
-        btn.setAttribute('aria-expanded', String(!expanded));
-        if (answer) answer.classList.toggle('open', !expanded);
-      });
-    });
-  }
-
-  fetch(CMS_BASE + '/api/public/services?slug=' + SLUG)
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data) return;
-      var service = data.docs ? data.docs[0] : data;
-      if (!service) return;
-      var priceLabel = service.priceLabel || (service.priceFrom ? 'From $' + service.priceFrom : null);
-      setText(['.service-price', '[data-cms="price"]'], priceLabel);
-      setText(['.service-tagline', '[data-cms="tagline"]'], service.tagline);
-      if (service.seo) {
-        if (service.seo.metaTitle) document.title = service.seo.metaTitle;
-        if (service.seo.metaDescription) {
-          var metaDesc = document.querySelector('meta[name="description"]');
-          if (metaDesc) metaDesc.setAttribute('content', service.seo.metaDescription);
-        }
-      }
-      if (service.priceFrom || service.priceTo) { updateJsonLd(service.priceFrom, service.priceTo); }
-    })
-    .catch(function () {});
-
-  fetch(CMS_BASE + '/api/public/faqs?service=' + SLUG)
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data) return;
-      var faqs = data.docs || data;
-      if (!Array.isArray(faqs) || faqs.length === 0) return;
-      var container = document.querySelector('.faq-list, .faq-accordion');
-      if (!container) return;
-      container.innerHTML = buildFaqHtml(faqs);
-      wireFaqAccordion(container);
-    })
-    .catch(function () {});
-}());
 </script>
 
 <script src="../animations.js" defer></script>

@@ -893,8 +893,8 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Why Lift</div>
-      <h2 id="benefits-heading">WHY LIFT YOUR TRUCK OR SUV?</h2>
-      <p style="max-width: 520px; margin: var(--space-3) auto 0; color: var(--color-text-secondary);">A leveling kit or lift kit does more than change how your truck looks. Here's what you actually gain.</p>
+      <h2 id="benefits-heading" data-cms-bind="benefits.heading">WHY LIFT YOUR TRUCK OR SUV?</h2>
+      <p style="max-width: 520px; margin: var(--space-3) auto 0; color: var(--color-text-secondary);" data-cms-bind="benefits.intro">A leveling kit or lift kit does more than change how your truck looks. Here's what you actually gain.</p>
     </div>
     <div class="benefit-cards">
       <!-- Card 1 -->
@@ -902,24 +902,24 @@
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/><path d="M5 12h2M17 12h2M12 5v2M12 17v2"/></svg>
         </div>
-        <div class="benefit-title">Bigger Tires</div>
-        <p class="benefit-desc">More lift = more tire clearance. Fit 33s, 35s, or larger without rubbing. Most leveling kits allow one tire size up. Full lift kits open up much more.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[0].title">Bigger Tires</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[0].description">More lift = more tire clearance. Fit 33s, 35s, or larger without rubbing. Most leveling kits allow one tire size up. Full lift kits open up much more.</p>
       </div>
       <!-- Card 2 -->
       <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l4-8 4 4 4-6 4 6"/><path d="M3 21h18"/></svg>
         </div>
-        <div class="benefit-title">Better Off-Road Capability</div>
-        <p class="benefit-desc">Higher ground clearance means you can tackle Maryland's back roads, trails, and uneven terrain without scraping your undercarriage.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[1].title">Better Off-Road Capability</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[1].description">Higher ground clearance means you can tackle Maryland's back roads, trails, and uneven terrain without scraping your undercarriage.</p>
       </div>
       <!-- Card 3 -->
       <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="benefit-title">Improved Stance</div>
-        <p class="benefit-desc">A level or lifted truck just looks better. Remove the factory nose-down rake and give your truck the aggressive stance it deserves.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[2].title">Improved Stance</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[2].description">A level or lifted truck just looks better. Remove the factory nose-down rake and give your truck the aggressive stance it deserves.</p>
       </div>
     </div>
   </div>
@@ -1054,7 +1054,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">How It Works</div>
-      <h2 id="process-heading">FROM QUOTE TO LIFTED.</h2>
+      <h2 id="process-heading" data-cms-bind="sectionTitles.process">FROM QUOTE TO LIFTED.</h2>
       <p style="max-width: 520px; margin: var(--space-3) auto 0; color: var(--color-text-secondary);">Four steps from initial conversation to driving off with your new stance.</p>
     </div>
     <div class="process-steps" data-cms-list="process">
@@ -1090,12 +1090,12 @@
   <div class="container">
     <div class="reveal" style="text-align:center; margin-bottom: var(--space-10);">
       <div class="section-label" style="justify-content:center;">Service Area</div>
-      <h2 id="geo-heading">LIFT KITS INSTALLED ACROSS THE DMV.</h2>
+      <h2 id="geo-heading" data-cms-bind="geoCallout.heading">LIFT KITS INSTALLED ACROSS THE DMV.</h2>
     </div>
     <div class="geo-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items:start;">
       <!-- Geo copy -->
       <div>
-        <p style="font-size: var(--text-base); color: var(--color-text-secondary); line-height: 1.8; margin-bottom: var(--space-6);">Truck and SUV owners from Rockville, Gaithersburg, Bethesda, and Silver Spring bring their rigs to Capital Upfitters for leveling kits and lift kit installs. We're at 12019 Nebel St in Rockville, minutes from I-270. Most installs completed same-week.</p>
+        <p style="font-size: var(--text-base); color: var(--color-text-secondary); line-height: 1.8; margin-bottom: var(--space-6);" data-cms-bind="geoCallout.body">Truck and SUV owners from Rockville, Gaithersburg, Bethesda, and Silver Spring bring their rigs to Capital Upfitters for leveling kits and lift kit installs. We're at 12019 Nebel St in Rockville, minutes from I-270. Most installs completed same-week.</p>
         <div style="display: flex; flex-wrap: wrap; gap: var(--space-3);">
           <a href="../contact.html" class="btn btn-outline btn-sm">Rockville, MD</a>
           <a href="../contact.html" class="btn btn-outline btn-sm">Bethesda, MD</a>
@@ -1193,7 +1193,7 @@
   <div class="container" style="max-width: 860px;">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Common Questions</div>
-      <h2 id="faq-heading">LIFT KIT FAQ.</h2>
+      <h2 id="faq-heading" data-cms-bind="sectionTitles.faqs">LIFT KIT FAQ.</h2>
     </div>
     <div class="faq-list" role="list">
 

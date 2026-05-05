@@ -714,23 +714,6 @@
 </script>
 
 <!-- CMS: Geo Page Wire — bethesda-md -->
-<script>
-(function() {
-  var GEO_SLUG = 'bethesda-md';
-  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
-  function applyGeoData(geo) {
-    if (!geo) return;
-    if (geo.heroHeadline) { document.querySelectorAll('h1, .hero-headline, [data-cms="headline"]').forEach(function(el) { el.textContent = geo.heroHeadline; }); }
-    if (geo.localIntro) { document.querySelectorAll('.geo-intro, [data-cms="intro"]').forEach(function(el) { el.textContent = geo.localIntro; }); }
-    if (geo.seo && geo.seo.metaDescription) { var m = document.querySelector('meta[name="description"]'); if (m) m.setAttribute('content', geo.seo.metaDescription); }
-    if (geo.seo && geo.seo.metaTitle) { document.title = geo.seo.metaTitle; }
-    if (geo.nearbyAreas && geo.nearbyAreas.length) { document.querySelectorAll('.nearby-areas, .pill-links').forEach(function(c) { c.innerHTML = geo.nearbyAreas.map(function(a) { var t = typeof a === 'string' ? a : (a.name || a.label || String(a)); return '<span class="pill">' + t + '</span>'; }).join(''); }); }
-  }
-  fetch(CMS_BASE + '/api/public/geo-pages?slug=' + GEO_SLUG).then(function(r) { return r.json(); }).then(function(d) { applyGeoData(d.docs && d.docs[0] ? d.docs[0] : d); }).catch(function() {});
-  document.addEventListener('DOMContentLoaded', function() { var f = document.querySelector('form'); if (f && !f.dataset.cmsForm) f.setAttribute('data-cms-form', 'retail'); });
-})();
-</script>
-
 <script src="../animations.js" defer></script>
 
 <!-- Floating quote CTA -->

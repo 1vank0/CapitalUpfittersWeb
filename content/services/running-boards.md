@@ -2,9 +2,7 @@
 title: Running Boards & Steps For Trucks And Suvs
 slug: running-boards
 category: truck-accessories
-summary: >-
-  Nerf bars, power running boards, tube steps, and rock sliders. 150+ brands.
-  Professional vehicle-specific installation from $250.
+summary: 'Nerf bars, power running boards, tube steps, and rock sliders. 150+ brands. Professional vehicle-specific installation from $250.'
 icon: arrow-down-up
 priceFrom: 250
 sortOrder: 3
@@ -12,9 +10,7 @@ active: true
 hero:
   badge: 'Trucks, SUVs & Vans'
   headline: RUNNING BOARDS & STEPS FOR TRUCKS AND SUVS.
-  subheadline: >-
-    Nerf bars, power running boards, tube steps, and rock sliders. 150+ brands.
-    Professional vehicle-specific installation from $250.
+  subheadline: 'Nerf bars, power running boards, tube steps, and rock sliders. 150+ brands. Professional vehicle-specific installation from $250.'
   primaryCtaLabel: Get a Free Quote
   primaryCtaUrl: ../quote.html?service=running-boards
   secondaryCtaLabel: Call (301) 304-1419
@@ -28,62 +24,58 @@ kpis:
     label: All Major Makes & Models
 process:
   - title: Vehicle Lookup
-    description: >-
-      We confirm your exact year, make, model, and cab configuration to select
-      the right bracket hardware and step product.
+    description: 'We confirm your exact year, make, model, and cab configuration to select the right bracket hardware and step product.'
   - title: Fitment Check
-    description: >-
-      We verify the rocker mounting points and check for any accessories (lift
-      kits, flares) that may require specific hardware or offsets.
+    description: 'We verify the rocker mounting points and check for any accessories (lift kits, flares) that may require specific hardware or offsets.'
   - title: Professional Install
-    description: >-
-      Torqued to spec using factory-compatible hardware. Wiring harness
-      connected for power steps. No drilling, no damage.
+    description: 'Torqued to spec using factory-compatible hardware. Wiring harness connected for power steps. No drilling, no damage.'
   - title: Level & Pickup
-    description: >-
-      Final alignment check, test of operation (power steps), and delivery. Most
-      installs take 1–2 hours.
+    description: 'Final alignment check, test of operation (power steps), and delivery. Most installs take 1–2 hours.'
 faqs:
   - question: What's the difference between nerf bars and running boards?
     answer: >-
-      Nerf bars are round or oval tubes that run along the rocker panel — they
-      look rugged and provide a small step. Running boards are flat, wider
-      platforms that give significantly more standing surface. Both improve
-      entry and exit from lifted or tall vehicles. Running boards are better for
-      daily use; nerf bars offer a sportier look. We'll help you choose based on
-      how you use the truck.
+      Nerf bars are round or oval tubes that run along the rocker panel — they look rugged and provide a small step. Running boards are flat, wider platforms that give significantly more standing
+      surface. Both improve entry and exit from lifted or tall vehicles. Running boards are better for daily use; nerf bars offer a sportier look. We'll help you choose based on how you use the truck.
   - question: Do you carry PowerStep automatic running boards?
     answer: >-
-      Yes. We carry and install AMP Research PowerStep, Bestop PowerBoard, and
-      other electric automatic step brands. Power steps deploy automatically
-      when you open the door and retract flush when you close it — giving you a
-      completely clean appearance while driving. They start around $600
-      installed, depending on your vehicle.
+      Yes. We carry and install AMP Research PowerStep, Bestop PowerBoard, and other electric automatic step brands. Power steps deploy automatically when you open the door and retract flush when you
+      close it — giving you a completely clean appearance while driving. They start around $600 installed, depending on your vehicle.
   - question: Will they fit my specific truck?
     answer: >-
-      All the running boards and steps we stock are vehicle-specific —
-      engineered for your exact year, make, and model. They mount to existing
-      frame points with no drilling required. Give us your truck details and
-      we'll confirm the perfect fit. Lifted trucks may require specific offset
-      brackets, which we can source.
+      All the running boards and steps we stock are vehicle-specific — engineered for your exact year, make, and model. They mount to existing frame points with no drilling required. Give us your
+      truck details and we'll confirm the perfect fit. Lifted trucks may require specific offset brackets, which we can source.
   - question: How long does installation take?
     answer: >-
-      Standard nerf bars and tube steps typically take 1–2 hours. Flat running
-      boards are similar. Power step installations take 2–3 hours due to wiring.
-      Rock sliders can take 2–3 hours depending on complexity. We'll give you an
-      accurate time estimate when you schedule.
+      Standard nerf bars and tube steps typically take 1–2 hours. Flat running boards are similar. Power step installations take 2–3 hours due to wiring. Rock sliders can take 2–3 hours depending on
+      complexity. We'll give you an accurate time estimate when you schedule.
   - question: Do you install powered / electric running boards?
     answer: >-
-      Yes — we install AMP Research PowerStep electric running boards. They
-      deploy automatically when your door opens and retract flush when you close
-      it. Plug-N-Play install on most trucks — no wire cutting required. Pricing
-      starts from $1,799 installed. Call us to confirm fitment for your specific
-      vehicle.
+      Yes — we install AMP Research PowerStep electric running boards. They deploy automatically when your door opens and retract flush when you close it. Plug-N-Play install on most trucks — no wire
+      cutting required. Pricing starts from $1,799 installed. Call us to confirm fitment for your specific vehicle.
 seoTitle: Running Boards & Steps | Powered & Manual | Capital Upfitters Rockville MD
 seoDescription: >-
-  Running boards, nerf bars, and AMP Research PowerStep electric running boards
-  installed in Rockville MD. Manual and powered options for all trucks and SUVs.
-  Serving Rockville, Bethesda, Silver Spring, Gaithersburg and the DMV.
+  Running boards, nerf bars, and AMP Research PowerStep electric running boards installed in Rockville MD. Manual and powered options for all trucks and SUVs. Serving Rockville, Bethesda, Silver
+  Spring, Gaithersburg and the DMV.
+benefits:
+  heading: THE RIGHT STEP FOR YOUR VEHICLE.
+  intro: 'Running boards aren''t universal. The right fit depends on your specific cab, bed, and rocker configuration. We stock 150+ brands and know which ones work for your truck.'
+  cards:
+    - title: 150+ Step Brands
+      description: 'AMP Research, Westin, Rough Country, N-Fab, Carr, Lund, Go Rhino, and more. We carry the brands that hold up and look great for years.'
+    - title: Vehicle-Specific Fit
+      description: 'Every running board and nerf bar we install is engineered for your exact year, make, model, and cab/bed configuration. Bolt-on installation using factory mounting points.'
+    - title: Power & Manual Options
+      description: 'From simple tube steps to fully automatic power boards that extend and retract with your door. We carry and install the full spectrum, including AMP Research PowerStep.'
+geoCallout:
+  heading: RUNNING BOARDS INSTALLED ACROSS THE DMV.
+  body: >-
+    Whether you drive a full-size pickup in Gaithersburg, a lifted SUV in Bethesda, or a work van in Rockville — Capital Upfitters stocks steel, aluminum, and composite running boards and nerf bars
+    for all major makes and models. Most installs are bolt-on with no drilling required. We're at 12019 Nebel St in Rockville, minutes from I-270 and Route 355.
+sectionTitles:
+  pricing: A STEP UP FOR EVERY BUDGET.
+  process: BOLTED ON CLEAN.
+  faqs: COMMON QUESTIONS.
+  testimonials: REAL CUSTOMERS. REAL RESULTS.
 ---
 Nerf bars, power running boards, tube steps, and rock sliders. 150+ brands. Professional vehicle-specific installation from $250.
 

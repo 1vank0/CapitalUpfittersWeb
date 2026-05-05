@@ -472,30 +472,30 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Why Capital Upfitters</div>
-      <h2 id="benefits-heading">THE RIGHT STEP FOR YOUR VEHICLE.</h2>
-      <p style="max-width:520px; margin: var(--space-3) auto 0;">Running boards aren't universal. The right fit depends on your specific cab, bed, and rocker configuration. We stock 150+ brands and know which ones work for your truck.</p>
+      <h2 id="benefits-heading" data-cms-bind="benefits.heading">THE RIGHT STEP FOR YOUR VEHICLE.</h2>
+      <p style="max-width:520px; margin: var(--space-3) auto 0;" data-cms-bind="benefits.intro">Running boards aren't universal. The right fit depends on your specific cab, bed, and rocker configuration. We stock 150+ brands and know which ones work for your truck.</p>
     </div>
     <div class="benefit-cards">
       <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
         </div>
-        <div class="benefit-title">150+ Step Brands</div>
-        <p class="benefit-desc">AMP Research, Westin, Rough Country, N-Fab, Carr, Lund, Go Rhino, and more. We carry the brands that hold up and look great for years.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[0].title">150+ Step Brands</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[0].description">AMP Research, Westin, Rough Country, N-Fab, Carr, Lund, Go Rhino, and more. We carry the brands that hold up and look great for years.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="benefit-title">Vehicle-Specific Fit</div>
-        <p class="benefit-desc">Every running board and nerf bar we install is engineered for your exact year, make, model, and cab/bed configuration. Bolt-on installation using factory mounting points.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[1].title">Vehicle-Specific Fit</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[1].description">Every running board and nerf bar we install is engineered for your exact year, make, model, and cab/bed configuration. Bolt-on installation using factory mounting points.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
         </div>
-        <div class="benefit-title">Power &amp; Manual Options</div>
-        <p class="benefit-desc">From simple tube steps to fully automatic power boards that extend and retract with your door. We carry and install the full spectrum, including AMP Research PowerStep.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[2].title">Power &amp; Manual Options</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[2].description">From simple tube steps to fully automatic power boards that extend and retract with your door. We carry and install the full spectrum, including AMP Research PowerStep.</p>
       </div>
     </div>
   </div>
@@ -506,7 +506,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Pricing</div>
-      <h2 id="pricing-heading">A STEP UP FOR EVERY BUDGET.</h2>
+      <h2 id="pricing-heading" data-cms-bind="sectionTitles.pricing">A STEP UP FOR EVERY BUDGET.</h2>
       <p style="max-width:520px; margin: var(--space-3) auto 0;">Pricing varies by vehicle and product. These are starting prices for installed hardware. Contact us with your specific vehicle for an accurate quote.</p>
     </div>
     <div class="category-sep">
@@ -616,7 +616,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Our Process</div>
-      <h2 id="process-heading">BOLTED ON CLEAN.</h2>
+      <h2 id="process-heading" data-cms-bind="sectionTitles.process">BOLTED ON CLEAN.</h2>
     </div>
     <div class="process-steps" data-cms-list="process">
       <template data-cms-item><div class="process-step"><div class="process-num"></div><div class="process-title" data-cms-bind="title"></div><p class="process-desc" data-cms-bind="description"></p></div></template>
@@ -650,8 +650,8 @@
     <div class="geo-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items:center;">
       <div>
         <div class="section-label" style="color:rgba(255,255,255,0.45);">Running Boards in the DMV</div>
-        <h2 id="geo-heading-boards" style="color:#fff; margin-bottom: var(--space-5);">RUNNING BOARDS INSTALLED ACROSS THE DMV.</h2>
-        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);">
+        <h2 id="geo-heading-boards" style="color:#fff; margin-bottom: var(--space-5);" data-cms-bind="geoCallout.heading">RUNNING BOARDS INSTALLED ACROSS THE DMV.</h2>
+        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);" data-cms-bind="geoCallout.body">
           Whether you drive a full-size pickup in Gaithersburg, a lifted SUV in Bethesda, or a work van in Rockville — Capital Upfitters stocks steel, aluminum, and composite running boards and nerf bars for all major makes and models. Most installs are bolt-on with no drilling required. We're at 12019 Nebel St in Rockville, minutes from I-270 and Route 355.
         </p>
         <!-- City links grid -->
@@ -702,7 +702,7 @@
   <div class="container container--narrow">
     <div class="reveal" style="text-align:center; margin-bottom: var(--space-10);">
       <div class="section-label" style="justify-content:center;">Customer Reviews</div>
-      <h2 id="testimonials-heading-boards">REAL CUSTOMERS. REAL RESULTS.</h2>
+      <h2 id="testimonials-heading-boards" data-cms-bind="sectionTitles.testimonials">REAL CUSTOMERS. REAL RESULTS.</h2>
     </div>
     <div class="testimonials-grid" style="grid-template-columns: repeat(2,1fr);">
       <div class="testimonial-card">
@@ -745,7 +745,7 @@
   <div class="container container--narrow">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">FAQ</div>
-      <h2 id="faq-heading">COMMON QUESTIONS.</h2>
+      <h2 id="faq-heading" data-cms-bind="sectionTitles.faqs">COMMON QUESTIONS.</h2>
     </div>
     <div class="faq-list reveal" data-cms-list="faqs"><template data-cms-item><div class="faq-item"><button class="faq-btn" aria-expanded="false"><span class="faq-question" data-cms-bind="question"></span><span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><p data-cms-bind="answer"></p></div></div></template>
       <div class="faq-item">
@@ -919,147 +919,6 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
     if(!expanded){btn.setAttribute('aria-expanded','true');document.getElementById(btn.getAttribute('aria-controls')).classList.add('open');}
   });
 });
-</script>
-
-<script>
-/* CMS hydration — running-boards */
-(function () {
-  'use strict';
-  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
-  var SLUG = 'running-boards';
-
-  /* ── helpers ── */
-  function setText(selectors, value) {
-    if (!value) return;
-    selectors.forEach(function (sel) {
-      document.querySelectorAll(sel).forEach(function (el) {
-        el.textContent = value;
-      });
-    });
-  }
-
-  function updateJsonLd(priceFrom, priceTo) {
-    document.querySelectorAll('script[type="application/ld+json"]').forEach(function (tag) {
-      try {
-        var data = JSON.parse(tag.textContent);
-        var graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
-        graph.forEach(function (node) {
-          if (node.offers && node.offers['@type'] === 'AggregateOffer') {
-            if (priceFrom) node.offers.lowPrice  = String(priceFrom);
-            if (priceTo)   node.offers.highPrice = String(priceTo);
-          }
-        });
-        tag.textContent = JSON.stringify(data);
-      } catch (e) {}
-    });
-  }
-
-  function buildFaqHtml(faqs) {
-    return faqs.map(function (faq, i) {
-      var q = faq.question || faq.name || '';
-      var a = faq.answer   || (faq.acceptedAnswer && faq.acceptedAnswer.text) || '';
-      var id = 'cms-faq-' + i;
-      return [
-        '<div class="faq-item">',
-        '  <button class="faq-btn" aria-expanded="false" aria-controls="' + id + '">',
-        '    <span class="faq-question">' + escHtml(q) + '</span>',
-        '    <span class="faq-icon" aria-hidden="true">',
-        '      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">',
-        '        <line x1="12" y1="5" x2="12" y2="19"/>',
-        '        <line x1="5"  y1="12" x2="19" y2="12"/>',
-        '      </svg>',
-        '    </span>',
-        '  </button>',
-        '  <div class="faq-answer" id="' + id + '">',
-        '    <p>' + escHtml(a) + '</p>',
-        '  </div>',
-        '</div>'
-      ].join('\n');
-    }).join('\n');
-  }
-
-  function escHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
-  function wireFaqAccordion(container) {
-    container.querySelectorAll('.faq-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var expanded = btn.getAttribute('aria-expanded') === 'true';
-        var answerId = btn.getAttribute('aria-controls');
-        var answer   = answerId ? document.getElementById(answerId) : null;
-        if (!answer) answer = btn.parentElement.querySelector('.faq-answer');
-        btn.setAttribute('aria-expanded', String(!expanded));
-        if (answer) answer.classList.toggle('open', !expanded);
-      });
-    });
-  }
-
-  /* ── tag main form ── */
-  var mainForm = document.querySelector('form');
-  if (mainForm && !mainForm.hasAttribute('data-cms-form')) {
-    mainForm.setAttribute('data-cms-form', 'retail');
-  }
-
-  /* ── fetch service data ── */
-  fetch(CMS_BASE + '/api/public/services?slug=' + SLUG)
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data) return;
-      var service = data.docs ? data.docs[0] : data;
-      if (!service) return;
-
-      /* price */
-      var priceLabel = service.priceLabel ||
-        (service.priceFrom ? 'From $' + service.priceFrom : null);
-      setText(['.service-price', '[data-cms="price"]'], priceLabel);
-
-      /* tagline */
-      setText(['.service-tagline', '[data-cms="tagline"]'], service.tagline);
-
-      /* turnaround */
-      setText(['.service-turnaround', '[data-cms="turnaround"]'], service.turnaround);
-
-      /* warranty */
-      setText(['.service-warranty', '[data-cms="warranty"]'], service.warranty);
-
-      /* SEO */
-      if (service.seo) {
-        if (service.seo.metaTitle)       document.title = service.seo.metaTitle;
-        if (service.seo.metaDescription) {
-          var metaDesc = document.querySelector('meta[name="description"]');
-          if (metaDesc) metaDesc.setAttribute('content', service.seo.metaDescription);
-        }
-      }
-
-      /* JSON-LD prices */
-      if (service.priceFrom || service.priceTo) {
-        updateJsonLd(service.priceFrom, service.priceTo);
-      }
-    })
-    .catch(function () { /* CMS unavailable — hardcoded content remains */ });
-
-  /* ── fetch FAQs ── */
-  fetch(CMS_BASE + '/api/public/faqs?service=' + SLUG)
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data) return;
-      var faqs = data.docs || data;
-      if (!Array.isArray(faqs) || faqs.length === 0) return;
-
-      /* find the FAQ container — support both class names used across pages */
-      var container = document.querySelector('.faq-list, .faq-accordion');
-      if (!container) return;
-
-      container.innerHTML = buildFaqHtml(faqs);
-      wireFaqAccordion(container);
-    })
-    .catch(function () { /* CMS unavailable — hardcoded FAQs remain */ });
-}());
 </script>
 
 <script src="../animations.js" defer></script>

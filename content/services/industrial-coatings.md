@@ -3,10 +3,8 @@ title: Industrial & Protective Coating Solutions
 slug: industrial-coatings
 category: industrial
 summary: >-
-  Polyurea, epoxy, aliphatic, and aromatic protective coatings for commercial
-  vehicles, government fleets, school buses, emergency equipment, civil
-  infrastructure, industrial equipment, and facilities. Mobile application
-  available — we come to your site.
+  Polyurea, epoxy, aliphatic, and aromatic protective coatings for commercial vehicles, government fleets, school buses, emergency equipment, civil infrastructure, industrial equipment, and
+  facilities. Mobile application available — we come to your site.
 icon: factory
 sortOrder: 15
 active: true
@@ -14,10 +12,8 @@ hero:
   badge: Commercial & Government Solutions
   headline: INDUSTRIAL & PROTECTIVE COATING SOLUTIONS.
   subheadline: >-
-    Polyurea, epoxy, aliphatic, and aromatic protective coatings for commercial
-    vehicles, government fleets, school buses, emergency equipment, civil
-    infrastructure, industrial equipment, and facilities. Mobile application
-    available — we come to your site.
+    Polyurea, epoxy, aliphatic, and aromatic protective coatings for commercial vehicles, government fleets, school buses, emergency equipment, civil infrastructure, industrial equipment, and
+    facilities. Mobile application available — we come to your site.
   primaryCtaLabel: Get a Quote
   primaryCtaUrl: ../quote.html?service=industrial-coatings
   secondaryCtaLabel: Call (301) 304-1419
@@ -31,62 +27,45 @@ kpis:
     label: Authorized for Government Procurement
 process:
   - title: Site Assessment
-    description: >-
-      We evaluate your surfaces, environment, load requirements, and performance
-      specs. In-shop or on-site assessment depending on scale.
+    description: 'We evaluate your surfaces, environment, load requirements, and performance specs. In-shop or on-site assessment depending on scale.'
   - title: System Selection
-    description: >-
-      We specify the correct chemistry (polyurea, aliphatic, aromatic, epoxy)
-      and application method for your surface and conditions.
+    description: 'We specify the correct chemistry (polyurea, aliphatic, aromatic, epoxy) and application method for your surface and conditions.'
   - title: Surface Preparation
-    description: >-
-      Proper prep is everything. We clean, abrade, and prime surfaces to ensure
-      maximum adhesion and coating longevity.
+    description: 'Proper prep is everything. We clean, abrade, and prime surfaces to ensure maximum adhesion and coating longevity.'
   - title: Application & Inspection
-    description: >-
-      Coating applied to spec. Thickness gauged. Quality check before handoff.
-      Documentation provided on request.
+    description: Coating applied to spec. Thickness gauged. Quality check before handoff. Documentation provided on request.
 faqs:
   - question: What surfaces can you coat?
     answer: >-
-      Nearly any substrate — steel, aluminum, concrete, wood, fiberglass, and
-      existing coated surfaces with proper preparation. We coat vehicle cargo
-      floors, truck beds, trailer interiors, cargo van floors, industrial
-      floors, dock ramps, structural steel, containment areas, and facility
-      surfaces.
+      Nearly any substrate — steel, aluminum, concrete, wood, fiberglass, and existing coated surfaces with proper preparation. We coat vehicle cargo floors, truck beds, trailer interiors, cargo van
+      floors, industrial floors, dock ramps, structural steel, containment areas, and facility surfaces.
   - question: Do you offer mobile on-site application?
     answer: >-
-      Yes — our mobile application unit serves job sites, fleet yards,
-      government facilities, and industrial locations throughout the DMV region.
-      For large-scale fleet programs or facility work, we bring the equipment to
-      you. Contact us to discuss scope and scheduling.
+      Yes — our mobile application unit serves job sites, fleet yards, government facilities, and industrial locations throughout the DMV region. For large-scale fleet programs or facility work, we
+      bring the equipment to you. Contact us to discuss scope and scheduling.
   - question: What's the difference between polyurea and epoxy?
     answer: >-
-      Polyurea is spray-applied, cures in seconds, and delivers exceptional
-      flexibility, impact resistance, and waterproofing. Epoxy is a
-      two-component rigid system with excellent chemical resistance and adhesion
-      — often used as a primer under polyurea topcoats. The right choice depends
-      on your surface, environment, and performance requirements. We'll specify
-      the correct system after assessing your application.
+      Polyurea is spray-applied, cures in seconds, and delivers exceptional flexibility, impact resistance, and waterproofing. Epoxy is a two-component rigid system with excellent chemical resistance
+      and adhesion — often used as a primer under polyurea topcoats. The right choice depends on your surface, environment, and performance requirements. We'll specify the correct system after
+      assessing your application.
   - question: Are your coatings compliant with government procurement requirements?
     answer: >-
-      We provide full application documentation, coating specification sheets,
-      and mil-thickness records on request — standard practice for government
-      and municipal jobs. We work with agencies submitting GSA bids and state
-      contract vehicles.
+      We provide full application documentation, coating specification sheets, and mil-thickness records on request — standard practice for government and municipal jobs. We work with agencies
+      submitting GSA bids and state contract vehicles.
   - question: How long does curing take before the surface is back in service?
     answer: >-
-      Polyurea systems cure in seconds and are typically back in service within
-      hours. Epoxy systems require 24–72 hours depending on temperature and
-      humidity. We provide exact return-to-service times for your specific
-      application at the time of quoting.
-seoTitle: >-
-  Industrial & Protective Coatings Rockville MD | Mobile Application | Capital
-  Upfitters
-seoDescription: >-
-  Professional industrial coating solutions in the DMV — polyurea, epoxy, and
-  protective coatings for commercial vehicles, government fleets, equipment, and
-  facilities. Mobile application available.
+      Polyurea systems cure in seconds and are typically back in service within hours. Epoxy systems require 24–72 hours depending on temperature and humidity. We provide exact return-to-service times
+      for your specific application at the time of quoting.
+seoTitle: Industrial & Protective Coatings Rockville MD | Mobile Application | Capital Upfitters
+seoDescription: 'Professional industrial coating solutions in the DMV — polyurea, epoxy, and protective coatings for commercial vehicles, government fleets, equipment, and facilities. Mobile application available.'
+geoCallout:
+  heading: INDUSTRIAL COATING SOLUTIONS ACROSS THE DMV.
+  body: >-
+    Capital Upfitters serves commercial operators, government agencies, and industrial facilities across Rockville, Bethesda, Gaithersburg, and Silver Spring — and throughout the DMV region for mobile
+    on-site applications. Our shop is at 12019 Nebel St in Rockville, MD, with mobile capability across Montgomery County, DC, and Northern Virginia.
+sectionTitles:
+  process: HOW IT WORKS.
+  testimonials: REAL RESULTS. REAL CLIENTS.
 ---
 Polyurea, epoxy, aliphatic, and aromatic protective coatings for commercial vehicles, government fleets, school buses, emergency equipment, civil infrastructure, industrial equipment, and facilities. Mobile application available — we come to your site.
 

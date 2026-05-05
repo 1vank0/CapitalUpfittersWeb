@@ -2,20 +2,14 @@
 title: Mobile Vehicle Detailing
 slug: mobile-detailing
 category: protection
-summary: >-
-  Professional detailing at your home, office, or fleet yard. Retail, fleet, and
-  government accounts welcome. No need to drop off — we bring the equipment to
-  you.
+summary: 'Professional detailing at your home, office, or fleet yard. Retail, fleet, and government accounts welcome. No need to drop off — we bring the equipment to you.'
 icon: droplets
 sortOrder: 7
 active: true
 hero:
   badge: We Come to You
   headline: MOBILE VEHICLE DETAILING.
-  subheadline: >-
-    Professional detailing at your home, office, or fleet yard. Retail, fleet,
-    and government accounts welcome. No need to drop off — we bring the
-    equipment to you.
+  subheadline: 'Professional detailing at your home, office, or fleet yard. Retail, fleet, and government accounts welcome. No need to drop off — we bring the equipment to you.'
   primaryCtaLabel: Book a Detail
   primaryCtaUrl: ../quote.html?service=mobile-detailing
   secondaryCtaLabel: Call (301) 304-1419
@@ -29,58 +23,40 @@ kpis:
     label: 'Professional equipment, eco-friendly products'
 process:
   - title: Book Online or Call
-    description: >-
-      Choose your package and add-ons. Tell us your vehicle type and location.
-      We confirm availability same business day.
+    description: Choose your package and add-ons. Tell us your vehicle type and location. We confirm availability same business day.
   - title: We Come to You
-    description: >-
-      Our mobile crew arrives at your home, office, or fleet yard at the
-      scheduled time with all equipment.
+    description: 'Our mobile crew arrives at your home, office, or fleet yard at the scheduled time with all equipment.'
   - title: Detail Performed
-    description: >-
-      Professional detailing completed to spec. Ceramic coating add-ons are
-      scheduled separately with our certified installers.
+    description: Professional detailing completed to spec. Ceramic coating add-ons are scheduled separately with our certified installers.
   - title: Done — Inspect & Drive
-    description: >-
-      Walk-through inspection before the crew leaves. Fleet accounts receive a
-      digital service record.
+    description: Walk-through inspection before the crew leaves. Fleet accounts receive a digital service record.
 faqs:
   - question: Do you offer detailing at your shop?
-    answer: >-
-      No — our detailing service is 100% mobile. Our crew comes to your home,
-      office, or fleet yard. This keeps your schedule flexible and eliminates
-      any need to drop off your vehicle.
+    answer: 'No — our detailing service is 100% mobile. Our crew comes to your home, office, or fleet yard. This keeps your schedule flexible and eliminates any need to drop off your vehicle.'
   - question: How long does each package take?
     answer: >-
-      Interior Basic: approximately 1–1.5 hours. Interior Complete: 2–3 hours.
-      Exterior Basic: 1–1.5 hours. Exterior Complete: 2–2.5 hours. Full interior
-      and exterior combos run 3–4.5 hours depending on vehicle size and
-      condition.
+      Interior Basic: approximately 1–1.5 hours. Interior Complete: 2–3 hours. Exterior Basic: 1–1.5 hours. Exterior Complete: 2–2.5 hours. Full interior and exterior combos run 3–4.5 hours depending
+      on vehicle size and condition.
   - question: Can I book interior and exterior together?
-    answer: >-
-      Yes — book any interior package and any exterior package together for a
-      full detail. Contact us or note it in your quote request and we'll confirm
-      combined pricing.
+    answer: Yes — book any interior package and any exterior package together for a full detail. Contact us or note it in your quote request and we'll confirm combined pricing.
   - question: How does fleet pricing work?
     answer: >-
-      Fleet accounts booking 3 or more vehicles qualify for volume pricing. We
-      set up a recurring service schedule — weekly, bi-weekly, or monthly — and
-      come to your facility. Call us or submit a quote request with your vehicle
-      count.
+      Fleet accounts booking 3 or more vehicles qualify for volume pricing. We set up a recurring service schedule — weekly, bi-weekly, or monthly — and come to your facility. Call us or submit a
+      quote request with your vehicle count.
   - question: Is the ceramic coating applied by the detailing crew?
     answer: >-
-      No — ceramic coating is applied by our certified Capital Upfitters
-      installers separately from the detailing crew. The detailing package preps
-      the surface and the coating appointment is scheduled afterward (often the
-      same or next day). It requires the Exterior Complete package as a
-      prerequisite.
-seoTitle: >-
-  Mobile Vehicle Detailing | Fleet, Retail & Government | Capital Upfitters
-  Rockville MD
-seoDescription: >-
-  Professional mobile vehicle detailing in Rockville MD — we come to you.
-  Interior and exterior packages for retail, fleet, and government. Add-on
-  ceramic coating available. Serving the DMV.
+      No — ceramic coating is applied by our certified Capital Upfitters installers separately from the detailing crew. The detailing package preps the surface and the coating appointment is scheduled
+      afterward (often the same or next day). It requires the Exterior Complete package as a prerequisite.
+seoTitle: 'Mobile Vehicle Detailing | Fleet, Retail & Government | Capital Upfitters Rockville MD'
+seoDescription: 'Professional mobile vehicle detailing in Rockville MD — we come to you. Interior and exterior packages for retail, fleet, and government. Add-on ceramic coating available. Serving the DMV.'
+geoCallout:
+  heading: MOBILE DETAILING ACROSS THE DMV.
+  body: >-
+    Our mobile detailing crew serves residential customers, businesses, and government facilities across Rockville, Bethesda, Gaithersburg, and Silver Spring. We bring the equipment to you — no
+    drop-off required. Fleet and government accounts served at your facility throughout Montgomery County and the broader DMV region.
+sectionTitles:
+  process: HOW IT WORKS.
+  testimonials: REAL CUSTOMERS. REAL RESULTS.
 ---
 Professional detailing at your home, office, or fleet yard. Retail, fleet, and government accounts welcome. No need to drop off — we bring the equipment to you.
 

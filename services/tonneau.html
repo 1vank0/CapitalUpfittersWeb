@@ -480,30 +480,30 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Why Tonneau</div>
-      <h2 id="benefits-heading">SECURE, SLEEK, AND SMARTER.</h2>
-      <p style="max-width:520px; margin: var(--space-3) auto 0;">A tonneau cover isn't just cosmetic. It secures your gear, protects your cargo from weather, and actually improves your truck's fuel economy at highway speeds.</p>
+      <h2 id="benefits-heading" data-cms-bind="benefits.heading">SECURE, SLEEK, AND SMARTER.</h2>
+      <p style="max-width:520px; margin: var(--space-3) auto 0;" data-cms-bind="benefits.intro">A tonneau cover isn't just cosmetic. It secures your gear, protects your cargo from weather, and actually improves your truck's fuel economy at highway speeds.</p>
     </div>
     <div class="benefit-cards">
       <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         </div>
-        <div class="benefit-title">150+ Brands in Stock</div>
-        <p class="benefit-desc">BAKFlip, Retrax, TruXedo, Extang, Roll-N-Lock, Access, Lund — we carry the brands that hold up. We'll match you to the right cover for how you use your truck.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[0].title">150+ Brands in Stock</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[0].description">BAKFlip, Retrax, TruXedo, Extang, Roll-N-Lock, Access, Lund — we carry the brands that hold up. We'll match you to the right cover for how you use your truck.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="benefit-title">Factory-Style Fit</div>
-        <p class="benefit-desc">Every cover we install uses the factory stake holes or bed rail clamps — zero drilling, no damage to your truck. Clean install, clean look, and no impact on resale value.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[1].title">Factory-Style Fit</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[1].description">Every cover we install uses the factory stake holes or bed rail clamps — zero drilling, no damage to your truck. Clean install, clean look, and no impact on resale value.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon" aria-hidden="true">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
         </div>
-        <div class="benefit-title">Improves Fuel Economy</div>
-        <p class="benefit-desc">An open truck bed creates significant drag at highway speeds. A tonneau cover reduces that drag and has been shown to improve fuel economy by 2–5% in real-world conditions.</p>
+        <div class="benefit-title" data-cms-bind="benefits.cards[2].title">Improves Fuel Economy</div>
+        <p class="benefit-desc" data-cms-bind="benefits.cards[2].description">An open truck bed creates significant drag at highway speeds. A tonneau cover reduces that drag and has been shown to improve fuel economy by 2–5% in real-world conditions.</p>
       </div>
     </div>
   </div>
@@ -514,7 +514,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Brands &amp; Pricing</div>
-      <h2 id="pricing-heading">THE COVERS WE CARRY.</h2>
+      <h2 id="pricing-heading" data-cms-bind="sectionTitles.pricing">THE COVERS WE CARRY.</h2>
       <p style="max-width:520px; margin: var(--space-3) auto 0;">We carry the top brands — from entry-level soft roll-up to premium aluminum retractable. Every cover professionally installed, factory fit, no drilling on most trucks.</p>
     </div>
 
@@ -784,7 +784,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Our Process</div>
-      <h2 id="process-heading">NO DRILLING. PERFECT FIT.</h2>
+      <h2 id="process-heading" data-cms-bind="sectionTitles.process">NO DRILLING. PERFECT FIT.</h2>
     </div>
     <div class="process-steps" data-cms-list="process">
       <template data-cms-item><div class="process-step"><div class="process-num"></div><div class="process-title" data-cms-bind="title"></div><p class="process-desc" data-cms-bind="description"></p></div></template>
@@ -818,8 +818,8 @@
     <div class="geo-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items:center;">
       <div>
         <div class="section-label" style="color:rgba(255,255,255,0.45);">Tonneau Covers in the DMV</div>
-        <h2 id="geo-heading-tonneau" style="color:#fff; margin-bottom: var(--space-5);">TONNEAU COVER INSTALLATION ACROSS THE DMV.</h2>
-        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);">
+        <h2 id="geo-heading-tonneau" style="color:#fff; margin-bottom: var(--space-5);" data-cms-bind="geoCallout.heading">TONNEAU COVER INSTALLATION ACROSS THE DMV.</h2>
+        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);" data-cms-bind="geoCallout.body">
           Truck owners across Rockville, Gaithersburg, Bethesda, and Silver Spring come to Capital Upfitters to find the right tonneau for their specific bed. We carry soft fold, hard fold, retractable, and roll-up covers and stock the most popular sizes for F-150, Silverado, Sierra, Ram 1500, Tacoma, and Tundra. Located at 12019 Nebel St in Rockville — minutes from I-270.
         </p>
         <!-- City links grid -->
@@ -870,7 +870,7 @@
   <div class="container container--narrow">
     <div class="reveal" style="text-align:center; margin-bottom: var(--space-10);">
       <div class="section-label" style="justify-content:center;">Customer Reviews</div>
-      <h2 id="testimonials-heading-tonneau">REAL CUSTOMERS. REAL RESULTS.</h2>
+      <h2 id="testimonials-heading-tonneau" data-cms-bind="sectionTitles.testimonials">REAL CUSTOMERS. REAL RESULTS.</h2>
     </div>
     <div class="testimonials-grid" style="grid-template-columns: repeat(2,1fr);">
       <div class="testimonial-card">
@@ -913,7 +913,7 @@
   <div class="container container--narrow">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">FAQ</div>
-      <h2 id="faq-heading">COMMON QUESTIONS.</h2>
+      <h2 id="faq-heading" data-cms-bind="sectionTitles.faqs">COMMON QUESTIONS.</h2>
     </div>
     <div class="faq-list reveal" data-cms-list="faqs"><template data-cms-item><div class="faq-item"><button class="faq-btn" aria-expanded="false"><span class="faq-question" data-cms-bind="question"></span><span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-answer"><p data-cms-bind="answer"></p></div></div></template>
       <div class="faq-item">
@@ -1078,147 +1078,6 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
     if(!expanded){btn.setAttribute('aria-expanded','true');document.getElementById(btn.getAttribute('aria-controls')).classList.add('open');}
   });
 });
-</script>
-
-<script>
-/* CMS hydration — tonneau */
-(function () {
-  'use strict';
-  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
-  var SLUG = 'tonneau';
-
-  /* ── helpers ── */
-  function setText(selectors, value) {
-    if (!value) return;
-    selectors.forEach(function (sel) {
-      document.querySelectorAll(sel).forEach(function (el) {
-        el.textContent = value;
-      });
-    });
-  }
-
-  function updateJsonLd(priceFrom, priceTo) {
-    document.querySelectorAll('script[type="application/ld+json"]').forEach(function (tag) {
-      try {
-        var data = JSON.parse(tag.textContent);
-        var graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
-        graph.forEach(function (node) {
-          if (node.offers && node.offers['@type'] === 'AggregateOffer') {
-            if (priceFrom) node.offers.lowPrice  = String(priceFrom);
-            if (priceTo)   node.offers.highPrice = String(priceTo);
-          }
-        });
-        tag.textContent = JSON.stringify(data);
-      } catch (e) {}
-    });
-  }
-
-  function buildFaqHtml(faqs) {
-    return faqs.map(function (faq, i) {
-      var q = faq.question || faq.name || '';
-      var a = faq.answer   || (faq.acceptedAnswer && faq.acceptedAnswer.text) || '';
-      var id = 'cms-faq-' + i;
-      return [
-        '<div class="faq-item">',
-        '  <button class="faq-btn" aria-expanded="false" aria-controls="' + id + '">',
-        '    <span class="faq-question">' + escHtml(q) + '</span>',
-        '    <span class="faq-icon" aria-hidden="true">',
-        '      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">',
-        '        <line x1="12" y1="5" x2="12" y2="19"/>',
-        '        <line x1="5"  y1="12" x2="19" y2="12"/>',
-        '      </svg>',
-        '    </span>',
-        '  </button>',
-        '  <div class="faq-answer" id="' + id + '">',
-        '    <p>' + escHtml(a) + '</p>',
-        '  </div>',
-        '</div>'
-      ].join('\n');
-    }).join('\n');
-  }
-
-  function escHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
-  function wireFaqAccordion(container) {
-    container.querySelectorAll('.faq-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var expanded = btn.getAttribute('aria-expanded') === 'true';
-        var answerId = btn.getAttribute('aria-controls');
-        var answer   = answerId ? document.getElementById(answerId) : null;
-        if (!answer) answer = btn.parentElement.querySelector('.faq-answer');
-        btn.setAttribute('aria-expanded', String(!expanded));
-        if (answer) answer.classList.toggle('open', !expanded);
-      });
-    });
-  }
-
-  /* ── tag main form ── */
-  var mainForm = document.querySelector('form');
-  if (mainForm && !mainForm.hasAttribute('data-cms-form')) {
-    mainForm.setAttribute('data-cms-form', 'retail');
-  }
-
-  /* ── fetch service data ── */
-  fetch(CMS_BASE + '/api/public/services?slug=' + SLUG)
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data) return;
-      var service = data.docs ? data.docs[0] : data;
-      if (!service) return;
-
-      /* price */
-      var priceLabel = service.priceLabel ||
-        (service.priceFrom ? 'From $' + service.priceFrom : null);
-      setText(['.service-price', '[data-cms="price"]'], priceLabel);
-
-      /* tagline */
-      setText(['.service-tagline', '[data-cms="tagline"]'], service.tagline);
-
-      /* turnaround */
-      setText(['.service-turnaround', '[data-cms="turnaround"]'], service.turnaround);
-
-      /* warranty */
-      setText(['.service-warranty', '[data-cms="warranty"]'], service.warranty);
-
-      /* SEO */
-      if (service.seo) {
-        if (service.seo.metaTitle)       document.title = service.seo.metaTitle;
-        if (service.seo.metaDescription) {
-          var metaDesc = document.querySelector('meta[name="description"]');
-          if (metaDesc) metaDesc.setAttribute('content', service.seo.metaDescription);
-        }
-      }
-
-      /* JSON-LD prices */
-      if (service.priceFrom || service.priceTo) {
-        updateJsonLd(service.priceFrom, service.priceTo);
-      }
-    })
-    .catch(function () { /* CMS unavailable — hardcoded content remains */ });
-
-  /* ── fetch FAQs ── */
-  fetch(CMS_BASE + '/api/public/faqs?service=' + SLUG)
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data) return;
-      var faqs = data.docs || data;
-      if (!Array.isArray(faqs) || faqs.length === 0) return;
-
-      /* find the FAQ container — support both class names used across pages */
-      var container = document.querySelector('.faq-list, .faq-accordion');
-      if (!container) return;
-
-      container.innerHTML = buildFaqHtml(faqs);
-      wireFaqAccordion(container);
-    })
-    .catch(function () { /* CMS unavailable — hardcoded FAQs remain */ });
-}());
 </script>
 
 <script src="../animations.js" defer></script>

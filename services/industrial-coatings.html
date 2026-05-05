@@ -1158,7 +1158,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Our Process</div>
-      <h2 id="process-heading">HOW IT WORKS.</h2>
+      <h2 id="process-heading" data-cms-bind="sectionTitles.process">HOW IT WORKS.</h2>
       <p style="max-width: 500px; margin: var(--space-3) auto 0; color: var(--color-text-secondary);">A systematic approach from first contact to final coat. Every job documented and done to spec.</p>
     </div>
     <div class="process-steps" data-cms-list="process">
@@ -1195,8 +1195,8 @@
     <div class="geo-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items:center;">
       <div>
         <div class="section-label" style="color:rgba(255,255,255,0.45);">Industrial Coating in the DMV</div>
-        <h2 id="geo-heading-ic" style="color:#fff; margin-bottom: var(--space-5);">INDUSTRIAL COATING SOLUTIONS ACROSS THE DMV.</h2>
-        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);">
+        <h2 id="geo-heading-ic" style="color:#fff; margin-bottom: var(--space-5);" data-cms-bind="geoCallout.heading">INDUSTRIAL COATING SOLUTIONS ACROSS THE DMV.</h2>
+        <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);" data-cms-bind="geoCallout.body">
           Capital Upfitters serves commercial operators, government agencies, and industrial facilities across Rockville, Bethesda, Gaithersburg, and Silver Spring — and throughout the DMV region for mobile on-site applications. Our shop is at 12019 Nebel St in Rockville, MD, with mobile capability across Montgomery County, DC, and Northern Virginia.
         </p>
         <!-- City links grid -->
@@ -1249,7 +1249,7 @@
   <div class="container container--narrow">
     <div class="reveal" style="text-align:center; margin-bottom: var(--space-10);">
       <div class="section-label" style="justify-content:center;">Customer Reviews</div>
-      <h2 id="testimonials-heading-ic">REAL RESULTS. REAL CLIENTS.</h2>
+      <h2 id="testimonials-heading-ic" data-cms-bind="sectionTitles.testimonials">REAL RESULTS. REAL CLIENTS.</h2>
     </div>
     <div class="testimonials-grid" style="grid-template-columns: repeat(2,1fr);">
       <div class="testimonial-card">
@@ -1532,115 +1532,6 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
     }
   });
 });
-</script>
-
-<script>
-/* CMS hydration — industrial-coatings */
-(function () {
-  'use strict';
-  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
-  var SLUG = 'industrial-coatings';
-
-  function setText(selectors, value) {
-    if (!value) return;
-    selectors.forEach(function (sel) {
-      document.querySelectorAll(sel).forEach(function (el) { el.textContent = value; });
-    });
-  }
-
-  function updateJsonLd(priceFrom, priceTo) {
-    document.querySelectorAll('script[type="application/ld+json"]').forEach(function (tag) {
-      try {
-        var data = JSON.parse(tag.textContent);
-        var graph = Array.isArray(data['@graph']) ? data['@graph'] : [data];
-        graph.forEach(function (node) {
-          if (node.offers && node.offers['@type'] === 'AggregateOffer') {
-            if (priceFrom) node.offers.lowPrice  = String(priceFrom);
-            if (priceTo)   node.offers.highPrice = String(priceTo);
-          }
-        });
-        tag.textContent = JSON.stringify(data);
-      } catch (e) {}
-    });
-  }
-
-  function buildFaqHtml(faqs) {
-    return faqs.map(function (faq, i) {
-      var q = faq.question || faq.name || '';
-      var a = faq.answer   || (faq.acceptedAnswer && faq.acceptedAnswer.text) || '';
-      var id = 'cms-faq-ic-' + i;
-      return [
-        '<div class="faq-item">',
-        '  <button class="faq-btn" aria-expanded="false" aria-controls="' + id + '">',
-        '    <span class="faq-question">' + escHtml(q) + '</span>',
-        '    <span class="faq-icon" aria-hidden="true">',
-        '      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">',
-        '        <line x1="12" y1="5" x2="12" y2="19"/>',
-        '        <line x1="5"  y1="12" x2="19" y2="12"/>',
-        '      </svg>',
-        '    </span>',
-        '  </button>',
-        '  <div class="faq-answer" id="' + id + '">',
-        '    <p>' + escHtml(a) + '</p>',
-        '  </div>',
-        '</div>'
-      ].join('\n');
-    }).join('\n');
-  }
-
-  function escHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  }
-
-  function wireFaqAccordion(container) {
-    container.querySelectorAll('.faq-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var expanded = btn.getAttribute('aria-expanded') === 'true';
-        var answerId = btn.getAttribute('aria-controls');
-        var answer   = answerId ? document.getElementById(answerId) : null;
-        if (!answer) answer = btn.parentElement.querySelector('.faq-answer');
-        btn.setAttribute('aria-expanded', String(!expanded));
-        if (answer) answer.classList.toggle('open', !expanded);
-      });
-    });
-  }
-
-  fetch(CMS_BASE + '/api/public/services?slug=' + SLUG)
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data) return;
-      var service = data.docs ? data.docs[0] : data;
-      if (!service) return;
-      var priceLabel = service.priceLabel || (service.priceFrom ? 'From $' + service.priceFrom : null);
-      setText(['.service-price', '[data-cms="price"]'], priceLabel);
-      setText(['.service-tagline', '[data-cms="tagline"]'], service.tagline);
-      if (service.seo) {
-        if (service.seo.metaTitle) document.title = service.seo.metaTitle;
-        if (service.seo.metaDescription) {
-          var metaDesc = document.querySelector('meta[name="description"]');
-          if (metaDesc) metaDesc.setAttribute('content', service.seo.metaDescription);
-        }
-      }
-      if (service.priceFrom || service.priceTo) {
-        updateJsonLd(service.priceFrom, service.priceTo);
-      }
-    })
-    .catch(function () {});
-
-  fetch(CMS_BASE + '/api/public/faqs?service=' + SLUG)
-    .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (data) {
-      if (!data) return;
-      var faqs = data.docs || data;
-      if (!Array.isArray(faqs) || faqs.length === 0) return;
-      var container = document.querySelector('.faq-list, .faq-accordion');
-      if (!container) return;
-      container.innerHTML = buildFaqHtml(faqs);
-      wireFaqAccordion(container);
-    })
-    .catch(function () {});
-}());
 </script>
 
 <script src="../animations.js" defer></script>
