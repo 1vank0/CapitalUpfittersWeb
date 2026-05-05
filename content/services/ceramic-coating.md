@@ -2,20 +2,16 @@
 title: Ceramic Coating That Actually Lasts
 slug: ceramic-coating
 category: protection
-summary: >-
-  IGL Coatings and System X certified installer. Professional-grade hydrophobic
-  protection — not the spray-on stuff from the auto parts store. Prices from
-  $400.
+summary: IGL Coatings and System X certified installer. Professional-grade hydrophobic protection — not the spray-on stuff from the auto parts store. Prices from $900.
 icon: sparkles
 priceFrom: 400
 sortOrder: 4
 active: true
 seoTitle: Ceramic Coating Rockville MD | IGL & System X Certified
-seoDescription: >-
-  IGL Coatings and System X certified ceramic coating installer in Rockville,
-  MD. Professional paint protection from $400. Call (301) 304-1419.
+seoDescription: 'IGL Coatings and System X certified ceramic coating installer in Rockville, MD. Professional paint protection from $900. Call (301) 304-1419.'
 ---
-IGL Coatings and System X certified installer. Professional-grade hydrophobic protection — not the spray-on stuff from the auto parts store. Prices from $400.
+
+IGL Coatings and System X certified installer. Professional-grade hydrophobic protection — not the spray-on stuff from the auto parts store. Prices from $900.
 
 ## PROTECTION THAT'S ACTUALLY PERMANENT.
 
