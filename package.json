@@ -5,7 +5,7 @@
   "description": "Capital Upfitters static marketing site, content edited via Tina CMS.",
   "scripts": {
     "build:cms": "node scripts/build-cms-data.js",
-    "build:tina": "tinacms build",
+    "build:tina": "tinacms build --skip-cloud-checks",
     "build": "npm run build:tina && npm run build:cms",
     "dev:tina": "tinacms dev -c \"echo 'static site—open index.html'\""
   },
