@@ -37,15 +37,28 @@ const slugify = (s) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
 
+// Recursively strip null/undefined/empty-string values so frontmatter stays tidy.
+const stripEmpty = (val) => {
+  if (val === null || val === undefined || val === '') return undefined
+  if (Array.isArray(val)) {
+    const out = val.map(stripEmpty).filter((v) => v !== undefined)
+    return out.length ? out : undefined
+  }
+  if (typeof val === 'object') {
+    const out = {}
+    for (const [k, v] of Object.entries(val)) {
+      const cleaned = stripEmpty(v)
+      if (cleaned !== undefined) out[k] = cleaned
+    }
+    return Object.keys(out).length ? out : undefined
+  }
+  return val
+}
+
 const writeMd = (filePath, data, body = '') => {
   const dir = path.dirname(filePath)
   fs.mkdirSync(dir, { recursive: true })
-  // Strip any null/empty values so frontmatter stays tidy
-  const cleanData = {}
-  for (const [k, v] of Object.entries(data)) {
-    if (v === null || v === undefined || v === '') continue
-    cleanData[k] = v
-  }
+  const cleanData = stripEmpty(data) || {}
   const out = matter.stringify(body || '', cleanData)
   fs.writeFileSync(filePath, out)
 }
@@ -169,6 +182,70 @@ function extractServiceBody($, $hero) {
   return (intro + sections.slice(0, 4).join('\n\n')).trim()
 }
 
+function extractHeroBlock($, $hero) {
+  if (!$hero || !$hero.length) return null
+  const badge = clean($hero.find('.badge').first().text())
+  const headline = textWithBreaks($, $hero.find('h1').first())
+  const subheadline = clean($hero.find('.page-hero-sub, .geo-hero-sub, .hero-sub').first().text())
+  const $btns = $hero.find('.hero-ctas a, .geo-hero-ctas a')
+  const $primary = $btns.filter('.btn-primary').first()
+  const $secondary = $btns.filter('.btn-outline, .btn-ghost').first()
+  return {
+    badge: badge || null,
+    headline: headline || null,
+    subheadline: subheadline || null,
+    primaryCtaLabel: clean($primary.text()) || null,
+    primaryCtaUrl: $primary.attr('href') || null,
+    secondaryCtaLabel: clean($secondary.text()) || null,
+    secondaryCtaUrl: $secondary.attr('href') || null,
+  }
+}
+
+function extractPricing($) {
+  const rows = []
+  $('.pricing-card').each((_, card) => {
+    const $c = $(card)
+    const label = clean($c.find('.pricing-name').text())
+    const price = clean($c.find('.pricing-price').text()).replace(/^\$?/, '$')
+    const note = clean($c.find('.pricing-sub').text())
+    if (label && price) rows.push({ label, price, note: note || null })
+  })
+  return rows
+}
+
+function extractKpis($) {
+  const out = []
+  $('.kpi-strip, .kpi-grid, .stats-strip, .stats-grid').first().find('.stat-number, .kpi-number').each((_, el) => {
+    const $el = $(el)
+    const value = clean($el.text())
+    const label = clean($el.next('.stat-label').text() || $el.parent().find('.stat-label').text())
+    if (value && label) out.push({ value, label })
+  })
+  return out
+}
+
+function extractProcess($) {
+  const out = []
+  $('.process-step').each((_, step) => {
+    const $s = $(step)
+    const title = clean($s.find('.process-title').text())
+    const description = clean($s.find('.process-desc').text())
+    if (title) out.push({ title, description: description || null })
+  })
+  return out
+}
+
+function extractFaqsInline($) {
+  const out = []
+  $('.faq-item').each((_, item) => {
+    const $i = $(item)
+    const question = clean($i.find('.faq-question').text())
+    const answer = clean($i.find('.faq-answer').text())
+    if (question && answer) out.push({ question, answer })
+  })
+  return out
+}
+
 function extractService(htmlPath) {
   const html = fs.readFileSync(htmlPath, 'utf8')
   const $ = cheerio.load(html)
@@ -182,6 +259,11 @@ function extractService(htmlPath) {
   const heroSub = clean($hero.find('.page-hero-sub').first().text())
   const seoTitle = clean($('title').text())
   const seoDescription = $('meta[name="description"]').attr('content') || ''
+  const heroBlock = extractHeroBlock($, $hero)
+  const pricing = extractPricing($)
+  const kpis = extractKpis($)
+  const process = extractProcess($)
+  const faqs = extractFaqsInline($)
 
   // Title — prefer a short, sentence-cased version of the H1 (without screaming caps)
   const niceH1 = h1
@@ -206,6 +288,11 @@ function extractService(htmlPath) {
       priceFrom: priceFrom ?? null,
       sortOrder: cfg.sortOrder,
       active: true,
+      hero: heroBlock,
+      pricing: pricing.length ? pricing : null,
+      kpis: kpis.length ? kpis : null,
+      process: process.length ? process : null,
+      faqs: faqs.length ? faqs : null,
       seoTitle: seoTitle || null,
       seoDescription: seoDescription || null,
     },
@@ -233,6 +320,27 @@ function extractGeo(htmlPath) {
   const seoTitle = clean($('title').text())
   const seoDescription = $('meta[name="description"]').attr('content') || ''
   const heroSub = clean($('.geo-hero-sub').first().text())
+  const $hero = $('.geo-hero, .page-hero').first()
+  const heroBlock = extractHeroBlock($, $hero)
+
+  // Directions block
+  let directionsTitle = ''
+  let directionsBody = ''
+  $('section').each((_, sec) => {
+    const $sec = $(sec)
+    const heading = clean($sec.find('h2').first().text())
+    if (!heading) return
+    if (/MINUTES AWAY|DIRECTIONS|FROM/i.test(heading)) {
+      directionsTitle = heading
+      const paras = []
+      $sec.find('p').each((__, p) => {
+        const t = clean($(p).text())
+        if (t && t.length > 25) paras.push(t)
+      })
+      directionsBody = paras.join('\n\n')
+      return false
+    }
+  })
 
   // Body: take "Local heading" intro and any "directions" / "about" copy
   const bodyParts = []
@@ -265,6 +373,9 @@ function extractGeo(htmlPath) {
       slug: fileSlug,
       city,
       state,
+      hero: heroBlock,
+      directionsTitle: directionsTitle || null,
+      directionsBody: directionsBody || null,
       seoTitle: seoTitle || null,
       seoDescription: seoDescription || null,
     },
@@ -299,10 +410,11 @@ function extractTestimonials(htmlPaths) {
       file: path.join(ROOT, 'content/testimonials', `${slug}.md`),
       data: {
         author: t.author || `Customer ${i}`,
+        authorMeta: t.meta || null,
         rating: t.rating || 5,
         featured: i <= 3,
       },
-      body: `${t.quote}${t.meta ? `\n\n_${t.meta}_` : ''}`,
+      body: t.quote,
     })
     i++
   }
@@ -501,11 +613,14 @@ function extractPages() {
     const titleCase =
       h1 && h1 === h1.toUpperCase() ? h1.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase()) : h1
 
+    const $hero = $('.page-hero, .hero').first()
+    const heroBlock = extractHeroBlock($, $hero)
     out.push({
       file: path.join(ROOT, 'content/pages', `${p.slug}.md`),
       data: {
         title: titleCase || p.label,
         slug: p.slug,
+        hero: heroBlock,
         seoTitle: seoTitle || null,
         seoDescription: seoDescription || null,
       },

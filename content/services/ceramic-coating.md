@@ -7,6 +7,69 @@ icon: sparkles
 priceFrom: 400
 sortOrder: 4
 active: true
+hero:
+  badge: IGL & System X Certified Installer
+  headline: CERAMIC COATING THAT ACTUALLY LASTS.
+  subheadline: >-
+    IGL Coatings and System X certified installer. Professional-grade
+    hydrophobic protection — not the spray-on stuff from the auto parts store.
+    Prices from $400.
+  primaryCtaLabel: Get a Free Quote
+  primaryCtaUrl: ../quote.html?service=ceramic-coating
+  secondaryCtaLabel: Call (301) 304-1419
+  secondaryCtaUrl: 'tel:3013041419'
+kpis:
+  - value: IGL & System X
+    label: Certified Installer
+  - value: 5–9 Year
+    label: Protection Life Span
+  - value: 2-Day
+    label: Full Decon & Cure Process
+process:
+  - title: Paint Assessment
+    description: >-
+      We inspect the paint under professional lighting for swirls,
+      contamination, and oxidation to determine what prep is required.
+  - title: Decontamination & Prep
+    description: >-
+      Wash, clay bar, iron decontamination. Paint correction if needed. The
+      surface must be perfect before any coating goes on.
+  - title: Ceramic Application
+    description: >-
+      Applied panel by panel in a controlled environment. Each layer is leveled
+      and inspected before moving to the next panel.
+  - title: Cure & Pickup
+    description: >-
+      The coating cures for 24–48 hours. We provide detailed aftercare
+      instructions and register your warranty before pickup.
+faqs:
+  - question: How long does ceramic coating last?
+    answer: >-
+      A professionally applied ceramic coating typically lasts 3–5 years with
+      proper maintenance. Some premium coatings we apply are rated for 7+ years.
+      Longevity depends on the product tier, how thorough the prep was, and how
+      you maintain the vehicle afterward. We'll walk you through everything at
+      pickup.
+  - question: Is prep work included in the price?
+    answer: >-
+      Surface decontamination is included in all pricing. Paint correction
+      (polishing out swirls, scratches, and oxidation) is quoted separately
+      based on the paint's actual condition — we assess before we quote. We
+      won't coat over defects, which is why some shops do and their results
+      don't last.
+  - question: What's the difference between ceramic coating and wax?
+    answer: >-
+      Wax sits on top of your paint and washes away within weeks. Ceramic
+      coating chemically bonds to the clear coat, creating a permanent
+      hydrophobic layer that repels water, blocks UV radiation, and resists
+      chemical contamination from bird droppings, road salt, and tree sap. It
+      lasts years — not weeks.
+  - question: Can I wash my car after ceramic coating?
+    answer: >-
+      You should avoid water contact for 5–7 days after application while the
+      coating fully cures. After that, washing becomes easier — the hydrophobic
+      surface causes water and dirt to slide right off. We'll give you a
+      detailed aftercare sheet when you pick up the vehicle.
 seoTitle: Ceramic Coating Rockville MD | IGL & System X Certified
 seoDescription: 'IGL Coatings and System X certified ceramic coating installer in Rockville, MD. Professional paint protection from $900. Call (301) 304-1419.'
 ---

@@ -9,6 +9,64 @@ summary: >-
 icon: lightbulb
 sortOrder: 13
 active: true
+hero:
+  badge: LED Lighting Upgrades
+  headline: LED LIGHT BARS & WORK LIGHTS.
+  subheadline: >-
+    See further. Work safer. Stand out. RIGID Industries and premium LED
+    lighting for trucks, fleets, and commercial vehicles — professionally
+    installed with integrated wiring.
+  primaryCtaLabel: Get a Quote
+  primaryCtaUrl: ../quote.html?service=lighting
+  secondaryCtaLabel: Call (301) 304-1419
+  secondaryCtaUrl: 'tel:3013041419'
+kpis:
+  - value: RIGID
+    label: Certified Installer
+  - value: Fleet
+    label: 'Government, Police & Commercial'
+  - value: Plug & Play
+    label: Clean Integrated Wiring on Most Installs
+process:
+  - title: Spec Your Lighting
+    description: >-
+      Tell us the use case — off-road, work site, fleet, or accent. We'll
+      recommend the right system.
+  - title: Mount Planning
+    description: >-
+      We plan mounting locations for maximum output with clean aesthetics. No
+      visible wire runs.
+  - title: Professional Wiring
+    description: >-
+      All lights wired to fuse box with appropriate relay and switch. No
+      wire-tap shortcuts.
+  - title: Sealed & Ready
+    description: >-
+      All penetrations sealed against moisture. Every install tested before you
+      leave.
+faqs:
+  - question: Do I need a relay for an LED light bar?
+    answer: >-
+      Yes — for any high-draw LED light bar (over 50W), a proper relay and fuse
+      setup is required. This protects your factory wiring and ensures the light
+      gets full voltage. We include proper relay wiring on all our light bar
+      installs.
+  - question: Are LED light bars legal to use on public roads in Maryland?
+    answer: >-
+      Most LED light bars are DOT-legal for off-road use only when mounted on
+      roof or bumper. Some SAE-compliant driving/fog lights are street-legal.
+      We'll advise on compliance during the consultation and mark
+      non-street-legal lights appropriately.
+  - question: Can you wire lights to work with my factory fog light switch?
+    answer: >-
+      Yes — on many trucks we can integrate new LED lights to switch on with
+      your factory fog light controls. Other setups use a clean, hidden switch
+      panel. We'll confirm what's possible for your specific truck.
+  - question: Do you do LED upgrades for commercial fleets?
+    answer: >-
+      Yes — fleet lighting is a specialty. We can spec and install standardized
+      packages across multiple vehicles, maintain fleet records, and work with
+      government procurement requirements. Call us for fleet pricing.
 seoTitle: >-
   LED Light Bars & Work Lights Rockville MD | RIGID Industries, Putco | Capital
   Upfitters

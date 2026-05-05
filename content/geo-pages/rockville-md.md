@@ -3,6 +3,15 @@ title: 'Vehicle Upfitting In Rockville, Md.'
 slug: rockville-md
 city: Rockville
 state: MD
+hero:
+  headline: 'VEHICLE UPFITTING IN ROCKVILLE, MD.'
+  subheadline: >-
+    Capital Upfitters is your local shop — right here in Rockville at 12019
+    Nebel Street. Walk-ins welcome Mon–Fri 9:30am–4:30pm.
+  primaryCtaLabel: Get a Quote
+  primaryCtaUrl: ../quote.html
+  secondaryCtaLabel: Call (301) 304-1419
+  secondaryCtaUrl: 'tel:3013041419'
 seoTitle: Vehicle Upfitting in Rockville MD | Capital Upfitters
 seoDescription: >-
   Capital Upfitters is Rockville's neighborhood upfitter at 12019 Nebel Street.

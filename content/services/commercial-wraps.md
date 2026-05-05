@@ -9,6 +9,24 @@ summary: >-
 icon: palette
 sortOrder: 14
 active: true
+hero:
+  badge: Fleet & Advertising
+  headline: TURN YOUR VEHICLES INTO MOVING BILLBOARDS.
+  subheadline: >-
+    Commercial vehicle wraps, fleet branding, and vinyl advertising graphics for
+    retail owners, commercial fleets, and government agencies. Premium 3M and
+    Avery Dennison materials. Professionally installed in Rockville, MD.
+  primaryCtaLabel: Get a Free Quote
+  primaryCtaUrl: ../quote.html?service=commercial-wraps
+  secondaryCtaLabel: Call (301) 304-1419
+  secondaryCtaUrl: 'tel:3013041419'
+kpis:
+  - value: 3M & Avery
+    label: Premium Certified Materials
+  - value: 'Fleet, Gov & Retail'
+    label: All Vehicle Types
+  - value: 1-Yr Warranty
+    label: On All Wrap Installations
 seoTitle: Commercial Vehicle Wraps Rockville MD | Fleet Branding
 seoDescription: >-
   Commercial vehicle wraps and fleet branding in Rockville, MD. Full wraps,

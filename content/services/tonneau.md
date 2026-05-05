@@ -9,6 +9,68 @@ icon: box
 priceFrom: 300
 sortOrder: 2
 active: true
+hero:
+  badge: 'Folding, Roll-Up & Retractable'
+  headline: TONNEAU COVERS FOR EVERY TRUCK AND BUDGET.
+  subheadline: >-
+    Folding, roll-up, retractable, and hard panel covers. 150+ brands.
+    Professional installation — no drilling, factory fit. Starting from $300.
+  primaryCtaLabel: Get a Free Quote
+  primaryCtaUrl: ../quote.html?service=tonneau
+  secondaryCtaLabel: Call (301) 304-1419
+  secondaryCtaUrl: 'tel:3013041419'
+kpis:
+  - value: Soft & Hard
+    label: 'Fold, Roll & Retractable Styles'
+  - value: 1 hr
+    label: Most Installs Same Day
+  - value: All Makes
+    label: 'Ford, RAM, GM, Toyota & More'
+process:
+  - title: Vehicle Confirmation
+    description: >-
+      We confirm your bed size, cab configuration, and any accessories
+      (toolboxes, rails) that affect cover selection.
+  - title: Product Selection
+    description: >-
+      We match you to the right cover for your use case and budget from our
+      inventory of 150+ brands.
+  - title: Clean Install
+    description: >-
+      Mounted using stake holes or clamp hardware — no drilling. Weather seals
+      are adjusted for a tight, factory-style fit.
+  - title: Demo & Pickup
+    description: >-
+      We walk you through operation and adjustment. Most installs done in 1–2
+      hours. Ready same day.
+faqs:
+  - question: Will a tonneau cover fit my truck?
+    answer: >-
+      Tonneau covers are available for virtually all popular truck models —
+      F-150, Silverado, Ram, Tundra, Tacoma, Colorado, Ranger, and more. We
+      carry vehicle-specific covers that use existing mounting points with no
+      drilling required. Tell us your year, make, model, and bed size and we'll
+      confirm availability.
+  - question: Do tonneau covers improve gas mileage?
+    answer: >-
+      Yes. An open truck bed acts like a parachute at highway speeds. A tonneau
+      cover reduces that aerodynamic drag, with independent tests showing 2–5%
+      improvements in fuel economy. Hard and retractable covers tend to
+      outperform soft covers in this regard since they create a completely
+      sealed surface.
+  - question: Can I use the full bed with a tonneau cover?
+    answer: >-
+      It depends on the cover type. Folding covers (soft and hard) fold toward
+      the cab giving full access to the rear portion, or push completely forward
+      for total bed access. Roll-up and retractable covers roll/retract to the
+      cab end when fully opened. If you regularly haul tall or long cargo, a
+      folding cover typically works best.
+  - question: How long does installation take?
+    answer: >-
+      Most tonneau cover installations take 1–2 hours. We don't drill into your
+      truck — covers mount with clamps or stake hole hardware. Same-day
+      installation is available on most in-stock covers. Call us to confirm
+      availability for your specific truck before booking.
 seoTitle: Tonneau Covers Rockville MD | 150+ Brands In Stock
 seoDescription: >-
   Folding, roll-up, retractable, and hard panel tonneau covers in Rockville, MD.

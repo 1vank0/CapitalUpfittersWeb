@@ -8,6 +8,60 @@ summary: >-
 icon: wrench
 sortOrder: 12
 active: true
+hero:
+  badge: Exterior Protection & Style
+  headline: EXTERIOR ACCESSORIES & ARMOR.
+  subheadline: >-
+    Protect your paint, guard your grille, and complete your truck's look.
+    Fender flares, mud flaps, grille guards, bumpers, and more — installed and
+    ready.
+  primaryCtaLabel: Get a Quote
+  primaryCtaUrl: ../quote.html?service=exterior
+  secondaryCtaLabel: Call (301) 304-1419
+  secondaryCtaUrl: 'tel:3013041419'
+kpis:
+  - value: Protection
+    label: 'Guard against rocks, road debris & damage'
+  - value: Custom Fit
+    label: 'Vehicle-specific parts, not universal'
+  - value: Same Week
+    label: Most installs scheduled within the week
+process:
+  - title: Choose Your Accessories
+    description: >-
+      Tell us what you want — protection, looks, or both. We'll recommend the
+      right brands for your truck.
+  - title: Parts Ordered
+    description: >-
+      Vehicle-specific parts ordered to guarantee fit. Most in-stock within 3–5
+      days.
+  - title: Professional Install
+    description: >-
+      Bolt-on installation. Wiring integrated where needed (fog lights,
+      sensors).
+  - title: Ready to Roll
+    description: Finished and ready. Your truck looks better and is protected.
+faqs:
+  - question: Will fender flares affect my truck's aerodynamics?
+    answer: >-
+      OE-style fender flares have minimal aerodynamic impact since they follow
+      the factory body contour. Cut-out/wide-body flares have a slightly larger
+      profile but the difference in fuel economy is negligible for most drivers.
+  - question: Do grille guards affect airbag deployment?
+    answer: >-
+      Quality grille guards from reputable brands (Go Rhino, Ranch Hand, Westin)
+      are engineered to not interfere with factory crash sensors or airbag
+      deployment. We only install brands that meet or exceed these standards.
+  - question: Can I add a winch to an aftermarket bumper?
+    answer: >-
+      Most Ranch Hand and Fab Fours front bumpers are winch-ready with a
+      built-in receiver. WARN and Superwinch are common pairings. Ask us about
+      the full setup when requesting a quote.
+  - question: Do you install WeatherTech products?
+    answer: >-
+      Yes — we install WeatherTech mud flaps and Husky Liners splash guards.
+      These are precision-fit laser-measured products that look factory
+      installed and require professional installation to seat correctly.
 seoTitle: >-
   Exterior Accessories | Fender Flares, Bumpers & Grille Guards | Capital
   Upfitters Rockville MD

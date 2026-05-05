@@ -3,6 +3,30 @@ title: 'Vehicle Upfitting For Gaithersburg, Md.'
 slug: gaithersburg-md
 city: Gaithersburg
 state: MD
+hero:
+  headline: 'VEHICLE UPFITTING FOR GAITHERSBURG, MD.'
+  subheadline: >-
+    Serving Gaithersburg and Montgomery County from our Rockville shop — less
+    than 10 minutes away.
+  primaryCtaLabel: Get a Quote
+  primaryCtaUrl: ../quote.html
+  secondaryCtaLabel: Call (301) 304-1419
+  secondaryCtaUrl: 'tel:3013041419'
+directionsTitle: UNDER 10 MINUTES AWAY
+directionsBody: >-
+  12019 Nebel Street, Rockville MD 20852
+
+
+  Via I-270 South: Head south on I-270 from Gaithersburg toward Rockville. Take
+  Exit 4 (Democracy Blvd). Turn east on Democracy Blvd, then south on Nebel St.
+
+
+  Via Rockville Pike (MD-355): Head south on Rockville Pike through North
+  Bethesda. Turn left on Edmonston Dr or Montrose Rd, then right on Nebel St.
+
+
+  Walk-ins welcome Mon–Fri 9:30am–4:30pm. Only 5–8 miles from most Gaithersburg
+  locations.
 seoTitle: Vehicle Upfitting Near Gaithersburg MD | Capital Upfitters
 seoDescription: >-
   Serving Gaithersburg and Montgomery County from our Rockville shop — under 10

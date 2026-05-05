@@ -9,6 +9,82 @@ icon: truck
 priceFrom: 575
 sortOrder: 1
 active: true
+hero:
+  badge: Authorized Patriot Liner Dealer
+  headline: THE LAST BEDLINER YOUR TRUCK WILL EVER NEED.
+  subheadline: >-
+    Authorized Patriot Liner dealer. Premium polyurea formula — heated to 155°F,
+    2,000 PSI. Dry in under 10 seconds. Lifetime warranty.
+  primaryCtaLabel: Get a Free Quote
+  primaryCtaUrl: ../quote.html?service=bedliner
+  secondaryCtaLabel: Call (301) 304-1419
+  secondaryCtaUrl: 'tel:3013041419'
+pricing:
+  - label: Compact Truck
+    price: $575
+    note: Up to 5ft bed • + tax
+  - label: Standard Truck
+    price: $595
+    note: Up to 6.5ft bed • + tax
+  - label: HD & Long Bed
+    price: $635+
+    note: 'HD: $635 • Long 8ft: $675 • + tax'
+kpis:
+  - value: '5,000+'
+    label: Beds Lined in the DMV
+  - value: Lifetime
+    label: Manufacturer Warranty
+  - value: 2–3 hrs
+    label: Typical Install Time
+process:
+  - title: Inspect & Assess
+    description: >-
+      We inspect the bed for rust, damage, or accessories that need to be
+      removed prior to application.
+  - title: Surface Prep
+    description: >-
+      The bed is cleaned, sanded, and masked. Proper prep ensures maximum
+      adhesion and a clean edge line.
+  - title: Spray Application
+    description: >-
+      Patriot Liner is applied at 155°F, 2,000 PSI. Dries in under 10 seconds
+      for a seamless, permanent bond.
+  - title: Cure & Pickup
+    description: >-
+      Your truck is ready in 2–3 hours. We do a final inspection before you pick
+      it up, warranty registered.
+faqs:
+  - question: How long does the install take?
+    answer: >-
+      Most installs take 2–3 hours from drop-off to pickup. We recommend
+      scheduling a morning appointment so your truck is ready by early
+      afternoon. Same-day service is typically available.
+  - question: What sets Patriot Liner apart?
+    answer: >-
+      While many spray-on bedliner brands exist, many share similar core
+      chemistry. Patriot Liner is engineered with a refined polyurea formulation
+      that delivers a deeper, richer black finish and enhanced UV resistance and
+      durability (lab proven). Its advanced application characteristics allow it
+      to lay down smoother and more consistently, creating a clean, uniform
+      finish that stands out. Combined with a lifetime warranty, it's built for
+      customers who want both durability and a premium look.
+  - question: How much does it cost?
+    answer: >-
+      Pricing starts at $575 for compact trucks (up to 5ft bed), $595 for
+      standard (up to 6.5ft), $635 for HD trucks, and $675 for long 8ft beds.
+      Add +$200 for the Premium UV+ formula upgrade. All prices plus tax. Get an
+      instant quote online or call us at (301) 304-1419.
+  - question: Do you do custom colors?
+    answer: >-
+      Yes. While black is the standard color, Patriot Liner is available in
+      custom colors. Custom color requests may require additional lead time.
+      Contact us to discuss your options before booking.
+  - question: Can you spray liner something besides a truck bed?
+    answer: >-
+      Yes — Patriot Liner bonds to metal, wood, concrete, and fiberglass. We
+      regularly coat trailer beds, van floors, boat gunwales, garage floors,
+      steps, and commercial vehicle cargo areas. Call us and describe your
+      surface — if it can be prepped properly, we can coat it.
 seoTitle: Spray-On Bedliner Rockville MD | Patriot Liner Dealer
 seoDescription: >-
   Patriot Liner spray-on bedliners in Rockville MD — trucks, trailers, marine,

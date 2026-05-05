@@ -9,6 +9,75 @@ summary: >-
 icon: sun
 sortOrder: 6
 active: true
+hero:
+  badge: Professional Window Tinting
+  headline: WINDOW TINTING DONE RIGHT.
+  subheadline: >-
+    Heat rejection, UV protection, and privacy — installed with precision-cut
+    film and zero bubbles. We tint cars, trucks, SUVs, and vans at our Rockville
+    MD shop.
+  primaryCtaLabel: Get a Quote
+  primaryCtaUrl: ../quote.html
+  secondaryCtaLabel: Call (301) 304-1419
+  secondaryCtaUrl: 'tel:3013041419'
+kpis:
+  - value: 99%
+    label: UV Ray Rejection (Ceramic Film)
+  - value: MD Legal
+    label: All installs comply with Maryland tint law
+  - value: Lifetime
+    label: Warranty on ceramic film
+process:
+  - title: Choose Your Film
+    description: >-
+      Tell us your vehicle and goals — heat, privacy, or both. We'll recommend
+      the right film and VLT percentage for Maryland legal compliance.
+  - title: Precision Cut
+    description: >-
+      Your vehicle's windows are measured and film is computer-cut to exact
+      dimensions. No trimming on glass — zero scratch risk.
+  - title: Clean Room Install
+    description: >-
+      Film applied in our dust-controlled shop environment. Squeegeed flat,
+      edges sealed, no bubbles, no fingers.
+  - title: Cure & Inspect
+    description: >-
+      Film cures over 3–5 days (you'll see slight haziness initially — this is
+      normal). We inspect before you leave and warranty every install.
+faqs:
+  - question: Is window tinting legal in Maryland?
+    answer: >-
+      Maryland allows tinting on all windows EXCEPT the windshield (only the top
+      5 inches). Front side windows must transmit more than 35% visible light
+      (VLT). Rear side windows and rear window can be any darkness. All our
+      installs comply with Maryland law — we won't install illegal percentages.
+  - question: How long does window tint installation take?
+    answer: >-
+      Standard dyed or carbon film installs typically take 1.5–3 hours depending
+      on vehicle size. Ceramic film takes slightly longer due to precision
+      handling. Most vehicles are ready same-day.
+  - question: 'What''s the difference between dyed, carbon, and ceramic tint?'
+    answer: >-
+      Dyed film provides basic privacy and glare reduction. Carbon film adds
+      better heat rejection and a matte appearance that doesn't fade. Ceramic
+      film uses nano-ceramic particles for maximum heat (60%) and UV (99%)
+      rejection without any color or signal interference. Ceramic is
+      significantly more effective in Maryland summers.
+  - question: 'Will tint interfere with my GPS, phone signal, or radar detector?'
+    answer: >-
+      Carbon and ceramic films do not interfere with any electronics. Older
+      metallic films can cause GPS and cell signal issues — we do not install
+      metallic films for this reason.
+  - question: How long does tint take to cure?
+    answer: >-
+      Window tint fully cures in 3–7 days. You may see slight haziness or small
+      water bubbles during this period — this is normal and will disappear as
+      the film cures. Avoid rolling windows down for the first 3 days.
+  - question: Can I add tint to my ceramic-coated vehicle?
+    answer: >-
+      Yes — in fact, our Ceramic Tint + Ceramic Coating bundle is a popular
+      combo. We coordinate both services in the same visit. Tint is applied to
+      glass only; it doesn't affect or interact with paint coating.
 seoTitle: Window Tinting Rockville MD | Ceramic & Standard Tint | Capital Upfitters
 seoDescription: >-
   Professional window tinting in Rockville MD — standard dyed, carbon, and

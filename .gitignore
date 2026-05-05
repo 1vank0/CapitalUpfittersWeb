@@ -15,3 +15,4 @@ node_modules/
 /admin
 tina/__generated__
 cms-data.json
+.vercel/

@@ -8,6 +8,59 @@ summary: >-
 icon: briefcase
 sortOrder: 10
 active: true
+hero:
+  badge: Bed Organization & Storage
+  headline: TOOLBOXES & BED STORAGE SYSTEMS.
+  subheadline: >-
+    Keep your tools organized, secure, and accessible. From simple crossover
+    boxes to full DECKED drawer systems — we install the right setup for your
+    workflow.
+  primaryCtaLabel: Get a Quote
+  primaryCtaUrl: ../quote.html?service=toolboxes
+  secondaryCtaLabel: Call (301) 304-1419
+  secondaryCtaUrl: 'tel:3013041419'
+kpis:
+  - value: $300+
+    label: Entry-level crossover boxes
+  - value: CamLocker & DECKED
+    label: Premium brands in stock
+  - value: Weatherproof
+    label: 'Sealed against rain, dust & theft'
+process:
+  - title: Choose Your Box
+    description: >-
+      Tell us your truck and how you use it — crossover, side-mount, or full
+      drawer system.
+  - title: Confirm Fitment
+    description: >-
+      We confirm compatibility with your bed size, existing gear (bedliner,
+      tonneau, etc.).
+  - title: Install
+    description: Bolt-on install with proper sealing. Most installs done same day.
+  - title: Organized & Locked
+    description: 'Drive off with everything secured, organized, and weatherproof.'
+faqs:
+  - question: Can I use a toolbox with a tonneau cover?
+    answer: >-
+      It depends on the combination. Low-profile crossover boxes work with most
+      soft tonneau covers. DECKED drawer systems are compatible with most
+      hard-fold and retractable covers. Let us know what you have — we'll
+      confirm compatibility before ordering.
+  - question: Will a toolbox work with my bedliner?
+    answer: >-
+      Yes — toolboxes install on top of your bed rails, so a spray-on bedliner
+      underneath is no issue. In fact, we recommend getting the liner first,
+      then the toolbox.
+  - question: Do you install DECKED systems?
+    answer: >-
+      Yes — we're an authorized DECKED installer. DECKED drawer systems are
+      vehicle-specific and require proper installation for the drawers to seal
+      and slide correctly. We handle the full install.
+  - question: What's the most secure toolbox option?
+    answer: >-
+      CamLocker and UWS boxes both use high-quality rotary locks with stainless
+      hardware. For maximum security, add a bed-mounted deadbolt or ask us about
+      cable lock options.
 seoTitle: >-
   Truck Toolboxes & Bed Storage | CamLocker, DECKED, Dee Zee | Capital Upfitters
   Rockville MD
