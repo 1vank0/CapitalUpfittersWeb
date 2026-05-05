@@ -2,7 +2,7 @@
 title: Hitch Installation Done Right. Done Fast
 slug: hitches
 category: truck-accessories
-summary: Class I–III hitches for any vehicle. Stealth Hitch specialists. 150+ brands in stock. Most installs complete in 2–3 hours.
+summary: Class III hitches for any vehicle. Stealth Hitch specialists. 150+ brands in stock. Most installs complete in 2–3 hours.
 icon: link
 sortOrder: 8
 active: true
