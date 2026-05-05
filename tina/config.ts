@@ -1,5 +1,6 @@
 import { defineConfig } from 'tinacms'
 import { aiAssistField } from './components/AiAssistField'
+import { RepetitionCheckField } from './components/RepetitionCheckField'
 
 // Tina expects a plain branch name (e.g. 'main'). Strip any leading 'refs/heads/' or path segments.
 const rawBranch =
@@ -121,6 +122,18 @@ export default defineConfig({
           { type: 'string', name: 'slug', label: 'URL Slug', required: true, description: 'Used in the URL: /services/<slug>.html. Lowercase, dashes only.' },
           { type: 'string', name: 'category', label: 'Category', description: 'Group used for filtering — e.g. "bedliners", "protection", "truck-accessories".' },
           aiAssistField({ type: 'string', name: 'summary', label: 'Short Summary', ui: { component: 'textarea' }, description: 'One-sentence description shown in service cards on the homepage and listings.' }, { lines: 2, maxTokens: 200, promptHint: 'e.g. "under 20 words", "more SEO-friendly", "highlight warranty"' }),
+          {
+            type: 'string',
+            name: '_repetitionCheck',
+            label: 'Copy Variety Check',
+            description: 'Automatically warns if Summary, Hero Badge, and Hero Subheadline say the same thing — and rewrites them with AI.',
+            ui: {
+              component: RepetitionCheckField,
+              // Never persist this virtual field to the markdown file.
+              parse: () => undefined,
+              format: () => undefined,
+            },
+          },
           { type: 'string', name: 'icon', label: 'Icon', description: 'Lucide icon name (e.g. "truck", "shield", "sparkles"). See lucide.dev for options.' },
           { type: 'number', name: 'priceFrom', label: 'Starting Price ($)', description: 'Minimum price shown as "From $X". Leave blank for "Custom Quote".' },
           { type: 'number', name: 'sortOrder', label: 'Sort Order', description: 'Lower numbers appear first on listings. 1 = top.' },
