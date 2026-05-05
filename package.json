@@ -1,0 +1,20 @@
+{
+  "name": "capital-upfitters-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Capital Upfitters static marketing site, content edited via Tina CMS.",
+  "scripts": {
+    "build:cms": "node scripts/build-cms-data.js",
+    "build:tina": "tinacms build",
+    "build": "npm run build:tina && npm run build:cms",
+    "dev:tina": "tinacms dev -c \"echo 'static site—open index.html'\""
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^1.9.0",
+    "gray-matter": "^4.0.3",
+    "tinacms": "^2.7.0"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
