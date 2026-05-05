@@ -1,77 +1,70 @@
 /**
- * Capital Upfitters — CMS Integration Layer
- * Connects static Phase 1 site to live Payload CMS / Upfit Portal.
- * Drop this script tag on any page: <script src="/cms-integration.js" defer></script>
+ * Capital Upfitters — CMS Integration Layer (Tina-powered)
+ * Reads /cms-data.json (built from content/*.md by Tina) at page load.
+ * Drop this on any page: <script src="/cms-integration.js" defer></script>
  *
  * Failure model: every fetch is wrapped so the page always renders the
  * hardcoded HTML below as the fallback. CMS is purely additive.
  */
 
-const CMS_URL = 'https://capital-upfitters-cms.vercel.app'
+const CMS_DATA_URL = '/cms-data.json'
+
+let _cachedData = null
+async function _loadData() {
+  if (_cachedData) return _cachedData
+  try {
+    const res = await fetch(CMS_DATA_URL, { cache: 'no-cache' })
+    _cachedData = await res.json()
+  } catch {
+    _cachedData = {}
+  }
+  return _cachedData
+}
 
 window.CU_CMS = {
 
-  // ─── Submit any form to the CMS leads collection ────────────────────────────
+  // ─── Submit lead form via mailto: fallback ──────────────────────────────────
+  // Replace this with Formspree, Web3Forms, or a Vercel serverless function
+  // when you wire a real backend. For now, opens the user's email client.
   async submitLead(formData) {
-    try {
-      const res = await fetch(`${CMS_URL}/api/public/submit-lead`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
-      return await res.json()
-    } catch {
-      return { error: 'Network error — please call us directly.' }
-    }
+    const settings = (await _loadData()).settings || {}
+    const to = settings.email || 'CapitalUpfitters@gmail.com'
+    const subject = `New ${formData.leadType || 'lead'} from ${formData.source || 'website'}`
+    const body = Object.entries(formData)
+      .map(([k, v]) => `${k}: ${v}`)
+      .join('\n')
+    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    window.location.href = mailto
+    return { success: true, refId: 'mailto-' + Date.now() }
   },
 
-  // ─── Load featured testimonials ─────────────────────────────────────────────
   async getTestimonials(featured = true) {
-    try {
-      const res = await fetch(`${CMS_URL}/api/public/testimonials?featured=${featured}`)
-      const data = await res.json()
-      return data.docs || []
-    } catch {
-      return []
-    }
+    const data = await _loadData()
+    const list = data.testimonials || []
+    return featured ? list.filter(t => t.featured) : list
   },
 
-  // ─── Load services (all or by category) ────────────────────────────────────
   async getServices(category = null) {
-    try {
-      const url = category
-        ? `${CMS_URL}/api/public/services?category=${category}`
-        : `${CMS_URL}/api/public/services`
-      const res = await fetch(url)
-      const data = await res.json()
-      return data.docs || []
-    } catch {
-      return []
-    }
+    const data = await _loadData()
+    let list = data.services || []
+    if (category) list = list.filter(s => s.category === category)
+    return list
   },
 
-  // ─── Load business settings (phone, hours, urgency banner) ──────────────────
   async getSettings() {
-    try {
-      const res = await fetch(`${CMS_URL}/api/public/settings`)
-      return await res.json()
-    } catch {
-      return null
-    }
+    return (await _loadData()).settings || null
   },
 
-  // ─── Load gallery images ────────────────────────────────────────────────────
-  async getGallery(category = null) {
-    try {
-      const url = category
-        ? `${CMS_URL}/api/public/gallery?category=${category}`
-        : `${CMS_URL}/api/public/gallery`
-      const res = await fetch(url)
-      const data = await res.json()
-      return data.docs || []
-    } catch {
-      return []
-    }
+  async getFAQs() {
+    return (await _loadData()).faqs || []
+  },
+
+  async getGeoPages() {
+    return (await _loadData()).geoPages || []
+  },
+
+  async getGallery() {
+    return [] // gallery now lives in /assets/, no CMS layer
   },
 
   // ─── Auto-wire all forms on the page ────────────────────────────────────────
@@ -84,20 +77,17 @@ window.CU_CMS = {
           submitBtn.disabled = true
           submitBtn.textContent = 'Sending...'
         }
-
         const formData = Object.fromEntries(new FormData(form))
         formData.leadType = form.dataset.cmsForm || 'retail'
         formData.source = window.location.pathname.replace('/', '') || 'home'
-
         const result = await window.CU_CMS.submitLead(formData)
-
         if (result.success) {
           form.innerHTML = `
             <div style="text-align:center;padding:2rem;">
-              <div style="font-size:2rem;margin-bottom:1rem;">✓</div>
-              <strong>Request received!</strong><br>
-              Reference: <code>${result.refId}</code><br>
-              <small>We'll contact you within 4 hours.</small>
+              <div style="font-size:2rem;margin-bottom:1rem;">✉</div>
+              <strong>Email opened.</strong><br>
+              Send the message and we'll reply within 4 hours.<br>
+              <small>Or call us directly.</small>
             </div>
           `
         } else {
@@ -111,21 +101,17 @@ window.CU_CMS = {
     })
   },
 
-  // ─── Sync urgency banner text from CMS settings ─────────────────────────────
   async syncUrgencyBanner() {
     const settings = await window.CU_CMS.getSettings()
-    if (!settings?.urgency?.enabled) return
+    if (!settings) return
     const banner = document.querySelector(
       '.cu-urgency-banner, #urgencyBanner, [data-urgency-banner], .announce-bar p, .cro-bar-msg'
     )
-    if (banner && settings.urgency.message1) {
-      banner.textContent = settings.urgency.message1
+    if (banner && settings.urgency_message_1) {
+      banner.textContent = settings.urgency_message_1
     }
   },
 
-  // ─── Sync services grid — only replaces if CMS returns 4+ services ────────
-  // Targets <div data-cms-services-grid> with hardcoded children as fallback.
-  // Children stay in the DOM if CMS is unreachable or returns too few records.
   async syncServicesGrid() {
     const grid = document.querySelector('[data-cms-services-grid]')
     if (!grid) return
@@ -133,10 +119,10 @@ window.CU_CMS = {
     if (!services || services.length < 4) return // keep hardcoded fallback
     const cards = services.slice(0, 6).map((s, i) => {
       const slug = s.slug || ''
-      const title = s.title || s.name || ''
-      const blurb = s.shortDescription || s.summary || ''
-      const tag = s.tagline || s.badge || ''
-      const price = s.startingPrice || s.priceFrom || ''
+      const title = s.title || ''
+      const blurb = s.summary || ''
+      const tag = s.category || ''
+      const price = s.priceFrom || ''
       return (
         '<a href="./services/' + slug + '.html" class="service-card reveal reveal-delay-' + ((i % 4) + 1) + '">' +
         '<div class="service-card-overlay"></div>' +
@@ -152,21 +138,19 @@ window.CU_CMS = {
     grid.innerHTML = cards.join('')
   },
 
-  // ─── Sync featured testimonials — only replaces when CMS returns content ──
   async syncTestimonials() {
     const grid = document.querySelector('[data-cms-testimonials], .testimonials-grid')
     if (!grid) return
     const items = await window.CU_CMS.getTestimonials(true)
-    if (!items || items.length === 0) return // keep hardcoded fallback
+    if (!items || items.length === 0) return
     grid.innerHTML = items.slice(0, 3).map((t) => {
-      const quote = t.quote || t.text || t.body || ''
-      const name = t.name || t.author || ''
-      const role = t.title || t.role || t.subtitle || ''
+      const quote = t.body || ''
+      const name = t.author || ''
       return (
         '<article class="testimonial-card">' +
         '<div class="testimonial-stars" aria-label="5 stars">★★★★★</div>' +
-        '<p class="testimonial-quote">“' + quote + '”</p>' +
-        '<div class="testimonial-author">' + name + (role ? ' — ' + role : '') + '</div>' +
+        '<p class="testimonial-quote">"' + quote + '"</p>' +
+        '<div class="testimonial-author">' + name + '</div>' +
         '</article>'
       )
     }).join('')
@@ -174,7 +158,6 @@ window.CU_CMS = {
 
 }
 
-// Auto-initialize when DOM is ready
 function __cuInit() {
   window.CU_CMS.wireAllForms()
   window.CU_CMS.syncUrgencyBanner()
