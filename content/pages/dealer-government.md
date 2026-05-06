@@ -7,7 +7,7 @@ hero:
     Pre-delivery vehicle customization, state & federal contract support, GSA
     bid assistance, and dedicated dealer pricing through the Upfit Portal.
   primaryCtaLabel: Apply for Dealer Account
-  primaryCtaUrl: 'https://upfit-portal-58190af9.base44.app/DealerRegister'
+  primaryCtaUrl: 'https://upfit-portal-58190af9.base44.app/portal/register'
   secondaryCtaLabel: Call Us
   secondaryCtaUrl: 'tel:3013041419'
 seoTitle: Dealer & Government Upfitting | Capital Upfitters MD
