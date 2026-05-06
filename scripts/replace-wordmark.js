@@ -35,27 +35,29 @@ const ROOT = path.join(__dirname, '..')
 //   y 82         separator  blue 0..150 / gold 150..360
 //   y 90         tagline    AUTO STYLING / PERFORMANCE / PROTECTION (gold slashes)
 function wordmarkSVG(className) {
+  // Site display font = Barlow Condensed (already loaded site-wide via
+  // base.css). Using it here keeps the wordmark consistent with every
+  // headline on the site. Falls back to Arial Narrow / Impact if Barlow
+  // hasn't loaded yet.
   const FONT =
-    "'Arial Black', 'Helvetica Neue', Impact, 'Arial Narrow Bold', sans-serif"
-  // viewBox 0 0 600 160 — gives plenty of vertical room for the separator
-  // and tagline to sit *below* UPFITTERS' descender area without overlap.
-  //   y  64        CAPITAL baseline  (font 70, ~77% wide via textLength)
-  //   y 124        UPFITTERS baseline (font 60, full width)
-  //   y 134        separator         (blue 0..255 / gold 255..600)
-  //   y 156        tagline baseline  (font 14)
-  // Aspect ratio 600:160 = 3.75:1 matches the reference image.
+    "'Barlow Condensed', 'Arial Narrow', Impact, 'Arial Narrow Bold', sans-serif"
+  // viewBox 0 0 600 160 — plenty of vertical room so the separator and
+  // tagline sit below UPFITTERS' descender area without overlap.
+  //   y  78        CAPITAL baseline   (full width via textLength=600)
+  //   y 132        UPFITTERS baseline (full width via textLength=600)
+  //   y 142        separator          (white 0..255 / gold 255..600)
+  //   y 158        tagline baseline   (Barlow Condensed)
   return [
     `<svg class="${className}" width="300" height="80" viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capital Upfitters \u2014 Auto Styling / Performance / Protection">`,
-    // CAPITAL (white on dark — black on light in source reference)
-    `<text x="0" y="68" font-family="${FONT}" font-weight="900" font-size="78" fill="#ffffff" letter-spacing="0" textLength="460" lengthAdjust="spacingAndGlyphs">CAPITAL</text>`,
-    // UPFITTERS (brand gold, stretched to full width)
-    `<text x="0" y="126" font-family="${FONT}" font-weight="900" font-size="60" fill="#fcbf0d" letter-spacing="0" textLength="600" lengthAdjust="spacingAndGlyphs">UPFITTERS</text>`,
-    // Separator: navy left ~42%, gold right ~58%
-    `<line x1="0" y1="136" x2="255" y2="136" stroke="#103b68" stroke-width="4"/>`,
-    `<line x1="255" y1="136" x2="600" y2="136" stroke="#fcbf0d" stroke-width="4"/>`,
-    // Tagline: white words, gold slashes — positioned with explicit x to
-    // avoid relying on font-metric kerning for layout.
-    `<text y="156" font-family="${FONT}" font-weight="700" font-size="15" letter-spacing="1.4">`,
+    // CAPITAL — same width as UPFITTERS via identical textLength
+    `<text x="0" y="78" font-family="${FONT}" font-weight="900" font-size="96" fill="#ffffff" letter-spacing="0" textLength="600" lengthAdjust="spacingAndGlyphs">CAPITAL</text>`,
+    // UPFITTERS — brand gold, full width
+    `<text x="0" y="132" font-family="${FONT}" font-weight="900" font-size="68" fill="#fcbf0d" letter-spacing="0" textLength="600" lengthAdjust="spacingAndGlyphs">UPFITTERS</text>`,
+    // Separator: white left ~42%, gold right ~58%
+    `<line x1="0" y1="142" x2="255" y2="142" stroke="#ffffff" stroke-width="4"/>`,
+    `<line x1="255" y1="142" x2="600" y2="142" stroke="#fcbf0d" stroke-width="4"/>`,
+    // Tagline in Barlow Condensed — white words, gold slashes
+    `<text y="158" font-family="${FONT}" font-weight="700" font-size="16" letter-spacing="1.6">`,
     `<tspan x="0" fill="#ffffff">AUTO STYLING</tspan>`,
     `<tspan fill="#fcbf0d"> / </tspan>`,
     `<tspan fill="#ffffff">PERFORMANCE</tspan>`,
