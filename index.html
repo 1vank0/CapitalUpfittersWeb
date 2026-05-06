@@ -475,9 +475,10 @@
 ═══════════════════════════════════════════════════════ -->
 <div class="trust-bar" role="region" aria-label="Trust indicators">
   <div class="container">
-    <!-- Brand strip is rendered from CMS → Brand Library when brands exist.
-         The existing trust items below stay as fallback if no brands are added. -->
-    <div class="trust-bar-inner" data-cms-brand-strip>
+    <!-- The original 4 trust items below are intentionally hardcoded.
+         The CMS Brand Library is still available, but it renders only into
+         containers that explicitly opt in via [data-cms-brand-strip]. -->
+    <div class="trust-bar-inner">
       <div class="trust-item">
         <div class="trust-item-icon" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
