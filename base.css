@@ -36,13 +36,9 @@ table { border-collapse: collapse; }
   --color-text-inverse-muted: #B3B3B3;
 
   /* Brand accent — onehourhitch navy */
-  /* Brand colors — from the Capital Upfitters logo (May 2026) */
-  --color-accent:          #0a2856;  /* deep navy from CU shield */
-  --color-accent-hover:    #061a3a;  /* darker navy for hover */
-  --color-accent-light:    rgba(10, 40, 86, 0.08);
-  --color-brand-gold:      #e89f05;  /* warm amber/gold from the U */
-  --color-brand-gold-hover:#b8780a;
-  --color-brand-navy-deep: #031931;  /* darkest navy from logo background */
+  --color-accent:          #203055;
+  --color-accent-hover:    #162240;
+  --color-accent-light:    rgba(32, 48, 85, 0.08);
 
   /* Dividers */
   --color-border:          #e5e7eb;
@@ -136,7 +132,7 @@ table { border-collapse: collapse; }
   --color-text-faint:      #484f58;
   --color-border:          #30363d;
   --color-divider:         #21262d;
-  --color-accent-light:    rgba(10, 40, 86, 0.25);
+  --color-accent-light:    rgba(32, 48, 85, 0.25);
 }
 
 /* ── Base typography ────────────────────────────────────── */
