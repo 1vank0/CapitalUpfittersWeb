@@ -52,11 +52,12 @@
   color: var(--color-accent);
 }
 /* When the wordmark is rendered as an SVG, let the SVG own all the visual
-   styling (font, color, letter-spacing) and just give it a sensible size. */
-.nav-wordmark-svg,
+   styling (font, color, letter-spacing) and just give it a sensible size.
+   Header is sized 20% smaller than the footer per latest brand direction. */
+.nav-wordmark-svg    { display: block; height: 30px; width: auto; }
 .footer-wordmark-svg { display: block; height: 38px; width: auto; }
 @media (max-width: 720px) {
-  .nav-wordmark-svg,
+  .nav-wordmark-svg    { height: 26px; }
   .footer-wordmark-svg { height: 32px; }
 }
 .footer-brand-name { display: inline-flex; align-items: center; }
