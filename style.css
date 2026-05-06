@@ -30,7 +30,8 @@
 .nav-logo-mark {
   width: 36px;
   height: 36px;
-  background: var(--color-accent);
+  /* No tile background — the inline CU shield is self-contained */
+  background: transparent;
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
