@@ -1,19 +1,25 @@
 #!/usr/bin/env node
 /**
- * Replace the text-based "Capital Upfitters" wordmark in the nav and
- * footer with an inline SVG wordmark that matches the brand reference
- * (CAPITAL in white / UPFITTERS in gold + tagline + colored underline).
+ * Replace the "Capital Upfitters" wordmark in the nav and footer with an
+ * inline SVG that matches the latest brand reference (CAPITAL on top,
+ * UPFITTERS in gold and full-width below, blue/gold separator that spans
+ * the full mark, then a tagline reading
+ * "AUTO STYLING / PERFORMANCE / PROTECTION" with gold slashes).
  *
- * Targets:
+ * Targets (any of):
  *   - <div class="nav-logo-text">Capital<span>Upfitters</span></div>
+ *   - <div class="nav-logo-text"><svg class="nav-wordmark-svg" ...></svg></div>
  *   - <div class="footer-brand-name">Capital<span>Upfitters</span></div>
+ *   - <div class="footer-brand-name"><svg class="footer-wordmark-svg" ...></svg></div>
+ *   - <span>Capital<strong>Upfitters</strong></span>            (legacy blog footer)
+ *   - <span class="footer-brand-name"><svg class="footer-wordmark-svg" ...></svg></span>
  *
- * Idempotent: re-running re-replaces the same nodes without nesting.
+ * This script is idempotent: re-running re-replaces the wrapper contents
+ * with a fresh SVG (no nesting, no duplication).
  *
- * Notes:
- *   - The nav background is dark, so "CAPITAL" is rendered white instead of
- *     black (otherwise it would be invisible). "UPFITTERS" is brand gold.
- *   - The shield logo to the left is left untouched.
+ * On dark backgrounds (the current nav/footer use #111827) CAPITAL and the
+ * tagline are rendered white so they remain readable. The reference image
+ * uses black-on-white; only the colors are flipped, the layout matches.
  */
 const fs = require('fs')
 const path = require('path')
@@ -21,29 +27,75 @@ const glob = require('glob')
 
 const ROOT = path.join(__dirname, '..')
 
-// SVG wordmark — full version with separator underline + tagline
+// SVG wordmark — full version with separator underline + tagline.
+//
+// Layout reference (viewBox 0 0 360 90):
+//   y  6 -> 50   CAPITAL    black on light, here white on dark, ~75% width
+//   y 56 -> 78   UPFITTERS  gold, full width via textLength stretch
+//   y 82         separator  blue 0..150 / gold 150..360
+//   y 90         tagline    AUTO STYLING / PERFORMANCE / PROTECTION (gold slashes)
 function wordmarkSVG(className) {
-  return `<svg class="${className}" width="220" height="46" viewBox="0 0 320 70" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capital Upfitters \u2014 Auto Styling, Performance, Protection"><text x="0" y="26" font-family="Impact, 'Arial Narrow Bold', 'Arial Black', sans-serif" font-weight="900" font-size="28" fill="#ffffff" letter-spacing="2">CAPITAL</text><text x="0" y="52" font-family="Impact, 'Arial Narrow Bold', 'Arial Black', sans-serif" font-weight="900" font-size="28" fill="#fcbf0d" letter-spacing="2">UPFITTERS</text><line x1="0" y1="56" x2="105" y2="56" stroke="#103b68" stroke-width="2"/><line x1="105" y1="56" x2="220" y2="56" stroke="#fcbf0d" stroke-width="2"/><text x="0" y="68" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-weight="700" font-size="7" fill="#cbd5e1" letter-spacing="1.4">AUTO STYLING&#160;&#160;/&#160;&#160;PERFORMANCE&#160;&#160;/&#160;&#160;PROTECTION</text></svg>`
+  const FONT =
+    "'Arial Black', 'Helvetica Neue', Impact, 'Arial Narrow Bold', sans-serif"
+  // viewBox 0 0 600 160 — gives plenty of vertical room for the separator
+  // and tagline to sit *below* UPFITTERS' descender area without overlap.
+  //   y  64        CAPITAL baseline  (font 70, ~77% wide via textLength)
+  //   y 124        UPFITTERS baseline (font 60, full width)
+  //   y 134        separator         (blue 0..255 / gold 255..600)
+  //   y 156        tagline baseline  (font 14)
+  // Aspect ratio 600:160 = 3.75:1 matches the reference image.
+  return [
+    `<svg class="${className}" width="300" height="80" viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capital Upfitters \u2014 Auto Styling / Performance / Protection">`,
+    // CAPITAL (white on dark — black on light in source reference)
+    `<text x="0" y="68" font-family="${FONT}" font-weight="900" font-size="78" fill="#ffffff" letter-spacing="0" textLength="460" lengthAdjust="spacingAndGlyphs">CAPITAL</text>`,
+    // UPFITTERS (brand gold, stretched to full width)
+    `<text x="0" y="126" font-family="${FONT}" font-weight="900" font-size="60" fill="#fcbf0d" letter-spacing="0" textLength="600" lengthAdjust="spacingAndGlyphs">UPFITTERS</text>`,
+    // Separator: navy left ~42%, gold right ~58%
+    `<line x1="0" y1="136" x2="255" y2="136" stroke="#103b68" stroke-width="4"/>`,
+    `<line x1="255" y1="136" x2="600" y2="136" stroke="#fcbf0d" stroke-width="4"/>`,
+    // Tagline: white words, gold slashes — positioned with explicit x to
+    // avoid relying on font-metric kerning for layout.
+    `<text y="156" font-family="${FONT}" font-weight="700" font-size="15" letter-spacing="1.4">`,
+    `<tspan x="0" fill="#ffffff">AUTO STYLING</tspan>`,
+    `<tspan fill="#fcbf0d"> / </tspan>`,
+    `<tspan fill="#ffffff">PERFORMANCE</tspan>`,
+    `<tspan fill="#fcbf0d"> / </tspan>`,
+    `<tspan fill="#ffffff">PROTECTION</tspan>`,
+    `</text>`,
+    `</svg>`,
+  ].join('')
 }
 
-// Each replacement pair: regex matching the original text wrapper, and the
-// SVG wordmark wrapped in the same outer div so we keep CSS selectors valid.
+// Replacement pairs. Each {wrapperOpen, wrapperClose} pair is matched and
+// the inner content is replaced with a fresh SVG so re-runs stay clean.
 const REPLACEMENTS = [
+  // Nav (current SVG version OR original text version)
   {
     name: 'nav',
-    re: /<div class="nav-logo-text">Capital<span>Upfitters<\/span><\/div>/g,
-    out: `<div class="nav-logo-text">${wordmarkSVG('nav-wordmark-svg')}</div>`,
+    re: /<div class="nav-logo-text">[\s\S]*?<\/div>/g,
+    out: () =>
+      `<div class="nav-logo-text">${wordmarkSVG('nav-wordmark-svg')}</div>`,
   },
+  // Modern footer (div wrapper)
   {
-    name: 'footer',
-    re: /<div class="footer-brand-name">Capital<span>Upfitters<\/span><\/div>/g,
-    out: `<div class="footer-brand-name">${wordmarkSVG('footer-wordmark-svg')}</div>`,
+    name: 'footer-div',
+    re: /<div class="footer-brand-name">[\s\S]*?<\/div>/g,
+    out: () =>
+      `<div class="footer-brand-name">${wordmarkSVG('footer-wordmark-svg')}</div>`,
   },
-  // Legacy blog footer: <span>Capital<strong>Upfitters</strong></span>
+  // Legacy blog footer (span wrapper, set by earlier replace pass)
   {
-    name: 'footer-legacy',
+    name: 'footer-span',
+    re: /<span class="footer-brand-name">[\s\S]*?<\/span>/g,
+    out: () =>
+      `<span class="footer-brand-name">${wordmarkSVG('footer-wordmark-svg')}</span>`,
+  },
+  // Original legacy blog footer (in case someone reverted): <span>Capital<strong>Upfitters</strong></span>
+  {
+    name: 'footer-original-legacy',
     re: /<span>Capital<strong>Upfitters<\/strong><\/span>/g,
-    out: `<span class="footer-brand-name">${wordmarkSVG('footer-wordmark-svg')}</span>`,
+    out: () =>
+      `<span class="footer-brand-name">${wordmarkSVG('footer-wordmark-svg')}</span>`,
   },
 ]
 
@@ -57,7 +109,9 @@ for (const rel of files) {
   const p = path.join(ROOT, rel)
   let html = fs.readFileSync(p, 'utf8')
   const before = html
-  for (const r of REPLACEMENTS) html = html.replace(r.re, r.out)
+  for (const r of REPLACEMENTS) {
+    html = html.replace(r.re, r.out())
+  }
   if (html !== before) {
     fs.writeFileSync(p, html)
     console.log(`\u2713 ${rel}`)
