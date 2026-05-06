@@ -1,6 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#111827"/>
-  <path d="M16 3L5 8.5v7c0 6.5 4.6 12.6 11 14 6.4-1.4 11-7.5 11-14v-7L16 3z" fill="#203055"/>
-  <path d="M16 5.5L7 10.5v5.5c0 5.2 3.7 10 9 11.2 5.3-1.2 9-6 9-11.2v-5.5L16 5.5z" fill="none" stroke="#60a5fa" stroke-width="1.2"/>
-  <text x="16" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" font-weight="900" fill="#ffffff" letter-spacing="0">CU</text>
+  <!-- Capital Upfitters shield favicon (matches May 2026 logo) -->
+  <rect width="32" height="32" rx="6" fill="#0a2856"/>
+  <!-- Shield outline -->
+  <path d="M16 4L6 7.5v8c0 6.5 4.4 12.6 10 14.5 5.6-1.9 10-8 10-14.5v-8L16 4z"
+        fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round"/>
+  <!-- Vertical center line through shield -->
+  <line x1="16" y1="9" x2="16" y2="27" stroke="#ffffff" stroke-width="1" opacity=".55"/>
+  <!-- C (navy on white-ish) and U (gold) inside the shield -->
+  <text x="11.2" y="20" text-anchor="middle"
+        font-family="Impact, 'Arial Black', Arial, sans-serif"
+        font-size="13" font-weight="900" fill="#ffffff" letter-spacing="-0.5">C</text>
+  <text x="20.2" y="20" text-anchor="middle"
+        font-family="Impact, 'Arial Black', Arial, sans-serif"
+        font-size="13" font-weight="900" fill="#e89f05" letter-spacing="-0.5">U</text>
 </svg>

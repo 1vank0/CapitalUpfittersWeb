@@ -35,6 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #fff; /* drives currentColor on the inline SVG (shield + C) */
 }
 .nav-logo-text {
   font-family: var(--font-display);
@@ -46,7 +47,7 @@
   line-height: 1;
 }
 .nav-logo-text span {
-  color: var(--color-accent);
+  color: var(--color-brand-gold); /* “Upfitters” in brand gold */
 }
 .nav-links {
   display: flex;
@@ -494,7 +495,7 @@
   transition: background 140ms ease, transform 140ms ease;
   flex-shrink: 0;
 }
-.vs-btn:hover { background: #162240; transform: translateY(-1px); }
+.vs-btn:hover { background: var(--color-accent-hover); transform: translateY(-1px); }
 .vs-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 .vehicle-selector-hint {
   font-size: var(--text-xs);
@@ -930,7 +931,7 @@
 .testimonial-stars {
   display: flex;
   gap: 2px;
-  color: #f59e0b;
+  color: var(--color-brand-gold);
 }
 .testimonial-quote {
   font-size: var(--text-base);
@@ -1015,7 +1016,8 @@
   color: #fff;
   line-height: 1;
 }
-.footer-brand-name span { color: var(--color-accent); }
+.footer-brand-name span { color: var(--color-brand-gold); }
+.footer-brand-logo .nav-logo-mark { color: #fff; }
 .footer-tagline {
   font-size: var(--text-sm);
   color: var(--color-footer-text);
@@ -1411,7 +1413,7 @@
 
 /* Bundle banner across top of Services dropdown */
 .nav-bundle-banner {
-  background: linear-gradient(90deg, #b45309 0%, #d97706 100%);
+  background: linear-gradient(90deg, #b8780a 0%, #e89f05 100%);
   padding: 9px 18px;
   display: flex;
   align-items: center;
@@ -1425,7 +1427,7 @@
   text-decoration: none;
   transition: background 140ms;
 }
-.nav-bundle-banner:hover { background: linear-gradient(90deg, #92400e 0%, #b45309 100%); color: #fff !important; }
+.nav-bundle-banner:hover { background: linear-gradient(90deg, #8a5a07 0%, #b8780a 100%); color: #fff !important; }
 .nav-bundle-banner::after { display: none !important; }
 .nav-bundle-star { font-size: 13px; }
 .nav-bundle-arrow {
@@ -1462,8 +1464,8 @@
   align-items: center;
   gap: 6px;
 }
-.nav-mega-col-header--gold  { color: #f59e0b; }
-.nav-mega-col-header--orange { color: #fb923c; }
+.nav-mega-col-header--gold  { color: var(--color-brand-gold); }
+.nav-mega-col-header--orange { color: var(--color-brand-gold); }
 .nav-mega-col-header--blue  { color: #60a5fa; }
 .nav-mega-col-header--teal  { color: #22d3ee; }
 .nav-mega-col-header--purple { color: #a78bfa; }
@@ -1498,7 +1500,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   background: rgba(245,158,11,0.18);
-  color: #f59e0b;
+  color: var(--color-brand-gold);
   border-radius: 4px;
   padding: 1px 5px;
   flex-shrink: 0;
@@ -1548,7 +1550,7 @@
   transition: color 120ms;
 }
 .nav-mega-footer-rebate::after { display: none !important; }
-.nav-mega-footer-rebate:hover { color: #fbbf24; }
+.nav-mega-footer-rebate:hover { color: var(--color-brand-gold); }
 
 /* Industrial direct link — amber accent */
 .nav-industrial-link {
@@ -1563,7 +1565,7 @@
   transform: translateY(-50%);
   width: 3px;
   height: 14px;
-  background: #f59e0b;
+  background: var(--color-brand-gold);
   border-radius: 2px;
 }
 
@@ -1634,7 +1636,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   background: rgba(245,158,11,0.18);
-  color: #f59e0b;
+  color: var(--color-brand-gold);
   border-radius: 4px;
   padding: 1px 5px;
 }
@@ -1648,7 +1650,7 @@
   font-weight: 700 !important;
   letter-spacing: 0.04em !important;
   text-transform: uppercase !important;
-  color: #f59e0b !important;
+  color: var(--color-brand-gold) !important;
   border-bottom: 1px solid rgba(255,255,255,0.08) !important;
 }
 .nav-mobile-direct::before {
@@ -1656,7 +1658,7 @@
   display: inline-block;
   width: 4px;
   height: 18px;
-  background: #f59e0b;
+  background: var(--color-brand-gold);
   border-radius: 2px;
   flex-shrink: 0;
 }
@@ -2134,7 +2136,7 @@
 .trust-bar-inner .brand-logo img{max-width:100%;max-height:100%;object-fit:contain}
 .trust-bar-inner .brand-logo-text{
   font-size:.7rem;font-weight:700;text-align:center;line-height:1.1;padding:.25rem;
-  color:var(--color-orange,#ff6a00);
+  color:var(--color-brand-gold);
 }
 .trust-bar-inner .brand-meta{display:flex;flex-direction:column;line-height:1.2}
 .trust-bar-inner .brand-meta strong{font-size:.85rem}
