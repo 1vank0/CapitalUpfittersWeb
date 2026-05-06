@@ -40,25 +40,42 @@ function wordmarkSVG(className) {
   // Falls back to Barlow Condensed / Impact if Ash hasn't loaded yet.
   const FONT =
     "'Ash', 'Barlow Condensed', Impact, 'Arial Narrow Bold', sans-serif"
-  // viewBox 0 0 600 160 — plenty of vertical room so the separator and
-  // tagline sit below UPFITTERS' descender area without overlap.
-  //   y  80        CAPITAL baseline   (full width)
-  //   y 132        UPFITTERS baseline (full width)
-  //   y 142        separator          (white 0..255 / gold 255..600)
-  //   y 158        tagline baseline   (full width to match UPFITTERS)
+  //
+  // Layout (viewBox 0 0 740 200) — NO textLength stretching, so glyphs
+  // keep their natural shape and don't get squished or clipped.
+  //
+  //   Ash measured natural widths (per 1px of font-size):
+  //     CAPITAL    ≈ 6.89
+  //     UPFITTERS  ≈ 9.19
+  //     tagline    ≈ 40.7  (with letter-spacing: 1.4)
+  //
+  //   To make CAPITAL and UPFITTERS the SAME visible width, we use
+  //   different font sizes so their natural widths match (≈ 689 px):
+  //     CAPITAL    font-size 100 → 689
+  //     UPFITTERS  font-size  75 → 689
+  //     tagline    font-size  17 → ≈ 692
+  //
+  //   25 px of padding on the left/right (canvas 740 = 689 + 2×25 + a few
+  //   pixels of safety) and 18 px on top so CAPITAL doesn't kiss the
+  //   viewBox edge.
+  //
+  //   Vertical:
+  //     y  98  CAPITAL baseline   (cap-height ≈ 75; sits 18..98)
+  //     y 165  UPFITTERS baseline (sits  ~108..165)
+  //     y 175  separator line     (white 25..370 / gold 370..715)
+  //     y 195  tagline baseline   (sits ~180..197)
+  //
   return [
-    `<svg class="${className}" width="300" height="80" viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capital Upfitters \u2014 Auto Styling / Performance / Protection">`,
-    // CAPITAL — same width as UPFITTERS
-    `<text x="0" y="80" font-family="${FONT}" font-weight="400" font-size="96" fill="#ffffff" letter-spacing="0" textLength="600" lengthAdjust="spacingAndGlyphs">CAPITAL</text>`,
-    // UPFITTERS — brand gold, full width
-    `<text x="0" y="132" font-family="${FONT}" font-weight="400" font-size="68" fill="#fcbf0d" letter-spacing="0" textLength="600" lengthAdjust="spacingAndGlyphs">UPFITTERS</text>`,
-    // Separator: white left ~42%, gold right ~58%
-    `<line x1="0" y1="142" x2="255" y2="142" stroke="#ffffff" stroke-width="4"/>`,
-    `<line x1="255" y1="142" x2="600" y2="142" stroke="#fcbf0d" stroke-width="4"/>`,
-    // Tagline — full width of UPFITTERS via textLength=600. Two
-    // <tspan> groups (gold slashes) flow inside one <text> so the
-    // textLength stretch applies across the entire line.
-    `<text x="0" y="158" font-family="${FONT}" font-weight="400" font-size="16" letter-spacing="1.4" textLength="600" lengthAdjust="spacingAndGlyphs">`,
+    `<svg class="${className}" width="370" height="100" viewBox="0 0 740 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capital Upfitters \u2014 Auto Styling / Performance / Protection">`,
+    // CAPITAL — white, font-size 100
+    `<text x="25" y="98" font-family="${FONT}" font-weight="400" font-size="100" fill="#ffffff">CAPITAL</text>`,
+    // UPFITTERS — brand gold, font-size 75 (matches CAPITAL's natural width)
+    `<text x="25" y="165" font-family="${FONT}" font-weight="400" font-size="75" fill="#fcbf0d">UPFITTERS</text>`,
+    // Separator under UPFITTERS: white left ~50%, gold right ~50%
+    `<line x1="25" y1="175" x2="370" y2="175" stroke="#ffffff" stroke-width="4"/>`,
+    `<line x1="370" y1="175" x2="715" y2="175" stroke="#fcbf0d" stroke-width="4"/>`,
+    // Tagline — sized so its natural width matches the wordmark width
+    `<text x="25" y="195" font-family="${FONT}" font-weight="400" font-size="17" letter-spacing="1.4">`,
     `<tspan fill="#ffffff">AUTO STYLING</tspan>`,
     `<tspan fill="#fcbf0d"> / </tspan>`,
     `<tspan fill="#ffffff">PERFORMANCE</tspan>`,
