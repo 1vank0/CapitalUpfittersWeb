@@ -30,8 +30,7 @@
 .nav-logo-mark {
   width: 36px;
   height: 36px;
-  /* No tile background — the inline CU shield is self-contained */
-  background: transparent;
+  background: var(--color-accent);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
@@ -45,22 +44,10 @@
   text-transform: uppercase;
   color: var(--color-text-inverse);
   line-height: 1;
-  display: flex;
-  align-items: center;
 }
 .nav-logo-text span {
   color: var(--color-accent);
 }
-/* When the wordmark is rendered as an SVG, let the SVG own all the visual
-   styling (font, color, letter-spacing) and just give it a sensible size.
-   Header is sized 20% smaller than the footer per latest brand direction. */
-.nav-wordmark-svg    { display: block; height: 30px; width: auto; }
-.footer-wordmark-svg { display: block; height: 38px; width: auto; }
-@media (max-width: 720px) {
-  .nav-wordmark-svg    { height: 26px; }
-  .footer-wordmark-svg { height: 32px; }
-}
-.footer-brand-name { display: inline-flex; align-items: center; }
 .nav-links {
   display: flex;
   align-items: center;
@@ -768,19 +755,11 @@
   padding: var(--space-5) 0;
 }
 .trust-bar-inner {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  display: flex;
   align-items: center;
-  gap: var(--space-6) var(--space-8);
-}
-@media (max-width: 1100px) {
-  .trust-bar-inner { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-@media (max-width: 720px) {
-  .trust-bar-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 480px) {
-  .trust-bar-inner { grid-template-columns: 1fr; }
+  justify-content: space-between;
+  gap: var(--space-8);
+  flex-wrap: wrap;
 }
 .trust-item {
   display: flex;
@@ -2133,47 +2112,3 @@
 .stats-grid {
   align-items: start;
 }
-
-/* ─────────────────────────────────────────────────────────────────
-   CMS-driven additions: brand strip, gallery photos, hero alignment
-   These are additive — base layouts stay untouched.
-   ───────────────────────────────────────────────────────────────── */
-
-/* Brand strip (replaces .trust-bar-inner content when CMS brands exist) */
-.trust-bar-inner .brand-item{
-  display:flex;align-items:center;gap:.75rem;
-  padding:.75rem 1rem;border-radius:8px;
-  text-decoration:none;color:inherit;
-  transition:background .15s ease;
-}
-.trust-bar-inner .brand-item:hover{background:rgba(255,255,255,.05)}
-.trust-bar-inner .brand-logo{
-  flex:0 0 auto;width:48px;height:48px;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;
-}
-.trust-bar-inner .brand-logo img{max-width:100%;max-height:100%;object-fit:contain}
-.trust-bar-inner .brand-logo-text{
-  font-size:.7rem;font-weight:700;text-align:center;line-height:1.1;padding:.25rem;
-  color:var(--color-orange,#ff6a00);
-}
-.trust-bar-inner .brand-meta{display:flex;flex-direction:column;line-height:1.2}
-.trust-bar-inner .brand-meta strong{font-size:.85rem}
-.trust-bar-inner .brand-tagline{font-size:.7rem;opacity:.7;margin-top:2px}
-
-/* Gallery photos (when CMS gallery items have an image) */
-.gallery-item .gallery-photo{
-  width:100%;display:block;border-radius:inherit;
-  object-fit:cover;
-}
-.gallery-item:has(.gallery-photo){overflow:hidden;border-radius:8px}
-
-/* Hero alignment helpers (driven by hero.textAlign) */
-.page-hero.hero-align-left,  .page-hero.hero-align-left  .page-hero-content{text-align:left}
-.page-hero.hero-align-center,.page-hero.hero-align-center .page-hero-content{text-align:center}
-.page-hero.hero-align-right, .page-hero.hero-align-right .page-hero-content{text-align:right}
-.page-hero.hero-align-center .hero-ctas{justify-content:center}
-.page-hero.hero-align-right  .hero-ctas{justify-content:flex-end}
-
-/* When hero has a CMS background image, ensure overlay still reads */
-.page-hero.has-bg-image .page-hero-overlay{background:rgba(0,0,0,.35)}

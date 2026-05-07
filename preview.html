@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital Upfitters — Products Section Preview</title>
+<style>body{margin:0;background:#e5e7eb;}</style>
+</head>
+<body>
+<!-- INJECT START -->
+<!-- ============================================================
+     Capital Upfitters — Products Section Snippet
+     Standalone injectable HTML+CSS+JS (no external deps except Google Fonts)
+     Generated from products.json — 58 products + 4 bundles
+     ============================================================ -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+/* ── RESET / SCOPE ── */
+.cu-products-section *,
+.cu-products-section *::before,
+.cu-products-section *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── SECTION SHELL ── */
+.cu-products-section {
+  background: #f9fafb;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #111827;
+  padding: 72px 0 80px;
+}
+
+.cu-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── SECTION HEADER ── */
+.cu-section-eyebrow {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #f59e0b;
+  text-align: center;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.cu-section-title {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 800;
+  text-align: center;
+  color: #111827;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+
+.cu-section-desc {
+  font-size: 16px;
+  color: #6b7280;
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 48px;
+  line-height: 1.6;
+}
+
+/* ── FILTER TABS — BRAND ── */
+.cu-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.cu-filter-btn {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 2px solid #203055;
+  background: transparent;
+  color: #203055;
+  border-radius: 9999px;
+  padding: 8px 20px;
+  transition: background 0.18s, color 0.18s;
+  outline: none;
+}
+
+.cu-filter-btn:hover {
+  background: #203055;
+  color: #fff;
+}
+
+.cu-filter-btn.active {
+  background: #203055;
+  color: #fff;
+}
+
+/* ── CATEGORY SUB-FILTER ── */
+.cu-subfilter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.cu-subfilter-btn {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid #d1d5db;
+  background: transparent;
+  color: #6b7280;
+  border-radius: 9999px;
+  padding: 5px 14px;
+  transition: border-color 0.18s, color 0.18s, background 0.18s;
+  outline: none;
+}
+
+.cu-subfilter-btn:hover {
+  border-color: #203055;
+  color: #203055;
+}
+
+.cu-subfilter-btn.active {
+  border-color: #203055;
+  background: #eef0f6;
+  color: #203055;
+}
+
+/* ── PRODUCT GRID ── */
+.cu-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 64px;
+}
+
+@media (max-width: 1024px) {
+  .cu-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .cu-products-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── PRODUCT CARD ── */
+.cu-product-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04);
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.2s;
+  position: relative;
+}
+
+.cu-product-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+}
+
+.cu-product-card.hidden {
+  display: none;
+}
+
+/* ── CARD TOP ROW: BADGES ── */
+.cu-card-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  min-height: 24px;
+}
+
+.cu-brand-badge {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  padding: 3px 10px;
+  color: #fff;
+}
+
+.cu-brand-badge.brand-retrax   { background: #1d4ed8; }
+.cu-brand-badge.brand-bak      { background: #ea580c; }
+.cu-brand-badge.brand-amp      { background: #dc2626; }
+.cu-brand-badge.brand-undercover { background: #0d9488; }
+.cu-brand-badge.brand-truxedo  { background: #203055; }
+.cu-brand-badge.brand-romik    { background: #b45309; color: #fff; }
+
+.cu-badge-topseller {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: #f59e0b;
+  color: #111827;
+  border-radius: 9999px;
+  padding: 3px 10px;
+}
+
+.cu-badge-bundle {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: #fef3c7;
+  color: #92400e;
+  border-radius: 9999px;
+  padding: 3px 10px;
+  border: 1px solid #fcd34d;
+}
+
+.cu-badge-reviews {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  background: #f9fafb;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+  border-radius: 9999px;
+  padding: 3px 9px;
+}
+
+/* ── CARD NAME ── */
+.cu-card-name {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+/* ── CARD META ── */
+.cu-card-meta {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* ── PRICE ── */
+.cu-card-price {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #203055;
+  letter-spacing: 0.01em;
+}
+
+.cu-card-price-label {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 400;
+  display: block;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── MARGIN STARS ── */
+.cu-card-stars {
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+.cu-stars-gold { color: #f59e0b; }
+.cu-stars-four { color: #f59e0b; }
+.cu-stars-three { color: #9ca3af; }
+.cu-stars-two  { color: #9ca3af; }
+.cu-stars-one  { color: #d1d5db; }
+
+/* ── FEATURES ── */
+.cu-card-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cu-card-features li {
+  font-size: 13px;
+  color: #4b5563;
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.cu-card-features li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: #f59e0b;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+/* ── BEST FIT CHIPS ── */
+.cu-card-fit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.cu-fit-chip {
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  background: #f3f4f6;
+  border-radius: 6px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+/* ── CTA ROW ── */
+.cu-card-ctas {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.cu-btn-quote {
+  flex: 1;
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: #203055;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.18s;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cu-btn-quote:hover { background: #162240; }
+
+.cu-btn-learn {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: transparent;
+  color: #203055;
+  border: 2px solid #203055;
+  border-radius: 9999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.cu-btn-learn:hover {
+  background: #203055;
+  color: #fff;
+}
+
+/* ── EMPTY STATE ── */
+.cu-empty-state {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 64px 24px;
+  color: #9ca3af;
+  font-size: 16px;
+  display: none;
+}
+
+.cu-empty-state.visible { display: block; }
+
+/* ── BUNDLES SECTION ── */
+.cu-bundles-section {
+  margin-bottom: 48px;
+}
+
+.cu-bundles-title {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #111827;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.cu-bundles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 680px) {
+  .cu-bundles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cu-bundle-card {
+  background: #111827;
+  border-radius: 16px;
+  padding: 28px;
+  color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cu-bundle-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: #f59e0b;
+  border-radius: 16px 0 0 16px;
+}
+
+.cu-bundle-tier {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f59e0b;
+}
+
+.cu-bundle-name {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.cu-bundle-products {
+  font-size: 13px;
+  color: #9ca3af;
+  line-height: 1.6;
+}
+
+.cu-bundle-products span {
+  display: block;
+  color: #e5e7eb;
+  font-weight: 500;
+}
+
+.cu-bundle-meta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.cu-bundle-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cu-bundle-meta-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.cu-bundle-meta-value {
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #f59e0b;
+}
+
+.cu-bundle-note {
+  font-size: 12px;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.cu-bundle-cta {
+  display: inline-block;
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: #f59e0b;
+  color: #111827;
+  border: none;
+  border-radius: 9999px;
+  padding: 11px 24px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.18s;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.cu-bundle-cta:hover { background: #d97706; }
+
+/* ── DISCLAIMER ── */
+.cu-disclaimer {
+  font-size: 12px;
+  color: #9ca3af;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.5;
+  padding: 0 16px;
+}
+
+/* ── RESULT COUNT ── */
+.cu-result-count {
+  text-align: center;
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+</style>
+
+<section class="cu-products-section" id="cu-products">
+  <div class="cu-container">
+
+    <!-- ── SECTION HEADER ── -->
+    <p class="cu-section-eyebrow">— Our Brands —</p>
+    <h2 class="cu-section-title">Shop Premium Brands.</h2>
+    <p class="cu-section-desc">
+      The same products trusted by Ford, GM, and Ram truck owners across the DMV.
+      All installed by our certified technicians with same-week availability.
+    </p>
+
+    <!-- ── BRAND FILTER TABS ── -->
+    <div class="cu-filter-row" role="group" aria-label="Filter by brand">
+      <button class="cu-filter-btn active" data-brand="all">All Products</button>
+      <button class="cu-filter-btn" data-brand="Retrax">Retrax</button>
+      <button class="cu-filter-btn" data-brand="BAK">BAKFlip</button>
+      <button class="cu-filter-btn" data-brand="AMP Research">AMP Research</button>
+      <button class="cu-filter-btn" data-brand="UnderCover">UnderCover</button>
+      <button class="cu-filter-btn" data-brand="TruXedo">TruXedo</button>
+      <button class="cu-filter-btn" data-brand="Romik">Romik</button>
+    </div>
+
+    <!-- ── CATEGORY SUB-FILTER ── -->
+    <div class="cu-subfilter-row" role="group" aria-label="Filter by category">
+      <button class="cu-subfilter-btn active" data-cat="all">All</button>
+      <button class="cu-subfilter-btn" data-cat="Tonneau Cover">Tonneau Covers</button>
+      <button class="cu-subfilter-btn" data-cat="Running Boards">Running Boards</button>
+      <button class="cu-subfilter-btn" data-cat="Truck Rack">Truck Racks</button>
+      <button class="cu-subfilter-btn" data-cat="Bed Accessories">Bed Accessories</button>
+    </div>
+
+    <!-- ── RESULT COUNT ── -->
+    <p class="cu-result-count" id="cu-result-count">Showing 58 products</p>
+
+    <!-- ── PRODUCT GRID ── -->
+    <div class="cu-products-grid" id="cu-products-grid">
+      <!-- Cards injected by JS below -->
+      <div class="cu-empty-state" id="cu-empty">No products match your selection. Try a different filter.</div>
+    </div>
+
+    <!-- ── BUNDLE SECTION ── -->
+    <div class="cu-bundles-section">
+      <h3 class="cu-bundles-title">Popular Bundle Combinations</h3>
+      <div class="cu-bundles-grid">
+
+        <!-- B1 -->
+        <div class="cu-bundle-card">
+          <span class="cu-bundle-tier">Premium Bundle</span>
+          <div class="cu-bundle-name">The Complete Truck Build</div>
+          <div class="cu-bundle-products">
+            Includes:
+            <span>BAKFlip MX4 (GEN 3) + AMP Research PowerStep</span>
+          </div>
+          <div class="cu-bundle-meta">
+            <div class="cu-bundle-meta-item">
+              <span class="cu-bundle-meta-label">MAP Total</span>
+              <span class="cu-bundle-meta-value">$2,849</span>
+            </div>
+            <div class="cu-bundle-meta-item">
+              <span class="cu-bundle-meta-label">Est. Installed</span>
+              <span class="cu-bundle-meta-value">$3,400</span>
+            </div>
+            <div class="cu-bundle-meta-item">
+              <span class="cu-bundle-meta-label">Est. Margin</span>
+              <span class="cu-bundle-meta-value">$963</span>
+            </div>
+          </div>
+          <a href="#cu-quote" class="cu-bundle-cta">Get a Quote →</a>
+        </div>
+
+        <!-- B2 -->
+        <div class="cu-bundle-card">
+          <span class="cu-bundle-tier">Flagship Bundle</span>
+          <div class="cu-bundle-name">The Retractable Premium Build</div>
+          <div class="cu-bundle-products">
+            Includes:
+            <span>RetraxPRO MX + AMP Research PowerStep XL</span>
+          </div>
+          <div class="cu-bundle-meta">
+            <div class="cu-bundle-meta-item">
+              <span class="cu-bundle-meta-label">MAP Total</span>
+              <span class="cu-bundle-meta-value">$4,299</span>
+            </div>
+            <div class="cu-bundle-meta-item">
+              <span class="cu-bundle-meta-label">Est. Installed</span>
+              <span class="cu-bundle-meta-value">$5,600</span>
+            </div>
+            <div class="cu-bundle-meta-item">
+              <span class="cu-bundle-meta-label">Est. Margin</span>
+              <span class="cu-bundle-meta-value">$1,505</span>
+            </div>
+          </div>
+          <a href="#cu-quote" class="cu-bundle-cta">Get a Quote →</a>
+        </div>
+
+        <!-- B3 -->
+        <div class="cu-bundle-card">
+          <span class="cu-bundle-tier">Value Bundle</span>
+          <div class="cu-bundle-name">Work Truck Package</div>
+          <div class="cu-bundle-products">
+            Includes:
+            <span>TruXedo TruXport + Romik RAL-T Black Running Boards</span>
+          </div>
+          <div class="cu-bundle-meta">
+            <div class="cu-bundle-meta-item">
+              <span class="cu-bundle-meta-label">MAP Total</span>
+              <span class="cu-bundle-meta-value">$1,295</span>
+            </div>
+            <div class="cu-bundle-meta-item">
+              <span class="cu-bundle-meta-label">Est. Installed</span>
+              <span class="cu-bundle-meta-value">$1,750</span>
+            </div>
+            <div class="cu-bundle-meta-item">
+              <span class="cu-bundle-meta-label">Est. Margin</span>
+              <span class="cu-bundle-meta-value">$454</span>
+            </div>
+          </div>
+          <a href="#cu-quote" class="cu-bundle-cta">Get a Quote →</a>
+        </div>
+
+        <!-- B4 -->
+        <div class="cu-bundle-card">
+          <span class="cu-bundle-tier">Volume Bundle</span>
+          <div class="cu-bundle-name">Fleet Account Starter</div>
+          <div class="cu-bundle-products">
+            Includes:
+            <span>BAK Revolver X4s + UnderCover SwingCase + TruXedo TruXseal</span>
+          </div>
+          <div class="cu-bundle-meta">
+            <div class="cu-bundle-meta-item">
+              <span class="cu-bundle-meta-label">MAP Total</span>
+              <span class="cu-bundle-meta-value">$1,526</span>
+            </div>
+            <div class="cu-bundle-meta-item">
+              <span class="cu-bundle-meta-label">Est. Margin</span>
+              <span class="cu-bundle-meta-value">$535</span>
+            </div>
+          </div>
+          <p class="cu-bundle-note">Per-vehicle. On 5-truck fleet: $2,675 combined margin</p>
+          <a href="#cu-quote" class="cu-bundle-cta">Get a Quote →</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── DISCLAIMER ── -->
+    <p class="cu-disclaimer">
+      Prices shown are Minimum Advertised Price (MAP) as of December 2025. Actual installed pricing includes labor and may vary by vehicle. Contact us for an exact quote.
+    </p>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── PRODUCT DATA ── */
+  const products = [
+    {id:1,rank:1,brand:"Retrax",name:"PowertraxPRO XR",category:"Tonneau Cover",type:"Electric Retractable",map_display:"$2,849–$3,049",rating:"GOLD",reviews:9,features:["Electric retractable","T-Slot rails","Low-profile canister","All-weather seal"],best_fit:["F-150","Silverado","Ram 1500","Tundra"],note:""},
+    {id:2,rank:2,brand:"Retrax",name:"Retrax EQ",category:"Tonneau Cover",type:"Electric Retractable",map_display:"$2,799",rating:"GOLD",reviews:43,features:["Electric retractable","T-Slot rails","Bluetooth keypad optional","LED light kit optional"],best_fit:["F-150","Silverado 1500","Ram 1500","Sierra 1500"],note:""},
+    {id:3,rank:3,brand:"Retrax",name:"PowertraxPRO MX",category:"Tonneau Cover",type:"Electric Retractable",map_display:"$2,699–$2,899",rating:"GOLD",reviews:45,features:["Electric retractable","No T-Slot rails","Matte aluminum finish","Key fob control"],best_fit:["F-150","Silverado","Ram","Tundra","Tacoma"],note:""},
+    {id:4,rank:4,brand:"AMP Research",name:"PowerStep XL",category:"Running Boards",type:"Electric Retractable",map_display:"$2,299",rating:"GOLD",reviews:76,features:["Drops 4in lower than standard PowerStep","Ideal for lifted trucks","Auto deploy/retract","Military-grade PTFE finish"],best_fit:["F-250/350 Super Duty","Ram 2500/3500","Lifted F-150","Silverado HD"],note:""},
+    {id:5,rank:5,brand:"Retrax",name:"FRC-4000 (EZ-OFF)",category:"Tonneau Cover",type:"Manual Retractable",map_display:"$2,399–$2,499",rating:"GOLD",reviews:9,features:["Full bed access","Tool-free removal in seconds","T-Slot rails","Low-profile canister"],best_fit:["F-150","Silverado 1500","Ram 1500"],note:""},
+    {id:6,rank:6,brand:"AMP Research",name:"PowerStep Xtreme",category:"Running Boards",type:"Electric Retractable",map_display:"$2,199",rating:"GOLD",reviews:null,features:["Heavy-duty construction","Larger step pad","Auto deploy/retract","Corrosion-resistant"],best_fit:["Super Duty","Ram HD","Silverado HD","Tundra"],note:""},
+    {id:7,rank:7,brand:"AMP Research",name:"PowerStep Vision",category:"Running Boards",type:"Electric Retractable",map_display:"$1,999",rating:"GOLD",reviews:null,features:["Integrated LED lighting","Auto deploy/retract","Premium anodized finish","App control"],best_fit:["F-150","Ram 1500","Silverado 1500"],note:""},
+    {id:8,rank:8,brand:"UnderCover",name:"Elite LX",category:"Tonneau Cover",type:"One-Piece Hard",map_display:"$1,999–$2,099",rating:"GOLD",reviews:266,features:["Factory-matched paint","One-piece fiberglass","Remote locking","Flush low-profile design"],best_fit:["F-150","Silverado 1500","Ram 1500","Sierra 1500","Tundra"],note:"MAP price significantly higher than public retail sites — verify before quoting"},
+    {id:9,rank:9,brand:"UnderCover",name:"Lux",category:"Tonneau Cover",type:"One-Piece Hard",map_display:"$1,899–$1,999",rating:"GOLD",reviews:107,features:["One-piece ABS construction","Remote locking","Integrated LED brake light","High-gloss finish"],best_fit:["F-150","Silverado","Ram","Tundra"],note:"MAP price significantly higher than public retail sites — verify before quoting"},
+    {id:10,rank:10,brand:"AMP Research",name:"PowerStep Smart Series",category:"Running Boards",type:"Electric Retractable",map_display:"$1,899–$1,950",rating:"GOLD",reviews:null,features:["OBD-II plug-and-play","Smart Series controller","No wiring into fuse box","Auto deploy/retract"],best_fit:["F-150","Ram 1500","Silverado 1500","Sierra"],note:""},
+    {id:11,rank:11,brand:"AMP Research",name:"PowerStep Plug & Play",category:"Running Boards",type:"Electric Retractable",map_display:"$1,799",rating:"GOLD",reviews:null,features:["OBD-II plug-and-play (no wiring)","Auto deploy/retract","Fastest install","Same step as standard PowerStep"],best_fit:["F-150 (2015+)","Ram 1500 (2019+)","Silverado 1500 (2019+)"],note:""},
+    {id:12,rank:12,brand:"UnderCover",name:"Fusion",category:"Tonneau Cover",type:"Hard Folding",map_display:"$1,799",rating:"GOLD",reviews:4,features:["Premium hard fold","Integrated T-Slot rails","400 lb load rating","Corrosion-resistant"],best_fit:["F-150","Silverado","Ram 1500","Sierra"],note:""},
+    {id:13,rank:13,brand:"AMP Research",name:"PowerStep (Standard)",category:"Running Boards",type:"Electric Retractable",map_display:"$1,599–$1,699",rating:"GOLD",reviews:793,features:["Auto deploy on door open","3-second retract delay","Cast aluminum construction","Anodized finish"],best_fit:["F-150","Silverado 1500","Ram 1500","Sierra","Tundra","Titan"],note:"Best bedliner upsell — fits every truck build"},
+    {id:14,rank:14,brand:"Retrax",name:"RetraxPRO XR",category:"Tonneau Cover",type:"Manual Retractable",map_display:"$2,149–$2,349",rating:"GOLD",reviews:418,features:["T-Slot rails","Polycarbonate slat","UV resistant","Locks at any position"],best_fit:["F-150","Silverado","Ram","Tundra","Tacoma"],note:""},
+    {id:15,rank:15,brand:"Retrax",name:"RetraxPRO MX",category:"Tonneau Cover",type:"Manual Retractable",map_display:"$1,999–$2,199",rating:"GOLD",reviews:530,features:["Matte aluminum","No T-Slot rails","Locks at any position","AutoSeal perimeter seal"],best_fit:["F-150","Silverado 1500","Ram 1500","Sierra","Tundra"],note:""},
+    {id:16,rank:16,brand:"BAK",name:"Revolver X4ts",category:"Tonneau Cover",type:"Hard Roll-Up",map_display:"$1,449–$1,599",rating:"GOLD",reviews:267,features:["T-Slot rails included","Hard aluminum slats","IP56 water resistant","Dual access handles"],best_fit:["F-150","Silverado","Ram 1500","Tundra"],note:""},
+    {id:17,rank:17,brand:"UnderCover",name:"Elite Smooth",category:"Tonneau Cover",type:"One-Piece Hard",map_display:"$1,349–$1,399",rating:"GOLD",reviews:null,features:["Paintable smooth surface","One-piece construction","Remote locking","Low-profile"],best_fit:["F-150","Ram 1500","Silverado"],note:""},
+    {id:18,rank:18,brand:"UnderCover",name:"Elite",category:"Tonneau Cover",type:"One-Piece Hard",map_display:"$1,299–$1,349",rating:"GOLD",reviews:191,features:["One-piece ABS","Remote locking","Flush design","Weather tight"],best_fit:["F-150","Silverado","Ram 1500"],note:""},
+    {id:19,rank:19,brand:"BAK",name:"BAKFlip F1",category:"Tonneau Cover",type:"Hard Folding",map_display:"$1,349–$1,449",rating:"GOLD",reviews:768,features:["Aluminum frame + panels","UV-resistant matte finish","300 lb load rating","Full bed access when folded"],best_fit:["F-150","Silverado","Ram 1500","Canyon/Colorado","Tacoma"],note:""},
+    {id:20,rank:20,brand:"BAK",name:"BAKFlip MX4 TS",category:"Tonneau Cover",type:"Hard Folding",map_display:"$1,349–$1,449",rating:"GOLD",reviews:3,features:["T-Slot rails included","Hard aluminum panels","Matte black finish","300 lb load rating"],best_fit:["F-150","Silverado","Ram 1500"],note:""},
+    {id:21,rank:21,brand:"UnderCover",name:"ArmorFlex",category:"Tonneau Cover",type:"Hard Folding",map_display:"$1,249–$1,349",rating:"GOLD",reviews:241,features:["Dual-action slam latches","400 lb load rating","Integrated prop rods","EPDM seals"],best_fit:["F-150","Silverado","Ram 1500","Tundra"],note:""},
+    {id:22,rank:22,brand:"BAK",name:"BAKFlip FiberMax",category:"Tonneau Cover",type:"Hard Folding",map_display:"$1,249–$1,349",rating:"GOLD",reviews:464,features:["Fiberglass-reinforced panels","Matte black finish","300 lb load rating","Full bed access"],best_fit:["F-150","Silverado","Ram 1500","Tundra"],note:""},
+    {id:23,rank:23,brand:"BAK",name:"BAKFlip MX4 (GEN 3)",category:"Tonneau Cover",type:"Hard Folding",map_display:"$1,149–$1,249",rating:"GOLD",reviews:6242,features:["Aluminum frame + panels","Matte black finish","300 lb load rating","No-drill clamp install"],best_fit:["F-150","Silverado","Ram 1500","Sierra","Tundra","Tacoma","Canyon"],note:"#1 best-selling tonneau cover in the market by review volume"},
+    {id:24,rank:24,brand:"UnderCover",name:"Ultra Flex (GEN 3)",category:"Tonneau Cover",type:"Hard Folding",map_display:"$1,149–$1,249",rating:"GOLD",reviews:426,features:["Aluminum panels","Integrated prop rods","Full bed access","Matte black powder coat"],best_fit:["F-150","Silverado","Ram 1500","Tundra"],note:""},
+    {id:25,rank:25,brand:"Retrax",name:"RetraxONE XR",category:"Tonneau Cover",type:"Manual Retractable",map_display:"$1,649–$1,849",rating:"GOLD",reviews:155,features:["T-Slot rails","Low-profile","Polycarbonate slat","Locks at any position"],best_fit:["F-150","Silverado","Ram 1500","Tundra"],note:""},
+    {id:26,rank:26,brand:"Retrax",name:"RetraxONE MX",category:"Tonneau Cover",type:"Manual Retractable",map_display:"$1,499–$1,699",rating:"GOLD",reviews:318,features:["Matte aluminum","No T-Slot rails","Low-profile canister","Locks at any position"],best_fit:["F-150","Silverado","Ram","Tundra","Tacoma"],note:""},
+    {id:27,rank:27,brand:"BAK",name:"Revolver X4s",category:"Tonneau Cover",type:"Hard Roll-Up",map_display:"$1,299–$1,449",rating:"GOLD",reviews:1822,features:["Hard aluminum slats","IP56 water resistance","Full bed access","Dual access handles"],best_fit:["F-150","Silverado","Ram 1500","Sierra","Tundra"],note:""},
+    {id:28,rank:28,brand:"TruXedo",name:"Sentry CT",category:"Tonneau Cover",type:"Hard Roll-Up",map_display:"$1,199–$1,349",rating:"GOLD",reviews:278,features:["Carbon fiber-look top panel","Hard roll-up","LED brake light strip","Dual paddle latches"],best_fit:["F-150","Silverado","Ram 1500","Sierra"],note:""},
+    {id:29,rank:29,brand:"UnderCover",name:"SE",category:"Tonneau Cover",type:"One-Piece Hard",map_display:"$1,199–$1,249",rating:"GOLD",reviews:281,features:["One-piece ABS","Paintable","Key lock","Weather tight"],best_fit:["F-150","Silverado","Ram"],note:""},
+    {id:30,rank:30,brand:"Retrax",name:"Retrax IX",category:"Tonneau Cover",type:"Manual Retractable",map_display:"$1,199",rating:"GOLD",reviews:43,features:["Entry-level retractable","Extruded aluminum","Integrated locks","No T-Slot rails"],best_fit:["F-150","Silverado","Ram 1500"],note:""},
+    {id:31,rank:31,brand:"BAK",name:"Revolver X2",category:"Tonneau Cover",type:"Hard Roll-Up",map_display:"$1,199–$1,349",rating:"GOLD",reviews:733,features:["Hard aluminum slats","Dual access handles","Full bed access","Low-profile"],best_fit:["F-150","Silverado","Ram","Tundra"],note:""},
+    {id:32,rank:32,brand:"TruXedo",name:"Sentry",category:"Tonneau Cover",type:"Hard Roll-Up",map_display:"$1,099–$1,249",rating:"★★★★",reviews:90,features:["Hard roll-up","Dual paddle latches","Low-profile","Full bed access"],best_fit:["F-150","Silverado","Ram","Tundra"],note:""},
+    {id:33,rank:33,brand:"UnderCover",name:"SE Smooth",category:"Tonneau Cover",type:"One-Piece Hard",map_display:"$1,099–$1,149",rating:"★★★★",reviews:null,features:["Smooth paintable surface","One-piece ABS","Key lock","Weather tight"],best_fit:["F-150","Silverado","Ram"],note:""},
+    {id:34,rank:34,brand:"UnderCover",name:"Ascend Rack",category:"Truck Rack",type:"Overland Rack",map_display:"$1,199",rating:"GOLD",reviews:null,features:["Overland-style rack","1,000 lb load rating","Powder coat finish","Modular accessories"],best_fit:["Tacoma","F-150","Gladiator","Silverado 1500"],note:""},
+    {id:35,rank:35,brand:"UnderCover",name:"Flex",category:"Tonneau Cover",type:"Hard Folding",map_display:"$999–$1,099",rating:"★★★★",reviews:425,features:["Hard fold","300 lb load rating","Split rear fold design","EPDM seals"],best_fit:["F-150","Silverado","Ram 1500","Tundra"],note:""},
+    {id:36,rank:36,brand:"BAK",name:"BAKFlip G2",category:"Tonneau Cover",type:"Hard Folding",map_display:"$999–$1,099",rating:"★★★★",reviews:1998,features:["Aluminum frame","Semi-gloss black finish","300 lb load rating","Full bed access"],best_fit:["F-150","Silverado","Ram 1500","Tundra","Tacoma"],note:""},
+    {id:37,rank:37,brand:"TruXedo",name:"Elevate Rack (CS/FS)",category:"Truck Rack",type:"Bed Rack",map_display:"$949",rating:"★★★★",reviews:236,features:["Telescoping cross bars","1,000 lb load rating","Works with tonneau","Multiple attachment points"],best_fit:["F-150","Silverado","Ram 1500","Tundra"],note:""},
+    {id:38,rank:38,brand:"UnderCover",name:"Select",category:"Tonneau Cover",type:"Hard Folding",map_display:"$849",rating:"★★★★",reviews:27,features:["Entry-level hard fold","Aluminum frame","300 lb load rating","Matte black"],best_fit:["F-150","Silverado","Ram 1500"],note:""},
+    {id:39,rank:39,brand:"TruXedo",name:"Deuce",category:"Tonneau Cover",type:"Soft Folding",map_display:"$679–$729",rating:"★★★",reviews:17,features:["Soft fold + roll option","Dual-mode design","Aluminum frame","Pre-set tension"],best_fit:["F-150","Silverado","Ram 1500"],note:""},
+    {id:40,rank:40,brand:"TruXedo",name:"Pro X15 TS",category:"Tonneau Cover",type:"Soft Roll-Up",map_display:"$649–$699",rating:"★★★",reviews:27,features:["T-Slot rails included","Ultra-low 1-inch profile","Dual side seals","Pre-set tension controls"],best_fit:["F-150","Silverado","Ram","Tundra"],note:""},
+    {id:41,rank:41,brand:"TruXedo",name:"Pro X15",category:"Tonneau Cover",type:"Soft Roll-Up",map_display:"$579–$629",rating:"★★★",reviews:691,features:["Ultra-low 1-inch profile","Dual side seals","Pre-set tension","All-weather"],best_fit:["F-150","Silverado","Ram","Tundra","Tacoma"],note:""},
+    {id:42,rank:42,brand:"TruXedo",name:"TonneauMate Cargo System",category:"Bed Accessories",type:"Cargo Organizer",map_display:"$529",rating:"★★★",reviews:63,features:["Fits under tonneau","Waterproof bins","Locking lid","Modular design"],best_fit:["Universal — fits most trucks with tonneau"],note:""},
+    {id:43,rank:43,brand:"TruXedo",name:"Lo Pro",category:"Tonneau Cover",type:"Soft Roll-Up",map_display:"$499–$549",rating:"★★★",reviews:1384,features:["Low-profile roll-up","Aluminum frame","Pre-set tension controls","Alloy support rods"],best_fit:["F-150","Silverado","Ram","Tundra","Tacoma","Colorado"],note:"#1 top-selling roll-up tonneau cover in North America"},
+    {id:44,rank:44,brand:"Romik",name:"Action Slide 1200 Cargo Slide",category:"Bed Accessories",type:"Slide-Out Cargo System",map_display:"$1,499",rating:"GOLD",reviews:null,features:["1,200 lb capacity","Full extension slide","Heavy-duty steel","Rubber non-slip surface"],best_fit:["F-150","F-250/350","Silverado","Ram","Tundra"],note:"Source: romik.com — not on RealTruck wholesale"},
+    {id:45,rank:45,brand:"Romik",name:"RB2-T Polished Truck Running Boards",category:"Running Boards",type:"Fixed Step",map_display:"$838–$1,028",rating:"GOLD",reviews:7,features:["Polished stainless steel","Made in Europe","Step pad grip","Vehicle-specific brackets"],best_fit:["F-150","Silverado 1500","Ram 1500","Tundra","Canyon/Colorado"],note:"Source: romik.com — not on RealTruck wholesale"},
+    {id:46,rank:46,brand:"Romik",name:"RAL-T Black Truck Running Boards",category:"Running Boards",type:"Fixed Step",map_display:"$783–$965",rating:"★★★★",reviews:14,features:["Black aluminum","Made in Europe","Step pad grip","Vehicle-specific brackets"],best_fit:["F-150","Silverado","Ram 1500","Tundra","Colorado"],note:"Source: romik.com — not on RealTruck wholesale"},
+    {id:47,rank:47,brand:"Romik",name:"RAL-T Silver Truck Running Boards",category:"Running Boards",type:"Fixed Step",map_display:"$783–$965",rating:"★★★★",reviews:5,features:["Silver aluminum","Made in Europe","Step pad grip","60+ years of manufacturing"],best_fit:["F-150","Silverado","Ram 1500","Tundra"],note:"Source: romik.com — not on RealTruck wholesale"},
+    {id:48,rank:48,brand:"Romik",name:"REC-T Black Truck Running Boards",category:"Running Boards",type:"Fixed Step",map_display:"$743–$965",rating:"★★★★",reviews:6,features:["Oval-step design","Black powder coat","Made in Europe","Heavy-duty aluminum"],best_fit:["F-150","Silverado","Ram 1500","Super Duty"],note:"Source: romik.com — not on RealTruck wholesale"},
+    {id:49,rank:49,brand:"AMP Research",name:"BedXTender HD Sport",category:"Bed Extender",type:"Bed Extender",map_display:"$329",rating:"★★★",reviews:null,features:["Extends bed capacity","Adjustable width","Folds flat","Works with tailgate open"],best_fit:["F-150","Silverado","Ram 1500","Tundra"],note:""},
+    {id:50,rank:50,brand:"AMP Research",name:"BedStep2",category:"Bed Step",type:"Bed Corner Step",map_display:"$329",rating:"★★★",reviews:null,features:["Mounts at bed corner","Auto fold/unfold","Corrosion-resistant","No-drill install on most trucks"],best_fit:["F-150","Silverado","Ram 1500","Tundra","Super Duty"],note:"Perfect add-on to any bedliner sale — low-effort upsell"},
+    {id:51,rank:51,brand:"AMP Research",name:"BedStep",category:"Bed Step",type:"Hitch Step",map_display:"$329",rating:"★★★",reviews:null,features:["Mounts to rear bumper/hitch area","Auto fold/unfold","Supports 300 lbs","Corrosion resistant"],best_fit:["F-150","Silverado","Ram 1500","Super Duty"],note:""},
+    {id:52,rank:52,brand:"UnderCover",name:"SwingCase Truck Bed Toolbox",category:"Bed Storage",type:"Swing-Out Toolbox",map_display:"$199",rating:"★★",reviews:1544,features:["Swing-out access","Side-mount in bed","Keyed lock","Weather-resistant"],best_fit:["F-150","Silverado","Ram 1500","Tundra","Tacoma"],note:"Highest review count in its category — strong volume driver, easy add-on"},
+    {id:53,rank:53,brand:"TruXedo",name:"TruXport (GEN 2)",category:"Tonneau Cover",type:"Soft Roll-Up",map_display:"$329–$359",rating:"★★★",reviews:5052,features:["Marine-grade vinyl","Aluminum frame","Alloy support rods","Pre-set tension controls"],best_fit:["F-150","Silverado","Ram","Tundra","Tacoma","Colorado","Frontier"],note:"Entry-level price anchor — 5,052 reviews. Use to introduce brand, upsell to Lo Pro or Pro X15"},
+    {id:54,rank:54,brand:"BAK",name:"Revolver X4ts Rails Add-On",category:"Tonneau Accessories",type:"T-Slot Rail Kit",map_display:"$429",rating:"★★★",reviews:null,features:["T-Slot rails for accessories","Fits Revolver X4s","Direct bolt-on","Opens accessory ecosystem"],best_fit:["Revolver X4s owners adding accessories"],note:""},
+    {id:55,rank:55,brand:"TruXedo",name:"Elevate TS Rails",category:"Tonneau Accessories",type:"T-Slot Rail Kit",map_display:"$239–$279",rating:"★★",reviews:null,features:["T-Slot rails for Elevate accessories","Pairs with TruXedo covers","Aluminum construction"],best_fit:["Trucks with TruXedo tonneau covers"],note:""},
+    {id:56,rank:56,brand:"Retrax",name:"EQ Bluetooth Keypad",category:"Tonneau Accessories",type:"Remote Control",map_display:"$79",rating:"★",reviews:null,features:["Bluetooth keypad","Wireless control","Easy install","Works with Retrax EQ only"],best_fit:["Retrax EQ owners"],note:""},
+    {id:57,rank:57,brand:"Retrax",name:"EQ Passenger LED Light Kit",category:"Tonneau Accessories",type:"LED Lighting",map_display:"$69",rating:"★",reviews:null,features:["Illuminates truck bed","Wired to Retrax EQ","Motion activated","Easy clip install"],best_fit:["Retrax EQ owners"],note:""},
+    {id:58,rank:58,brand:"TruXedo",name:"TruXseal Tailgate Seal",category:"Tonneau Accessories",type:"Weather Seal",map_display:"$26",rating:"★",reviews:355,features:["Seals tailgate gap","EPDM rubber","Universal fit","Easy peel-and-stick"],best_fit:["Any truck with tailgate gap"],note:"Add to every tonneau sale — 355 reviews, near-zero effort"}
+  ];
+
+  /* ── HELPERS ── */
+  function brandClass(brand) {
+    const map = {
+      'Retrax':    'brand-retrax',
+      'BAK':       'brand-bak',
+      'AMP Research': 'brand-amp',
+      'UnderCover':'brand-undercover',
+      'TruXedo':   'brand-truxedo',
+      'Romik':     'brand-romik'
+    };
+    return map[brand] || 'brand-retrax';
+  }
+
+  function brandLabel(brand) {
+    const map = {
+      'BAK': 'BAKFlip'
+    };
+    return map[brand] || brand;
+  }
+
+  function starsHtml(rating) {
+    if (rating === 'GOLD') {
+      return '<span class="cu-card-stars cu-stars-gold">★★★★★ <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#f59e0b;">GOLD</span></span>';
+    }
+    const filled = (rating.match(/★/g) || []).length;
+    const empty  = 5 - filled;
+    return '<span class="cu-card-stars cu-stars-four">' +
+      '★'.repeat(filled) +
+      '<span style="color:#e5e7eb;">' + '★'.repeat(empty) + '</span>' +
+      '</span>';
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  /* ── BUILD CARD HTML ── */
+  function buildCard(p) {
+    // Determine filter category key
+    // Cards need both data-brand and data-category for AND filtering
+    const catKey = p.category; // exact match to data
+
+    // Top badges
+    let badges = '';
+    badges += `<span class="cu-brand-badge ${brandClass(p.brand)}">${escapeHtml(brandLabel(p.brand))}</span>`;
+    if (p.rank <= 10) {
+      badges += `<span class="cu-badge-topseller">Top Seller</span>`;
+    }
+    if (p.note && p.note.toLowerCase().includes('bundle')) {
+      badges += `<span class="cu-badge-bundle">★ Bundle</span>`;
+    }
+    if (p.reviews !== null && p.reviews >= 500) {
+      badges += `<span class="cu-badge-reviews">★ ${p.reviews.toLocaleString()} reviews</span>`;
+    }
+
+    // Features (max 4)
+    const feats = p.features.slice(0,4).map(f => `<li>${escapeHtml(f)}</li>`).join('');
+
+    // Best fit chips
+    const chips = p.best_fit.map(v => `<span class="cu-fit-chip">${escapeHtml(v)}</span>`).join('');
+
+    return `
+<div class="cu-product-card"
+     data-brand="${escapeHtml(p.brand)}"
+     data-category="${escapeHtml(catKey)}">
+  <div class="cu-card-badges">${badges}</div>
+  <div class="cu-card-name">${escapeHtml(p.name)}</div>
+  <div class="cu-card-meta">${escapeHtml(p.category)} · ${escapeHtml(p.type)}</div>
+  <div>
+    <span class="cu-card-price-label">From / MAP</span>
+    <div class="cu-card-price">${escapeHtml(p.map_display)}</div>
+  </div>
+  ${starsHtml(p.rating)}
+  <ul class="cu-card-features">${feats}</ul>
+  <div class="cu-card-fit">${chips}</div>
+  <div class="cu-card-ctas">
+    <a href="#cu-quote" class="cu-btn-quote">Get a Quote →</a>
+    <a href="#cu-learn-${p.id}" class="cu-btn-learn">Learn More</a>
+  </div>
+</div>`;
+  }
+
+  /* ── INJECT CARDS ── */
+  const grid = document.getElementById('cu-products-grid');
+  const empty = document.getElementById('cu-empty');
+  const countEl = document.getElementById('cu-result-count');
+
+  // Build and insert all cards
+  const fragment = document.createDocumentFragment();
+  products.forEach(p => {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = buildCard(p).trim();
+    fragment.appendChild(wrapper.firstChild);
+  });
+  // insert before empty state
+  grid.insertBefore(fragment, empty);
+
+  /* ── FILTER STATE ── */
+  let activeBrand = 'all';
+  let activeCat   = 'all';
+
+  function applyFilters() {
+    const cards = grid.querySelectorAll('.cu-product-card');
+    let visible = 0;
+    cards.forEach(card => {
+      const brand = card.dataset.brand;
+      const cat   = card.dataset.category;
+
+      const brandMatch = activeBrand === 'all' || brand === activeBrand;
+      const catMatch   = activeCat   === 'all' || cat   === activeCat;
+
+      if (brandMatch && catMatch) {
+        card.classList.remove('hidden');
+        visible++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    // Empty state
+    if (visible === 0) {
+      empty.classList.add('visible');
+    } else {
+      empty.classList.remove('visible');
+    }
+
+    // Count
+    countEl.textContent = `Showing ${visible} product${visible !== 1 ? 's' : ''}`;
+  }
+
+  /* ── BRAND TAB LISTENERS ── */
+  document.querySelectorAll('.cu-filter-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.cu-filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      activeBrand = this.dataset.brand;
+      applyFilters();
+    });
+  });
+
+  /* ── CATEGORY SUB-FILTER LISTENERS ── */
+  // Map display label → exact data-category values (handles multiple categories per button)
+  const catMap = {
+    'all':             'all',
+    'Tonneau Cover':   'Tonneau Cover',
+    'Running Boards':  'Running Boards',
+    'Truck Rack':      'Truck Rack',
+    'Bed Accessories': 'Bed Accessories'
+  };
+
+  document.querySelectorAll('.cu-subfilter-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.cu-subfilter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      activeCat = this.dataset.cat;
+      applyFilters();
+    });
+  });
+
+  // Initial count
+  applyFilters();
+
+})();
+</script>
+</body></html>

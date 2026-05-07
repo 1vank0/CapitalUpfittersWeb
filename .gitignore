@@ -12,7 +12,4 @@ qa-*.js
 
 # Node (if build tools added later)
 node_modules/
-/admin
-tina/__generated__
-cms-data.json
-.vercel/
+.vercel
