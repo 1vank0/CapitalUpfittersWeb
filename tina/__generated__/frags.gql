@@ -1,0 +1,198 @@
+fragment BrandParts on Brand {
+  __typename
+  key
+  name
+  tagline
+  logo
+  url
+  sortOrder
+}
+
+fragment GalleryItemParts on GalleryItem {
+  __typename
+  label
+  category
+  image
+  tags
+  size
+  sortOrder
+  active
+}
+
+fragment ServiceParts on Service {
+  __typename
+  title
+  slug
+  category
+  brandKeys
+  image
+  summary
+  _repetitionCheck
+  icon
+  priceFrom
+  sortOrder
+  active
+  hero {
+    __typename
+    badge
+    backgroundImage
+    textAlign
+    headline
+    subheadline
+    primaryCtaLabel
+    primaryCtaUrl
+    secondaryCtaLabel
+    secondaryCtaUrl
+  }
+  pricing {
+    __typename
+    label
+    price
+    note
+  }
+  kpis {
+    __typename
+    value
+    label
+  }
+  process {
+    __typename
+    title
+    description
+  }
+  faqs {
+    __typename
+    question
+    answer
+  }
+  benefits {
+    __typename
+    heading
+    intro
+    cards {
+      __typename
+      icon
+      title
+      description
+    }
+  }
+  featureSection {
+    __typename
+    heading
+    intro
+    cards {
+      __typename
+      icon
+      title
+      subtitle
+      description
+    }
+  }
+  geoCallout {
+    __typename
+    heading
+    body
+  }
+  aboutBody
+  sectionTitles {
+    __typename
+    pricing
+    process
+    testimonials
+    faqs
+  }
+  seoTitle
+  seoDescription
+  body
+}
+
+fragment GeoPageParts on GeoPage {
+  __typename
+  title
+  slug
+  city
+  state
+  hero {
+    __typename
+    badge
+    backgroundImage
+    textAlign
+    headline
+    subheadline
+    primaryCtaLabel
+    primaryCtaUrl
+    secondaryCtaLabel
+    secondaryCtaUrl
+  }
+  directionsTitle
+  directionsBody
+  seoTitle
+  seoDescription
+  body
+}
+
+fragment TestimonialParts on Testimonial {
+  __typename
+  author
+  authorMeta
+  rating
+  featured
+  serviceSlug
+  body
+}
+
+fragment FaqParts on Faq {
+  __typename
+  question
+  sortOrder
+  category
+  body
+}
+
+fragment ContentBlockParts on ContentBlock {
+  __typename
+  slug
+  title
+  type
+  body
+}
+
+fragment PageParts on Page {
+  __typename
+  title
+  slug
+  hero {
+    __typename
+    badge
+    backgroundImage
+    textAlign
+    headline
+    subheadline
+    primaryCtaLabel
+    primaryCtaUrl
+    secondaryCtaLabel
+    secondaryCtaUrl
+  }
+  seoTitle
+  seoDescription
+  body
+}
+
+fragment SettingsParts on Settings {
+  __typename
+  business_name
+  phone
+  email
+  address
+  weekday_hours
+  saturday_hours
+  sunday_hours
+  facebook_url
+  instagram_url
+  youtube_url
+  google_business_url
+  default_seo_title
+  default_seo_description
+  urgency_message_1
+  urgency_message_2
+}

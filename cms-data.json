@@ -1,0 +1,2864 @@
+{
+  "generatedAt": "2026-05-05T20:27:05.116Z",
+  "services": [
+    {
+      "title": "The Last Bedliner Your Truck Will Ever Need",
+      "slug": "bedliner",
+      "category": "bedliners",
+      "summary": "Authorized Patriot Liner dealer. Premium polyurea formula — heated to 155°F, 2,000 PSI. Dry in under 10 seconds. Lifetime warranty.",
+      "icon": "truck",
+      "priceFrom": 575,
+      "sortOrder": 1,
+      "active": true,
+      "hero": {
+        "badge": "Authorized Patriot Liner Dealer",
+        "headline": "THE LAST BEDLINER YOUR TRUCK WILL EVER NEED.",
+        "subheadline": "Authorized Patriot Liner dealer. Premium polyurea formula — heated to 155°F, 2,000 PSI. Dry in under 10 seconds. Lifetime warranty.",
+        "primaryCtaLabel": "Get a Free Quote",
+        "primaryCtaUrl": "../quote.html?service=bedliner",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "pricing": [
+        {
+          "label": "Compact Truck",
+          "price": "$575",
+          "note": "Up to 5ft bed • + tax"
+        },
+        {
+          "label": "Standard Truck",
+          "price": "$595",
+          "note": "Up to 6.5ft bed • + tax"
+        },
+        {
+          "label": "HD & Long Bed",
+          "price": "$635+",
+          "note": "HD: $635 • Long 8ft: $675 • + tax"
+        }
+      ],
+      "kpis": [
+        {
+          "value": "5,000+",
+          "label": "Beds Lined in the DMV"
+        },
+        {
+          "value": "Lifetime",
+          "label": "Manufacturer Warranty"
+        },
+        {
+          "value": "2–3 hrs",
+          "label": "Typical Install Time"
+        }
+      ],
+      "process": [
+        {
+          "title": "Inspect & Assess",
+          "description": "We inspect the bed for rust, damage, or accessories that need to be removed prior to application."
+        },
+        {
+          "title": "Surface Prep",
+          "description": "The bed is cleaned, sanded, and masked. Proper prep ensures maximum adhesion and a clean edge line."
+        },
+        {
+          "title": "Spray Application",
+          "description": "Patriot Liner is applied at 155°F, 2,000 PSI. Dries in under 10 seconds for a seamless, permanent bond."
+        },
+        {
+          "title": "Cure & Pickup",
+          "description": "Your truck is ready in 2–3 hours. We do a final inspection before you pick it up, warranty registered."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "How long does the install take?",
+          "answer": "Most installs take 2–3 hours from drop-off to pickup. We recommend scheduling a morning appointment so your truck is ready by early afternoon. Same-day service is typically available."
+        },
+        {
+          "question": "What sets Patriot Liner apart?",
+          "answer": "While many spray-on bedliner brands exist, many share similar core chemistry. Patriot Liner is engineered with a refined polyurea formulation that delivers a deeper, richer black finish and enhanced UV resistance and durability (lab proven). Its advanced application characteristics allow it to lay down smoother and more consistently, creating a clean, uniform finish that stands out. Combined with a lifetime warranty, it's built for customers who want both durability and a premium look."
+        },
+        {
+          "question": "How much does it cost?",
+          "answer": "Pricing starts at $575 for compact trucks (up to 5ft bed), $595 for standard (up to 6.5ft), $635 for HD trucks, and $675 for long 8ft beds. Add +$200 for the Premium UV+ formula upgrade. All prices plus tax. Get an instant quote online or call us at (301) 304-1419."
+        },
+        {
+          "question": "Do you do custom colors?",
+          "answer": "Yes. While black is the standard color, Patriot Liner is available in custom colors. Custom color requests may require additional lead time. Contact us to discuss your options before booking."
+        },
+        {
+          "question": "Can you spray liner something besides a truck bed?",
+          "answer": "Yes — Patriot Liner bonds to metal, wood, concrete, and fiberglass. We regularly coat trailer beds, van floors, boat gunwales, garage floors, steps, and commercial vehicle cargo areas. Call us and describe your surface — if it can be prepped properly, we can coat it."
+        }
+      ],
+      "seoTitle": "Spray-On Bedliner Rockville MD | Patriot Liner Dealer",
+      "seoDescription": "Patriot Liner spray-on bedliners in Rockville MD — trucks, trailers, marine, floors, steps and more. Lifetime warranty. Authorized installer serving Rockville, Bethesda, Silver Spring, Gaithersburg and the DMV.",
+      "benefits": {
+        "heading": "BUILT TO TAKE A BEATING.",
+        "intro": "Not all spray liners are the same. The chemistry, application temperature, and pressure make all the difference. Here's why Patriot Liner leads the field.",
+        "cards": [
+          {
+            "title": "Lifetime Warranty",
+            "description": "Every Patriot Liner installation comes with a lifetime manufacturer warranty. If it peels, fades, or cracks, we make it right — no questions asked."
+          },
+          {
+            "title": "Applied at 155°F & 2,000 PSI",
+            "description": "Our heated, high-pressure application bonds the polyurea directly to the metal. It doesn't sit on top of your bed — it becomes part of it. Zero risk of delamination."
+          },
+          {
+            "title": "American-Made by Veterans",
+            "description": "Patriot Liner is an American-made product developed and backed by veterans. You're not just protecting your truck — you're supporting a company built on integrity."
+          },
+          {
+            "title": "Trailer Beds & Floors",
+            "description": "Utility trailers, enclosed cargo trailers, flatbeds, horse trailers, boat trailers. Full waterproofing, rust protection, and non-slip grip."
+          },
+          {
+            "title": "Steps & Running Boards",
+            "description": "Non-slip textured coating on truck steps, running boards, dock steps, industrial platforms. Grip that stays grippy even when wet."
+          },
+          {
+            "title": "Boats & Marine",
+            "description": "Gunwales, decks, dock boards, pontoon floors. Polyurea is 100% waterproof and UV-stable — built for constant exposure to sun and water."
+          },
+          {
+            "title": "Garage & Workshop Floors",
+            "description": "Concrete garage floors, shop floors, loading docks. Seamless, chemical-resistant coating that holds up to oil, solvents, and heavy equipment."
+          },
+          {
+            "title": "Cargo Vans & Work Trucks",
+            "description": "Van floors, cargo areas, flatbed decks. Quieter ride, protected cargo, easy hose-out cleaning. Popular with contractors and delivery fleets."
+          },
+          {
+            "title": "Custom & Industrial",
+            "description": "Playground equipment, ATVs, tool chests, dumpsters, agricultural equipment. If it can be sandblasted or prepped, it can be lined. Call us."
+          }
+        ]
+      },
+      "geoCallout": {
+        "heading": "SERVING ROCKVILLE, BETHESDA & THE ENTIRE DMV.",
+        "body": "Truck owners across Rockville, Bethesda, Gaithersburg, and Silver Spring bring their pickups to us for Patriot Liner — the same premium polyurea used by fleets, law enforcement, and outdoor enthusiasts across Montgomery County. We're minutes from I-270 and Route 355, making drop-off and pickup fast and easy."
+      },
+      "sectionTitles": {
+        "pricing": "PRICING BY BED SIZE.",
+        "process": "FROM DROP-OFF TO PICKUP.",
+        "faqs": "COMMON QUESTIONS.",
+        "testimonials": "REAL CUSTOMERS. REAL RESULTS."
+      },
+      "body": "Authorized Patriot Liner dealer. Premium polyurea formula — heated to 155°F, 2,000 PSI. Dry in under 10 seconds. Lifetime warranty.\n\n## BUILT TO TAKE A BEATING.\n\nNot all spray liners are the same. The chemistry, application temperature, and pressure make all the difference. Here's why Patriot Liner leads the field.\n\nEvery Patriot Liner installation comes with a lifetime manufacturer warranty. If it peels, fades, or cracks, we make it right — no questions asked.\n\nOur heated, high-pressure application bonds the polyurea directly to the metal. It doesn't sit on top of your bed — it becomes part of it. Zero risk of delamination.\n\nPatriot Liner is an American-made product developed and backed by veterans. You're not just protecting your truck — you're supporting a company built on integrity.\n\n## PATRIOT LINER GOES ANYWHERE.\n\nPolyurea spray coating bonds to almost any surface — metal, wood, concrete, fiberglass. If it needs protection, grip, or waterproofing, we can coat it.\n\nUtility trailers, enclosed cargo trailers, flatbeds, horse trailers, boat trailers. Full waterproofing, rust protection, and non-slip grip.\n\nNon-slip textured coating on truck steps, running boards, dock steps, industrial platforms. Grip that stays grippy even when wet.\n\nGunwales, decks, dock boards, pontoon floors. Polyurea is 100% waterproof and UV-stable — built for constant exposure to sun and water.\n\n## PRICING BY BED SIZE.\n\nNo hidden fees. No surprises. Every quote includes full bed prep, professional application, and lifetime warranty registration.\n\nEnhanced UV stabilizer formula for vehicles kept outdoors. Prevents color fade and chalking over time.\n\n## FROM DROP-OFF TO PICKUP.\n\nA clean, professional process every time. Your truck is treated with care from the moment it arrives.\n\nWe inspect the bed for rust, damage, or accessories that need to be removed prior to application.\n\nThe bed is cleaned, sanded, and masked. Proper prep ensures maximum adhesion and a clean edge line.\n\nPatriot Liner is applied at 155°F, 2,000 PSI. Dries in under 10 seconds for a seamless, permanent bond.",
+      "_file": "bedliner.md"
+    },
+    {
+      "title": "Tonneau Covers For Every Truck And Budget",
+      "slug": "tonneau",
+      "category": "truck-accessories",
+      "summary": "Folding, roll-up, retractable, and hard panel covers. 150+ brands. Professional installation — no drilling, factory fit. Starting from $300.",
+      "icon": "box",
+      "priceFrom": 300,
+      "sortOrder": 2,
+      "active": true,
+      "hero": {
+        "badge": "Folding, Roll-Up & Retractable",
+        "headline": "TONNEAU COVERS FOR EVERY TRUCK AND BUDGET.",
+        "subheadline": "Folding, roll-up, retractable, and hard panel covers. 150+ brands. Professional installation — no drilling, factory fit. Starting from $300.",
+        "primaryCtaLabel": "Get a Free Quote",
+        "primaryCtaUrl": "../quote.html?service=tonneau",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "kpis": [
+        {
+          "value": "Soft & Hard",
+          "label": "Fold, Roll & Retractable Styles"
+        },
+        {
+          "value": "1 hr",
+          "label": "Most Installs Same Day"
+        },
+        {
+          "value": "All Makes",
+          "label": "Ford, RAM, GM, Toyota & More"
+        }
+      ],
+      "process": [
+        {
+          "title": "Vehicle Confirmation",
+          "description": "We confirm your bed size, cab configuration, and any accessories (toolboxes, rails) that affect cover selection."
+        },
+        {
+          "title": "Product Selection",
+          "description": "We match you to the right cover for your use case and budget from our inventory of 150+ brands."
+        },
+        {
+          "title": "Clean Install",
+          "description": "Mounted using stake holes or clamp hardware — no drilling. Weather seals are adjusted for a tight, factory-style fit."
+        },
+        {
+          "title": "Demo & Pickup",
+          "description": "We walk you through operation and adjustment. Most installs done in 1–2 hours. Ready same day."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Will a tonneau cover fit my truck?",
+          "answer": "Tonneau covers are available for virtually all popular truck models — F-150, Silverado, Ram, Tundra, Tacoma, Colorado, Ranger, and more. We carry vehicle-specific covers that use existing mounting points with no drilling required. Tell us your year, make, model, and bed size and we'll confirm availability."
+        },
+        {
+          "question": "Do tonneau covers improve gas mileage?",
+          "answer": "Yes. An open truck bed acts like a parachute at highway speeds. A tonneau cover reduces that aerodynamic drag, with independent tests showing 2–5% improvements in fuel economy. Hard and retractable covers tend to outperform soft covers in this regard since they create a completely sealed surface."
+        },
+        {
+          "question": "Can I use the full bed with a tonneau cover?",
+          "answer": "It depends on the cover type. Folding covers (soft and hard) fold toward the cab giving full access to the rear portion, or push completely forward for total bed access. Roll-up and retractable covers roll/retract to the cab end when fully opened. If you regularly haul tall or long cargo, a folding cover typically works best."
+        },
+        {
+          "question": "How long does installation take?",
+          "answer": "Most tonneau cover installations take 1–2 hours. We don't drill into your truck — covers mount with clamps or stake hole hardware. Same-day installation is available on most in-stock covers. Call us to confirm availability for your specific truck before booking."
+        }
+      ],
+      "seoTitle": "Tonneau Covers Rockville MD | 150+ Brands In Stock",
+      "seoDescription": "Folding, roll-up, retractable, and hard panel tonneau covers in Rockville, MD. 150+ brands from $300. Professional installation, factory fit.",
+      "benefits": {
+        "heading": "SECURE, SLEEK, AND SMARTER.",
+        "intro": "A tonneau cover isn't just cosmetic. It secures your gear, protects your cargo from weather, and actually improves your truck's fuel economy at highway speeds.",
+        "cards": [
+          {
+            "title": "150+ Brands in Stock",
+            "description": "BAKFlip, Retrax, TruXedo, Extang, Roll-N-Lock, Access, Lund — we carry the brands that hold up. We'll match you to the right cover for how you use your truck."
+          },
+          {
+            "title": "Factory-Style Fit",
+            "description": "Every cover we install uses the factory stake holes or bed rail clamps — zero drilling, no damage to your truck. Clean install, clean look, and no impact on resale value."
+          },
+          {
+            "title": "Improves Fuel Economy",
+            "description": "An open truck bed creates significant drag at highway speeds. A tonneau cover reduces that drag and has been shown to improve fuel economy by 2–5% in real-world conditions."
+          }
+        ]
+      },
+      "geoCallout": {
+        "heading": "TONNEAU COVER INSTALLATION ACROSS THE DMV.",
+        "body": "Truck owners across Rockville, Gaithersburg, Bethesda, and Silver Spring come to Capital Upfitters to find the right tonneau for their specific bed. We carry soft fold, hard fold, retractable, and roll-up covers and stock the most popular sizes for F-150, Silverado, Sierra, Ram 1500, Tacoma, and Tundra. Located at 12019 Nebel St in Rockville — minutes from I-270."
+      },
+      "sectionTitles": {
+        "pricing": "THE COVERS WE CARRY.",
+        "process": "NO DRILLING. PERFECT FIT.",
+        "faqs": "COMMON QUESTIONS.",
+        "testimonials": "REAL CUSTOMERS. REAL RESULTS."
+      },
+      "body": "Folding, roll-up, retractable, and hard panel covers. 150+ brands. Professional installation — no drilling, factory fit. Starting from $300.\n\n## SECURE, SLEEK, AND SMARTER.\n\nA tonneau cover isn't just cosmetic. It secures your gear, protects your cargo from weather, and actually improves your truck's fuel economy at highway speeds.\n\nBAKFlip, Retrax, TruXedo, Extang, Roll-N-Lock, Access, Lund — we carry the brands that hold up. We'll match you to the right cover for how you use your truck.\n\nEvery cover we install uses the factory stake holes or bed rail clamps — zero drilling, no damage to your truck. Clean install, clean look, and no impact on resale value.\n\nAn open truck bed creates significant drag at highway speeds. A tonneau cover reduces that drag and has been shown to improve fuel economy by 2–5% in real-world conditions.\n\n## THE COVERS WE CARRY.\n\nWe carry the top brands — from entry-level soft roll-up to premium aluminum retractable. Every cover professionally installed, factory fit, no drilling on most trucks.\n\nOur most popular combo: the Patriot BC-1 hard aluminum tonneau paired with a Patriot Liner spray-on bedliner. Same appointment, same-day completion. Full bed protection — top and bottom — from one shop with one warranty.\n\nOur in-house brand. Ultra-thick aluminum panels — up to 4× thicker than standard covers. DiamondSHIELD matte finish resists scratches and corrosion. EPDM seals stop water before it enters. Supports 400 lbs. Flips up for 100% bed access.\n\nThe best-selling hard folding cover in the US. Gen 3 MX4 features polymer-reinforced aluminum panels 22% stronger than the original, auto-latch locking on every panel, and improved perimeter seals. Assembled in Missouri. 5-year warranty.\n\n## NO DRILLING. PERFECT FIT.\n\nWe confirm your bed size, cab configuration, and any accessories (toolboxes, rails) that affect cover selection.\n\nWe match you to the right cover for your use case and budget from our inventory of 150+ brands.\n\nMounted using stake holes or clamp hardware — no drilling. Weather seals are adjusted for a tight, factory-style fit.\n\nWe walk you through operation and adjustment. Most installs done in 1–2 hours. Ready same day.\n\n## TONNEAU COVER INSTALLATION ACROSS THE DMV.\n\nTruck owners across Rockville, Gaithersburg, Bethesda, and Silver Spring come to Capital Upfitters to find the right tonneau for their specific bed. We carry soft fold, hard fold, retractable, and roll-up covers and stock the most popular sizes for F-150, Silverado, Sierra, Ram 1500, Tacoma, and Tundra. Located at 12019 Nebel St in Rockville — minutes from I-270.",
+      "_file": "tonneau.md"
+    },
+    {
+      "title": "Running Boards & Steps For Trucks And Suvs",
+      "slug": "running-boards",
+      "category": "truck-accessories",
+      "summary": "Nerf bars, power running boards, tube steps, and rock sliders. 150+ brands. Professional vehicle-specific installation from $250.",
+      "icon": "arrow-down-up",
+      "priceFrom": 250,
+      "sortOrder": 3,
+      "active": true,
+      "hero": {
+        "badge": "Trucks, SUVs & Vans",
+        "headline": "RUNNING BOARDS & STEPS FOR TRUCKS AND SUVS.",
+        "subheadline": "Nerf bars, power running boards, tube steps, and rock sliders. 150+ brands. Professional vehicle-specific installation from $250.",
+        "primaryCtaLabel": "Get a Free Quote",
+        "primaryCtaUrl": "../quote.html?service=running-boards",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "kpis": [
+        {
+          "value": "Steel & Aluminum",
+          "label": "All Material Options In Stock"
+        },
+        {
+          "value": "Bolt-On",
+          "label": "No Drilling on Most Vehicles"
+        },
+        {
+          "value": "Trucks & SUVs",
+          "label": "All Major Makes & Models"
+        }
+      ],
+      "process": [
+        {
+          "title": "Vehicle Lookup",
+          "description": "We confirm your exact year, make, model, and cab configuration to select the right bracket hardware and step product."
+        },
+        {
+          "title": "Fitment Check",
+          "description": "We verify the rocker mounting points and check for any accessories (lift kits, flares) that may require specific hardware or offsets."
+        },
+        {
+          "title": "Professional Install",
+          "description": "Torqued to spec using factory-compatible hardware. Wiring harness connected for power steps. No drilling, no damage."
+        },
+        {
+          "title": "Level & Pickup",
+          "description": "Final alignment check, test of operation (power steps), and delivery. Most installs take 1–2 hours."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What's the difference between nerf bars and running boards?",
+          "answer": "Nerf bars are round or oval tubes that run along the rocker panel — they look rugged and provide a small step. Running boards are flat, wider platforms that give significantly more standing surface. Both improve entry and exit from lifted or tall vehicles. Running boards are better for daily use; nerf bars offer a sportier look. We'll help you choose based on how you use the truck."
+        },
+        {
+          "question": "Do you carry PowerStep automatic running boards?",
+          "answer": "Yes. We carry and install AMP Research PowerStep, Bestop PowerBoard, and other electric automatic step brands. Power steps deploy automatically when you open the door and retract flush when you close it — giving you a completely clean appearance while driving. They start around $600 installed, depending on your vehicle."
+        },
+        {
+          "question": "Will they fit my specific truck?",
+          "answer": "All the running boards and steps we stock are vehicle-specific — engineered for your exact year, make, and model. They mount to existing frame points with no drilling required. Give us your truck details and we'll confirm the perfect fit. Lifted trucks may require specific offset brackets, which we can source."
+        },
+        {
+          "question": "How long does installation take?",
+          "answer": "Standard nerf bars and tube steps typically take 1–2 hours. Flat running boards are similar. Power step installations take 2–3 hours due to wiring. Rock sliders can take 2–3 hours depending on complexity. We'll give you an accurate time estimate when you schedule."
+        },
+        {
+          "question": "Do you install powered / electric running boards?",
+          "answer": "Yes — we install AMP Research PowerStep electric running boards. They deploy automatically when your door opens and retract flush when you close it. Plug-N-Play install on most trucks — no wire cutting required. Pricing starts from $1,799 installed. Call us to confirm fitment for your specific vehicle."
+        }
+      ],
+      "seoTitle": "Running Boards & Steps | Powered & Manual | Capital Upfitters Rockville MD",
+      "seoDescription": "Running boards, nerf bars, and AMP Research PowerStep electric running boards installed in Rockville MD. Manual and powered options for all trucks and SUVs. Serving Rockville, Bethesda, Silver Spring, Gaithersburg and the DMV.",
+      "benefits": {
+        "heading": "THE RIGHT STEP FOR YOUR VEHICLE.",
+        "intro": "Running boards aren't universal. The right fit depends on your specific cab, bed, and rocker configuration. We stock 150+ brands and know which ones work for your truck.",
+        "cards": [
+          {
+            "title": "150+ Step Brands",
+            "description": "AMP Research, Westin, Rough Country, N-Fab, Carr, Lund, Go Rhino, and more. We carry the brands that hold up and look great for years."
+          },
+          {
+            "title": "Vehicle-Specific Fit",
+            "description": "Every running board and nerf bar we install is engineered for your exact year, make, model, and cab/bed configuration. Bolt-on installation using factory mounting points."
+          },
+          {
+            "title": "Power & Manual Options",
+            "description": "From simple tube steps to fully automatic power boards that extend and retract with your door. We carry and install the full spectrum, including AMP Research PowerStep."
+          }
+        ]
+      },
+      "geoCallout": {
+        "heading": "RUNNING BOARDS INSTALLED ACROSS THE DMV.",
+        "body": "Whether you drive a full-size pickup in Gaithersburg, a lifted SUV in Bethesda, or a work van in Rockville — Capital Upfitters stocks steel, aluminum, and composite running boards and nerf bars for all major makes and models. Most installs are bolt-on with no drilling required. We're at 12019 Nebel St in Rockville, minutes from I-270 and Route 355."
+      },
+      "sectionTitles": {
+        "pricing": "A STEP UP FOR EVERY BUDGET.",
+        "process": "BOLTED ON CLEAN.",
+        "faqs": "COMMON QUESTIONS.",
+        "testimonials": "REAL CUSTOMERS. REAL RESULTS."
+      },
+      "body": "Nerf bars, power running boards, tube steps, and rock sliders. 150+ brands. Professional vehicle-specific installation from $250.\n\n## THE RIGHT STEP FOR YOUR VEHICLE.\n\nRunning boards aren't universal. The right fit depends on your specific cab, bed, and rocker configuration. We stock 150+ brands and know which ones work for your truck.\n\nAMP Research, Westin, Rough Country, N-Fab, Carr, Lund, Go Rhino, and more. We carry the brands that hold up and look great for years.\n\nEvery running board and nerf bar we install is engineered for your exact year, make, model, and cab/bed configuration. Bolt-on installation using factory mounting points.\n\nFrom simple tube steps to fully automatic power boards that extend and retract with your door. We carry and install the full spectrum, including AMP Research PowerStep.\n\n## A STEP UP FOR EVERY BUDGET.\n\nPricing varies by vehicle and product. These are starting prices for installed hardware. Contact us with your specific vehicle for an accurate quote.\n\nRound or oval steel/aluminum tube steps in gloss black, chrome, or textured finishes. The most popular and most affordable option for trucks and SUVs.\n\nAutomatic retractable steps (AMP Research PowerStep, Bestop PowerBoard) that deploy when the door opens and retract while driving. Premium look, maximum convenience.\n\nWide, flat platform boards in aluminum or composite. Larger step surface than nerf bars — ideal for families, taller vehicles, or anyone who wants a more substantial step.\n\n## BOLTED ON CLEAN.\n\nWe confirm your exact year, make, model, and cab configuration to select the right bracket hardware and step product.\n\nWe verify the rocker mounting points and check for any accessories (lift kits, flares) that may require specific hardware or offsets.\n\nTorqued to spec using factory-compatible hardware. Wiring harness connected for power steps. No drilling, no damage.\n\nFinal alignment check, test of operation (power steps), and delivery. Most installs take 1–2 hours.\n\n## RUNNING BOARDS INSTALLED ACROSS THE DMV.\n\nWhether you drive a full-size pickup in Gaithersburg, a lifted SUV in Bethesda, or a work van in Rockville — Capital Upfitters stocks steel, aluminum, and composite running boards and nerf bars for all major makes and models. Most installs are bolt-on with no drilling required. We're at 12019 Nebel St in Rockville, minutes from I-270 and Route 355.",
+      "_file": "running-boards.md"
+    },
+    {
+      "title": "Ceramic Coating That Actually Lasts",
+      "slug": "ceramic-coating",
+      "category": "protection",
+      "summary": "IGL Coatings and System X certified installer. Professional-grade hydrophobic protection — not the spray-on stuff from the auto parts store. Prices from $900.",
+      "icon": "sparkles",
+      "priceFrom": 400,
+      "sortOrder": 4,
+      "active": true,
+      "hero": {
+        "badge": "IGL & System X Certified Installer",
+        "headline": "CERAMIC COATING THAT ACTUALLY LASTS.",
+        "subheadline": "IGL Coatings and System X certified installer. Professional-grade hydrophobic protection — not the spray-on stuff from the auto parts store. Prices from $400.",
+        "primaryCtaLabel": "Get a Free Quote",
+        "primaryCtaUrl": "../quote.html?service=ceramic-coating",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "kpis": [
+        {
+          "value": "IGL & System X",
+          "label": "Certified Installer"
+        },
+        {
+          "value": "5–9 Year",
+          "label": "Protection Life Span"
+        },
+        {
+          "value": "2-Day",
+          "label": "Full Decon & Cure Process"
+        }
+      ],
+      "process": [
+        {
+          "title": "Paint Assessment",
+          "description": "We inspect the paint under professional lighting for swirls, contamination, and oxidation to determine what prep is required."
+        },
+        {
+          "title": "Decontamination & Prep",
+          "description": "Wash, clay bar, iron decontamination. Paint correction if needed. The surface must be perfect before any coating goes on."
+        },
+        {
+          "title": "Ceramic Application",
+          "description": "Applied panel by panel in a controlled environment. Each layer is leveled and inspected before moving to the next panel."
+        },
+        {
+          "title": "Cure & Pickup",
+          "description": "The coating cures for 24–48 hours. We provide detailed aftercare instructions and register your warranty before pickup."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "How long does ceramic coating last?",
+          "answer": "A professionally applied ceramic coating typically lasts 3–5 years with proper maintenance. Some premium coatings we apply are rated for 7+ years. Longevity depends on the product tier, how thorough the prep was, and how you maintain the vehicle afterward. We'll walk you through everything at pickup."
+        },
+        {
+          "question": "Is prep work included in the price?",
+          "answer": "Surface decontamination is included in all pricing. Paint correction (polishing out swirls, scratches, and oxidation) is quoted separately based on the paint's actual condition — we assess before we quote. We won't coat over defects, which is why some shops do and their results don't last."
+        },
+        {
+          "question": "What's the difference between ceramic coating and wax?",
+          "answer": "Wax sits on top of your paint and washes away within weeks. Ceramic coating chemically bonds to the clear coat, creating a permanent hydrophobic layer that repels water, blocks UV radiation, and resists chemical contamination from bird droppings, road salt, and tree sap. It lasts years — not weeks."
+        },
+        {
+          "question": "Can I wash my car after ceramic coating?",
+          "answer": "You should avoid water contact for 5–7 days after application while the coating fully cures. After that, washing becomes easier — the hydrophobic surface causes water and dirt to slide right off. We'll give you a detailed aftercare sheet when you pick up the vehicle."
+        }
+      ],
+      "seoTitle": "Ceramic Coating Rockville MD | IGL & System X Certified",
+      "seoDescription": "IGL Coatings and System X certified ceramic coating installer in Rockville, MD. Professional paint protection from $900. Call (301) 304-1419.",
+      "benefits": {
+        "heading": "PROTECTION THAT'S ACTUALLY PERMANENT.",
+        "intro": "The difference between a $20 spray and a professional ceramic coating is the difference between a bandage and surgery. One actually solves the problem.",
+        "cards": [
+          {
+            "title": "Certified Installer (IGL + System X)",
+            "description": "We're certified by two of the world's leading ceramic coating brands. That means proper prep, correct product selection, and a warranty you can actually use."
+          },
+          {
+            "title": "Hydrophobic Protection",
+            "description": "Water beads and rolls off your paint instantly. Road grime, bird droppings, and tree sap can't chemically bond to a properly coated surface. Your paint stays cleaner, longer."
+          },
+          {
+            "title": "Self-Cleaning Effect",
+            "description": "The nano-ceramic layer's high surface tension means rain water picks up loose dirt on the way down. Less washing, less swirling, less effort maintaining your paint."
+          }
+        ]
+      },
+      "geoCallout": {
+        "heading": "CERTIFIED CERAMIC COATING IN ROCKVILLE & BETHESDA.",
+        "body": "Car owners across Bethesda, Rockville, Potomac, and North Bethesda choose Capital Upfitters for IGL and System X ceramic coating — because proper paint protection starts with proper prep. We're one of the few certified installers in Montgomery County. Located at 12019 Nebel St in Rockville, easily accessible from I-270 and Route 355."
+      },
+      "sectionTitles": {
+        "pricing": "PROTECTION FOR EVERY BUDGET.",
+        "process": "PREP IS EVERYTHING.",
+        "faqs": "COMMON QUESTIONS.",
+        "testimonials": "REAL CUSTOMERS. REAL RESULTS."
+      },
+      "body": "IGL Coatings and System X certified installer. Professional-grade hydrophobic protection — not the spray-on stuff from the auto parts store. Prices from $900.\n\n## PROTECTION THAT'S ACTUALLY PERMANENT.\n\nThe difference between a $20 spray and a professional ceramic coating is the difference between a bandage and surgery. One actually solves the problem.\n\nWe're certified by two of the world's leading ceramic coating brands. That means proper prep, correct product selection, and a warranty you can actually use.\n\nWater beads and rolls off your paint instantly. Road grime, bird droppings, and tree sap can't chemically bond to a properly coated surface. Your paint stays cleaner, longer.\n\nThe nano-ceramic layer's high surface tension means rain water picks up loose dirt on the way down. Less washing, less swirling, less effort maintaining your paint.\n\n## PROTECTION FOR EVERY BUDGET.\n\nCeramic coating pricing depends on vehicle size, paint condition, and coverage level. These are starting prices — contact us for an exact quote after vehicle inspection.\n\n## PREP IS EVERYTHING.\n\nA ceramic coating is only as good as the prep work beneath it. We don't skip steps — and we don't coat over problems.\n\nWe inspect the paint under professional lighting for swirls, contamination, and oxidation to determine what prep is required.\n\nWash, clay bar, iron decontamination. Paint correction if needed. The surface must be perfect before any coating goes on.\n\nApplied panel by panel in a controlled environment. Each layer is leveled and inspected before moving to the next panel.\n\n## CERTIFIED CERAMIC COATING IN ROCKVILLE & BETHESDA.\n\nCar owners across Bethesda, Rockville, Potomac, and North Bethesda choose Capital Upfitters for IGL and System X ceramic coating — because proper paint protection starts with proper prep. We're one of the few certified installers in Montgomery County. Located at 12019 Nebel St in Rockville, easily accessible from I-270 and Route 355.",
+      "_file": "ceramic-coating.md"
+    },
+    {
+      "title": "Truck Accessories",
+      "slug": "truck-accessories",
+      "category": "accessories",
+      "summary": null,
+      "icon": null,
+      "priceFrom": null,
+      "sortOrder": "5",
+      "active": true,
+      "seoTitle": null,
+      "seoDescription": null,
+      "body": "",
+      "_file": "truck-accessories.md"
+    },
+    {
+      "title": "Stop Rust Before It Starts",
+      "slug": "undercoating",
+      "category": "protection",
+      "summary": "Professional undercoating for all vehicles. Maryland road salt destroys unprotected metal. Rubberized and oil-based options. Prices from $650.",
+      "icon": "shield",
+      "priceFrom": 650,
+      "sortOrder": 5,
+      "active": true,
+      "hero": {
+        "badge": "Rust-Proofing Specialists",
+        "headline": "STOP RUST BEFORE IT STARTS.",
+        "subheadline": "Professional undercoating for all vehicles. Maryland road salt destroys unprotected metal. Rubberized and oil-based options. Prices from $650.",
+        "primaryCtaLabel": "Get a Free Quote",
+        "primaryCtaUrl": "../quote.html?service=undercoating",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "pricing": [
+        {
+          "label": "Cars, SUVs & 1/2-Ton Trucks",
+          "price": "$650",
+          "note": "Full undercarriage application • + tax"
+        },
+        {
+          "label": "3/4-Ton & 1-Ton Trucks",
+          "price": "$750",
+          "note": "Full undercarriage application • + tax"
+        }
+      ],
+      "kpis": [
+        {
+          "value": "DMV Winters",
+          "label": "Heavy Road Salt Every Season"
+        },
+        {
+          "value": "$650",
+          "label": "Cars, SUVs & Half-Tons"
+        },
+        {
+          "value": "Same Week",
+          "label": "Scheduling Available"
+        }
+      ],
+      "process": [
+        {
+          "title": "Undercarriage Inspection",
+          "description": "We put the vehicle on a lift and inspect for existing rust, damage, and any areas needing special attention before treatment."
+        },
+        {
+          "title": "Prep & Clean",
+          "description": "The undercarriage is cleaned and dried. Rust neutralizer is applied where needed. Exhaust and moving parts are masked off."
+        },
+        {
+          "title": "Coating Application",
+          "description": "Rubberized or oil-based undercoat is applied with professional equipment for full, even coverage — including frame rails and body seams."
+        },
+        {
+          "title": "Cure & Pickup",
+          "description": "The coating sets quickly. Most vehicles are ready same-day. We do a final inspection before you take it home."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "When's the best time to undercoat?",
+          "answer": "The best time is when the vehicle is new, before any salt exposure — ideally before the first winter. If the vehicle is used, undercoating is still effective as long as the rust hasn't progressed to structural damage. We do undercoating year-round — fall and spring are popular, but any time works."
+        },
+        {
+          "question": "Rubberized vs. oil-based — which is better?",
+          "answer": "Both serve different purposes and work best together. Rubberized undercoating is ideal for flat exposed surfaces — it creates a thick, permanent rubber barrier. Oil-based (fluid film) penetrates into seams, crevices, and frame cavities that rubber can't reach. Many customers opt for both for maximum protection. We'll recommend the right approach for your vehicle."
+        },
+        {
+          "question": "Can you undercoat a vehicle that already has rust?",
+          "answer": "Yes. For surface and minor pitting rust, we apply a rust neutralizer that converts active rust into a stable compound, then coat over it. More significant rust requires mechanical prep first. We inspect the vehicle and quote any additional prep work before starting — you'll never be surprised by charges."
+        },
+        {
+          "question": "Is dealer undercoating worth it?",
+          "answer": "Dealer undercoating is typically a thin spray applied in minutes — it's primarily a profit center for the dealer, not a serious rust protection solution. Professional undercoating from Capital Upfitters uses proper materials, applied with the right equipment, by specialists who do this every day. We see customers regularly who had dealer coating fail within two years. Don't waste the money — do it right."
+        }
+      ],
+      "seoTitle": "Undercoating Rockville MD | Rust Protection Maryland",
+      "seoDescription": "Stop Maryland road salt damage with professional undercoating in Rockville, MD. Cars & trucks from $650. Used vehicle rust prep available.",
+      "benefits": {
+        "heading": "MARYLAND ROADS EAT METAL.",
+        "intro": "The DMV gets heavy salt treatment every winter. That salt works into every seam, every crevice, every surface your vehicle touches the road with. Undercoating is the only reliable defense.",
+        "cards": [
+          {
+            "title": "Maryland Road Salt Protection",
+            "description": "Road salt accelerates corrosion dramatically. Our undercoating creates a sealed barrier between your vehicle's metal and the caustic salt and moisture that come with every winter."
+          },
+          {
+            "title": "Permanent Rubberized Barrier",
+            "description": "Rubberized undercoating bonds to metal and cures into a thick, flexible shield that doesn't crack, peel, or wash away. Applied right, it lasts the life of the vehicle."
+          },
+          {
+            "title": "Deadens Road Noise",
+            "description": "A welcome side effect: rubberized undercoating acts as a sound damper. Many customers notice a noticeably quieter ride after undercoating — especially on highway surfaces."
+          }
+        ]
+      },
+      "geoCallout": {
+        "heading": "PROTECTING DMV VEHICLES FROM MARYLAND SALT.",
+        "body": "Maryland roads are salted heavily every winter — and that salt works into every seam, every frame rail, every exposed metal surface on your vehicle. Drivers from Rockville, Silver Spring, Gaithersburg, and Bethesda bring their trucks, SUVs, and cars to us before the first freeze for full undercarriage protection. We're at 12019 Nebel St in Rockville, minutes from I-270."
+      },
+      "sectionTitles": {
+        "pricing": "STRAIGHTFORWARD PRICING.",
+        "process": "THOROUGH EVERY TIME.",
+        "faqs": "COMMON QUESTIONS.",
+        "testimonials": "REAL CUSTOMERS. REAL RESULTS."
+      },
+      "body": "Professional undercoating for all vehicles. Maryland road salt destroys unprotected metal. Rubberized and oil-based options. Prices from $650.\n\n## MARYLAND ROADS EAT METAL.\n\nThe DMV gets heavy salt treatment every winter. That salt works into every seam, every crevice, every surface your vehicle touches the road with. Undercoating is the only reliable defense.\n\nRoad salt accelerates corrosion dramatically. Our undercoating creates a sealed barrier between your vehicle's metal and the caustic salt and moisture that come with every winter.\n\nRubberized undercoating bonds to metal and cures into a thick, flexible shield that doesn't crack, peel, or wash away. Applied right, it lasts the life of the vehicle.\n\nA welcome side effect: rubberized undercoating acts as a sound damper. Many customers notice a noticeably quieter ride after undercoating — especially on highway surfaces.\n\n## STRAIGHTFORWARD PRICING.\n\nPriced by vehicle class. New vehicles quoted below. Used vehicles may require additional prep work — we'll let you know before starting.\n\n## THOROUGH EVERY TIME.\n\nWe put the vehicle on a lift and inspect for existing rust, damage, and any areas needing special attention before treatment.\n\nThe undercarriage is cleaned and dried. Rust neutralizer is applied where needed. Exhaust and moving parts are masked off.\n\nRubberized or oil-based undercoat is applied with professional equipment for full, even coverage — including frame rails and body seams.\n\nThe coating sets quickly. Most vehicles are ready same-day. We do a final inspection before you take it home.\n\n## PROTECTING DMV VEHICLES FROM MARYLAND SALT.\n\nMaryland roads are salted heavily every winter — and that salt works into every seam, every frame rail, every exposed metal surface on your vehicle. Drivers from Rockville, Silver Spring, Gaithersburg, and Bethesda bring their trucks, SUVs, and cars to us before the first freeze for full undercarriage protection. We're at 12019 Nebel St in Rockville, minutes from I-270.",
+      "_file": "undercoating.md"
+    },
+    {
+      "title": "Window Tinting Done Right",
+      "slug": "window-tinting",
+      "category": "protection",
+      "summary": "Heat rejection, UV protection, and privacy — installed with precision-cut film and zero bubbles. We tint cars, trucks, SUVs, and vans at our Rockville MD shop.",
+      "icon": "sun",
+      "sortOrder": 6,
+      "active": true,
+      "hero": {
+        "badge": "Professional Window Tinting",
+        "headline": "WINDOW TINTING DONE RIGHT.",
+        "subheadline": "Heat rejection, UV protection, and privacy — installed with precision-cut film and zero bubbles. We tint cars, trucks, SUVs, and vans at our Rockville MD shop.",
+        "primaryCtaLabel": "Get a Quote",
+        "primaryCtaUrl": "../quote.html",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "kpis": [
+        {
+          "value": "99%",
+          "label": "UV Ray Rejection (Ceramic Film)"
+        },
+        {
+          "value": "MD Legal",
+          "label": "All installs comply with Maryland tint law"
+        },
+        {
+          "value": "Lifetime",
+          "label": "Warranty on ceramic film"
+        }
+      ],
+      "process": [
+        {
+          "title": "Choose Your Film",
+          "description": "Tell us your vehicle and goals — heat, privacy, or both. We'll recommend the right film and VLT percentage for Maryland legal compliance."
+        },
+        {
+          "title": "Precision Cut",
+          "description": "Your vehicle's windows are measured and film is computer-cut to exact dimensions. No trimming on glass — zero scratch risk."
+        },
+        {
+          "title": "Clean Room Install",
+          "description": "Film applied in our dust-controlled shop environment. Squeegeed flat, edges sealed, no bubbles, no fingers."
+        },
+        {
+          "title": "Cure & Inspect",
+          "description": "Film cures over 3–5 days (you'll see slight haziness initially — this is normal). We inspect before you leave and warranty every install."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Is window tinting legal in Maryland?",
+          "answer": "Maryland allows tinting on all windows EXCEPT the windshield (only the top 5 inches). Front side windows must transmit more than 35% visible light (VLT). Rear side windows and rear window can be any darkness. All our installs comply with Maryland law — we won't install illegal percentages."
+        },
+        {
+          "question": "How long does window tint installation take?",
+          "answer": "Standard dyed or carbon film installs typically take 1.5–3 hours depending on vehicle size. Ceramic film takes slightly longer due to precision handling. Most vehicles are ready same-day."
+        },
+        {
+          "question": "What's the difference between dyed, carbon, and ceramic tint?",
+          "answer": "Dyed film provides basic privacy and glare reduction. Carbon film adds better heat rejection and a matte appearance that doesn't fade. Ceramic film uses nano-ceramic particles for maximum heat (60%) and UV (99%) rejection without any color or signal interference. Ceramic is significantly more effective in Maryland summers."
+        },
+        {
+          "question": "Will tint interfere with my GPS, phone signal, or radar detector?",
+          "answer": "Carbon and ceramic films do not interfere with any electronics. Older metallic films can cause GPS and cell signal issues — we do not install metallic films for this reason."
+        },
+        {
+          "question": "How long does tint take to cure?",
+          "answer": "Window tint fully cures in 3–7 days. You may see slight haziness or small water bubbles during this period — this is normal and will disappear as the film cures. Avoid rolling windows down for the first 3 days."
+        },
+        {
+          "question": "Can I add tint to my ceramic-coated vehicle?",
+          "answer": "Yes — in fact, our Ceramic Tint + Ceramic Coating bundle is a popular combo. We coordinate both services in the same visit. Tint is applied to glass only; it doesn't affect or interact with paint coating."
+        }
+      ],
+      "seoTitle": "Window Tinting Rockville MD | Ceramic & Standard Tint | Capital Upfitters",
+      "seoDescription": "Professional window tinting in Rockville MD — standard dyed, carbon, and ceramic tint films. Maryland legal VLT percentages. Serving Rockville, Bethesda, Gaithersburg, Silver Spring and the DMV.",
+      "benefits": {
+        "heading": "WHY TINT YOUR WINDOWS?",
+        "intro": "The right film does far more than darken glass. Here's what quality window tinting delivers for Maryland drivers.",
+        "cards": [
+          {
+            "title": "Heat Rejection",
+            "description": "Quality tint film blocks up to 60% of solar heat in Maryland summers. Your AC works less, your interior stays cooler, and leather seats don't burn you."
+          },
+          {
+            "title": "UV Protection",
+            "description": "UV rays damage dashboards, fade upholstery, and accelerate leather cracking. Ceramic film blocks 99% of UV — protecting both your interior and passengers."
+          },
+          {
+            "title": "Privacy & Security",
+            "description": "Tinted windows deter smash-and-grab theft by obscuring interior contents. Privacy matters whether you're parked at a Rockville parking garage or a Bethesda trail head."
+          }
+        ]
+      },
+      "geoCallout": {
+        "heading": "WINDOW TINTING ACROSS THE DMV.",
+        "body": "We tint cars, trucks, SUVs, and vans for drivers from Rockville, Bethesda, Gaithersburg, and Silver Spring. Our shop is at 12019 Nebel St in Rockville — minutes from I-270 and Route 355. Maryland legal installs only. We check every job against MD tint law before you leave."
+      },
+      "sectionTitles": {
+        "pricing": "CHOOSE YOUR FILM.",
+        "process": "HOW IT WORKS.",
+        "testimonials": "REAL CUSTOMERS. REAL RESULTS."
+      },
+      "body": "Heat rejection, UV protection, and privacy — installed with precision-cut film and zero bubbles. We tint cars, trucks, SUVs, and vans at our Rockville MD shop.\n\n## MARYLAND TINT LAW.\n\nMaryland has specific VLT requirements for each window position. We check every install before you leave.\n\nReflectivity rule: No more than 35% reflective on any window. We do not install high-reflective metallic films. | VLT explained: VLT = Visible Light Transmission. 35% VLT means the window lets in 35% of visible light — darker film, lower number. 70% VLT is nearly clear.\n\n## WHY TINT YOUR WINDOWS?\n\nThe right film does far more than darken glass. Here's what quality window tinting delivers for Maryland drivers.\n\nQuality tint film blocks up to 60% of solar heat in Maryland summers. Your AC works less, your interior stays cooler, and leather seats don't burn you.\n\nUV rays damage dashboards, fade upholstery, and accelerate leather cracking. Ceramic film blocks 99% of UV — protecting both your interior and passengers.\n\nTinted windows deter smash-and-grab theft by obscuring interior contents. Privacy matters whether you're parked at a Rockville parking garage or a Bethesda trail head.\n\n## CHOOSE YOUR FILM.\n\nFour levels of protection — from budget-friendly dyed film to maximum-performance ceramic. All Maryland legal.\n\nDyed polyester film — reduces glare and provides privacy. Good for budget-conscious owners who want basic protection. Does not reject significant heat. May fade slightly over time.\n\nCarbon film has a matte finish that doesn't fade or turn purple over time. Superior heat rejection vs. dyed film, no signal interference with electronics. A significant step up in both performance and appearance.\n\nCeramic film uses nano-ceramic particles instead of dye or carbon — giving you maximum heat rejection without any signal interference. The clearest-looking tint available, virtually color-neutral. The only film that blocks 99% UV and up to 60% heat simultaneously.\n\n## MAXIMUM PROTECTION.\n\nPair ceramic window tint with ceramic paint coating for the ultimate interior and exterior protection combo.\n\nThe ultimate exterior protection combo. Ceramic window tint (99% UV rejection, 60% heat rejection) paired with an IGL or System X ceramic coating on the paint. Scheduled same week — both installs done at our Rockville shop.",
+      "_file": "window-tinting.md"
+    },
+    {
+      "title": "Mobile Vehicle Detailing",
+      "slug": "mobile-detailing",
+      "category": "protection",
+      "summary": "Professional detailing at your home, office, or fleet yard. Retail, fleet, and government accounts welcome. No need to drop off — we bring the equipment to you.",
+      "icon": "droplets",
+      "sortOrder": 7,
+      "active": true,
+      "hero": {
+        "badge": "We Come to You",
+        "headline": "MOBILE VEHICLE DETAILING.",
+        "subheadline": "Professional detailing at your home, office, or fleet yard. Retail, fleet, and government accounts welcome. No need to drop off — we bring the equipment to you.",
+        "primaryCtaLabel": "Book a Detail",
+        "primaryCtaUrl": "../quote.html?service=mobile-detailing",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "kpis": [
+        {
+          "value": "Mobile",
+          "label": "We come to your location — home, office, or fleet yard"
+        },
+        {
+          "value": "Fleet & Gov",
+          "label": "Fleet and government accounts available"
+        },
+        {
+          "value": "Fully Equipped",
+          "label": "Professional equipment, eco-friendly products"
+        }
+      ],
+      "process": [
+        {
+          "title": "Book Online or Call",
+          "description": "Choose your package and add-ons. Tell us your vehicle type and location. We confirm availability same business day."
+        },
+        {
+          "title": "We Come to You",
+          "description": "Our mobile crew arrives at your home, office, or fleet yard at the scheduled time with all equipment."
+        },
+        {
+          "title": "Detail Performed",
+          "description": "Professional detailing completed to spec. Ceramic coating add-ons are scheduled separately with our certified installers."
+        },
+        {
+          "title": "Done — Inspect & Drive",
+          "description": "Walk-through inspection before the crew leaves. Fleet accounts receive a digital service record."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Do you offer detailing at your shop?",
+          "answer": "No — our detailing service is 100% mobile. Our crew comes to your home, office, or fleet yard. This keeps your schedule flexible and eliminates any need to drop off your vehicle."
+        },
+        {
+          "question": "How long does each package take?",
+          "answer": "Interior Basic: approximately 1–1.5 hours. Interior Complete: 2–3 hours. Exterior Basic: 1–1.5 hours. Exterior Complete: 2–2.5 hours. Full interior and exterior combos run 3–4.5 hours depending on vehicle size and condition."
+        },
+        {
+          "question": "Can I book interior and exterior together?",
+          "answer": "Yes — book any interior package and any exterior package together for a full detail. Contact us or note it in your quote request and we'll confirm combined pricing."
+        },
+        {
+          "question": "How does fleet pricing work?",
+          "answer": "Fleet accounts booking 3 or more vehicles qualify for volume pricing. We set up a recurring service schedule — weekly, bi-weekly, or monthly — and come to your facility. Call us or submit a quote request with your vehicle count."
+        },
+        {
+          "question": "Is the ceramic coating applied by the detailing crew?",
+          "answer": "No — ceramic coating is applied by our certified Capital Upfitters installers separately from the detailing crew. The detailing package preps the surface and the coating appointment is scheduled afterward (often the same or next day). It requires the Exterior Complete package as a prerequisite."
+        }
+      ],
+      "seoTitle": "Mobile Vehicle Detailing | Fleet, Retail & Government | Capital Upfitters Rockville MD",
+      "seoDescription": "Professional mobile vehicle detailing in Rockville MD — we come to you. Interior and exterior packages for retail, fleet, and government. Add-on ceramic coating available. Serving the DMV.",
+      "geoCallout": {
+        "heading": "MOBILE DETAILING ACROSS THE DMV.",
+        "body": "Our mobile detailing crew serves residential customers, businesses, and government facilities across Rockville, Bethesda, Gaithersburg, and Silver Spring. We bring the equipment to you — no drop-off required. Fleet and government accounts served at your facility throughout Montgomery County and the broader DMV region."
+      },
+      "sectionTitles": {
+        "process": "HOW IT WORKS.",
+        "testimonials": "REAL CUSTOMERS. REAL RESULTS."
+      },
+      "body": "Professional detailing at your home, office, or fleet yard. Retail, fleet, and government accounts welcome. No need to drop off — we bring the equipment to you.\n\n## CHOOSE YOUR PACKAGE.\n\nFour packages built around what your vehicle actually needs. All mobile — our crew comes to you. Pricing varies by vehicle size (sedan, SUV, truck, van).\n\nThe essential interior clean — removes surface dirt, dust, and debris for a fresh cabin. Ideal for regular maintenance and fleet vehicle turnovers.\n\nDeep interior restoration. Shampoo, steam, stain treatment, and leather care. Best for vehicles that need a real reset or pre-sale preparation.\n\nA clean, protected exterior with attention to wheels, tires, and glass. Perfect for regular upkeep or fleet vehicle appearances.\n\n## ENHANCE YOUR DETAIL.\n\nPair your detailing package with protection that lasts longer than any wax.\n\nPair your exterior detail with a professional ceramic coating application — applied by Capital Upfitters' certified installers (not the detailing crew). Nano-ceramic chemistry bonds to your paint for 2–5 year UV, chemical, and hydrophobic protection. The only add-on that outlasts every wax, sealant, or spray coating on the market.\n\nDegreasing and detail clean of the engine bay. Removes oil residue, grime, and road buildup. Good for pre-sale prep or regular fleet maintenance documentation.\n\nEliminates stubborn interior odors from pets, smoke, food, and mildew at the molecular level. Effective where cleaning alone can't reach. 30-minute treatment per vehicle.\n\n## FLEET & GOVERNMENT DETAILING ACCOUNTS.\n\nFor fleet operators, municipalities, and government agencies managing multiple vehicles — we offer standardized detailing programs with volume pricing, scheduled service visits, and documentation for maintenance records.\n\n- Volume pricing starting at 3+ vehicles\n- Scheduled service visits — weekly, bi-weekly, or monthly\n- Consistent package specs across every vehicle in your fleet\n- Maintenance documentation available per vehicle\n- Available at your facility or fleet yard\n- Government accounts welcome — procurement documentation on request\n\n## HOW IT WORKS.\n\nFour simple steps from booking to a clean vehicle — all without leaving your home or office.\n\nChoose your package and add-ons. Tell us your vehicle type and location. We confirm availability same business day.\n\nOur mobile crew arrives at your home, office, or fleet yard at the scheduled time with all equipment.\n\nProfessional detailing completed to spec. Ceramic coating add-ons are scheduled separately with our certified installers.",
+      "_file": "mobile-detailing.md"
+    },
+    {
+      "title": "Hitch Installation Done Right. Done Fast",
+      "slug": "hitches",
+      "category": "truck-accessories",
+      "summary": "Class III hitches for any vehicle. Stealth Hitch specialists. 150+ brands in stock. Most installs complete in 2–3 hours.",
+      "icon": "link",
+      "sortOrder": 8,
+      "active": true,
+      "hero": {
+        "badge": "Class I–III & Stealth Hitch",
+        "headline": "HITCH INSTALLATION DONE RIGHT. DONE FAST.",
+        "subheadline": "Class I–III hitches for any vehicle. Stealth Hitch specialists. 150+ brands in stock. Most installs complete in 2–3 hours.",
+        "primaryCtaLabel": "Get a Free Quote",
+        "primaryCtaUrl": "../quote.html?service=hitches",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "kpis": [
+        {
+          "value": "All Classes",
+          "label": "Class I Through V Hitches"
+        },
+        {
+          "value": "Same Day",
+          "label": "Most Installs Done In Hours"
+        },
+        {
+          "value": "1 of Few",
+          "label": "Stealth Hitch Experts in DMV"
+        }
+      ],
+      "process": [
+        {
+          "title": "Vehicle Lookup",
+          "description": "We confirm the right hitch class and part number for your exact year, make, and model before ordering anything."
+        },
+        {
+          "title": "Prep & Inspect",
+          "description": "We inspect your vehicle's receiver area and frame mounting points. Any issues are flagged before installation begins."
+        },
+        {
+          "title": "Professional Install",
+          "description": "Installed to manufacturer torque specs. Wiring is routed cleanly and tested for correct trailer light operation."
+        },
+        {
+          "title": "Test & Pickup",
+          "description": "We do a final pull test and verify all connections before you pick up. Ready in 2–3 hours for most vehicles."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What is a Stealth Hitch?",
+          "answer": "A Stealth Hitch is a vehicle-specific hidden receiver hitch that tucks completely out of sight when not in use — no visible tube hanging below your bumper. They're designed for luxury SUVs and vehicles where aesthetics matter. Stealth Hitches start at $1,000 for parts and labor and are available for most popular SUV models."
+        },
+        {
+          "question": "Will a hitch void my warranty?",
+          "answer": "In most cases, no. The Magnuson-Moss Warranty Act protects you — a dealer cannot void your warranty simply because an aftermarket part was installed. We use OEM-style installation methods that don't compromise your frame or electrical system. If your dealer threatens this, they're misinformed about the law."
+        },
+        {
+          "question": "How long does hitch installation take?",
+          "answer": "Most standard hitch installations take 2–3 hours. Stealth Hitch installs can take 3–4 hours depending on vehicle complexity. We'll confirm your estimated completion time when you schedule — same-day service is available most days."
+        },
+        {
+          "question": "Do you install wiring harnesses?",
+          "answer": "Yes. We install 4-pin flat and 7-pin round trailer wiring harnesses. We also install electric brake controllers for trailers with brakes. Add this to your hitch install appointment and we'll wire everything in a single visit."
+        },
+        {
+          "question": "Do you install 5th wheel hitches and gooseneck systems?",
+          "answer": "Yes — we install 5th wheel hitches, gooseneck conversion balls, brake controllers, and weight distribution systems. These are all custom-fit to your specific truck and trailer configuration. Call us or submit a quote with your truck year/make/model and what you plan to tow."
+        }
+      ],
+      "seoTitle": "Hitch Installation | 5th Wheel, Gooseneck & Brake Controllers | Capital Upfitters Rockville MD",
+      "seoDescription": "Hitch installation in Rockville MD — Class I through V, Stealth Hitch, 5th wheel, gooseneck, brake controllers, and weight distribution systems. All vehicles. Serving the DMV.",
+      "benefits": {
+        "heading": "THE RIGHT HITCH, INSTALLED RIGHT.",
+        "intro": "Not every shop stocks 150+ hitch brands or has a Stealth Hitch specialist on staff. We do. Every install is done by experienced technicians who torque to spec.",
+        "cards": [
+          {
+            "title": "150+ Brands in Stock",
+            "description": "Curt, Draw-Tite, Reese, B&W, Hidden Hitch, and more. We stock the brands you need so there's no waiting on special orders for most vehicles."
+          },
+          {
+            "title": "Same-Day Install",
+            "description": "Most standard hitches are in and out in 2–3 hours. Call in the morning, tow by the afternoon. We schedule around your day."
+          },
+          {
+            "title": "Stealth Hitch Specialists",
+            "description": "We're one of the few shops in the DMV with hands-on Stealth Hitch expertise. Hidden receiver, clean look, full towing capacity — no compromises."
+          }
+        ]
+      },
+      "featureSection": {
+        "heading": "BEYOND THE STANDARD HITCH.",
+        "intro": "Class V hitches, 5th wheel preps, gooseneck conversions, brake controllers, and weight distribution systems. We handle the full towing setup — not just the ball mount.",
+        "cards": [
+          {
+            "title": "5th Wheel Prep & Install",
+            "subtitle": "For full-size pickup trucks",
+            "description": "Fifth wheel hitch installation for towing large RVs and horse trailers. We handle kingpin prep, bed liner protection, and wiring integration. Compatible with B&W, Reese, and Curt 5th wheel systems."
+          },
+          {
+            "title": "Gooseneck Conversions",
+            "subtitle": "Maximum towing capacity",
+            "description": "Gooseneck ball and safety chain installation for heavy-duty towing of flatbed trailers, equipment haulers, and livestock trailers. Retractable systems keep your bed usable when not towing."
+          },
+          {
+            "title": "Brake Controllers",
+            "subtitle": "Required for trailers with electric brakes",
+            "description": "Electric trailer brake controller installation — required by Maryland law for trailers over 3,000 lbs with electric brakes. Proportional controllers modulate trailer braking in sync with your truck. We install and calibrate on-site."
+          },
+          {
+            "title": "Weight Distribution Systems",
+            "subtitle": "Safer handling under heavy loads",
+            "description": "Weight distribution hitches transfer tongue weight from the rear axle to all four wheels — eliminating trailer sway and front-end lift. Required for trailers over 50% of tow vehicle weight. Includes sway control."
+          }
+        ]
+      },
+      "geoCallout": {
+        "heading": "HITCH INSTALLATION ACROSS THE DMV.",
+        "body": "Capital Upfitters is one of the only shops in Montgomery County with hands-on Stealth Hitch expertise. Whether you're in Rockville towing a boat, in Gaithersburg hauling a trailer, or in Bethesda adding a bike rack to your SUV — we install hitches for all vehicle types from Class I through gooseneck conversions. We're at 12019 Nebel St, minutes from I-270."
+      },
+      "sectionTitles": {
+        "pricing": "TRANSPARENT RATE STRUCTURE.",
+        "process": "IN AND OUT IN HOURS.",
+        "faqs": "COMMON QUESTIONS.",
+        "testimonials": "REAL CUSTOMERS. REAL RESULTS."
+      },
+      "body": "Class III hitches for any vehicle. Stealth Hitch specialists. 150+ brands in stock. Most installs complete in 2–3 hours.\n\n## THE RIGHT HITCH, INSTALLED RIGHT.\n\nNot every shop stocks 150+ hitch brands or has a Stealth Hitch specialist on staff. We do. Every install is done by experienced technicians who torque to spec.\n\nCurt, Draw-Tite, Reese, B\\&W, Hidden Hitch, and more. We stock the brands you need so there's no waiting on special orders for most vehicles.\n\nMost standard hitches are in and out in 2–3 hours. Call in the morning, tow by the afternoon. We schedule around your day.\n\nWe're one of the few shops in the DMV with hands-on Stealth Hitch expertise. Hidden receiver, clean look, full towing capacity — no compromises.\n\n## TRANSPARENT RATE STRUCTURE.\n\nHitch pricing depends on the vehicle and the product. Below is our rate structure. Contact us for a vehicle-specific quote — we'll have an answer fast.\n\n## BEYOND THE STANDARD HITCH.\n\nClass V hitches, 5th wheel preps, gooseneck conversions, brake controllers, and weight distribution systems. We handle the full towing setup — not just the ball mount.\n\nFifth wheel hitch installation for towing large RVs and horse trailers. We handle kingpin prep, bed liner protection, and wiring integration. Compatible with B\\&W, Reese, and Curt 5th wheel systems.\n\nGooseneck ball and safety chain installation for heavy-duty towing of flatbed trailers, equipment haulers, and livestock trailers. Retractable systems keep your bed usable when not towing.\n\nElectric trailer brake controller installation — required by Maryland law for trailers over 3,000 lbs with electric brakes. Proportional controllers modulate trailer braking in sync with your truck. We install and calibrate on-site.\n\n## IN AND OUT IN HOURS.\n\nWe confirm the right hitch class and part number for your exact year, make, and model before ordering anything.\n\nWe inspect your vehicle's receiver area and frame mounting points. Any issues are flagged before installation begins.\n\nInstalled to manufacturer torque specs. Wiring is routed cleanly and tested for correct trailer light operation.\n\nWe do a final pull test and verify all connections before you pick up. Ready in 2–3 hours for most vehicles.",
+      "_file": "hitches.md"
+    },
+    {
+      "title": "Commercial Van Upfits",
+      "slug": "van-upfits",
+      "category": "van-upfits",
+      "summary": null,
+      "icon": null,
+      "priceFrom": null,
+      "sortOrder": "8",
+      "active": true,
+      "seoTitle": null,
+      "seoDescription": null,
+      "body": "",
+      "_file": "van-upfits.md"
+    },
+    {
+      "title": "Truck Camper Shells & Caps",
+      "slug": "camper-shells",
+      "category": "truck-accessories",
+      "summary": "Fiberglass toppers that look factory installed. Lockable, weatherproof, and built to last. Available for most trucks in stock or by order.",
+      "icon": "home",
+      "sortOrder": 9,
+      "active": true,
+      "hero": {
+        "badge": "Authorized Ranch Dealer",
+        "headline": "TRUCK CAMPER SHELLS & CAPS.",
+        "subheadline": "Fiberglass toppers that look factory installed. Lockable, weatherproof, and built to last. Available for most trucks in stock or by order.",
+        "primaryCtaLabel": "Get a Quote",
+        "primaryCtaUrl": "../quote.html?service=camper-shells",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "kpis": [
+        {
+          "value": "7",
+          "label": "Models Available"
+        },
+        {
+          "value": "Factory",
+          "label": "Fit & Finish"
+        },
+        {
+          "value": "Same",
+          "label": "Week Install"
+        }
+      ],
+      "process": [
+        {
+          "title": "Choose Your Model",
+          "description": "Browse the 7 Ranch models. We'll show you what's in stock and what can be ordered."
+        },
+        {
+          "title": "Color Match",
+          "description": "We match your truck's factory color code for a seamless factory look."
+        },
+        {
+          "title": "Professional Install",
+          "description": "Bolted and sealed to your bed rails. Weatherstrip fitted. Typically same-day or next-day."
+        },
+        {
+          "title": "Drive Away",
+          "description": "Fully lockable, weatherproofed, and ready to use. Lifetime Ranch warranty."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What's the difference between a camper shell and a tonneau cover?",
+          "answer": "A camper shell (also called a truck cap or topper) is a full enclosure that sits on top of your bed rails, fully enclosing your cargo area. A tonneau cover is a flat panel that covers only the bed opening. Shells offer much more security, weather protection, and usable vertical space."
+        },
+        {
+          "question": "Can you match my truck's color?",
+          "answer": "Yes — Ranch shells are available in factory color-match finishes for Ford, RAM, Chevrolet/GMC, Toyota, and Nissan. We use your truck's color code to order the exact match."
+        },
+        {
+          "question": "How long does installation take?",
+          "answer": "Most installs are same-day or next-day. The shell bolts to your bed rails with a weatherstrip seal — installation takes about 1–2 hours."
+        },
+        {
+          "question": "Do you have models in stock?",
+          "answer": "We keep popular models in stock for the most common truck sizes. Call (301) 304-1419 to check availability for your specific truck."
+        },
+        {
+          "question": "Can I add interior lighting or a bed liner under the shell?",
+          "answer": "Yes — we recommend adding a Patriot Liner spray-on bedliner when installing a shell. Interior lighting, bed slides, and van shelving can also be added for a complete mobile workspace setup."
+        }
+      ],
+      "seoTitle": "Truck Camper Shells & Caps Rockville MD | Ranch Fiberglass | Capital Upfitters",
+      "seoDescription": "Ranch fiberglass truck caps and camper shells in Rockville MD. 7 models from Echo to XD. Installed same week. Serving Rockville, Bethesda, Gaithersburg, Silver Spring and the DMV.",
+      "benefits": {
+        "heading": "WHY A RANCH CAMPER SHELL?",
+        "intro": "Not all caps are created equal. Ranch fiberglass shells are engineered to fit your specific truck — not just bolted on and hoped for the best.",
+        "cards": [
+          {
+            "title": "Security & Weather Protection",
+            "description": "Fully lockable fiberglass shell with weatherproof seals. Keeps your cargo dry, secure, and out of sight. Far more secure than a tonneau cover."
+          },
+          {
+            "title": "Looks Factory Installed",
+            "description": "Ranch shells are painted to match your truck's factory color codes. Seamless fit means it looks like it came from the dealer."
+          },
+          {
+            "title": "Versatile Storage",
+            "description": "Perfect for contractors, campers, dog owners, and anyone who needs a dry, secure cargo area. Add a bed liner and van shelving for a complete mobile workspace."
+          }
+        ]
+      },
+      "geoCallout": {
+        "heading": "CAMPER SHELLS FOR DMV TRUCK OWNERS.",
+        "body": "Ranch fiberglass camper shells are a perfect fit for the DMV region — whether you're a contractor in Gaithersburg, a weekend camper in Bethesda, or a dog owner in Silver Spring who needs a secure cargo area. We're at 12019 Nebel St in Rockville, minutes from I-270."
+      },
+      "sectionTitles": {
+        "process": "HOW IT WORKS.",
+        "faqs": "FREQUENTLY ASKED QUESTIONS.",
+        "testimonials": "REAL REVIEWS. REAL TRUCK OWNERS."
+      },
+      "body": "Fiberglass toppers that look factory installed. Lockable, weatherproof, and built to last. Available for most trucks in stock or by order.\n\n## WHY A RANCH CAMPER SHELL?\n\nNot all caps are created equal. Ranch fiberglass shells are engineered to fit your specific truck — not just bolted on and hoped for the best.\n\nFully lockable fiberglass shell with weatherproof seals. Keeps your cargo dry, secure, and out of sight. Far more secure than a tonneau cover.\n\nRanch shells are painted to match your truck's factory color codes. Seamless fit means it looks like it came from the dealer.\n\nPerfect for contractors, campers, dog owners, and anyone who needs a dry, secure cargo area. Add a bed liner and van shelving for a complete mobile workspace.\n\n## 7 MODELS. ONE FOR EVERY DRIVER.\n\nRanch fiberglass shells range from the streamlined Echo to the XD heavy-duty commercial cap. All are factory-color matched. Pricing varies by truck make/model and configuration — call for exact quote.\n\nEntry-level. Clean, aerodynamic profile. Ideal for daily drivers who want clean looks and basic weather protection. Most affordable Ranch model.\n\nMid-range. Standard height with sliding side windows. Popular choice for homeowners, dog owners, and weekend adventurers.\n\nSierra with extra headroom. A few inches taller than the standard Sierra — better for taller cargo and sleeping setups.\n\n## HOW IT WORKS.\n\nFrom selection to install, most customers drive away the same week.\n\nBrowse the 7 Ranch models. We'll show you what's in stock and what can be ordered.\n\nWe match your truck's factory color code for a seamless factory look.\n\nBolted and sealed to your bed rails. Weatherstrip fitted. Typically same-day or next-day.\n\n## CAMPER SHELLS FOR DMV TRUCK OWNERS.\n\nRanch fiberglass camper shells are a perfect fit for the DMV region — whether you're a contractor in Gaithersburg, a weekend camper in Bethesda, or a dog owner in Silver Spring who needs a secure cargo area. We're at 12019 Nebel St in Rockville, minutes from I-270.",
+      "_file": "camper-shells.md"
+    },
+    {
+      "title": "Fleet Upfitting",
+      "slug": "fleet",
+      "category": "fleet",
+      "summary": null,
+      "icon": null,
+      "priceFrom": null,
+      "sortOrder": "9",
+      "active": true,
+      "seoTitle": null,
+      "seoDescription": null,
+      "body": "",
+      "_file": "fleet.md"
+    },
+    {
+      "title": "Dealer Services",
+      "slug": "dealer",
+      "category": "dealer",
+      "summary": null,
+      "icon": null,
+      "priceFrom": null,
+      "sortOrder": "10",
+      "active": true,
+      "seoTitle": null,
+      "seoDescription": null,
+      "body": "",
+      "_file": "dealer.md"
+    },
+    {
+      "title": "Toolboxes & Bed Storage Systems",
+      "slug": "toolboxes",
+      "category": "truck-accessories",
+      "summary": "Keep your tools organized, secure, and accessible. From simple crossover boxes to full DECKED drawer systems — we install the right setup for your workflow.",
+      "icon": "briefcase",
+      "sortOrder": 10,
+      "active": true,
+      "hero": {
+        "badge": "Bed Organization & Storage",
+        "headline": "TOOLBOXES & BED STORAGE SYSTEMS.",
+        "subheadline": "Keep your tools organized, secure, and accessible. From simple crossover boxes to full DECKED drawer systems — we install the right setup for your workflow.",
+        "primaryCtaLabel": "Get a Quote",
+        "primaryCtaUrl": "../quote.html?service=toolboxes",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "kpis": [
+        {
+          "value": "$300+",
+          "label": "Entry-level crossover boxes"
+        },
+        {
+          "value": "CamLocker & DECKED",
+          "label": "Premium brands in stock"
+        },
+        {
+          "value": "Weatherproof",
+          "label": "Sealed against rain, dust & theft"
+        }
+      ],
+      "process": [
+        {
+          "title": "Choose Your Box",
+          "description": "Tell us your truck and how you use it — crossover, side-mount, or full drawer system."
+        },
+        {
+          "title": "Confirm Fitment",
+          "description": "We confirm compatibility with your bed size, existing gear (bedliner, tonneau, etc.)."
+        },
+        {
+          "title": "Install",
+          "description": "Bolt-on install with proper sealing. Most installs done same day."
+        },
+        {
+          "title": "Organized & Locked",
+          "description": "Drive off with everything secured, organized, and weatherproof."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Can I use a toolbox with a tonneau cover?",
+          "answer": "It depends on the combination. Low-profile crossover boxes work with most soft tonneau covers. DECKED drawer systems are compatible with most hard-fold and retractable covers. Let us know what you have — we'll confirm compatibility before ordering."
+        },
+        {
+          "question": "Will a toolbox work with my bedliner?",
+          "answer": "Yes — toolboxes install on top of your bed rails, so a spray-on bedliner underneath is no issue. In fact, we recommend getting the liner first, then the toolbox."
+        },
+        {
+          "question": "Do you install DECKED systems?",
+          "answer": "Yes — we're an authorized DECKED installer. DECKED drawer systems are vehicle-specific and require proper installation for the drawers to seal and slide correctly. We handle the full install."
+        },
+        {
+          "question": "What's the most secure toolbox option?",
+          "answer": "CamLocker and UWS boxes both use high-quality rotary locks with stainless hardware. For maximum security, add a bed-mounted deadbolt or ask us about cable lock options."
+        }
+      ],
+      "seoTitle": "Truck Toolboxes & Bed Storage | CamLocker, DECKED, Dee Zee | Capital Upfitters Rockville MD",
+      "seoDescription": "Truck toolboxes and bed storage systems installed in Rockville MD. CamLocker, Dee Zee, DECKED drawer systems, and UWS crossover boxes. Serving the DMV.",
+      "benefits": {
+        "heading": "WHY UPGRADE YOUR BED STORAGE?",
+        "intro": "A proper storage system pays for itself in time saved, tools protected, and jobs done faster. Here's why it matters.",
+        "cards": [
+          {
+            "title": "Stay Organized",
+            "description": "Stop digging through your truck bed. Proper drawer systems and toolboxes keep every tool in its place — saving time on every job."
+          },
+          {
+            "title": "Theft Protection",
+            "description": "Quality toolboxes lock your equipment when you're not around. CamLocker and UWS boxes use automotive-grade locks."
+          },
+          {
+            "title": "Protect Your Tools",
+            "description": "Sealed boxes keep rain, dust, and road debris away from your equipment. Aluminum construction won't rust or warp."
+          }
+        ]
+      },
+      "geoCallout": {
+        "heading": "TRUCK TOOLBOXES INSTALLED ACROSS THE DMV.",
+        "body": "Contractors, landscapers, electricians, and weekend warriors from Rockville, Gaithersburg, Bethesda, and Silver Spring bring their trucks to Capital Upfitters for toolbox installs. We're at 12019 Nebel St in Rockville — minutes from I-270 and Route 355."
+      },
+      "sectionTitles": {
+        "process": "FROM QUOTE TO INSTALLED IN FOUR STEPS.",
+        "faqs": "FREQUENTLY ASKED QUESTIONS."
+      },
+      "body": "Keep your tools organized, secure, and accessible. From simple crossover boxes to full DECKED drawer systems — we install the right setup for your workflow.\n\n## WHY UPGRADE YOUR BED STORAGE?\n\nA proper storage system pays for itself in time saved, tools protected, and jobs done faster. Here's why it matters.\n\nStop digging through your truck bed. Proper drawer systems and toolboxes keep every tool in its place — saving time on every job.\n\nQuality toolboxes lock your equipment when you're not around. CamLocker and UWS boxes use automotive-grade locks.\n\nSealed boxes keep rain, dust, and road debris away from your equipment. Aluminum construction won't rust or warp.\n\n## BRANDS WE CARRY.\n\nWe stock and install the brands that contractors and working truck owners actually trust — not bargain-bin alternatives.\n\nCamLocker crossover toolboxes are the go-to for contractors across the DMV. Heavy-duty aluminum construction, stainless steel locks, and weatherproof gasketing. Available in standard and low-profile heights.\n\nThe most sophisticated truck bed storage system on the market. DECKED installs under your bed rails, giving you a full-width workbench surface on top and two fully-extendable drawers below. Holds 2,000 lbs on top.\n\nDee Zee offers the broadest selection of crossover, side-mount, and chest toolboxes. Steel and aluminum options in multiple widths. A practical choice for drivers who want dependable storage without premium pricing.\n\n## FROM QUOTE TO INSTALLED IN FOUR STEPS.\n\nWe keep the process simple so you can get back to work faster.\n\nTell us your truck and how you use it — crossover, side-mount, or full drawer system.\n\nWe confirm compatibility with your bed size, existing gear (bedliner, tonneau, etc.).\n\nBolt-on install with proper sealing. Most installs done same day.\n\n## TRUCK TOOLBOXES INSTALLED ACROSS THE DMV.\n\nContractors, landscapers, electricians, and weekend warriors from Rockville, Gaithersburg, Bethesda, and Silver Spring bring their trucks to Capital Upfitters for toolbox installs. We're at 12019 Nebel St in Rockville — minutes from I-270 and Route 355.",
+      "_file": "toolboxes.md"
+    },
+    {
+      "title": "Government / Municipal Services",
+      "slug": "government",
+      "category": "government",
+      "summary": null,
+      "icon": null,
+      "priceFrom": null,
+      "sortOrder": "11",
+      "active": true,
+      "seoTitle": null,
+      "seoDescription": null,
+      "body": "",
+      "_file": "government.md"
+    },
+    {
+      "title": "Lift Kits & Leveling Kits",
+      "slug": "suspension",
+      "category": "truck-accessories",
+      "summary": "Raise your stance, fit larger tires, and improve off-road capability. We install leveling kits, lift kits, and suspension upgrades for trucks and SUVs across the DMV.",
+      "icon": "arrow-up-down",
+      "sortOrder": 11,
+      "active": true,
+      "hero": {
+        "badge": "Suspension Upgrades",
+        "headline": "LIFT KITS & LEVELING KITS.",
+        "subheadline": "Raise your stance, fit larger tires, and improve off-road capability. We install leveling kits, lift kits, and suspension upgrades for trucks and SUVs across the DMV.",
+        "primaryCtaLabel": "Get a Quote",
+        "primaryCtaUrl": "../quote.html?service=suspension",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "kpis": [
+        {
+          "value": "2″–6″+",
+          "label": "Lift range from leveling to full suspension lift"
+        },
+        {
+          "value": "ReadyLIFT",
+          "label": "Authorized installer"
+        },
+        {
+          "value": "Same Week",
+          "label": "Scheduling available"
+        }
+      ],
+      "process": [
+        {
+          "title": "Tell Us Your Goals",
+          "description": "Bigger tires? Better clearance? Pure appearance? We spec the right lift for your goals and budget."
+        },
+        {
+          "title": "Fitment Confirmed",
+          "description": "Vehicle-specific parts ordered for your exact year, make, model, and trim."
+        },
+        {
+          "title": "Install & Align",
+          "description": "Full suspension install. Alignment completed before you drive off."
+        },
+        {
+          "title": "Ready to Roll",
+          "description": "New stance, new capability. We test drive every lifted vehicle before handoff."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Do I need an alignment after a lift kit?",
+          "answer": "Yes — any suspension modification that changes the front suspension geometry requires a fresh alignment. We either handle alignment in-house or coordinate with our alignment partner so you're not driving away with a crooked truck."
+        },
+        {
+          "question": "Will a lift kit affect my warranty?",
+          "answer": "Lift kits installed by certified professionals using quality parts won't void your powertrain warranty under the Magnuson-Moss Warranty Act. However, if a lift-related component causes a failure, that component's coverage may be affected. We use quality branded kits (ReadyLIFT, Rough Country, BDS) to minimize this risk."
+        },
+        {
+          "question": "What's the difference between a leveling kit and a lift kit?",
+          "answer": "A leveling kit only raises the front end to match the rear height — typically 1.5″–3″ of lift. A lift kit raises the entire vehicle, front and rear, for true additional ground clearance. Leveling kits are simpler, cheaper, and faster to install. Lift kits offer more capability but require more parts and labor."
+        },
+        {
+          "question": "Can I fit 35″ tires with a leveling kit?",
+          "answer": "Usually no — leveling kits typically allow 33″ tires on full-size trucks. For 35s, you generally need 3″–4″ of lift (or more on some trucks). We'll confirm what your specific truck can fit at each lift level before you commit."
+        }
+      ],
+      "seoTitle": "Lift Kits & Leveling Kits Rockville MD | ReadyLIFT, Rough Country | Capital Upfitters",
+      "seoDescription": "Lift kits and leveling kits installed in Rockville MD. ReadyLIFT, Rough Country, and more. Trucks and SUVs. Serving Rockville, Bethesda, Gaithersburg, Silver Spring, and the DMV.",
+      "benefits": {
+        "heading": "WHY LIFT YOUR TRUCK OR SUV?",
+        "intro": "A leveling kit or lift kit does more than change how your truck looks. Here's what you actually gain.",
+        "cards": [
+          {
+            "title": "Bigger Tires",
+            "description": "More lift = more tire clearance. Fit 33s, 35s, or larger without rubbing. Most leveling kits allow one tire size up. Full lift kits open up much more."
+          },
+          {
+            "title": "Better Off-Road Capability",
+            "description": "Higher ground clearance means you can tackle Maryland's back roads, trails, and uneven terrain without scraping your undercarriage."
+          },
+          {
+            "title": "Improved Stance",
+            "description": "A level or lifted truck just looks better. Remove the factory nose-down rake and give your truck the aggressive stance it deserves."
+          }
+        ]
+      },
+      "geoCallout": {
+        "heading": "LIFT KITS INSTALLED ACROSS THE DMV.",
+        "body": "Truck and SUV owners from Rockville, Gaithersburg, Bethesda, and Silver Spring bring their rigs to Capital Upfitters for leveling kits and lift kit installs. We're at 12019 Nebel St in Rockville, minutes from I-270. Most installs completed same-week."
+      },
+      "sectionTitles": {
+        "process": "FROM QUOTE TO LIFTED.",
+        "faqs": "LIFT KIT FAQ."
+      },
+      "body": "Raise your stance, fit larger tires, and improve off-road capability. We install leveling kits, lift kits, and suspension upgrades for trucks and SUVs across the DMV.\n\n## WHY LIFT YOUR TRUCK OR SUV?\n\nA leveling kit or lift kit does more than change how your truck looks. Here's what you actually gain.\n\nMore lift = more tire clearance. Fit 33s, 35s, or larger without rubbing. Most leveling kits allow one tire size up. Full lift kits open up much more.\n\nHigher ground clearance means you can tackle Maryland's back roads, trails, and uneven terrain without scraping your undercarriage.\n\nA level or lifted truck just looks better. Remove the factory nose-down rake and give your truck the aggressive stance it deserves.\n\n## SUSPENSION OPTIONS WE OFFER.\n\nFrom simple leveling kits to full suspension builds — we install the right kit for your goals and budget.\n\nLeveling kits correct the factory front-to-rear rake on most trucks — raising the front end 1.5″–3″ to match the rear. Most trucks sit lower in the front from the factory for improved aerodynamics. Leveling kits eliminate this, improve appearance, and allow slightly larger tires.\n\nEntry to mid-level lift kits. Coilover spacers or strut extensions paired with rear blocks or add-a-leaf kits. Allows 33″ tires on most full-size trucks. Maintains factory ride quality on most builds.\n\nFull suspension lift kits with replacement control arms, new coilovers, and extended brake lines. Allows up to 37″ tires on properly built trucks. Requires alignment after install. Best for serious off-road builds.\n\n## FROM QUOTE TO LIFTED.\n\nFour steps from initial conversation to driving off with your new stance.\n\nBigger tires? Better clearance? Pure appearance? We spec the right lift for your goals and budget.\n\nVehicle-specific parts ordered for your exact year, make, model, and trim.\n\nFull suspension install. Alignment completed before you drive off.\n\n## LIFT KITS INSTALLED ACROSS THE DMV.\n\nTruck and SUV owners from Rockville, Gaithersburg, Bethesda, and Silver Spring bring their rigs to Capital Upfitters for leveling kits and lift kit installs. We're at 12019 Nebel St in Rockville, minutes from I-270. Most installs completed same-week.",
+      "_file": "suspension.md"
+    },
+    {
+      "title": "Exterior Accessories & Armor",
+      "slug": "exterior",
+      "category": "truck-accessories",
+      "summary": "Protect your paint, guard your grille, and complete your truck's look. Fender flares, mud flaps, grille guards, bumpers, and more — installed and ready.",
+      "icon": "wrench",
+      "sortOrder": 12,
+      "active": true,
+      "hero": {
+        "badge": "Exterior Protection & Style",
+        "headline": "EXTERIOR ACCESSORIES & ARMOR.",
+        "subheadline": "Protect your paint, guard your grille, and complete your truck's look. Fender flares, mud flaps, grille guards, bumpers, and more — installed and ready.",
+        "primaryCtaLabel": "Get a Quote",
+        "primaryCtaUrl": "../quote.html?service=exterior",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "kpis": [
+        {
+          "value": "Protection",
+          "label": "Guard against rocks, road debris & damage"
+        },
+        {
+          "value": "Custom Fit",
+          "label": "Vehicle-specific parts, not universal"
+        },
+        {
+          "value": "Same Week",
+          "label": "Most installs scheduled within the week"
+        }
+      ],
+      "process": [
+        {
+          "title": "Choose Your Accessories",
+          "description": "Tell us what you want — protection, looks, or both. We'll recommend the right brands for your truck."
+        },
+        {
+          "title": "Parts Ordered",
+          "description": "Vehicle-specific parts ordered to guarantee fit. Most in-stock within 3–5 days."
+        },
+        {
+          "title": "Professional Install",
+          "description": "Bolt-on installation. Wiring integrated where needed (fog lights, sensors)."
+        },
+        {
+          "title": "Ready to Roll",
+          "description": "Finished and ready. Your truck looks better and is protected."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Will fender flares affect my truck's aerodynamics?",
+          "answer": "OE-style fender flares have minimal aerodynamic impact since they follow the factory body contour. Cut-out/wide-body flares have a slightly larger profile but the difference in fuel economy is negligible for most drivers."
+        },
+        {
+          "question": "Do grille guards affect airbag deployment?",
+          "answer": "Quality grille guards from reputable brands (Go Rhino, Ranch Hand, Westin) are engineered to not interfere with factory crash sensors or airbag deployment. We only install brands that meet or exceed these standards."
+        },
+        {
+          "question": "Can I add a winch to an aftermarket bumper?",
+          "answer": "Most Ranch Hand and Fab Fours front bumpers are winch-ready with a built-in receiver. WARN and Superwinch are common pairings. Ask us about the full setup when requesting a quote."
+        },
+        {
+          "question": "Do you install WeatherTech products?",
+          "answer": "Yes — we install WeatherTech mud flaps and Husky Liners splash guards. These are precision-fit laser-measured products that look factory installed and require professional installation to seat correctly."
+        }
+      ],
+      "seoTitle": "Exterior Accessories | Fender Flares, Bumpers & Grille Guards | Capital Upfitters Rockville MD",
+      "seoDescription": "Exterior truck accessories installed in Rockville MD — fender flares, mud flaps, grille guards, bumpers, and bull bars. Serving Rockville, Bethesda, Gaithersburg, Silver Spring and the DMV.",
+      "benefits": {
+        "heading": "ARMOR YOUR EXTERIOR.",
+        "intro": "The right exterior accessories protect your investment and finish your truck's look. Here's what they actually do.",
+        "cards": [
+          {
+            "title": "Paint Protection",
+            "description": "Fender flares and mud flaps stop rocks, road spray, and debris from damaging your paint. A $300 mud flap install can prevent a $1,500 paint repair."
+          },
+          {
+            "title": "Front-End Defense",
+            "description": "Grille guards and bull bars protect your radiator, headlights, and front bumper from deer strikes, parking lot dings, and low-speed impacts."
+          },
+          {
+            "title": "Custom Look",
+            "description": "The right exterior accessories complete your truck's look. Stock bumpers look stock. A ranch-style front bumper or aggressive fender flares make a statement."
+          }
+        ]
+      },
+      "geoCallout": {
+        "heading": "EXTERIOR UPGRADES FOR DMV TRUCK OWNERS.",
+        "body": "Maryland and Virginia roads are tough on truck exteriors — gravel shoulders, deer, and pothole-filled winters take their toll. Truck owners across Rockville, Bethesda, Gaithersburg, and Silver Spring trust Capital Upfitters for exterior accessories that actually protect. We're at 12019 Nebel St in Rockville, minutes from I-270."
+      },
+      "sectionTitles": {
+        "process": "FROM ORDER TO OUT THE DOOR.",
+        "faqs": "COMMON QUESTIONS.",
+        "testimonials": "REAL CUSTOMERS. REAL RESULTS."
+      },
+      "body": "Protect your paint, guard your grille, and complete your truck's look. Fender flares, mud flaps, grille guards, bumpers, and more — installed and ready.\n\n## ARMOR YOUR EXTERIOR.\n\nThe right exterior accessories protect your investment and finish your truck's look. Here's what they actually do.\n\nFender flares and mud flaps stop rocks, road spray, and debris from damaging your paint. A $300 mud flap install can prevent a $1,500 paint repair.\n\nGrille guards and bull bars protect your radiator, headlights, and front bumper from deer strikes, parking lot dings, and low-speed impacts.\n\nThe right exterior accessories complete your truck's look. Stock bumpers look stock. A ranch-style front bumper or aggressive fender flares make a statement.\n\n## EXTERIOR ACCESSORIES WE OFFER.\n\nFour categories, all professionally installed. Vehicle-specific parts ordered to guarantee fit.\n\nFender flares protect your paint from tire-thrown rocks and debris while giving your truck a wider, more aggressive stance. Essential if you're running wider tires.\n\nMud flaps protect your body panels, rocker panels, and running boards from road spray. WeatherTech and Husky Liners offer laser-measured custom fit — they look like they came from the factory.\n\nProtect your front end from deer, brush, and parking lot damage. Bull bars guard the bumper corners and grille. Full grille guards protect the entire front face. Popular with rural commuters, first responders, and fleet operators.\n\n## FROM ORDER TO OUT THE DOOR.\n\nStraightforward from start to finish. Most exterior accessory installs are done the same day parts arrive.\n\nTell us what you want — protection, looks, or both. We'll recommend the right brands for your truck.\n\nVehicle-specific parts ordered to guarantee fit. Most in-stock within 3–5 days.\n\nBolt-on installation. Wiring integrated where needed (fog lights, sensors).\n\n## EXTERIOR UPGRADES FOR DMV TRUCK OWNERS.\n\nMaryland and Virginia roads are tough on truck exteriors — gravel shoulders, deer, and pothole-filled winters take their toll. Truck owners across Rockville, Bethesda, Gaithersburg, and Silver Spring trust Capital Upfitters for exterior accessories that actually protect. We're at 12019 Nebel St in Rockville, minutes from I-270.",
+      "_file": "exterior.md"
+    },
+    {
+      "title": "Led Light Bars & Work Lights",
+      "slug": "lighting",
+      "category": "truck-accessories",
+      "summary": "See further. Work safer. Stand out. RIGID Industries and premium LED lighting for trucks, fleets, and commercial vehicles — professionally installed with integrated wiring.",
+      "icon": "lightbulb",
+      "sortOrder": 13,
+      "active": true,
+      "hero": {
+        "badge": "LED Lighting Upgrades",
+        "headline": "LED LIGHT BARS & WORK LIGHTS.",
+        "subheadline": "See further. Work safer. Stand out. RIGID Industries and premium LED lighting for trucks, fleets, and commercial vehicles — professionally installed with integrated wiring.",
+        "primaryCtaLabel": "Get a Quote",
+        "primaryCtaUrl": "../quote.html?service=lighting",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "kpis": [
+        {
+          "value": "RIGID",
+          "label": "Certified Installer"
+        },
+        {
+          "value": "Fleet",
+          "label": "Government, Police & Commercial"
+        },
+        {
+          "value": "Plug & Play",
+          "label": "Clean Integrated Wiring on Most Installs"
+        }
+      ],
+      "process": [
+        {
+          "title": "Spec Your Lighting",
+          "description": "Tell us the use case — off-road, work site, fleet, or accent. We'll recommend the right system."
+        },
+        {
+          "title": "Mount Planning",
+          "description": "We plan mounting locations for maximum output with clean aesthetics. No visible wire runs."
+        },
+        {
+          "title": "Professional Wiring",
+          "description": "All lights wired to fuse box with appropriate relay and switch. No wire-tap shortcuts."
+        },
+        {
+          "title": "Sealed & Ready",
+          "description": "All penetrations sealed against moisture. Every install tested before you leave."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Do I need a relay for an LED light bar?",
+          "answer": "Yes — for any high-draw LED light bar (over 50W), a proper relay and fuse setup is required. This protects your factory wiring and ensures the light gets full voltage. We include proper relay wiring on all our light bar installs."
+        },
+        {
+          "question": "Are LED light bars legal to use on public roads in Maryland?",
+          "answer": "Most LED light bars are DOT-legal for off-road use only when mounted on roof or bumper. Some SAE-compliant driving/fog lights are street-legal. We'll advise on compliance during the consultation and mark non-street-legal lights appropriately."
+        },
+        {
+          "question": "Can you wire lights to work with my factory fog light switch?",
+          "answer": "Yes — on many trucks we can integrate new LED lights to switch on with your factory fog light controls. Other setups use a clean, hidden switch panel. We'll confirm what's possible for your specific truck."
+        },
+        {
+          "question": "Do you do LED upgrades for commercial fleets?",
+          "answer": "Yes — fleet lighting is a specialty. We can spec and install standardized packages across multiple vehicles, maintain fleet records, and work with government procurement requirements. Call us for fleet pricing."
+        }
+      ],
+      "seoTitle": "LED Light Bars & Work Lights Rockville MD | RIGID Industries, Putco | Capital Upfitters",
+      "seoDescription": "LED light bars, work lights, and off-road lighting installed in Rockville MD. RIGID Industries, Putco, and more. Fleet and commercial lighting packages. Serving the DMV.",
+      "benefits": {
+        "heading": "WHY UPGRADE TO LED LIGHTING?",
+        "intro": "Factory lighting wasn't built for job sites, off-road trails, or long rural drives after dark. Here's what a quality LED upgrade changes.",
+        "cards": [
+          {
+            "title": "See the Road",
+            "description": "LED light bars throw 10–20× more usable light than factory fog lights. Essential for rural driving, construction sites, and off-road use after dark."
+          },
+          {
+            "title": "Work Site Safety",
+            "description": "Work lights mounted on trucks, vans, and equipment let your crew work safely after dark. Required on many commercial job sites and government contracts."
+          },
+          {
+            "title": "Last Forever",
+            "description": "Quality LED lights last 50,000+ hours with minimal power draw. No bulbs to replace. No heat damage to housings."
+          }
+        ]
+      },
+      "geoCallout": {
+        "heading": "LED LIGHTING INSTALLED ACROSS THE DMV.",
+        "body": "Fleet operators, contractors, first responders, and off-road enthusiasts from Rockville, Gaithersburg, Bethesda, and Silver Spring count on Capital Upfitters for professional LED lighting installs. We're at 12019 Nebel St in Rockville, minutes from I-270. Government and fleet accounts welcome."
+      },
+      "sectionTitles": {
+        "process": "PROFESSIONALLY INSTALLED. EVERY TIME.",
+        "faqs": "LED LIGHTING FAQ."
+      },
+      "body": "See further. Work safer. Stand out. RIGID Industries and premium LED lighting for trucks, fleets, and commercial vehicles — professionally installed with integrated wiring.\n\n## WHY UPGRADE TO LED LIGHTING?\n\nFactory lighting wasn't built for job sites, off-road trails, or long rural drives after dark. Here's what a quality LED upgrade changes.\n\nLED light bars throw 10–20× more usable light than factory fog lights. Essential for rural driving, construction sites, and off-road use after dark.\n\nWork lights mounted on trucks, vans, and equipment let your crew work safely after dark. Required on many commercial job sites and government contracts.\n\nQuality LED lights last 50,000+ hours with minimal power draw. No bulbs to replace. No heat damage to housings.\n\n## LIGHTING SYSTEMS WE INSTALL.\n\nFrom single off-road light bars to full fleet lighting packages — we spec, supply, mount, and wire it all.\n\nSingle-row and dual-row LED light bars for off-road use, rural driving, and brush clearing. Roof mounts, bumper mounts, and grille mounts available. RIGID Industries D-Series and E-Series are the industry standard.\n\nScene lights, cargo lights, and underbody work lights for commercial vans, utility trucks, and service vehicles. Popular with HVAC, electrical, and emergency service fleets across the DMV. We install and wire to factory switch panels or custom switches.\n\nGrille-mount pod lights, bumper bar inserts, and rock lights for visibility and off-road use. A growing request from first responders and outdoor enthusiasts in the DMV region.\n\n## PROFESSIONALLY INSTALLED. EVERY TIME.\n\nNo wire-tap shortcuts. No exposed runs. Every lighting install gets a dedicated circuit with proper relay and fuse protection.\n\nTell us the use case — off-road, work site, fleet, or accent. We'll recommend the right system.\n\nWe plan mounting locations for maximum output with clean aesthetics. No visible wire runs.\n\nAll lights wired to fuse box with appropriate relay and switch. No wire-tap shortcuts.\n\n## LED LIGHTING INSTALLED ACROSS THE DMV.\n\nFleet operators, contractors, first responders, and off-road enthusiasts from Rockville, Gaithersburg, Bethesda, and Silver Spring count on Capital Upfitters for professional LED lighting installs. We're at 12019 Nebel St in Rockville, minutes from I-270. Government and fleet accounts welcome.\n\n- Est. 1994 · 30+ years in business\n- 5,000+ vehicles upfitted\n- Government & fleet accounts welcome\n- Mon–Fri 9:30am–4:30pm",
+      "_file": "lighting.md"
+    },
+    {
+      "title": "Turn Your Vehicles Into Moving Billboards",
+      "slug": "commercial-wraps",
+      "category": "fleet",
+      "summary": "Commercial vehicle wraps, fleet branding, and vinyl advertising graphics for retail owners, commercial fleets, and government agencies. Premium 3M and Avery Dennison materials. Professionally installed in Rockville, MD.",
+      "icon": "palette",
+      "sortOrder": 14,
+      "active": true,
+      "hero": {
+        "badge": "Fleet & Advertising",
+        "headline": "TURN YOUR VEHICLES INTO MOVING BILLBOARDS.",
+        "subheadline": "Commercial vehicle wraps, fleet branding, and vinyl advertising graphics for retail owners, commercial fleets, and government agencies. Premium 3M and Avery Dennison materials. Professionally installed in Rockville, MD.",
+        "primaryCtaLabel": "Get a Free Quote",
+        "primaryCtaUrl": "../quote.html?service=commercial-wraps",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "kpis": [
+        {
+          "value": "3M & Avery",
+          "label": "Premium Certified Materials"
+        },
+        {
+          "value": "Fleet, Gov & Retail",
+          "label": "All Vehicle Types"
+        },
+        {
+          "value": "1-Yr Warranty",
+          "label": "On All Wrap Installations"
+        }
+      ],
+      "seoTitle": "Commercial Vehicle Wraps Rockville MD | Fleet Branding",
+      "seoDescription": "Commercial vehicle wraps and fleet branding in Rockville, MD. Full wraps, partial wraps, vinyl lettering for retail, fleet, and government. 3M & Avery.",
+      "benefits": {
+        "heading": "8 REASONS TO WRAP YOUR FLEET.",
+        "intro": "Why Wraps Work",
+        "cards": [
+          {
+            "title": "Moving Billboards",
+            "description": "Commercial vehicle wraps turn every mile your fleet drives into direct brand exposure — reaching thousands of people daily at zero ongoing cost."
+          },
+          {
+            "title": "Cost-Effective Advertising",
+            "description": "One-time investment, 5–7 years of continuous advertising. No monthly fees, no ad spend, no algorithm changes. Vehicle wrap advertising delivers the lowest CPM of any media format."
+          },
+          {
+            "title": "Paint Protection",
+            "description": "Premium vinyl acts as a protective barrier against UV rays, minor scratches, stone chips, and environmental damage. When removed, original paint is preserved — protecting fleet resale value."
+          },
+          {
+            "title": "Brand Consistency",
+            "description": "Every vehicle in your fleet presents an identical, professional brand identity. Consistent colors, logo placement, and messaging across 1 or 100 vehicles."
+          },
+          {
+            "title": "Customizable Design",
+            "description": "High-resolution full-color graphics, custom color changes, or targeted lettering. We work from your brand guidelines or start from scratch with our design team."
+          },
+          {
+            "title": "Fast Turnaround",
+            "description": "Most installations complete in 1–3 business days. Vinyl lettering is often same-day. Batch fleet scheduling keeps your vehicles out of service for minimum time."
+          },
+          {
+            "title": "Professional Appearance",
+            "description": "A uniformly branded fleet signals that your business is established, organized, and serious. Customers form impressions before you say a word — make it count."
+          },
+          {
+            "title": "Long-Lasting Durability",
+            "description": "3M and Avery Dennison cast vinyl is rated for outdoor UV exposure, weather resistance, and commercial use. Properly installed and maintained wraps last 5–7 years in the DMV climate."
+          }
+        ]
+      },
+      "geoCallout": {
+        "heading": "COMMERCIAL VEHICLE WRAPS ACROSS THE DMV.",
+        "body": "Capital Upfitters serves fleet operators, government agencies, and retail businesses across Rockville, Bethesda, Silver Spring, Gaithersburg, and the broader DMV region. We're Rockville's locally-owned alternative to big wrap chains — with the same 3M and Avery Dennison materials, faster turnaround, and direct communication. Located at 12019 Nebel St in Rockville, MD."
+      },
+      "sectionTitles": {
+        "process": "FROM FIRST CALL TO BRANDED FLEET.",
+        "faqs": "COMMON QUESTIONS.",
+        "testimonials": "REAL CUSTOMERS. REAL RESULTS."
+      },
+      "body": "Commercial vehicle wraps, fleet branding, and vinyl advertising graphics for retail owners, commercial fleets, and government agencies. Premium 3M and Avery Dennison materials. Professionally installed in Rockville, MD.\n\n## CHOOSE YOUR COVERAGE LEVEL.\n\nFrom a full-fleet transformation to vinyl lettering on a single van — we size the job to your brand goals and budget. Every option uses the same premium materials and professional installation process.\n\nComplete surface coverage — hood, doors, roof, bumpers. Every inch of your vehicle becomes brand real estate. Maximum visual impact at every red light, parking lot, and job site. Our most popular option for fleet branding programs, service businesses, and government vehicle identification.\n\nCovers the lower half or dominant panels of the vehicle — typically doors and rear. Delivers strong brand presence at a more accessible price point. Great for vans, pickup trucks, and service vehicles where the lower half carries the most visual weight.\n\nStrategic graphic placement on the highest-visibility panels — tailgate, doors, or hood. Our design team identifies which surfaces maximize brand exposure for your specific vehicle and routes. A sharp, modern look without full-vehicle cost.\n\n## PROGRAMS FOR EVERY OPERATION.\n\nWhether you're wrapping a single personal truck or a 40-vehicle government fleet, we have a program built for your scale, budget, and brand requirements.\n\nA uniformly branded fleet communicates scale, professionalism, and trust at every job site, highway, and customer driveway. Capital Upfitters works with HVAC companies, plumbers, contractors, landscapers, mobile services, and logistics operators to design, produce, and install consistent fleet graphics across every vehicle — from a single van to a 50-truck regional fleet.\n\nWe understand operational reality: your vehicles can't sit in a shop for a week. We offer batch scheduling, priority lane processing, and can stage vehicle drop-offs across multiple days to keep your business moving.\n\nFleet Vehicles We Wrap\n\n- Brand-consistent graphics across every vehicle in your fleet\n- Volume pricing on 3+ vehicle orders — fleet account available\n- Batch drop-off scheduling — minimize operational downtime\n- Design services included — we work from your brand guidelines\n- Invoicing and Net-30 payment terms for approved accounts\n- Managed via Upfit Portal — job tracking, invoices, scheduling\n- DOT number applications and federal compliance markings\n- Police, fire, EMS, and utility fleet graphics\n\n## COMMERCIAL VEHICLE WRAPS ACROSS THE DMV.\n\nCapital Upfitters serves fleet operators, government agencies, and retail businesses across Rockville, Bethesda, Silver Spring, Gaithersburg, and the broader DMV region. We're Rockville's locally-owned alternative to big wrap chains — with the same 3M and Avery Dennison materials, faster turnaround, and direct communication. Located at 12019 Nebel St in Rockville, MD.\n\n## 8 REASONS TO WRAP YOUR FLEET.\n\nCommercial vehicle wraps turn every mile your fleet drives into direct brand exposure — reaching thousands of people daily at zero ongoing cost.\n\nOne-time investment, 5–7 years of continuous advertising. No monthly fees, no ad spend, no algorithm changes. Vehicle wrap advertising delivers the lowest CPM of any media format.\n\nPremium vinyl acts as a protective barrier against UV rays, minor scratches, stone chips, and environmental damage. When removed, original paint is preserved — protecting fleet resale value.\n\nEvery vehicle in your fleet presents an identical, professional brand identity. Consistent colors, logo placement, and messaging across 1 or 100 vehicles.",
+      "_file": "commercial-wraps.md"
+    },
+    {
+      "title": "Industrial & Protective Coating Solutions",
+      "slug": "industrial-coatings",
+      "category": "industrial",
+      "summary": "Polyurea, epoxy, aliphatic, and aromatic protective coatings for commercial vehicles, government fleets, school buses, emergency equipment, civil infrastructure, industrial equipment, and facilities. Mobile application available — we come to your site.",
+      "icon": "factory",
+      "sortOrder": 15,
+      "active": true,
+      "hero": {
+        "badge": "Commercial & Government Solutions",
+        "headline": "INDUSTRIAL & PROTECTIVE COATING SOLUTIONS.",
+        "subheadline": "Polyurea, epoxy, aliphatic, and aromatic protective coatings for commercial vehicles, government fleets, school buses, emergency equipment, civil infrastructure, industrial equipment, and facilities. Mobile application available — we come to your site.",
+        "primaryCtaLabel": "Get a Quote",
+        "primaryCtaUrl": "../quote.html?service=industrial-coatings",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "kpis": [
+        {
+          "value": "Mobile",
+          "label": "We Come to Your Job Site or Facility"
+        },
+        {
+          "value": "Polyurea · Epoxy · Aliphatic",
+          "label": "Multiple Coating Chemistries Available"
+        },
+        {
+          "value": "Commercial & Gov",
+          "label": "Authorized for Government Procurement"
+        }
+      ],
+      "process": [
+        {
+          "title": "Site Assessment",
+          "description": "We evaluate your surfaces, environment, load requirements, and performance specs. In-shop or on-site assessment depending on scale."
+        },
+        {
+          "title": "System Selection",
+          "description": "We specify the correct chemistry (polyurea, aliphatic, aromatic, epoxy) and application method for your surface and conditions."
+        },
+        {
+          "title": "Surface Preparation",
+          "description": "Proper prep is everything. We clean, abrade, and prime surfaces to ensure maximum adhesion and coating longevity."
+        },
+        {
+          "title": "Application & Inspection",
+          "description": "Coating applied to spec. Thickness gauged. Quality check before handoff. Documentation provided on request."
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What surfaces can you coat?",
+          "answer": "Nearly any substrate — steel, aluminum, concrete, wood, fiberglass, and existing coated surfaces with proper preparation. We coat vehicle cargo floors, truck beds, trailer interiors, cargo van floors, industrial floors, dock ramps, structural steel, containment areas, and facility surfaces."
+        },
+        {
+          "question": "Do you offer mobile on-site application?",
+          "answer": "Yes — our mobile application unit serves job sites, fleet yards, government facilities, and industrial locations throughout the DMV region. For large-scale fleet programs or facility work, we bring the equipment to you. Contact us to discuss scope and scheduling."
+        },
+        {
+          "question": "What's the difference between polyurea and epoxy?",
+          "answer": "Polyurea is spray-applied, cures in seconds, and delivers exceptional flexibility, impact resistance, and waterproofing. Epoxy is a two-component rigid system with excellent chemical resistance and adhesion — often used as a primer under polyurea topcoats. The right choice depends on your surface, environment, and performance requirements. We'll specify the correct system after assessing your application."
+        },
+        {
+          "question": "Are your coatings compliant with government procurement requirements?",
+          "answer": "We provide full application documentation, coating specification sheets, and mil-thickness records on request — standard practice for government and municipal jobs. We work with agencies submitting GSA bids and state contract vehicles."
+        },
+        {
+          "question": "How long does curing take before the surface is back in service?",
+          "answer": "Polyurea systems cure in seconds and are typically back in service within hours. Epoxy systems require 24–72 hours depending on temperature and humidity. We provide exact return-to-service times for your specific application at the time of quoting."
+        }
+      ],
+      "seoTitle": "Industrial & Protective Coatings Rockville MD | Mobile Application | Capital Upfitters",
+      "seoDescription": "Professional industrial coating solutions in the DMV — polyurea, epoxy, and protective coatings for commercial vehicles, government fleets, equipment, and facilities. Mobile application available.",
+      "geoCallout": {
+        "heading": "INDUSTRIAL COATING SOLUTIONS ACROSS THE DMV.",
+        "body": "Capital Upfitters serves commercial operators, government agencies, and industrial facilities across Rockville, Bethesda, Gaithersburg, and Silver Spring — and throughout the DMV region for mobile on-site applications. Our shop is at 12019 Nebel St in Rockville, MD, with mobile capability across Montgomery County, DC, and Northern Virginia."
+      },
+      "sectionTitles": {
+        "process": "HOW IT WORKS.",
+        "testimonials": "REAL RESULTS. REAL CLIENTS."
+      },
+      "body": "Polyurea, epoxy, aliphatic, and aromatic protective coatings for commercial vehicles, government fleets, school buses, emergency equipment, civil infrastructure, industrial equipment, and facilities. Mobile application available — we come to your site.\n\n## PROTECTION FOR EVERY SURFACE.\n\nFrom a single cargo van floor to a full municipal fleet — we apply the right coating system for your surface, environment, and performance requirement.\n\nSpray-applied high-elongation polyurea coatings that absorb and dissipate blast energy across vehicle panels, facility walls, and structural surfaces. Used by military, law enforcement, and government facilities requiring enhanced structural resilience.\n\nSeamless, pinhole-free barrier coatings that seal metal surfaces against moisture, salt, and chemical exposure. Ideal for commercial vehicle undercarriages, cargo trailers, utility equipment, and industrial steel structures in the DMV's harsh seasonal environment.\n\nOSHA and ADA-compliant textured coatings for vehicle cargo floors, dock ramps, industrial walkways, stairs, and platforms. Maintains grip in wet, oily, or high-traffic conditions without sacrificing durability.\n\n## THE RIGHT CHEMISTRY FOR THE JOB.\n\nNot every surface needs the same coating. We select the correct chemistry based on your surface type, environment, load requirements, and performance specifications.\n\nPure spray-applied polyurea delivers 100% solids, zero VOC, and cure times measured in seconds. Exceptional tensile strength and elongation — ideal for surfaces requiring impact resistance, waterproofing, and chemical resistance in demanding environments.\n\nAliphatic formulations are engineered for exterior surfaces where UV exposure would degrade standard coatings. Color-stable and gloss-retaining long after aromatic systems would fade — the correct choice for any surface exposed to direct sunlight.\n\nAromatic polyurea provides the highest mechanical performance — tensile strength, elongation, and abrasion resistance — at the most cost-effective price point. Typically used as the primary protective layer under an aliphatic topcoat on exterior applications.\n\n## WHO WE SERVE.\n\nFrom commercial fleets and government agencies to school buses, emergency equipment, civil infrastructure, and industrial operations — we apply the right coating system for every surface and environment.\n\nContractors, utilities, HVAC, electrical, and delivery operators. Mobile coating at your yard — cargo floors, truck beds, van interiors, and undercarriages.\n\nState, county, and local government vehicles and facilities. DOT-compliant application, documentation provided, eligible for GSA procurement and state contract vehicles.\n\nTrailers, cargo vans, rail equipment, and heavy transport assets. Standardized coating specs applied across entire fleets for consistent protection.\n\n## HOW IT WORKS.\n\nA systematic approach from first contact to final coat. Every job documented and done to spec.\n\nWe evaluate your surfaces, environment, load requirements, and performance specs. In-shop or on-site assessment depending on scale.\n\nWe specify the correct chemistry (polyurea, aliphatic, aromatic, epoxy) and application method for your surface and conditions.\n\nProper prep is everything. We clean, abrade, and prime surfaces to ensure maximum adhesion and coating longevity.",
+      "_file": "industrial-coatings.md"
+    }
+  ],
+  "geoPages": [
+    {
+      "slug": "alexandria-va",
+      "title": null,
+      "city": "Alexandria",
+      "state": "VA",
+      "seoTitle": null,
+      "seoDescription": null,
+      "body": "",
+      "_file": "alexandria-va.md"
+    },
+    {
+      "slug": "arlington-va",
+      "title": null,
+      "city": "Arlington",
+      "state": "VA",
+      "seoTitle": null,
+      "seoDescription": null,
+      "body": "",
+      "_file": "arlington-va.md"
+    },
+    {
+      "title": "Vehicle Upfitting For Bethesda, Md.",
+      "slug": "bethesda-md",
+      "city": "Bethesda",
+      "state": "MD",
+      "hero": {
+        "headline": "VEHICLE UPFITTING FOR BETHESDA, MD.",
+        "subheadline": "Located 15 minutes from Bethesda on Nebel Street in Rockville. Same-week appointments, no wait list.",
+        "primaryCtaLabel": "Get a Quote",
+        "primaryCtaUrl": "../quote.html",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "directionsTitle": "15 MINUTES AWAY",
+      "directionsBody": "12019 Nebel Street, Rockville MD 20852\n\nFrom Bethesda: Head north on Rockville Pike (MD-355) through Chevy Chase and into Rockville. Continue past the White Flint area.\n\nTurn right on Montrose Road or Edmonston Drive, then right on Nebel St. We're in the commercial district on your left.\n\nAlternatively, take I-495 W to I-270 N, exit at Democracy Blvd, then south on Nebel St. About 20 minutes from downtown Bethesda.",
+      "seoTitle": "Vehicle Upfitting Near Bethesda MD | Capital Upfitters",
+      "seoDescription": "Serving Bethesda, MD from our Rockville shop — 15 minutes away. Bedliners, hitches, ceramic coating, undercoating, and more. Call (301) 304-1419.",
+      "body": "Located 15 minutes from Bethesda on Nebel Street in Rockville. Same-week appointments, no wait list.\n\n## BETHESDA'S CLOSEST PRO UPFITTER\n\nBethesda residents and businesses have been coming to Capital Upfitters for bedliners, hitches, and ceramic coatings for years. We're your closest professional upfit shop — just a quick drive up Rockville Pike.\n\nFrom luxury SUV ceramic coatings to work truck bedliners and towing hitches, we handle every vehicle type and every budget. Walk-ins welcome, same-week appointments available.\n\n## 15 MINUTES AWAY\n\n12019 Nebel Street, Rockville MD 20852\n\nFrom Bethesda: Head north on Rockville Pike (MD-355) through Chevy Chase and into Rockville. Continue past the White Flint area.\n\nTurn right on Montrose Road or Edmonston Drive, then right on Nebel St. We're in the commercial district on your left.\n\nAlternatively, take I-495 W to I-270 N, exit at Democracy Blvd, then south on Nebel St. About 20 minutes from downtown Bethesda.",
+      "_file": "bethesda-md.md"
+    },
+    {
+      "slug": "fairfax-va",
+      "title": null,
+      "city": "Fairfax",
+      "state": "VA",
+      "seoTitle": null,
+      "seoDescription": null,
+      "body": "",
+      "_file": "fairfax-va.md"
+    },
+    {
+      "slug": "frederick-md",
+      "title": null,
+      "city": "Frederick",
+      "state": "MD",
+      "seoTitle": null,
+      "seoDescription": null,
+      "body": "",
+      "_file": "frederick-md.md"
+    },
+    {
+      "title": "Vehicle Upfitting For Gaithersburg, Md.",
+      "slug": "gaithersburg-md",
+      "city": "Gaithersburg",
+      "state": "MD",
+      "hero": {
+        "headline": "VEHICLE UPFITTING FOR GAITHERSBURG, MD.",
+        "subheadline": "Serving Gaithersburg and Montgomery County from our Rockville shop — less than 10 minutes away.",
+        "primaryCtaLabel": "Get a Quote",
+        "primaryCtaUrl": "../quote.html",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "directionsTitle": "UNDER 10 MINUTES AWAY",
+      "directionsBody": "12019 Nebel Street, Rockville MD 20852\n\nVia I-270 South: Head south on I-270 from Gaithersburg toward Rockville. Take Exit 4 (Democracy Blvd). Turn east on Democracy Blvd, then south on Nebel St.\n\nVia Rockville Pike (MD-355): Head south on Rockville Pike through North Bethesda. Turn left on Edmonston Dr or Montrose Rd, then right on Nebel St.\n\nWalk-ins welcome Mon–Fri 9:30am–4:30pm. Only 5–8 miles from most Gaithersburg locations.",
+      "seoTitle": "Vehicle Upfitting Near Gaithersburg MD | Capital Upfitters",
+      "seoDescription": "Serving Gaithersburg and Montgomery County from our Rockville shop — under 10 minutes. Fleet and retail upfitting. Call (301) 304-1419.",
+      "body": "Serving Gaithersburg and Montgomery County from our Rockville shop — less than 10 minutes away.\n\n## MONTGOMERY COUNTY'S UPFIT SHOP\n\nGaithersburg's commercial corridors, tech campuses, and residential neighborhoods generate some of the highest demand for professional vehicle upfitting in the DMV. Capital Upfitters handles everything from personal truck accessories to full commercial fleet programs.\n\nWhether you're a Gaithersburg contractor, a Crown Farm business managing a service fleet, or a resident who just picked up a new truck — we're less than 10 minutes away and ready to help.\n\n## UNDER 10 MINUTES AWAY\n\n12019 Nebel Street, Rockville MD 20852\n\nVia I-270 South: Head south on I-270 from Gaithersburg toward Rockville. Take Exit 4 (Democracy Blvd). Turn east on Democracy Blvd, then south on Nebel St.\n\nVia Rockville Pike (MD-355): Head south on Rockville Pike through North Bethesda. Turn left on Edmonston Dr or Montrose Rd, then right on Nebel St.\n\nWalk-ins welcome Mon–Fri 9:30am–4:30pm. Only 5–8 miles from most Gaithersburg locations.",
+      "_file": "gaithersburg-md.md"
+    },
+    {
+      "slug": "germantown-md",
+      "title": null,
+      "city": "Germantown",
+      "state": "MD",
+      "seoTitle": null,
+      "seoDescription": null,
+      "body": "",
+      "_file": "germantown-md.md"
+    },
+    {
+      "slug": "potomac-md",
+      "title": null,
+      "city": "Potomac",
+      "state": "MD",
+      "seoTitle": null,
+      "seoDescription": null,
+      "body": "",
+      "_file": "potomac-md.md"
+    },
+    {
+      "title": "Vehicle Upfitting In Rockville, Md.",
+      "slug": "rockville-md",
+      "city": "Rockville",
+      "state": "MD",
+      "hero": {
+        "headline": "VEHICLE UPFITTING IN ROCKVILLE, MD.",
+        "subheadline": "Capital Upfitters is your local shop — right here in Rockville at 12019 Nebel Street. Walk-ins welcome Mon–Fri 9:30am–4:30pm.",
+        "primaryCtaLabel": "Get a Quote",
+        "primaryCtaUrl": "../quote.html",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "seoTitle": "Vehicle Upfitting in Rockville MD | Capital Upfitters",
+      "seoDescription": "Capital Upfitters is Rockville's neighborhood upfitter at 12019 Nebel Street. Bedliners from $575, hitches, ceramic coating & more. Walk-ins welcome Mon–Fri.",
+      "body": "Capital Upfitters is your local shop — right here in Rockville at 12019 Nebel Street. Walk-ins welcome Mon–Fri 9:30am–4:30pm.\n\n## YOUR NEIGHBORHOOD UPFITTER FOR 30+ YEARS\n\nAs Rockville's neighborhood upfitter for 30+ years, we've upfitted thousands of personal trucks, commercial vans, and government fleets across Montgomery County. From Rockville Pike to the I-270 corridor, our work is on the road every day.\n\nWhether you're a local contractor, a Rockville business managing a service fleet, or a resident who just bought a new truck — we're two minutes away and ready to help.",
+      "_file": "rockville-md.md"
+    },
+    {
+      "title": "Vehicle Upfitting For Silver Spring, Md.",
+      "slug": "silver-spring-md",
+      "city": "Silver Spring",
+      "state": "MD",
+      "hero": {
+        "headline": "VEHICLE UPFITTING FOR SILVER SPRING, MD.",
+        "subheadline": "Serving Silver Spring from our Rockville shop — 20 minutes on I-495 or Georgia Ave. Same-week availability.",
+        "primaryCtaLabel": "Get a Quote",
+        "primaryCtaUrl": "../quote.html",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "directionsTitle": "20 MINUTES AWAY",
+      "directionsBody": "12019 Nebel Street, Rockville MD 20852\n\nVia I-495 W: Take I-495 West to I-270 North. Exit at Democracy Blvd (Exit 4), then head east on Democracy Blvd, turn south on Nebel St. About 20 minutes.\n\nVia Georgia Ave (MD-97): Head north on Georgia Ave through Wheaton, then turn left on Veirs Mill Rd toward Rockville Pike, then right on Nebel St. Roughly 25 minutes.\n\nWalk-ins welcome Mon–Fri 9:30am–4:30pm. Call ahead for same-day appointment availability.",
+      "seoTitle": "Vehicle Upfitting Near Silver Spring MD | Capital Upfitters",
+      "seoDescription": "Serving Silver Spring, MD from our Rockville shop — 20 min via I-495 or Georgia Ave. All upfitting services, same-week availability.",
+      "body": "Serving Silver Spring from our Rockville shop — 20 minutes on I-495 or Georgia Ave. Same-week availability.\n\n## SILVER SPRING'S FLEET & TRUCK UPFITTER\n\nSilver Spring's growing contractor and service fleet community trusts Capital Upfitters for professional van packages, bedliners, and hitches. Our shop handles everything from individual truck upgrades to full fleet upfitting programs.\n\nFrom East Silver Spring to White Oak and Wheaton, we serve every corner of the Silver Spring area. One call gets you on our schedule — same week, every time.\n\n## 20 MINUTES AWAY\n\n12019 Nebel Street, Rockville MD 20852\n\nVia I-495 W: Take I-495 West to I-270 North. Exit at Democracy Blvd (Exit 4), then head east on Democracy Blvd, turn south on Nebel St. About 20 minutes.\n\nVia Georgia Ave (MD-97): Head north on Georgia Ave through Wheaton, then turn left on Veirs Mill Rd toward Rockville Pike, then right on Nebel St. Roughly 25 minutes.\n\nWalk-ins welcome Mon–Fri 9:30am–4:30pm. Call ahead for same-day appointment availability.",
+      "_file": "silver-spring-md.md"
+    },
+    {
+      "slug": "washington-dc",
+      "title": null,
+      "city": "Washington",
+      "state": "DC",
+      "seoTitle": null,
+      "seoDescription": null,
+      "body": "",
+      "_file": "washington-dc.md"
+    }
+  ],
+  "testimonials": [
+    {
+      "author": "Alex Anand",
+      "authorMeta": "Lift Kit & Alignment, Silver Spring MD",
+      "rating": 5,
+      "featured": false,
+      "body": "Brought my 4Runner in for a lift kit and alignment. These guys knew the vehicle inside-out. Quoted me fairly, finished on time, and the ride quality after the lift is exactly what I wanted. Highly recommend for any off-road build.",
+      "_file": "alex-anand-26.md"
+    },
+    {
+      "author": "Amanda L.",
+      "authorMeta": "Bethesda, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Ceramic coating on my new Camry. Car looks incredible. They took their time on the prep work, which is what separates a good job from a great one.",
+      "_file": "amanda-l-5.md"
+    },
+    {
+      "author": "Carlos V.",
+      "authorMeta": "Rockville, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Running boards on my Silverado. Perfect fit, installed clean, no rattles. Highly recommend for anyone in the DMV area.",
+      "_file": "carlos-v-16.md"
+    },
+    {
+      "author": "Carlos V.",
+      "authorMeta": "Rockville, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Had them put running boards and mud flaps on my Silverado. Perfect fit, installed clean, no rattles. Quick turnaround — truck was ready faster than I expected.",
+      "_file": "carlos-v-9.md"
+    },
+    {
+      "author": "Dave Rhodes",
+      "authorMeta": "Tonneau Cover Install, Rockville MD",
+      "rating": 5,
+      "featured": false,
+      "body": "Had a tonneau cover installed on my F-150. Crew was fast, professional, and the fitment was perfect. They even helped me pick the right model for my needs. Capital Upfitters is my go-to for truck accessories from now on.",
+      "_file": "dave-rhodes-25.md"
+    },
+    {
+      "author": "David K.",
+      "authorMeta": "Gaithersburg, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Had them install a hitch on my Tahoe. They knew exactly what class I needed, didn't try to upsell me, and had it done in a few hours.",
+      "_file": "david-k-10.md"
+    },
+    {
+      "author": "Fleet Manager",
+      "authorMeta": "Gaithersburg, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "We use Capital Upfitters for our van fleet quarterly. Consistent results every time, they work around our schedule, and the vehicles always come back clean.",
+      "_file": "fleet-manager-15.md"
+    },
+    {
+      "author": "James R.",
+      "authorMeta": "Bethesda, MD • Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Capital Upfitters is the real deal. Called on Monday, truck was done by Wednesday.",
+      "_file": "james-r-13.md"
+    },
+    {
+      "author": "James R.",
+      "authorMeta": "Bethesda, MD • Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Capital Upfitters is the real deal. Called on Monday, truck was done by Wednesday. Quick, clean, and exactly what was quoted — no surprises.",
+      "_file": "james-r-17.md"
+    },
+    {
+      "author": "James R.",
+      "authorMeta": "Bethesda, MD · Google Review",
+      "rating": 5,
+      "featured": true,
+      "body": "Capital Upfitters is the real deal. Called on Monday, truck was done by Wednesday. They've clearly done this thousands of times.",
+      "_file": "james-r-2.md"
+    },
+    {
+      "author": "James R.",
+      "authorMeta": "Bethesda MD · Verified Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Capital Upfitters is the real deal. Had them set up a DECKED drawer system in my Ram. Called on Monday, truck was done by Wednesday. The drawers are solid — I can actually organize my gear for the first time.",
+      "_file": "james-r-21.md"
+    },
+    {
+      "author": "James R.",
+      "authorMeta": "Bethesda, MD • Verified Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Capital Upfitters is the real deal. Called on Monday about a Ranch shell for my Ram, truck was done by Wednesday. The fit was great and the whole thing looks like it was built with the truck. No games.",
+      "_file": "james-r-4.md"
+    },
+    {
+      "author": "James R.",
+      "authorMeta": "Bethesda, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Capital Upfitters is the real deal for fleet branding. Called on Monday, the van wrap was done by Wednesday — quick, professional, exactly what was quoted. They've clearly wrapped thousands of vehicles.",
+      "_file": "james-r-6.md"
+    },
+    {
+      "author": "Jill Hill",
+      "authorMeta": "Emergency Hitch Service, Bethesda MD",
+      "rating": 5,
+      "featured": false,
+      "body": "I called in a bit of a panic after my trailer hitch failed on the highway. They got me in the very next morning, assessed the situation, and had me back on the road safely by noon. Customer service above and beyond — thank you!",
+      "_file": "jill-hill-27.md"
+    },
+    {
+      "author": "Kevin M.",
+      "authorMeta": "Rockville, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Had my truck detailed at the office parking lot — Interior Complete and exterior wash. Showed up on time, did a thorough job, and the interior looked brand new. Will book again.",
+      "_file": "kevin-m-14.md"
+    },
+    {
+      "author": "Kevin M.",
+      "authorMeta": "Rockville, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Got ceramic tint done on my Tesla Model 3 — the heat difference is night and day. Worth every penny for a Maryland summer.",
+      "_file": "kevin-m-23.md"
+    },
+    {
+      "author": "Marcus D.",
+      "authorMeta": "Fleet Manager · Rockville, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Fast, clean, and exactly what was quoted. They came to our yard and coated the entire van fleet in one day. No disruption to our schedule.",
+      "_file": "marcus-d-11.md"
+    },
+    {
+      "author": "Mike T.",
+      "authorMeta": "Rockville, MD · Google Review",
+      "rating": 5,
+      "featured": true,
+      "body": "Brought my F-150 in for a spray-on bedliner and couldn't be happier. Quick, clean, and the price was exactly what they quoted. No games.",
+      "_file": "mike-t-1.md"
+    },
+    {
+      "author": "Mike T.",
+      "authorMeta": "Rockville, MD • Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Brought my F-150 in for a lift kit and couldn't be happier. Quick, clean, and the price was exactly what they quoted. No games.",
+      "_file": "mike-t-18.md"
+    },
+    {
+      "author": "Mike T.",
+      "authorMeta": "Rockville MD · Verified Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Brought my F-150 in for a CamLocker toolbox and couldn't be happier. Everything fits perfectly, locks solid, and the install was clean. Quick, clean, and the price was exactly what they quoted. No games.",
+      "_file": "mike-t-20.md"
+    },
+    {
+      "author": "Mike T.",
+      "authorMeta": "Rockville, MD • Verified Google Review",
+      "rating": 5,
+      "featured": true,
+      "body": "Brought my F-150 in for a camper shell and couldn't be happier. Quick install, the color match is perfect — looks completely factory. Great fit and no rattles. Highly recommend Capital Upfitters.",
+      "_file": "mike-t-3.md"
+    },
+    {
+      "author": "Mike T.",
+      "authorMeta": "Rockville, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Got our work truck wrapped for branding — quick, clean, and the price was exactly what they quoted. No games, no surprises. The wrap looks sharp and has held up perfectly.",
+      "_file": "mike-t-7.md"
+    },
+    {
+      "author": "Mike T.",
+      "authorMeta": "Rockville, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Brought my F-150 in for exterior accessories and couldn't be happier. Quick, clean, and the price was exactly what they quoted. Perfect fit — looks like it came from the factory.",
+      "_file": "mike-t-8.md"
+    },
+    {
+      "author": "Regional Fleet Director",
+      "authorMeta": "Montgomery County · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Government procurement, full documentation, on-time. Capital Upfitters handled our municipal vehicles exactly to spec.",
+      "_file": "regional-fleet-director-12.md"
+    },
+    {
+      "author": "Sarah M.",
+      "authorMeta": "Silver Spring, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Got an undercoating done before winter. The team explained every step. Living in Maryland, this is not optional — and these guys do it right.",
+      "_file": "sarah-m-22.md"
+    },
+    {
+      "author": "Sarah T.",
+      "authorMeta": "Bethesda, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Quick install, no bubbles, stayed within Maryland legal limits. They walked me through the law before starting so I knew exactly what I was getting.",
+      "_file": "sarah-t-24.md"
+    },
+    {
+      "author": "Tom B.",
+      "authorMeta": "Gaithersburg, MD · Google Review",
+      "rating": 5,
+      "featured": false,
+      "body": "Tonneau cover on my Ram 1500. They helped me choose the right style and it fit perfectly. Took maybe an hour.",
+      "_file": "tom-b-19.md"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How long does the install take?",
+      "sortOrder": 1,
+      "body": "Most installs take 2–3 hours from drop-off to pickup. We recommend scheduling a morning appointment so your truck is ready by early afternoon. Same-day service is typically available.",
+      "_file": "how-long-does-the-install-take.md"
+    },
+    {
+      "question": "What sets Patriot Liner apart?",
+      "sortOrder": 2,
+      "body": "While many spray-on bedliner brands exist, many share similar core chemistry. Patriot Liner is engineered with a refined polyurea formulation that delivers a deeper, richer black finish and enhanced UV resistance and durability (lab proven). Its advanced application characteristics allow it to lay down smoother and more consistently, creating a clean, uniform finish that stands out. Combined with a lifetime warranty, it's built for customers who want both durability and a premium look.",
+      "_file": "what-sets-patriot-liner-apart.md"
+    },
+    {
+      "question": "How much does it cost?",
+      "sortOrder": 3,
+      "body": "Pricing starts at $575 for compact trucks (up to 5ft bed), $595 for standard (up to 6.5ft), $635 for HD trucks, and $675 for long 8ft beds. Add +$200 for the Premium UV+ formula upgrade. All prices plus tax. Get an instant quote online or call us at (301) 304-1419.",
+      "_file": "how-much-does-it-cost.md"
+    },
+    {
+      "question": "Do you do custom colors?",
+      "sortOrder": 4,
+      "body": "Yes. While black is the standard color, Patriot Liner is available in custom colors. Custom color requests may require additional lead time. Contact us to discuss your options before booking.",
+      "_file": "do-you-do-custom-colors.md"
+    },
+    {
+      "question": "Can you spray liner something besides a truck bed?",
+      "sortOrder": 5,
+      "body": "Yes — Patriot Liner bonds to metal, wood, concrete, and fiberglass. We regularly coat trailer beds, van floors, boat gunwales, garage floors, steps, and commercial vehicle cargo areas. Call us and describe your surface — if it can be prepped properly, we can coat it.",
+      "_file": "can-you-spray-liner-something-besides-a-truck-bed.md"
+    },
+    {
+      "question": "What's the difference between a camper shell and a tonneau cover?",
+      "sortOrder": 6,
+      "body": "A camper shell (also called a truck cap or topper) is a full enclosure that sits on top of your bed rails, fully enclosing your cargo area. A tonneau cover is a flat panel that covers only the bed opening. Shells offer much more security, weather protection, and usable vertical space.",
+      "_file": "what-s-the-difference-between-a-camper-shell-and-a-tonneau-cover.md"
+    },
+    {
+      "question": "Can you match my truck's color?",
+      "sortOrder": 7,
+      "body": "Yes — Ranch shells are available in factory color-match finishes for Ford, RAM, Chevrolet/GMC, Toyota, and Nissan. We use your truck's color code to order the exact match.",
+      "_file": "can-you-match-my-truck-s-color.md"
+    },
+    {
+      "question": "How long does installation take?",
+      "sortOrder": 8,
+      "body": "Most installs are same-day or next-day. The shell bolts to your bed rails with a weatherstrip seal — installation takes about 1–2 hours.",
+      "_file": "how-long-does-installation-take.md"
+    },
+    {
+      "question": "Do you have models in stock?",
+      "sortOrder": 9,
+      "body": "We keep popular models in stock for the most common truck sizes. Call (301) 304-1419 to check availability for your specific truck.",
+      "_file": "do-you-have-models-in-stock.md"
+    },
+    {
+      "question": "Can I add interior lighting or a bed liner under the shell?",
+      "sortOrder": 10,
+      "body": "Yes — we recommend adding a Patriot Liner spray-on bedliner when installing a shell. Interior lighting, bed slides, and van shelving can also be added for a complete mobile workspace setup.",
+      "_file": "can-i-add-interior-lighting-or-a-bed-liner-under-the-shell.md"
+    },
+    {
+      "question": "How long does ceramic coating last?",
+      "sortOrder": 11,
+      "body": "A professionally applied ceramic coating typically lasts 3–5 years with proper maintenance. Some premium coatings we apply are rated for 7+ years. Longevity depends on the product tier, how thorough the prep was, and how you maintain the vehicle afterward. We'll walk you through everything at pickup.",
+      "_file": "how-long-does-ceramic-coating-last.md"
+    },
+    {
+      "question": "Is prep work included in the price?",
+      "sortOrder": 12,
+      "body": "Surface decontamination is included in all pricing. Paint correction (polishing out swirls, scratches, and oxidation) is quoted separately based on the paint's actual condition — we assess before we quote. We won't coat over defects, which is why some shops do and their results don't last.",
+      "_file": "is-prep-work-included-in-the-price.md"
+    },
+    {
+      "question": "What's the difference between ceramic coating and wax?",
+      "sortOrder": 13,
+      "body": "Wax sits on top of your paint and washes away within weeks. Ceramic coating chemically bonds to the clear coat, creating a permanent hydrophobic layer that repels water, blocks UV radiation, and resists chemical contamination from bird droppings, road salt, and tree sap. It lasts years — not weeks.",
+      "_file": "what-s-the-difference-between-ceramic-coating-and-wax.md"
+    },
+    {
+      "question": "Can I wash my car after ceramic coating?",
+      "sortOrder": 14,
+      "body": "You should avoid water contact for 5–7 days after application while the coating fully cures. After that, washing becomes easier — the hydrophobic surface causes water and dirt to slide right off. We'll give you a detailed aftercare sheet when you pick up the vehicle.",
+      "_file": "can-i-wash-my-car-after-ceramic-coating.md"
+    },
+    {
+      "question": "Will fender flares affect my truck's aerodynamics?",
+      "sortOrder": 15,
+      "body": "OE-style fender flares have minimal aerodynamic impact since they follow the factory body contour. Cut-out/wide-body flares have a slightly larger profile but the difference in fuel economy is negligible for most drivers.",
+      "_file": "will-fender-flares-affect-my-truck-s-aerodynamics.md"
+    },
+    {
+      "question": "Do grille guards affect airbag deployment?",
+      "sortOrder": 16,
+      "body": "Quality grille guards from reputable brands (Go Rhino, Ranch Hand, Westin) are engineered to not interfere with factory crash sensors or airbag deployment. We only install brands that meet or exceed these standards.",
+      "_file": "do-grille-guards-affect-airbag-deployment.md"
+    },
+    {
+      "question": "Can I add a winch to an aftermarket bumper?",
+      "sortOrder": 17,
+      "body": "Most Ranch Hand and Fab Fours front bumpers are winch-ready with a built-in receiver. WARN and Superwinch are common pairings. Ask us about the full setup when requesting a quote.",
+      "_file": "can-i-add-a-winch-to-an-aftermarket-bumper.md"
+    },
+    {
+      "question": "Do you install WeatherTech products?",
+      "sortOrder": 18,
+      "body": "Yes — we install WeatherTech mud flaps and Husky Liners splash guards. These are precision-fit laser-measured products that look factory installed and require professional installation to seat correctly.",
+      "_file": "do-you-install-weathertech-products.md"
+    },
+    {
+      "question": "What is a Stealth Hitch?",
+      "sortOrder": 19,
+      "body": "A Stealth Hitch is a vehicle-specific hidden receiver hitch that tucks completely out of sight when not in use — no visible tube hanging below your bumper. They're designed for luxury SUVs and vehicles where aesthetics matter. Stealth Hitches start at $1,000 for parts and labor and are available for most popular SUV models.",
+      "_file": "what-is-a-stealth-hitch.md"
+    },
+    {
+      "question": "Will a hitch void my warranty?",
+      "sortOrder": 20,
+      "body": "In most cases, no. The Magnuson-Moss Warranty Act protects you — a dealer cannot void your warranty simply because an aftermarket part was installed. We use OEM-style installation methods that don't compromise your frame or electrical system. If your dealer threatens this, they're misinformed about the law.",
+      "_file": "will-a-hitch-void-my-warranty.md"
+    },
+    {
+      "question": "How long does hitch installation take?",
+      "sortOrder": 21,
+      "body": "Most standard hitch installations take 2–3 hours. Stealth Hitch installs can take 3–4 hours depending on vehicle complexity. We'll confirm your estimated completion time when you schedule — same-day service is available most days.",
+      "_file": "how-long-does-hitch-installation-take.md"
+    },
+    {
+      "question": "Do you install wiring harnesses?",
+      "sortOrder": 22,
+      "body": "Yes. We install 4-pin flat and 7-pin round trailer wiring harnesses. We also install electric brake controllers for trailers with brakes. Add this to your hitch install appointment and we'll wire everything in a single visit.",
+      "_file": "do-you-install-wiring-harnesses.md"
+    },
+    {
+      "question": "Do you install 5th wheel hitches and gooseneck systems?",
+      "sortOrder": 23,
+      "body": "Yes — we install 5th wheel hitches, gooseneck conversion balls, brake controllers, and weight distribution systems. These are all custom-fit to your specific truck and trailer configuration. Call us or submit a quote with your truck year/make/model and what you plan to tow.",
+      "_file": "do-you-install-5th-wheel-hitches-and-gooseneck-systems.md"
+    },
+    {
+      "question": "What surfaces can you coat?",
+      "sortOrder": 24,
+      "body": "Nearly any substrate — steel, aluminum, concrete, wood, fiberglass, and existing coated surfaces with proper preparation. We coat vehicle cargo floors, truck beds, trailer interiors, cargo van floors, industrial floors, dock ramps, structural steel, containment areas, and facility surfaces.",
+      "_file": "what-surfaces-can-you-coat.md"
+    },
+    {
+      "question": "Do you offer mobile on-site application?",
+      "sortOrder": 25,
+      "body": "Yes — our mobile application unit serves job sites, fleet yards, government facilities, and industrial locations throughout the DMV region. For large-scale fleet programs or facility work, we bring the equipment to you. Contact us to discuss scope and scheduling.",
+      "_file": "do-you-offer-mobile-on-site-application.md"
+    },
+    {
+      "question": "What's the difference between polyurea and epoxy?",
+      "sortOrder": 26,
+      "body": "Polyurea is spray-applied, cures in seconds, and delivers exceptional flexibility, impact resistance, and waterproofing. Epoxy is a two-component rigid system with excellent chemical resistance and adhesion — often used as a primer under polyurea topcoats. The right choice depends on your surface, environment, and performance requirements. We'll specify the correct system after assessing your application.",
+      "_file": "what-s-the-difference-between-polyurea-and-epoxy.md"
+    },
+    {
+      "question": "Are your coatings compliant with government procurement requirements?",
+      "sortOrder": 27,
+      "body": "We provide full application documentation, coating specification sheets, and mil-thickness records on request — standard practice for government and municipal jobs. We work with agencies submitting GSA bids and state contract vehicles.",
+      "_file": "are-your-coatings-compliant-with-government-procurement-requirements.md"
+    },
+    {
+      "question": "How long does curing take before the surface is back in service?",
+      "sortOrder": 28,
+      "body": "Polyurea systems cure in seconds and are typically back in service within hours. Epoxy systems require 24–72 hours depending on temperature and humidity. We provide exact return-to-service times for your specific application at the time of quoting.",
+      "_file": "how-long-does-curing-take-before-the-surface-is-back-in-service.md"
+    },
+    {
+      "question": "Do I need a relay for an LED light bar?",
+      "sortOrder": 29,
+      "body": "Yes — for any high-draw LED light bar (over 50W), a proper relay and fuse setup is required. This protects your factory wiring and ensures the light gets full voltage. We include proper relay wiring on all our light bar installs.",
+      "_file": "do-i-need-a-relay-for-an-led-light-bar.md"
+    },
+    {
+      "question": "Are LED light bars legal to use on public roads in Maryland?",
+      "sortOrder": 30,
+      "body": "Most LED light bars are DOT-legal for off-road use only when mounted on roof or bumper. Some SAE-compliant driving/fog lights are street-legal. We'll advise on compliance during the consultation and mark non-street-legal lights appropriately.",
+      "_file": "are-led-light-bars-legal-to-use-on-public-roads-in-maryland.md"
+    },
+    {
+      "question": "Can you wire lights to work with my factory fog light switch?",
+      "sortOrder": 31,
+      "body": "Yes — on many trucks we can integrate new LED lights to switch on with your factory fog light controls. Other setups use a clean, hidden switch panel. We'll confirm what's possible for your specific truck.",
+      "_file": "can-you-wire-lights-to-work-with-my-factory-fog-light-switch.md"
+    },
+    {
+      "question": "Do you do LED upgrades for commercial fleets?",
+      "sortOrder": 32,
+      "body": "Yes — fleet lighting is a specialty. We can spec and install standardized packages across multiple vehicles, maintain fleet records, and work with government procurement requirements. Call us for fleet pricing.",
+      "_file": "do-you-do-led-upgrades-for-commercial-fleets.md"
+    },
+    {
+      "question": "Do you offer detailing at your shop?",
+      "sortOrder": 33,
+      "body": "No — our detailing service is 100% mobile. Our crew comes to your home, office, or fleet yard. This keeps your schedule flexible and eliminates any need to drop off your vehicle.",
+      "_file": "do-you-offer-detailing-at-your-shop.md"
+    },
+    {
+      "question": "How long does each package take?",
+      "sortOrder": 34,
+      "body": "Interior Basic: approximately 1–1.5 hours. Interior Complete: 2–3 hours. Exterior Basic: 1–1.5 hours. Exterior Complete: 2–2.5 hours. Full interior and exterior combos run 3–4.5 hours depending on vehicle size and condition.",
+      "_file": "how-long-does-each-package-take.md"
+    },
+    {
+      "question": "Can I book interior and exterior together?",
+      "sortOrder": 35,
+      "body": "Yes — book any interior package and any exterior package together for a full detail. Contact us or note it in your quote request and we'll confirm combined pricing.",
+      "_file": "can-i-book-interior-and-exterior-together.md"
+    },
+    {
+      "question": "How does fleet pricing work?",
+      "sortOrder": 36,
+      "body": "Fleet accounts booking 3 or more vehicles qualify for volume pricing. We set up a recurring service schedule — weekly, bi-weekly, or monthly — and come to your facility. Call us or submit a quote request with your vehicle count.",
+      "_file": "how-does-fleet-pricing-work.md"
+    },
+    {
+      "question": "Is the ceramic coating applied by the detailing crew?",
+      "sortOrder": 37,
+      "body": "No — ceramic coating is applied by our certified Capital Upfitters installers separately from the detailing crew. The detailing package preps the surface and the coating appointment is scheduled afterward (often the same or next day). It requires the Exterior Complete package as a prerequisite.",
+      "_file": "is-the-ceramic-coating-applied-by-the-detailing-crew.md"
+    },
+    {
+      "question": "What's the difference between nerf bars and running boards?",
+      "sortOrder": 38,
+      "body": "Nerf bars are round or oval tubes that run along the rocker panel — they look rugged and provide a small step. Running boards are flat, wider platforms that give significantly more standing surface. Both improve entry and exit from lifted or tall vehicles. Running boards are better for daily use; nerf bars offer a sportier look. We'll help you choose based on how you use the truck.",
+      "_file": "what-s-the-difference-between-nerf-bars-and-running-boards.md"
+    },
+    {
+      "question": "Do you carry PowerStep automatic running boards?",
+      "sortOrder": 39,
+      "body": "Yes. We carry and install AMP Research PowerStep, Bestop PowerBoard, and other electric automatic step brands. Power steps deploy automatically when you open the door and retract flush when you close it — giving you a completely clean appearance while driving. They start around $600 installed, depending on your vehicle.",
+      "_file": "do-you-carry-powerstep-automatic-running-boards.md"
+    },
+    {
+      "question": "Will they fit my specific truck?",
+      "sortOrder": 40,
+      "body": "All the running boards and steps we stock are vehicle-specific — engineered for your exact year, make, and model. They mount to existing frame points with no drilling required. Give us your truck details and we'll confirm the perfect fit. Lifted trucks may require specific offset brackets, which we can source.",
+      "_file": "will-they-fit-my-specific-truck.md"
+    },
+    {
+      "question": "Do you install powered / electric running boards?",
+      "sortOrder": 41,
+      "body": "Yes — we install AMP Research PowerStep electric running boards. They deploy automatically when your door opens and retract flush when you close it. Plug-N-Play install on most trucks — no wire cutting required. Pricing starts from $1,799 installed. Call us to confirm fitment for your specific vehicle.",
+      "_file": "do-you-install-powered-electric-running-boards.md"
+    },
+    {
+      "question": "Do I need an alignment after a lift kit?",
+      "sortOrder": 42,
+      "body": "Yes — any suspension modification that changes the front suspension geometry requires a fresh alignment. We either handle alignment in-house or coordinate with our alignment partner so you're not driving away with a crooked truck.",
+      "_file": "do-i-need-an-alignment-after-a-lift-kit.md"
+    },
+    {
+      "question": "Will a lift kit affect my warranty?",
+      "sortOrder": 43,
+      "body": "Lift kits installed by certified professionals using quality parts won't void your powertrain warranty under the Magnuson-Moss Warranty Act. However, if a lift-related component causes a failure, that component's coverage may be affected. We use quality branded kits (ReadyLIFT, Rough Country, BDS) to minimize this risk.",
+      "_file": "will-a-lift-kit-affect-my-warranty.md"
+    },
+    {
+      "question": "What's the difference between a leveling kit and a lift kit?",
+      "sortOrder": 44,
+      "body": "A leveling kit only raises the front end to match the rear height — typically 1.5″–3″ of lift. A lift kit raises the entire vehicle, front and rear, for true additional ground clearance. Leveling kits are simpler, cheaper, and faster to install. Lift kits offer more capability but require more parts and labor.",
+      "_file": "what-s-the-difference-between-a-leveling-kit-and-a-lift-kit.md"
+    },
+    {
+      "question": "Can I fit 35″ tires with a leveling kit?",
+      "sortOrder": 45,
+      "body": "Usually no — leveling kits typically allow 33″ tires on full-size trucks. For 35s, you generally need 3″–4″ of lift (or more on some trucks). We'll confirm what your specific truck can fit at each lift level before you commit.",
+      "_file": "can-i-fit-35-tires-with-a-leveling-kit.md"
+    },
+    {
+      "question": "Will a tonneau cover fit my truck?",
+      "sortOrder": 46,
+      "body": "Tonneau covers are available for virtually all popular truck models — F-150, Silverado, Ram, Tundra, Tacoma, Colorado, Ranger, and more. We carry vehicle-specific covers that use existing mounting points with no drilling required. Tell us your year, make, model, and bed size and we'll confirm availability.",
+      "_file": "will-a-tonneau-cover-fit-my-truck.md"
+    },
+    {
+      "question": "Do tonneau covers improve gas mileage?",
+      "sortOrder": 47,
+      "body": "Yes. An open truck bed acts like a parachute at highway speeds. A tonneau cover reduces that aerodynamic drag, with independent tests showing 2–5% improvements in fuel economy. Hard and retractable covers tend to outperform soft covers in this regard since they create a completely sealed surface.",
+      "_file": "do-tonneau-covers-improve-gas-mileage.md"
+    },
+    {
+      "question": "Can I use the full bed with a tonneau cover?",
+      "sortOrder": 48,
+      "body": "It depends on the cover type. Folding covers (soft and hard) fold toward the cab giving full access to the rear portion, or push completely forward for total bed access. Roll-up and retractable covers roll/retract to the cab end when fully opened. If you regularly haul tall or long cargo, a folding cover typically works best.",
+      "_file": "can-i-use-the-full-bed-with-a-tonneau-cover.md"
+    },
+    {
+      "question": "Can I use a toolbox with a tonneau cover?",
+      "sortOrder": 49,
+      "body": "It depends on the combination. Low-profile crossover boxes work with most soft tonneau covers. DECKED drawer systems are compatible with most hard-fold and retractable covers. Let us know what you have — we'll confirm compatibility before ordering.",
+      "_file": "can-i-use-a-toolbox-with-a-tonneau-cover.md"
+    },
+    {
+      "question": "Will a toolbox work with my bedliner?",
+      "sortOrder": 50,
+      "body": "Yes — toolboxes install on top of your bed rails, so a spray-on bedliner underneath is no issue. In fact, we recommend getting the liner first, then the toolbox.",
+      "_file": "will-a-toolbox-work-with-my-bedliner.md"
+    },
+    {
+      "question": "Do you install DECKED systems?",
+      "sortOrder": 51,
+      "body": "Yes — we're an authorized DECKED installer. DECKED drawer systems are vehicle-specific and require proper installation for the drawers to seal and slide correctly. We handle the full install.",
+      "_file": "do-you-install-decked-systems.md"
+    },
+    {
+      "question": "What's the most secure toolbox option?",
+      "sortOrder": 52,
+      "body": "CamLocker and UWS boxes both use high-quality rotary locks with stainless hardware. For maximum security, add a bed-mounted deadbolt or ask us about cable lock options.",
+      "_file": "what-s-the-most-secure-toolbox-option.md"
+    },
+    {
+      "question": "When's the best time to undercoat?",
+      "sortOrder": 53,
+      "body": "The best time is when the vehicle is new, before any salt exposure — ideally before the first winter. If the vehicle is used, undercoating is still effective as long as the rust hasn't progressed to structural damage. We do undercoating year-round — fall and spring are popular, but any time works.",
+      "_file": "when-s-the-best-time-to-undercoat.md"
+    },
+    {
+      "question": "Rubberized vs. oil-based — which is better?",
+      "sortOrder": 54,
+      "body": "Both serve different purposes and work best together. Rubberized undercoating is ideal for flat exposed surfaces — it creates a thick, permanent rubber barrier. Oil-based (fluid film) penetrates into seams, crevices, and frame cavities that rubber can't reach. Many customers opt for both for maximum protection. We'll recommend the right approach for your vehicle.",
+      "_file": "rubberized-vs-oil-based-which-is-better.md"
+    },
+    {
+      "question": "Can you undercoat a vehicle that already has rust?",
+      "sortOrder": 55,
+      "body": "Yes. For surface and minor pitting rust, we apply a rust neutralizer that converts active rust into a stable compound, then coat over it. More significant rust requires mechanical prep first. We inspect the vehicle and quote any additional prep work before starting — you'll never be surprised by charges.",
+      "_file": "can-you-undercoat-a-vehicle-that-already-has-rust.md"
+    },
+    {
+      "question": "Is dealer undercoating worth it?",
+      "sortOrder": 56,
+      "body": "Dealer undercoating is typically a thin spray applied in minutes — it's primarily a profit center for the dealer, not a serious rust protection solution. Professional undercoating from Capital Upfitters uses proper materials, applied with the right equipment, by specialists who do this every day. We see customers regularly who had dealer coating fail within two years. Don't waste the money — do it right.",
+      "_file": "is-dealer-undercoating-worth-it.md"
+    },
+    {
+      "question": "Is window tinting legal in Maryland?",
+      "sortOrder": 57,
+      "body": "Maryland allows tinting on all windows EXCEPT the windshield (only the top 5 inches). Front side windows must transmit more than 35% visible light (VLT). Rear side windows and rear window can be any darkness. All our installs comply with Maryland law — we won't install illegal percentages.",
+      "_file": "is-window-tinting-legal-in-maryland.md"
+    },
+    {
+      "question": "How long does window tint installation take?",
+      "sortOrder": 58,
+      "body": "Standard dyed or carbon film installs typically take 1.5–3 hours depending on vehicle size. Ceramic film takes slightly longer due to precision handling. Most vehicles are ready same-day.",
+      "_file": "how-long-does-window-tint-installation-take.md"
+    },
+    {
+      "question": "What's the difference between dyed, carbon, and ceramic tint?",
+      "sortOrder": 59,
+      "body": "Dyed film provides basic privacy and glare reduction. Carbon film adds better heat rejection and a matte appearance that doesn't fade. Ceramic film uses nano-ceramic particles for maximum heat (60%) and UV (99%) rejection without any color or signal interference. Ceramic is significantly more effective in Maryland summers.",
+      "_file": "what-s-the-difference-between-dyed-carbon-and-ceramic-tint.md"
+    },
+    {
+      "question": "Will tint interfere with my GPS, phone signal, or radar detector?",
+      "sortOrder": 60,
+      "body": "Carbon and ceramic films do not interfere with any electronics. Older metallic films can cause GPS and cell signal issues — we do not install metallic films for this reason.",
+      "_file": "will-tint-interfere-with-my-gps-phone-signal-or-radar-detector.md"
+    },
+    {
+      "question": "How long does tint take to cure?",
+      "sortOrder": 61,
+      "body": "Window tint fully cures in 3–7 days. You may see slight haziness or small water bubbles during this period — this is normal and will disappear as the film cures. Avoid rolling windows down for the first 3 days.",
+      "_file": "how-long-does-tint-take-to-cure.md"
+    },
+    {
+      "question": "Can I add tint to my ceramic-coated vehicle?",
+      "sortOrder": 62,
+      "body": "Yes — in fact, our Ceramic Tint + Ceramic Coating bundle is a popular combo. We coordinate both services in the same visit. Tint is applied to glass only; it doesn't affect or interact with paint coating.",
+      "_file": "can-i-add-tint-to-my-ceramic-coated-vehicle.md"
+    }
+  ],
+  "contentBlocks": [
+    {
+      "slug": "announce-bar",
+      "title": "Announcement Bar",
+      "type": "announce",
+      "body": "Same-week appointments available — (301) 304-1419",
+      "_file": "announce-bar.md"
+    },
+    {
+      "slug": "cta-banner",
+      "title": "Bottom CTA Banner",
+      "type": "cta",
+      "body": "## READY TO UPFIT YOUR VEHICLE?\n\nCall, quote online, or walk in Mon–Fri 9:30am–4:30pm.Same-week appointments available.",
+      "_file": "cta-banner.md"
+    },
+    {
+      "slug": "home-hero",
+      "title": "Homepage Hero",
+      "type": "hero",
+      "body": "# Premium Vehicle Upfitting. DMV's Most Trusted Shop.\n\nIndustrial coatings, fleet upfitting, and vehicle protection for commercial operators, government agencies, and personal vehicles across the DMV. Family-owned 30+ years.",
+      "_file": "home-hero.md"
+    },
+    {
+      "slug": "stats-strip",
+      "title": "Stats Strip",
+      "type": "stats",
+      "body": "## By the numbers\n\n* 10**+** — Years Serving DMV\n* **15,000+** — Vehicles Upfitted\n* **5.0★** — Average Google Rating\n* **150+** — Brands in Available",
+      "_file": "stats-strip.md"
+    }
+  ],
+  "pages": [
+    {
+      "title": "Find Us. Call Us. Come In.",
+      "slug": "contact",
+      "hero": {
+        "headline": "FIND US. CALL US. COME IN.",
+        "subheadline": "Located in Rockville, MD. Mon–Fri 9:30am–4:30pm. Walk-ins welcome during business hours."
+      },
+      "seoTitle": "Contact Capital Upfitters | Rockville MD | 301-304-1419",
+      "seoDescription": "Contact Capital Upfitters in Rockville, MD. Call (301) 304-1419, email, or visit us at 12019 Nebel Street. Mon–Fri 9:30am–4:30pm. Walk-ins welcome.",
+      "body": "Located in Rockville, MD. Mon–Fri 9:30am–4:30pm. Walk-ins welcome during business hours.",
+      "_file": "contact.md"
+    },
+    {
+      "title": "Dealer & Government Solutions.",
+      "slug": "dealer-government",
+      "hero": {
+        "headline": "DEALER & GOVERNMENT SOLUTIONS.",
+        "subheadline": "Pre-delivery vehicle customization, state & federal contract support, GSA bid assistance, and dedicated dealer pricing through the Upfit Portal.",
+        "primaryCtaLabel": "Apply for Dealer Account",
+        "primaryCtaUrl": "https://upfit-portal-58190af9.base44.app/portal/register",
+        "secondaryCtaLabel": "Call Us",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "seoTitle": "Dealer & Government Upfitting | Capital Upfitters MD",
+      "seoDescription": "Pre-delivery customization, state contract support, and dealer pricing for dealerships and government agencies in the DMV. Upfit Portal access included.",
+      "body": "Pre-delivery vehicle customization, state & federal contract support, GSA bid assistance, and dedicated dealer pricing through the Upfit Portal.",
+      "_file": "dealer-government.md"
+    },
+    {
+      "title": "Fleet Upfitting That Keeps Your Business Moving.",
+      "slug": "fleet",
+      "hero": {
+        "badge": "Commercial Upfitting",
+        "headline": "FLEET UPFITTING THAT KEEPS YOUR BUSINESS MOVING.",
+        "subheadline": "Pickup truck upfitting, van packages, DOT compliance, fleet branding, and bulk scheduling — one dedicated account for everything.",
+        "primaryCtaLabel": "Get Fleet Quote",
+        "primaryCtaUrl": "./quote.html?audience=fleet",
+        "secondaryCtaLabel": "Call for Volume Pricing",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "seoTitle": "Fleet & Commercial Upfitting | Van Shelving, Ladder Racks & More | Capital Upfitters Rockville MD",
+      "seoDescription": "Commercial fleet upfitting in Rockville MD — Weatherguard & Kargomaster van shelving, Backrack ladder racks, bedliners, wraps, and full vehicle upfitting. Serving the DMV region.",
+      "body": "Pickup truck upfitting, van packages, DOT compliance, fleet branding, and bulk scheduling — one dedicated account for everything.",
+      "_file": "fleet.md"
+    },
+    {
+      "title": "Our Work Speaks For Itself.",
+      "slug": "gallery",
+      "hero": {
+        "headline": "OUR WORK SPEAKS FOR ITSELF.",
+        "subheadline": "Browse our portfolio of installed services — bedliners, ceramic coatings, hitches, undercoating, fleet builds, and more."
+      },
+      "seoTitle": "Work Gallery | Capital Upfitters Rockville MD",
+      "seoDescription": "Browse Capital Upfitters' completed installs — bedliners, ceramic coatings, hitches, undercoating, fleet upfits, and commercial wraps. Real jobs, Rockville MD.",
+      "body": "Browse our portfolio of installed services — bedliners, ceramic coatings, hitches, undercoating, fleet builds, and more.",
+      "_file": "gallery.md"
+    },
+    {
+      "title": "Premium Vehicle Upfitting. DMV's Most Trusted Shop.",
+      "slug": "home",
+      "hero": {
+        "headline": "Premium Vehicle Upfitting. DMV's Most Trusted Shop.",
+        "subheadline": "Industrial coatings, fleet upfitting, and vehicle protection for commercial operators, government agencies, and personal vehicles across the DMV. Family-owned 30+ years.",
+        "primaryCtaLabel": "Get Instant Quote",
+        "primaryCtaUrl": "./quote.html",
+        "secondaryCtaLabel": "See Bedliner Bundles",
+        "secondaryCtaUrl": "./services/bedliner.html#bundles"
+      },
+      "seoTitle": "Capital Upfitters | Vehicle Upfitting Rockville, MD",
+      "seoDescription": "Family-owned vehicle upfitter in Rockville, MD. Patriot Liner bedliners, ceramic coatings, hitches, undercoating & fleet upfitting. Call (301) 304-1419.",
+      "body": "Industrial coatings, fleet upfitting, and vehicle protection for commercial operators, government agencies, and personal vehicles across the DMV. Family-owned 30+ years.",
+      "_file": "home.md"
+    },
+    {
+      "title": "Get Your Free Quote.",
+      "slug": "quote",
+      "hero": {
+        "headline": "GET YOUR FREE QUOTE.",
+        "subheadline": "We respond to every quote request within 24 hours — usually the same business day. No commitment required."
+      },
+      "seoTitle": "Get a Free Quote | Capital Upfitters Rockville MD",
+      "seoDescription": "Request a free upfitting quote from Capital Upfitters. We respond same business day. Retail, fleet, and dealer quote forms available. Rockville, MD.",
+      "body": "We respond to every quote request within 24 hours — usually the same business day. No commitment required.",
+      "_file": "quote.md"
+    },
+    {
+      "title": "Current Rebates & Offers.",
+      "slug": "rebates",
+      "hero": {
+        "badge": "Limited Time Deals",
+        "headline": "CURRENT REBATES & OFFERS.",
+        "subheadline": "Manufacturer rebates, package deals, and seasonal specials. All applied at time of service — no waiting, no mailing checks. Updated regularly.",
+        "primaryCtaLabel": "Get a Free Quote",
+        "primaryCtaUrl": "./quote.html",
+        "secondaryCtaLabel": "Call (301) 304-1419",
+        "secondaryCtaUrl": "tel:3013041419"
+      },
+      "seoTitle": "Current Rebates & Offers | Capital Upfitters Rockville MD",
+      "seoDescription": "Active manufacturer rebates and limited-time offers on bedliners, tonneau covers, hitches, ceramic coating, and more. Capital Upfitters, Rockville MD. Updated regularly.",
+      "body": "Manufacturer rebates, package deals, and seasonal specials. All applied at time of service — no waiting, no mailing checks. Updated regularly.",
+      "_file": "rebates.md"
+    },
+    {
+      "title": "What Brings You In?",
+      "slug": "start-here",
+      "hero": {
+        "headline": "WHAT BRINGS YOU IN?",
+        "subheadline": "Tell us about your situation and we'll point you to the right services, pricing, and contact path."
+      },
+      "seoTitle": "Start Here — Capital Upfitters | Rockville, MD",
+      "seoDescription": "Tell us what brings you in — personal vehicle, fleet, or dealer account. Capital Upfitters in Rockville, MD gets you to the right service fast.",
+      "body": "Tell us about your situation and we'll point you to the right services, pricing, and contact path.",
+      "_file": "start-here.md"
+    }
+  ],
+  "brands": [
+    {
+      "key": "authorized-patriot-liner-dealer",
+      "name": "Authorized Patriot Liner Dealer",
+      "tagline": "Official installer & warranty",
+      "sortOrder": 10,
+      "_file": "authorized-patriot-liner-dealer.json"
+    },
+    {
+      "key": "igl-system-x-certified",
+      "name": "IGL & System X Certified",
+      "tagline": "Authorized ceramic applicators",
+      "sortOrder": 20,
+      "_file": "igl-system-x-certified.json"
+    },
+    {
+      "key": "5-0-google-rating",
+      "name": "5.0★ Google Rating",
+      "tagline": "96 verified Google reviews",
+      "sortOrder": 30,
+      "_file": "5-0-google-rating.json"
+    },
+    {
+      "key": "family-owned-30-years",
+      "name": "Family-Owned 30+ Years",
+      "tagline": "Serving DMV since 1994",
+      "sortOrder": 40,
+      "_file": "family-owned-30-years.json"
+    },
+    {
+      "key": "same-week-availability",
+      "name": "Same-Week Availability",
+      "tagline": "Mon–Fri 9:30am–4:30pm",
+      "sortOrder": 50,
+      "_file": "same-week-availability.json"
+    }
+  ],
+  "gallery": [
+    {
+      "label": "Spray-On Bedliner",
+      "category": "bedliner",
+      "size": "tall",
+      "tags": [
+        "bedliner"
+      ],
+      "sortOrder": 10,
+      "active": true,
+      "_file": "spray-on-bedliner.json"
+    },
+    {
+      "label": "Ceramic Coating",
+      "category": "ceramic",
+      "size": "med",
+      "tags": [
+        "ceramic"
+      ],
+      "sortOrder": 20,
+      "active": true,
+      "_file": "ceramic-coating.json"
+    },
+    {
+      "label": "Spray-On Bedliner — Ram 1500",
+      "category": "bedliner",
+      "size": "short",
+      "tags": [
+        "bedliner"
+      ],
+      "sortOrder": 30,
+      "active": true,
+      "_file": "spray-on-bedliner-ram-1500.json"
+    },
+    {
+      "label": "Stealth Hitch Install",
+      "category": "hitch",
+      "size": "med",
+      "tags": [
+        "hitch"
+      ],
+      "sortOrder": 40,
+      "active": true,
+      "_file": "stealth-hitch-install.json"
+    },
+    {
+      "label": "Rubberized Undercoating",
+      "category": "undercoating",
+      "size": "tall",
+      "tags": [
+        "undercoating"
+      ],
+      "sortOrder": 50,
+      "active": true,
+      "_file": "rubberized-undercoating.json"
+    },
+    {
+      "label": "Fleet Build — Work Trucks",
+      "category": "fleet",
+      "size": "med",
+      "tags": [
+        "fleet"
+      ],
+      "sortOrder": 60,
+      "active": true,
+      "_file": "fleet-build-work-trucks.json"
+    },
+    {
+      "label": "F-150 Bedliner",
+      "category": "bedliner",
+      "size": "short",
+      "tags": [
+        "bedliner"
+      ],
+      "sortOrder": 70,
+      "active": true,
+      "_file": "f-150-bedliner.json"
+    },
+    {
+      "label": "Running Boards Install",
+      "category": "accessories",
+      "size": "med",
+      "tags": [
+        "accessories"
+      ],
+      "sortOrder": 80,
+      "active": true,
+      "_file": "running-boards-install.json"
+    },
+    {
+      "label": "Ceramic Coating — SUV",
+      "category": "ceramic",
+      "size": "tall",
+      "tags": [
+        "ceramic"
+      ],
+      "sortOrder": 90,
+      "active": true,
+      "_file": "ceramic-coating-suv.json"
+    },
+    {
+      "label": "Trailer Hitch — Silverado",
+      "category": "hitch",
+      "size": "short",
+      "tags": [
+        "hitch"
+      ],
+      "sortOrder": 100,
+      "active": true,
+      "_file": "trailer-hitch-silverado.json"
+    },
+    {
+      "label": "Full Undercoating Package",
+      "category": "undercoating",
+      "size": "med",
+      "tags": [
+        "undercoating"
+      ],
+      "sortOrder": 110,
+      "active": true,
+      "_file": "full-undercoating-package.json"
+    },
+    {
+      "label": "Van Fleet — Interior Org",
+      "category": "fleet",
+      "size": "tall",
+      "tags": [
+        "fleet"
+      ],
+      "sortOrder": 120,
+      "active": true,
+      "_file": "van-fleet-interior-org.json"
+    },
+    {
+      "label": "Tacoma Bedliner",
+      "category": "bedliner",
+      "size": "med",
+      "tags": [
+        "bedliner"
+      ],
+      "sortOrder": 130,
+      "active": true,
+      "_file": "tacoma-bedliner.json"
+    },
+    {
+      "label": "Tonneau Cover Install",
+      "category": "accessories",
+      "size": "short",
+      "tags": [
+        "accessories"
+      ],
+      "sortOrder": 140,
+      "active": true,
+      "_file": "tonneau-cover-install.json"
+    },
+    {
+      "label": "Ceramic — Full Detail",
+      "category": "ceramic",
+      "size": "med",
+      "tags": [
+        "ceramic"
+      ],
+      "sortOrder": 150,
+      "active": true,
+      "_file": "ceramic-full-detail.json"
+    },
+    {
+      "label": "Invisible Hitch Install",
+      "category": "hitch",
+      "size": "tall",
+      "tags": [
+        "hitch"
+      ],
+      "sortOrder": 160,
+      "active": true,
+      "_file": "invisible-hitch-install.json"
+    },
+    {
+      "label": "Spray Bedliner — Tundra",
+      "category": "bedliner",
+      "size": "short",
+      "tags": [
+        "bedliner"
+      ],
+      "sortOrder": 170,
+      "active": true,
+      "_file": "spray-bedliner-tundra.json"
+    },
+    {
+      "label": "Corrosion Protection",
+      "category": "undercoating",
+      "size": "med",
+      "tags": [
+        "undercoating"
+      ],
+      "sortOrder": 180,
+      "active": true,
+      "_file": "corrosion-protection.json"
+    },
+    {
+      "label": "DOT Fleet Compliance",
+      "category": "fleet",
+      "size": "short",
+      "tags": [
+        "fleet"
+      ],
+      "sortOrder": 190,
+      "active": true,
+      "_file": "dot-fleet-compliance.json"
+    },
+    {
+      "label": "LED Light Bar Install",
+      "category": "accessories",
+      "size": "med",
+      "tags": [
+        "accessories"
+      ],
+      "sortOrder": 200,
+      "active": true,
+      "_file": "led-light-bar-install.json"
+    },
+    {
+      "label": "Class IV Hitch — F-250",
+      "category": "hitch",
+      "size": "short",
+      "tags": [
+        "hitch"
+      ],
+      "sortOrder": 210,
+      "active": true,
+      "_file": "class-iv-hitch-f-250.json"
+    },
+    {
+      "label": "Truck Undercoating",
+      "category": "undercoating",
+      "size": "tall",
+      "tags": [
+        "undercoating"
+      ],
+      "sortOrder": 220,
+      "active": true,
+      "_file": "truck-undercoating.json"
+    },
+    {
+      "label": "Paint Protection + Ceramic",
+      "category": "ceramic",
+      "size": "med",
+      "tags": [
+        "ceramic"
+      ],
+      "sortOrder": 230,
+      "active": true,
+      "_file": "paint-protection-ceramic.json"
+    },
+    {
+      "label": "Canyon Bedliner",
+      "category": "bedliner",
+      "size": "med",
+      "tags": [
+        "bedliner"
+      ],
+      "sortOrder": 240,
+      "active": true,
+      "_file": "canyon-bedliner.json"
+    }
+  ],
+  "settings": {
+    "business_name": "Capital Upfitters",
+    "phone": "(301) 304-1419",
+    "email": "CapitalUpfitters@gmail.com",
+    "address": "12019 Nebel St, Rockville MD 20852",
+    "weekday_hours": "Mon–Fri: 9:30am–4:30pm",
+    "saturday_hours": "By appointment",
+    "sunday_hours": "Closed",
+    "facebook_url": "https://www.facebook.com/CapitalUpfitters",
+    "instagram_url": "https://www.instagram.com/capitalupfitters",
+    "youtube_url": "https://youtube.com/@capitalupfitters",
+    "google_business_url": "https://share.google/k9ejYM294VHEEm6xq",
+    "default_seo_title": "Capital Upfitters | DMV's Most Trusted Vehicle Upfitter | Rockville MD",
+    "default_seo_description": "Family-owned vehicle upfitter in Rockville, MD. Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and fleet upfitting since 1994.",
+    "urgency_message_1": "Same-week appointments available — (301) 304-1419",
+    "urgency_message_2": "Fleet pricing available — no minimums"
+  },
+  "aiProfile": {
+    "id": 1,
+    "brand_voice": "Confident, family-owned, straight-talking. Prioritize clarity over cleverness. Speak like a trusted shop foreman: friendly, technical when needed, never salesy.",
+    "target_audience": "Truck owners, fleet managers, dealers, and government procurement officers in the DMV (DC / Maryland / Virginia). Mix of consumers and commercial buyers.",
+    "preferred_cta": "Get a free quote",
+    "warranty_rules": "Only claim \"lifetime warranty\" for Patriot Liner bedliners. All other warranties are component-specific (typically 1–5 years). Never overstate.",
+    "pricing_rules": "Quote ranges only (\"from $499\", \"from $799\"). Never give exact prices without a vehicle inspection. Always offer to send a written quote.",
+    "image_generation_style": "High-quality automotive photography. Crisp lighting, clean shop background or outdoor on-location. No stock-photo gloss. Show real DMV-area trucks/vans.",
+    "updated_at": "2026-05-05T04:46:40.579Z",
+    "created_at": "2026-05-05T04:15:29.006Z"
+  },
+  "organization": {
+    "id": 1,
+    "name": "Capital Upfitters",
+    "slug": "capital-upfitters",
+    "type": "shop",
+    "status": "active",
+    "plan": "internal",
+    "contact_phone": "(301) 304-1419",
+    "contact_email": "CapitalUpfitters@gmail.com",
+    "contact_address": "12019 Nebel Street",
+    "contact_city": "Rockville",
+    "contact_state": "MD",
+    "contact_zip": "20852",
+    "branding_primary_color": "#203055",
+    "branding_logo_id": null,
+    "branding_tagline": "DMV's Most Trusted Vehicle Upfitter",
+    "primary_domain": "capitalupfitters.com",
+    "updated_at": "2026-05-05T04:20:54.864Z",
+    "created_at": "2026-05-05T04:20:54.863Z"
+  }
+}
