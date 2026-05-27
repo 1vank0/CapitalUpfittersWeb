@@ -317,25 +317,89 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
   };
 }
 
+// ------- customer confirmation -------------------------------------------
+
+function buildCustomerConfirmation({ body, leadSource, receivedAt }) {
+  const firstName = pickFirst(body, ['First Name', 'first_name']) ||
+                    (pickFirst(body, ['Contact Name', 'Name']).split(' ')[0]) || 'there';
+  const email = pickFirst(body, ['Email', 'Work Email', 'email']);
+  if (!email) return null;
+
+  const services = asJoinedString(body.services);
+  const vYear = pickFirst(body, ['Vehicle Year', 'year']);
+  const vMake = pickFirst(body, ['Vehicle Make', 'make']);
+  const vModel = pickFirst(body, ['Vehicle Model', 'model']);
+  const vehicleStr = [vYear, vMake, vModel].filter(Boolean).join(' ');
+  const formType  = body.form_type || 'lead';
+  const formLabel = FORM_LABEL[formType] || 'request';
+
+  const html = `<!doctype html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f3f4f6;">
+    <tr><td align="center" style="padding:24px 12px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;">
+        <tr><td style="padding:24px 24px 20px;background:#111827;border-radius:8px 8px 0 0;text-align:center;">
+          <div style="color:#fcbf0d;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;">Capital Upfitters</div>
+          <div style="color:#ffffff;font-size:22px;font-weight:700;margin-top:8px;line-height:1.3;">We got your request, ${esc(firstName)}.</div>
+        </td></tr>
+        <tr><td style="padding:28px 28px 16px;background:#ffffff;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;color:#111827;font-size:15px;line-height:1.6;">
+          <p style="margin:0 0 14px;">Thanks for reaching out to Capital Upfitters. We received your ${esc(formLabel.toLowerCase())} and one of our team members will follow up <strong>within one business day</strong> &mdash; usually the same business day.</p>
+          <p style="margin:0 0 14px;">Need to talk sooner? Call us at <a href="tel:3013041419" style="color:#103b68;font-weight:600;">(301) 304-1419</a>, Mon&ndash;Fri 9:30am&ndash;4:30pm.</p>
+        </td></tr>
+        <tr><td style="padding:0 28px 20px;background:#ffffff;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;">
+            <tr><td style="padding:14px 16px;">
+              <div style="color:#6b7280;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;">Summary of your request</div>
+              ${vehicleStr ? `<div style="color:#111827;font-size:14px;margin:2px 0;"><strong>Vehicle:</strong> ${esc(vehicleStr)}</div>` : ''}
+              ${services ? `<div style="color:#111827;font-size:14px;margin:2px 0;"><strong>Services:</strong> ${esc(services)}</div>` : ''}
+              <div style="color:#111827;font-size:14px;margin:2px 0;"><strong>Submitted:</strong> ${esc(formatEastern(receivedAt))}</div>
+            </td></tr>
+          </table>
+        </td></tr>
+        <tr><td style="padding:8px 28px 28px;background:#ffffff;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;border-radius:0 0 8px 8px;">
+          <p style="margin:14px 0 0;color:#6b7280;font-size:13px;line-height:1.6;">If you didn't submit this request, please ignore this message or reply and let us know.</p>
+        </td></tr>
+        <tr><td style="padding:14px 24px;text-align:center;">
+          <div style="color:#6b7280;font-size:12px;">Capital Upfitters &middot; Rockville, MD &middot; <a href="tel:3013041419" style="color:#6b7280;">(301) 304-1419</a></div>
+          <div style="color:#9ca3af;font-size:11px;margin-top:4px;"><a href="https://capitalupfitters.com" style="color:#9ca3af;">capitalupfitters.com</a> &middot; <a href="https://capitalupfitters.com/privacy.html" style="color:#9ca3af;">Privacy Policy</a></div>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+  const text = [
+    `Hi ${firstName},`,
+    '',
+    `Thanks for reaching out to Capital Upfitters. We received your ${formLabel.toLowerCase()} and one of our team members will follow up within one business day — usually the same business day.`,
+    '',
+    'Need to talk sooner? Call us at (301) 304-1419, Mon–Fri 9:30am–4:30pm.',
+    '',
+    'Summary of your request:',
+    vehicleStr && `  Vehicle: ${vehicleStr}`,
+    services   && `  Services: ${services}`,
+    `  Submitted: ${formatEastern(receivedAt)}`,
+    '',
+    'If you didn\'t submit this request, please ignore this message.',
+    '',
+    '— Capital Upfitters',
+    'Rockville, MD · (301) 304-1419',
+    'capitalupfitters.com'
+  ].filter(Boolean).join('\n');
+
+  return {
+    to: email,
+    subject: 'We got your request — Capital Upfitters',
+    html, text
+  };
+}
+
 // ------- transport --------------------------------------------------------
 
-async function sendEmail({ subject, html, text, replyTo }) {
-  const key  = process.env.RESEND_API_KEY;
-  const to   = process.env.LEAD_TO_EMAIL   || 'CapitalUpfitters@gmail.com';
-  const from = process.env.LEAD_FROM_EMAIL || 'Capital Upfitters Leads <leads@capitalupfitters.com>';
-
-  if (!key) {
-    // Soft-fail: log the email body so a Vercel function log still captures
-    // the lead even if Resend isn't configured yet.
-    console.warn('[lead] RESEND_API_KEY missing — lead NOT emailed.');
-    console.log('[lead] subject:', subject);
-    console.log('[lead] body:\n', text);
-    return { ok: false, reason: 'RESEND_API_KEY not configured' };
-  }
-
+async function sendViaResend({ from, to, subject, html, text, replyTo, key }) {
   const payload = { from, to, subject, html, text };
   if (replyTo) payload.reply_to = replyTo;
-
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
@@ -344,9 +408,46 @@ async function sendEmail({ subject, html, text, replyTo }) {
   if (!r.ok) {
     const errText = await r.text().catch(() => '');
     console.error('[lead] Resend error:', r.status, errText);
-    return { ok: false, reason: 'email provider error' };
+    return { ok: false, reason: errText || ('HTTP ' + r.status) };
   }
   return { ok: true };
+}
+
+async function sendEmails({ internal, customer }) {
+  const key  = process.env.RESEND_API_KEY;
+  const to   = process.env.LEAD_TO_EMAIL    || 'CapitalUpfitters@gmail.com';
+  const fromInternal = process.env.LEAD_FROM_EMAIL ||
+                       'Capital Upfitters Leads <onboarding@resend.dev>';
+  // Use the same verified-sender for customer mail. If a branded sender is
+  // configured (LEAD_CUSTOMER_FROM_EMAIL), prefer that for outbound to
+  // customers (it must be on a verified domain).
+  const fromCustomer = process.env.LEAD_CUSTOMER_FROM_EMAIL ||
+                       process.env.LEAD_FROM_EMAIL ||
+                       'Capital Upfitters <onboarding@resend.dev>';
+
+  if (!key) {
+    console.warn('[lead] RESEND_API_KEY missing — lead NOT emailed.');
+    console.log('[lead] internal subject:', internal.subject);
+    console.log('[lead] internal text:\n', internal.text);
+    if (customer) console.log('[lead] customer confirmation -> ' + customer.to);
+    return { internal: { ok: false, reason: 'RESEND_API_KEY not configured' },
+             customer: customer ? { ok: false, reason: 'RESEND_API_KEY not configured' } : null };
+  }
+
+  const internalSend = sendViaResend({
+    from: fromInternal, to, subject: internal.subject,
+    html: internal.html, text: internal.text, replyTo: internal.replyTo, key
+  });
+  const customerSend = customer
+    ? sendViaResend({
+        from: fromCustomer, to: customer.to, subject: customer.subject,
+        html: customer.html, text: customer.text,
+        replyTo: 'CapitalUpfitters@gmail.com', key
+      })
+    : Promise.resolve(null);
+
+  const [internalResult, customerResult] = await Promise.all([internalSend, customerSend]);
+  return { internal: internalResult, customer: customerResult };
 }
 
 // ------- handler ----------------------------------------------------------
@@ -378,10 +479,16 @@ module.exports = async function handler(req, res) {
   const leadSource = body.lead_source && String(body.lead_source).trim()
     ? body.lead_source : detectLeadSourceServerSide(body);
 
-  const message = buildEmail({ body, ip, geo, leadSource, receivedAt: new Date() });
+  const receivedAt = new Date();
+  const internal = buildEmail({ body, ip, geo, leadSource, receivedAt });
+  const customer = buildCustomerConfirmation({ body, leadSource, receivedAt });
 
-  const result = await sendEmail(message);
+  const result = await sendEmails({ internal, customer });
   // Always respond OK to the browser if we accepted the payload — internal
   // delivery failures are logged for ops, not bounced to the visitor.
-  return send(res, 200, { ok: true, delivered: result.ok });
+  return send(res, 200, {
+    ok: true,
+    delivered: Boolean(result.internal && result.internal.ok),
+    customer_confirmation: Boolean(result.customer && result.customer.ok)
+  });
 };
