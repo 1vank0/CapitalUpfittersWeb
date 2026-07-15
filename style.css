@@ -384,17 +384,30 @@
   align-items: center;
 }
 .hero-stats {
-  position: absolute;
-  bottom: var(--space-10);
-  right: 0;
   display: flex;
-  gap: var(--space-8);
-  padding: var(--space-6) var(--space-8);
+  flex-wrap: wrap;
+  gap: var(--space-5) var(--space-8);
+  margin-top: var(--space-8);
+  padding: var(--space-5) var(--space-7);
+  width: fit-content;
+  max-width: 100%;
   background: rgba(255,255,255,0.06);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.1);
-  border-right: none;
-  border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+  border-radius: var(--radius-xl);
+}
+/* Wide desktop: float as a contained card in the bottom-right of the hero
+ * content column (anchored to .hero-content, so it never reaches the viewport
+ * edge and stays clear of the left-aligned CTAs). */
+@media (min-width: 1200px) {
+  .hero-stats {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-top: 0;
+    width: auto;
+    flex-wrap: nowrap;
+  }
 }
 .hero-stat-value {
   display: block;

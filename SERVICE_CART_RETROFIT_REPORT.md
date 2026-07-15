@@ -284,3 +284,33 @@ These fixes are mirrored into the preview build
 (`/home/user/workspace/CapitalUpfittersWeb-preview`); the preview still contains
 none of the iframe-forbidden API tokens (`localStorage`, `sessionStorage`,
 `indexedDB`, pointer-lock, fullscreen).
+
+---
+
+## Post-QA hero stats containment
+
+The homepage hero stats block (`30+ Years`, `5,000+ Vehicles`, `5.0★ Google`,
+`150+ Brands`) was `position: absolute; right: 0` anchored to the **full-width**
+`.hero`, so it sat flush against the viewport's right edge as a ~430px-wide
+4-column bar. On mid-size desktops (~1024–1365px) it crowded the left-aligned
+CTAs and read as if it bled off the right edge.
+
+Fix (surgical, `index.html` + `style.css`):
+
+- Moved the `.hero-stats` markup **inside** `.hero-content` (the `.container`
+  column, which is `position: relative`) so it can either float within that
+  column or fall into its normal flow — without touching the hero, copy, or CTAs.
+- **≥1200px:** floats `position: absolute; right: 0; bottom: 0` anchored to the
+  content column, so its right edge lands on the container gutter (a ~64–82px
+  margin from the viewport edge) instead of flush against it, and it stays clear
+  of the CTAs.
+- **681–1199px:** renders in normal flow as a contained, wrapping row below the
+  CTAs (`display: flex; flex-wrap: wrap; width: fit-content; max-width: 100%`),
+  so it can never exceed the column and never overlaps other content.
+- **≤680px:** unchanged — remains hidden (existing mobile behavior).
+
+**QA (Playwright, measured + screenshots):** at 1365/1280/1024/390px the block's
+right edge is inside the viewport at every width (overflow-right ≤ 0). 1365 &
+1280 show the contained bottom-right card with a clear gutter; 1024 shows the
+contained row beneath the CTAs with no overlap; 390 is hidden. Mirrored into the
+preview build with forbidden-token scan still all-zero.
