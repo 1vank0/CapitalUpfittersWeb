@@ -248,3 +248,39 @@ Add a `cardImage` field to the Tina `services` collection and a tiny build step
 that stamps each homepage card `src`/`data-service-image` from the CMS, making
 the six photos editable by non-developers — the slug contract is already in
 place.
+
+---
+
+## Post-QA markup & wordmark fixes
+
+Visual QA surfaced two pre-existing bugs (not introduced by the cart work),
+fixed on this branch:
+
+1. **Stray `>` / malformed `<head>` markup.** Two classes of invalid markup that
+   leaked stray text into the rendered page:
+   - `og:url` meta tags ended with a doubled `">>`, dropping a literal `>` into
+     the layout. Fixed across **13 files**: `index.html`, `start-here.html`,
+     `services/{bedliner,ceramic-coating,commercial-wraps,hitches,index,running-boards,tonneau,undercoating}.html`,
+     `locations/{rockville,bethesda,silver-spring,gaithersburg}-md.html`.
+   - Three `meta name="description"` tags had a prematurely-closed `content="…"`
+     quote followed by leftover duplicate copy, spilling text into the DOM. Fixed
+     in `index.html`, `start-here.html`, `locations/rockville-md.html` (kept the
+     first complete sentence, dropped the garbled tail).
+   - Verified zero `">>` and zero `content="…"<char>` patterns remain in any HTML.
+
+2. **Header wordmark spacing.** The nav wordmark markup is
+   `Capital<span>Upfitters</span>` with no separator, so it read as
+   `CAPITALUPFITTERS`. Added `margin-left: 0.28em` to `.nav-logo-text span` in
+   `style.css` — a single focused rule that separates the two-tone wordmark on
+   every page, desktop and mobile, with no markup or design change. (The
+   accent-colored `<span>` already visually distinguishes "Upfitters".)
+
+**QA:** desktop (1280px) + mobile (390px) Playwright screenshots confirm the
+stray `>` is gone (body now begins with the announcement-bar text) and the
+wordmark renders as `CAPITAL UPFITTERS` with a clean gap. No stray `>` text
+nodes in the DOM.
+
+These fixes are mirrored into the preview build
+(`/home/user/workspace/CapitalUpfittersWeb-preview`); the preview still contains
+none of the iframe-forbidden API tokens (`localStorage`, `sessionStorage`,
+`indexedDB`, pointer-lock, fullscreen).

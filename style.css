@@ -47,6 +47,7 @@
 }
 .nav-logo-text span {
   color: var(--color-accent);
+  margin-left: 0.28em;
 }
 .nav-links {
   display: flex;
