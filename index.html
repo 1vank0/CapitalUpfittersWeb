@@ -11,13 +11,13 @@
 <link rel="shortcut icon" href="favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Capital Upfitters | Vehicle Upfitting Rockville, MD</title>
-<meta name="description" content="Family-owned vehicle upfitter in Rockville, MD. Patriot Liner bedliners, ceramic coatings, hitches, undercoating & fleet upfitting. Call (301) 304-1419."s most trusted vehicle upfitting shop. Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions. Family-owned 30+ years. Same-week availability.">
+<meta name="description" content="Family-owned vehicle upfitter in Rockville, MD. Bedliners, ceramic coatings, hitches, undercoating, accessories, and fleet upfitting. Call (301) 304-1419.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.capitalupfitters.com/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.capitalupfitters.com/">>
+<meta property="og:url" content="https://www.capitalupfitters.com/">
 <meta property="og:title" content="Capital Upfitters — Premium Vehicle Upfitting in Rockville, MD">
 <meta property="og:description" content="Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions. Family-owned 30+ years. Same-week availability.">
 <meta property="og:image" content="https://www.capitalupfitters.com/assets/og-default.png">
@@ -58,11 +58,6 @@
       "closes": "16:30"
     }
   ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "96"
-  },
   "description": "Family-owned vehicle upfitting shop in Rockville, MD. Authorized Patriot Liner dealer. Serving the DMV region for 30+ years.",
   "creator": {"@type": "Organization", "name": "IVANKODev", "url": "https://IVANKODevelopment.com"}
 }
@@ -101,13 +96,44 @@
 .hero-bg-gradient {
   position: absolute;
   inset: 0;
-  background: url('./assets/hero-bg.png') center top / cover no-repeat;
-  filter: brightness(0.35);
+  background:
+    radial-gradient(circle at 72% 38%, rgba(232,159,5,0.20), transparent 32%),
+    linear-gradient(115deg, #07162f 0%, #0a2856 55%, #111827 100%);
   transform-origin: center top;
   will-change: transform;
-  transition: opacity 1.2s ease;
 }
-.hero-bg-gradient.hidden { opacity: 0; }
+
+.reviews-proof {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  max-width: 900px;
+  margin-inline: auto;
+  padding: var(--space-8);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-sm);
+}
+.reviews-proof-kicker {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+.reviews-proof p {
+  color: var(--color-text-muted);
+  margin: 0;
+  max-width: 580px;
+}
+@media (max-width: 680px) {
+  .reviews-proof { align-items: stretch; flex-direction: column; }
+  .reviews-proof .btn { justify-content: center; width: 100%; }
+}
 
 /* Funnel card gradient placeholders */
 .funnel-card-bg-1 {
@@ -210,6 +236,7 @@
 
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- ANNOUNCE BAR -->
 <div class="announce-bar" id="announce-bar">
@@ -427,14 +454,15 @@
 <!-- ═══════════════════════════════════════════════════════
      HERO
 ═══════════════════════════════════════════════════════ -->
+<main id="main-content" tabindex="-1">
 <section class="hero" aria-label="Hero">
-  <!-- Fallback static image (fades out once video plays) -->
+  <!-- Lightweight branded fallback remains visible while video initializes. -->
   <div class="hero-bg-gradient" id="hero-bg-fallback"></div>
 
-  <!-- MP4 video background — chains Patriot Liner → AMP PowerStep → repeat -->
+  <!-- Locally hosted 2 MB loop; no third-party 42 MB request. -->
   <div class="hero-video-wrap" aria-hidden="true">
-    <video id="hero-vid" autoplay muted playsinline preload="auto">
-      <source src="https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4" type="video/mp4">
+    <video id="hero-vid" autoplay muted playsinline loop preload="metadata">
+      <source src="./assets/amp-powerstep.mp4" type="video/mp4">
     </video>
   </div>
 
@@ -443,12 +471,12 @@
   <div class="hero-overlay"></div>
 
   <div class="hero-content container">
-    <div class="hero-label">Rockville, MD &mdash; Serving the DMV Since 1994 &mdash; <span style="color:rgba(255,255,255,.6);">4.8&#9733; on Google</span></div>
-    <h1>Premium Vehicle Upfitting.<br><em>DMV's Most Trusted Shop.</em></h1>
+    <div class="hero-label">Rockville, MD &mdash; Serving the DMV Since 1994</div>
+    <h1>Equip. Protect. Perform.<br><em>Built Right in Rockville.</em></h1>
     <p class="hero-sub">Industrial coatings, fleet upfitting, and vehicle protection for commercial operators, government agencies, and personal vehicles across the DMV. Family-owned 30+ years.</p>
     <div class="hero-ctas">
-      <a href="./quote.html" class="btn btn-primary btn-lg">Get Instant Quote</a>
-      <a href="./services/bedliner.html#bundles" class="btn btn-outline btn-lg">See Bedliner Bundles</a>
+      <a href="./quote.html" class="btn btn-primary btn-lg">Start Your Quote</a>
+      <a href="./fleet.html" class="btn btn-outline btn-lg">Commercial &amp; Fleet</a>
     </div>
   </div>
 
@@ -459,16 +487,16 @@
       <span class="hero-stat-label">Years</span>
     </div>
     <div class="hero-stat">
-      <span class="hero-stat-value">5,000+</span>
-      <span class="hero-stat-label">Vehicles</span>
+      <span class="hero-stat-value">Fleet</span>
+      <span class="hero-stat-label">Commercial Programs</span>
     </div>
     <div class="hero-stat">
-      <span class="hero-stat-value">5.0★</span>
-      <span class="hero-stat-label">Google</span>
+      <span class="hero-stat-value">Retail</span>
+      <span class="hero-stat-label">Personal Vehicles</span>
     </div>
     <div class="hero-stat">
-      <span class="hero-stat-value">150+</span>
-      <span class="hero-stat-label">Brands</span>
+      <span class="hero-stat-value">Dealer</span>
+      <span class="hero-stat-label">Government Programs</span>
     </div>
   </div>
 </section>
@@ -895,14 +923,13 @@
       <h2 id="testimonials-heading">WHAT OUR CUSTOMERS SAY.</h2>
     </div>
 
-    <!-- Trustindex live Google reviews widget -->
-    <div class="trustindex-widget reveal" aria-label="Verified customer reviews from Google">
-      <script defer async src="https://cdn.trustindex.io/loader.js?26bfb6c7280f963b7176aae201e"></script>
-    </div>
-
-    <div style="text-align: center; margin-top: var(--space-8);">
-      <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-        Read More Reviews on Google
+    <div class="reviews-proof reveal" aria-label="Customer reviews on Google">
+      <div>
+        <div class="reviews-proof-kicker">Independent customer feedback</div>
+        <p>Read recent customer experiences on Google before choosing Capital Upfitters for your vehicle or fleet.</p>
+      </div>
+      <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Read Reviews on Google
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       </a>
     </div>
@@ -960,6 +987,7 @@
 </section>
 
 <!-- FOOTER -->
+</main>
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
@@ -1032,7 +1060,7 @@
       <p class="footer-copyright">&copy; 2026 Capital Auto Upfitters & Protective Coatings. All rights reserved.</p>
       <nav class="footer-legal" aria-label="Legal links">
         <a href="/privacy.html">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
+        <a href="/terms.html">Terms of Service</a>
       </nav>
       <p class="footer-pplx"><a href="https://IVANKODevelopment.com" target="_blank" rel="noopener noreferrer">Built by IVANKODev</a></p>
     </div>
@@ -1127,132 +1155,6 @@
 </script>
 
 <script src="animations.js" defer></script>
-
-<!-- HERO IDLE DIM -->
-<style>
-/* Transitions applied via JS — defined here as defaults */
-.hero-label,
-.hero-content h1,
-.hero-sub,
-.hero-video-overlay,
-.hero-overlay {
-  will-change: opacity;
-}
-</style>
-<script>
-(function() {
-  var IDLE_MS   = 1800;   // trigger after 1.8s idle
-  var FADE_DUR  = '1.2s'; // text/overlay fade out
-  var RECOV_DUR = '1.2s'; // snap back
-
-  // Label, headline, subtitle only — buttons + stats stay full
-  var TEXT_SELS = ['.hero-label', '.hero-content h1', '.hero-sub'];
-  // Both overlays (global dim + left gradient)
-  var OVL_SELS  = ['.hero-video-overlay', '.hero-overlay'];
-
-  var hero = document.querySelector('.hero');
-  if (!hero) return;
-
-  var idleTimer = null;
-  var watching  = false;
-
-  function getEls(sels) {
-    return sels.map(function(s) { return hero.querySelector(s); }).filter(Boolean);
-  }
-
-  // Ensure text is visually restored (call this on reveal + restore)
-  function ensureVisible() {
-    getEls(TEXT_SELS).forEach(function(el) {
-      el.style.animation  = 'none';          // keep animation off
-      el.style.transition = 'opacity ' + RECOV_DUR + ' ease';
-      el.style.opacity    = '1';
-    });
-    getEls(OVL_SELS).forEach(function(el) {
-      el.style.transition = 'opacity ' + RECOV_DUR + ' ease';
-      el.style.opacity    = '';              // back to stylesheet value
-    });
-  }
-
-  function applyFade() {
-    if (watching) return;
-    watching = true;
-    // Text → 98% invisible
-    getEls(TEXT_SELS).forEach(function(el) {
-      el.style.animation  = 'none';
-      el.style.transition = 'opacity ' + FADE_DUR + ' ease';
-      el.style.opacity    = '0.02';
-    });
-    // Overlays → 2% (video at 98% brightness)
-    getEls(OVL_SELS).forEach(function(el) {
-      el.style.transition = 'opacity ' + FADE_DUR + ' ease';
-      el.style.opacity    = '0.02';
-    });
-  }
-
-  function applyRestore() {
-    clearTimeout(idleTimer);
-    if (watching) {
-      watching = false;
-      ensureVisible();
-    }
-    idleTimer = setTimeout(applyFade, IDLE_MS);
-  }
-
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        // Hero back in view: ensure text visible, start idle timer
-        watching = false;
-        ensureVisible();
-        clearTimeout(idleTimer);
-        idleTimer = setTimeout(applyFade, IDLE_MS);
-        document.addEventListener('mousemove',  applyRestore);
-        document.addEventListener('touchstart', applyRestore);
-        document.addEventListener('keydown',    applyRestore);
-      } else {
-        // Hero out of view: cancel everything, clean up
-        clearTimeout(idleTimer);
-        watching = false;
-        ensureVisible();
-        document.removeEventListener('mousemove',  applyRestore);
-        document.removeEventListener('touchstart', applyRestore);
-        document.removeEventListener('keydown',    applyRestore);
-      }
-    });
-  }, { threshold: 0.3 });   // lower threshold so scroll-back triggers earlier
-
-  observer.observe(hero);
-})();
-</script>
-
-<!-- HERO VIDEO CHAIN + FALLBACK FADE -->
-<script>
-(function() {
-  var vid = document.getElementById('hero-vid');
-  var fb  = document.getElementById('hero-bg-fallback');
-  if (!vid) return;
-
-  // Playlist: Patriot Liner first, then AMP PowerStep, then repeat
-  var PLAYLIST = [
-    'https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4',
-    './assets/amp-powerstep.mp4'
-  ];
-  var current = 0;
-
-  // Fade out fallback image on first play
-  vid.addEventListener('playing', function() {
-    if (fb) setTimeout(function() { fb.classList.add('hidden'); }, 600);
-  }, { once: true });
-
-  // On video end, switch to next in playlist
-  vid.addEventListener('ended', function() {
-    current = (current + 1) % PLAYLIST.length;
-    vid.src = PLAYLIST[current];
-    vid.load();
-    vid.play().catch(function() {});
-  });
-})();
-</script>
 
 <!-- VEHICLE SELECTOR SCRIPT -->
 <script>
@@ -1501,7 +1403,7 @@
 </script>
 
 <!-- Floating quote CTA -->
-<div class="float-cta" aria-hidden="true">
+<div class="float-cta" aria-label="Quick quote action">
   <a href="./quote.html" class="float-cta-btn">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     Get a Quote
