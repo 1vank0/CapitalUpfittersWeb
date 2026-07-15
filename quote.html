@@ -717,6 +717,14 @@
               <input type="hidden" name="msclkid" data-cu-attr="1">
               <input type="hidden" name="lead_source" data-cu-attr="1">
               <input type="hidden" name="user_agent" data-cu-attr="1">
+              <input type="hidden" id="r-service-interest" name="Service Interest">
+              <input type="hidden" id="r-package-interest" name="Package Interest">
+              <input type="hidden" id="r-source-page" name="Source Page">
+
+              <div id="stealth-fitment-context" hidden role="status" style="margin-bottom:1.25rem;padding:1rem 1.1rem;border:1px solid #cbd5e1;border-left:4px solid #203055;border-radius:.65rem;background:#f8fafc;color:#334155;line-height:1.55;">
+                <strong style="display:block;color:#111827;">Stealth Hitch fitment request</strong>
+                <span id="stealth-fitment-summary">Your vehicle and package choices have been carried into this quote.</span>
+              </div>
 
               <div class="form-row">
                 <div class="form-field">
@@ -807,6 +815,12 @@
                       <option>BMW</option>
                       <option>Mercedes-Benz</option>
                       <option>Audi</option>
+                      <option>Porsche</option>
+                      <option>Land Rover</option>
+                      <option>Volvo</option>
+                      <option>Genesis</option>
+                      <option>Jaguar</option>
+                      <option>Polestar</option>
                       <option>Lexus</option>
                       <option>Mazda</option>
                       <option>Mitsubishi</option>
@@ -850,6 +864,7 @@
                 <div class="form-checkboxes">
                   <label class="form-checkbox-item"><input type="checkbox" name="services" value="Bedliner"> Bedliner</label>
                   <label class="form-checkbox-item"><input type="checkbox" name="services" value="Camper Shell"> Camper Shell</label>
+                  <label class="form-checkbox-item"><input type="checkbox" name="services" value="Stealth Hitch"> Stealth Hitch — Luxury &amp; EV</label>
                   <label class="form-checkbox-item"><input type="checkbox" name="services" value="Hitches & Towing"> Hitches &amp; Towing</label>
                   <label class="form-checkbox-item"><input type="checkbox" name="services" value="Ceramic Coating"> Ceramic Coating</label>
                   <label class="form-checkbox-item"><input type="checkbox" name="services" value="Undercoating"> Undercoating</label>
@@ -1232,7 +1247,11 @@ tabs.forEach(tab => {
   const pYear  = params.get('year');
   const pMake  = params.get('make');
   const pModel = params.get('model');
+  const pTrim  = params.get('trim');
   const pSvc   = params.get('service');
+  const pPackage = params.get('package') || '';
+  const pSource = params.get('source') || '';
+  const isStealth = Boolean(pSvc && pSvc.toLowerCase().startsWith('stealth-hitch'));
 
   if (pYear) {
     sel.value = pYear;
@@ -1264,15 +1283,50 @@ tabs.forEach(tab => {
     const modelIn = document.getElementById('r-model');
     if (modelIn) modelIn.value = pModel;
   }
+  if (pTrim) {
+    const trimIn = document.getElementById('r-trim');
+    if (trimIn) trimIn.value = pTrim;
+  }
   if (pSvc) {
     // Pre-check the matching service checkbox
     const checkboxes = document.querySelectorAll('input[name="services"]');
     const slug = pSvc.toLowerCase().replace(/-/g, ' ');
     checkboxes.forEach(cb => {
-      if (cb.value.toLowerCase().includes(slug) || slug.includes(cb.value.toLowerCase().split(' ')[0])) {
+      const isStealthChoice = cb.value === 'Stealth Hitch';
+      if ((isStealth && isStealthChoice) || (!isStealth && (cb.value.toLowerCase().includes(slug) || slug.includes(cb.value.toLowerCase().split(' ')[0])))) {
         cb.checked = true;
       }
     });
+  }
+
+  if (isStealth) {
+    const packageLabels = {
+      rack: 'Rack Package — bike rack or cargo carrier only',
+      tow: 'Rack + Tow Package — trailer towing',
+      unsure: 'Package not selected — fitment help requested'
+    };
+    const packageInterest = packageLabels[pPackage] || packageLabels.unsure;
+    const serviceInterest = document.getElementById('r-service-interest');
+    const packageField = document.getElementById('r-package-interest');
+    const sourceField = document.getElementById('r-source-page');
+    if (serviceInterest) serviceInterest.value = 'Stealth Hitch';
+    if (packageField) packageField.value = packageInterest;
+    if (sourceField) sourceField.value = pSource || 'stealth-hitches';
+
+    const context = document.getElementById('stealth-fitment-context');
+    const summary = document.getElementById('stealth-fitment-summary');
+    if (context) context.hidden = false;
+    if (summary) {
+      const vehicle = [pYear, pMake, pModel, pTrim].filter(Boolean).join(' ');
+      summary.textContent = (vehicle ? vehicle + ' · ' : '') + packageInterest + '. Confirm or complete the details below.';
+    }
+
+    const modelIn = document.getElementById('r-model');
+    const trimIn = document.getElementById('r-trim');
+    const message = document.getElementById('r-msg');
+    if (modelIn) modelIn.placeholder = 'X5, Q7, Cayenne, Model Y…';
+    if (trimIn) trimIn.placeholder = 'xDrive40i, Premium Plus, Long Range…';
+    if (message && !message.value) message.value = 'Stealth Hitch request: ' + packageInterest + '.';
   }
 
   // Show confirmation banner if auto-filled
@@ -1280,7 +1334,7 @@ tabs.forEach(tab => {
     const vinResult = document.getElementById('vin-result');
     if (vinResult) {
       vinResult.className = 'vin-result success';
-      vinResult.innerHTML = `✓ Vehicle pre-filled from your selection: <strong>${pYear} ${pMake} ${pModel}</strong><br><span style="font-size:.85em;opacity:.75;">Please verify and update if needed.</span>`;
+      vinResult.textContent = `✓ Vehicle pre-filled from your selection: ${pYear} ${pMake} ${pModel}. Please verify and update if needed.`;
       vinResult.hidden = false;
     }
   }
