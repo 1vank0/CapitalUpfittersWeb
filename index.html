@@ -20,9 +20,16 @@
 <meta property="og:url" content="https://www.capitalupfitters.com/">
 <meta property="og:title" content="Capital Upfitters — Premium Vehicle Upfitting in Rockville, MD">
 <meta property="og:description" content="Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions. Family-owned 30+ years. Same-week availability.">
-<meta property="og:image" content="https://www.capitalupfitters.com/assets/og-default.png">
-<meta name="twitter:image" content="https://www.capitalupfitters.com/assets/og-default.png">
+<meta property="og:image" content="https://www.capitalupfitters.com/assets/social/og-capital-upfitters-v1.jpg">
+<meta property="og:image:secure_url" content="https://www.capitalupfitters.com/assets/social/og-capital-upfitters-v1.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Capital Upfitters — vehicle upfitting for retail, fleet, dealer, and government customers in Rockville, Maryland">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.capitalupfitters.com/assets/social/og-capital-upfitters-v1.jpg">
+<meta name="twitter:image:alt" content="Capital Upfitters — Equip. Protect. Perform.">
+
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +39,7 @@
 
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
+<link rel="preload" as="image" href="/assets/media/home-hero-v1.webp" fetchpriority="high">
 <!-- JSON-LD LocalBusiness -->
 <script type="application/ld+json">
 {
@@ -261,7 +269,7 @@
         <a href="./services/">Services
           <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
         </a>
-        <div class="nav-dropdown nav-mega" role="menu">
+        <div class="nav-dropdown nav-mega nav-media-services" role="menu">
           <!-- Bundle banner -->
           <a href="./services/" class="nav-bundle-banner">
             <span class="nav-bundle-star">★</span>
@@ -304,7 +312,7 @@
         <a href="./fleet.html">Fleet &amp; Business
           <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
         </a>
-        <div class="nav-dropdown nav-mega nav-mega-wide" role="menu">
+        <div class="nav-dropdown nav-mega nav-mega-wide nav-media-fleet" role="menu">
           <div class="nav-mega-cols">
             <!-- Col A: Fleet Upfitting -->
             <div class="nav-mega-col">
@@ -328,7 +336,7 @@
           </div>
           <div class="nav-mega-footer">
             <a href="./fleet.html" class="nav-mega-footer-cta nav-mega-footer-cta--primary">Open Fleet Account</a>
-            <a href="./quote.html?service=fleet" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">Get Fleet Quote</a>
+            <a href="./quote.html?audience=fleet" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">Get Fleet Quote</a>
           </div>
         </div>
       </li>
@@ -341,7 +349,7 @@
         <a href="./dealer-government.html">Dealer &amp; Gov
           <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
         </a>
-        <div class="nav-dropdown" role="menu" style="left: auto; right: 0; transform: translateX(0) translateY(-6px);">
+        <div class="nav-dropdown nav-media-dealer" role="menu" style="left: auto; right: 0; transform: translateX(0) translateY(-6px);">
           <span class="nav-dropdown-label">For Dealerships</span>
           <a href="./dealer-government.html#dealer">Pre-Delivery Upfitting</a>
           <a href="./dealer-government.html#dealer">Dealer Ceramic &amp; PPF</a>
@@ -456,15 +464,8 @@
 ═══════════════════════════════════════════════════════ -->
 <main id="main-content" tabindex="-1">
 <section class="hero" aria-label="Hero">
-  <!-- Lightweight branded fallback remains visible while video initializes. -->
-  <div class="hero-bg-gradient" id="hero-bg-fallback"></div>
-
-  <!-- Locally hosted 2 MB loop; no third-party 42 MB request. -->
-  <div class="hero-video-wrap" aria-hidden="true">
-    <video id="hero-vid" autoplay muted playsinline loop preload="metadata">
-      <source src="./assets/amp-powerstep.mp4" type="video/mp4">
-    </video>
-  </div>
+  <!-- Versioned original hero still: sharper, faster, and representative of the full business. -->
+  <div class="hero-bg-gradient media-bg media-home-hero" id="hero-bg-fallback"></div>
 
   <!-- Dark color overlay matching brand -->
   <div class="hero-video-overlay"></div>
@@ -472,7 +473,7 @@
 
   <div class="hero-content container">
     <div class="hero-label">Rockville, MD &mdash; Serving the DMV Since 1994</div>
-    <h1>Equip. Protect. Perform.<br><em>Built Right in Rockville.</em></h1>
+    <h1>Equip. Protect.<br>Perform.<em>Built Right in Rockville.</em></h1>
     <p class="hero-sub">Industrial coatings, fleet upfitting, and vehicle protection for commercial operators, government agencies, and personal vehicles across the DMV. Family-owned 30+ years.</p>
     <div class="hero-ctas">
       <a href="./quote.html" class="btn btn-primary btn-lg">Start Your Quote</a>
@@ -604,7 +605,7 @@
     <div class="funnel-grid">
       <!-- Card 1: Personal -->
       <article class="funnel-card reveal reveal-delay-1">
-        <div class="funnel-card-bg-1"></div>
+        <div class="funnel-card-bg-1 media-bg media-bedliner"></div>
         <!-- Decorative icon overlay -->
         <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:0.07;">
           <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3m0 0h4l3 3v4h-7V8z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="17.5" cy="17.5" r="1.5"/></svg>
@@ -622,7 +623,7 @@
 
       <!-- Card 2: Fleet -->
       <article class="funnel-card reveal reveal-delay-2">
-        <div class="funnel-card-bg-2"></div>
+        <div class="funnel-card-bg-2 media-bg media-home-hero"></div>
         <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:0.07;">
           <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
         </div>
@@ -639,7 +640,7 @@
 
       <!-- Card 3: Dealer -->
       <article class="funnel-card reveal reveal-delay-3">
-        <div class="funnel-card-bg-3"></div>
+        <div class="funnel-card-bg-3 media-bg media-commercial-wraps"></div>
         <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:0.07;">
           <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
@@ -656,7 +657,7 @@
 
       <!-- Card 4: Industrial / Infrastructure — NEW -->
       <article class="funnel-card reveal reveal-delay-1" style="border: 1px solid rgba(245,158,11,0.25);">
-        <div style="position:absolute; inset:0; background: linear-gradient(160deg, #1c1a0e 0%, #111827 100%);"></div>
+        <div class="media-bg media-industrial-coatings" style="position:absolute; inset:0; background: linear-gradient(160deg, #1c1a0e 0%, #111827 100%);"></div>
         <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:0.07;">
           <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
@@ -689,7 +690,7 @@
 
       <!-- Bedliners -->
       <a href="./services/bedliner.html" class="service-card reveal reveal-delay-1" aria-label="Spray-On Bedliners">
-        <div class="service-card-grad svc-bg-bedliner"></div>
+        <div class="service-card-grad svc-bg-bedliner media-bg media-bedliner"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
           <div class="service-card-tag">Authorized Patriot Liner</div>
@@ -704,7 +705,7 @@
       </a>
       <!-- Tonneau -->
       <a href="./services/tonneau.html" class="service-card reveal reveal-delay-2" aria-label="Tonneau Covers">
-        <div class="service-card-grad svc-bg-tonneau"></div>
+        <div class="service-card-grad svc-bg-tonneau media-bg media-tonneau"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
           <div class="service-card-tag">★ Bundle With Bedliner</div>
@@ -719,7 +720,7 @@
       </a>
       <!-- Running Boards -->
       <a href="./services/running-boards.html" class="service-card reveal reveal-delay-3" aria-label="Running Boards & Steps">
-        <div class="service-card-grad svc-bg-boards"></div>
+        <div class="service-card-grad svc-bg-boards media-bg media-running-boards"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
           <div class="service-card-tag">★ Bundle With Bedliner</div>
@@ -734,7 +735,7 @@
       </a>
       <!-- Ceramic -->
       <a href="./services/ceramic-coating.html" class="service-card reveal reveal-delay-1" aria-label="Ceramic Coating & PPF">
-        <div class="service-card-grad svc-bg-ceramic"></div>
+        <div class="service-card-grad svc-bg-ceramic media-bg media-ceramic-coating"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
           <div class="service-card-tag">IGL &amp; System X Certified</div>
@@ -749,7 +750,7 @@
       </a>
       <!-- Undercoating -->
       <a href="./services/undercoating.html" class="service-card reveal reveal-delay-2" aria-label="Undercoating & Rust Protection">
-        <div class="service-card-grad svc-bg-under"></div>
+        <div class="service-card-grad svc-bg-under media-bg media-undercoating"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
           <div class="service-card-tag">Rust-Proofing Specialists</div>
@@ -764,7 +765,7 @@
       </a>
       <!-- Hitches -->
       <a href="./services/hitches.html" class="service-card reveal reveal-delay-3" aria-label="Hitches & Towing">
-        <div class="service-card-grad svc-bg-hitch"></div>
+        <div class="service-card-grad svc-bg-hitch media-bg media-hitches"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
           <div class="service-card-tag">All Classes &amp; Configurations</div>
@@ -896,7 +897,7 @@
 
       <!-- Right visual placeholder -->
       <div class="why-visual reveal reveal-delay-2">
-        <div class="why-visual-placeholder">
+        <div class="why-visual-placeholder media-bg media-mobile-detailing">
           <svg class="why-visual-icon" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="0.5" aria-hidden="true">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
@@ -1106,10 +1107,10 @@
 <!-- CMS: Homepage Wire -->
 <script>
 (function() {
-  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+  var CMS_BASE = '';
 
   // ─── Settings: phone, hours, urgency banner ──────────────────────────────
-  fetch(CMS_BASE + '/api/public/settings')
+  CMS_BASE && fetch(CMS_BASE + '/api/public/settings')
     .then(function(res) { return res.json(); })
     .then(function(settings) {
       if (!settings) return;
