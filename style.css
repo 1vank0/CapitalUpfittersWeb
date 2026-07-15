@@ -701,8 +701,47 @@
 }
 .service-card-body {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   padding: var(--space-6);
+}
+/* Whole-card detail link (stretched over the card, above body text) */
+.service-card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+}
+/* Distinct "Add to My Upfit" action on each card, above the stretched link */
+.service-card-add {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: var(--radius-pill);
+  background: rgba(17,24,39,0.55);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+.service-card-add:hover { background: var(--color-accent); border-color: var(--color-accent); }
+.service-card-add:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.service-card-add[data-in-cart="1"] {
+  background: #10381f;
+  border-color: #34d399;
+  color: #a7f3d0;
 }
 .service-card-tag {
   display: inline-block;
@@ -2210,6 +2249,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+}
+.cu-quote-summary-note {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: var(--color-text-muted);
 }
 .cu-quote-chip {
   display: inline-flex;

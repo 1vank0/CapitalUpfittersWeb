@@ -314,3 +314,106 @@ right edge is inside the viewport at every width (overflow-right ≤ 0). 1365 &
 1280 show the contained bottom-right card with a clear gutter; 1024 shows the
 contained row beneath the CTAs with no overlap; 390 is hidden. Mirrored into the
 preview build with forbidden-token scan still all-zero.
+
+---
+
+## Conversion-language & SEO revision
+
+A focused, label-and-SEO revision guided by the Old-vs-New Conversion Architecture
+report. No architecture, funnel, hero image/layout, forms, lead API, or
+attribution behavior changed. Internal JS keeps its cart terminology; only
+customer-visible strings were renamed.
+
+### 1. Consistent retail conversion language
+- **Header primary CTA** (`.nav-cta`, all 37 pages): `Get a Quote` → **`Build My Quote`**.
+- **Homepage hero primary CTA**: → **`Build My Quote`**.
+- **Persistent basket** (floating badge, `cart.js`): label `Quote` → **`My Upfit`**
+  (renders `My Upfit (N)` with the count pill); aria-label → `Review My Upfit, N services`.
+- **Service-detail action** (15 pages + 6 homepage cards): `Add to Quote` /
+  `Added to Quote` → **`Add to My Upfit`** / **`Added to My Upfit`**.
+- **Quote review action** (`quote.html` summary title): `Your quote request` →
+  **`Review My Upfit`**.
+- **Retail submit** (`quote.html` retail panel): `Get My Quote →` →
+  **`Send My Quote Request →`**. Fleet/dealer submit labels unchanged (not retail).
+
+### 2. Homepage hero copy (SEO/conversion)
+- **H1**: `Premium Vehicle Upfitting. DMV's Most Trusted Shop.` →
+  **`Premium Vehicle and Commercial Upfitting in Rockville, Maryland`** (single
+  descriptive H1, no `<br>`/`<em>`).
+- **Support copy**: rewritten to name stealth hitches, protective coatings, truck
+  accessories, work-vehicle upfits, verified fitment / professional installation,
+  and the Washington DC / Maryland / Northern Virginia service area.
+- **CTAs**: primary `Build My Quote` (→ `quote.html`); secondary
+  **`Commercial & Fleet`** (→ `fleet.html`, was `See Bedliner Bundles`).
+- Hero image, layout, `.hero-label`, and `.hero-stats` untouched. No
+  `Equip. Protect. Perform.` eyebrow exists on this hero, so nothing added.
+
+### 3. Homepage service cards — distinct add action
+Each of the six cards was a whole-anchor wrapper (`<a class="service-card">`),
+which cannot legally contain a `<button>`. Refactored minimally to a
+`<div class="service-card">` using the **stretched-link pattern**:
+- `<a class="service-card-link">` (empty, `position:absolute; inset:0; z-index:2`)
+  keeps the **entire card** clickable through to the detail page (arrow relabeled
+  `Learn More` → `View Details`).
+- A distinct `<button class="service-card-add btn-add-quote" data-add-to-quote>`
+  sits top-right at `z-index:3` (above the stretched link) so it adds to the
+  basket **without navigating**. Reuses the existing `[data-in-cart]` state swap
+  (`+ Add to My Upfit` ⇄ `✓ Added to My Upfit`) and `cart.js` auto-wiring — no
+  per-card JS. `.service-card-body` dropped to `z-index:1` so the link overlays
+  its text (matching the prior full-card click behavior).
+
+### 4. Commercial distinction
+- **`fleet.html` dominant CTAs** (top hero + closing CTA band): `Get Fleet Quote`
+  → **`Build a Fleet Brief`** (same `quote.html?audience=fleet` target; the fleet
+  form/tab flow is unchanged).
+- **Retail basket kept off industrial actions:** removed the `Add to My Upfit`
+  button from `services/industrial-coatings.html` (industrial service). The
+  dealer-government and fleet pages never carried a basket button. The basket now
+  lives only on the 15 consumer service pages + 6 homepage consumer cards.
+
+### 5. SEO launch blockers
+- **Blog canonical/sitemap mismatch:** `vercel.json` has no `cleanUrls`, so the
+  directory-style blog URLs (`/blog/<slug>/`) 404 while real files are
+  `/blog/<slug>.html`. Rather than a site-wide URL migration, standardized on the
+  real `.html` files: the 5 blog-post `<link rel="canonical">` tags and the 5
+  sitemap `<loc>` entries now point to `/blog/<slug>.html`. `/blog/` and
+  `/services/` directory URLs are left as-is (they resolve via `index.html`).
+- Normalized the lone non-`www` sitemap entry
+  (`capitalupfitters.com/services/stealth-hitches.html`) to `www.` for a single
+  consistent host.
+- **`preview.html`** and **`products-section.html`**: added
+  `<meta name="robots" content="noindex, nofollow">`. Both were already absent
+  from the sitemap (verified).
+- **Sitemap validated:** every `<loc>` maps to an existing file (35/35 OK).
+
+### 6. Accuracy microcopy
+Added below the `Review My Upfit` chip list in `quote.html`:
+> *Fitment, installation timing, and final pricing will be verified by our team.*
+No prices or compatibility claims were asserted.
+
+### Files changed (this revision)
+- `cart.js` — badge label + aria-label.
+- `index.html` — H1, hero sub, hero CTAs, header CTA, 6 cards refactored.
+- `style.css` — `.service-card-link`, `.service-card-add`, `.service-card-body`
+  z-index, `.cu-quote-summary-note`.
+- `quote.html` — summary title, microcopy, retail submit label, header CTA.
+- `fleet.html` — 2 dominant hero CTAs.
+- `services/*.html` (15) — button label; `industrial-coatings.html` add-button removed.
+- All other shared pages — header CTA label only.
+- 5 `blog/*.html` — canonical → `.html`.
+- `sitemap.xml` — blog `.html` locs + host normalization.
+- `preview.html`, `products-section.html` — `noindex, nofollow`.
+
+### QA (this revision)
+Playwright (Chromium) + local `http.server`, desktop 1280px & mobile 390px —
+**27/27 functional checks passed**: new H1; hero primary `Build My Quote` +
+secondary `Commercial & Fleet`→fleet; header `Build My Quote`; 6 cards each with
+a working add button + stretched detail link (card link navigates, add button
+does not); badge hidden→visible, label `My Upfit`, count 1→2; service-page add
+(`Add to My Upfit`) toggles in-cart; industrial page has no add button; quote
+summary `Review My Upfit` + microcopy; 3 chips from persisted cart, retail submit
+`Send My Quote Request`, chip-remove drops count; fleet CTA `Build a Fleet Brief`;
+mobile H1 + cards render and the add button stays within the viewport.
+`node --check cart.js` clean. The only console errors are the pre-existing CMS
+hydration CORS/404 failures against the live Vercel origin (none from `cart.js`).
+Sitemap: 35/35 `<loc>` resolve to real files.

@@ -182,7 +182,7 @@
       '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">' +
       '<path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.3 2.3a1 1 0 0 0 .7 1.7H17"/>' +
       '<circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>' +
-      '<span class="cu-quote-badge-label">Quote</span>' +
+      '<span class="cu-quote-badge-label">My Upfit</span>' +
       '<span class="cu-quote-badge-count" data-cu-badge-count>0</span>';
     badgeCount = badge.querySelector('[data-cu-badge-count]');
     document.body.appendChild(badge);
@@ -196,7 +196,7 @@
     if (badgeCount) badgeCount.textContent = String(n);
     if (n > 0) {
       badge.classList.add('is-visible');
-      badge.setAttribute('aria-label', 'View your quote request, ' + n + (n === 1 ? ' service' : ' services'));
+      badge.setAttribute('aria-label', 'Review My Upfit, ' + n + (n === 1 ? ' service' : ' services'));
     } else {
       badge.classList.remove('is-visible');
       badge.setAttribute('aria-hidden', 'true');
