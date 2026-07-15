@@ -408,6 +408,7 @@
 <meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting in Rockville, MD">
   <script src="/attribution.js" defer></script>
   <script src="/lead-form.js" defer></script>
+  <script src="/cart.js" defer></script>
 
 </head>
 <body>
@@ -503,10 +504,6 @@
           </div>
         </div>
       </li>
-      <!-- INDUSTRIAL — direct link, no dropdown -->
-      <li>
-        <a href="./services/industrial-coatings.html" class="nav-industrial-link">Industrial</a>
-      </li>
       <!-- DEALER & GOV — small dropdown -->
       <li class="nav-item">
         <a href="./dealer-government.html">Dealer &amp; Gov
@@ -592,7 +589,6 @@
       </div>
     </div>
 
-    <a href="./services/industrial-coatings.html" class="nav-mobile-direct">Industrial</a>
 
     <div class="nav-mobile-section">
       <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer">
@@ -670,6 +666,12 @@
             <span class="audience-tab-title">Dealer / Government</span>
             <span class="audience-tab-sub">Pre-delivery, contracts, bulk accounts</span>
           </button>
+        </div>
+
+        <!-- Cart-aware quote summary (populated by cart integration script) -->
+        <div class="cu-quote-summary" id="cu-quote-summary" hidden>
+          <div class="cu-quote-summary-title">Your quote request</div>
+          <div class="cu-quote-chips" id="cu-quote-chips"></div>
         </div>
 
         <!-- PANEL 1: Retail -->
@@ -1265,16 +1267,8 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success');
     const modelIn = document.getElementById('r-model');
     if (modelIn) modelIn.value = pModel;
   }
-  if (pSvc) {
-    // Pre-check the matching service checkbox
-    const checkboxes = document.querySelectorAll('input[name="services"]');
-    const slug = pSvc.toLowerCase().replace(/-/g, ' ');
-    checkboxes.forEach(cb => {
-      if (cb.value.toLowerCase().includes(slug) || slug.includes(cb.value.toLowerCase().split(' ')[0])) {
-        cb.checked = true;
-      }
-    });
-  }
+  // Service pre-selection (?service=…) and cart merge are handled precisely by
+  // the cart integration script (uses the CUQuoteCart slug→checkbox mapping).
 
   // Show confirmation banner if auto-filled
   if (pYear && pMake && pModel) {
@@ -1497,6 +1491,107 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success');
     var h=document.getElementById('hamburger'),m=document.getElementById('nav-mobile'),c=document.getElementById('nav-close');
     if(h&&m){h.addEventListener('click',function(){m.classList.add('open');document.body.style.overflow='hidden';});}
     if(c&&m){c.addEventListener('click',function(){m.classList.remove('open');document.body.style.overflow='';});}
+  })();
+  </script>
+
+  <!-- Cart-aware quote form integration -->
+  <script>
+  (function(){
+    function init(){
+      var Cart = window.CUQuoteCart;
+      if (!Cart) return;
+      var summary = document.getElementById('cu-quote-summary');
+      var chipsWrap = document.getElementById('cu-quote-chips');
+      if (!summary || !chipsWrap) return;
+
+      function serviceCheckboxes(){ return document.querySelectorAll('input[name="services"]'); }
+
+      function checkboxesForSlug(slug){
+        var val = Cart.services[slug] && Cart.services[slug].match;
+        if (!val) return [];
+        return Array.prototype.filter.call(serviceCheckboxes(), function(cb){ return cb.value === val; });
+      }
+
+      // 1. Merge ?service= params (comma-separated + repeated) into the cart.
+      (function(){
+        var params = new URLSearchParams(window.location.search);
+        params.getAll('service').forEach(function(raw){
+          raw.split(',').forEach(function(s){
+            s = s.trim();
+            if (s && Cart.services[s]) Cart.add(s);
+          });
+        });
+      })();
+
+      // 2. Reflect the cart into the service checkboxes across all panels.
+      function syncCheckboxesFromCart(){
+        var inCart = {};
+        Cart.get().forEach(function(it){ inCart[it.slug] = true; });
+        Object.keys(Cart.services).forEach(function(slug){
+          checkboxesForSlug(slug).forEach(function(cb){ cb.checked = !!inCart[slug]; });
+        });
+      }
+
+      // 3. Render the "Your quote request" chips.
+      function renderChips(){
+        var items = Cart.get();
+        chipsWrap.innerHTML = '';
+        if (!items.length){ summary.hidden = true; return; }
+        summary.hidden = false;
+        items.forEach(function(it){
+          var chip = document.createElement('span');
+          chip.className = 'cu-quote-chip';
+          var label = document.createElement('span');
+          label.textContent = it.name;
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'cu-quote-chip-remove';
+          btn.setAttribute('aria-label', 'Remove ' + it.name + ' from quote request');
+          btn.innerHTML = '&times;';
+          btn.addEventListener('click', function(){ Cart.remove(it.slug); });
+          chip.appendChild(label);
+          chip.appendChild(btn);
+          chipsWrap.appendChild(chip);
+        });
+      }
+
+      // 4. Keep the URL query in sync with the cart (shareable / refresh-safe).
+      function updateUrl(){
+        var slugs = Cart.get().map(function(it){ return it.slug; });
+        var params = new URLSearchParams(window.location.search);
+        params.delete('service');
+        if (slugs.length) params.set('service', slugs.join(','));
+        var qs = params.toString();
+        history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : '') + window.location.hash);
+      }
+
+      function refresh(){ syncCheckboxesFromCart(); renderChips(); updateUrl(); }
+
+      // 5. Checkbox → cart: user edits to service checkboxes flow back to the cart.
+      serviceCheckboxes().forEach(function(cb){
+        cb.addEventListener('change', function(){
+          var slug = Cart.slugForValue(cb.value);
+          if (!slug) return; // fleet/dealer-only service not tracked in the cart
+          if (cb.checked) Cart.add(slug); else Cart.remove(slug);
+        });
+      });
+
+      Cart.onChange(refresh);
+      refresh();
+
+      // 6. Clear the cart once a quote is submitted (matches the existing
+      //    optimistic success UI; lead delivery is untouched).
+      ['quote-retail', 'quote-fleet', 'quote-dealer'].forEach(function(id){
+        var form = document.getElementById(id);
+        if (form) form.addEventListener('submit', function(){ Cart.clear(); });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   })();
   </script>
 </body>
