@@ -26,28 +26,69 @@ const FORM_LABEL = {
   dealer: 'Dealer / Government Inquiry'
 };
 
+const MAX_BODY_BYTES = 100 * 1024;
+const MAX_FIELDS = 80;
+const MAX_FIELD_LENGTH = 5000;
+
 // ------- helpers ----------------------------------------------------------
 
 function send(res, status, body) {
   res.statusCode = status;
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 'no-store');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.end(JSON.stringify(body));
 }
 
 async function readJsonBody(req) {
   return new Promise((resolve, reject) => {
     let data = '';
-    req.on('data', (chunk) => { data += chunk; });
+    let tooLarge = false;
+    req.on('data', (chunk) => {
+      if (tooLarge) return;
+      data += chunk;
+      if (Buffer.byteLength(data, 'utf8') > MAX_BODY_BYTES) {
+        tooLarge = true;
+      }
+    });
     req.on('end', () => {
+      if (tooLarge) {
+        const error = new Error('request body too large');
+        error.statusCode = 413;
+        reject(error);
+        return;
+      }
       try { resolve(data ? JSON.parse(data) : {}); }
       catch (e) { reject(e); }
     });
     req.on('error', reject);
   });
+}
+
+function normalizeBody(input) {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return null;
+  const output = {};
+  Object.entries(input).slice(0, MAX_FIELDS).forEach(([rawKey, rawValue]) => {
+    const key = String(rawKey).slice(0, 100);
+    if (Array.isArray(rawValue)) {
+      output[key] = rawValue.slice(0, 20).map((value) =>
+        String(value == null ? '' : value).slice(0, MAX_FIELD_LENGTH));
+      return;
+    }
+    output[key] = String(rawValue == null ? '' : rawValue).slice(0, MAX_FIELD_LENGTH);
+  });
+  return output;
+}
+
+function validateContact(body) {
+  const email = String(pickFirst(body, ['Email', 'Work Email', 'email']) || '').trim();
+  const phone = String(pickFirst(body, ['Phone', 'phone']) || '').trim();
+  if (!email && !phone) return 'Email or phone required.';
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Enter a valid email address.';
+  if (phone) {
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length < 7 || digits.length > 15) return 'Enter a valid phone number.';
+  }
+  return '';
 }
 
 // Real-IP detection: cf-connecting-ip > x-forwarded-for > x-real-ip > socket.
@@ -69,7 +110,7 @@ function detectLeadSourceServerSide(body) {
   if (body.fbclid)  return 'Facebook / Instagram Ads';
   if (body.msclkid) return 'Microsoft Ads';
 
-  const utm = (body.utm_source || '').toLowerCase();
+  const utm = String(body.utm_source || '').toLowerCase();
   if (utm) {
     if (/google/.test(utm))    return 'Google';
     if (/bing|microsoft/.test(utm)) return 'Microsoft Ads';
@@ -80,7 +121,7 @@ function detectLeadSourceServerSide(body) {
     return body.utm_source;
   }
 
-  const ref = ((body.referrer || '') + ' ' + (body.referrer_domain || '')).toLowerCase();
+  const ref = (String(body.referrer || '') + ' ' + String(body.referrer_domain || '')).toLowerCase();
   if (ref.trim()) {
     if (/google\./.test(ref))      return 'Google Organic';
     if (/bing\./.test(ref))        return 'Bing Organic';
@@ -251,6 +292,7 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
   const receiptHtml = section('Receipt Information',
     row('Form', formLabel) +
     row('Form ID', body.form_id) +
+    row('Submission ID', body.submission_id) +
     row('Submitted', formatEastern(receivedAt)));
 
   const headline = (() => {
@@ -400,17 +442,23 @@ function buildCustomerConfirmation({ body, leadSource, receivedAt }) {
 async function sendViaResend({ from, to, subject, html, text, replyTo, key }) {
   const payload = { from, to, subject, html, text };
   if (replyTo) payload.reply_to = replyTo;
-  const r = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
-    body: JSON.stringify(payload)
-  });
-  if (!r.ok) {
-    const errText = await r.text().catch(() => '');
-    console.error('[lead] Resend error:', r.status, errText);
-    return { ok: false, reason: errText || ('HTTP ' + r.status) };
+  try {
+    const r = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
+      body: JSON.stringify(payload)
+    });
+    if (!r.ok) {
+      const errText = await r.text().catch(() => '');
+      console.error('[lead] Resend error:', r.status, errText);
+      return { ok: false, reason: errText || ('HTTP ' + r.status) };
+    }
+    const responseBody = await r.json().catch(() => ({}));
+    return { ok: true, providerId: responseBody.id || '' };
+  } catch (error) {
+    console.error('[lead] Resend request failed:', error && error.message ? error.message : error);
+    return { ok: false, reason: 'Resend request failed' };
   }
-  return { ok: true };
 }
 
 async function sendEmails({ internal, customer }) {
@@ -434,19 +482,21 @@ async function sendEmails({ internal, customer }) {
              customer: customer ? { ok: false, reason: 'RESEND_API_KEY not configured' } : null };
   }
 
-  const internalSend = sendViaResend({
+  // Internal delivery must succeed before telling the customer their request
+  // was received. This prevents contradictory confirmations.
+  const internalResult = await sendViaResend({
     from: fromInternal, to, subject: internal.subject,
     html: internal.html, text: internal.text, replyTo: internal.replyTo, key
   });
-  const customerSend = customer
-    ? sendViaResend({
-        from: fromCustomer, to: customer.to, subject: customer.subject,
-        html: customer.html, text: customer.text,
-        replyTo: 'CapitalUpfitters@gmail.com', key
-      })
-    : Promise.resolve(null);
+  if (!internalResult.ok) return { internal: internalResult, customer: null };
 
-  const [internalResult, customerResult] = await Promise.all([internalSend, customerSend]);
+  const customerResult = customer
+    ? await sendViaResend({
+      from: fromCustomer, to: customer.to, subject: customer.subject,
+      html: customer.html, text: customer.text,
+      replyTo: 'CapitalUpfitters@gmail.com', key
+    })
+    : null;
   return { internal: internalResult, customer: customerResult };
 }
 
@@ -456,23 +506,29 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return send(res, 204, {});
   if (req.method !== 'POST')    return send(res, 405, { error: 'POST only' });
 
-  let body;
-  try { body = await readJsonBody(req); }
-  catch (_) { return send(res, 400, { error: 'invalid JSON body' }); }
+  const contentType = String((req.headers && req.headers['content-type']) || '');
+  if (!contentType.toLowerCase().startsWith('application/json')) {
+    return send(res, 415, { error: 'application/json required' });
+  }
+
+  let rawBody;
+  try { rawBody = await readJsonBody(req); }
+  catch (error) {
+    return send(res, error && error.statusCode === 413 ? 413 : 400, {
+      error: error && error.statusCode === 413 ? 'Request body too large.' : 'Invalid JSON body.'
+    });
+  }
+
+  const body = normalizeBody(rawBody);
+  if (!body) return send(res, 400, { error: 'JSON object required.' });
 
   // Trivial honeypot: if any of these fields are non-empty something filled them.
   if (body.website || body.fax || body.company_url) {
-    return send(res, 200, { ok: true }); // silently accept and drop
+    return send(res, 200, { ok: true, delivered: true }); // silently accept and drop
   }
 
-  // Required minimums — keep loose so we never reject a real lead.
-  const hasContact = Boolean(
-    pickFirst(body, ['Email', 'Work Email']) ||
-    pickFirst(body, ['Phone'])
-  );
-  if (!hasContact) {
-    return send(res, 400, { error: 'Email or phone required.' });
-  }
+  const contactError = validateContact(body);
+  if (contactError) return send(res, 400, { error: contactError });
 
   const ip  = getClientIp(req);
   const geo = await geolocate(ip);
@@ -484,11 +540,20 @@ module.exports = async function handler(req, res) {
   const customer = buildCustomerConfirmation({ body, leadSource, receivedAt });
 
   const result = await sendEmails({ internal, customer });
-  // Always respond OK to the browser if we accepted the payload — internal
-  // delivery failures are logged for ops, not bounced to the visitor.
+  if (!result.internal || !result.internal.ok) {
+    return send(res, 502, {
+      ok: false,
+      delivered: false,
+      error: 'We could not confirm delivery. Please call (301) 304-1419.',
+      submission_id: body.submission_id || ''
+    });
+  }
+
   return send(res, 200, {
     ok: true,
-    delivered: Boolean(result.internal && result.internal.ok),
-    customer_confirmation: Boolean(result.customer && result.customer.ok)
+    delivered: true,
+    customer_confirmation: Boolean(result.customer && result.customer.ok),
+    submission_id: body.submission_id || '',
+    provider_id: result.internal.providerId || ''
   });
 };

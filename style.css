@@ -46,7 +46,7 @@
   line-height: 1;
 }
 .nav-logo-text span {
-  color: var(--color-accent);
+  color: #f59e0b;
 }
 .nav-links {
   display: flex;
@@ -196,7 +196,7 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-text-inverse-muted);
+  color: rgba(255,255,255,0.78);
   transition: color var(--transition-fast);
 }
 .nav-portal-link:hover { color: #fff; }
@@ -359,15 +359,22 @@
 .hero h1 {
   color: #fff;
   margin-bottom: var(--space-6);
-  max-width: 900px;
+  max-width: 780px;
+  font-size: clamp(3.75rem, 5.6vw, 5.25rem);
+  line-height: 0.96;
+  text-shadow: 0 3px 28px rgba(0,0,0,0.34);
 }
 .hero h1 em {
+  display: block;
   font-style: normal;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.84);
+  font-size: 0.68em;
+  line-height: 1.05;
+  margin-top: 0.24em;
 }
 .hero-sub {
   font-size: var(--text-lg);
-  color: rgba(255,255,255,0.72);
+  color: rgba(255,255,255,0.84);
   max-width: 600px;
   margin-bottom: var(--space-10);
   font-family: var(--font-body);
@@ -414,10 +421,36 @@
   text-transform: uppercase;
   margin-top: var(--space-1);
 }
-@media (max-width: 680px) {
-  .hero { min-height: 100svh; }
+@media (max-width: 1500px) {
   .hero-stats { display: none; }
+}
+@media (max-width: 680px) {
+  .hero { min-height: 100svh; padding-bottom: 80px; }
+  .hero-stats { display: none; }
+  .hero h1 { font-size: clamp(3.45rem, 15vw, 4.25rem); }
+  .hero h1 em { font-size: 0.56em; line-height: 1.1; }
   .hero-ctas { flex-direction: column; align-items: flex-start; }
+}
+
+/* Keep the mobile conversion action and menu trigger visible together. */
+@media (max-width: 480px) {
+  .nav-inner {
+    width: 100%;
+    padding-inline: 10px;
+    gap: 8px;
+  }
+  .nav-logo { gap: 8px; min-width: 0; }
+  .nav-logo-mark { width: 32px; height: 32px; flex: 0 0 32px; }
+  .nav-logo-text { font-size: 1rem; letter-spacing: 0.035em; white-space: nowrap; }
+  .nav-actions { margin-left: auto; gap: 0; flex: 0 0 auto; }
+  .nav-cta { font-size: 0; padding: 0.55rem 0.8rem; }
+  .nav-cta::after { content: 'Quote'; font-size: 0.75rem; }
+  .nav-hamburger { flex: 0 0 auto; padding: 6px; }
+  .nav-hamburger span { width: 22px; }
+}
+
+@media (max-width: 350px) {
+  .nav-logo-text span { display: none; }
 }
 
 /* ── VEHICLE SELECTOR ──────────────────────────────────── */
@@ -1171,6 +1204,14 @@
   max-width: 700px;
 }
 .page-hero h1 em { font-style: normal; color: rgba(255,255,255,0.45); }
+.page-hero--services {
+  padding-block: var(--space-16) var(--space-14);
+}
+.page-hero--services h1 {
+  max-width: 760px;
+  font-size: clamp(3.5rem, 5vw, 4.75rem);
+  line-height: 0.98;
+}
 .page-hero-sub {
   font-size: var(--text-lg);
   color: rgba(255,255,255,0.65);
@@ -1390,9 +1431,21 @@
   gap: var(--space-3);
 }
 @media (max-width: 680px) {
-  .sticky-cta-bar { display: flex; }
-  .sticky-cta-bar .btn { flex: 1; text-align: center; justify-content: center; font-size: var(--text-sm); }
-  body { padding-bottom: 72px; }
+  .sticky-cta-bar {
+    display: flex;
+    gap: 8px;
+    padding: 8px 10px;
+  }
+  .sticky-cta-bar .btn {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.72rem 0.45rem;
+    text-align: center;
+    justify-content: center;
+    font-size: 0.72rem !important;
+    letter-spacing: 0.05em;
+  }
+  body { padding-bottom: 64px; }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -2111,4 +2164,114 @@
 /* Align stats grid to top so variable-height cells start together */
 .stats-grid {
   align-items: start;
+}
+
+/* ══════════════════════════════════════════════════════════
+   VERSIONED MARKETING MEDIA — generated service illustrations
+
+   These public assets are intentionally separate from private customer
+   uploads and from the real-work gallery. One canonical image per service
+   is reused across navigation, cards, heroes, and related-service tiles.
+   ══════════════════════════════════════════════════════════ */
+
+.media-bg {
+  background-color: #0b1728 !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center right !important;
+}
+
+.media-home-hero { background-image: url('/assets/media/home-hero-v1.webp') !important; }
+.media-bedliner { background-image: url('/assets/media/bedliner-v1.webp') !important; }
+.media-tonneau { background-image: url('/assets/media/tonneau-v1.webp') !important; }
+.media-running-boards { background-image: url('/assets/media/running-boards-v1.webp') !important; }
+.media-industrial-coatings { background-image: url('/assets/media/industrial-coatings-v1.webp') !important; }
+.media-commercial-wraps { background-image: url('/assets/media/commercial-wraps-v1.webp') !important; }
+.media-ceramic-coating { background-image: url('/assets/media/ceramic-coating-v1.webp') !important; }
+.media-undercoating { background-image: url('/assets/media/undercoating-v1.webp') !important; }
+.media-window-tinting { background-image: url('/assets/media/window-tinting-v1.webp') !important; }
+.media-mobile-detailing { background-image: url('/assets/media/mobile-detailing-v1.webp') !important; }
+.media-hitches { background-image: url('/assets/media/hitches-v1.webp') !important; }
+.media-stealth-hitches { background-image: url('/assets/media/stealth-hitches-v1.webp') !important; }
+.media-toolboxes { background-image: url('/assets/media/toolboxes-v1.webp') !important; }
+.media-lighting { background-image: url('/assets/media/lighting-v1.webp') !important; }
+.media-suspension { background-image: url('/assets/media/suspension-v1.webp') !important; }
+.media-camper-shells { background-image: url('/assets/media/camper-shells-v1.webp') !important; }
+.media-exterior { background-image: url('/assets/media/exterior-v1.webp') !important; }
+
+/* Card text stays readable while preserving the service detail. */
+.service-card-grad.media-bg,
+.service-hub-card-bg.media-bg,
+.funnel-card > .media-bg,
+.cat-card-bg.media-bg,
+.blog-card-media.media-bg {
+  filter: saturate(.9) contrast(1.03);
+}
+
+.service-card-overlay,
+.service-hub-card-overlay {
+  background: linear-gradient(180deg, rgba(4, 10, 20, .08) 8%, rgba(4, 10, 20, .9) 100%);
+}
+
+.related-card-bg.media-bg > svg {
+  opacity: 0;
+}
+
+.related-card-bg.media-bg,
+.fleet-service-card-img.media-bg,
+.cat-card-bg.media-bg {
+  background-position: center !important;
+}
+
+.why-visual-placeholder.media-bg {
+  min-height: 420px;
+  background-position: center !important;
+}
+
+.why-visual-placeholder.media-bg > svg {
+  display: none;
+}
+
+.blog-card-media {
+  width: 100%;
+  min-height: 190px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Subtle menu photography: desktop only, with strong navy scrims. */
+.nav-media-services {
+  background-image:
+    linear-gradient(rgba(5, 15, 31, .92), rgba(5, 15, 31, .96)),
+    url('/assets/media/bedliner-v1.webp') !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.nav-media-fleet {
+  background-image:
+    linear-gradient(rgba(5, 15, 31, .9), rgba(5, 15, 31, .96)),
+    url('/assets/media/home-hero-v1.webp') !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.nav-media-dealer {
+  background-image:
+    linear-gradient(rgba(5, 15, 31, .9), rgba(5, 15, 31, .97)),
+    url('/assets/media/commercial-wraps-v1.webp') !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.nav-bundle-banner {
+  background-image:
+    linear-gradient(90deg, rgba(7, 22, 47, .78), rgba(7, 22, 47, .48)),
+    url('/assets/media/tonneau-v1.webp') !important;
+  background-size: cover !important;
+  background-position: center 62% !important;
+}
+
+@media (max-width: 768px) {
+  .why-visual-placeholder.media-bg { min-height: 300px; }
+  .blog-card-media { min-height: 160px; }
 }

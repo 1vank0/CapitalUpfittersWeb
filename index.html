@@ -11,18 +11,25 @@
 <link rel="shortcut icon" href="favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Capital Upfitters | Vehicle Upfitting Rockville, MD</title>
-<meta name="description" content="Family-owned vehicle upfitter in Rockville, MD. Patriot Liner bedliners, ceramic coatings, hitches, undercoating & fleet upfitting. Call (301) 304-1419."s most trusted vehicle upfitting shop. Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions. Family-owned 30+ years. Same-week availability.">
+<meta name="description" content="Family-owned vehicle upfitter in Rockville, MD. Bedliners, ceramic coatings, hitches, undercoating, accessories, and fleet upfitting. Call (301) 304-1419.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.capitalupfitters.com/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.capitalupfitters.com/">>
+<meta property="og:url" content="https://www.capitalupfitters.com/">
 <meta property="og:title" content="Capital Upfitters — Premium Vehicle Upfitting in Rockville, MD">
 <meta property="og:description" content="Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions. Family-owned 30+ years. Same-week availability.">
-<meta property="og:image" content="https://www.capitalupfitters.com/assets/og-default.png">
-<meta name="twitter:image" content="https://www.capitalupfitters.com/assets/og-default.png">
+<meta property="og:image" content="https://www.capitalupfitters.com/assets/social/og-capital-upfitters-v1.jpg">
+<meta property="og:image:secure_url" content="https://www.capitalupfitters.com/assets/social/og-capital-upfitters-v1.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Capital Upfitters — vehicle upfitting for retail, fleet, dealer, and government customers in Rockville, Maryland">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.capitalupfitters.com/assets/social/og-capital-upfitters-v1.jpg">
+<meta name="twitter:image:alt" content="Capital Upfitters — Equip. Protect. Perform.">
+
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +39,7 @@
 
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
+<link rel="preload" as="image" href="/assets/media/home-hero-v1.webp" fetchpriority="high">
 <!-- JSON-LD LocalBusiness -->
 <script type="application/ld+json">
 {
@@ -58,11 +66,6 @@
       "closes": "16:30"
     }
   ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "96"
-  },
   "description": "Family-owned vehicle upfitting shop in Rockville, MD. Authorized Patriot Liner dealer. Serving the DMV region for 30+ years.",
   "creator": {"@type": "Organization", "name": "IVANKODev", "url": "https://IVANKODevelopment.com"}
 }
@@ -101,13 +104,44 @@
 .hero-bg-gradient {
   position: absolute;
   inset: 0;
-  background: url('./assets/hero-bg.png') center top / cover no-repeat;
-  filter: brightness(0.35);
+  background:
+    radial-gradient(circle at 72% 38%, rgba(232,159,5,0.20), transparent 32%),
+    linear-gradient(115deg, #07162f 0%, #0a2856 55%, #111827 100%);
   transform-origin: center top;
   will-change: transform;
-  transition: opacity 1.2s ease;
 }
-.hero-bg-gradient.hidden { opacity: 0; }
+
+.reviews-proof {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  max-width: 900px;
+  margin-inline: auto;
+  padding: var(--space-8);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-sm);
+}
+.reviews-proof-kicker {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+.reviews-proof p {
+  color: var(--color-text-muted);
+  margin: 0;
+  max-width: 580px;
+}
+@media (max-width: 680px) {
+  .reviews-proof { align-items: stretch; flex-direction: column; }
+  .reviews-proof .btn { justify-content: center; width: 100%; }
+}
 
 /* Funnel card gradient placeholders */
 .funnel-card-bg-1 {
@@ -210,6 +244,7 @@
 
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- ANNOUNCE BAR -->
 <div class="announce-bar" id="announce-bar">
@@ -234,7 +269,7 @@
         <a href="./services/">Services
           <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
         </a>
-        <div class="nav-dropdown nav-mega" role="menu">
+        <div class="nav-dropdown nav-mega nav-media-services" role="menu">
           <!-- Bundle banner -->
           <a href="./services/" class="nav-bundle-banner">
             <span class="nav-bundle-star">★</span>
@@ -277,7 +312,7 @@
         <a href="./fleet.html">Fleet &amp; Business
           <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
         </a>
-        <div class="nav-dropdown nav-mega nav-mega-wide" role="menu">
+        <div class="nav-dropdown nav-mega nav-mega-wide nav-media-fleet" role="menu">
           <div class="nav-mega-cols">
             <!-- Col A: Fleet Upfitting -->
             <div class="nav-mega-col">
@@ -301,7 +336,7 @@
           </div>
           <div class="nav-mega-footer">
             <a href="./fleet.html" class="nav-mega-footer-cta nav-mega-footer-cta--primary">Open Fleet Account</a>
-            <a href="./quote.html?service=fleet" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">Get Fleet Quote</a>
+            <a href="./quote.html?audience=fleet" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">Get Fleet Quote</a>
           </div>
         </div>
       </li>
@@ -314,7 +349,7 @@
         <a href="./dealer-government.html">Dealer &amp; Gov
           <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
         </a>
-        <div class="nav-dropdown" role="menu" style="left: auto; right: 0; transform: translateX(0) translateY(-6px);">
+        <div class="nav-dropdown nav-media-dealer" role="menu" style="left: auto; right: 0; transform: translateX(0) translateY(-6px);">
           <span class="nav-dropdown-label">For Dealerships</span>
           <a href="./dealer-government.html#dealer">Pre-Delivery Upfitting</a>
           <a href="./dealer-government.html#dealer">Dealer Ceramic &amp; PPF</a>
@@ -427,28 +462,22 @@
 <!-- ═══════════════════════════════════════════════════════
      HERO
 ═══════════════════════════════════════════════════════ -->
+<main id="main-content" tabindex="-1">
 <section class="hero" aria-label="Hero">
-  <!-- Fallback static image (fades out once video plays) -->
-  <div class="hero-bg-gradient" id="hero-bg-fallback"></div>
-
-  <!-- MP4 video background — chains Patriot Liner → AMP PowerStep → repeat -->
-  <div class="hero-video-wrap" aria-hidden="true">
-    <video id="hero-vid" autoplay muted playsinline preload="auto">
-      <source src="https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4" type="video/mp4">
-    </video>
-  </div>
+  <!-- Versioned original hero still: sharper, faster, and representative of the full business. -->
+  <div class="hero-bg-gradient media-bg media-home-hero" id="hero-bg-fallback"></div>
 
   <!-- Dark color overlay matching brand -->
   <div class="hero-video-overlay"></div>
   <div class="hero-overlay"></div>
 
   <div class="hero-content container">
-    <div class="hero-label">Rockville, MD &mdash; Serving the DMV Since 1994 &mdash; <span style="color:rgba(255,255,255,.6);">4.8&#9733; on Google</span></div>
-    <h1>Premium Vehicle Upfitting.<br><em>DMV's Most Trusted Shop.</em></h1>
+    <div class="hero-label">Rockville, MD &mdash; Serving the DMV Since 1994</div>
+    <h1>Equip. Protect.<br>Perform.<em>Built Right in Rockville.</em></h1>
     <p class="hero-sub">Industrial coatings, fleet upfitting, and vehicle protection for commercial operators, government agencies, and personal vehicles across the DMV. Family-owned 30+ years.</p>
     <div class="hero-ctas">
-      <a href="./quote.html" class="btn btn-primary btn-lg">Get Instant Quote</a>
-      <a href="./services/bedliner.html#bundles" class="btn btn-outline btn-lg">See Bedliner Bundles</a>
+      <a href="./quote.html" class="btn btn-primary btn-lg">Start Your Quote</a>
+      <a href="./fleet.html" class="btn btn-outline btn-lg">Commercial &amp; Fleet</a>
     </div>
   </div>
 
@@ -459,16 +488,16 @@
       <span class="hero-stat-label">Years</span>
     </div>
     <div class="hero-stat">
-      <span class="hero-stat-value">5,000+</span>
-      <span class="hero-stat-label">Vehicles</span>
+      <span class="hero-stat-value">Fleet</span>
+      <span class="hero-stat-label">Commercial Programs</span>
     </div>
     <div class="hero-stat">
-      <span class="hero-stat-value">5.0★</span>
-      <span class="hero-stat-label">Google</span>
+      <span class="hero-stat-value">Retail</span>
+      <span class="hero-stat-label">Personal Vehicles</span>
     </div>
     <div class="hero-stat">
-      <span class="hero-stat-value">150+</span>
-      <span class="hero-stat-label">Brands</span>
+      <span class="hero-stat-value">Dealer</span>
+      <span class="hero-stat-label">Government Programs</span>
     </div>
   </div>
 </section>
@@ -576,7 +605,7 @@
     <div class="funnel-grid">
       <!-- Card 1: Personal -->
       <article class="funnel-card reveal reveal-delay-1">
-        <div class="funnel-card-bg-1"></div>
+        <div class="funnel-card-bg-1 media-bg media-bedliner"></div>
         <!-- Decorative icon overlay -->
         <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:0.07;">
           <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3m0 0h4l3 3v4h-7V8z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="17.5" cy="17.5" r="1.5"/></svg>
@@ -594,7 +623,7 @@
 
       <!-- Card 2: Fleet -->
       <article class="funnel-card reveal reveal-delay-2">
-        <div class="funnel-card-bg-2"></div>
+        <div class="funnel-card-bg-2 media-bg media-home-hero"></div>
         <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:0.07;">
           <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
         </div>
@@ -611,7 +640,7 @@
 
       <!-- Card 3: Dealer -->
       <article class="funnel-card reveal reveal-delay-3">
-        <div class="funnel-card-bg-3"></div>
+        <div class="funnel-card-bg-3 media-bg media-commercial-wraps"></div>
         <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:0.07;">
           <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
@@ -628,7 +657,7 @@
 
       <!-- Card 4: Industrial / Infrastructure — NEW -->
       <article class="funnel-card reveal reveal-delay-1" style="border: 1px solid rgba(245,158,11,0.25);">
-        <div style="position:absolute; inset:0; background: linear-gradient(160deg, #1c1a0e 0%, #111827 100%);"></div>
+        <div class="media-bg media-industrial-coatings" style="position:absolute; inset:0; background: linear-gradient(160deg, #1c1a0e 0%, #111827 100%);"></div>
         <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:0.07;">
           <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
@@ -661,7 +690,7 @@
 
       <!-- Bedliners -->
       <a href="./services/bedliner.html" class="service-card reveal reveal-delay-1" aria-label="Spray-On Bedliners">
-        <div class="service-card-grad svc-bg-bedliner"></div>
+        <div class="service-card-grad svc-bg-bedliner media-bg media-bedliner"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
           <div class="service-card-tag">Authorized Patriot Liner</div>
@@ -676,7 +705,7 @@
       </a>
       <!-- Tonneau -->
       <a href="./services/tonneau.html" class="service-card reveal reveal-delay-2" aria-label="Tonneau Covers">
-        <div class="service-card-grad svc-bg-tonneau"></div>
+        <div class="service-card-grad svc-bg-tonneau media-bg media-tonneau"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
           <div class="service-card-tag">★ Bundle With Bedliner</div>
@@ -691,7 +720,7 @@
       </a>
       <!-- Running Boards -->
       <a href="./services/running-boards.html" class="service-card reveal reveal-delay-3" aria-label="Running Boards & Steps">
-        <div class="service-card-grad svc-bg-boards"></div>
+        <div class="service-card-grad svc-bg-boards media-bg media-running-boards"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
           <div class="service-card-tag">★ Bundle With Bedliner</div>
@@ -706,7 +735,7 @@
       </a>
       <!-- Ceramic -->
       <a href="./services/ceramic-coating.html" class="service-card reveal reveal-delay-1" aria-label="Ceramic Coating & PPF">
-        <div class="service-card-grad svc-bg-ceramic"></div>
+        <div class="service-card-grad svc-bg-ceramic media-bg media-ceramic-coating"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
           <div class="service-card-tag">IGL &amp; System X Certified</div>
@@ -721,7 +750,7 @@
       </a>
       <!-- Undercoating -->
       <a href="./services/undercoating.html" class="service-card reveal reveal-delay-2" aria-label="Undercoating & Rust Protection">
-        <div class="service-card-grad svc-bg-under"></div>
+        <div class="service-card-grad svc-bg-under media-bg media-undercoating"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
           <div class="service-card-tag">Rust-Proofing Specialists</div>
@@ -736,7 +765,7 @@
       </a>
       <!-- Hitches -->
       <a href="./services/hitches.html" class="service-card reveal reveal-delay-3" aria-label="Hitches & Towing">
-        <div class="service-card-grad svc-bg-hitch"></div>
+        <div class="service-card-grad svc-bg-hitch media-bg media-hitches"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
           <div class="service-card-tag">All Classes &amp; Configurations</div>
@@ -868,7 +897,7 @@
 
       <!-- Right visual placeholder -->
       <div class="why-visual reveal reveal-delay-2">
-        <div class="why-visual-placeholder">
+        <div class="why-visual-placeholder media-bg media-mobile-detailing">
           <svg class="why-visual-icon" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="0.5" aria-hidden="true">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
@@ -895,14 +924,13 @@
       <h2 id="testimonials-heading">WHAT OUR CUSTOMERS SAY.</h2>
     </div>
 
-    <!-- Trustindex live Google reviews widget -->
-    <div class="trustindex-widget reveal" aria-label="Verified customer reviews from Google">
-      <script defer async src="https://cdn.trustindex.io/loader.js?26bfb6c7280f963b7176aae201e"></script>
-    </div>
-
-    <div style="text-align: center; margin-top: var(--space-8);">
-      <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-        Read More Reviews on Google
+    <div class="reviews-proof reveal" aria-label="Customer reviews on Google">
+      <div>
+        <div class="reviews-proof-kicker">Independent customer feedback</div>
+        <p>Read recent customer experiences on Google before choosing Capital Upfitters for your vehicle or fleet.</p>
+      </div>
+      <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Read Reviews on Google
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       </a>
     </div>
@@ -960,6 +988,7 @@
 </section>
 
 <!-- FOOTER -->
+</main>
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
@@ -1032,7 +1061,7 @@
       <p class="footer-copyright">&copy; 2026 Capital Auto Upfitters & Protective Coatings. All rights reserved.</p>
       <nav class="footer-legal" aria-label="Legal links">
         <a href="/privacy.html">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
+        <a href="/terms.html">Terms of Service</a>
       </nav>
       <p class="footer-pplx"><a href="https://IVANKODevelopment.com" target="_blank" rel="noopener noreferrer">Built by IVANKODev</a></p>
     </div>
@@ -1078,10 +1107,10 @@
 <!-- CMS: Homepage Wire -->
 <script>
 (function() {
-  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+  var CMS_BASE = '';
 
   // ─── Settings: phone, hours, urgency banner ──────────────────────────────
-  fetch(CMS_BASE + '/api/public/settings')
+  CMS_BASE && fetch(CMS_BASE + '/api/public/settings')
     .then(function(res) { return res.json(); })
     .then(function(settings) {
       if (!settings) return;
@@ -1127,132 +1156,6 @@
 </script>
 
 <script src="animations.js" defer></script>
-
-<!-- HERO IDLE DIM -->
-<style>
-/* Transitions applied via JS — defined here as defaults */
-.hero-label,
-.hero-content h1,
-.hero-sub,
-.hero-video-overlay,
-.hero-overlay {
-  will-change: opacity;
-}
-</style>
-<script>
-(function() {
-  var IDLE_MS   = 1800;   // trigger after 1.8s idle
-  var FADE_DUR  = '1.2s'; // text/overlay fade out
-  var RECOV_DUR = '1.2s'; // snap back
-
-  // Label, headline, subtitle only — buttons + stats stay full
-  var TEXT_SELS = ['.hero-label', '.hero-content h1', '.hero-sub'];
-  // Both overlays (global dim + left gradient)
-  var OVL_SELS  = ['.hero-video-overlay', '.hero-overlay'];
-
-  var hero = document.querySelector('.hero');
-  if (!hero) return;
-
-  var idleTimer = null;
-  var watching  = false;
-
-  function getEls(sels) {
-    return sels.map(function(s) { return hero.querySelector(s); }).filter(Boolean);
-  }
-
-  // Ensure text is visually restored (call this on reveal + restore)
-  function ensureVisible() {
-    getEls(TEXT_SELS).forEach(function(el) {
-      el.style.animation  = 'none';          // keep animation off
-      el.style.transition = 'opacity ' + RECOV_DUR + ' ease';
-      el.style.opacity    = '1';
-    });
-    getEls(OVL_SELS).forEach(function(el) {
-      el.style.transition = 'opacity ' + RECOV_DUR + ' ease';
-      el.style.opacity    = '';              // back to stylesheet value
-    });
-  }
-
-  function applyFade() {
-    if (watching) return;
-    watching = true;
-    // Text → 98% invisible
-    getEls(TEXT_SELS).forEach(function(el) {
-      el.style.animation  = 'none';
-      el.style.transition = 'opacity ' + FADE_DUR + ' ease';
-      el.style.opacity    = '0.02';
-    });
-    // Overlays → 2% (video at 98% brightness)
-    getEls(OVL_SELS).forEach(function(el) {
-      el.style.transition = 'opacity ' + FADE_DUR + ' ease';
-      el.style.opacity    = '0.02';
-    });
-  }
-
-  function applyRestore() {
-    clearTimeout(idleTimer);
-    if (watching) {
-      watching = false;
-      ensureVisible();
-    }
-    idleTimer = setTimeout(applyFade, IDLE_MS);
-  }
-
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        // Hero back in view: ensure text visible, start idle timer
-        watching = false;
-        ensureVisible();
-        clearTimeout(idleTimer);
-        idleTimer = setTimeout(applyFade, IDLE_MS);
-        document.addEventListener('mousemove',  applyRestore);
-        document.addEventListener('touchstart', applyRestore);
-        document.addEventListener('keydown',    applyRestore);
-      } else {
-        // Hero out of view: cancel everything, clean up
-        clearTimeout(idleTimer);
-        watching = false;
-        ensureVisible();
-        document.removeEventListener('mousemove',  applyRestore);
-        document.removeEventListener('touchstart', applyRestore);
-        document.removeEventListener('keydown',    applyRestore);
-      }
-    });
-  }, { threshold: 0.3 });   // lower threshold so scroll-back triggers earlier
-
-  observer.observe(hero);
-})();
-</script>
-
-<!-- HERO VIDEO CHAIN + FALLBACK FADE -->
-<script>
-(function() {
-  var vid = document.getElementById('hero-vid');
-  var fb  = document.getElementById('hero-bg-fallback');
-  if (!vid) return;
-
-  // Playlist: Patriot Liner first, then AMP PowerStep, then repeat
-  var PLAYLIST = [
-    'https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4',
-    './assets/amp-powerstep.mp4'
-  ];
-  var current = 0;
-
-  // Fade out fallback image on first play
-  vid.addEventListener('playing', function() {
-    if (fb) setTimeout(function() { fb.classList.add('hidden'); }, 600);
-  }, { once: true });
-
-  // On video end, switch to next in playlist
-  vid.addEventListener('ended', function() {
-    current = (current + 1) % PLAYLIST.length;
-    vid.src = PLAYLIST[current];
-    vid.load();
-    vid.play().catch(function() {});
-  });
-})();
-</script>
 
 <!-- VEHICLE SELECTOR SCRIPT -->
 <script>
@@ -1501,7 +1404,7 @@
 </script>
 
 <!-- Floating quote CTA -->
-<div class="float-cta" aria-hidden="true">
+<div class="float-cta" aria-label="Quick quote action">
   <a href="./quote.html" class="float-cta-btn">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     Get a Quote
