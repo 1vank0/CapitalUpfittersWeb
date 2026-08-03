@@ -691,7 +691,7 @@
       <p class="footer-copyright">&copy; 2026 Capital Auto Upfitters & Protective Coatings. All rights reserved.</p>
       <nav class="footer-legal" aria-label="Legal links">
         <a href="/privacy.html">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
+        <a href="/terms.html">Terms of Service</a>
       </nav>
       <p class="footer-pplx"><a href="https://IVANKODevelopment.com" target="_blank" rel="noopener noreferrer">Built by IVANKODev</a></p>
     </div>
@@ -748,6 +748,8 @@
 <script>
 (function() {
   const CMS = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+  // PHASE-1 DISABLED: stale CMS preview URL threw CORS errors. Re-enable by removing this line + updating URL.
+  return;
   fetch(CMS + '/api/public/settings').then(r => r.json()).then(s => {
     if (!s) return;
     // Phone
