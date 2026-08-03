@@ -11,7 +11,7 @@
 <link rel="shortcut icon" href="favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Capital Upfitters | Vehicle Upfitting Rockville, MD</title>
-<meta name="description" content="Family-owned vehicle upfitter in Rockville, MD. Patriot Liner bedliners, ceramic coatings, hitches, undercoating & fleet upfitting. Call (301) 304-1419."s most trusted vehicle upfitting shop. Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions. Family-owned 30+ years. Same-week availability.">
+<meta name="description" content="Family-owned vehicle upfitter in Rockville, MD. Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions. 30+ years serving the DMV. Same-week availability. Call (301) 304-1419.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.capitalupfitters.com/">
 
@@ -97,12 +97,14 @@
   background: rgba(17,24,39,0.30);
   pointer-events: none;
 }
-/* Fallback: keep image visible until video loads */
+/* Fallback: dark industrial gradient shown until video loads (no external asset dependency) */
 .hero-bg-gradient {
   position: absolute;
   inset: 0;
-  background: url('./assets/hero-bg.png') center top / cover no-repeat;
-  filter: brightness(0.35);
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(234,88,12,0.15) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 90%, rgba(30,58,138,0.35) 0%, transparent 60%),
+  linear-gradient(160deg, #1a2742 0%, #0f1825 50%, #111827 100%);
   transform-origin: center top;
   will-change: transform;
   transition: opacity 1.2s ease;
@@ -897,7 +899,7 @@
 
     <!-- Trustindex live Google reviews widget -->
     <div class="trustindex-widget reveal" aria-label="Verified customer reviews from Google">
-      <script defer async src="https://cdn.trustindex.io/loader.js?26bfb6c7280f963b7176aae201e"></script>
+      <script defer async src="https://cdn.trustindex.io/loader.js?4b0fb84780ce380f4576092cef2"></script>
     </div>
 
     <div style="text-align: center; margin-top: var(--space-8);">
@@ -1032,7 +1034,7 @@
       <p class="footer-copyright">&copy; 2026 Capital Auto Upfitters & Protective Coatings. All rights reserved.</p>
       <nav class="footer-legal" aria-label="Legal links">
         <a href="/privacy.html">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
+        <a href="/terms.html">Terms of Service</a>
       </nav>
       <p class="footer-pplx"><a href="https://IVANKODevelopment.com" target="_blank" rel="noopener noreferrer">Built by IVANKODev</a></p>
     </div>
@@ -1079,6 +1081,8 @@
 <script>
 (function() {
   var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+  // PHASE-1 DISABLED: stale CMS preview URL threw CORS errors. Re-enable by removing this line + updating URL.
+  return;
 
   // ─── Settings: phone, hours, urgency banner ──────────────────────────────
   fetch(CMS_BASE + '/api/public/settings')
