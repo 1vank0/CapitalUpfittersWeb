@@ -640,8 +640,222 @@
   </div>
 </section>
 
+<!-- ============================================================
+     STEP 1: SERVICE PICKER (Phase 2 quote-cart retrofit)
+     Users select one or more services first. Selections persist
+     in localStorage and pre-check the matching service checkboxes
+     across all three audience panels below. Reads ?service=X,Y,Z
+     URL params so "Add to My Upfit" buttons on service pages can
+     deep-link here with pre-selected items.
+     ============================================================ -->
+<style>
+  .service-picker { padding: var(--space-10) 0 var(--space-6); }
+  .service-picker-header { text-align: center; margin-bottom: var(--space-6); }
+  .service-picker-eyebrow {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent, #ea580c);
+    background: rgba(234,88,12,0.10);
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: var(--space-3);
+  }
+  .service-picker-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    color: var(--color-text);
+    margin: 0 0 var(--space-2);
+    line-height: 1.05;
+  }
+  .service-picker-sub {
+    color: var(--color-text-muted, #6b7280);
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 0.95rem;
+  }
+  .service-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+  .service-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1rem;
+    background: rgba(255,255,255,0.03);
+    border: 1.5px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 180ms cubic-bezier(0.16,1,0.3,1);
+    text-align: left;
+    color: var(--color-text);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    position: relative;
+    user-select: none;
+  }
+  .service-chip:hover {
+    border-color: rgba(234,88,12,0.4);
+    background: rgba(255,255,255,0.05);
+    transform: translateY(-1px);
+  }
+  .service-chip.selected {
+    border-color: var(--color-accent, #ea580c);
+    background: rgba(234,88,12,0.12);
+    box-shadow: 0 0 0 1px var(--color-accent, #ea580c);
+  }
+  .service-chip-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 180ms;
+  }
+  .service-chip.selected .service-chip-check {
+    background: var(--color-accent, #ea580c);
+    border-color: var(--color-accent, #ea580c);
+  }
+  .service-chip.selected .service-chip-check::after {
+    content: "✓";
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .service-chip-badge {
+    margin-left: auto;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-accent, #ea580c);
+    background: rgba(234,88,12,0.15);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+  }
+  .picker-cart-bar {
+    position: sticky;
+    bottom: 12px;
+    z-index: 20;
+    background: linear-gradient(160deg, #1a2742 0%, #111827 100%);
+    border: 1.5px solid rgba(234,88,12,0.35);
+    border-radius: 14px;
+    padding: var(--space-3) var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    box-shadow: 0 12px 40px -8px rgba(0,0,0,0.6);
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: all 250ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .picker-cart-bar.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .picker-cart-count {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+  }
+  .picker-cart-count strong {
+    color: var(--color-accent, #ea580c);
+    font-size: 1.35rem;
+    margin-right: 0.35rem;
+  }
+  .picker-cart-list {
+    color: var(--color-text-muted, #9ca3af);
+    font-size: 0.85rem;
+    flex: 1;
+    min-width: 200px;
+  }
+  .picker-cart-actions { display: flex; gap: 0.5rem; }
+  .picker-cart-btn-clear {
+    background: transparent;
+    color: var(--color-text-muted, #9ca3af);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 180ms;
+  }
+  .picker-cart-btn-clear:hover { color: var(--color-text); border-color: rgba(255,255,255,0.25); }
+  .picker-skip {
+    display: block;
+    margin: var(--space-4) auto 0;
+    color: var(--color-text-muted, #6b7280);
+    background: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center;
+  }
+  .picker-skip:hover { color: var(--color-text); }
+  @media (max-width: 640px) {
+    .service-picker-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.5rem; }
+    .service-chip { padding: 0.7rem 0.85rem; font-size: 0.88rem; }
+    .picker-cart-bar { flex-direction: column; align-items: stretch; }
+    .picker-cart-list { display: none; }
+  }
+</style>
+
+<section class="service-picker" aria-labelledby="picker-heading">
+  <div class="container" style="max-width: 960px;">
+    <div class="service-picker-header">
+      <div class="service-picker-eyebrow">Step 1 of 2</div>
+      <h2 id="picker-heading" class="service-picker-title">What are you looking to add?</h2>
+      <p class="service-picker-sub">Pick one or more services. You can add or remove anything later — this just helps us route your quote to the right specialist.</p>
+    </div>
+
+    <div class="service-picker-grid" id="service-picker-grid" role="group" aria-label="Select services">
+      <!-- Populated by JS. Kept in JS so the source list stays in one place and matches the form checkboxes below. -->
+    </div>
+
+    <div class="picker-cart-bar" id="picker-cart-bar" role="status" aria-live="polite">
+      <div>
+        <div class="picker-cart-count"><strong id="picker-cart-count">0</strong> selected</div>
+        <div class="picker-cart-list" id="picker-cart-list"></div>
+      </div>
+      <div class="picker-cart-actions">
+        <button type="button" class="picker-cart-btn-clear" id="picker-cart-clear">Clear</button>
+        <button type="button" class="btn btn-primary" id="picker-cart-continue">Continue →</button>
+      </div>
+    </div>
+
+    <button type="button" class="picker-skip" id="picker-skip">Skip — I'll pick services on the form</button>
+  </div>
+</section>
+
 <!-- QUOTE SECTION -->
-<section class="quote-section">
+<section class="quote-section" id="quote-form-section">
   <div class="container">
     <div class="quote-layout">
 
@@ -1211,6 +1425,188 @@ function handleFormSubmit(formId, bodyId, successId) {
 handleFormSubmit('quote-retail', 'form-retail-body', 'form-retail-success');
 handleFormSubmit('quote-fleet', 'form-fleet-body', 'form-fleet-success');
 handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success');
+
+// ── Phase 2: Service Picker (quote-cart retrofit) ────────────────────────────
+// Grid of service chips above the form. Selections persist across audience
+// tabs, sync to the checkboxes in retail/fleet/dealer panels, and survive
+// page reloads via localStorage. Reads ?service=X,Y,Z URL params so service
+// pages can deep-link with pre-selected items.
+(function() {
+  const STORAGE_KEY = 'cu:quote-cart:selected';
+
+  // Canonical service list. `value` MUST match the corresponding checkbox
+  // `value=""` attribute in the retail/fleet/dealer forms below so syncing
+  // works. `also` is a list of alternate values that map to the same chip
+  // (used to sync across audience tabs whose values differ slightly).
+  const SERVICES = [
+    { value: 'Bedliner',              label: 'Bedliner',              badge: 'Top' },
+    { value: 'Ceramic Coating',       label: 'Ceramic Coating',       badge: '' },
+    { value: 'Undercoating',          label: 'Undercoating',          badge: '' },
+    { value: 'Window Tinting',        label: 'Window Tinting',        badge: '' },
+    { value: 'Tonneau Cover',         label: 'Tonneau Cover',         badge: '' },
+    { value: 'Running Boards',        label: 'Running Boards',        badge: '' },
+    { value: 'Hitches & Towing',      label: 'Hitches & Towing',      badge: '' },
+    { value: 'Camper Shell',          label: 'Camper Shell',          badge: '' },
+    { value: 'Toolbox / Bed Storage', label: 'Toolboxes',             badge: '' },
+    { value: 'AMP PowerStep',         label: 'AMP PowerStep',         badge: '' },
+    { value: 'Suspension / Lift Kit', label: 'Suspension / Lift',     badge: '' },
+    { value: 'Exterior Accessories', label: 'Exterior Accessories',   badge: '' },
+    { value: 'LED Lighting',          label: 'LED Lighting',          badge: '' },
+    { value: 'Commercial Wraps',      label: 'Wraps & Branding',      badge: '' },
+    { value: 'Industrial Coatings',   label: 'Industrial Coatings',   badge: '' },
+    { value: 'Mobile Detailing',      label: 'Mobile Detailing',      badge: '' },
+  ];
+
+  const grid       = document.getElementById('service-picker-grid');
+  const cartBar    = document.getElementById('picker-cart-bar');
+  const countEl    = document.getElementById('picker-cart-count');
+  const listEl     = document.getElementById('picker-cart-list');
+  const clearBtn   = document.getElementById('picker-cart-clear');
+  const continueBtn = document.getElementById('picker-cart-continue');
+  const skipBtn    = document.getElementById('picker-skip');
+  const formSection = document.getElementById('quote-form-section');
+
+  if (!grid) return;
+
+  // ── Load initial selection: URL param wins, else localStorage ──────────────
+  const params = new URLSearchParams(window.location.search);
+  const urlServices = (params.get('service') || params.get('services') || '')
+    .split(',').map(s => s.trim()).filter(Boolean);
+
+  let selected = new Set();
+  if (urlServices.length) {
+    urlServices.forEach(s => {
+      // Case-insensitive match on canonical value or label
+      const match = SERVICES.find(
+        svc => svc.value.toLowerCase() === s.toLowerCase()
+            || svc.label.toLowerCase() === s.toLowerCase()
+      );
+      if (match) selected.add(match.value);
+    });
+  } else {
+    try {
+      const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      if (Array.isArray(stored)) stored.forEach(v => selected.add(v));
+    } catch (e) { /* ignore parse errors */ }
+  }
+
+  // ── Render chip grid ───────────────────────────────────────────────────────
+  const chipHTML = SERVICES.map(svc => {
+    const isSel = selected.has(svc.value);
+    const badge = svc.badge ? `<span class="service-chip-badge">${svc.badge}</span>` : '';
+    return `
+      <button type="button" class="service-chip${isSel ? ' selected' : ''}"
+        data-service="${svc.value.replace(/"/g, '&quot;')}"
+        aria-pressed="${isSel}">
+        <span class="service-chip-check" aria-hidden="true"></span>
+        <span>${svc.label}</span>
+        ${badge}
+      </button>`;
+  }).join('');
+  grid.innerHTML = chipHTML;
+
+  // ── Sync selection to form checkboxes across all 3 audience panels ─────────
+  function syncCheckboxes() {
+    document.querySelectorAll('input[type="checkbox"][name="services"]').forEach(cb => {
+      cb.checked = selected.has(cb.value);
+    });
+  }
+
+  // ── Update cart bar UI ─────────────────────────────────────────────────────
+  function updateBar() {
+    const count = selected.size;
+    countEl.textContent = count;
+    if (count === 0) {
+      cartBar.classList.remove('active');
+      listEl.textContent = '';
+    } else {
+      cartBar.classList.add('active');
+      const labels = SERVICES.filter(s => selected.has(s.value)).map(s => s.label);
+      listEl.textContent = labels.slice(0, 4).join(', ')
+        + (labels.length > 4 ? ` +${labels.length - 4} more` : '');
+    }
+  }
+
+  // ── Persist to localStorage ────────────────────────────────────────────────
+  function persist() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify([...selected])); }
+    catch (e) { /* storage full or disabled — ignore */ }
+  }
+
+  // ── Chip click handler (delegated) ─────────────────────────────────────────
+  grid.addEventListener('click', (e) => {
+    const chip = e.target.closest('.service-chip');
+    if (!chip) return;
+    const svc = chip.dataset.service;
+    if (selected.has(svc)) {
+      selected.delete(svc);
+      chip.classList.remove('selected');
+      chip.setAttribute('aria-pressed', 'false');
+    } else {
+      selected.add(svc);
+      chip.classList.add('selected');
+      chip.setAttribute('aria-pressed', 'true');
+    }
+    persist();
+    syncCheckboxes();
+    updateBar();
+  });
+
+  // ── Clear button ───────────────────────────────────────────────────────────
+  clearBtn.addEventListener('click', () => {
+    selected.clear();
+    document.querySelectorAll('.service-chip').forEach(c => {
+      c.classList.remove('selected');
+      c.setAttribute('aria-pressed', 'false');
+    });
+    persist();
+    syncCheckboxes();
+    updateBar();
+  });
+
+  // ── Continue button: scroll to form ────────────────────────────────────────
+  continueBtn.addEventListener('click', () => {
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Move focus to the first field of the active panel for accessibility
+      setTimeout(() => {
+        const activePanel = document.querySelector('.form-panel:not([hidden])');
+        const firstInput = activePanel && activePanel.querySelector('input, select, textarea');
+        if (firstInput) firstInput.focus({ preventScroll: true });
+      }, 500);
+    }
+  });
+
+  // ── Skip button: same as continue, no requirement ──────────────────────────
+  skipBtn.addEventListener('click', () => {
+    if (formSection) formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // ── Also sync FROM checkboxes back TO picker (bi-directional) ──────────────
+  // If a user unchecks a service on the form, remove it from the picker too.
+  document.addEventListener('change', (e) => {
+    if (e.target.matches('input[type="checkbox"][name="services"]')) {
+      const val = e.target.value;
+      const wasChecked = e.target.checked;
+      if (wasChecked) selected.add(val); else selected.delete(val);
+      // Update all matching checkboxes across panels
+      document.querySelectorAll(`input[type="checkbox"][name="services"][value="${val.replace(/"/g,'\\"')}"]`)
+        .forEach(cb => { cb.checked = wasChecked; });
+      // Update matching chip
+      const chip = grid.querySelector(`.service-chip[data-service="${val.replace(/"/g,'&quot;')}"]`);
+      if (chip) {
+        chip.classList.toggle('selected', wasChecked);
+        chip.setAttribute('aria-pressed', wasChecked ? 'true' : 'false');
+      }
+      persist();
+      updateBar();
+    }
+  });
+
+  // ── Initial sync ───────────────────────────────────────────────────────────
+  syncCheckboxes();
+  updateBar();
+})();
 </script>
 
 <script src="animations.js" defer></script>
