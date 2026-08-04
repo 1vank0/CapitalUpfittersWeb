@@ -1,12 +1,13 @@
 /* ============================================================
-   BASE.CSS — Capital Upfitters Phase 1
+   BASE.CSS — Capital Upfitters
    Reset + CSS Custom Properties
-   Colors: onehourhitch.com palette
-   Fonts: Barlow Condensed (≈ HCo Tungsten) + Inter (≈ HCo Gotham SSm)
+   Palette + fonts mirror the Next.js CRM app (approved-design.css)
+   so both properties feel like one brand. Do not change tokens here
+   without updating the Next.js side too.
    ============================================================ */
 
 /* ── Google Fonts ─────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Jost:wght@300;400;500;600;700&display=swap');
 
 /* ── Reset ────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,47 +21,56 @@ table { border-collapse: collapse; }
 
 /* ── Color Tokens (onehourhitch.com palette) ──────────────── */
 :root {
-  /* Core surfaces */
-  --color-bg:              #ffffff;
-  --color-surface:         #f9fafb;
-  --color-surface-2:       #f3f4f6;
-  --color-surface-dark:    #111827;
-  --color-surface-dark-2:  #1a2332;
+  /* ── Brand primitives — mirrors Next.js approved-design.css ── */
+  --brand-ink:             #061527;  /* deepest, for text on light */
+  --brand-navy:            #071c33;  /* hero + header background */
+  --brand-navy-mid:        #0b2744;  /* raised dark surface */
+  --brand-amber:           #f9a607;  /* primary accent — CTAs, links */
+  --brand-amber-dark:      #b86f00;  /* hover/pressed accent */
+  --brand-white:           #ffffff;
+  --brand-surface:         #f7f8f8;  /* soft off-white section bg */
+  --brand-body:            #333a45;  /* body copy on light */
+  --brand-muted:           #5c616a;  /* secondary text */
+  --brand-line:            #d1d3d5;  /* borders, dividers */
 
-  /* Text */
-  --color-text:            #111827;
-  --color-text-secondary:  #374151;
-  --color-text-muted:      #6b7280;
-  --color-text-faint:      #9ca3af;
-  --color-text-inverse:    #ffffff;
-  --color-text-inverse-muted: #B3B3B3;
+  /* ── Legacy aliases — kept so existing selectors don't break ── */
+  --color-bg:              var(--brand-white);
+  --color-surface:         var(--brand-surface);
+  --color-surface-2:       #eef0f1;
+  --color-surface-dark:    var(--brand-navy);
+  --color-surface-dark-2:  var(--brand-navy-mid);
 
-  /* Brand accent — onehourhitch navy */
-  --color-accent:          #203055;
-  --color-accent-hover:    #162240;
-  --color-accent-light:    rgba(32, 48, 85, 0.08);
+  --color-text:            var(--brand-ink);
+  --color-text-secondary:  var(--brand-body);
+  --color-text-muted:      var(--brand-muted);
+  --color-text-faint:      #8a8f97;
+  --color-text-inverse:    var(--brand-white);
+  --color-text-inverse-muted: rgba(255, 255, 255, 0.72);
 
-  /* Dividers */
-  --color-border:          #e5e7eb;
-  --color-border-dark:     #27272a;
-  --color-divider:         #e5e5e5;
+  /* Warm amber replaces the old cool navy accent */
+  --color-accent:          var(--brand-amber);
+  --color-accent-hover:    var(--brand-amber-dark);
+  --color-accent-light:    rgba(249, 166, 7, 0.10);
+  --color-accent-navy:     var(--brand-navy);
 
-  /* Semantic */
-  --color-error:           #ef4444;
-  --color-success:         #22c55e;
-  --color-warning:         #eab308;
+  --color-border:          var(--brand-line);
+  --color-border-dark:     rgba(255, 255, 255, 0.16);
+  --color-divider:         var(--brand-line);
 
-  /* Nav */
-  --color-nav-bg:          #111827;
-  --color-nav-text:        #f8fafc;
+  --color-error:           #bc4b4b;
+  --color-success:         #2f8f68;
+  --color-warning:         #d29417;
 
-  /* Footer */
-  --color-footer-bg:       #111827;
-  --color-footer-text:     #B3B3B3;
+  --color-nav-bg:          var(--brand-navy);
+  --color-nav-text:        var(--brand-white);
+  --color-footer-bg:       var(--brand-navy);
+  --color-footer-text:     rgba(255, 255, 255, 0.72);
 
-  /* ── Typography ────────────────────────────────────────── */
-  --font-display:  'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
-  --font-body:     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* ── Typography ─────────────────────────────────────────── */
+  /* Russo One — industrial display face used across both properties */
+  /* Jost — geometric humanist sans for body copy */
+  --font-display:  'Russo One', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:     'Jost', 'Futura', 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
 
   /* Type scale */
   --text-xs:    0.75rem;    /* 12px */
@@ -103,10 +113,10 @@ table { border-collapse: collapse; }
   --radius-pill: 9999px;
 
   /* ── Shadows ────────────────────────────────────────────── */
-  --shadow-sm:  0 1px 3px rgba(0,0,0,0.08);
-  --shadow-md:  0 4px 12px rgba(0,0,0,0.1);
-  --shadow-lg:  0 8px 30px rgba(0,0,0,0.12);
-  --shadow-xl:  0 20px 60px rgba(0,0,0,0.15);
+  --shadow-sm:  0 1px 3px rgba(6, 21, 39, 0.08);
+  --shadow-md:  0 4px 12px rgba(6, 21, 39, 0.10);
+  --shadow-lg:  0 8px 30px rgba(6, 21, 39, 0.12);
+  --shadow-xl:  0 20px 60px rgba(6, 21, 39, 0.15);
 
   /* ── Nav ────────────────────────────────────────────────── */
   --nav-height: 64px;
@@ -132,7 +142,7 @@ table { border-collapse: collapse; }
   --color-text-faint:      #484f58;
   --color-border:          #30363d;
   --color-divider:         #21262d;
-  --color-accent-light:    rgba(32, 48, 85, 0.25);
+  --color-accent-light:    rgba(249, 166, 7, 0.20);
 }
 
 /* ── Base typography ────────────────────────────────────── */
@@ -145,10 +155,10 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-weight: 400;             /* Russo One only ships one weight */
+  letter-spacing: 0;             /* Russo One is already wide; no tracking */
   text-transform: uppercase;
-  line-height: 1.1;
+  line-height: 1.02;
   color: var(--color-text);
 }
 
@@ -205,11 +215,11 @@ p + p { margin-top: var(--space-4); }
   gap: var(--space-2);
   font-family: var(--font-display);
   font-size: var(--text-base);
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 400;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 0.85rem 2.25rem;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
   transition: all var(--transition-base);
@@ -218,7 +228,7 @@ p + p { margin-top: var(--space-4); }
 }
 .btn-primary {
   background: var(--color-accent);
-  color: #fff;
+  color: var(--brand-navy);
 }
 .btn-primary:hover {
   background: var(--color-accent-hover);
