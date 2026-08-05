@@ -12,6 +12,8 @@
 // Optional:
 //   LEAD_PERSISTENCE_URL    — shared durable lead endpoint (production default below)
 //   LEAD_PERSISTENCE_ORIGIN — allowlisted canonical site origin
+//   LEAD_BRIDGE_SECRET      — 32+ byte secret shared with the durable lead API;
+//                             authenticates the visitor address across Vercel hops
 //   LEAD_ALLOWED_ORIGIN     — comma-separated browser origins (same-host previews
 //                             are also accepted dynamically)
 //   LEAD_PERSISTENCE_TIMEOUT_MS — durable endpoint deadline (default 5000)
@@ -26,7 +28,7 @@
 //   6. Visitor Location
 //   7. Receipt Information
 
-const { randomUUID } = require('node:crypto');
+const { createHmac, randomUUID } = require('node:crypto');
 const { isIP } = require('node:net');
 
 const MAX_JSON_BYTES = 128 * 1024;
@@ -35,6 +37,10 @@ const DEFAULT_PERSISTENCE_URL = 'https://capital-upfitters-next.vercel.app/api/l
 const DEFAULT_SITE_ORIGIN = 'https://capitalupfitters.com';
 const DEFAULT_PERSISTENCE_TIMEOUT_MS = 5000;
 const DEFAULT_RESEND_TIMEOUT_MS = 5000;
+const BRIDGE_SIGNATURE_VERSION = 'capital-upfitters-lead-bridge-v1';
+const BRIDGE_CLIENT_IP_HEADER = 'X-Capital-Bridge-Client-IP';
+const BRIDGE_TIMESTAMP_HEADER = 'X-Capital-Bridge-Timestamp';
+const BRIDGE_SIGNATURE_HEADER = 'X-Capital-Bridge-Signature';
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX = 8;
 const MAX_FIELD_CHARS = 8000;
@@ -176,6 +182,44 @@ function getClientIp(req) {
   if (isIP(forwarded)) return forwarded;
   const socketIp = req.socket && String(req.socket.remoteAddress || '').trim();
   return isIP(socketIp) ? socketIp : '';
+}
+
+function createBridgeHeaders({ clientIp, idempotencyKey, origin }) {
+  const secret = String(process.env.LEAD_BRIDGE_SECRET || '').trim();
+  if (Buffer.byteLength(secret, 'utf8') < 32) {
+    return {
+      ok: false,
+      code: 'BRIDGE_CONFIGURATION_ERROR',
+      error: 'Secure lead storage is not configured. Please call or email the shop directly.'
+    };
+  }
+  if (!clientIp || !isIP(clientIp)) {
+    return {
+      ok: false,
+      code: 'BRIDGE_CLIENT_IP_UNAVAILABLE',
+      error: 'Secure lead storage is temporarily unavailable. Please call or email the shop directly.'
+    };
+  }
+
+  const normalizedClientIp = clientIp.toLowerCase();
+  const timestamp = String(Math.floor(Date.now() / 1000));
+  const canonical = [
+    BRIDGE_SIGNATURE_VERSION,
+    timestamp,
+    normalizedClientIp,
+    idempotencyKey,
+    origin
+  ].join('\n');
+  const signature = createHmac('sha256', secret).update(canonical).digest('hex');
+
+  return {
+    ok: true,
+    headers: {
+      [BRIDGE_CLIENT_IP_HEADER]: normalizedClientIp,
+      [BRIDGE_TIMESTAMP_HEADER]: timestamp,
+      [BRIDGE_SIGNATURE_HEADER]: signature
+    }
+  };
 }
 
 function takeRateLimit(ip) {
@@ -458,7 +502,24 @@ async function persistQuoteLead(body, req) {
     'Idempotency-Key': payload.idempotencyKey
   };
   const clientIp = getClientIp(req);
-  if (clientIp) headers['X-Real-IP'] = clientIp;
+  const bridge = createBridgeHeaders({
+    clientIp,
+    idempotencyKey: payload.idempotencyKey,
+    origin
+  });
+  if (!bridge.ok) {
+    console.error('[lead] persistence bridge unavailable:', bridge.code);
+    return {
+      required: true,
+      ok: false,
+      status: 503,
+      allowEmailFallback: false,
+      upstreamCode: bridge.code,
+      idempotencyKey: payload.idempotencyKey,
+      error: bridge.error
+    };
+  }
+  Object.assign(headers, bridge.headers);
 
   let response;
   let result = null;

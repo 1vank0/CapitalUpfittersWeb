@@ -1,4 +1,5 @@
 const assert = require('node:assert/strict');
+const { createHmac } = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 const { Readable } = require('node:stream');
@@ -8,6 +9,7 @@ const handler = require('../api/lead.js');
 const ROOT = path.resolve(__dirname, '..');
 const FIXED_KEY = '11111111-1111-4111-8111-111111111111';
 const LOCAL_ORIGIN = 'http://localhost';
+const BRIDGE_SECRET = 'test-only-lead-bridge-secret-at-least-32-bytes';
 let requestSequence = 0;
 
 function request(body, options = {}) {
@@ -91,6 +93,7 @@ async function withRuntime(run) {
   process.env.RESEND_API_KEY = 'test_key';
   process.env.LEAD_PERSISTENCE_URL = 'https://persistence.test/api/leads/';
   process.env.LEAD_PERSISTENCE_ORIGIN = 'https://capitalupfitters.com';
+  process.env.LEAD_BRIDGE_SECRET = BRIDGE_SECRET;
   process.env.LEAD_ALLOWED_ORIGIN = LOCAL_ORIGIN;
   process.env.LEAD_ALLOWED_ORIGINS = LOCAL_ORIGIN;
   process.env.LEAD_PERSISTENCE_TIMEOUT_MS = '25';
@@ -421,13 +424,14 @@ test('non-object bodies and array-valued email are rejected with zero side effec
   });
 });
 
-test('trusted Vercel XFF wins over spoofable CF and X-Real-IP headers', async () => {
+test('trusted Vercel XFF is signed for the durable API and spoofable headers are ignored', async () => {
   await withRuntime(async () => {
-    const trustedIp = '10.10.0.77';
-    let forwardedIp = '';
+    const trustedIp = '2001:DB8::77';
+    const normalizedTrustedIp = trustedIp.toLowerCase();
+    let bridgeHeaders = null;
     global.fetch = async (url, options) => {
       if (url === 'https://persistence.test/api/leads/') {
-        forwardedIp = options.headers['X-Real-IP'];
+        bridgeHeaders = options.headers;
         return jsonResponse({ ok: true, persisted: true, reference: 'CU-IP-1' }, 201);
       }
       assert.equal(url, 'https://api.resend.com/emails');
@@ -443,7 +447,38 @@ test('trusted Vercel XFF wins over spoofable CF and X-Real-IP headers', async ()
     });
 
     assert.equal(result.status, 200);
-    assert.equal(forwardedIp, trustedIp);
+    assert.equal(bridgeHeaders['X-Real-IP'], undefined);
+    assert.equal(bridgeHeaders['X-Capital-Bridge-Client-IP'], normalizedTrustedIp);
+    assert.match(bridgeHeaders['X-Capital-Bridge-Timestamp'], /^\d{10}$/);
+    const canonical = [
+      'capital-upfitters-lead-bridge-v1',
+      bridgeHeaders['X-Capital-Bridge-Timestamp'],
+      normalizedTrustedIp,
+      FIXED_KEY,
+      'https://capitalupfitters.com'
+    ].join('\n');
+    const expected = createHmac('sha256', BRIDGE_SECRET)
+      .update(canonical)
+      .digest('hex');
+    assert.equal(bridgeHeaders['X-Capital-Bridge-Signature'], expected);
+  });
+});
+
+test('quote persistence fails closed before side effects when bridge auth is unconfigured', async () => {
+  await withRuntime(async () => {
+    delete process.env.LEAD_BRIDGE_SECRET;
+    let calls = 0;
+    global.fetch = async () => {
+      calls += 1;
+      throw new Error('external side effect must not occur');
+    };
+
+    const result = await invoke(retailBody());
+    assert.equal(result.status, 503);
+    assert.equal(result.body.ok, false);
+    assert.equal(result.body.persisted, false);
+    assert.equal(result.body.delivered, false);
+    assert.equal(calls, 0);
   });
 });
 
