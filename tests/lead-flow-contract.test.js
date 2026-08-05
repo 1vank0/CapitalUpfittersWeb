@@ -84,6 +84,38 @@ function retailBody(overrides = {}) {
   };
 }
 
+function callbackBody(overrides = {}) {
+  return {
+    form_type: 'retail',
+    form_id: 'callback-form',
+    Name: 'Callback Tester',
+    Email: 'callback@example.com',
+    Phone: '301-555-0100',
+    'Best Time to Call': 'Morning (9:30am–12pm)',
+    Message: 'Please call about a hitch.',
+    idempotency_key: FIXED_KEY,
+    submission_started_at: new Date().toISOString(),
+    ...overrides
+  };
+}
+
+function applicationBody(overrides = {}) {
+  return {
+    form_type: 'dealer',
+    form_id: 'apply-form',
+    'Business Name': 'QA Municipal Fleet',
+    'Contact Name': 'Application Tester',
+    'Work Email': 'application@example.com',
+    Phone: '301-555-0111',
+    'Business Type': 'Government Agency',
+    'Monthly Volume': '10–24 vehicles/month',
+    Message: 'Please set up a purchasing account.',
+    idempotency_key: FIXED_KEY,
+    submission_started_at: new Date().toISOString(),
+    ...overrides
+  };
+}
+
 async function withRuntime(run) {
   const originalFetch = global.fetch;
   const originalEnv = { ...process.env };
@@ -696,32 +728,173 @@ test('persistence 403 and 422 guards never fall through to email', async () => {
   });
 });
 
-test('allowlisted nonquote forms use explicit email-only delivery', async () => {
+test('callback requests persist before shop and customer notifications', async () => {
   await withRuntime(async () => {
     const calls = [];
+    const sequence = [];
     global.fetch = async (url, options) => {
       calls.push({ url, options });
+      if (url === 'https://persistence.test/api/leads/') {
+        sequence.push('persistence-request');
+        const payload = JSON.parse(options.body);
+        assert.equal(payload.kind, 'retail');
+        assert.equal(payload.contact.fullName, 'Callback Tester');
+        assert.equal(payload.contact.preference, 'phone');
+        assert.deepEqual(payload.services, ['callback_request']);
+        assert.deepEqual(payload.vehicle, {
+          year: 'unknown',
+          make: 'Unknown',
+          model: 'Unknown'
+        });
+        assert.deepEqual(payload.preferences, {
+          notes: 'Please call about a hitch.',
+          timing: 'Morning (9:30am–12pm)'
+        });
+        return {
+          ok: true,
+          status: 201,
+          json: async () => {
+            sequence.push('persistence-confirmed');
+            return { ok: true, persisted: true, reference: 'CU-CALLBACK-1' };
+          }
+        };
+      }
       assert.equal(url, 'https://api.resend.com/emails');
+      sequence.push('email');
       return jsonResponse({ id: 'email-id' });
     };
 
-    const result = await invoke({
-      form_type: 'retail',
-      form_id: 'callback-form',
-      Name: 'Callback Tester',
-      Email: 'callback@example.com',
-      Phone: '301-555-0100',
-      Message: 'Please call about a hitch.',
-      idempotency_key: FIXED_KEY,
-      submission_started_at: new Date().toISOString()
-    });
+    const result = await invoke(callbackBody());
 
     assert.equal(result.status, 200);
     assert.equal(result.body.ok, true);
-    assert.equal(result.body.persisted, null);
+    assert.equal(result.body.persisted, true);
+    assert.equal(result.body.reference, 'CU-CALLBACK-1');
     assert.equal(result.body.delivered, true);
-    assert.equal(result.body.delivery_mode, 'email_only');
-    assert.equal(calls.length, 2);
+    assert.equal(result.body.customer_confirmation, true);
+    assert.equal(result.body.delivery_mode, 'persisted_and_emailed');
+    assert.equal(calls.length, 3);
+    assert.equal(calls[0].url, 'https://persistence.test/api/leads/');
+    assert.deepEqual(sequence, [
+      'persistence-request',
+      'persistence-confirmed',
+      'email',
+      'email'
+    ]);
+  });
+});
+
+test('dealer applications persist a valid commercial account request', async () => {
+  await withRuntime(async () => {
+    const calls = [];
+    const sequence = [];
+    global.fetch = async (url, options) => {
+      calls.push({ url, options });
+      if (url === 'https://persistence.test/api/leads/') {
+        sequence.push('persistence-request');
+        const payload = JSON.parse(options.body);
+        assert.equal(payload.kind, 'commercial');
+        assert.equal(payload.requestType, 'government');
+        assert.equal(payload.contact.fullName, 'Application Tester');
+        assert.equal(payload.contact.email, 'application@example.com');
+        assert.deepEqual(payload.scope, {
+          services: ['account_application'],
+          notes: 'Please set up a purchasing account.'
+        });
+        assert.deepEqual(payload.assets, {
+          description: 'Government Agency account application'
+        });
+        assert.deepEqual(payload.logistics, {
+          notes: 'Monthly volume estimate: 10–24 vehicles/month'
+        });
+        assert.deepEqual(payload.organization, { name: 'QA Municipal Fleet' });
+        return {
+          ok: true,
+          status: 201,
+          json: async () => {
+            sequence.push('persistence-confirmed');
+            return { ok: true, persisted: true, reference: 'CU-APPLY-1' };
+          }
+        };
+      }
+      assert.equal(url, 'https://api.resend.com/emails');
+      sequence.push('email');
+      return jsonResponse({ id: 'email-id' });
+    };
+
+    const result = await invoke(applicationBody());
+
+    assert.equal(result.status, 200);
+    assert.equal(result.body.persisted, true);
+    assert.equal(result.body.reference, 'CU-APPLY-1');
+    assert.equal(result.body.delivered, true);
+    assert.equal(result.body.customer_confirmation, true);
+    assert.equal(result.body.delivery_mode, 'persisted_and_emailed');
+    assert.equal(calls.length, 3);
+    assert.equal(calls[0].url, 'https://persistence.test/api/leads/');
+    assert.deepEqual(sequence, [
+      'persistence-request',
+      'persistence-confirmed',
+      'email',
+      'email'
+    ]);
+  });
+});
+
+test('distributed rejection blocks callback and application email side effects', async () => {
+  await withRuntime(async () => {
+    for (const status of [403, 422, 429]) {
+      for (const body of [callbackBody(), applicationBody()]) {
+        let calls = 0;
+        global.fetch = async (url) => {
+          calls += 1;
+          assert.equal(url, 'https://persistence.test/api/leads/');
+          return jsonResponse({
+            ok: false,
+            persisted: false,
+            error: {
+              code: status === 429 ? 'TOO_MANY_REQUESTS' : 'SUBMISSION_REJECTED',
+              message: `Rejected with ${status}`
+            }
+          }, status);
+        };
+
+        const result = await invoke(body);
+        assert.equal(result.status, status);
+        assert.equal(result.body.persisted, false);
+        assert.equal(result.body.delivered, false);
+        assert.equal(calls, 1);
+      }
+    }
+  });
+});
+
+test('callback and application required fields are enforced before side effects', async () => {
+  await withRuntime(async () => {
+    let calls = 0;
+    global.fetch = async () => {
+      calls += 1;
+      return jsonResponse({ id: 'unexpected-side-effect' });
+    };
+
+    const cases = [
+      callbackBody({ Phone: '' }),
+      callbackBody({ Name: '' }),
+      applicationBody({ 'Business Name': '' }),
+      applicationBody({ 'Contact Name': '' }),
+      applicationBody({ 'Work Email': '' }),
+      applicationBody({ Phone: '' }),
+      applicationBody({ 'Business Type': '' }),
+      applicationBody({ 'Monthly Volume': '' })
+    ];
+
+    for (const body of cases) {
+      const result = await invoke(body);
+      assert.equal(result.status, 400);
+      assert.equal(result.body.ok, false);
+      assert.equal(result.body.delivered, false);
+    }
+    assert.equal(calls, 0);
   });
 });
 

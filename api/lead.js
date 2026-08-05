@@ -1,9 +1,9 @@
 // Vercel serverless function: POST /api/lead
 //
 // Receives JSON-serialized form data from the public site, captures the real
-// visitor IP from trusted request headers, persists quote requests through the
-// shared lead service, then sends a branded HTML notification email to the
-// Capital Upfitters inbox.
+// visitor IP from trusted request headers, persists supported lead requests
+// through the shared lead service, then sends a branded HTML notification
+// email to the Capital Upfitters inbox.
 //
 // Required env vars:
 //   RESEND_API_KEY     — transactional sender (https://resend.com)
@@ -45,7 +45,7 @@ const BRIDGE_SIGNATURE_HEADER = 'X-Capital-Bridge-Signature';
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX = 8;
 const MAX_FIELD_CHARS = 8000;
-const MAX_SERVICE_CHARS = 120;
+const MAX_SERVICE_CHARS = 80;
 const UUID_V4_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[+()\-.\s\d]+$/;
@@ -314,8 +314,8 @@ function asJoinedString(v) {
   return scalarString(v, MAX_SERVICE_CHARS);
 }
 
-function optionalString(value) {
-  const normalized = scalarString(value);
+function optionalString(value, maxLength = MAX_FIELD_CHARS) {
+  const normalized = scalarString(value, maxLength);
   return normalized || undefined;
 }
 
@@ -327,7 +327,8 @@ function normalizeServiceId(value) {
     .toLowerCase()
     .replace(/&/g, ' and ')
     .replace(/[^a-z0-9]+/g, '_')
-    .replace(/^_+|_+$/g, '');
+    .replace(/^_+|_+$/g, '')
+    .slice(0, MAX_SERVICE_CHARS);
 }
 
 function normalizeServices(value) {
@@ -365,6 +366,43 @@ function validatePayload(body) {
     return 'Form identity does not match the requested form.';
   }
 
+  if (formId === 'callback-form') {
+    const name = pickFirst(body, ['Name']);
+    const callbackPhone = pickFirst(body, ['Phone']);
+    if (!name) return 'Please enter your name.';
+    if (name.length > 120) return 'Please keep your name under 120 characters.';
+    if (!callbackPhone) return 'Please enter the phone number we should call.';
+    if (pickFirst(body, ['Best Time to Call']).length > 120) {
+      return 'Please choose a shorter callback time preference.';
+    }
+    if (pickFirst(body, ['Message']).length > 4000) {
+      return 'Please keep your message under 4,000 characters.';
+    }
+  }
+
+  if (formId === 'apply-form') {
+    const requiredApplicationFields = [
+      ['Business Name', 'Please enter your business name.'],
+      ['Contact Name', 'Please enter a contact name.'],
+      ['Work Email', 'Please enter your work email.'],
+      ['Phone', 'Please enter your phone number.'],
+      ['Business Type', 'Please select a business type.'],
+      ['Monthly Volume', 'Please select a monthly volume estimate.']
+    ];
+    for (const [field, message] of requiredApplicationFields) {
+      if (!pickFirst(body, [field])) return message;
+    }
+    if (pickFirst(body, ['Business Name']).length > 200) {
+      return 'Please keep your business name under 200 characters.';
+    }
+    if (pickFirst(body, ['Contact Name']).length > 120) {
+      return 'Please keep the contact name under 120 characters.';
+    }
+    if (pickFirst(body, ['Message']).length > 4000) {
+      return 'Please keep your message under 4,000 characters.';
+    }
+  }
+
   const email = pickFirst(body, ['Email', 'Business Email', 'Work Email', 'email']);
   const phone = pickFirst(body, ['Phone', 'phone']);
   if (email && (email.length > 254 || !EMAIL_RE.test(email))) {
@@ -382,13 +420,13 @@ function validatePayload(body) {
 
 function buildPersistenceAttribution(body) {
   const attribution = {
-    source: optionalString(body.utm_source),
-    medium: optionalString(body.utm_medium),
-    campaign: optionalString(body.utm_campaign),
-    term: optionalString(body.utm_term),
-    content: optionalString(body.utm_content),
-    referrer: optionalString(body.referrer),
-    landingPage: optionalString(body.landing_page)
+    source: optionalString(body.utm_source, 120),
+    medium: optionalString(body.utm_medium, 120),
+    campaign: optionalString(body.utm_campaign, 200),
+    term: optionalString(body.utm_term, 200),
+    content: optionalString(body.utm_content, 200),
+    referrer: optionalString(body.referrer, 2048),
+    landingPage: optionalString(body.landing_page, 2048)
   };
   Object.keys(attribution).forEach((key) => {
     if (attribution[key] === undefined) delete attribution[key];
@@ -396,49 +434,66 @@ function buildPersistenceAttribution(body) {
   return Object.keys(attribution).length ? attribution : undefined;
 }
 
-function buildPersistenceContact(body) {
-  const firstName = optionalString(pickFirst(body, ['First Name', 'first_name']));
-  const lastName = optionalString(pickFirst(body, ['Last Name', 'last_name']));
-  const fullName = [firstName, lastName].filter(Boolean).join(' ') ||
-    optionalString(pickFirst(body, ['Contact Name', 'Name'])) || 'Not provided';
-  const phone = optionalString(pickFirst(body, ['Phone', 'phone']));
+function buildPersistenceContact(body, preferenceOverride) {
+  const firstName = optionalString(pickFirst(body, ['First Name', 'first_name']), 120);
+  const lastName = optionalString(pickFirst(body, ['Last Name', 'last_name']), 120);
+  const fullName = ([firstName, lastName].filter(Boolean).join(' ') ||
+    optionalString(pickFirst(body, ['Contact Name', 'Name']), 120) ||
+    'Not provided').slice(0, 120);
+  const phone = optionalString(pickFirst(body, ['Phone', 'phone']), 30);
   const email = optionalString(
-    pickFirst(body, ['Email', 'Business Email', 'Work Email', 'email'])
+    pickFirst(body, ['Email', 'Business Email', 'Work Email', 'email']),
+    254
   );
-  const zip = optionalString(pickFirst(body, ['ZIP', 'zip']));
+  const zip = optionalString(pickFirst(body, ['ZIP', 'zip']), 10);
 
   return {
     fullName,
     phone,
     email,
     postalCode: zip && /^\d{5}(?:-\d{4})?$/.test(zip) ? zip : undefined,
-    preference: phone && email ? 'either' : phone ? 'phone' : 'email'
+    preference: preferenceOverride || (phone && email ? 'either' : phone ? 'phone' : 'email')
   };
 }
 
 function buildPersistencePayload(body) {
   const formId = String(body.form_id || '');
-  const match = /^quote-(retail|fleet|dealer)$/.exec(formId);
-  if (!match) return null;
+  const quoteMatch = /^quote-(retail|fleet|dealer)$/.exec(formId);
+  const audience = quoteMatch
+    ? quoteMatch[1]
+    : formId === 'callback-form'
+      ? 'callback'
+      : formId === 'apply-form'
+        ? 'application'
+        : '';
+  if (!audience) return null;
 
-  const audience = match[1];
-  const services = normalizeServices(body.services);
+  const selectedServices = normalizeServices(body.services);
+  const services = selectedServices.length
+    ? selectedServices
+    : audience === 'callback'
+      ? ['callback_request']
+      : audience === 'application'
+        ? ['account_application']
+        : selectedServices;
   const idempotencyCandidate = String(
     pickFirst(body, ['idempotency_key', 'idempotencyKey']) || ''
   ).trim();
   const idempotencyKey = UUID_V4_RE.test(idempotencyCandidate)
     ? idempotencyCandidate : randomUUID();
-  const contact = buildPersistenceContact(body);
+  const contact = buildPersistenceContact(body, audience === 'callback' ? 'phone' : undefined);
   const attribution = buildPersistenceAttribution(body);
   const envelope = {
     schemaVersion: LEAD_SCHEMA_VERSION,
     idempotencyKey,
     contact,
+    // The visitor asked us to process this request. This is not marketing consent.
     consent: true,
     attribution
   };
 
-  if (audience === 'retail') {
+  if (audience === 'retail' || audience === 'callback') {
+    const isCallback = audience === 'callback';
     const year = Number.parseInt(pickFirst(body, ['Vehicle Year', 'year']), 10);
     const currentYear = new Date().getFullYear();
     return {
@@ -446,27 +501,46 @@ function buildPersistencePayload(body) {
       kind: 'retail',
       services,
       vehicle: {
-        year: Number.isInteger(year) && year >= 1980 && year <= currentYear + 2
+        year: !isCallback && Number.isInteger(year) && year >= 1980 && year <= currentYear + 2
           ? year : 'unknown',
-        make: optionalString(pickFirst(body, ['Vehicle Make', 'make'])) || 'Unknown',
-        model: optionalString(pickFirst(body, ['Vehicle Model', 'model'])) || 'Unknown',
-        trim: optionalString(pickFirst(body, ['Vehicle Trim', 'trim']))
+        make: isCallback
+          ? 'Unknown'
+          : optionalString(pickFirst(body, ['Vehicle Make', 'make']), 80) || 'Unknown',
+        model: isCallback
+          ? 'Unknown'
+          : optionalString(pickFirst(body, ['Vehicle Model', 'model']), 80) || 'Unknown',
+        trim: isCallback
+          ? undefined
+          : optionalString(pickFirst(body, ['Vehicle Trim', 'trim']), 100)
       },
       preferences: {
-        notes: optionalString(pickFirst(body, ['Message', 'message'])),
-        timing: optionalString(pickFirst(body, ['Preferred Date']))
+        notes: optionalString(pickFirst(body, ['Message', 'message']), 4000),
+        timing: optionalString(pickFirst(body, [
+          isCallback ? 'Best Time to Call' : 'Preferred Date'
+        ]), 120)
       }
     };
   }
 
-  const orgType = optionalString(pickFirst(body, ['Organization Type', 'Business Type'])) || '';
-  const business = optionalString(pickFirst(body, ['Business Name', 'business']));
-  const quantityRaw = audience === 'dealer'
+  const isApplication = audience === 'application';
+  const orgType = optionalString(
+    pickFirst(body, ['Organization Type', 'Business Type']),
+    200
+  ) || '';
+  const business = optionalString(pickFirst(body, ['Business Name', 'business']), 200);
+  const quantityRaw = audience === 'dealer' || isApplication
     ? pickFirst(body, ['Monthly Volume'])
     : pickFirst(body, ['Vehicle Count']);
   const quantity = Number.parseInt(String(quantityRaw || ''), 10);
-  const requestType = audience === 'dealer' && /government|municipal/i.test(orgType)
-    ? 'government' : audience;
+  const requestType = /government|municipal/i.test(orgType)
+    ? 'government'
+    : isApplication && /fleet/i.test(orgType)
+      ? 'fleet'
+      : isApplication && /dealership/i.test(orgType)
+        ? 'dealer'
+        : isApplication
+          ? 'work_vehicle'
+          : audience;
 
   return {
     ...envelope,
@@ -474,16 +548,22 @@ function buildPersistencePayload(body) {
     requestType,
     scope: {
       services,
-      notes: optionalString(pickFirst(body, ['Message', 'message']))
+      notes: optionalString(pickFirst(body, ['Message', 'message']), 4000)
     },
     assets: {
-      description: orgType || business ||
-        (audience === 'dealer' ? 'Dealer / government inquiry' : 'Fleet upfit inquiry'),
-      quantity: Number.isInteger(quantity) && quantity > 0 && quantity <= 10000
+      description: isApplication
+        ? `${orgType || 'Business'} account application`.slice(0, 1000)
+        : (orgType || business ||
+          (audience === 'dealer' ? 'Dealer / government inquiry' : 'Fleet upfit inquiry'))
+          .slice(0, 1000),
+      quantity: !isApplication && Number.isInteger(quantity) && quantity > 0 && quantity <= 10000
         ? quantity : undefined
     },
     logistics: {
-      timing: optionalString(pickFirst(body, ['Timeline']))
+      timing: optionalString(pickFirst(body, ['Timeline']), 120),
+      notes: isApplication && quantityRaw
+        ? `Monthly volume estimate: ${scalarString(quantityRaw, 120)}`.slice(0, 4000)
+        : undefined
     },
     organization: {
       name: business
@@ -491,7 +571,7 @@ function buildPersistencePayload(body) {
   };
 }
 
-async function persistQuoteLead(body, req) {
+async function persistLeadRequest(body, req) {
   const payload = buildPersistencePayload(body);
   if (!payload) return { required: false, ok: true };
 
@@ -970,7 +1050,7 @@ module.exports = async function handler(req, res) {
     }); // silently accept and drop
   }
 
-  const persistence = await persistQuoteLead(body, req);
+  const persistence = await persistLeadRequest(body, req);
   const persistenceRejected = persistence.required && !persistence.ok &&
     !persistence.allowEmailFallback;
   if (persistenceRejected) {
