@@ -33,6 +33,7 @@ Test on `/quote.html`:
 - [ ] Click a chip — it turns orange, gets a checkmark, and the sticky cart bar slides up from the bottom showing `1 selected`.
 - [ ] Click 4 more chips — cart bar shows the 4 labels comma-separated, then `+2 more` for the 6th.
 - [ ] Click a selected chip again — it deselects, cart bar count decrements.
+- [ ] Select 12 services. Remaining unselected chips show the capped state and a 13th selection is blocked with an accessible limit message.
 - [ ] Scroll down to the audience tabs. The service checkboxes matching your picks should be pre-checked on the Personal Vehicle tab. Switch to Fleet — same services checked. Switch to Dealer — same.
 - [ ] Uncheck one service checkbox on the form. Scroll back up — the corresponding chip is deselected.
 - [ ] Click "Clear" on the cart bar — everything unchecks. Cart bar hides.
@@ -52,8 +53,13 @@ Test on `/quote.html`:
 - [ ] Select year/make/model dropdowns cascade correctly (selecting a make filters the models).
 - [ ] Upload a small test image via the photo upload. Preview thumbnail appears.
 - [ ] Confirm at least one service is checked (from the picker sync).
-- [ ] Submit the form. Success panel replaces the form (no page reload, no console error).
-- [ ] Check the destination inbox (`CapitalUpfitters@gmail.com`) — the mailto opens the default mail client with pre-filled body containing all fields **including a `Services` line with all selected chips**.
+- [ ] In DevTools Network, clear existing requests and submit the form once.
+- [ ] Exactly **one** `POST /api/lead` request appears. There must be no request to `capital-upfitters-next.vercel.app/api/leads` and no duplicate notification.
+- [ ] The normal response is HTTP 200 with `{"ok":true,"persisted":true,"delivered":true,"reference":"CU-...",...}`.
+- [ ] Success panel replaces the form only after internal shop delivery is confirmed (no page reload, no console error).
+- [ ] Check the destination inbox (`CapitalUpfitters@gmail.com`) and confirm the notification includes a `Services` line with all selected chips.
+- [ ] Confirm the durable lead store contains the same `CU-...` reference returned by `/api/lead`.
+- [ ] Photo upload currently proves local preview only; photos are not transmitted by `/api/lead` in this phase.
 
 ---
 
@@ -62,6 +68,7 @@ Test on `/quote.html`:
 - [ ] Click the Fleet tab. Fill the Fleet form's required fields. Submit. Success panel appears.
 - [ ] Click the Dealer tab. Fill the Dealer form's required fields. Submit. Success panel appears.
 - [ ] Selected services from the picker carry into both submissions.
+- [ ] Each submission creates exactly one `POST /api/lead` request and no request to an external `/api/leads` endpoint.
 
 ---
 
@@ -71,13 +78,14 @@ The site records `utm_source`, `utm_medium`, `utm_campaign`, `referrer`, and lan
 
 - [ ] Visit `/quote.html?utm_source=qa-test&utm_medium=checklist&utm_campaign=lead-flow` from a new tab.
 - [ ] Submit the retail form.
-- [ ] The mailto body contains the three UTM params in the attribution block. (Attribution is injected by `attribution.js`.)
+- [ ] The lead notification contains the three UTM params in its attribution block. (Attribution is injected by `attribution.js`.)
 
 ---
 
 ## 7. Cross-Page Forms (60 seconds)
 
-- [ ] Contact page (`/contact.html`) form submits without console errors.
+- [ ] Contact page (`/contact.html`) callback form shows success only after a confirmed response and creates exactly one `POST /api/lead`.
+- [ ] Dealer / Government page (`/dealer-government.html`) application form shows success only after a confirmed response and creates exactly one `POST /api/lead`.
 - [ ] Start Here page (`/start-here.html`) CTA leads to `/quote.html`.
 - [ ] Fleet page (`/fleet.html`) — "Get Fleet Quote" CTA lands on `/quote.html?audience=fleet` with Fleet tab active.
 - [ ] Dealer / Government page (`/dealer-government.html`) — "Request Program Terms" CTA lands on `/quote.html?audience=dealer` with Dealer tab active.
@@ -87,9 +95,27 @@ The site records `utm_source`, `utm_medium`, `utm_campaign`, `referrer`, and lan
 ## 8. Console & Network Regression Check
 
 - [ ] **No red errors in the console** on any of the pages tested above.
+- [ ] **Exactly one lead request per submit:** `POST /api/lead` only.
+- [ ] **No requests to** `capital-upfitters-next.vercel.app/api/leads`.
 - [ ] **No requests to the old dead API** `capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app` (Phase 1 disabled these).
 - [ ] **No CORS errors.**
 - [ ] Trustindex loader (`cdn.trustindex.io/loader.js`) returns 200.
+
+**Failure-state test:**
+
+- [ ] If durable storage has a transport/timeout or explicitly classified persistence failure but shop email succeeds, `/api/lead` returns HTTP 200 with `persisted:false`, `delivered:true`, and `delivery_mode:"email_fallback"` so the customer is not blocked.
+- [ ] Security/configuration 503 responses such as `ABUSE_GUARD_UNAVAILABLE` and `ORIGIN_GUARD_UNAVAILABLE` fail closed and send no fallback email.
+- [ ] A persistence validation, conflict, or rate-limit response (4xx/429) remains a visible form error and does not bypass the upstream guard.
+- [ ] If persistence succeeds but internal delivery is forced to fail, `/api/lead` returns HTTP 502 with `persisted:true` and `delivered:false`.
+- [ ] The form stays populated, the success panel remains hidden, and the direct call/email recovery message appears.
+
+**Automated contract check:**
+
+```bash
+node --test tests/lead-flow-contract.test.js
+```
+
+Expected result for this phase: **22 passing tests**.
 
 ---
 

@@ -6,7 +6,9 @@
  *  - Audience tab switching (personal / fleet / dealer)
  *  - URL param preselect (?audience=fleet, ?service=bedliner,tonneau)
  *  - Service-picker checkboxes (16 services) + step progress
- *  - Lead submission to the shared /api/leads endpoint (with mailto fallback)
+ *
+ * Lead submission is intentionally owned by /lead-form.js. Keeping this file
+ * UI-only prevents one quote from being posted to multiple lead endpoints.
  *
  * Extracted from an inline <script> block on 2026-08-04 to fix a launch
  * blocker: a literal end-script tag sequence appeared inside a JS comment,
@@ -53,304 +55,6 @@ tabs.forEach(tab => {
   }
 })();
 
-// ── Lead API integration ─────────────────────────────────────────────────────
-// Posts each form to the Next.js /api/leads endpoint, which persists to the
-// shared CRM database (also read by Josh OS + Upfit Portal). Falls back to a
-// mailto: submit only if the API is unreachable so the lead never disappears.
-//
-// Configure with a global override in a small inline snippet before this
-// script if the API host changes. In HTML, set window.CU_LEAD_API in an
-// inline script tag pointing to the leads endpoint, e.g.
-// https://leads.capitalupfitters.com/api/leads.
-// Otherwise defaults to the production Vercel URL below.
-const LEAD_API_URL =
-  (typeof window !== 'undefined' && window.CU_LEAD_API) ||
-  'https://capital-upfitters-next.vercel.app/api/leads';
-const LEAD_SCHEMA_VERSION = '2026-07-15';
-const LEAD_MAILTO = 'CapitalUpfitters@gmail.com';
-
-function cuUuid() {
-  if (typeof crypto !== 'undefined' && crypto.randomUUID) return crypto.randomUUID();
-  // RFC4122 v4 fallback for older browsers.
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
-    const r = (Math.random() * 16) | 0;
-    const v = c === 'x' ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-}
-
-function cuGetField(form, name) {
-  const el = form.elements.namedItem(name);
-  if (!el) return '';
-  if (el instanceof RadioNodeList) return el.value || '';
-  return (el.value || '').trim();
-}
-
-function cuOptional(value) {
-  const v = (value || '').trim();
-  return v.length > 0 ? v : undefined;
-}
-
-function cuGetServices(form) {
-  return Array.from(form.querySelectorAll('input[name="services"]:checked'))
-    .map(el => el.value)
-    .filter(Boolean);
-}
-
-function cuBuildAttribution(form) {
-  const attribution = {
-    source: cuOptional(cuGetField(form, 'utm_source')),
-    medium: cuOptional(cuGetField(form, 'utm_medium')),
-    campaign: cuOptional(cuGetField(form, 'utm_campaign')),
-    term: cuOptional(cuGetField(form, 'utm_term')),
-    content: cuOptional(cuGetField(form, 'utm_content')),
-    referrer: cuOptional(cuGetField(form, 'referrer')),
-    landingPage: cuOptional(cuGetField(form, 'landing_page')),
-  };
-  // Drop undefined keys so the payload passes the strict Zod schema.
-  Object.keys(attribution).forEach(k => attribution[k] === undefined && delete attribution[k]);
-  return Object.keys(attribution).length > 0 ? attribution : undefined;
-}
-
-function cuBuildRetailPayload(form) {
-  const yearRaw = cuGetField(form, 'Vehicle Year');
-  const yearNum = parseInt(yearRaw, 10);
-  const validYear =
-    Number.isFinite(yearNum) && yearNum >= 1980 && yearNum <= new Date().getFullYear() + 2;
-
-  const firstName = cuGetField(form, 'First Name');
-  const lastName = cuGetField(form, 'Last Name');
-  const fullName = [firstName, lastName].filter(Boolean).join(' ').trim() || 'Not provided';
-
-  const phone = cuOptional(cuGetField(form, 'Phone'));
-  const email = cuOptional(cuGetField(form, 'Email'));
-
-  return {
-    schemaVersion: LEAD_SCHEMA_VERSION,
-    idempotencyKey: cuUuid(),
-    kind: 'retail',
-    services: cuGetServices(form),
-    vehicle: {
-      year: validYear ? yearNum : 'unknown',
-      make: cuGetField(form, 'Vehicle Make') || 'Unknown',
-      model: cuGetField(form, 'Vehicle Model') || 'Unknown',
-      trim: cuOptional(cuGetField(form, 'Vehicle Trim')),
-    },
-    preferences: {
-      notes: cuOptional(cuGetField(form, 'Message')),
-      timing: cuOptional(cuGetField(form, 'Preferred Date')),
-    },
-    contact: {
-      fullName,
-      phone,
-      email,
-      postalCode: cuOptional(cuGetField(form, 'ZIP')),
-      preference: phone && email ? 'either' : phone ? 'phone' : 'email',
-    },
-    consent: true,
-    attribution: cuBuildAttribution(form),
-  };
-}
-
-function cuBuildCommercialPayload(form, requestType) {
-  const isDealer = requestType === 'dealer';
-  const phone = cuOptional(cuGetField(form, 'Phone'));
-  const email = cuOptional(
-    isDealer ? cuGetField(form, 'Work Email') : cuGetField(form, 'Business Email'),
-  );
-  const contactName = cuGetField(form, 'Contact Name') || 'Not provided';
-
-  const quantityRaw = isDealer
-    ? cuGetField(form, 'Monthly Volume')
-    : cuGetField(form, 'Vehicle Count');
-  const quantityNum = parseInt(quantityRaw, 10);
-  const quantity = Number.isFinite(quantityNum) && quantityNum > 0 && quantityNum <= 10000
-    ? quantityNum
-    : undefined;
-
-  const assetDescription = isDealer
-    ? cuOptional(cuGetField(form, 'Organization Type')) ||
-      'Dealer / reseller inquiry'
-    : cuOptional(cuGetField(form, 'Business Name')) ||
-      'Fleet upfit inquiry';
-
-  const assets = { description: assetDescription };
-  if (quantity !== undefined) assets.quantity = quantity;
-
-  return {
-    schemaVersion: LEAD_SCHEMA_VERSION,
-    idempotencyKey: cuUuid(),
-    kind: 'commercial',
-    requestType,
-    scope: {
-      services: cuGetServices(form),
-      notes: cuOptional(cuGetField(form, 'Message')),
-    },
-    assets,
-    logistics: {
-      timing: cuOptional(cuGetField(form, 'Timeline')),
-    },
-    organization: {
-      name: cuOptional(cuGetField(form, 'Business Name')),
-    },
-    contact: {
-      fullName: contactName,
-      phone,
-      email,
-      preference: phone && email ? 'either' : phone ? 'phone' : 'email',
-    },
-    consent: true,
-    attribution: cuBuildAttribution(form),
-  };
-}
-
-function cuBuildMailtoLink(form, kind) {
-  // Fallback path: browsers open the user's mail client with a pre-filled body
-  // when the API is unreachable. Keeps the lead reachable end-to-end.
-  const fields = [];
-  const services = cuGetServices(form);
-  fields.push('Lead type: ' + kind);
-  if (services.length) fields.push('Services: ' + services.join(', '));
-  for (const el of form.elements) {
-    if (!el.name || el.type === 'hidden' || el.type === 'submit' || el.type === 'file') continue;
-    if (el.name === 'services') continue;
-    if (el.type === 'checkbox' && !el.checked) continue;
-    const v = (el.value || '').trim();
-    if (!v) continue;
-    fields.push(el.name + ': ' + v);
-  }
-  const body = encodeURIComponent(fields.join('\n'));
-  const subject = encodeURIComponent('Capital Upfitters — ' + kind + ' quote request');
-  return 'mailto:' + LEAD_MAILTO + '?subject=' + subject + '&body=' + body;
-}
-
-function cuShowSuccess(bodyId, successId) {
-  const body = document.getElementById(bodyId);
-  const success = document.getElementById(successId);
-  if (body) body.style.display = 'none';
-  if (success) success.style.display = 'block';
-}
-
-function cuShowError(form, message) {
-  let banner = form.querySelector('.form-error-banner');
-  if (!banner) {
-    banner = document.createElement('div');
-    banner.className = 'form-error-banner';
-    banner.setAttribute('role', 'alert');
-    banner.style.cssText =
-      'margin: var(--space-3, 12px) 0; padding: var(--space-3, 12px) var(--space-4, 16px);' +
-      'background: rgba(161, 44, 123, 0.08); border: 1px solid rgba(161, 44, 123, 0.35);' +
-      'color: var(--color-text, #1a1a1a); border-radius: var(--radius-md, 8px);' +
-      'font-size: var(--text-sm, 0.875rem); line-height: 1.5;';
-    form.insertBefore(banner, form.firstChild);
-  }
-  banner.textContent = message;
-}
-
-function cuClearError(form) {
-  const banner = form.querySelector('.form-error-banner');
-  if (banner) banner.remove();
-}
-
-async function cuSubmitLead(form, payload, kind, bodyId, successId) {
-  cuClearError(form);
-  const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
-  const originalLabel = submitBtn ? submitBtn.textContent : '';
-  if (submitBtn) {
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
-  }
-
-  // Basic client-side sanity: the API rejects empty services and requires
-  // phone OR email, so give the user a friendly message before spending the
-  // request.
-  if (!payload.contact.phone && !payload.contact.email) {
-    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
-    cuShowError(form, 'Please provide a phone number or email address so we can reach you.');
-    return;
-  }
-
-  if (!payload.services || payload.services.length === 0 ||
-      (payload.kind === 'commercial' && payload.scope.services.length === 0)) {
-    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
-    cuShowError(form, 'Please pick at least one service above.');
-    return;
-  }
-
-  try {
-    const response = await fetch(LEAD_API_URL, {
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'omit',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-
-    if (response.ok) {
-      cuShowSuccess(bodyId, successId);
-      return;
-    }
-
-    // API rejected the request. Show a friendly message and offer mailto as a
-    // recovery path instead of silently discarding the lead.
-    let apiMessage = 'The request could not be submitted right now.';
-    try {
-      const data = await response.json();
-      if (data && data.error && data.error.message) apiMessage = data.error.message;
-    } catch (_) { /* non-JSON error body */ }
-    console.error('[cu-leads] api error', response.status, apiMessage);
-
-    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
-    cuShowError(
-      form,
-      apiMessage + ' You can also email us directly and we\u2019ll get back to you within one business day.',
-    );
-    // Attach a one-click mailto recovery link.
-    const banner = form.querySelector('.form-error-banner');
-    if (banner && !banner.querySelector('a')) {
-      const link = document.createElement('a');
-      link.href = cuBuildMailtoLink(form, kind);
-      link.textContent = 'Email your request instead';
-      link.style.cssText = 'display: inline-block; margin-top: 8px; color: var(--color-accent); text-decoration: underline;';
-      banner.appendChild(document.createElement('br'));
-      banner.appendChild(link);
-    }
-  } catch (networkError) {
-    // Total network failure (offline, CORS block, etc.). Redirect to mailto so
-    // the user still gets in touch.
-    console.error('[cu-leads] network error', networkError);
-    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
-    cuShowError(
-      form,
-      'We could not reach our servers. Opening your email app so you can send us the details directly.',
-    );
-    window.location.href = cuBuildMailtoLink(form, kind);
-  }
-}
-
-// Form intercepts
-function handleFormSubmit(formId, bodyId, successId, payloadKind) {
-  const form = document.getElementById(formId);
-  if (!form) return;
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    let payload;
-    try {
-      payload = payloadKind === 'retail'
-        ? cuBuildRetailPayload(form)
-        : cuBuildCommercialPayload(form, payloadKind === 'fleet' ? 'fleet' : 'dealer');
-    } catch (err) {
-      console.error('[cu-leads] payload build failed', err);
-      cuShowError(form, 'Something went wrong preparing your request. Please refresh and try again.');
-      return;
-    }
-    cuSubmitLead(form, payload, payloadKind, bodyId, successId);
-  });
-}
-handleFormSubmit('quote-retail', 'form-retail-body', 'form-retail-success', 'retail');
-handleFormSubmit('quote-fleet', 'form-fleet-body', 'form-fleet-success', 'fleet');
-handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success', 'dealer');
-
 // ── Phase 2: Service Picker (quote-cart retrofit) ────────────────────────────
 // Grid of service chips above the form. Selections persist across audience
 // tabs, sync to the checkboxes in retail/fleet/dealer panels, and survive
@@ -358,6 +62,7 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success', 'dea
 // pages can deep-link with pre-selected items.
 (function() {
   const STORAGE_KEY = 'cu:quote-cart:selected';
+  const MAX_SERVICES = 12;
 
   // Canonical service list.
   //  • `value`  = API-safe slug sent to the leads endpoint (must match the
@@ -397,6 +102,7 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success', 'dea
   const continueBtn = document.getElementById('picker-cart-continue');
   const skipBtn    = document.getElementById('picker-skip');
   const formSection = document.getElementById('quote-form-section');
+  const announcementEl = document.getElementById('service-picker-announcement');
 
   if (!grid) return;
 
@@ -406,6 +112,17 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success', 'dea
     .split(',').map(s => s.trim()).filter(Boolean);
 
   let selected = new Set();
+  let initialSelectionTrimmed = false;
+
+  function addInitialSelection(value) {
+    if (!value || selected.has(value)) return;
+    if (selected.size >= MAX_SERVICES) {
+      initialSelectionTrimmed = true;
+      return;
+    }
+    selected.add(value);
+  }
+
   if (urlServices.length) {
     urlServices.forEach(s => {
       // Case-insensitive match on canonical value or label
@@ -413,13 +130,27 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success', 'dea
         svc => svc.value.toLowerCase() === s.toLowerCase()
             || svc.label.toLowerCase() === s.toLowerCase()
       );
-      if (match) selected.add(match.value);
+      if (match) addInitialSelection(match.value);
     });
   } else {
     try {
       const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-      if (Array.isArray(stored)) stored.forEach(v => selected.add(v));
-    } catch (e) { /* ignore parse errors */ }
+      if (Array.isArray(stored)) {
+        stored.forEach(v => {
+          const match = SERVICES.find(
+            svc => svc.value.toLowerCase() === String(v).toLowerCase()
+                || svc.label.toLowerCase() === String(v).toLowerCase()
+                || svc.legacy.toLowerCase() === String(v).toLowerCase()
+          );
+          if (match) addInitialSelection(match.value);
+          else initialSelectionTrimmed = true;
+        });
+      } else {
+        initialSelectionTrimmed = true;
+      }
+    } catch (e) {
+      initialSelectionTrimmed = true;
+    }
   }
 
   // ── Render chip grid ───────────────────────────────────────────────────────
@@ -436,6 +167,24 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success', 'dea
       </button>`;
   }).join('');
   grid.innerHTML = chipHTML;
+
+  let announcementTimer = null;
+  function announce(message) {
+    if (!announcementEl) return;
+    window.clearTimeout(announcementTimer);
+    announcementEl.textContent = '';
+    announcementTimer = window.setTimeout(() => {
+      announcementEl.textContent = message;
+    }, 20);
+  }
+
+  function updateChipAvailability() {
+    const atLimit = selected.size >= MAX_SERVICES;
+    grid.querySelectorAll('.service-chip').forEach(chip => {
+      const unavailable = atLimit && !selected.has(chip.dataset.service);
+      chip.setAttribute('aria-disabled', unavailable ? 'true' : 'false');
+    });
+  }
 
   // ── Sync selection to form checkboxes across all 3 audience panels ─────────
   // Slugify any string to backend-safe identifier (lower snake_case).
@@ -490,11 +239,12 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success', 'dea
       listEl.textContent = labels.slice(0, 4).join(', ')
         + (labels.length > 4 ? ` +${labels.length - 4} more` : '');
     }
+    updateChipAvailability();
   }
 
   // ── Persist to localStorage ────────────────────────────────────────────────
   function persist() {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify([...selected])); }
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify([...selected].slice(0, MAX_SERVICES))); }
     catch (e) { /* storage full or disabled — ignore */ }
   }
 
@@ -508,6 +258,10 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success', 'dea
       chip.classList.remove('selected');
       chip.setAttribute('aria-pressed', 'false');
     } else {
+      if (selected.size >= MAX_SERVICES) {
+        announce('You can select up to 12 services. Remove one before choosing another.');
+        return;
+      }
       selected.add(svc);
       chip.classList.add('selected');
       chip.setAttribute('aria-pressed', 'true');
@@ -553,6 +307,12 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success', 'dea
     if (e.target.matches('input[type="checkbox"][name="services"]')) {
       const val = e.target.value;
       const wasChecked = e.target.checked;
+      if (wasChecked && !selected.has(val) && selected.size >= MAX_SERVICES) {
+        e.target.checked = false;
+        announce('You can select up to 12 services. Remove one before choosing another.');
+        updateChipAvailability();
+        return;
+      }
       if (wasChecked) selected.add(val); else selected.delete(val);
       // Update all matching checkboxes across panels
       document.querySelectorAll(`input[type="checkbox"][name="services"][value="${val.replace(/"/g,'\\"')}"]`)
@@ -569,8 +329,27 @@ handleFormSubmit('quote-dealer', 'form-dealer-body', 'form-dealer-success', 'dea
   });
 
   // ── Initial sync ───────────────────────────────────────────────────────────
+  if (initialSelectionTrimmed) {
+    persist();
+    announce('Service selections were limited to the first 12 choices.');
+  }
   syncCheckboxes();
   updateBar();
+
+  // Keep the picker and persisted state in sync after the single shared lead
+  // controller confirms successful delivery.
+  document.addEventListener('cu:lead-success', (event) => {
+    const formId = event.detail && event.detail.formId;
+    if (!/^quote-(retail|fleet|dealer)$/.test(formId || '')) return;
+    selected.clear();
+    document.querySelectorAll('.service-chip').forEach(chip => {
+      chip.classList.remove('selected');
+      chip.setAttribute('aria-pressed', 'false');
+    });
+    persist();
+    syncCheckboxes();
+    updateBar();
+  });
 })();
 
 })();

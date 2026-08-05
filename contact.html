@@ -738,7 +738,7 @@
           </div>
           <div id="callback-form-body">
             <h4>Request a Callback</h4>
-            <form data-cms-form="retail" id="callback-form" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="callback-form" novalidate>
+            <form data-cms-form="retail" id="callback-form" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="callback-form" novalidate data-success-body="callback-form-body" data-success-panel="callback-success">
               <!-- Attribution (auto-filled by /attribution.js) -->
               <input type="hidden" name="ip_address" data-cu-attr="1">
               <input type="hidden" name="geo_city" data-cu-attr="1">
@@ -767,7 +767,7 @@
                 </div>
                 <div class="form-field">
                   <label class="form-label" for="cb-phone">Phone Number *</label>
-                  <input class="form-input" type="tel" id="cb-phone" name="Phone" placeholder="(301) 555-0100" required>
+                  <input class="form-input" type="tel" id="cb-phone" name="Phone" placeholder="(301) 555-0100" pattern="[0-9\s+\(\)\.\-]{7,30}" minlength="7" maxlength="30" title="Enter a valid phone number using digits and + ( ) - ." required>
                 </div>
               </div>
               <div class="form-field">
@@ -849,12 +849,6 @@
 (function(){const b=document.getElementById('hamburger'),m=document.getElementById('nav-mobile'),c=document.getElementById('nav-close');if(b&&m){b.addEventListener('click',()=>{m.classList.add('open');b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'});if(c)c.addEventListener('click',()=>{m.classList.remove('open');b.setAttribute('aria-expanded','false');document.body.style.overflow=''})}})();
 (function(){const e=document.querySelectorAll('.reveal');if(!e.length)return;const i=new IntersectionObserver(v=>{v.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');i.unobserve(el.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});e.forEach(el=>i.observe(el))})();
 
-// Callback form
-document.getElementById('callback-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  document.getElementById('callback-form-body').style.display = 'none';
-  document.getElementById('callback-success').style.display = 'block';
-});
 </script>
 
 <script>
