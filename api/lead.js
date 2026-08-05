@@ -14,6 +14,7 @@
 //   LEAD_PERSISTENCE_ORIGIN — allowlisted canonical site origin
 //   LEAD_BRIDGE_SECRET      — 32+ byte secret shared with the durable lead API;
 //                             authenticates the visitor address across Vercel hops
+//   LEAD_PERSISTENCE_BYPASS_SECRET — Vercel protection bypass for preview persistence
 //   LEAD_ALLOWED_ORIGIN     — comma-separated browser origins (same-host previews
 //                             are also accepted dynamically)
 //   LEAD_PERSISTENCE_TIMEOUT_MS — durable endpoint deadline (default 5000)
@@ -501,6 +502,10 @@ async function persistQuoteLead(body, req) {
     'Origin': origin,
     'Idempotency-Key': payload.idempotencyKey
   };
+  const protectionBypass = process.env.LEAD_PERSISTENCE_BYPASS_SECRET;
+  if (typeof protectionBypass === 'string' && protectionBypass.length > 0) {
+    headers['x-vercel-protection-bypass'] = protectionBypass;
+  }
   const clientIp = getClientIp(req);
   const bridge = createBridgeHeaders({
     clientIp,

@@ -94,6 +94,7 @@ async function withRuntime(run) {
   process.env.LEAD_PERSISTENCE_URL = 'https://persistence.test/api/leads/';
   process.env.LEAD_PERSISTENCE_ORIGIN = 'https://capitalupfitters.com';
   process.env.LEAD_BRIDGE_SECRET = BRIDGE_SECRET;
+  delete process.env.LEAD_PERSISTENCE_BYPASS_SECRET;
   process.env.LEAD_ALLOWED_ORIGIN = LOCAL_ORIGIN;
   process.env.LEAD_ALLOWED_ORIGINS = LOCAL_ORIGIN;
   process.env.LEAD_PERSISTENCE_TIMEOUT_MS = '25';
@@ -158,6 +159,49 @@ test('quote requests persist once with a durable reference and timeout signals',
       calls.slice(1).map((call) => call.options.headers['Idempotency-Key']).sort(),
       [`${FIXED_KEY}-customer`, `${FIXED_KEY}-internal`]
     );
+  });
+});
+
+test('protected persistence preview receives the configured bypass header', async () => {
+  await withRuntime(async () => {
+    const bypassSecret = 'test-only-vercel-protection-bypass-secret';
+    process.env.LEAD_PERSISTENCE_BYPASS_SECRET = bypassSecret;
+    let persistenceHeaders;
+    global.fetch = async (url, options) => {
+      if (url === 'https://persistence.test/api/leads/') {
+        persistenceHeaders = options.headers;
+        return jsonResponse({ ok: true, persisted: true, reference: 'CU-BYPASS-1' }, 201);
+      }
+      assert.equal(url, 'https://api.resend.com/emails');
+      return jsonResponse({ id: 'email-id' });
+    };
+
+    const result = await invoke(retailBody());
+
+    assert.equal(result.status, 200);
+    assert.equal(
+      persistenceHeaders['x-vercel-protection-bypass'],
+      bypassSecret
+    );
+  });
+});
+
+test('persistence request omits the bypass header when it is unset', async () => {
+  await withRuntime(async () => {
+    let persistenceHeaders;
+    global.fetch = async (url, options) => {
+      if (url === 'https://persistence.test/api/leads/') {
+        persistenceHeaders = options.headers;
+        return jsonResponse({ ok: true, persisted: true, reference: 'CU-BYPASS-2' }, 201);
+      }
+      assert.equal(url, 'https://api.resend.com/emails');
+      return jsonResponse({ id: 'email-id' });
+    };
+
+    const result = await invoke(retailBody());
+
+    assert.equal(result.status, 200);
+    assert.equal(persistenceHeaders['x-vercel-protection-bypass'], undefined);
   });
 });
 
