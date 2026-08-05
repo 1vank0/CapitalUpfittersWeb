@@ -20,22 +20,25 @@
 | Homepage positioning and dual paths | Pass | `tests/growth-brief-contract.test.js` |
 | Retail/fleet form identities | Pass | Existing `quote-retail` and `quote-fleet` API contracts reused |
 | Required lead fields and service selection | Pass | Static contract plus `/lead-form.js` validation |
-| Protected persistence and notification behavior | Pass | 36 lead-flow contracts |
+| Protected persistence and notification behavior | Pass | 28 lead-flow contracts |
 | Homepage media API and derivative integrity | Pass | 8 homepage media contracts |
 | Growth-brief contracts | Pass | 8 growth contracts |
 | JavaScript syntax | Pass | `node --check` for changed scripts |
 | Structured-data JSON | Pass | Parsed in growth contract |
 | Duplicate homepage IDs | Pass | Checked in growth contract |
 | Whitespace / patch hygiene | Pass | `git diff --check` |
-| Desktop visual QA | Not run—awaiting Preview | Run after Vercel creates the deployment |
-| Mobile visual QA | Not run—awaiting Preview | Run after Vercel creates the deployment |
-| Console/network errors | Not run—awaiting Preview | Run against deployed Preview |
-| Retail/fleet tab interaction | Not run—awaiting Preview | Run against deployed Preview |
+| Desktop visual QA | Pass | Cloud Chrome at 1363 × 936: hero, retail/fleet intake, outcome packages, process section, and detailed quote route |
+| Responsive behavior | Static pass; device emulation pending | Responsive CSS and contract checks pass; the connected cloud browser does not expose viewport emulation |
+| Console/network errors | Pass | No site-origin warnings/errors; Vercel build and Preview runtime logs clean. Browser-extension metadata errors excluded |
+| Retail/fleet tab interaction | Pass | Both tab states, panels, required fields, and hero-to-intake routing verified in Preview |
+| Package-to-quote routing | Pass | Fleet package query preselected the expected detailed-quote services |
+| Claim-hygiene route check | Pass | Browser QA caught and removed residual same-week, same-day, 24–48h, vehicle-volume, and tenure claims |
 | Live form delivery | Not run—would create a real lead | Contract-tested without transmitting a customer request |
 
 ## Known limitations and next-phase items
 
 - `dataLayer` events are emitted, but an analytics provider/measurement ID still needs to be selected and configured.
+- A real-device/mobile-browser visual pass remains advisable because the connected cloud browser viewport was fixed at desktop size; responsive breakpoints are covered statically.
 - Existing detailed quote-page photo inputs are not uploaded by the current lead bridge; the UI must not imply that files reached the shop until private media upload storage is connected.
 - This phase removes unverified claims from the homepage and quote entry. Other legacy pages still require a site-wide claims inventory and approved evidence sheet.
 - Real project case studies, partner-locator verification, trade-package pages, and the full Signature Build page require approved claims and owned project media.

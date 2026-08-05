@@ -49,10 +49,21 @@ test('unverified homepage claims called out by the brief are not published', () 
 });
 
 test('quote page avoids unsupported response-time promises', () => {
-  assert.doesNotMatch(quote, /respond(?:s)? within 24 hours/i);
-  assert.doesNotMatch(quote, /respond(?:s)? same business day/i);
-  assert.doesNotMatch(quote, /within one business day/i);
+  const disallowed = [
+    /respond(?:s)? within 24 hours/i,
+    /respond(?:s)? same business day/i,
+    /within one business day/i,
+    /same[- ]week/i,
+    /same day/i,
+    /24\s*[–-]\s*48\s*h/i,
+    /5,000\+/i,
+    /30\+[^<]*years/i,
+    /get a free quote/i
+  ];
+  disallowed.forEach((pattern) => assert.doesNotMatch(quote, pattern));
   assert.match(quote, /BUILD THE <em>RIGHT PROJECT\.<\/em>/);
+  assert.match(quote, /Fitment First/);
+  assert.match(quote, /Retail \+ Fleet/);
 });
 
 test('conversion scaffolding covers path selection, clicks, starts, and completions', () => {
