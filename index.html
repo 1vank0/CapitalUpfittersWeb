@@ -125,87 +125,6 @@
 <style>
 /* ── INDEX-SPECIFIC ─────────────────────────────────────── */
 
-/* Hero — MP4 video background */
-.hero-video-wrap {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-.hero-video-wrap video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 177.78vh;  /* 16/9 × 100vh */
-  height: 56.25vw;  /* 9/16 × 100vw */
-  min-width: 100%;
-  min-height: 100%;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-  pointer-events: none;
-}
-/* 30% global dim */
-.hero-video-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(17,24,39,0.30);
-  pointer-events: none;
-}
-/* Fallback: dark industrial gradient shown until video loads (no external asset dependency) */
-.hero-bg-gradient {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 30% 20%, rgba(234,88,12,0.15) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 90%, rgba(30,58,138,0.35) 0%, transparent 60%),
-  linear-gradient(160deg, #1a2742 0%, #0f1825 50%, #111827 100%);
-  transform-origin: center top;
-  will-change: transform;
-  transition: opacity 1.2s ease;
-}
-.hero-bg-gradient.hidden { opacity: 0; }
-
-/* Funnel card gradient placeholders */
-.funnel-card-bg-1 {
-  position: absolute; inset: 0;
-  background: linear-gradient(160deg, #1a2742 0%, #111827 100%);
-}
-.funnel-card-bg-2 {
-  position: absolute; inset: 0;
-  background: linear-gradient(160deg, #203055 0%, #1a2742 100%);
-}
-.funnel-card-bg-3 {
-  position: absolute; inset: 0;
-  background: linear-gradient(160deg, #162240 0%, #111827 100%);
-}
-
-/* Service card gradient placeholders */
-.svc-bg-bedliner  { background: linear-gradient(160deg, #1e2c3a 0%, #111827 100%); }
-.svc-bg-hitch     { background: linear-gradient(160deg, #1a2742 0%, #0f1825 100%); }
-.svc-bg-ceramic   { background: linear-gradient(160deg, #203055 0%, #162240 100%); }
-.svc-bg-under     { background: linear-gradient(160deg, #1c2535 0%, #111827 100%); }
-.svc-bg-tonneau   { background: linear-gradient(160deg, #192438 0%, #0d1520 100%); }
-.svc-bg-boards    { background: linear-gradient(160deg, #1e2c45 0%, #111827 100%); }
-
-/* service card override for gradient (no img tag) */
-.service-card-grad {
-  position: absolute;
-  inset: 0;
-}
-
-/* Why visual placeholder */
-.why-visual-placeholder {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #1a2742 0%, #203055 60%, #111827 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.why-visual-icon {
-  opacity: 0.12;
-}
-
 /* Locations grid */
 .locations-grid {
   display: grid;
@@ -261,11 +180,13 @@
   .locations-grid { grid-template-columns: 1fr; }
 }
 </style>
+  <link rel="stylesheet" href="./homepage-luxury.css">
   <script src="/attribution.js" defer></script>
   <script src="/lead-form.js" defer></script>
+  <script src="/homepage-media.js" defer></script>
 
 </head>
-<body>
+<body class="home-page">
 
 <!-- ANNOUNCE BAR -->
 <div class="announce-bar" id="announce-bar">
@@ -483,48 +404,21 @@
 <!-- ═══════════════════════════════════════════════════════
      HERO
 ═══════════════════════════════════════════════════════ -->
-<section class="hero" aria-label="Hero">
-  <!-- Fallback static image (fades out once video plays) -->
+<section class="hero home-hero" aria-labelledby="home-hero-heading">
   <div class="hero-bg-gradient" id="hero-bg-fallback"></div>
-
-  <!-- MP4 video background — chains Patriot Liner → AMP PowerStep → repeat -->
   <div class="hero-video-wrap" aria-hidden="true">
     <video id="hero-vid" autoplay muted playsinline preload="auto">
       <source src="https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4" type="video/mp4">
     </video>
   </div>
-
-  <!-- Dark color overlay matching brand -->
   <div class="hero-video-overlay"></div>
   <div class="hero-overlay"></div>
-
   <div class="hero-content container">
-    <div class="hero-label">Rockville, MD &mdash; Serving the DMV Since 1994 &mdash; <span style="color:rgba(255,255,255,.6);">4.8&#9733; on Google</span></div>
-    <h1>Premium Vehicle Upfitting.<br><em>DMV's Most Trusted Shop.</em></h1>
-    <p class="hero-sub">Industrial coatings, fleet upfitting &amp; vehicle protection for fleets, government and personal vehicles across the DMV. Family-owned since 1994.</p>
+    <h1 id="home-hero-heading">Premium vehicle upfitting.<br>Built around your work.</h1>
+    <p class="hero-sub">Purpose-built protection and upfitting for personal vehicles, fleets, dealers, government, and industrial projects across the DMV.</p>
     <div class="hero-ctas">
-      <a href="./quote.html" class="btn btn-primary btn-lg">Get Instant Quote</a>
-      <a href="./services/bedliner.html#bundles" class="btn btn-outline btn-lg">See Bedliner Bundles</a>
-    </div>
-  </div>
-
-  <!-- Stats bottom-right -->
-  <div class="hero-stats" aria-label="Quick stats">
-    <div class="hero-stat">
-      <span class="hero-stat-value">30+</span>
-      <span class="hero-stat-label">Years</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-value">5,000+</span>
-      <span class="hero-stat-label">Vehicles</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-value">5.0★</span>
-      <span class="hero-stat-label">Google</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-value">150+</span>
-      <span class="hero-stat-label">Brands</span>
+      <a href="./quote.html" class="btn btn-primary btn-lg">Get an instant quote</a>
+      <a href="./services/index.html" class="btn btn-outline btn-lg">Explore services</a>
     </div>
   </div>
 </section>
@@ -551,15 +445,6 @@
         <div class="trust-item-text">
           <strong>IGL &amp; System X Certified</strong>
           <span>Authorized ceramic applicators</span>
-        </div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-item-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <div class="trust-item-text">
-          <strong>5.0★ Google Rating</strong>
-          <span>96 verified Google reviews</span>
         </div>
       </div>
       <div class="trust-item">
@@ -623,77 +508,60 @@
 ═══════════════════════════════════════════════════════ -->
 <section class="funnel-section" aria-labelledby="funnel-heading">
   <div class="container">
-    <div class="reveal">
-      <div class="section-label" style="color: rgba(255,255,255,0.45);">Who Do We Serve?</div>
-      <h2 id="funnel-heading" style="color: #fff; max-width: 700px;">ONE SHOP. EVERY VEHICLE NEED.</h2>
-      <p style="color: rgba(255,255,255,0.55); max-width: 560px; margin-top: var(--space-4); font-family: var(--font-body);">Whether you own a personal truck, manage a commercial fleet, or run a dealership — we have a dedicated solution for you.</p>
+    <div class="home-section-intro reveal">
+      <div class="section-label">Who we serve</div>
+      <h2 id="funnel-heading">One shop. Every vehicle need.</h2>
+      <p>Whether you own a personal truck, manage a commercial fleet, or run a dealership, there is a dedicated path for your build.</p>
     </div>
 
     <div class="funnel-grid">
-      <!-- Card 1: Personal -->
       <article class="funnel-card reveal reveal-delay-1">
-        <div class="funnel-card-bg-1"></div>
-        <!-- Decorative icon overlay -->
-        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:0.07;">
-          <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3m0 0h4l3 3v4h-7V8z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="17.5" cy="17.5" r="1.5"/></svg>
-        </div>
+        <div class="home-media" data-media-key="home.audience.personal"></div>
         <div class="funnel-card-body">
-          <div class="funnel-card-eyebrow">Personal Vehicle</div>
-          <div class="funnel-card-title">I Own a Truck or SUV</div>
+          <div class="funnel-card-eyebrow">Personal vehicle</div>
+          <div class="funnel-card-title">I own a truck or SUV</div>
           <p class="funnel-card-desc">Bedliners, hitches, ceramic coatings, undercoating, and accessories — for your personal vehicle. Same-week turnaround.</p>
           <a href="./start-here.html?audience=retail" class="funnel-card-link">
-            Explore Options
+            Explore options
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </article>
 
-      <!-- Card 2: Fleet -->
       <article class="funnel-card reveal reveal-delay-2">
-        <div class="funnel-card-bg-2"></div>
-        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:0.07;">
-          <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        </div>
+        <div class="home-media" data-media-key="home.audience.fleet"></div>
         <div class="funnel-card-body">
-          <div class="funnel-card-eyebrow">Commercial Fleet</div>
-          <div class="funnel-card-title">I Manage a Fleet</div>
+          <div class="funnel-card-eyebrow">Commercial fleet</div>
+          <div class="funnel-card-title">I manage a fleet</div>
           <p class="funnel-card-desc">Van packages, pickup upfitting, DOT compliance, fleet branding, and bulk scheduling — one account.</p>
           <a href="./start-here.html?audience=fleet" class="funnel-card-link">
-            Fleet Solutions
+            Fleet solutions
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </article>
 
-      <!-- Card 3: Dealer -->
       <article class="funnel-card reveal reveal-delay-3">
-        <div class="funnel-card-bg-3"></div>
-        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:0.07;">
-          <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
+        <div class="home-media" data-media-key="home.audience.dealer"></div>
         <div class="funnel-card-body">
-          <div class="funnel-card-eyebrow">Dealer &amp; Gov</div>
-          <div class="funnel-card-title">I'm a Dealer or Municipality</div>
+          <div class="funnel-card-eyebrow">Dealer &amp; government</div>
+          <div class="funnel-card-title">I’m a dealer or municipality</div>
           <p class="funnel-card-desc">Pre-delivery customization, state contract support, government fleet solutions, and the Upfit Portal.</p>
           <a href="./start-here.html?audience=dealer" class="funnel-card-link">
-            Dealer &amp; Gov Portal
+            Dealer &amp; government portal
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </article>
 
-      <!-- Card 4: Industrial / Infrastructure — NEW -->
-      <article class="funnel-card reveal reveal-delay-1" style="border: 1px solid rgba(245,158,11,0.25);">
-        <div style="position:absolute; inset:0; background: linear-gradient(160deg, #1c1a0e 0%, #111827 100%);"></div>
-        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:0.07;">
-          <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
+      <article class="funnel-card reveal reveal-delay-1">
+        <div class="home-media" data-media-key="home.audience.industrial"></div>
         <div class="funnel-card-body">
-          <div class="funnel-card-eyebrow" style="color: #f59e0b;">Infrastructure &amp; Industrial</div>
-          <div class="funnel-card-title">Critical Coating Projects</div>
+          <div class="funnel-card-eyebrow">Infrastructure &amp; industrial</div>
+          <div class="funnel-card-title">Critical coating projects</div>
           <p class="funnel-card-desc">Blast mitigation, corrosion protection, anti-skid, and structural coatings for facilities, equipment, and large-scale fleets. Mobile application available.</p>
-          <a href="./services/industrial-coatings.html" class="funnel-card-link" style="color: #f59e0b;">
-            Industrial Solutions
+          <a href="./services/industrial-coatings.html" class="funnel-card-link">
+            Industrial solutions
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
@@ -705,177 +573,129 @@
 <!-- ═══════════════════════════════════════════════════════
      SERVICES GRID
 ═══════════════════════════════════════════════════════ -->
-<section class="section section--surface" aria-labelledby="services-heading">
+<section class="section home-services" aria-labelledby="services-heading">
   <div class="container">
-    <div class="reveal">
-      <div class="section-label">Our Services</div>
-      <h2 id="services-heading">EVERYTHING YOUR VEHICLE NEEDS.</h2>
-      <p style="max-width: 520px; margin-top: var(--space-4);">From bedliner bundles and truck accessories to fleet upfitting and industrial coatings. Authorized installers for top brands. Same-week availability.</p>
+    <div class="home-section-intro reveal">
+      <div class="section-label">Our services</div>
+      <h2 id="services-heading">Everything your vehicle needs.</h2>
+      <p>From bedliner bundles and truck accessories to fleet upfitting and industrial coatings. Authorized installation, coordinated in one place.</p>
     </div>
 
-    <div class="grid-3" style="margin-top: var(--space-12);">
+    <div class="service-mosaic">
 
       <!-- Bedliners -->
-      <a href="./services/bedliner.html" class="service-card reveal reveal-delay-1" aria-label="Spray-On Bedliners">
-        <div class="service-card-grad svc-bg-bedliner"></div>
-        <div class="service-card-overlay"></div>
+      <a href="./services/bedliner.html" class="service-card reveal reveal-delay-1">
+        <div class="home-media" data-media-key="home.service.bedliner"></div>
         <div class="service-card-body">
           <div class="service-card-tag">Authorized Patriot Liner</div>
           <div class="service-card-title">Spray-On Bedliners</div>
           <p class="service-card-desc">Durable, textured spray liner permanently bonded to your truck bed. Lifetime warranty. Available in any color.</p>
           <div class="service-card-price">Starting from <strong>$575</strong></div>
           <div class="service-card-arrow">
-            Learn More
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Learn more
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
         </div>
       </a>
       <!-- Tonneau -->
-      <a href="./services/tonneau.html" class="service-card reveal reveal-delay-2" aria-label="Tonneau Covers">
-        <div class="service-card-grad svc-bg-tonneau"></div>
-        <div class="service-card-overlay"></div>
+      <a href="./services/tonneau.html" class="service-card reveal reveal-delay-2">
+        <div class="home-media" data-media-key="home.service.tonneau"></div>
         <div class="service-card-body">
-          <div class="service-card-tag">★ Bundle With Bedliner</div>
+          <div class="service-card-tag">Bundle with bedliner</div>
           <div class="service-card-title">Tonneau Covers</div>
           <p class="service-card-desc">Soft fold, hard fold, retractable, and roll-up covers for all popular truck models. Same-day installation on most in-stock units.</p>
           <div class="service-card-price">Starting from <strong>$300</strong></div>
           <div class="service-card-arrow">
-            Learn More
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Learn more
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
         </div>
       </a>
       <!-- Running Boards -->
-      <a href="./services/running-boards.html" class="service-card reveal reveal-delay-3" aria-label="Running Boards & Steps">
-        <div class="service-card-grad svc-bg-boards"></div>
-        <div class="service-card-overlay"></div>
+      <a href="./services/running-boards.html" class="service-card reveal reveal-delay-3">
+        <div class="home-media" data-media-key="home.service.running-boards"></div>
         <div class="service-card-body">
-          <div class="service-card-tag">★ Bundle With Bedliner</div>
+          <div class="service-card-tag">Bundle with bedliner</div>
           <div class="service-card-title">Running Boards &amp; Steps</div>
           <p class="service-card-desc">Steel, aluminum, and AMP Research electric running boards for trucks and SUVs. Powered steps deploy automatically on door open.</p>
           <div class="service-card-price">Starting from <strong>$250</strong></div>
           <div class="service-card-arrow">
-            Learn More
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Learn more
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
         </div>
       </a>
       <!-- Ceramic -->
-      <a href="./services/ceramic-coating.html" class="service-card reveal reveal-delay-1" aria-label="Ceramic Coating & PPF">
-        <div class="service-card-grad svc-bg-ceramic"></div>
-        <div class="service-card-overlay"></div>
+      <a href="./services/ceramic-coating.html" class="service-card reveal reveal-delay-1">
+        <div class="home-media" data-media-key="home.service.ceramic"></div>
         <div class="service-card-body">
           <div class="service-card-tag">IGL &amp; System X Certified</div>
           <div class="service-card-title">Ceramic Coating &amp; PPF</div>
           <p class="service-card-desc">Professional-grade nano-ceramic protection and paint protection film. Locks in gloss, repels water, resists UV and chemical damage.</p>
           <div class="service-card-price">Starting from <strong>$400</strong></div>
           <div class="service-card-arrow">
-            Learn More
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Learn more
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
         </div>
       </a>
       <!-- Undercoating -->
-      <a href="./services/undercoating.html" class="service-card reveal reveal-delay-2" aria-label="Undercoating & Rust Protection">
-        <div class="service-card-grad svc-bg-under"></div>
-        <div class="service-card-overlay"></div>
+      <a href="./services/undercoating.html" class="service-card reveal reveal-delay-2">
+        <div class="home-media" data-media-key="home.service.undercoating"></div>
         <div class="service-card-body">
           <div class="service-card-tag">Rust-Proofing Specialists</div>
           <div class="service-card-title">Undercoating &amp; Rust Protection</div>
           <p class="service-card-desc">Full undercarriage coating to prevent rust, reduce road noise, and extend the life of your vehicle — especially vital in DMV winters.</p>
           <div class="service-card-price">Starting from <strong>$650</strong></div>
           <div class="service-card-arrow">
-            Learn More
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Learn more
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
         </div>
       </a>
       <!-- Hitches -->
-      <a href="./services/hitches.html" class="service-card reveal reveal-delay-3" aria-label="Hitches & Towing">
-        <div class="service-card-grad svc-bg-hitch"></div>
-        <div class="service-card-overlay"></div>
+      <a href="./services/hitches.html" class="service-card reveal reveal-delay-3">
+        <div class="home-media" data-media-key="home.service.hitches"></div>
         <div class="service-card-body">
           <div class="service-card-tag">All Classes &amp; Configurations</div>
           <div class="service-card-title">Hitches &amp; Towing</div>
           <p class="service-card-desc">Receiver hitches, fifth-wheel preps, gooseneck conversions, brake controllers, and wiring for trucks, SUVs, and vans.</p>
           <div class="service-card-price">Starting from <strong>$150+</strong></div>
           <div class="service-card-arrow">
-            Learn More
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Learn more
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
         </div>
       </a>
 
     </div>
 
-    <div style="text-align: center; margin-top: var(--space-10);">
-      <a href="./services/index.html" class="btn btn-ghost btn-lg">View All Services</a>
+    <div class="home-services-actions">
+      <a href="./services/index.html" class="btn btn-ghost btn-lg">View all services</a>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════
-     STATS STRIP
-═══════════════════════════════════════════════════════ -->
 <!-- ═══════════════════════════════════════════════
      INDUSTRIAL PRESTIGE SECTION
 ═══════════════════════════════════════════════ -->
-<section class="section section--dark" aria-labelledby="industrial-prestige-heading" style="padding: var(--space-16) 0; background: linear-gradient(135deg, #0a0d14 0%, #111827 50%, #0f1520 100%);">
+<section class="home-industrial-section" aria-labelledby="industrial-prestige-heading">
   <div class="container">
-    <div class="reveal" style="text-align:center; margin-bottom: var(--space-10);">
-      <div class="section-label" style="justify-content:center; color: rgba(245,158,11,0.6);">Industrial &amp; Specialty Coatings</div>
-      <h2 id="industrial-prestige-heading" style="color:#fff; max-width: 700px; margin-inline:auto;">TRUSTED BY GOVERNMENT AGENCIES, HEALTHCARE SYSTEMS &amp; NATIONAL INSTITUTIONS.</h2>
-      <p style="color:rgba(255,255,255,0.5); max-width:600px; margin: var(--space-4) auto 0; font-family: var(--font-body); font-size: var(--text-base);">For critical infrastructure, specialty coating projects, and industrial applications where failure is not an option. Mobile application available — we come to your facility.</p>
-    </div>
-
-    <div class="grid-3 reveal" style="margin-bottom: var(--space-12);">
-      <div style="background: rgba(255,255,255,0.04); border:1px solid rgba(245,158,11,0.15); border-radius: var(--radius-xl); padding: var(--space-7); text-align:center;">
-        <div style="font-size: 2rem; margin-bottom: var(--space-3);">🏥</div>
-        <div style="font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: var(--space-2);">Healthcare &amp; Life Sciences</div>
-        <p style="font-size: var(--text-sm); color: rgba(255,255,255,0.45); font-family: var(--font-body);">Hospital ramp anti-skid systems, pharmaceutical facility protective coatings, and corrosion mitigation for sensitive environments.</p>
+    <div class="home-industrial-grid reveal">
+      <div class="home-industrial-media">
+        <div class="home-media" data-media-key="home.audience.industrial"></div>
       </div>
-      <div style="background: rgba(255,255,255,0.04); border:1px solid rgba(245,158,11,0.15); border-radius: var(--radius-xl); padding: var(--space-7); text-align:center;">
-        <div style="font-size: 2rem; margin-bottom: var(--space-3);">🏛️</div>
-        <div style="font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: var(--space-2);">Federal &amp; National Institutions</div>
-        <p style="font-size: var(--text-sm); color: rgba(255,255,255,0.45); font-family: var(--font-body);">Specialty preservation coatings for national collections, field equipment protection, and shipping container coatings for federal agencies.</p>
+      <div class="home-industrial-copy">
+        <div class="section-label">Industrial &amp; specialty coatings</div>
+        <h2 id="industrial-prestige-heading">Coatings built for demanding environments.</h2>
+        <p>Protective systems for infrastructure, facilities, equipment, and specialty applications. Mobile application is available when the work needs to happen at your site.</p>
+        <div class="home-capability-list" aria-label="Industrial coating capabilities">
+          <span>Corrosion protection</span>
+          <span>Anti-skid systems</span>
+          <span>Structural coatings</span>
+        </div>
+        <a href="./services/industrial-coatings.html" class="btn btn-outline">View industrial solutions</a>
       </div>
-      <div style="background: rgba(255,255,255,0.04); border:1px solid rgba(245,158,11,0.15); border-radius: var(--radius-xl); padding: var(--space-7); text-align:center;">
-        <div style="font-size: 2rem; margin-bottom: var(--space-3);">⚡</div>
-        <div style="font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: var(--space-2);">Industrial &amp; Energy Infrastructure</div>
-        <p style="font-size: var(--text-sm); color: rgba(255,255,255,0.45); font-family: var(--font-body);">Generator and tank protective coatings, refrigerant rack rust mitigation, helipad surfaces, and anti-skid solutions for mission-critical equipment.</p>
-      </div>
-    </div>
-
-    <div class="reveal" style="text-align:center; display:flex; gap: var(--space-4); justify-content:center; flex-wrap:wrap;">
-      <a href="./services/industrial-coatings.html" class="btn btn-primary">View Industrial Solutions</a>
-      <a href="./contact.html" class="btn btn-outline" style="border-color:rgba(245,158,11,0.3); color:rgba(245,158,11,0.85);">Contact for Project Inquiry</a>
-    </div>
-  </div>
-</section>
-
-<section class="stats-strip" aria-label="Company statistics">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="reveal">
-        <span class="stat-number">30+</span>
-        <span class="stat-label">Years Serving DMV</span>
-      </div>
-      <div class="reveal reveal-delay-1">
-        <span class="stat-number">5,000+</span>
-        <span class="stat-label">Vehicles Upfitted</span>
-      </div>
-      <div class="reveal reveal-delay-2">
-        <span class="stat-number">5.0★</span>
-        <span class="stat-label">Average Google Rating</span>
-      </div>
-      <div class="reveal reveal-delay-3">
-        <span class="stat-number">150+</span>
-        <span class="stat-label">Brands in Stock</span>
-                    <div style="margin-top: var(--space-5); display:inline-flex; align-items:center; gap: var(--space-3); background:rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-pill); padding: 0.4rem 1.2rem; font-size: var(--text-xs); color:rgba(255,255,255,0.65); font-family: var(--font-display); letter-spacing:0.08em; text-transform:uppercase;">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                Financing available on qualifying services
-              </div>
-</div>
     </div>
   </div>
 </section>
@@ -883,52 +703,47 @@
 <!-- ═══════════════════════════════════════════════════════
      WHY CAPITAL UPFITTERS
 ═══════════════════════════════════════════════════════ -->
-<section class="section" aria-labelledby="why-heading">
+<section class="section home-why" aria-labelledby="why-heading">
   <div class="container">
     <div class="why-grid">
       <!-- Left content -->
       <div class="reveal">
-        <div class="section-label">Why Choose Us</div>
-        <h2 id="why-heading">NOT JUST A SHOP. A PARTNER.</h2>
+        <div class="section-label">Why choose us</div>
+        <h2 id="why-heading">Not just a shop. A partner.</h2>
         <div class="why-list">
           <div class="why-item">
             <div class="why-item-num">01</div>
             <div class="why-item-text">
-              <strong>Authorized Patriot Liner Dealer</strong>
+              <strong>Authorized Patriot Liner dealer</strong>
               <p>Factory-certified installation with a lifetime warranty. The only authorized Patriot Liner dealer serving the Rockville–Bethesda corridor.</p>
             </div>
           </div>
           <div class="why-item">
             <div class="why-item-num">02</div>
             <div class="why-item-text">
-              <strong>IGL Coatings &amp; System X Certified</strong>
+              <strong>IGL Coatings &amp; System X certified</strong>
               <p>Professional-grade ceramic coating and paint protection film, applied by trained and certified technicians.</p>
             </div>
           </div>
           <div class="why-item">
             <div class="why-item-num">03</div>
             <div class="why-item-text">
-              <strong>Same-Week Turnaround on Most Services</strong>
+              <strong>Same-week turnaround on most services</strong>
               <p>Call Monday, done by Friday. We respect your time and keep turnaround fast without cutting corners.</p>
             </div>
           </div>
           <div class="why-item">
             <div class="why-item-num">04</div>
             <div class="why-item-text">
-              <strong>30-Year Track Record in the DMV</strong>
+              <strong>30-year track record in the DMV</strong>
               <p>Family-owned since 1994. Our reputation is built on referrals, repeat customers, and zero shortcuts.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Right visual placeholder -->
       <div class="why-visual reveal reveal-delay-2">
-        <div class="why-visual-placeholder">
-          <svg class="why-visual-icon" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="0.5" aria-hidden="true">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
+        <div class="home-media" data-media-key="home.craft.why"></div>
         <div class="why-visual-badge">
           <div class="why-visual-badge-num">30+</div>
           <div>
@@ -993,61 +808,61 @@
 <section class="section section--surface" aria-labelledby="home-faq-heading">
   <div class="container">
     <div class="reveal" style="text-align:center; margin-bottom: var(--space-8);">
-      <div class="section-label" style="justify-content:center;">Common Questions</div>
-      <h2 id="home-faq-heading">STRAIGHT ANSWERS.</h2>
+      <div class="section-label" style="justify-content:center;">Common questions</div>
+      <h2 id="home-faq-heading">Straight answers.</h2>
     </div>
     <div class="home-faq-list reveal">
       <div class="home-faq-item">
-        <button class="home-faq-question" aria-expanded="false">
+        <button class="home-faq-question" aria-expanded="false" aria-controls="home-faq-answer-1" id="home-faq-question-1">
           <span>How quickly can you upfit my vehicle?</span>
           <svg class="home-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="home-faq-answer" role="region">
+        <div class="home-faq-answer" id="home-faq-answer-1" role="region" aria-labelledby="home-faq-question-1">
           <div class="home-faq-answer-inner">Same-week appointments are available on most services — bedliners, hitches, ceramic coatings, undercoating, and truck accessories. Larger commercial builds and multi-service jobs are scheduled after a quick consultation. Call <a href="tel:3013041419">(301) 304-1419</a> or submit a quote to lock in your slot.</div>
         </div>
       </div>
       <div class="home-faq-item">
-        <button class="home-faq-question" aria-expanded="false">
+        <button class="home-faq-question" aria-expanded="false" aria-controls="home-faq-answer-2" id="home-faq-question-2">
           <span>What areas do you serve?</span>
           <svg class="home-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="home-faq-answer" role="region">
+        <div class="home-faq-answer" id="home-faq-answer-2" role="region" aria-labelledby="home-faq-question-2">
           <div class="home-faq-answer-inner">Our shop is in Rockville, MD (12019 Nebel Street) and we serve the entire DMV — Bethesda, Silver Spring, Gaithersburg, and surrounding Montgomery County, plus Northern Virginia and DC. See our <a href="/locations/rockville-md.html">location pages</a> for service-area details.</div>
         </div>
       </div>
       <div class="home-faq-item">
-        <button class="home-faq-question" aria-expanded="false">
+        <button class="home-faq-question" aria-expanded="false" aria-controls="home-faq-answer-3" id="home-faq-question-3">
           <span>Do you offer a warranty on your work?</span>
           <svg class="home-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="home-faq-answer" role="region">
+        <div class="home-faq-answer" id="home-faq-answer-3" role="region" aria-labelledby="home-faq-question-3">
           <div class="home-faq-answer-inner">Yes. Patriot Liner bedliners come with a lifetime warranty backed by the manufacturer, and we're the only factory-certified installer serving the Rockville–Bethesda corridor. Ceramic coatings, hitches, and other services carry manufacturer warranties from the brands we install; our own installation workmanship is guaranteed as long as you own the vehicle.</div>
         </div>
       </div>
       <div class="home-faq-item">
-        <button class="home-faq-question" aria-expanded="false">
+        <button class="home-faq-question" aria-expanded="false" aria-controls="home-faq-answer-4" id="home-faq-question-4">
           <span>Are you an authorized Patriot Liner dealer?</span>
           <svg class="home-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="home-faq-answer" role="region">
+        <div class="home-faq-answer" id="home-faq-answer-4" role="region" aria-labelledby="home-faq-question-4">
           <div class="home-faq-answer-inner">Yes. We are the only authorized Patriot Liner dealer in the Rockville–Bethesda corridor. That means genuine Patriot Liner product, factory-trained installation technique, and access to the manufacturer's rebate programs.</div>
         </div>
       </div>
       <div class="home-faq-item">
-        <button class="home-faq-question" aria-expanded="false">
+        <button class="home-faq-question" aria-expanded="false" aria-controls="home-faq-answer-5" id="home-faq-question-5">
           <span>Do you handle commercial fleets and government contracts?</span>
           <svg class="home-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="home-faq-answer" role="region">
+        <div class="home-faq-answer" id="home-faq-answer-5" role="region" aria-labelledby="home-faq-question-5">
           <div class="home-faq-answer-inner">Absolutely. We work with commercial fleets (3+ units earn volume pricing, Net-30 terms, consolidated invoicing), dealer partners, municipal and county agencies, and federal entities. See <a href="/fleet.html">Fleet &amp; Commercial</a> and <a href="/dealer-government.html">Dealer &amp; Government</a> for specifics.</div>
         </div>
       </div>
       <div class="home-faq-item">
-        <button class="home-faq-question" aria-expanded="false">
+        <button class="home-faq-question" aria-expanded="false" aria-controls="home-faq-answer-6" id="home-faq-question-6">
           <span>Is financing available?</span>
           <svg class="home-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="home-faq-answer" role="region">
+        <div class="home-faq-answer" id="home-faq-answer-6" role="region" aria-labelledby="home-faq-question-6">
           <div class="home-faq-answer-inner">Financing is available on qualifying services. When you request a quote, ask us about payment options and we'll walk you through what's a fit for your build.</div>
         </div>
       </div>
@@ -1080,7 +895,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center; margin-bottom: var(--space-8);">
       <div class="section-label" style="justify-content:center;">Customer Reviews</div>
-      <h2 id="testimonials-heading">WHAT OUR CUSTOMERS SAY.</h2>
+      <h2 id="testimonials-heading">What our customers say.</h2>
     </div>
 
     <!-- Trustindex live Google reviews widget -->
@@ -1104,7 +919,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center; color:rgba(255,255,255,0.45);">Service Area</div>
-      <h2 id="locations-heading" style="color:#fff;">ROCKVILLE-BASED. DMV-WIDE.</h2>
+      <h2 id="locations-heading" style="color:#fff;">Rockville-based. DMV-wide.</h2>
       <p style="color:rgba(255,255,255,0.55); max-width:480px; margin: var(--space-4) auto 0; font-family: var(--font-body);">Based at 12019 Nebel Street in Rockville, we serve customers from across the DC Metro area.</p>
     </div>
 
@@ -1138,11 +953,11 @@
 ═══════════════════════════════════════════════════════ -->
 <section class="cta-banner" aria-labelledby="cta-heading">
   <div class="cta-banner-content reveal">
-    <h2 id="cta-heading">READY TO UPFIT YOUR VEHICLE?</h2>
+    <h2 id="cta-heading">Ready to build the right upfit?</h2>
     <p>Call, quote online, or walk in Mon&ndash;Fri 9:30am&ndash;4:30pm.<br>Same-week appointments available.</p>
     <div class="cta-banner-actions">
-      <a href="./quote.html" class="btn btn-primary btn-lg">Get Instant Quote</a>
-      <a href="tel:3013041419" class="btn btn-outline btn-lg">Call Now — (301) 304-1419</a>
+      <a href="./quote.html" class="btn btn-primary btn-lg">Get an instant quote</a>
+      <a href="tel:3013041419" class="btn btn-outline btn-lg">Call now — (301) 304-1419</a>
     </div>
   </div>
 </section>
@@ -1263,178 +1078,25 @@
 })();
 </script>
 
-<!-- CMS: Homepage Wire -->
-<script>
-(function() {
-  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
-  // PHASE-1 DISABLED: stale CMS preview URL threw CORS errors. Re-enable by removing this line + updating URL.
-  return;
-
-  // ─── Settings: phone, hours, urgency banner ──────────────────────────────
-  fetch(CMS_BASE + '/api/public/settings')
-    .then(function(res) { return res.json(); })
-    .then(function(settings) {
-      if (!settings) return;
-      // Phone numbers
-      if (settings.contact && settings.contact.phone) {
-        var phone = settings.contact.phone;
-        var phoneRaw = phone.replace(/\D/g, '');
-        document.querySelectorAll('a[href^="tel:"]').forEach(function(a) {
-          a.href = 'tel:' + phoneRaw;
-          // Only update visible text if it looks like a phone number
-          if (/[\d\(\)\-\s\.\+]{7,}/.test(a.textContent)) a.textContent = phone;
-        });
-      }
-      // Hours
-      if (settings.hours && settings.hours.weekdays) {
-        document.querySelectorAll('.hours-text, [data-cms="hours"]').forEach(function(el) {
-          el.textContent = settings.hours.weekdays;
-        });
-      }
-      // Urgency banner
-      if (settings.urgency && settings.urgency.enabled && settings.urgency.message1) {
-        var banner = document.querySelector('.announce-bar p, .cro-bar-msg');
-        if (!banner) {
-          // Try first child text of announce-bar
-          var bar = document.querySelector('.announce-bar');
-          if (bar) {
-            var firstText = bar.querySelector('p');
-            if (firstText) firstText.textContent = settings.urgency.message1;
-          }
-        } else {
-          banner.textContent = settings.urgency.message1;
-        }
-      }
-    })
-    .catch(function() { /* Graceful fallback */ });
-
-  // ─── Tag main quote form ─────────────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', function() {
-    var form = document.querySelector('form');
-    if (form && !form.dataset.cmsForm) form.setAttribute('data-cms-form', 'retail');
-  });
-})();
-</script>
-
 <script src="animations.js" defer></script>
 
-<!-- HERO IDLE DIM -->
-<style>
-/* Transitions applied via JS — defined here as defaults */
-.hero-label,
-.hero-content h1,
-.hero-sub,
-.hero-video-overlay,
-.hero-overlay {
-  will-change: opacity;
-}
-</style>
-<script>
-(function() {
-  var IDLE_MS   = 1800;   // trigger after 1.8s idle
-  var FADE_DUR  = '1.2s'; // text/overlay fade out
-  var RECOV_DUR = '1.2s'; // snap back
-
-  // Label, headline, subtitle only — buttons + stats stay full
-  var TEXT_SELS = ['.hero-label', '.hero-content h1', '.hero-sub'];
-  // Both overlays (global dim + left gradient)
-  var OVL_SELS  = ['.hero-video-overlay', '.hero-overlay'];
-
-  var hero = document.querySelector('.hero');
-  if (!hero) return;
-
-  var idleTimer = null;
-  var watching  = false;
-
-  function getEls(sels) {
-    return sels.map(function(s) { return hero.querySelector(s); }).filter(Boolean);
-  }
-
-  // Ensure text is visually restored (call this on reveal + restore)
-  function ensureVisible() {
-    getEls(TEXT_SELS).forEach(function(el) {
-      el.style.animation  = 'none';          // keep animation off
-      el.style.transition = 'opacity ' + RECOV_DUR + ' ease';
-      el.style.opacity    = '1';
-    });
-    getEls(OVL_SELS).forEach(function(el) {
-      el.style.transition = 'opacity ' + RECOV_DUR + ' ease';
-      el.style.opacity    = '';              // back to stylesheet value
-    });
-  }
-
-  function applyFade() {
-    if (watching) return;
-    watching = true;
-    // Text → 98% invisible
-    getEls(TEXT_SELS).forEach(function(el) {
-      el.style.animation  = 'none';
-      el.style.transition = 'opacity ' + FADE_DUR + ' ease';
-      el.style.opacity    = '0.02';
-    });
-    // Overlays → 2% (video at 98% brightness)
-    getEls(OVL_SELS).forEach(function(el) {
-      el.style.transition = 'opacity ' + FADE_DUR + ' ease';
-      el.style.opacity    = '0.02';
-    });
-  }
-
-  function applyRestore() {
-    clearTimeout(idleTimer);
-    if (watching) {
-      watching = false;
-      ensureVisible();
-    }
-    idleTimer = setTimeout(applyFade, IDLE_MS);
-  }
-
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        // Hero back in view: ensure text visible, start idle timer
-        watching = false;
-        ensureVisible();
-        clearTimeout(idleTimer);
-        idleTimer = setTimeout(applyFade, IDLE_MS);
-        document.addEventListener('mousemove',  applyRestore);
-        document.addEventListener('touchstart', applyRestore);
-        document.addEventListener('keydown',    applyRestore);
-      } else {
-        // Hero out of view: cancel everything, clean up
-        clearTimeout(idleTimer);
-        watching = false;
-        ensureVisible();
-        document.removeEventListener('mousemove',  applyRestore);
-        document.removeEventListener('touchstart', applyRestore);
-        document.removeEventListener('keydown',    applyRestore);
-      }
-    });
-  }, { threshold: 0.3 });   // lower threshold so scroll-back triggers earlier
-
-  observer.observe(hero);
-})();
-</script>
-
-<!-- HERO VIDEO CHAIN + FALLBACK FADE -->
+<!-- Existing homepage video playlist retained for this redesign phase. -->
 <script>
 (function() {
   var vid = document.getElementById('hero-vid');
-  var fb  = document.getElementById('hero-bg-fallback');
+  var fb = document.getElementById('hero-bg-fallback');
   if (!vid) return;
 
-  // Playlist: Patriot Liner first, then AMP PowerStep, then repeat
   var PLAYLIST = [
     'https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4',
     './assets/amp-powerstep.mp4'
   ];
   var current = 0;
 
-  // Fade out fallback image on first play
   vid.addEventListener('playing', function() {
     if (fb) setTimeout(function() { fb.classList.add('hidden'); }, 600);
   }, { once: true });
 
-  // On video end, switch to next in playlist
   vid.addEventListener('ended', function() {
     current = (current + 1) % PLAYLIST.length;
     vid.src = PLAYLIST[current];
@@ -1691,7 +1353,7 @@
 </script>
 
 <!-- Floating quote CTA -->
-<div class="float-cta" aria-hidden="true">
+<div class="float-cta">
   <a href="./quote.html" class="float-cta-btn">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     Get a Quote
