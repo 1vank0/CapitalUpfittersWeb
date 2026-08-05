@@ -1301,7 +1301,7 @@ function showDGPanel(id, btn) {
             <h4 style="margin-bottom: var(--space-3);">Application Received!</h4>
             <p>We'll reach out within one business day to set up your account.</p>
           </div>
-          <form data-cms-form="dealer" id="apply-form" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="form-grid" novalidate>
+          <form data-cms-form="dealer" id="apply-form" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="form-grid" novalidate data-success-body="apply-form" data-success-panel="apply-form-success">
               <!-- Attribution (auto-filled by /attribution.js) -->
               <input type="hidden" name="ip_address" data-cu-attr="1">
               <input type="hidden" name="geo_city" data-cu-attr="1">
@@ -1340,7 +1340,7 @@ function showDGPanel(id, btn) {
               </div>
               <div class="form-field">
                 <label class="form-label" for="phone">Phone *</label>
-                <input class="form-input" type="tel" id="phone" name="Phone" placeholder="(301) 555-0100" required>
+                <input class="form-input" type="tel" id="phone" name="Phone" placeholder="(301) 555-0100" pattern="[0-9\s+\(\)\.\-]{7,30}" minlength="7" maxlength="30" title="Enter a valid phone number using digits and + ( ) - ." required>
               </div>
             </div>
             <div class="form-field">
@@ -1406,13 +1406,6 @@ function showDGPanel(id, btn) {
 (function(){const b=document.getElementById('hamburger'),m=document.getElementById('nav-mobile'),c=document.getElementById('nav-close');if(b&&m){b.addEventListener('click',()=>{m.classList.add('open');b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'});if(c)c.addEventListener('click',()=>{m.classList.remove('open');b.setAttribute('aria-expanded','false');document.body.style.overflow=''})}})();
 (function(){const e=document.querySelectorAll('.reveal');if(!e.length)return;const i=new IntersectionObserver(v=>{v.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');i.unobserve(el.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});e.forEach(el=>i.observe(el))})();
 
-// Form submit intercept
-document.getElementById('apply-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  document.getElementById('apply-form').style.display = 'none';
-  document.getElementById('apply-form-success').style.display = 'block';
-  // Fallback: would normally POST to backend or mailto
-});
 </script>
 
 <script>

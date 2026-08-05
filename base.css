@@ -7,7 +7,9 @@
    ============================================================ */
 
 /* ── Google Fonts ─────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Jost:wght@300;400;500;600;700&display=swap');
+/* Manrope — geometric with subtle warmth (headings) */
+/* Inter — canonical UI sans (body) */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* ── Reset ────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19,19 +21,19 @@ a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
 table { border-collapse: collapse; }
 
-/* ── Color Tokens (onehourhitch.com palette) ──────────────── */
+/* ── Color Tokens (Apple-inspired palette) ────────────────── */
 :root {
-  /* ── Brand primitives — mirrors Next.js approved-design.css ── */
-  --brand-ink:             #061527;  /* deepest, for text on light */
-  --brand-navy:            #071c33;  /* hero + header background */
-  --brand-navy-mid:        #0b2744;  /* raised dark surface */
-  --brand-amber:           #f9a607;  /* primary accent — CTAs, links */
-  --brand-amber-dark:      #b86f00;  /* hover/pressed accent */
-  --brand-white:           #ffffff;
-  --brand-surface:         #f7f8f8;  /* soft off-white section bg */
-  --brand-body:            #333a45;  /* body copy on light */
-  --brand-muted:           #5c616a;  /* secondary text */
-  --brand-line:            #d1d3d5;  /* borders, dividers */
+  /* ── Brand primitives — Apple's calibrated neutrals + Signal Blue ── */
+  --brand-ink:             #1d1d1f;  /* Apple's near-black — text on light */
+  --brand-navy:            #000000;  /* Apple's true onyx — hero + header bg */
+  --brand-navy-mid:        #1d1d1f;  /* raised dark surface */
+  --brand-amber:           #0071e3;  /* Signal Blue — filled CTAs (was amber) */
+  --brand-amber-dark:      #0066cc;  /* Signal Blue link/hover */
+  --brand-white:           #ffffff;  /* Paper */
+  --brand-surface:         #f5f5f7;  /* Eggshell — Apple's signature section bg */
+  --brand-body:            #1d1d1f;  /* body copy on light */
+  --brand-muted:           #6e6e73;  /* Apple's secondary text */
+  --brand-line:            transparent; /* Apple uses zero borders */
 
   /* ── Legacy aliases — kept so existing selectors don't break ── */
   --color-bg:              var(--brand-white);
@@ -67,10 +69,10 @@ table { border-collapse: collapse; }
   --color-footer-text:     rgba(255, 255, 255, 0.72);
 
   /* ── Typography ─────────────────────────────────────────── */
-  /* Russo One — industrial display face used across both properties */
-  /* Jost — geometric humanist sans for body copy */
-  --font-display:  'Russo One', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
-  --font-body:     'Jost', 'Futura', 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  /* Manrope — geometric with subtle warmth, our SF Pro Display stand-in */
+  /* Inter — canonical UI sans, our SF Pro Text stand-in */
+  --font-display:  'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 
   /* Type scale */
   --text-xs:    0.75rem;    /* 12px */
@@ -112,11 +114,11 @@ table { border-collapse: collapse; }
   --radius-2xl:  1.25rem;
   --radius-pill: 9999px;
 
-  /* ── Shadows ────────────────────────────────────────────── */
-  --shadow-sm:  0 1px 3px rgba(6, 21, 39, 0.08);
-  --shadow-md:  0 4px 12px rgba(6, 21, 39, 0.10);
-  --shadow-lg:  0 8px 30px rgba(6, 21, 39, 0.12);
-  --shadow-xl:  0 20px 60px rgba(6, 21, 39, 0.15);
+  /* ── Shadows — Apple uses zero shadows sitewide ────────── */
+  --shadow-sm:  none;
+  --shadow-md:  none;
+  --shadow-lg:  none;
+  --shadow-xl:  none;
 
   /* ── Nav ────────────────────────────────────────────────── */
   --nav-height: 64px;
@@ -155,19 +157,19 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 400;             /* Russo One only ships one weight */
-  letter-spacing: 0;             /* Russo One is already wide; no tracking */
-  text-transform: uppercase;
-  line-height: 1.02;
+  font-weight: 600;             /* Apple's headline weight */
+  letter-spacing: -0.02em;      /* Apple's optical negative tracking */
+  text-transform: none;         /* sentence case — Apple never uses uppercase */
+  line-height: 1.08;
   color: var(--color-text);
 }
 
-h1 { font-size: clamp(var(--text-5xl), 7vw, var(--text-8xl)); font-weight: 800; }
-h2 { font-size: clamp(var(--text-3xl), 4vw, var(--text-6xl)); font-weight: 700; }
-h3 { font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl)); font-weight: 700; }
-h4 { font-size: var(--text-2xl); font-weight: 600; }
-h5 { font-size: var(--text-xl);  font-weight: 600; }
-h6 { font-size: var(--text-lg);  font-weight: 600; }
+h1 { font-size: clamp(var(--text-5xl), 7vw, var(--text-8xl)); font-weight: 700; letter-spacing: -0.03em; }
+h2 { font-size: clamp(var(--text-3xl), 4vw, var(--text-6xl)); font-weight: 600; letter-spacing: -0.025em; }
+h3 { font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl)); font-weight: 600; letter-spacing: -0.02em; }
+h4 { font-size: var(--text-2xl); font-weight: 600; letter-spacing: -0.015em; }
+h5 { font-size: var(--text-xl);  font-weight: 600; letter-spacing: -0.01em; }
+h6 { font-size: var(--text-lg);  font-weight: 600; letter-spacing: -0.01em; }
 
 p { line-height: 1.7; color: var(--color-text-secondary); }
 p + p { margin-top: var(--space-4); }
@@ -213,13 +215,13 @@ p + p { margin-top: var(--space-4); }
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: var(--text-base);
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.85rem 2.25rem;
-  border-radius: var(--radius-md);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-pill);  /* Apple's signature pill button */
   border: none;
   cursor: pointer;
   transition: all var(--transition-base);
@@ -228,30 +230,27 @@ p + p { margin-top: var(--space-4); }
 }
 .btn-primary {
   background: var(--color-accent);
-  color: var(--brand-navy);
+  color: var(--brand-white);          /* white text on Signal Blue */
 }
 .btn-primary:hover {
   background: var(--color-accent-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
 }
 .btn-outline {
   background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.56);
+  color: var(--color-accent);        /* Signal Blue text, no border */
+  border: none;
 }
 .btn-outline:hover {
-  background: #fff;
-  color: var(--color-text);
+  color: var(--color-accent-hover);
+  text-decoration: underline;
 }
 .btn-ghost {
   background: transparent;
   color: var(--color-accent);
-  border: 1px solid var(--color-accent);
+  border: none;
 }
 .btn-ghost:hover {
-  background: var(--color-accent);
-  color: #fff;
+  color: var(--color-accent-hover);
 }
 .btn-dark {
   background: var(--color-surface-dark);

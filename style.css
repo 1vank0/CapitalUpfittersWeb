@@ -305,11 +305,14 @@
 /* ── HERO ───────────────────────────────────────────────── */
 .hero {
   position: relative;
-  min-height: calc(100vh - var(--nav-height));
+  /* Compact hero: ~30% shorter than full viewport so both CTAs and
+     the proof strip sit above the fold on standard 900px desktops. */
+  min-height: clamp(520px, 68vh, 680px);
   display: flex;
   align-items: center;
   overflow: hidden;
   background: var(--color-surface-dark);
+  padding: var(--space-10) 0 var(--space-12);
 }
 .hero-bg {
   position: absolute;
@@ -337,6 +340,12 @@
   position: relative;
   z-index: 2;
   width: 100%;
+  /* Cap content column so the right half stays available for the
+     background video / imagery instead of being covered by the h1. */
+  max-width: 62%;
+}
+@media (max-width: 900px) {
+  .hero-content { max-width: 100%; }
 }
 .hero-label {
   font-family: var(--font-display);
@@ -358,21 +367,25 @@
 }
 .hero h1 {
   color: #fff;
-  margin-bottom: var(--space-6);
-  max-width: 900px;
+  /* Down from --text-hero (96px). Fits two lines on desktop and
+     keeps the Apple-style two-color emphasis without dominating the frame. */
+  font-size: clamp(2.25rem, 4.6vw, 3.75rem);
+  line-height: 1.05;
+  margin-bottom: var(--space-5);
+  max-width: 720px;
 }
 .hero h1 em {
   font-style: normal;
   color: rgba(255,255,255,0.55);
 }
 .hero-sub {
-  font-size: var(--text-lg);
-  color: rgba(255,255,255,0.72);
-  max-width: 600px;
-  margin-bottom: var(--space-10);
+  font-size: var(--text-base);
+  color: rgba(255,255,255,0.75);
+  max-width: 520px;
+  margin-bottom: var(--space-7);
   font-family: var(--font-body);
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.55;
   letter-spacing: 0;
   text-transform: none;
 }
@@ -382,23 +395,39 @@
   gap: var(--space-4);
   align-items: center;
 }
+/* On the dark video hero, the outline/ghost secondary CTA needs a visible
+   affordance. Give it a soft white border and light text so it reads as a
+   button without competing with the primary Signal Blue CTA. */
+.hero-ctas .btn-outline,
+.hero-ctas .btn-ghost {
+  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.32);
+  background: transparent;
+}
+.hero-ctas .btn-outline:hover,
+.hero-ctas .btn-ghost:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.06);
+  text-decoration: none;
+}
 .hero-stats {
   position: absolute;
-  bottom: var(--space-10);
+  bottom: var(--space-6);
   right: 0;
   display: flex;
-  gap: var(--space-8);
-  padding: var(--space-6) var(--space-8);
+  gap: var(--space-6);
+  padding: var(--space-4) var(--space-6);
   background: rgba(255,255,255,0.06);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.1);
   border-right: none;
-  border-radius: var(--radius-xl) 0 0 var(--radius-xl);
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
 }
 .hero-stat-value {
   display: block;
   font-family: var(--font-display);
-  font-size: var(--text-4xl);
+  font-size: var(--text-2xl);
   font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -414,10 +443,27 @@
   text-transform: uppercase;
   margin-top: var(--space-1);
 }
+@media (max-width: 900px) {
+  /* On tablets/mobile, the video's right-heavy composition no longer works
+     under a narrow column of copy — dim the whole background so text stays
+     readable regardless of frame content. */
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(17,24,39,0.60) 0%,
+      rgba(17,24,39,0.55) 60%,
+      rgba(17,24,39,0.70) 100%
+    );
+  }
+}
 @media (max-width: 680px) {
-  .hero { min-height: 100svh; }
+  .hero {
+    min-height: clamp(480px, 78svh, 640px);
+    padding: var(--space-8) 0 var(--space-10);
+  }
   .hero-stats { display: none; }
-  .hero-ctas { flex-direction: column; align-items: flex-start; }
+  .hero-ctas { flex-direction: column; align-items: stretch; width: 100%; }
+  .hero-ctas .btn { width: 100%; text-align: center; justify-content: center; }
 }
 
 /* ── VEHICLE SELECTOR ──────────────────────────────────── */
