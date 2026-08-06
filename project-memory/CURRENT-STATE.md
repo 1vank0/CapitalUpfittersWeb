@@ -9,10 +9,12 @@
 - Repo identity resolved, cloned, branch created
 - Durable project-memory scaffold written
 - Capability gate run; fallbacks approved by Ivan for Firecrawl and image generation
+- Existing-site audit (`reports/existing-site-audit.md`) — key findings logged in TASK-LOG.md
+
+## In progress
+- Competitor research (20+ regional, 10+ national, 5+ adjacent-industry) — background agent running
 
 ## Not started
-- Existing-site audit
-- Competitor research (20+ regional, 10+ national, 5+ adjacent-industry)
 - Competitor judging matrix
 - `best-principles.md`
 - Three design-direction experiments
