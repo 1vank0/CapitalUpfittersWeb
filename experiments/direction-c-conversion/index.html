@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  Capital Upfitters — Redesign Prototype, Direction C (Conversion-First)
+  Isolated design-direction prototype. Does NOT touch any production file.
+  Static HTML5, mobile-first CSS, CSS custom properties, minimal vanilla JS.
+  See NOTES.md in this folder for the rationale behind the choices here.
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital Upfitters — Direction C Prototype (Conversion-First)</title>
+<meta name="description" content="Design-direction prototype: conversion-first homepage for Capital Upfitters. Not a live page — internal review only.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="direction-c.css">
+</head>
+<body>
+
+<a class="visually-hidden" href="#main">Skip to content</a>
+
+<!-- ═══════════════════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════════════════ -->
+<nav class="nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Capital<span>Upfitters</span></a>
+    <ul class="nav-links">
+      <li><a href="#categories">Services</a></li>
+      <li><a href="#paths">Fleet &amp; Government</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="nav-phone" href="tel:3013041419" aria-label="Call (301) 304-1419">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (301) 304-1419
+      </a>
+      <a href="#find-my-fit" class="btn btn-cta btn-sm">Get My Quote</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO + FIND MY FIT
+═══════════════════════════════════════════════════════ -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-media" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="auto" poster="../../media/gallery/homepage/hero-40342b4145-960.webp">
+      <source src="../../assets/amp-powerstep.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="container hero-content">
+    <div class="hero-eyebrow">Rockville, MD &middot; Serving DC / MD / Northern VA</div>
+    <h1>Tell us what you're upfitting. Get a real quote today.</h1>
+    <p class="hero-sub">Bedliners, ceramic coating, hitches, fleet builds, and industrial coatings — one shop, sixteen services. Pick your path below and get a same-business-day response.</p>
+    <div class="hero-ctas">
+      <a href="#find-my-fit" class="btn btn-cta btn-lg">Find My Fit — Start My Quote</a>
+      <a href="tel:3013041419" class="btn btn-outline-light btn-lg">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call (301) 304-1419
+      </a>
+    </div>
+    <div class="hero-microcopy">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      No deposit to request a quote &middot; we aim to respond the same business day
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="picker" id="find-my-fit" aria-labelledby="picker-heading">
+    <div class="picker-head">
+      <div class="eyebrow">Find My Fit</div>
+      <h2 id="picker-heading" style="font-size: clamp(1.4rem, 3vw, 2rem);">Three quick steps to a real quote.</h2>
+      <p style="max-width: 52ch;">Pick who you're upfitting for, choose your services, and leave your contact info. No account, no deposit, no long form.</p>
+    </div>
+
+    <div class="picker-steps" aria-hidden="true">
+      <div class="picker-step-dot active"></div>
+      <div class="picker-step-dot"></div>
+      <div class="picker-step-dot"></div>
+    </div>
+
+    <div role="alert" class="picker-error" id="picker-error"></div>
+
+    <!-- STEP 1: Audience -->
+    <div class="picker-panel active" id="picker-step-1">
+      <h3 style="margin-bottom: var(--space-4); font-size: var(--text-lg);">1. Who's this quote for?</h3>
+      <div class="audience-grid" role="group" aria-label="Choose your audience">
+        <button type="button" class="audience-card" data-audience="personal" aria-pressed="false">
+          <span class="audience-card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3v-6l2-5h13l2 5v6h-2M9 17a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM19 17a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/></svg>
+          </span>
+          <span class="audience-card-title">Personal Vehicle</span>
+          <span class="audience-card-desc">Truck, SUV, or luxury vehicle — protection, towing, or accessories.</span>
+        </button>
+        <button type="button" class="audience-card" data-audience="fleet" aria-pressed="false">
+          <span class="audience-card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="7" width="15" height="10" rx="1"/><path d="M16 10h4l3 3v4h-7z"/><circle cx="5.5" cy="19.5" r="1.5"/><circle cx="17.5" cy="19.5" r="1.5"/></svg>
+          </span>
+          <span class="audience-card-title">Fleet &amp; Commercial</span>
+          <span class="audience-card-desc">Multi-vehicle builds, contractor trucks, or industrial coatings.</span>
+        </button>
+        <button type="button" class="audience-card" data-audience="dealer" aria-pressed="false">
+          <span class="audience-card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 21v-6h6v6"/></svg>
+          </span>
+          <span class="audience-card-title">Dealer &amp; Government</span>
+          <span class="audience-card-desc">Pre-delivery upfitting, dealer accounts, or agency procurement.</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Services -->
+    <div class="picker-panel" id="picker-step-2">
+      <h3 style="margin-bottom: var(--space-2); font-size: var(--text-lg);">2. What do you need for your <span id="picker-audience-label">vehicle</span>?</h3>
+      <p style="margin-bottom: var(--space-5); font-size: var(--text-sm);">Select as many as apply — "Popular" chips are common pairings for this audience.</p>
+      <div class="chip-grid" id="picker-chip-grid" role="group" aria-label="Choose services"></div>
+      <p class="picker-selected-summary" id="picker-selected-summary"></p>
+      <div class="picker-nav">
+        <button type="button" class="btn btn-outline btn-sm" id="picker-back-1">&larr; Back</button>
+        <button type="button" class="btn btn-cta" id="picker-to-step-3">Continue to Contact Info &rarr;</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Contact -->
+    <div class="picker-panel" id="picker-step-3">
+      <h3 style="margin-bottom: var(--space-2); font-size: var(--text-lg);">3. Where should we send your quote?</h3>
+      <p style="margin-bottom: var(--space-5); font-size: var(--text-sm);">Takes about 30 seconds. This prototype does not submit anywhere — the real form will use the existing, tested lead pipeline.</p>
+      <form id="picker-quick-form" novalidate>
+        <div class="quick-form">
+          <div class="field">
+            <label for="qf-name">Full name</label>
+            <input type="text" id="qf-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="qf-phone">Phone</label>
+            <input type="tel" id="qf-phone" name="phone" autocomplete="tel" required>
+          </div>
+          <div class="field field-full">
+            <label for="qf-email">Email</label>
+            <input type="email" id="qf-email" name="email" autocomplete="email" required>
+          </div>
+          <div class="field field-full">
+            <label for="qf-vehicle">Vehicle (year / make / model) — optional</label>
+            <input type="text" id="qf-vehicle" name="vehicle" placeholder="e.g. 2023 Ford F-150">
+          </div>
+          <!-- Honeypot field — mirrors the naming used by the real lead-form.js trap; UI parity only in this prototype -->
+          <div class="honeypot-field" aria-hidden="true">
+            <label for="qf-website">Website</label>
+            <input type="text" id="qf-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+        </div>
+        <div class="picker-nav">
+          <div class="picker-nav-left">
+            <button type="button" class="btn btn-outline btn-sm" id="picker-back-2">&larr; Back</button>
+          </div>
+          <button type="submit" class="btn btn-cta btn-lg">Request My Quote</button>
+        </div>
+        <p class="picker-no-deposit" style="margin-top: var(--space-4);">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          No deposit required &middot; no spam, no shared data &middot; call (301) 304-1419 if you'd rather talk now
+        </p>
+      </form>
+    </div>
+
+    <!-- SUCCESS (simulated — no data sent, see direction-c.js header) -->
+    <div class="picker-success" id="picker-success">
+      <div class="picker-success-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>Request received.</h3>
+      <p>This is a prototype, so nothing was actually sent — but this is the confirmation state a real visitor would see. In production this posts to the existing <code>/api/lead</code> endpoint and we aim to respond the same business day at (301) 304-1419.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     PROOF STRIP — near the decision point, not just at the bottom
+═══════════════════════════════════════════════════════ -->
+<section class="section" aria-label="Why Capital Upfitters">
+  <div class="container">
+    <div class="proof-strip reveal">
+      <div class="proof-item">
+        <div class="proof-num">16</div>
+        <div class="proof-label">Services under one roof</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-num">4</div>
+        <div class="proof-label">Audience-specific intake paths</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-num">Same-day</div>
+        <div class="proof-label">Aimed response window on quote requests</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-num">&#9733; &mdash;</div>
+        <div class="proof-label">Google rating</div>
+        <div class="proof-verify">[verify before launch]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SERVICE CATEGORY OVERVIEW
+═══════════════════════════════════════════════════════ -->
+<section class="section section--surface" id="categories" aria-labelledby="categories-heading">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">Services</div>
+      <h2 id="categories-heading">Four categories. Sixteen services. One quote flow.</h2>
+      <p style="max-width: 56ch; margin-top: var(--space-3);">Not sure what you need? Pick a category — we'll pre-fill the picker above with the services people in that category usually choose.</p>
+    </div>
+    <div class="cat-grid">
+      <button type="button" class="cat-card reveal" data-preselect-audience="personal" data-preselect-service="bedliner">
+        <picture>
+          <source type="image/avif" srcset="../../media/gallery/homepage/service-bedliner-80c7badcf7-768.avif">
+          <img src="../../media/gallery/homepage/service-bedliner-80c7badcf7-768.webp" alt="Spray-in bedliner protective coating applied to a truck bed" loading="lazy" width="768" height="960">
+        </picture>
+        <span class="cat-card-body">
+          <span class="cat-card-title">Protection &amp; Coatings</span>
+          <span class="cat-card-desc">Bedliners, ceramic coating, undercoating</span>
+          <span class="cat-card-link">Start this quote &rarr;</span>
+        </span>
+      </button>
+      <button type="button" class="cat-card reveal" data-preselect-audience="personal" data-preselect-service="hitches_towing">
+        <picture>
+          <source type="image/avif" srcset="../../media/gallery/homepage/service-hitches-c899cd69d2-768.avif">
+          <img src="../../media/gallery/homepage/service-hitches-c899cd69d2-768.webp" alt="Trailer hitch installation on a pickup truck" loading="lazy" width="768" height="960">
+        </picture>
+        <span class="cat-card-body">
+          <span class="cat-card-title">Towing &amp; Hitches</span>
+          <span class="cat-card-desc">Hitches, tonneau covers, running boards</span>
+          <span class="cat-card-link">Start this quote &rarr;</span>
+        </span>
+      </button>
+      <button type="button" class="cat-card reveal" data-preselect-audience="fleet" data-preselect-service="wraps_branding">
+        <picture>
+          <source type="image/avif" srcset="../../media/gallery/homepage/audience-fleet-0f65a3bbd8-768.avif">
+          <img src="../../media/gallery/homepage/audience-fleet-0f65a3bbd8-768.webp" alt="Commercial fleet vehicle prepared for upfitting" loading="lazy" width="768" height="960">
+        </picture>
+        <span class="cat-card-body">
+          <span class="cat-card-title">Fleet &amp; Commercial</span>
+          <span class="cat-card-desc">Fleet builds, wraps, lighting, contractor trucks</span>
+          <span class="cat-card-link">Start this quote &rarr;</span>
+        </span>
+      </button>
+      <button type="button" class="cat-card reveal" data-preselect-audience="fleet" data-preselect-service="industrial_coatings">
+        <picture>
+          <source type="image/avif" srcset="../../media/gallery/homepage/audience-industrial-4ba197ed3e-768.avif">
+          <img src="../../media/gallery/homepage/audience-industrial-4ba197ed3e-768.webp" alt="Industrial protective coating application" loading="lazy" width="768" height="960">
+        </picture>
+        <span class="cat-card-body">
+          <span class="cat-card-title">Industrial Coatings</span>
+          <span class="cat-card-desc">Protective coatings for equipment &amp; facilities</span>
+          <span class="cat-card-link">Start this quote &rarr;</span>
+        </span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     DIFFERENTIATION — with proof placed right beside the claim
+═══════════════════════════════════════════════════════ -->
+<section class="section" aria-labelledby="diff-heading">
+  <div class="container">
+    <div class="diff-band">
+      <div class="reveal">
+        <div class="eyebrow">Why Capital Upfitters</div>
+        <h2 id="diff-heading">Not a franchise template. A DMV shop that does the work in-house.</h2>
+        <p style="margin-top: var(--space-4);">Capital Upfitters operates as Patriot Liner Rockville — and we're upfront about that. What sets the shop apart isn't hiding the affiliation, it's the breadth: hitches through industrial coatings, handled by one team, one intake process, one point of contact.</p>
+        <div class="diff-list">
+          <div class="diff-item">
+            <span class="diff-item-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>Service breadth most single-focus competitors don't offer — bedliners, coatings, towing, and fleet builds under one roof.</span>
+          </div>
+          <div class="diff-item">
+            <span class="diff-item-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>Separate intake paths for retail, fleet, and dealer/government — not one generic form asking everyone the same questions.</span>
+          </div>
+          <div class="diff-item">
+            <span class="diff-item-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <span>No deposit to request a quote, and a same-day response aim — the two things people worry about most before reaching out.</span>
+          </div>
+        </div>
+      </div>
+      <div class="diff-media reveal">
+        <picture>
+          <source type="image/avif" srcset="../../media/gallery/homepage/craft-why-80490f7f14-768.avif">
+          <img src="../../media/gallery/homepage/craft-why-80490f7f14-768.webp" alt="Close-up of upfitting craftsmanship on a vehicle" loading="lazy" width="768" height="576">
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     AUDIENCE-SEGMENTED PATHS
+═══════════════════════════════════════════════════════ -->
+<section class="section section--surface" id="paths" aria-labelledby="paths-heading">
+  <div class="container">
+    <div class="reveal center mx-auto" style="max-width: 620px;">
+      <div class="eyebrow" style="justify-content: center;">Pick Your Path</div>
+      <h2 id="paths-heading">Retail, fleet, and dealer/government get different journeys.</h2>
+      <p style="margin-top: var(--space-3);">Each path asks the questions that actually matter for that kind of request — not a one-size-fits-all form.</p>
+    </div>
+    <div class="path-grid">
+      <div class="path-card reveal">
+        <span class="path-card-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3v-6l2-5h13l2 5v6h-2M9 17a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM19 17a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/></svg>
+        </span>
+        <h3>Personal Vehicle</h3>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Vehicle info + service selection in one step</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Protection-first framing for luxury/performance owners</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>No deposit, same-day response aim</li>
+        </ul>
+        <button type="button" class="btn btn-outline btn-block" data-preselect-audience="personal">Start Personal Quote</button>
+      </div>
+      <div class="path-card reveal">
+        <span class="path-card-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="7" width="15" height="10" rx="1"/><path d="M16 10h4l3 3v4h-7z"/><circle cx="5.5" cy="19.5" r="1.5"/><circle cx="17.5" cy="19.5" r="1.5"/></svg>
+        </span>
+        <h3>Fleet &amp; Commercial</h3>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Fleet size and vehicle-type intake fields</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Dedicated path — not folded into the retail form</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Industrial coatings included in this path</li>
+        </ul>
+        <button type="button" class="btn btn-outline btn-block" data-preselect-audience="fleet">Start Fleet Quote</button>
+      </div>
+      <div class="path-card reveal">
+        <span class="path-card-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 21v-6h6v6"/></svg>
+        </span>
+        <h3>Dealer &amp; Government</h3>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Agency / account-type fields up front</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Pre-delivery and procurement-oriented copy</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Separate visual treatment from retail</li>
+        </ul>
+        <button type="button" class="btn btn-outline btn-block" data-preselect-audience="dealer">Start Dealer / Gov Quote</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     GALLERY-TO-QUOTE
+═══════════════════════════════════════════════════════ -->
+<section class="section" id="gallery" aria-labelledby="gallery-heading">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">See It, Then Quote It</div>
+      <h2 id="gallery-heading">Tap any photo to start that quote.</h2>
+      <p style="max-width: 56ch; margin-top: var(--space-3);">Every gallery image links straight back into the picker with that service pre-selected — no separate gallery-then-form detour.</p>
+    </div>
+    <div class="gtq-strip">
+      <button type="button" class="gtq-item reveal" data-preselect-audience="personal" data-preselect-service="ceramic_coating">
+        <picture>
+          <source type="image/avif" srcset="../../media/gallery/homepage/service-ceramic-61c83aacf5-768.avif">
+          <img src="../../media/gallery/homepage/service-ceramic-61c83aacf5-768.webp" alt="Ceramic coating application on vehicle paint" loading="lazy" width="768" height="768">
+        </picture>
+        <span class="gtq-item-label">Ceramic Coating <span aria-hidden="true">&rarr;</span></span>
+      </button>
+      <button type="button" class="gtq-item reveal" data-preselect-audience="personal" data-preselect-service="tonneau_cover">
+        <picture>
+          <source type="image/avif" srcset="../../media/gallery/homepage/service-tonneau-d679a2b8b2-768.avif">
+          <img src="../../media/gallery/homepage/service-tonneau-d679a2b8b2-768.webp" alt="Tonneau bed cover installed on a pickup truck" loading="lazy" width="768" height="768">
+        </picture>
+        <span class="gtq-item-label">Tonneau Cover <span aria-hidden="true">&rarr;</span></span>
+      </button>
+      <button type="button" class="gtq-item reveal" data-preselect-audience="personal" data-preselect-service="running_boards">
+        <picture>
+          <source type="image/avif" srcset="../../media/gallery/homepage/service-running-boards-5008658350-768.avif">
+          <img src="../../media/gallery/homepage/service-running-boards-5008658350-768.webp" alt="Running boards installed on an SUV" loading="lazy" width="768" height="768">
+        </picture>
+        <span class="gtq-item-label">Running Boards <span aria-hidden="true">&rarr;</span></span>
+      </button>
+      <button type="button" class="gtq-item reveal" data-preselect-audience="fleet" data-preselect-service="undercoating">
+        <picture>
+          <source type="image/avif" srcset="../../media/gallery/homepage/service-undercoating-0b673a9514-768.avif">
+          <img src="../../media/gallery/homepage/service-undercoating-0b673a9514-768.webp" alt="Undercoating rust-prevention application" loading="lazy" width="768" height="768">
+        </picture>
+        <span class="gtq-item-label">Undercoating <span aria-hidden="true">&rarr;</span></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════════════════ -->
+<section class="section section--surface" id="faq" aria-labelledby="faq-heading">
+  <div class="container container--narrow">
+    <div class="reveal center">
+      <div class="eyebrow" style="justify-content: center;">FAQ</div>
+      <h2 id="faq-heading">Before you request a quote.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq-a1">
+          <span>Do I need to pay a deposit to request a quote?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer" id="faq-a1"><p>No. Requesting a quote through the picker or by phone costs nothing and doesn't commit you to anything. You'll hear back from us before any work is scheduled or paid for.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq-a2">
+          <span>How fast will I hear back?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer" id="faq-a2"><p>We aim to respond the same business day. If it's urgent, calling (301) 304-1419 directly during business hours (Mon&ndash;Fri, 9:30am&ndash;4:30pm) is the fastest path.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq-a3">
+          <span>Can I select more than one service in a single quote request?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer" id="faq-a3"><p>Yes. The picker above supports multiple services in one request — helpful for bundles like bedliner + tonneau cover + running boards.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq-a4">
+          <span>I'm not sure exactly what service I need. What now?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer" id="faq-a4"><p>Pick the closest category or just leave a note in your quote request — we'll follow up with the right options once we know more about your vehicle or fleet.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq-a5">
+          <span>Do you work with fleets, dealerships, and government agencies?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer" id="faq-a5"><p>Yes — the Fleet &amp; Commercial and Dealer &amp; Government paths above route to a separate intake designed for those needs, rather than the retail form.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     FINAL CTA
+═══════════════════════════════════════════════════════ -->
+<section class="section section--dark final-cta" aria-labelledby="final-cta-heading">
+  <div class="container container--narrow">
+    <h2 id="final-cta-heading">Ready when you are.</h2>
+    <p style="margin-top: var(--space-3);">Start the picker for a written quote, or call now and talk to a real person during business hours.</p>
+    <div class="final-cta-ctas">
+      <a href="#find-my-fit" class="btn btn-cta btn-lg">Find My Fit &rarr;</a>
+      <a href="tel:3013041419" class="btn btn-outline-light btn-lg">Call (301) 304-1419</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="index.html" class="nav-logo" style="margin-bottom: var(--space-4); display: inline-flex;">Capital<span>Upfitters</span></a>
+      <p style="color: rgba(255,255,255,.55); font-size: var(--text-sm); max-width: 40ch;">Vehicle upfitting and protective coatings in Rockville, MD, serving Washington D.C., Maryland, and Northern Virginia.</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:3013041419">(301) 304-1419</a></li>
+        <li><a href="mailto:capitalupfitters@gmail.com">capitalupfitters@gmail.com</a></li>
+        <li>12019 Nebel Street, Rockville, MD 20852</li>
+        <li>Mon&ndash;Fri, 9:30am&ndash;4:30pm</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#categories">Services</a></li>
+        <li><a href="#paths">Fleet &amp; Government</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="ceramic-coating.html">Ceramic Coating (example service page)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>Direction C — Conversion-First prototype. Internal review only, not a live page.</span>
+    <span>Capital Upfitters operates as Patriot Liner Rockville.</span>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════
+     STICKY MOBILE CTA BAR
+═══════════════════════════════════════════════════════ -->
+<div class="sticky-cta" role="navigation" aria-label="Quick actions">
+  <a href="tel:3013041419" class="sticky-cta-call">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Call Now
+  </a>
+  <a href="#find-my-fit" class="sticky-cta-quote">Get My Quote</a>
+</div>
+
+<script src="direction-c.js"></script>
+</body>
+</html>

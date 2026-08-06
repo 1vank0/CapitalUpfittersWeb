@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  Capital Upfitters — Redesign Prototype — DIRECTION A: LUXURY AUTOMOTIVE
+  Isolated design-direction experiment. Not the live site. See NOTES.md.
+  Design system: Manrope (display) + Inter (body), restrained near-black /
+  eggshell / signal-blue palette, cinematic full-bleed imagery, generous
+  Apple-influenced spacing. Static HTML, vanilla CSS/JS, no framework.
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Capital Upfitters — Precision Vehicle Upfitting | Rockville, MD (Direction A Prototype)</title>
+<meta name="description" content="Design-direction prototype — not the live site. Capital Upfitters: spray-in bedliners, hitches, ceramic coatings, fleet and industrial upfitting in Rockville, MD.">
+<link rel="stylesheet" href="direction-a.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:0;background:#fff;color:#050505;padding:0.75rem 1.25rem;z-index:200;">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" data-nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-brand">Capital Upfitters<small>Rockville, MD · Est. Patriot Liner Rockville</small></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#audiences">Fleet &amp; Government</a>
+      <a href="#audiences">Dealer Partners</a>
+      <a href="#faq">FAQ</a>
+      <a href="../../contact.html">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-tel" href="tel:+13013041419">(301) 304-1419</a>
+      <a class="btn btn-primary" href="../../quote.html">Get a Quote</a>
+    </div>
+    <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M1 4h16M1 9h16M1 14h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" data-mobile-menu>
+  <a href="#services">Services</a>
+  <a href="#audiences">Fleet &amp; Government</a>
+  <a href="#audiences">Dealer Partners</a>
+  <a href="#faq">FAQ</a>
+  <a href="../../contact.html">Contact</a>
+  <a class="btn btn-primary" href="../../quote.html">Get a Quote</a>
+  <a class="btn btn-ghost-dark" href="tel:+13013041419">Call (301) 304-1419</a>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero on-dark">
+    <div class="hero-media">
+      <video autoplay muted loop playsinline poster="../../media/gallery/homepage/hero-40342b4145-1440.webp">
+        <source src="../../assets/amp-powerstep.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="container hero-content">
+      <p class="eyebrow">Rockville, MD · Serving DC / MD / Northern VA</p>
+      <h1>Precision upfitting, engineered for how you actually use the vehicle.</h1>
+      <p class="hero-sub">Spray-in protection, hitches and towing, fleet-ready builds, and industrial coatings — one shop, applied with the same discipline whether it's a personal truck or a 40-unit fleet.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="../../quote.html">Get a Quote</a>
+        <a class="btn btn-ghost-dark btn-lg" href="tel:+13013041419">Call (301) 304-1419</a>
+      </div>
+
+      <div class="audience-strip">
+        <p class="audience-strip-label">Start where you fit</p>
+        <div class="audience-strip-links">
+          <a class="audience-chip" href="#audiences">Retail &amp; Personal Vehicle <span class="arrow">&rarr;</span></a>
+          <a class="audience-chip" href="../../fleet.html">Fleet &amp; Government <span class="arrow">&rarr;</span></a>
+          <a class="audience-chip" href="../../dealer-government.html">Dealer Partner <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICE CATEGORY OVERVIEW ============ -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">What we build</p>
+        <h2>Four categories. One standard of work.</h2>
+        <p>Sixteen individual services, grouped the way customers actually think about them — not a flat list.</p>
+      </div>
+      <div class="category-grid">
+        <a class="category-card" href="#full-services">
+          <img src="../../media/gallery/homepage/service-bedliner-80c7badcf7-768.webp" alt="Spray-in bedliner application" loading="lazy" width="768" height="1024">
+          <div class="category-card-body">
+            <p class="cat-count">Bedliners · Ceramic · Undercoating</p>
+            <h3>Protection &amp; Coatings</h3>
+            <span class="cat-link">Explore &rarr;</span>
+          </div>
+        </a>
+        <a class="category-card" href="#full-services">
+          <img src="../../media/gallery/homepage/service-hitches-c899cd69d2-768.webp" alt="Trailer hitch installation" loading="lazy" width="768" height="1024">
+          <div class="category-card-body">
+            <p class="cat-count">Hitches · Towing Electronics</p>
+            <h3>Towing &amp; Hitches</h3>
+            <span class="cat-link">Explore &rarr;</span>
+          </div>
+        </a>
+        <a class="category-card" href="../../fleet.html">
+          <img src="../../media/gallery/homepage/audience-fleet-0f65a3bbd8-768.webp" alt="Fleet vehicle upfitting" loading="lazy" width="768" height="1024">
+          <div class="category-card-body">
+            <p class="cat-count">Vans · Trucks · Multi-Unit Builds</p>
+            <h3>Fleet &amp; Commercial</h3>
+            <span class="cat-link">Explore &rarr;</span>
+          </div>
+        </a>
+        <a class="category-card" href="../../services/industrial-coatings.html">
+          <img src="../../media/gallery/homepage/audience-industrial-4ba197ed3e-768.webp" alt="Industrial protective coating application" loading="lazy" width="768" height="1024">
+          <div class="category-card-body">
+            <p class="cat-count">Protective Coatings at Scale</p>
+            <h3>Industrial</h3>
+            <span class="cat-link">Explore &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIFFERENTIATION ============ -->
+  <section class="section section--eggshell">
+    <div class="container diff-grid">
+      <div class="diff-media">
+        <img src="../../media/gallery/homepage/craft-why-80490f7f14-768.webp" srcset="../../media/gallery/homepage/craft-why-80490f7f14-768.webp 768w, ../../media/gallery/homepage/craft-why-80490f7f14-1200.webp 1200w, ../../media/gallery/homepage/craft-why-80490f7f14-1536.webp 1536w" sizes="(min-width: 900px) 50vw, 100vw" alt="Technician detailing a vehicle panel by hand" loading="lazy" width="1200" height="1500">
+      </div>
+      <div class="diff-copy">
+        <p class="eyebrow">Why Capital Upfitters</p>
+        <h2>Built as Capital Upfitters. Operating as Patriot Liner Rockville. Never a copy-paste franchise page.</h2>
+        <p>We're upfront about the affiliation — we run the Patriot Liner Rockville franchise as part of Capital Auto Upfitters &amp; Protective Coatings. What we don't do is hide behind boilerplate. Every page, every price, every process note on this site describes how this specific shop actually works.</p>
+        <ol class="diff-list">
+          <li><span class="num">01</span><span>Service breadth most single-focus shops in the region don't carry — coatings, towing, fleet builds, and industrial work under one roof.</span></li>
+          <li><span class="num">02</span><span>Written, itemized pricing instead of "call for a quote" on every service page.</span></li>
+          <li><span class="num">03</span><span>Separate intake paths for retail, fleet/government, and dealer work — not one generic form.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AUDIENCE PATHS ============ -->
+  <section class="section" id="audiences">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Choose your path</p>
+        <h2>The right intake, not the same form for everyone.</h2>
+        <p>Fleet and government buyers need fleet size and agency details up front. Retail customers just want a fast, specific quote. So we ask different questions.</p>
+      </div>
+      <div class="audience-grid">
+        <div class="audience-card">
+          <img src="../../media/gallery/homepage/audience-personal-e4999b4cf5-768.webp" alt="Personal truck with bed protection installed" loading="lazy" width="768" height="528">
+          <div class="audience-card-body">
+            <h3>Retail &amp; Personal Vehicles</h3>
+            <p>Trucks, SUVs, and performance vehicles. Get a same-visit estimate on bedliners, coatings, hitches, or accessories.</p>
+            <a class="btn btn-ghost-light" href="../../quote.html">Get a Retail Quote</a>
+          </div>
+        </div>
+        <div class="audience-card">
+          <img src="../../media/gallery/homepage/audience-fleet-0f65a3bbd8-768.webp" alt="Commercial fleet vans staged for upfitting" loading="lazy" width="768" height="528">
+          <div class="audience-card-body">
+            <h3>Fleet &amp; Government</h3>
+            <p>Volume pricing, consolidated invoicing, and dedicated intake for commercial fleets, municipal, and federal agencies.</p>
+            <a class="btn btn-ghost-light" href="../../fleet.html">Start a Fleet Inquiry</a>
+          </div>
+        </div>
+        <div class="audience-card">
+          <img src="../../media/gallery/homepage/audience-dealer-754aacac1f-768.webp" alt="Dealer inventory vehicle being prepped" loading="lazy" width="768" height="528">
+          <div class="audience-card-body">
+            <h3>Dealer Partners</h3>
+            <p>Wholesale accessory installs and reconditioning support for dealer lots across the DMV.</p>
+            <a class="btn btn-ghost-light" href="../../dealer-government.html">Talk to Us as a Dealer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST STRIP ============ -->
+  <section class="section section--tight section--onyx on-dark">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <p class="trust-value">Rockville, MD</p>
+          <p class="trust-label">12019 Nebel Street — one shop, DMV-wide service</p>
+        </div>
+        <div class="trust-item">
+          <p class="trust-value">Mon–Fri, 9:30–4:30</p>
+          <p class="trust-label">Shop hours</p>
+        </div>
+        <div class="trust-item">
+          <p class="trust-value">[Review count &amp; rating — verify before launch]</p>
+          <p class="trust-label">Customer reviews</p>
+          <p class="trust-note">Placeholder slot — publishes only once independently verified.</p>
+        </div>
+        <div class="trust-item">
+          <p class="trust-value">[Years in operation — verify before launch]</p>
+          <p class="trust-label">Time in business</p>
+          <p class="trust-note">Placeholder slot — publishes only once independently verified.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICE PREVIEW GRID ============ -->
+  <section class="section" id="full-services">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Full service list</p>
+        <h2>Sixteen services. Every one has a written process.</h2>
+        <p>A sample of the most-requested services — the full list lives on each service page.</p>
+      </div>
+      <div class="service-grid">
+        <a class="service-tile" href="bedliner.html">
+          <img src="../../media/next/bedliner-v1.webp" alt="Spray-in bedliner" loading="lazy" width="84" height="84">
+          <div><h3>Spray-In Bedliners</h3><p>Patriot Liner polyurea, lifetime warranty</p></div>
+        </a>
+        <a class="service-tile" href="../../services/ceramic-coating.html">
+          <img src="../../media/next/ceramic-coating-v1.webp" alt="Ceramic coating" loading="lazy" width="84" height="84">
+          <div><h3>Ceramic Coatings</h3><p>Multi-year paint and gloss protection</p></div>
+        </a>
+        <a class="service-tile" href="../../services/hitches.html">
+          <img src="../../media/next/hitches-v1.webp" alt="Trailer hitch" loading="lazy" width="84" height="84">
+          <div><h3>Hitches &amp; Towing</h3><p>Curt, Draw-Tite, EcoHitch, Stealth Hitches</p></div>
+        </a>
+        <a class="service-tile" href="../../services/undercoating.html">
+          <img src="../../media/next/undercoating-v1.webp" alt="Undercoating" loading="lazy" width="84" height="84">
+          <div><h3>Rust Prevention &amp; Undercoating</h3><p>Waxoyl application, DMV winters</p></div>
+        </a>
+        <a class="service-tile" href="../../services/tonneau.html">
+          <img src="../../media/next/tonneau-v1.webp" alt="Tonneau cover" loading="lazy" width="84" height="84">
+          <div><h3>Tonneau Covers</h3><p>Roll-up, folding, and hard covers</p></div>
+        </a>
+        <a class="service-tile" href="../../services/running-boards.html">
+          <img src="../../media/next/running-boards-v1.webp" alt="Running boards" loading="lazy" width="84" height="84">
+          <div><h3>Running Boards &amp; Steps</h3><p>Fitted for truck and SUV platforms</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section section--eggshell" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Questions</p>
+        <h2>Frequently asked</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>How quickly can you upfit my vehicle?<span class="plus">+</span></summary>
+          <p>Same-week appointments are available on most services — bedliners, hitches, ceramic coatings, undercoating, and truck accessories. Larger commercial builds and multi-service jobs are scheduled after a quick consultation.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What areas do you serve?<span class="plus">+</span></summary>
+          <p>Our shop is in Rockville, MD (12019 Nebel Street) and we serve the DMV — Bethesda, Silver Spring, Gaithersburg, and surrounding Montgomery County, plus Northern Virginia and DC.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do you handle commercial fleets and government contracts?<span class="plus">+</span></summary>
+          <p>Yes. We work with commercial fleets, dealer partners, and municipal and government agencies through a dedicated intake path — see the Fleet &amp; Government section above.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is financing available?<span class="plus">+</span></summary>
+          <p>Financing is available on qualifying services. Ask about payment options when you request a quote.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="section section--onyx on-dark final-cta">
+    <div class="container">
+      <p class="eyebrow" style="justify-content:center;">Ready when you are</p>
+      <h2>Tell us what you're driving. We'll tell you what it needs.</h2>
+      <p>Most quotes are answered the same business day.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="../../quote.html">Get a Quote</a>
+        <a class="btn btn-tel btn-lg" href="tel:+13013041419">Call (301) 304-1419</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <p class="footer-brand">Capital Upfitters</p>
+      <p class="footer-identities">Capital Auto Upfitters &amp; Protective Coatings<br>Patriot Liner Rockville<br>Capital Protective Coatings</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <div class="footer-links">
+        <a href="bedliner.html">Spray-In Bedliners</a>
+        <a href="../../services/ceramic-coating.html">Ceramic Coatings</a>
+        <a href="../../services/hitches.html">Hitches &amp; Towing</a>
+        <a href="../../services/undercoating.html">Undercoating</a>
+      </div>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <div class="footer-links">
+        <a href="../../fleet.html">Fleet &amp; Government</a>
+        <a href="../../dealer-government.html">Dealer Partners</a>
+        <a href="../../gallery.html">Gallery</a>
+        <a href="../../contact.html">Contact</a>
+      </div>
+    </div>
+    <div>
+      <h4>Visit</h4>
+      <div class="footer-links">
+        <span>12019 Nebel Street<br>Rockville, MD 20852</span>
+        <a href="tel:+13013041419">(301) 304-1419</a>
+        <span>Mon–Fri, 9:30 AM–4:30 PM</span>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&copy; 2026 Capital Auto Upfitters &amp; Protective Coatings. Design-direction prototype — not the live site.</span>
+    <span>Direction A — Luxury Automotive</span>
+  </div>
+</footer>
+
+<script src="direction-a.js"></script>
+</body>
+</html>
