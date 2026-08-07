@@ -20,7 +20,8 @@
 - QA pass (`qa/final-qa-report.md`)
 
 ## Not done
-- Lighthouse/axe measurement (no runner available locally — must run against Preview)
+- Lighthouse scoring of the REDESIGNED pages (Unlighthouse blocks localhost; Preview timed out behind Vercel Auth). Production baseline IS measured — see `qa/skills-audit-addendum.md`.
+- Remaining a11y work: label-content-name-mismatch (25 routes), color-contrast (20), target-size (14), aria-prohibited-attr (10)
 - Safari/real-device, reduced-motion, keyboard-nav testing
 - Visual redesign of the other 37 pages (they have the technical/claim/link fixes only)
 
@@ -29,6 +30,7 @@
 - All other trust claims stay off the site pending documentation.
 - Hero `h1` sitting at `opacity: 0.02` is an **intentional 1.8s idle-fade**, not a bug. `.reveal` elements not having `.visible` is also correct (scroll-timeline path, not the IO fallback). See `qa/final-qa-report.md` §4 before "fixing" either.
 - Lead-flow suite: 15 pass / 0 fail / 13 cancelled — identical on pristine `main`; environment artifact, not a regression.
+- **claude-seo tooling works.** Set `CLAUDE_SEO_PYTHON=/Users/ivanko/.local/bin/python3.11` then `claude-seo setup`. Default python3 is 3.9.6 and too old — that is the only reason it looked "unavailable" earlier. Chromium + Unlighthouse work after setup.
 
 ## Blockers
 None. Production authorization is still required before any merge or production deploy.

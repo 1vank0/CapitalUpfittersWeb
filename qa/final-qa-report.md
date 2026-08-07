@@ -62,7 +62,7 @@ Removed across ~40 pages: `aggregateRating` 5.0/96 (19 files), "Authorized Patri
 
 ## 6. Not verified in this pass — stated plainly
 
-- **Lighthouse scores (Performance/Accessibility/Best Practices/SEO) and Core Web Vitals (LCP, INP, CLS) were not measured.** No Lighthouse or axe runner was available in this environment. The targets in `best-principles.md` §24 are therefore **unverified**, not met-or-missed. Run Lighthouse against the Vercel Preview URL before any production promotion.
+- ~~**Lighthouse scores were not measured — no runner available.**~~ **CORRECTED 2026-08-07:** this was wrong. The `claude-seo` toolchain was installed all along; its CLI just needed Python 3.10+ (`CLAUDE_SEO_PYTHON`). Real Lighthouse data for 24 production routes, the resulting accessibility fixes, and what remains unmeasured are in **`qa/skills-audit-addendum.md`**. Headline: production averages Performance 87 / Accessibility 90 / Best Practices 95 / SEO 100 — SEO passes everywhere, Performance and Accessibility miss their targets.
 - **Safari / real-device testing not performed** — only the in-app Chromium pane was available. Reduced-motion and keyboard-navigation paths were not exercised end-to-end.
 - **No live lead submission was tested.** By design: no form was submitted to production or any live endpoint. The contract suite exercises `api/lead.js` with `global.fetch` fully mocked.
 - **Only 3 of 40 pages were visually rebuilt** (`index.html`, `fleet.html`, `services/hitches.html`). The remaining 37 received the sitewide technical/claim/link fixes but retain their prior visual design. Extending the hybrid direction to the other service and location pages is follow-on work.
