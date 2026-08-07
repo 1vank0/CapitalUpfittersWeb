@@ -72,3 +72,71 @@ The single "repetitive" flag is expected for a page carrying 16 service cards an
 2. Investigate Best Practices 75 on `contact.html`, `quote.html`, `dealer-government.html`.
 3. Performance work on the two weakest location pages (75, 77).
 4. Re-run `claude-seo run unlighthouse_run.py` against the deployed site after promotion to confirm the redesign's real scores.
+
+---
+
+# Part 2 — UI/UX Design Review (ui-ux-pro-max)
+
+Ran 2026-08-07 against the redesigned homepage, fleet, and hitches pages.
+
+## Direction validated
+
+Querying the design-system database for "automotive service premium technical trust conversion" returned **"Trust & Authority + Conversion"** as the recommended pattern:
+
+| Database recommendation | What the redesign already does |
+|---|---|
+| Sections: Hero (credibility) → Proof → Solution overview → CTA path | Matches `best-principles.md` §8 hierarchy as built |
+| CTA: "Get Quote (primary) + Nav" | Matches — primary quote CTA plus nav CTA |
+| Color: "Navy/Grey corporate. Trust blue. Accent for CTA only." | Matches — Apple ink `#1d1d1f` + Signal Blue `#0071e3` reserved for CTAs |
+| Typography: Inter | Matches — Manrope display + Inter body |
+
+Independent corroboration of the hybrid direction chosen in `reports/design-comparison-matrix.md`.
+
+## Recommendation deliberately NOT followed
+
+The database suggested the **"Liquid Glass"** style (translucent, animated blur, chromatic aberration) and a red `#DC2626` CTA accent. Both were rejected:
+
+- Liquid Glass carries the database's own warnings — **Performance: Moderate-Poor** and **Accessibility: Text contrast**. Production already misses the Performance target (avg 87 vs 90) and we had just finished repairing contrast failures. Adopting it would regress both.
+- Switching the CTA accent from Signal Blue to red would discard the merged Apple-palette decision on `main` (PR #10) without a documented reason, which `REQUIREMENTS.md` forbids.
+
+Recorded because a future session may re-run this query and see the same suggestion.
+
+## Contrast — measured and fixed
+
+Computed real WCAG ratios rather than trusting Lighthouse's pass/fail alone:
+
+| Token | Ratio on dark | Verdict | Action |
+|---|---:|---|---|
+| `rgba(255,255,255,0.28)` | 2.4:1 | Fail | → 0.6 |
+| `rgba(255,255,255,0.30)` | 2.9:1 | Fail | → 0.6 |
+| `rgba(255,255,255,0.35)` | 3.3:1 | Fail | → 0.6 |
+| `rgba(255,255,255,0.40)` | 3.7:1 | Fail | → 0.6 |
+| `rgba(255,255,255,0.45)` | 4.4:1 | Borderline fail | → 0.6 |
+| `rgba(255,255,255,0.50+)` | 5.1:1+ | Pass | unchanged |
+| `--brand-muted` on white | 5.07:1 | Pass | unchanged |
+| Signal Blue ↔ white | 4.70:1 | Pass | unchanged |
+
+Border/outline `rgba` values at the same alphas were left alone — they are non-text UI boundaries under the 3:1 threshold, not body text. Zero sub-AA text colors remain in the redesigned files.
+
+## Checklist results
+
+| Item | Status |
+|---|---|
+| `prefers-reduced-motion` respected | Pass — guarded in `animations.js` |
+| Focus states visible | Pass — 9 focus rules in `style.css` |
+| `cursor: pointer` on clickables | Pass |
+| Transition durations 150–300ms | Mostly pass (0.1–0.4s); one 0.65s and one 8s ambient animation |
+| Light-mode text contrast 4.5:1 | Pass after the fix above |
+| **No emoji as icons** | **FAIL — see below** |
+
+## Open finding: emoji used as icons (not fixed)
+
+The checklist's "no emojis as icons (use SVG)" rule fails in three places:
+
+1. **`★` in nav badges** — "★ Top Seller", "★ Bundle", and a `★ Popular` optgroup label. Worth prioritising: screen readers announce this as "black star", and a star glyph reads as a *rating* — misleading on a site where every rating claim was just removed as unverified.
+2. **`🔧` / `🛡️` section labels in `fleet.html`** — announced as "wrench" / "shield" before the actual label text.
+3. **A ~30-entry emoji icon map in the homepage vehicle-selector JS** (`🛡️ 🔒 🔗 🧰 ⛺ ✨ 🕳️ 💡 📦 🚜 🎨 …`) injected into results, plus a `✉️` in a generated CTA.
+
+Beyond screen-reader noise, emoji render inconsistently across platforms and undercut the "premium, restrained, technically credible" brand direction in `PROJECT-CONTEXT.md`.
+
+**Not fixed here** because a proper migration means introducing an SVG icon set and touching the selector's rendering logic — a self-contained piece of work that deserves its own pass and its own review, rather than being folded into a contrast fix. **Minimum viable interim step:** wrap each decorative emoji in `<span aria-hidden="true">` so assistive tech skips it, and drop the `★` from the badges entirely.
