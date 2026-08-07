@@ -114,7 +114,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.6);
   padding: 8px 12px 4px;
   display: block;
 }
@@ -835,7 +835,7 @@
 }
 .trust-item-text span {
   font-size: var(--text-xs);
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.6);
   font-weight: 400;
 }
 
@@ -1176,14 +1176,14 @@
   align-items: center;
   gap: var(--space-2);
   font-size: var(--text-xs);
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.6);
   font-family: var(--font-display);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 500;
   margin-bottom: var(--space-6);
 }
-.breadcrumb a { color: rgba(255,255,255,0.45); transition: color var(--transition-fast); }
+.breadcrumb a { color: rgba(255,255,255,0.6); transition: color var(--transition-fast); }
 .breadcrumb a:hover { color: #fff; }
 .breadcrumb-sep { opacity: 0.3; }
 .breadcrumb span { color: rgba(255,255,255,0.7); }
@@ -1216,7 +1216,7 @@
   margin-bottom: var(--space-5);
   max-width: 700px;
 }
-.page-hero h1 em { font-style: normal; color: rgba(255,255,255,0.45); }
+.page-hero h1 em { font-style: normal; color: rgba(255,255,255,0.6); }
 .page-hero-sub {
   font-size: var(--text-lg);
   color: rgba(255,255,255,0.65);
@@ -1641,7 +1641,7 @@
   width: 18px; height: 18px;
   transition: transform 200ms ease;
   flex-shrink: 0;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.6);
 }
 .nav-mobile-section-body {
   display: none;
@@ -1654,7 +1654,7 @@
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.6);
   padding: var(--space-3) 0 var(--space-2);
   margin-top: var(--space-2);
 }
