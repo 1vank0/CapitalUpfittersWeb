@@ -2427,3 +2427,22 @@
 .fitment-list-2026 { margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
 .fitment-list-2026 li { display: flex; gap: var(--space-3); font-size: 0.9rem; color: var(--color-text-secondary); align-items: flex-start; }
 .fitment-list-2026 li svg { flex-shrink: 0; margin-top: 3px; color: var(--color-success); }
+
+/* === 2026 Redesign: mobile nav overflow fix =========================
+   Pre-existing bug (reproduced on main): at narrow widths the logo,
+   .nav-cta and .nav-hamburger together exceed .nav-inner, pushing the
+   CTA ~55px past the container edge and clipping it. The 900px query
+   above hides .nav-links/.nav-portal-link but never constrains the CTA.
+   Scale the CTA down before it can collide; below 430px the hamburger
+   menu and the sticky mobile action bar both still expose "Get a Quote",
+   so hiding the header CTA there costs no conversion path. */
+@media (max-width: 600px) {
+  .nav-cta {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    padding: 0.5rem 0.9rem;
+  }
+}
+@media (max-width: 430px) {
+  .nav-cta { display: none; }
+}
