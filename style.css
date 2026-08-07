@@ -2158,3 +2158,272 @@
 .stats-grid {
   align-items: start;
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   === 2026 Redesign ===
+   Hybrid of Direction A (visual system/restraint), Direction C
+   (homepage structure + lead-capture mechanics), and Direction B
+   (fleet/technical modules + Verification Status trust pattern).
+   See reports/design-comparison-matrix.md for the full rationale.
+   Built on the real tokens in base.css (--brand-ink, --brand-amber
+   [Signal Blue], --brand-surface, --font-display/--font-body,
+   the clamp() type scale, --radius-pill) — no parallel token system.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── 2026 Redesign: Homepage hero v2 ─────────────────────────────────────
+   Keeps the existing video/fallback mechanism untouched (.hero-video-wrap,
+   .hero-bg-gradient, .hero-video-overlay, .hero-overlay, #hero-vid,
+   #hero-bg-fallback + the playlist script) but adds a SOLID text-backing
+   scrim behind the headline/CTA block. This is the fix for the confirmed
+   Direction C defect ("hero headline has a real contrast failure against
+   its background photo... nearly unreadable against busier images") —
+   a solid rgba backing plate is contrast-safe regardless of what frame
+   the video happens to be on, which a gradient alone is not. ───────────── */
+.hero-2026-scrim {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  max-width: 100%;
+  background: rgba(0, 0, 0, 0.66);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.hero-2026-scrim .hero-label { color: rgba(255, 255, 255, 0.75); }
+.hero-2026-scrim h1 { color: #fff; }
+.hero-2026-scrim .hero-sub { color: rgba(255, 255, 255, 0.88); }
+
+/* ── 2026 Redesign: Find My Fit picker ────────────────────────────────────
+   Positioned high, immediately after the hero and before the 4-category
+   grid, per Direction C's structure. Links straight into the existing
+   quote.html / service-preselect deep-link contract (?audience=,
+   ?service=) rather than inventing a new submission mechanism. ────────── */
+.picker-2026 {
+  background: var(--brand-white);
+  border-radius: var(--radius-2xl);
+  margin-top: clamp(-3rem, -6vw, -1.5rem);
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  padding: var(--space-8) var(--space-6);
+}
+@media (min-width: 640px) {
+  .picker-2026 { padding: var(--space-10) var(--space-10); }
+}
+.picker-2026-head { max-width: 46rem; margin-bottom: var(--space-8); }
+.picker-2026-head p { margin-top: var(--space-3); }
+.picker-2026-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+@media (min-width: 720px) {
+  .picker-2026-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.picker-2026-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  text-align: left;
+  padding: var(--space-6);
+  border: 1.5px solid var(--color-border, #e5e5e7);
+  border-radius: var(--radius-xl);
+  background: var(--color-bg, #fff);
+  transition: all var(--transition-fast);
+}
+.picker-2026-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.picker-2026-icon {
+  width: 44px; height: 44px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-accent);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.picker-2026-card h3 { font-size: var(--text-xl); margin: 0; }
+.picker-2026-card p { font-size: var(--text-sm); color: var(--color-text-muted); flex: 1; margin: 0; }
+.picker-2026-card-cta {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700;
+  color: var(--color-accent);
+}
+.picker-2026-microcopy {
+  display: flex; align-items: center; gap: var(--space-2);
+  font-size: var(--text-xs); color: var(--color-text-muted);
+  margin-top: var(--space-6);
+}
+.picker-2026-microcopy svg { color: var(--color-success); flex-shrink: 0; }
+
+/* ── 2026 Redesign: Service-category cards (scrim fix) ───────────────────
+   Direction A's card treatment, with the confirmed contrast defect fixed:
+   "service-category card headings... have low text/background contrast —
+   legible but weak." Fix: a strong, near-solid gradient scrim (not the
+   thin 40%→82% wash Direction A shipped) so headings stay fully legible
+   against any photo, bright or dark. ────────────────────────────────────── */
+.cat-grid-2026 {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+  margin-top: var(--space-10);
+}
+@media (min-width: 640px) { .cat-grid-2026 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .cat-grid-2026 { grid-template-columns: repeat(4, 1fr); } }
+.cat-card-2026 {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+  background: var(--color-surface-dark);
+  text-decoration: none;
+}
+.cat-card-2026 img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 700ms ease;
+}
+.cat-card-2026:hover img { transform: scale(1.05); }
+/* Strong scrim: solid wash across the whole card PLUS a heavier gradient
+   at the bottom, so the heading is legible no matter how bright/busy the
+   photo is — the direct fix for the Direction A defect above. */
+.cat-card-2026::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.30) 45%, rgba(0,0,0,0.94) 100%);
+}
+.cat-card-2026-body { position: relative; z-index: 1; padding: var(--space-6); width: 100%; }
+.cat-card-2026-count { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.85); }
+.cat-card-2026-body h3 { font-size: var(--text-xl); margin-top: var(--space-2); color: #fff; }
+.cat-card-2026-link { display: inline-flex; align-items: center; gap: 0.4em; margin-top: var(--space-3); font-size: var(--text-sm); font-weight: 700; color: #fff; }
+
+/* ── 2026 Redesign: Verification Status panel (sitewide) ─────────────────
+   Direction B's pattern for handling project-memory/FACTS-TO-VERIFY.md —
+   every unverified claim is explicitly flagged "pending" rather than
+   stated as fact or silently omitted. Used on index.html, fleet.html,
+   and services/hitches.html. ─────────────────────────────────────────── */
+.verify-panel {
+  border: 1px solid var(--color-border, #e5e5e7);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+.verify-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1.8fr auto;
+  gap: var(--space-4);
+  align-items: center;
+  padding: var(--space-5) var(--space-6);
+  border-top: 1px solid var(--color-border, #e5e5e7);
+}
+.verify-row:first-child { border-top: none; }
+.verify-row:nth-child(odd) { background: var(--color-surface); }
+.verify-name { font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm); color: var(--color-text); }
+.verify-desc { font-size: var(--text-sm); color: var(--color-text-muted); }
+.verify-flag {
+  justify-self: end;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.verify-flag--pending { background: rgba(210, 148, 23, 0.12); color: #a2670f; border: 1px solid rgba(210, 148, 23, 0.3); }
+.verify-flag--live { background: rgba(47, 143, 104, 0.12); color: #1f6b4c; border: 1px solid rgba(47, 143, 104, 0.3); }
+@media (max-width: 700px) {
+  .verify-row { grid-template-columns: 1fr; text-align: left; }
+  .verify-flag { justify-self: start; }
+}
+
+/* ── 2026 Redesign: Fleet credibility zone ────────────────────────────────
+   Direction B's dark section with partner-authorization badges (flagged
+   by verification status, never asserted outright) + a fleet-specific
+   intake framing distinct from the retail journey. ─────────────────────── */
+.fleet-zone-2026 {
+  background: var(--color-surface-dark);
+  color: #fff;
+  padding: var(--space-20) 0;
+}
+.fleet-zone-2026 h2, .fleet-zone-2026 h3 { color: #fff; }
+.fleet-zone-2026 p { color: rgba(255,255,255,0.62); }
+.fleet-zone-2026-layout {
+  display: grid;
+  gap: var(--space-10);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 960px) {
+  .fleet-zone-2026-layout { grid-template-columns: 1.05fr 0.95fr; gap: var(--space-14); }
+}
+.fleet-badges-2026 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+@media (max-width: 480px) { .fleet-badges-2026 { grid-template-columns: 1fr; } }
+.fleet-badge-2026 {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  display: flex; flex-direction: column; gap: var(--space-2);
+}
+.fleet-badge-2026-status {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-display); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; color: #ffb877;
+}
+.fleet-badge-2026-status .dot { width: 6px; height: 6px; border-radius: 50%; background: #ffb877; flex-shrink: 0; }
+.fleet-badge-2026-name { font-family: var(--font-display); font-weight: 700; font-size: 0.92rem; color: #fff; }
+.fleet-panel-2026 {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+}
+.fleet-panel-2026 h3 { margin-bottom: var(--space-2); }
+.fleet-intake-list-2026 { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6); }
+.fleet-intake-item-2026 { display: flex; gap: var(--space-3); align-items: flex-start; }
+.fleet-intake-num-2026 {
+  font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; color: #6db4ff;
+  width: 24px; flex-shrink: 0;
+}
+.fleet-intake-item-2026 strong { display: block; color: #fff; font-size: 0.92rem; }
+.fleet-intake-item-2026 span { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+
+/* ── 2026 Redesign: Spec table (hitch classes, fitment-adjacent pages) ── */
+.spec-table-2026-wrap { border: 1px solid var(--color-border, #e5e5e7); border-radius: var(--radius-xl); overflow: hidden; overflow-x: auto; }
+.spec-table-2026 { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 640px; }
+.spec-table-2026 thead th {
+  text-align: left; padding: var(--space-4) var(--space-5);
+  background: var(--color-surface-dark); color: rgba(255,255,255,0.55);
+  font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.spec-table-2026 tbody td { padding: var(--space-4) var(--space-5); border-top: 1px solid var(--color-border, #e5e5e7); color: var(--color-text-secondary); vertical-align: top; }
+.spec-table-2026 tbody tr:hover { background: var(--color-surface); }
+.spec-table-2026 tbody td:first-child { font-weight: 700; color: var(--color-text); font-family: var(--font-display); }
+.spec-table-2026-note { padding: var(--space-4) var(--space-5); background: var(--color-surface); border-top: 1px solid var(--color-border, #e5e5e7); font-size: 0.8rem; color: var(--color-text-muted); }
+
+/* ── 2026 Redesign: Vehicle-fitment note panel ───────────────────────── */
+.fitment-panel-2026 {
+  display: grid; grid-template-columns: 1fr; gap: 0;
+  border: 1px solid var(--color-border, #e5e5e7); border-radius: var(--radius-xl); overflow: hidden;
+}
+@media (min-width: 860px) { .fitment-panel-2026 { grid-template-columns: 1.1fr 0.9fr; } }
+.fitment-panel-2026-copy { padding: var(--space-8); }
+.fitment-panel-2026-widget { padding: var(--space-8); background: var(--color-surface); border-top: 1px solid var(--color-border, #e5e5e7); }
+@media (min-width: 860px) { .fitment-panel-2026-widget { border-top: none; border-left: 1px solid var(--color-border, #e5e5e7); } }
+.fitment-list-2026 { margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+.fitment-list-2026 li { display: flex; gap: var(--space-3); font-size: 0.9rem; color: var(--color-text-secondary); align-items: flex-start; }
+.fitment-list-2026 li svg { flex-shrink: 0; margin-top: 3px; color: var(--color-success); }
