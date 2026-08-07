@@ -1,0 +1,1069 @@
+{
+  "_meta": {
+    "description": "Centralized media manifest for Capital Upfitters redesign. Single source of truth mapping stable asset IDs to breakpoint-specific file paths, captions, alt text, and provenance/approval metadata. Per reports/image-strategy.md. No image generation performed in this pass — this manifest catalogs existing on-disk assets only.",
+    "pools": {
+      "media-next": "media/next/ — pre-existing repo asset pool, provenance not documented in available repo history",
+      "pr11-media-gallery-homepage": "media/gallery/homepage/ — AI-generated imagery imported from PR #11 (agent/luxury-homepage-gallery) per Ivan's 2026-08-06 decision to reuse existing imagery rather than generate new"
+    },
+    "generated": "2026-08-06",
+    "count": 34
+  },
+  "assets": [
+    {
+      "id": "audience-adventurers-next",
+      "service_category": "adventurers",
+      "vehicle": "unspecified",
+      "caption": "Adventure/outdoor vehicle owner audience segment image",
+      "alt_text": "Adventure/outdoor vehicle owner audience segment image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/audience-adventurers-v2.webp"
+        },
+        "mobile": {
+          "webp": "media/next/audience-adventurers-v2.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/audience-adventurers-v2.webp"
+        }
+      },
+      "gallery_category": "audience",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "audience-contractors-next",
+      "service_category": "contractors",
+      "vehicle": "unspecified",
+      "caption": "Contractor/trades audience segment image",
+      "alt_text": "Contractor/trades audience segment image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/audience-contractors-v2.webp"
+        },
+        "mobile": {
+          "webp": "media/next/audience-contractors-v2.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/audience-contractors-v2.webp"
+        }
+      },
+      "gallery_category": "audience",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "audience-fleets-next",
+      "service_category": "fleets",
+      "vehicle": "unspecified",
+      "caption": "Commercial fleet audience segment image",
+      "alt_text": "Commercial fleet audience segment image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/audience-fleets-v2.webp"
+        },
+        "mobile": {
+          "webp": "media/next/audience-fleets-v2.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/audience-fleets-v2.webp"
+        }
+      },
+      "gallery_category": "audience",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "audience-public-safety-next",
+      "service_category": "public-safety",
+      "vehicle": "unspecified",
+      "caption": "Public safety/law-enforcement audience segment image",
+      "alt_text": "Public safety/law-enforcement audience segment image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/audience-public-safety-v2.webp"
+        },
+        "mobile": {
+          "webp": "media/next/audience-public-safety-v2.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/audience-public-safety-v2.webp"
+        }
+      },
+      "gallery_category": "audience",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-bedliner-next",
+      "service_category": "bedliner",
+      "vehicle": "unspecified",
+      "caption": "Bedliner installation service hero image",
+      "alt_text": "Bedliner installation service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/bedliner-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/bedliner-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/bedliner-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-camper-shells-next",
+      "service_category": "camper-shells",
+      "vehicle": "unspecified",
+      "caption": "Camper shell installation service hero image",
+      "alt_text": "Camper shell installation service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/camper-shells-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/camper-shells-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/camper-shells-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-ceramic-coating-next",
+      "service_category": "ceramic-coating",
+      "vehicle": "unspecified",
+      "caption": "Ceramic coating service hero image",
+      "alt_text": "Ceramic coating service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/ceramic-coating-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/ceramic-coating-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/ceramic-coating-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-commercial-wraps-next",
+      "service_category": "commercial-wraps",
+      "vehicle": "unspecified",
+      "caption": "Commercial vehicle wrap service hero image",
+      "alt_text": "Commercial vehicle wrap service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/commercial-wraps-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/commercial-wraps-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/commercial-wraps-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-exterior-next",
+      "service_category": "exterior",
+      "vehicle": "unspecified",
+      "caption": "Exterior accessories service hero image",
+      "alt_text": "Exterior accessories service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/exterior-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/exterior-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/exterior-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-hitches-next",
+      "service_category": "hitches",
+      "vehicle": "unspecified",
+      "caption": "Trailer hitch installation service hero image",
+      "alt_text": "Trailer hitch installation service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/hitches-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/hitches-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/hitches-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "home-home-hero-v1",
+      "service_category": "hero",
+      "vehicle": "unspecified",
+      "caption": "Homepage hero image, variant 1",
+      "alt_text": "Homepage hero image, variant 1",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/home-hero-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/home-hero-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/home-hero-v1.webp"
+        }
+      },
+      "gallery_category": "hero",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "home-home-hero-v2",
+      "service_category": "hero",
+      "vehicle": "unspecified",
+      "caption": "Homepage hero image, variant 2",
+      "alt_text": "Homepage hero image, variant 2",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/home-hero-v2.webp"
+        },
+        "mobile": {
+          "webp": "media/next/home-hero-v2.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/home-hero-v2.webp"
+        }
+      },
+      "gallery_category": "hero",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-industrial-coatings-next",
+      "service_category": "industrial-coatings",
+      "vehicle": "unspecified",
+      "caption": "Industrial protective coatings service hero image",
+      "alt_text": "Industrial protective coatings service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/industrial-coatings-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/industrial-coatings-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/industrial-coatings-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-lighting-next",
+      "service_category": "lighting",
+      "vehicle": "unspecified",
+      "caption": "Emergency/warning lighting service hero image",
+      "alt_text": "Emergency/warning lighting service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/lighting-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/lighting-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/lighting-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-mobile-detailing-next",
+      "service_category": "mobile-detailing",
+      "vehicle": "unspecified",
+      "caption": "Mobile detailing service hero image",
+      "alt_text": "Mobile detailing service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/mobile-detailing-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/mobile-detailing-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/mobile-detailing-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-running-boards-next",
+      "service_category": "running-boards",
+      "vehicle": "unspecified",
+      "caption": "Running boards installation service hero image",
+      "alt_text": "Running boards installation service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/running-boards-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/running-boards-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/running-boards-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-stealth-hitches-next",
+      "service_category": "stealth-hitches",
+      "vehicle": "unspecified",
+      "caption": "Stealth Hitches installation service hero image",
+      "alt_text": "Stealth Hitches installation service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/stealth-hitches-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/stealth-hitches-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/stealth-hitches-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-suspension-next",
+      "service_category": "suspension",
+      "vehicle": "unspecified",
+      "caption": "Suspension service hero image",
+      "alt_text": "Suspension service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/suspension-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/suspension-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/suspension-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-tonneau-next",
+      "service_category": "tonneau",
+      "vehicle": "unspecified",
+      "caption": "Tonneau cover service hero image",
+      "alt_text": "Tonneau cover service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/tonneau-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/tonneau-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/tonneau-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-toolboxes-next",
+      "service_category": "toolboxes",
+      "vehicle": "unspecified",
+      "caption": "Truck toolbox service hero image",
+      "alt_text": "Truck toolbox service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/toolboxes-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/toolboxes-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/toolboxes-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-undercoating-next",
+      "service_category": "undercoating",
+      "vehicle": "unspecified",
+      "caption": "Undercoating/rust prevention service hero image",
+      "alt_text": "Undercoating/rust prevention service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/undercoating-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/undercoating-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/undercoating-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-window-tinting-next",
+      "service_category": "window-tinting",
+      "vehicle": "unspecified",
+      "caption": "Window tinting service hero image",
+      "alt_text": "Window tinting service hero image",
+      "sources": {
+        "desktop": {
+          "webp": "media/next/window-tinting-v1.webp"
+        },
+        "mobile": {
+          "webp": "media/next/window-tinting-v1.webp"
+        },
+        "thumbnail": {
+          "webp": "media/next/window-tinting-v1.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "media-next",
+      "generation_status": "unconfirmed_origin",
+      "source": "media/next/ (pre-existing repo asset; provenance not documented in available repo history — treat as unconfirmed-origin stock/placeholder imagery until Ivan confirms)",
+      "usage_rights": "unconfirmed_pending_ivan_review",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "audience-dealer-754aacac1f",
+      "service_category": "dealer",
+      "vehicle": "unspecified (AI-generated image)",
+      "caption": "Dealership audience segment image",
+      "alt_text": "Dealership audience segment image",
+      "sources": {
+        "desktop": {
+          "avif": "media/gallery/homepage/audience-dealer-754aacac1f-1448.avif",
+          "webp": "media/gallery/homepage/audience-dealer-754aacac1f-1448.webp"
+        },
+        "mobile": {
+          "avif": "media/gallery/homepage/audience-dealer-754aacac1f-1024.avif",
+          "webp": "media/gallery/homepage/audience-dealer-754aacac1f-1024.webp"
+        },
+        "thumbnail": {
+          "avif": "media/gallery/homepage/audience-dealer-754aacac1f-480.avif",
+          "webp": "media/gallery/homepage/audience-dealer-754aacac1f-480.webp"
+        }
+      },
+      "breakpoints_available": {
+        "480": {
+          "avif": "media/gallery/homepage/audience-dealer-754aacac1f-480.avif",
+          "webp": "media/gallery/homepage/audience-dealer-754aacac1f-480.webp"
+        },
+        "768": {
+          "avif": "media/gallery/homepage/audience-dealer-754aacac1f-768.avif",
+          "webp": "media/gallery/homepage/audience-dealer-754aacac1f-768.webp"
+        },
+        "1024": {
+          "avif": "media/gallery/homepage/audience-dealer-754aacac1f-1024.avif",
+          "webp": "media/gallery/homepage/audience-dealer-754aacac1f-1024.webp"
+        },
+        "1448": {
+          "avif": "media/gallery/homepage/audience-dealer-754aacac1f-1448.avif",
+          "webp": "media/gallery/homepage/audience-dealer-754aacac1f-1448.webp"
+        }
+      },
+      "gallery_category": "audience",
+      "source_pool": "pr11-media-gallery-homepage",
+      "generation_status": "ai_generated",
+      "source": "PR #11 (agent/luxury-homepage-gallery), reused per Ivan's 2026-08-06 decision",
+      "usage_rights": "internal_use_pr11_import",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "audience-fleet-0f65a3bbd8",
+      "service_category": "fleet",
+      "vehicle": "unspecified (AI-generated image)",
+      "caption": "Commercial fleet audience segment image",
+      "alt_text": "Commercial fleet audience segment image",
+      "sources": {
+        "desktop": {
+          "avif": "media/gallery/homepage/audience-fleet-0f65a3bbd8-1448.avif",
+          "webp": "media/gallery/homepage/audience-fleet-0f65a3bbd8-1448.webp"
+        },
+        "mobile": {
+          "avif": "media/gallery/homepage/audience-fleet-0f65a3bbd8-1024.avif",
+          "webp": "media/gallery/homepage/audience-fleet-0f65a3bbd8-1024.webp"
+        },
+        "thumbnail": {
+          "avif": "media/gallery/homepage/audience-fleet-0f65a3bbd8-480.avif",
+          "webp": "media/gallery/homepage/audience-fleet-0f65a3bbd8-480.webp"
+        }
+      },
+      "breakpoints_available": {
+        "480": {
+          "avif": "media/gallery/homepage/audience-fleet-0f65a3bbd8-480.avif",
+          "webp": "media/gallery/homepage/audience-fleet-0f65a3bbd8-480.webp"
+        },
+        "768": {
+          "avif": "media/gallery/homepage/audience-fleet-0f65a3bbd8-768.avif",
+          "webp": "media/gallery/homepage/audience-fleet-0f65a3bbd8-768.webp"
+        },
+        "1024": {
+          "avif": "media/gallery/homepage/audience-fleet-0f65a3bbd8-1024.avif",
+          "webp": "media/gallery/homepage/audience-fleet-0f65a3bbd8-1024.webp"
+        },
+        "1448": {
+          "avif": "media/gallery/homepage/audience-fleet-0f65a3bbd8-1448.avif",
+          "webp": "media/gallery/homepage/audience-fleet-0f65a3bbd8-1448.webp"
+        }
+      },
+      "gallery_category": "audience",
+      "source_pool": "pr11-media-gallery-homepage",
+      "generation_status": "ai_generated",
+      "source": "PR #11 (agent/luxury-homepage-gallery), reused per Ivan's 2026-08-06 decision",
+      "usage_rights": "internal_use_pr11_import",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "audience-industrial-4ba197ed3e",
+      "service_category": "industrial",
+      "vehicle": "unspecified (AI-generated image)",
+      "caption": "Industrial/protective-coatings audience segment image",
+      "alt_text": "Industrial protective-coatings audience segment image",
+      "sources": {
+        "desktop": {
+          "avif": "media/gallery/homepage/audience-industrial-4ba197ed3e-1672.avif",
+          "webp": "media/gallery/homepage/audience-industrial-4ba197ed3e-1672.webp"
+        },
+        "mobile": {
+          "avif": "media/gallery/homepage/audience-industrial-4ba197ed3e-1200.avif",
+          "webp": "media/gallery/homepage/audience-industrial-4ba197ed3e-1200.webp"
+        },
+        "thumbnail": {
+          "avif": "media/gallery/homepage/audience-industrial-4ba197ed3e-768.avif",
+          "webp": "media/gallery/homepage/audience-industrial-4ba197ed3e-768.webp"
+        }
+      },
+      "breakpoints_available": {
+        "768": {
+          "avif": "media/gallery/homepage/audience-industrial-4ba197ed3e-768.avif",
+          "webp": "media/gallery/homepage/audience-industrial-4ba197ed3e-768.webp"
+        },
+        "1200": {
+          "avif": "media/gallery/homepage/audience-industrial-4ba197ed3e-1200.avif",
+          "webp": "media/gallery/homepage/audience-industrial-4ba197ed3e-1200.webp"
+        },
+        "1672": {
+          "avif": "media/gallery/homepage/audience-industrial-4ba197ed3e-1672.avif",
+          "webp": "media/gallery/homepage/audience-industrial-4ba197ed3e-1672.webp"
+        }
+      },
+      "gallery_category": "audience",
+      "source_pool": "pr11-media-gallery-homepage",
+      "generation_status": "ai_generated",
+      "source": "PR #11 (agent/luxury-homepage-gallery), reused per Ivan's 2026-08-06 decision",
+      "usage_rights": "internal_use_pr11_import",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "audience-personal-e4999b4cf5",
+      "service_category": "personal",
+      "vehicle": "unspecified (AI-generated image)",
+      "caption": "Personal/retail vehicle owner audience segment image",
+      "alt_text": "Personal vehicle owner audience segment image",
+      "sources": {
+        "desktop": {
+          "avif": "media/gallery/homepage/audience-personal-e4999b4cf5-1448.avif",
+          "webp": "media/gallery/homepage/audience-personal-e4999b4cf5-1448.webp"
+        },
+        "mobile": {
+          "avif": "media/gallery/homepage/audience-personal-e4999b4cf5-1024.avif",
+          "webp": "media/gallery/homepage/audience-personal-e4999b4cf5-1024.webp"
+        },
+        "thumbnail": {
+          "avif": "media/gallery/homepage/audience-personal-e4999b4cf5-480.avif",
+          "webp": "media/gallery/homepage/audience-personal-e4999b4cf5-480.webp"
+        }
+      },
+      "breakpoints_available": {
+        "480": {
+          "avif": "media/gallery/homepage/audience-personal-e4999b4cf5-480.avif",
+          "webp": "media/gallery/homepage/audience-personal-e4999b4cf5-480.webp"
+        },
+        "768": {
+          "avif": "media/gallery/homepage/audience-personal-e4999b4cf5-768.avif",
+          "webp": "media/gallery/homepage/audience-personal-e4999b4cf5-768.webp"
+        },
+        "1024": {
+          "avif": "media/gallery/homepage/audience-personal-e4999b4cf5-1024.avif",
+          "webp": "media/gallery/homepage/audience-personal-e4999b4cf5-1024.webp"
+        },
+        "1448": {
+          "avif": "media/gallery/homepage/audience-personal-e4999b4cf5-1448.avif",
+          "webp": "media/gallery/homepage/audience-personal-e4999b4cf5-1448.webp"
+        }
+      },
+      "gallery_category": "audience",
+      "source_pool": "pr11-media-gallery-homepage",
+      "generation_status": "ai_generated",
+      "source": "PR #11 (agent/luxury-homepage-gallery), reused per Ivan's 2026-08-06 decision",
+      "usage_rights": "internal_use_pr11_import",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "craft-why-80490f7f14",
+      "service_category": "craft",
+      "vehicle": "unspecified (AI-generated image)",
+      "caption": "\"Why Capital Upfitters\" craft/differentiation narrative image",
+      "alt_text": "Close-up craft/workmanship detail image for the 'why us' section",
+      "sources": {
+        "desktop": {
+          "avif": "media/gallery/homepage/craft-why-80490f7f14-1536.avif",
+          "webp": "media/gallery/homepage/craft-why-80490f7f14-1536.webp"
+        },
+        "mobile": {
+          "avif": "media/gallery/homepage/craft-why-80490f7f14-1200.avif",
+          "webp": "media/gallery/homepage/craft-why-80490f7f14-1200.webp"
+        },
+        "thumbnail": {
+          "avif": "media/gallery/homepage/craft-why-80490f7f14-768.avif",
+          "webp": "media/gallery/homepage/craft-why-80490f7f14-768.webp"
+        }
+      },
+      "breakpoints_available": {
+        "768": {
+          "avif": "media/gallery/homepage/craft-why-80490f7f14-768.avif",
+          "webp": "media/gallery/homepage/craft-why-80490f7f14-768.webp"
+        },
+        "1200": {
+          "avif": "media/gallery/homepage/craft-why-80490f7f14-1200.avif",
+          "webp": "media/gallery/homepage/craft-why-80490f7f14-1200.webp"
+        },
+        "1536": {
+          "avif": "media/gallery/homepage/craft-why-80490f7f14-1536.avif",
+          "webp": "media/gallery/homepage/craft-why-80490f7f14-1536.webp"
+        }
+      },
+      "gallery_category": "craft",
+      "source_pool": "pr11-media-gallery-homepage",
+      "generation_status": "ai_generated",
+      "source": "PR #11 (agent/luxury-homepage-gallery), reused per Ivan's 2026-08-06 decision",
+      "usage_rights": "internal_use_pr11_import",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "hero-40342b4145",
+      "service_category": "hero",
+      "vehicle": "unspecified (AI-generated image)",
+      "caption": "Homepage hero candidate image",
+      "alt_text": "Wide-format hero image of upfitted vehicle, homepage banner candidate",
+      "sources": {
+        "desktop": {
+          "avif": "media/gallery/homepage/hero-40342b4145-1672.avif",
+          "webp": "media/gallery/homepage/hero-40342b4145-1672.webp"
+        },
+        "mobile": {
+          "avif": "media/gallery/homepage/hero-40342b4145-1440.avif",
+          "webp": "media/gallery/homepage/hero-40342b4145-1440.webp"
+        },
+        "thumbnail": {
+          "avif": "media/gallery/homepage/hero-40342b4145-960.avif",
+          "webp": "media/gallery/homepage/hero-40342b4145-960.webp"
+        }
+      },
+      "breakpoints_available": {
+        "960": {
+          "avif": "media/gallery/homepage/hero-40342b4145-960.avif",
+          "webp": "media/gallery/homepage/hero-40342b4145-960.webp"
+        },
+        "1440": {
+          "avif": "media/gallery/homepage/hero-40342b4145-1440.avif",
+          "webp": "media/gallery/homepage/hero-40342b4145-1440.webp"
+        },
+        "1672": {
+          "avif": "media/gallery/homepage/hero-40342b4145-1672.avif",
+          "webp": "media/gallery/homepage/hero-40342b4145-1672.webp"
+        }
+      },
+      "gallery_category": "hero",
+      "source_pool": "pr11-media-gallery-homepage",
+      "generation_status": "ai_generated",
+      "source": "PR #11 (agent/luxury-homepage-gallery), reused per Ivan's 2026-08-06 decision",
+      "usage_rights": "internal_use_pr11_import",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-bedliner-80c7badcf7",
+      "service_category": "bedliner",
+      "vehicle": "unspecified (AI-generated image)",
+      "caption": "Sprayed-in bedliner installation",
+      "alt_text": "Close-up of a sprayed-in truck bedliner, textured black finish",
+      "sources": {
+        "desktop": {
+          "avif": "media/gallery/homepage/service-bedliner-80c7badcf7-1448.avif",
+          "webp": "media/gallery/homepage/service-bedliner-80c7badcf7-1448.webp"
+        },
+        "mobile": {
+          "avif": "media/gallery/homepage/service-bedliner-80c7badcf7-1024.avif",
+          "webp": "media/gallery/homepage/service-bedliner-80c7badcf7-1024.webp"
+        },
+        "thumbnail": {
+          "avif": "media/gallery/homepage/service-bedliner-80c7badcf7-480.avif",
+          "webp": "media/gallery/homepage/service-bedliner-80c7badcf7-480.webp"
+        }
+      },
+      "breakpoints_available": {
+        "480": {
+          "avif": "media/gallery/homepage/service-bedliner-80c7badcf7-480.avif",
+          "webp": "media/gallery/homepage/service-bedliner-80c7badcf7-480.webp"
+        },
+        "768": {
+          "avif": "media/gallery/homepage/service-bedliner-80c7badcf7-768.avif",
+          "webp": "media/gallery/homepage/service-bedliner-80c7badcf7-768.webp"
+        },
+        "1024": {
+          "avif": "media/gallery/homepage/service-bedliner-80c7badcf7-1024.avif",
+          "webp": "media/gallery/homepage/service-bedliner-80c7badcf7-1024.webp"
+        },
+        "1448": {
+          "avif": "media/gallery/homepage/service-bedliner-80c7badcf7-1448.avif",
+          "webp": "media/gallery/homepage/service-bedliner-80c7badcf7-1448.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "pr11-media-gallery-homepage",
+      "generation_status": "ai_generated",
+      "source": "PR #11 (agent/luxury-homepage-gallery), reused per Ivan's 2026-08-06 decision",
+      "usage_rights": "internal_use_pr11_import",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-ceramic-61c83aacf5",
+      "service_category": "ceramic-coating",
+      "vehicle": "unspecified (AI-generated image)",
+      "caption": "Ceramic coating application",
+      "alt_text": "Technician applying ceramic coating to a vehicle exterior",
+      "sources": {
+        "desktop": {
+          "avif": "media/gallery/homepage/service-ceramic-61c83aacf5-1448.avif",
+          "webp": "media/gallery/homepage/service-ceramic-61c83aacf5-1448.webp"
+        },
+        "mobile": {
+          "avif": "media/gallery/homepage/service-ceramic-61c83aacf5-1024.avif",
+          "webp": "media/gallery/homepage/service-ceramic-61c83aacf5-1024.webp"
+        },
+        "thumbnail": {
+          "avif": "media/gallery/homepage/service-ceramic-61c83aacf5-480.avif",
+          "webp": "media/gallery/homepage/service-ceramic-61c83aacf5-480.webp"
+        }
+      },
+      "breakpoints_available": {
+        "480": {
+          "avif": "media/gallery/homepage/service-ceramic-61c83aacf5-480.avif",
+          "webp": "media/gallery/homepage/service-ceramic-61c83aacf5-480.webp"
+        },
+        "768": {
+          "avif": "media/gallery/homepage/service-ceramic-61c83aacf5-768.avif",
+          "webp": "media/gallery/homepage/service-ceramic-61c83aacf5-768.webp"
+        },
+        "1024": {
+          "avif": "media/gallery/homepage/service-ceramic-61c83aacf5-1024.avif",
+          "webp": "media/gallery/homepage/service-ceramic-61c83aacf5-1024.webp"
+        },
+        "1448": {
+          "avif": "media/gallery/homepage/service-ceramic-61c83aacf5-1448.avif",
+          "webp": "media/gallery/homepage/service-ceramic-61c83aacf5-1448.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "pr11-media-gallery-homepage",
+      "generation_status": "ai_generated",
+      "source": "PR #11 (agent/luxury-homepage-gallery), reused per Ivan's 2026-08-06 decision",
+      "usage_rights": "internal_use_pr11_import",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-hitches-c899cd69d2",
+      "service_category": "hitches",
+      "vehicle": "unspecified (AI-generated image)",
+      "caption": "Trailer hitch installation",
+      "alt_text": "Trailer hitch installed on a vehicle's rear frame",
+      "sources": {
+        "desktop": {
+          "avif": "media/gallery/homepage/service-hitches-c899cd69d2-1448.avif",
+          "webp": "media/gallery/homepage/service-hitches-c899cd69d2-1448.webp"
+        },
+        "mobile": {
+          "avif": "media/gallery/homepage/service-hitches-c899cd69d2-1024.avif",
+          "webp": "media/gallery/homepage/service-hitches-c899cd69d2-1024.webp"
+        },
+        "thumbnail": {
+          "avif": "media/gallery/homepage/service-hitches-c899cd69d2-480.avif",
+          "webp": "media/gallery/homepage/service-hitches-c899cd69d2-480.webp"
+        }
+      },
+      "breakpoints_available": {
+        "480": {
+          "avif": "media/gallery/homepage/service-hitches-c899cd69d2-480.avif",
+          "webp": "media/gallery/homepage/service-hitches-c899cd69d2-480.webp"
+        },
+        "768": {
+          "avif": "media/gallery/homepage/service-hitches-c899cd69d2-768.avif",
+          "webp": "media/gallery/homepage/service-hitches-c899cd69d2-768.webp"
+        },
+        "1024": {
+          "avif": "media/gallery/homepage/service-hitches-c899cd69d2-1024.avif",
+          "webp": "media/gallery/homepage/service-hitches-c899cd69d2-1024.webp"
+        },
+        "1448": {
+          "avif": "media/gallery/homepage/service-hitches-c899cd69d2-1448.avif",
+          "webp": "media/gallery/homepage/service-hitches-c899cd69d2-1448.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "pr11-media-gallery-homepage",
+      "generation_status": "ai_generated",
+      "source": "PR #11 (agent/luxury-homepage-gallery), reused per Ivan's 2026-08-06 decision",
+      "usage_rights": "internal_use_pr11_import",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-running-boards-5008658350",
+      "service_category": "running-boards",
+      "vehicle": "unspecified (AI-generated image)",
+      "caption": "Running boards installation",
+      "alt_text": "Running boards installed on the side of an SUV/truck",
+      "sources": {
+        "desktop": {
+          "avif": "media/gallery/homepage/service-running-boards-5008658350-1448.avif",
+          "webp": "media/gallery/homepage/service-running-boards-5008658350-1448.webp"
+        },
+        "mobile": {
+          "avif": "media/gallery/homepage/service-running-boards-5008658350-1024.avif",
+          "webp": "media/gallery/homepage/service-running-boards-5008658350-1024.webp"
+        },
+        "thumbnail": {
+          "avif": "media/gallery/homepage/service-running-boards-5008658350-480.avif",
+          "webp": "media/gallery/homepage/service-running-boards-5008658350-480.webp"
+        }
+      },
+      "breakpoints_available": {
+        "480": {
+          "avif": "media/gallery/homepage/service-running-boards-5008658350-480.avif",
+          "webp": "media/gallery/homepage/service-running-boards-5008658350-480.webp"
+        },
+        "768": {
+          "avif": "media/gallery/homepage/service-running-boards-5008658350-768.avif",
+          "webp": "media/gallery/homepage/service-running-boards-5008658350-768.webp"
+        },
+        "1024": {
+          "avif": "media/gallery/homepage/service-running-boards-5008658350-1024.avif",
+          "webp": "media/gallery/homepage/service-running-boards-5008658350-1024.webp"
+        },
+        "1448": {
+          "avif": "media/gallery/homepage/service-running-boards-5008658350-1448.avif",
+          "webp": "media/gallery/homepage/service-running-boards-5008658350-1448.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "pr11-media-gallery-homepage",
+      "generation_status": "ai_generated",
+      "source": "PR #11 (agent/luxury-homepage-gallery), reused per Ivan's 2026-08-06 decision",
+      "usage_rights": "internal_use_pr11_import",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-tonneau-d679a2b8b2",
+      "service_category": "tonneau",
+      "vehicle": "unspecified (AI-generated image)",
+      "caption": "Tonneau cover installation",
+      "alt_text": "Tonneau cover installed on a pickup truck bed",
+      "sources": {
+        "desktop": {
+          "avif": "media/gallery/homepage/service-tonneau-d679a2b8b2-1448.avif",
+          "webp": "media/gallery/homepage/service-tonneau-d679a2b8b2-1448.webp"
+        },
+        "mobile": {
+          "avif": "media/gallery/homepage/service-tonneau-d679a2b8b2-1024.avif",
+          "webp": "media/gallery/homepage/service-tonneau-d679a2b8b2-1024.webp"
+        },
+        "thumbnail": {
+          "avif": "media/gallery/homepage/service-tonneau-d679a2b8b2-480.avif",
+          "webp": "media/gallery/homepage/service-tonneau-d679a2b8b2-480.webp"
+        }
+      },
+      "breakpoints_available": {
+        "480": {
+          "avif": "media/gallery/homepage/service-tonneau-d679a2b8b2-480.avif",
+          "webp": "media/gallery/homepage/service-tonneau-d679a2b8b2-480.webp"
+        },
+        "768": {
+          "avif": "media/gallery/homepage/service-tonneau-d679a2b8b2-768.avif",
+          "webp": "media/gallery/homepage/service-tonneau-d679a2b8b2-768.webp"
+        },
+        "1024": {
+          "avif": "media/gallery/homepage/service-tonneau-d679a2b8b2-1024.avif",
+          "webp": "media/gallery/homepage/service-tonneau-d679a2b8b2-1024.webp"
+        },
+        "1448": {
+          "avif": "media/gallery/homepage/service-tonneau-d679a2b8b2-1448.avif",
+          "webp": "media/gallery/homepage/service-tonneau-d679a2b8b2-1448.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "pr11-media-gallery-homepage",
+      "generation_status": "ai_generated",
+      "source": "PR #11 (agent/luxury-homepage-gallery), reused per Ivan's 2026-08-06 decision",
+      "usage_rights": "internal_use_pr11_import",
+      "approval_status": "pending_ivan_review"
+    },
+    {
+      "id": "service-undercoating-0b673a9514",
+      "service_category": "undercoating",
+      "vehicle": "unspecified (AI-generated image)",
+      "caption": "Undercoating/rust-prevention application",
+      "alt_text": "Technician applying undercoating to a vehicle's underside",
+      "sources": {
+        "desktop": {
+          "avif": "media/gallery/homepage/service-undercoating-0b673a9514-1448.avif",
+          "webp": "media/gallery/homepage/service-undercoating-0b673a9514-1448.webp"
+        },
+        "mobile": {
+          "avif": "media/gallery/homepage/service-undercoating-0b673a9514-1024.avif",
+          "webp": "media/gallery/homepage/service-undercoating-0b673a9514-1024.webp"
+        },
+        "thumbnail": {
+          "avif": "media/gallery/homepage/service-undercoating-0b673a9514-480.avif",
+          "webp": "media/gallery/homepage/service-undercoating-0b673a9514-480.webp"
+        }
+      },
+      "breakpoints_available": {
+        "480": {
+          "avif": "media/gallery/homepage/service-undercoating-0b673a9514-480.avif",
+          "webp": "media/gallery/homepage/service-undercoating-0b673a9514-480.webp"
+        },
+        "768": {
+          "avif": "media/gallery/homepage/service-undercoating-0b673a9514-768.avif",
+          "webp": "media/gallery/homepage/service-undercoating-0b673a9514-768.webp"
+        },
+        "1024": {
+          "avif": "media/gallery/homepage/service-undercoating-0b673a9514-1024.avif",
+          "webp": "media/gallery/homepage/service-undercoating-0b673a9514-1024.webp"
+        },
+        "1448": {
+          "avif": "media/gallery/homepage/service-undercoating-0b673a9514-1448.avif",
+          "webp": "media/gallery/homepage/service-undercoating-0b673a9514-1448.webp"
+        }
+      },
+      "gallery_category": "services",
+      "source_pool": "pr11-media-gallery-homepage",
+      "generation_status": "ai_generated",
+      "source": "PR #11 (agent/luxury-homepage-gallery), reused per Ivan's 2026-08-06 decision",
+      "usage_rights": "internal_use_pr11_import",
+      "approval_status": "pending_ivan_review"
+    }
+  ]
+}

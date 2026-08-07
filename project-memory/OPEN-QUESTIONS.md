@@ -2,6 +2,7 @@
 
 ## Open
 - None blocking at this time.
+- **Minor, non-blocking:** 4 additional non-www URL instances found during the sitewide fix pass (`fleet.html`, `contact.html`, `services/commercial-wraps.html`, `services/stealth-hitches.html` — canonical/og:url/breadcrumb items), out of the originally-scoped fix list. Low severity per the original audit. Deferred to a follow-up pass rather than expanding this fix's scope.
 
 ## Closed
 - ~~Which Capital Upfitters repo is canonical?~~ → `1vank0/CapitalUpfittersWeb`, resolved 2026-08-06 via Vercel cross-reference.

@@ -11,7 +11,7 @@
 <link rel="shortcut icon" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vehicle Upfitting in Rockville MD | Capital Upfitters</title>
-<meta name="description" content="Capital Upfitters is Rockville's neighborhood upfitter at 12019 Nebel Street. Bedliners from $575, hitches, ceramic coating & more. Walk-ins welcome Mon–Fri."s local upfitting shop at 12019 Nebel Street. Bedliners, hitches, ceramic, undercoating — walk-ins welcome Mon–Fri."s neighborhood vehicle upfitter — right here at 12019 Nebel Street. Bedliners, hitches, ceramic coatings & fleet services. Walk-ins welcome Mon–Fri 9:30am–4:30pm.">
+<meta name="description" content="Capital Upfitters is Rockville's neighborhood upfitter at 12019 Nebel Street. Bedliners from $575, hitches, ceramic coating & more. Walk-ins welcome Mon–Fri.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.capitalupfitters.com/locations/rockville-md.html">
 
@@ -20,7 +20,7 @@
 <meta property="og:url" content="https://www.capitalupfitters.com/locations/rockville-md.html">
 <meta property="og:title" content="Vehicle Upfitting in Rockville MD | Capital Upfitters">
 <meta property="og:description" content="Rockville's local upfitter for 30+ years. Bedliners, hitches, ceramic coatings, and full fleet programs. Walk-ins welcome.">
-<meta property="og:image" content="https://www.capitalupfitters.com/assets/og-default.png">
+<meta property="og:image" content="https://www.capitalupfitters.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting Rockville MD">
@@ -35,7 +35,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "AutoRepair",
+  "@type": "AutomotiveBusiness",
   "name": "Capital Upfitters",
   "description": "Rockville MD's neighborhood vehicle upfitter for 30+ years. Bedliners, hitches, ceramic coatings, undercoating, tonneau covers, running boards, and full fleet programs.",
   "url": "https://www.capitalupfitters.com/locations/rockville-md.html",
@@ -874,62 +874,6 @@
 <script>
 (function(){const b=document.getElementById('hamburger'),m=document.getElementById('nav-mobile'),c=document.getElementById('nav-close');if(b&&m){b.addEventListener('click',()=>{m.classList.add('open');b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'});if(c)c.addEventListener('click',()=>{m.classList.remove('open');b.setAttribute('aria-expanded','false');document.body.style.overflow=''})}})();
 (function(){const e=document.querySelectorAll('.reveal');if(!e.length)return;const i=new IntersectionObserver(v=>{v.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');i.unobserve(el.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});e.forEach(el=>i.observe(el))})();
-</script>
-
-<!-- CMS: Geo Page Wire — rockville-md -->
-<script>
-(function() {
-  var GEO_SLUG = 'rockville-md';
-  var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
-
-  function applyGeoData(geo) {
-    if (!geo) return;
-    // Update headline
-    if (geo.heroHeadline) {
-      document.querySelectorAll('h1, .hero-headline, [data-cms="headline"]').forEach(function(el) {
-        el.textContent = geo.heroHeadline;
-      });
-    }
-    // Update intro
-    if (geo.localIntro) {
-      document.querySelectorAll('.geo-intro, [data-cms="intro"]').forEach(function(el) {
-        el.textContent = geo.localIntro;
-      });
-    }
-    // Update meta description
-    if (geo.seo && geo.seo.metaDescription) {
-      var metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.setAttribute('content', geo.seo.metaDescription);
-    }
-    // Update document title
-    if (geo.seo && geo.seo.metaTitle) {
-      document.title = geo.seo.metaTitle;
-    }
-    // Update nearby areas / pill links
-    if (geo.nearbyAreas && geo.nearbyAreas.length) {
-      document.querySelectorAll('.nearby-areas, .pill-links').forEach(function(container) {
-        container.innerHTML = geo.nearbyAreas.map(function(area) {
-          var text = typeof area === 'string' ? area : (area.name || area.label || String(area));
-          return '<span class="pill">' + text + '</span>';
-        }).join('');
-      });
-    }
-  }
-
-  fetch(CMS_BASE + '/api/public/geo-pages?slug=' + GEO_SLUG)
-    .then(function(res) { return res.json(); })
-    .then(function(data) {
-      var geo = data.docs && data.docs[0] ? data.docs[0] : data;
-      applyGeoData(geo);
-    })
-    .catch(function() { /* Graceful fallback — static content intact */ });
-
-  // Tag main form for CMS lead capture
-  document.addEventListener('DOMContentLoaded', function() {
-    var form = document.querySelector('form');
-    if (form && !form.dataset.cmsForm) form.setAttribute('data-cms-form', 'retail');
-  });
-})();
 </script>
 
 <script src="../animations.js" defer></script>
