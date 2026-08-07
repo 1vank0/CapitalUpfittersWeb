@@ -1,8 +1,9 @@
 # Current State
 
 **Active branch:** `redesign/2026-relaunch`
-**Phase:** Implementation + QA complete → push, draft PR, Vercel Preview
-**Preview URL:** not yet deployed
+**Phase:** Delivered — branch pushed, draft PR #12 open, Vercel Preview live and verified
+**Preview URL:** https://capital-upfitters-website-i22nek24i-ivan-s-projects-fc67197c.vercel.app (Vercel-Authentication protected; branch alias capital-upfitters-website-git-r-a1de46-ivan-s-projects-fc67197c.vercel.app)
+**Draft PR:** https://github.com/1vank0/CapitalUpfittersWeb/pull/12
 **Production:** unchanged (`main` @ `ab77025`)
 
 ## Completed
@@ -19,7 +20,6 @@
 - QA pass (`qa/final-qa-report.md`)
 
 ## Not done
-- Push branch, open draft PR, deploy + test Vercel Preview
 - Lighthouse/axe measurement (no runner available locally — must run against Preview)
 - Safari/real-device, reduced-motion, keyboard-nav testing
 - Visual redesign of the other 37 pages (they have the technical/claim/link fixes only)
@@ -34,4 +34,4 @@
 None. Production authorization is still required before any merge or production deploy.
 
 ## Next action
-Push `redesign/2026-relaunch`, open a **draft** PR against `main`, deploy the Vercel Preview, and verify the deployed Preview (not just local).
+Awaiting Ivan's review of Preview + PR #12. Before any production promotion: run Lighthouse/axe against the Preview URL, do a real-device/Safari pass, and decide which trust claims can be documented and restored. **Do not merge or deploy to production without Ivan's explicit authorization.**
