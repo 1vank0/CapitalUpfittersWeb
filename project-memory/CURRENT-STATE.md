@@ -25,6 +25,12 @@
 - Safari/real-device, reduced-motion, keyboard-nav testing
 - Visual redesign of the other 37 pages (they have the technical/claim/link fixes only)
 
+## Quote-form work (2026-08-07)
+- Fixed **quirks mode** on quote/contact/dealer-government/fleet/gallery — attribution meta/link tags sat above `<!DOCTYPE>`, so browsers discarded it (`compatMode: BackCompat`, `doctype: null`, verified live). Tags moved into `<head>`.
+- Removed the **photo uploader**: it looked fully functional but `lead-form.js` skips File objects and no upload storage exists, so every photo was silently discarded after showing a success message. Replaced with tap-to-text / tap-to-email hand-off. **Do not re-add a file input until signed private uploads actually exist** (spec is in PR #3).
+- Service checkbox rows 22px → 44px (WCAG 2.2 target size).
+- `lead-form.js` `validate()` now focuses the services group on services errors — additive only.
+
 ## Key facts for the next session
 - Shop opened **2015** (Ivan, 2026-08-06). "since 1994"/"30+ years" claims were wrong and are removed — do not restore.
 - All other trust claims stay off the site pending documentation.

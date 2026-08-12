@@ -12,6 +12,6 @@ Preview: https://capital-upfitters-website-i22nek24i-ivan-s-projects-fc67197c.ve
 - Lead-flow suite showing 15 pass / 0 fail / 13 cancelled is the **pre-existing baseline**, identical on pristine `main`. Not a regression.
 - See `qa/final-qa-report.md` §4 for the full write-up on all three.
 
-**Do not:** merge, deploy to production, restore any removed trust claim, reintroduce the 1994 founding year, or touch PR #11.
+**Do not:** re-add a photo file input to any form until signed private upload storage exists — `lead-form.js` discards File objects, so an uploader silently loses customer photos while showing success. Do not merge, deploy to production, restore any removed trust claim, reintroduce the 1994 founding year, or touch PR #11.
 
 **Next up:** Lighthouse/axe against the Preview, real-device/Safari pass, then extend the hybrid design to the remaining 37 pages.
