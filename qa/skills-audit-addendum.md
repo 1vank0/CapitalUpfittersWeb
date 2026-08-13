@@ -140,3 +140,53 @@ The checklist's "no emojis as icons (use SVG)" rule fails in three places:
 Beyond screen-reader noise, emoji render inconsistently across platforms and undercut the "premium, restrained, technically credible" brand direction in `PROJECT-CONTEXT.md`.
 
 **Not fixed here** because a proper migration means introducing an SVG icon set and touching the selector's rendering logic — a self-contained piece of work that deserves its own pass and its own review, rather than being folded into a contrast fix. **Minimum viable interim step:** wrap each decorative emoji in `<span aria-hidden="true">` so assistive tech skips it, and drop the `★` from the badges entirely.
+
+---
+
+# Part 3 — Apple Fluid-Interface Evaluation
+
+Evaluated 2026-08-07 against Apple's *Designing Fluid Interfaces* principles. Measured in a live browser (CSSOM rule counts, computed styles, sampled transition frames) rather than read off the stylesheet.
+
+## Scorecard
+
+| Principle | Verdict | Evidence |
+|---|---|---|
+| §1 Response — feedback on pointer-down | **Failed → fixed** | 55 `:hover` rules vs **1** `:active` rule sitewide |
+| §1 Response — latency on input path | **Failed → fixed** | No `touch-action`, so the ~300ms tap delay applied to every control |
+| §7 Spatial consistency — symmetric path | **Failed → fixed** | Mobile sheet used `display:none → flex`, which cannot transition |
+| §7 Spatial consistency — anchored origin | **Failed → fixed** | Zero `transform-origin` declarations; dropdowns scaled from their own centre |
+| §14 Reduced motion | **Partial → fixed** | Only guarded in `animations.js`; the CSS layer ignored the preference entirely |
+| §14 Reduced transparency | **Failed → fixed** | 4 `backdrop-filter` surfaces, no `prefers-reduced-transparency` support |
+| §14 Increased contrast | **Failed → fixed** | No `prefers-contrast` support |
+| §11 Frame smoothness | **Passed** | 16 transform/opacity transitions, only 1 layout-property transition |
+| §15 Typography — size-specific tracking | **Passed** | Headings track `-0.03em` (h1) → `-0.01em` (h6); body near 0 — genuinely Apple's optical model |
+| §15 Typography — fluid sizing | **Passed** | `clamp()` scale throughout, spacing in `rem` |
+| §3 Interruptibility / §5 velocity handoff / §6 momentum | **N/A** | The site has no drag, swipe, or throw gestures. These principles apply to gesture-driven UI; there is none to evaluate. Noted rather than scored so a future session doesn't "fix" something that isn't there. |
+
+## The headline failure
+
+**55 hover states, one press state.** Hover does not exist on touch, which is where most quote traffic arrives. Tapping "Get a Quote" produced *no acknowledgement whatsoever* until the next page painted — the precise "latency falls off a cliff" failure §1 warns about, on the site's primary conversion action.
+
+Fixed with compositor-only `:active` scale feedback: `0.97` on buttons and chips, `0.99` on cards (a large surface that compresses as hard as a button reads rubbery rather than solid), at 90ms ease-out. Plus `touch-action: manipulation` on every interactive element to remove the tap delay.
+
+## The mobile sheet
+
+The full-screen mobile menu toggled `display: none` → `display: flex`. `display` is not animatable, so the menu **popped** into existence with no path and no origin — the user got no cue where it came from or how to get back.
+
+Rebuilt on `visibility` + `opacity` + `transform` so it enters from the right (anchored to the top-right hamburger that opens it) and **exits along the same path**, per §7.
+
+Verified by sampling frames:
+- Enter: x = 140 → 26 → 2 → 0 px, opacity 0.91 → 1.00, settled ~240ms
+- Exit: x = 623 → 712 → 721 px, then `visibility: hidden` — symmetric, out the way it came
+
+`visibility` (not `display`) keeps the closed sheet out of the accessibility tree while remaining animatable. Full flow re-verified: hamburger opens, body scroll locks, `aria-expanded` updates, close button restores everything.
+
+## Deliberately not done
+
+- **No spring library.** Apple's §4 argues for springs over fixed-duration curves, but only because springs are *interruptible* and *velocity-aware* — which matters when a user can grab a moving element. Nothing here is grabbable. Adding a spring runtime would mean a new JS dependency (against `REQUIREMENTS.md`) to solve a problem this site does not have. The ease-out `cubic-bezier(0.16, 1, 0.3, 1)` already in use gives the right decelerating character for state-driven transitions.
+- **No rubber-banding, momentum projection, or velocity handoff** — all require gestures the site does not implement.
+
+## Remaining, unfixed
+
+- **19 uses of bare `ease`** against a single considered `cubic-bezier`. `ease` is the browser default, not a decision. §16 (Craft) argues every timing value should be defensible. Worth standardising on a small set of named curves.
+- **Emoji still used as icons** (carried over from Part 2) — `★` in nav badges reads to a screen reader as "black star" and visually as a rating, on a site where every rating claim was removed as unverified.
