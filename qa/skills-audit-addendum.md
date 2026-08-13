@@ -190,3 +190,53 @@ Verified by sampling frames:
 
 - **19 uses of bare `ease`** against a single considered `cubic-bezier`. `ease` is the browser default, not a decision. §16 (Craft) argues every timing value should be defensible. Worth standardising on a small set of named curves.
 - **Emoji still used as icons** (carried over from Part 2) — `★` in nav badges reads to a screen reader as "black star" and visually as a rating, on a site where every rating claim was removed as unverified.
+
+---
+
+# Part 4 — Lighthouse re-measured against the redesign (2026-08-13)
+
+Previously blocked: Unlighthouse hard-blocks `localhost` as SSRF protection (no override, and defeating a safety guard was the wrong move), and the Vercel Preview sits behind Vercel Authentication. Resolved by running the Lighthouse CLI directly, which has no such restriction, against a local static server.
+
+## Redesign vs. production baseline (mobile)
+
+| Page | Performance | Accessibility | Best Practices | SEO |
+|---|---|---|---|---|
+| `index.html` | 83 → 83 | **84 → 96 (+12)** | 100 | 100 |
+| `quote.html` | **85 → 95 (+10)** | 97 → 96 | **75 → 100 (+25)** | 100 |
+| `dealer-government.html` | **79 → 97 (+18)** | 96 | **75 → 100 (+25)** | 100 |
+
+**Against the targets in `best-principles.md` §24:**
+
+- **Accessibility 95+ — now met on all three pages** (was 84 on the homepage).
+- **Best Practices 95+ — met, at 100.** The +25 on `quote` and `dealer-government` is the quirks-mode fix: those pages were discarding their DOCTYPE because attribution tags sat above it.
+- **SEO 95+ — met, at 100.**
+- **Performance 90+ — met on `quote` (95) and `dealer-government` (97); `index` at 83.**
+
+## Important caveat on the Performance numbers
+
+These were measured against `python3 -m http.server`, which serves **no compression and no HTTP/2**. Lighthouse reports 71KB, 66KB, 15KB and 12KB of available text-compression savings on `index.html`, `style.css`, `animations.js` and `base.css` respectively — all of which Vercel gzips/brotlis automatically in production.
+
+So the Performance figures here are **pessimistic**, and the +10/+18 gains are conservative. Accessibility, Best Practices and SEO are transport-independent and therefore directly comparable.
+
+The homepage's 83 is dominated by `style.css` at **82,798 bytes uncompressed** (1201ms render-blocking). Compressed, that cost largely disappears — which is why the homepage number should not be treated as the real-world figure. Re-run against the deployed Preview to confirm.
+
+## Single remaining accessibility failure
+
+`color-contrast`, on all three pages — and nothing else. Authoritative failing nodes from Lighthouse:
+
+- `.section-label`
+- several `<p>` elements
+- `.picker-2026-card-cta`
+
+This is exactly the follow-up already filed after the multi-page harness returned untrustworthy ratios (~1.0, from mis-resolved gradient backgrounds). That task now has real node data to work from rather than a heuristic.
+
+## How to reproduce
+
+```
+python3 -m http.server 9166        # from the repo root
+npx --yes lighthouse@11 http://localhost:9166/index.html \
+  --only-categories=performance,accessibility,best-practices,seo \
+  --form-factor=mobile --screenEmulation.mobile \
+  --output=json --output-path=/tmp/lh.json \
+  --chrome-flags="--headless=new --no-sandbox" --quiet
+```
