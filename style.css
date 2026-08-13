@@ -2684,3 +2684,19 @@ summary, [role="button"], [role="tab"] {
   outline: 2px solid #fff;
   outline-offset: -4px;
 }
+
+/* Faint text inside dark chrome needs the lighter faint value. Rather
+   than enumerate classes — which turned into whack-a-mole, since the
+   footer copyright, its legal links and the tagline all use faint text
+   under different classes — REDEFINE THE TOKEN inside dark containers.
+   Custom properties cascade, so every descendant that reads
+   --color-text-faint gets the correct value automatically, whatever
+   its class. */
+.footer,
+.cta-banner,
+.section--dark,
+.nav,
+.nav-mobile,
+.page-hero {
+  --color-text-faint: var(--color-text-faint-on-dark);
+}

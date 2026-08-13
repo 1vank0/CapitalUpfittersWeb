@@ -66,7 +66,18 @@ table { border-collapse: collapse; }
   --color-text:            var(--brand-ink);
   --color-text-secondary:  var(--brand-body);
   --color-text-muted:      var(--brand-muted);
-  --color-text-faint:      #8a8f97;
+  /* #8a8f97 failed AA on every surface it is used on: 3.25:1 on white,
+     2.99:1 on --brand-surface, 2.85:1 on --color-surface-2. It styles
+     the privacy disclosure under the lead forms among other things.
+     #666b73 clears 4.5:1 on all three (5.36 / 4.93 / 4.69) while still
+     reading a step fainter than --brand-muted. */
+  --color-text-faint:      #666b73;
+  /* Faint text on DARK chrome. Darkening --color-text-faint for light
+     surfaces regressed the black footer from 6.46:1 to 3.92:1 —
+     the same light/dark split the accent tokens have. The original
+     #8a8f97 was always correct against black; it was only wrong on
+     white. Applied by container, not by class. */
+  --color-text-faint-on-dark: #8a8f97;
   --color-text-inverse:    var(--brand-white);
   --color-text-inverse-muted: rgba(255, 255, 255, 0.72);
 
@@ -178,7 +189,11 @@ table { border-collapse: collapse; }
   --color-text:            #f0f6fc;
   --color-text-secondary:  #c9d1d9;
   --color-text-muted:      #8b949e;
-  --color-text-faint:      #484f58;
+  /* Dark-theme faint. #484f58 was 2.28:1 on --color-bg. This block is
+     currently inert (nothing toggles data-theme), but a wrong value
+     left in place becomes a live bug the moment dark mode ships.
+     #8a929e is 6.03:1 on #0d1117 and 5.51:1 on #161b22. */
+  --color-text-faint:      #8a929e;
   --color-border:          #30363d;
   --color-divider:         #21262d;
   --color-accent-light:    rgba(249, 166, 7, 0.20);
