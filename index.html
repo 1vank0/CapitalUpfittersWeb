@@ -1287,7 +1287,24 @@
 </style>
 <script>
 (function() {
-  var IDLE_MS   = 1800;   // trigger after 1.8s idle
+  /* REDUCED MOTION — this effect must not run at all for users who asked
+     for less motion. Returning early (rather than shortening the fade) is
+     deliberate: the global reduced-motion block sets
+       transition-duration: 0.01ms !important
+     which beats the inline transition set below, so "still fading, just
+     faster" would mean the headline BLINKS OUT instantly at the idle mark.
+     For a purely decorative dim that hides copy, the correct reduced-motion
+     equivalent is to leave the content alone. */
+  var mqReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (mqReduce && mqReduce.matches) return;
+
+  var IDLE_MS   = 6000;   /* Was 1800. The hero label + h1 + sub run ~30 words;
+                             at an unhurried reading pace that is well over 1.8s,
+                             so the old value fired WHILE the visitor was still
+                             reading the headline — and reading registers as
+                             idleness, so the effect punished the exact behaviour
+                             the hero is there to invite. 6s clears a comfortable
+                             read and still rewards anyone who lingers. */
   var FADE_DUR  = '1.2s'; // text/overlay fade out
   var RECOV_DUR = '1.2s'; // snap back
 
@@ -1355,6 +1372,10 @@
         document.addEventListener('mousemove',  applyRestore);
         document.addEventListener('touchstart', applyRestore);
         document.addEventListener('keydown',    applyRestore);
+        /* Trackpad/wheel scrolling moves the page without firing mousemove,
+           so without these a visitor scrolling through the hero read as idle. */
+        document.addEventListener('wheel',      applyRestore, { passive: true });
+        window.addEventListener('scroll',       applyRestore, { passive: true });
       } else {
         // Hero out of view: cancel everything, clean up
         clearTimeout(idleTimer);
@@ -1363,6 +1384,8 @@
         document.removeEventListener('mousemove',  applyRestore);
         document.removeEventListener('touchstart', applyRestore);
         document.removeEventListener('keydown',    applyRestore);
+        document.removeEventListener('wheel',      applyRestore);
+        window.removeEventListener('scroll',       applyRestore);
       }
     });
   }, { threshold: 0.3 });   // lower threshold so scroll-back triggers earlier

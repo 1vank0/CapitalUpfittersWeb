@@ -10,7 +10,48 @@
   z-index: 100;
   background: var(--color-nav-bg);
   height: var(--nav-height);
-  border-bottom: 1px solid var(--color-border-dark);
+  /* §12 SCROLL EDGE — no hard divider at rest. The separation appears only
+     when content is actually travelling underneath the chrome (.scrolled),
+     rather than drawing a permanent 1px line against nothing. Declared as
+     transparent (not `none`) so only the colour animates — no layout shift. */
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 200ms var(--ease-out),
+    border-bottom-color 200ms var(--ease-out),
+    box-shadow 200ms var(--ease-out);
+}
+
+/* §12 MATERIAL — the reduced-transparency and increased-contrast fallbacks
+   further down already expected a translucent nav, but the nav itself was
+   opaque, so those blocks were no-ops. Build the material they describe:
+   a floating translucent layer with content scrolling under it.
+   Gated on @supports so browsers without backdrop-filter keep the solid
+   bar (progressive enhancement) instead of a washed-out unreadable one. */
+@supports ((backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px))) {
+  .nav {
+    /* 0.82 is a measured floor, not a taste call. The lowest-contrast nav
+       text is the link blue #4DA3FF; composited over the worst possible
+       backdrop (pure white) the alpha->contrast curve is:
+         0.72 -> 3.52  FAIL     0.78 -> 4.46  FAIL
+         0.80 -> 4.81  pass     0.82 -> 5.18  pass (chosen, keeps margin)
+       Anything lighter fails WCAG AA on a page whose hero is bright, and
+       this nav ships on all 40 pages, so it must hold for any backdrop. */
+    background: rgba(0, 0, 0, 0.82);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+  }
+  .nav.scrolled {
+    /* Denser once real content is travelling behind it — 6.31:1 over white. */
+    background: rgba(0, 0, 0, 0.88);
+  }
+}
+
+/* Moved out of animations.js, which injected this rule into <head> at runtime.
+   As injected it landed after style.css and could not be overridden here, and
+   the transition only existed once JS had run. */
+.nav.scrolled {
+  border-bottom-color: var(--color-border-dark);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 .nav-inner {
   display: flex;

@@ -344,15 +344,10 @@
     window.addEventListener('scroll', updateNav, { passive: true });
     updateNav();
 
-    // Inject nav scrolled style
-    const navStyle = document.createElement('style');
-    navStyle.textContent = `
-      .nav.scrolled {
-        box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 4px 20px rgba(0,0,0,0.3);
-        transition: box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
-      }
-    `;
-    document.head.appendChild(navStyle);
+    // The .nav.scrolled treatment now lives in style.css. It used to be
+    // injected here at runtime, which meant the rule landed after the
+    // stylesheet (unoverridable) and the transition did not exist until
+    // JS had run. This block only owns the class toggle.
   }
 
   /* ─── 6. HERO HEADLINE WORD STAGGER ────────────────────────────────────────
