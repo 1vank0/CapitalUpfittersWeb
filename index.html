@@ -298,15 +298,14 @@
         <div class="nav-dropdown nav-mega" role="menu">
           <!-- Bundle banner -->
           <a href="./services/" class="nav-bundle-banner">
-            <span class="nav-bundle-star">★</span>
             Most Popular Bundle — Bedliner + Tonneau Cover + Running Boards
-            <span class="nav-bundle-arrow">→</span>
+            <span class="nav-bundle-arrow" aria-hidden="true">→</span>
           </a>
           <div class="nav-mega-cols">
             <!-- Col A: Protection & Bedliners -->
             <div class="nav-mega-col">
               <div class="nav-mega-col-header nav-mega-col-header--gold">Protection &amp; Bedliners</div>
-              <a href="./services/bedliner.html">Spray-On Bedliners <span class="nav-mega-link-badge">★ Top Seller</span></a>
+              <a href="./services/bedliner.html">Spray-On Bedliners <span class="nav-mega-link-badge">Top Seller</span></a>
               <a href="./services/bedliner.html#uv-plus">Patriot Liner UV+ Upgrade <span class="nav-mega-link-badge">Premium</span></a>
               <a href="./services/ceramic-coating.html">Ceramic Coating &amp; PPF <span class="nav-mega-link-price">From $400</span></a>
               <a href="./services/undercoating.html">Undercoating &amp; Rust <span class="nav-mega-link-price">From $650</span></a>
@@ -317,8 +316,8 @@
             <!-- Col B: Truck Accessories -->
             <div class="nav-mega-col">
               <div class="nav-mega-col-header nav-mega-col-header--orange">Truck Accessories</div>
-              <a href="./services/tonneau.html">Tonneau / Bed Covers <span class="nav-mega-link-badge">★ Bundle</span></a>
-              <a href="./services/running-boards.html">Running Boards &amp; Steps <span class="nav-mega-link-badge">★ Bundle</span></a>
+              <a href="./services/tonneau.html">Tonneau / Bed Covers <span class="nav-mega-link-badge">Bundle</span></a>
+              <a href="./services/running-boards.html">Running Boards &amp; Steps <span class="nav-mega-link-badge">Bundle</span></a>
               <a href="./services/camper-shells.html">Camper Shells &amp; Caps <span class="nav-mega-link-price">From $800</span></a>
               <a href="./services/hitches.html">Hitches &amp; Towing <span class="nav-mega-link-price">From $150</span></a>
               <a href="./services/toolboxes.html">Toolboxes &amp; Storage <span class="nav-mega-link-price">From $300</span></a>
@@ -329,7 +328,7 @@
           </div>
           <div class="nav-mega-footer">
             <a href="./services/" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">View All 16 Services</a>
-            <a href="./rebates.html" class="nav-mega-footer-rebate">🏷 Rebates &amp; Offers</a>
+            <a href="./rebates.html" class="nav-mega-footer-rebate"><svg class="inline-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg> Rebates &amp; Offers</a>
           </div>
         </div>
       </li>
@@ -386,7 +385,7 @@
           <a href="./dealer-government.html#government">DOT &amp; EMS Upfitting</a>
           <a href="./dealer-government.html#government">Protective Coatings / GSA</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account →</a>
+          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account <span aria-hidden="true">→</span></a>
         </div>
       </li>
       <li><a href="./gallery.html">Gallery</a></li>
@@ -682,7 +681,7 @@
         <div class="service-card-grad svc-bg-tonneau"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
-          <div class="service-card-tag">★ Bundle With Bedliner</div>
+          <div class="service-card-tag">Bundle With Bedliner</div>
           <div class="service-card-title">Tonneau Covers</div>
           <p class="service-card-desc">Soft fold, hard fold, retractable, and roll-up covers for all popular truck models. Same-day installation on most in-stock units.</p>
           <div class="service-card-price">Starting from <strong>$300</strong></div>
@@ -697,7 +696,7 @@
         <div class="service-card-grad svc-bg-boards"></div>
         <div class="service-card-overlay"></div>
         <div class="service-card-body">
-          <div class="service-card-tag">★ Bundle With Bedliner</div>
+          <div class="service-card-tag">Bundle With Bedliner</div>
           <div class="service-card-title">Running Boards &amp; Steps</div>
           <p class="service-card-desc">Steel, aluminum, and AMP Research electric running boards for trucks and SUVs. Powered steps deploy automatically on door open.</p>
           <div class="service-card-price">Starting from <strong>$250</strong></div>
@@ -1407,52 +1406,52 @@
   // Keys: truck, suv, van, car, ev, other
   const SERVICE_MAP = {
     truck: [
-      { name: 'Spray-On Bedliner', url: './services/bedliner.html', icon: '🛡️' },
-      { name: 'Tonneau Cover', url: './services/tonneau.html', icon: '🔒' },
-      { name: 'Hitches & Towing', url: './services/hitches.html', icon: '🔗' },
-      { name: 'Running Boards', url: './services/running-boards.html', icon: '⤵️' },
-      { name: 'Toolboxes & Storage', url: './services/toolboxes.html', icon: '🧰' },
-      { name: 'Camper Shell', url: './services/camper-shells.html', icon: '⛺' },
-      { name: 'Undercoating', url: './services/undercoating.html', icon: '🛡️' },
-      { name: 'Suspension & Lifts', url: './services/suspension.html', icon: '⬆️' },
-      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
-      { name: 'Exterior Accessories', url: './services/exterior.html', icon: '🔧' },
+      { name: 'Spray-On Bedliner', url: './services/bedliner.html' },
+      { name: 'Tonneau Cover', url: './services/tonneau.html' },
+      { name: 'Hitches & Towing', url: './services/hitches.html' },
+      { name: 'Running Boards', url: './services/running-boards.html' },
+      { name: 'Toolboxes & Storage', url: './services/toolboxes.html' },
+      { name: 'Camper Shell', url: './services/camper-shells.html' },
+      { name: 'Undercoating', url: './services/undercoating.html' },
+      { name: 'Suspension & Lifts', url: './services/suspension.html' },
+      { name: 'Window Tinting', url: './services/window-tinting.html' },
+      { name: 'Exterior Accessories', url: './services/exterior.html' },
     ],
     suv: [
-      { name: 'Running Boards', url: './services/running-boards.html', icon: '⤵️' },
-      { name: 'Hitches & Towing', url: './services/hitches.html', icon: '🔗' },
-      { name: 'Ceramic Coating', url: './services/ceramic-coating.html', icon: '✨' },
-      { name: 'Undercoating', url: './services/undercoating.html', icon: '🛡️' },
-      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
-      { name: 'Exterior Accessories', url: './services/exterior.html', icon: '🔧' },
-      { name: 'Suspension & Lifts', url: './services/suspension.html', icon: '⬆️' },
+      { name: 'Running Boards', url: './services/running-boards.html' },
+      { name: 'Hitches & Towing', url: './services/hitches.html' },
+      { name: 'Ceramic Coating', url: './services/ceramic-coating.html' },
+      { name: 'Undercoating', url: './services/undercoating.html' },
+      { name: 'Window Tinting', url: './services/window-tinting.html' },
+      { name: 'Exterior Accessories', url: './services/exterior.html' },
+      { name: 'Suspension & Lifts', url: './services/suspension.html' },
     ],
     van: [
-      { name: 'Van Shelving (Weatherguard)', url: './fleet.html', icon: '📦' },
-      { name: 'Ladder Racks', url: './fleet.html', icon: '🚜' },
-      { name: 'Spray-On Bedliner (Cargo Floor)', url: './services/bedliner.html', icon: '🛡️' },
-      { name: 'Commercial Wraps', url: './services/commercial-wraps.html', icon: '🎨' },
-      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
-      { name: 'LED Work Lights', url: './services/lighting.html', icon: '💡' },
-      { name: 'Hitches & Towing', url: './services/hitches.html', icon: '🔗' },
+      { name: 'Van Shelving (Weatherguard)', url: './fleet.html' },
+      { name: 'Ladder Racks', url: './fleet.html' },
+      { name: 'Spray-On Bedliner (Cargo Floor)', url: './services/bedliner.html' },
+      { name: 'Commercial Wraps', url: './services/commercial-wraps.html' },
+      { name: 'Window Tinting', url: './services/window-tinting.html' },
+      { name: 'LED Work Lights', url: './services/lighting.html' },
+      { name: 'Hitches & Towing', url: './services/hitches.html' },
     ],
     car: [
-      { name: 'Ceramic Coating & PPF', url: './services/ceramic-coating.html', icon: '✨' },
-      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
-      { name: 'Undercoating', url: './services/undercoating.html', icon: '🛡️' },
-      { name: 'Hitches & Towing', url: './services/hitches.html', icon: '🔗' },
+      { name: 'Ceramic Coating & PPF', url: './services/ceramic-coating.html' },
+      { name: 'Window Tinting', url: './services/window-tinting.html' },
+      { name: 'Undercoating', url: './services/undercoating.html' },
+      { name: 'Hitches & Towing', url: './services/hitches.html' },
     ],
     ev: [
-      { name: 'Ceramic Coating & PPF', url: './services/ceramic-coating.html', icon: '✨' },
-      { name: 'Window Tinting (Ceramic)', url: './services/window-tinting.html', icon: '🕳️' },
-      { name: 'Running Boards', url: './services/running-boards.html', icon: '⤵️' },
-      { name: 'Exterior Accessories', url: './services/exterior.html', icon: '🔧' },
+      { name: 'Ceramic Coating & PPF', url: './services/ceramic-coating.html' },
+      { name: 'Window Tinting (Ceramic)', url: './services/window-tinting.html' },
+      { name: 'Running Boards', url: './services/running-boards.html' },
+      { name: 'Exterior Accessories', url: './services/exterior.html' },
     ],
     other: [
-      { name: 'Spray-On Bedliner', url: './services/bedliner.html', icon: '🛡️' },
-      { name: 'Undercoating', url: './services/undercoating.html', icon: '🛡️' },
-      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
-      { name: 'Commercial Wraps', url: './services/commercial-wraps.html', icon: '🎨' },
+      { name: 'Spray-On Bedliner', url: './services/bedliner.html' },
+      { name: 'Undercoating', url: './services/undercoating.html' },
+      { name: 'Window Tinting', url: './services/window-tinting.html' },
+      { name: 'Commercial Wraps', url: './services/commercial-wraps.html' },
     ],
   };
 
@@ -1519,7 +1518,7 @@
     }
 
     const popularGroup = document.createElement('optgroup');
-    popularGroup.label = '★ Popular';
+    popularGroup.label = 'Popular';
     matchList(makes ? POPULAR_MAKES : null).forEach(name => {
       popularGroup.appendChild(new Option(name, name));
     });
@@ -1620,7 +1619,7 @@
       const a = document.createElement('a');
       a.className = 'vs-chip';
       a.href = url.toString();
-      a.innerHTML = `<span class="vs-chip-icon" aria-hidden="true">${svc.icon}</span>${svc.name}`;
+      a.innerHTML = `<svg class="vs-chip-ico" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>${svc.name}`;
       chips.appendChild(a);
     });
 
@@ -1630,7 +1629,7 @@
     qa.className = 'vs-chip';
     qa.href = qUrl;
     qa.style.cssText = 'background:var(--color-accent); border-color:var(--color-accent); color:#fff; font-weight:700;';
-    qa.innerHTML = '<span aria-hidden="true">✉️</span> Get a Quote for This Vehicle';
+    qa.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="vertical-align:-2px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Get a Quote for This Vehicle';
     chips.appendChild(qa);
 
     results.classList.add('visible');

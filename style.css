@@ -2645,3 +2645,12 @@ summary, [role="button"], [role="tab"] {
 .nav .nav-cta {
   color: #fff;
 }
+
+/* Inline icons that replaced emoji. Emoji render inconsistently across
+   platforms and are announced literally ("label", "wrench"), which does
+   not suit the restrained, technical tone the brand direction calls for. */
+.inline-ico {
+  vertical-align: -2px;
+  margin-right: 2px;
+  flex-shrink: 0;
+}
