@@ -165,6 +165,12 @@
       outline: 2px solid var(--color-accent);
       outline-offset: 1px;
     }
+    .form-help {
+      margin: var(--space-2) 0 0;
+      font-size: var(--text-xs);
+      line-height: 1.5;
+      color: var(--color-text-muted);
+    }
     .form-submit-row {
       display: flex;
       align-items: center;
@@ -1106,8 +1112,9 @@
                   <input class="form-input" type="email" id="r-email" name="Email" placeholder="john@email.com" required>
                 </div>
                 <div class="form-field">
-                  <label class="form-label" for="r-phone">Phone</label>
-                  <input class="form-input" type="tel" id="r-phone" name="Phone" placeholder="(301) 555-0100" pattern="[0-9\s+\(\)\.\-]{7,30}" minlength="7" maxlength="30" title="Enter a valid phone number using digits and + ( ) - .">
+                  <label class="form-label" for="r-phone">Phone *</label>
+                  <input class="form-input" type="tel" id="r-phone" name="Phone" placeholder="(301) 555-0100" pattern="[0-9\s+\(\)\.\-]{7,30}" minlength="7" maxlength="30" title="Enter a valid phone number using digits and + ( ) - ." required aria-describedby="r-phone-help">
+                  <p id="r-phone-help" class="form-help">Fastest way to get your quote — most are settled in one call.</p>
                 </div>
               </div>
               <div class="form-field">

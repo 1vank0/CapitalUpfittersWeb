@@ -309,9 +309,64 @@ function pickFirst(body, names) {
   return '';
 }
 
+/**
+ * Service slugs are what the forms submit (the API contract requires
+ * /^[a-z0-9][a-z0-9_-]*$/i). Those slugs are fine on the wire but unreadable
+ * in a notification email — the shop was receiving "amp_powerstep" rather
+ * than "AMP PowerStep". This maps known slugs back to human labels for
+ * display only; the stored/transmitted value is untouched.
+ * Mirrors the SERVICES list in quote-form.js plus the fleet/dealer options.
+ */
+const SERVICE_LABELS = {
+  bedliner: 'Bedliner',
+  ceramic_coating: 'Ceramic Coating',
+  undercoating: 'Undercoating',
+  window_tinting: 'Window Tinting',
+  tonneau_cover: 'Tonneau Cover',
+  running_boards: 'Running Boards',
+  hitches_towing: 'Hitches & Towing',
+  camper_shell: 'Camper Shell',
+  toolboxes: 'Toolboxes / Bed Storage',
+  amp_powerstep: 'AMP PowerStep (Electric)',
+  suspension_lift: 'Suspension / Lift Kit',
+  exterior_accessories: 'Exterior Accessories',
+  led_lighting: 'LED Lighting',
+  wraps_branding: 'Wraps & Branding',
+  industrial_coatings: 'Industrial Coatings',
+  mobile_detailing: 'Mobile Detailing',
+  pickup_upfitting: 'Pickup Upfitting',
+  van_packages: 'Van Packages',
+  dot_compliance: 'DOT Compliance',
+  fleet_branding: 'Fleet Branding',
+  custom_fabrication: 'Custom Fabrication',
+  fleet_upfitting: 'Fleet Upfitting',
+  dealer_program: 'Dealer Program',
+  government_contracts: 'Government Contracts'
+};
+
+function serviceLabel(slug) {
+  const key = String(slug || '').toLowerCase();
+  if (SERVICE_LABELS[key]) return SERVICE_LABELS[key];
+  // Unknown slug: de-slugify rather than leaking raw snake_case.
+  return String(slug || '')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 function asJoinedString(v) {
   if (Array.isArray(v)) return v.map((item) => scalarString(item, MAX_SERVICE_CHARS)).filter(Boolean).join(', ');
   return scalarString(v, MAX_SERVICE_CHARS);
+}
+
+/** Same as asJoinedString but renders human-readable service labels. */
+function asJoinedServiceLabels(v) {
+  if (Array.isArray(v)) {
+    return v.map((item) => serviceLabel(scalarString(item, MAX_SERVICE_CHARS))).filter(Boolean).join(', ');
+  }
+  const s = scalarString(v, MAX_SERVICE_CHARS);
+  return s ? serviceLabel(s) : '';
 }
 
 function optionalString(value, maxLength = MAX_FIELD_CHARS) {
@@ -696,7 +751,7 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
   const plateState = pickFirst(body, ['Plate State']);
 
   // Request
-  const services = asJoinedString(body.services);
+  const services = asJoinedServiceLabels(body.services);
   const prefDate = pickFirst(body, ['Preferred Date']);
   const callTime = pickFirst(body, ['Best Time to Call']);
   const message  = pickFirst(body, ['Message', 'message']);
@@ -726,9 +781,43 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
       </table>`;
   }
 
-  const customerHtml = section('Customer Information',
-    row('Name', fullName) + row('Email', email) + row('Phone', phone) +
-    row('ZIP', zip) + row('Business / Agency', business) + row('Organization Type', orgType));
+  /**
+   * Contact card — the first thing in the email and the only part that is
+   * immediately actionable. Phone and email are real tel:/mailto: links so
+   * the shop can respond from the notification on a phone without
+   * retyping anything. A missing phone is called out explicitly rather
+   * than silently omitted, because on the retail form it used to be
+   * optional and its absence changes how you follow up.
+   */
+  const contactCardHtml = (() => {
+    const who = fullName || 'Name not provided';
+    const subLine = [business, orgType].filter(Boolean).join(' · ');
+
+    const phoneBlock = phone
+      ? `<a href="tel:${esc(String(phone).replace(/[^0-9+]/g, ''))}" style="display:inline-block;padding:10px 18px;background:#0071e3;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;border-radius:6px;">&#9742;&nbsp; ${esc(phone)}</a>`
+      : `<span style="display:inline-block;padding:10px 14px;background:#fef3c7;color:#92400e;font-size:13px;font-weight:600;border-radius:6px;">No phone provided — reply by email</span>`;
+
+    const emailBlock = email
+      ? `<a href="mailto:${esc(email)}" style="display:inline-block;padding:10px 18px;background:#ffffff;color:#0071e3;font-size:15px;font-weight:600;text-decoration:none;border:1px solid #d1d5db;border-radius:6px;">&#9993;&nbsp; ${esc(email)}</a>`
+      : '';
+
+    return `
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 22px 0;border-collapse:collapse;">
+        <tr>
+          <td style="padding:10px 16px;background:#103b68;color:#fcbf0d;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:6px 6px 0 0;">Contact — Respond To This</td>
+        </tr>
+        <tr>
+          <td style="padding:16px;background:#ffffff;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 6px 6px;">
+            <div style="color:#111827;font-size:20px;font-weight:700;line-height:1.25;">${esc(who)}</div>
+            ${subLine ? `<div style="color:#6b7280;font-size:13px;margin-top:3px;">${esc(subLine)}</div>` : ''}
+            <div style="margin-top:12px;line-height:2.2;">
+              ${phoneBlock}${emailBlock ? '&nbsp;&nbsp;' + emailBlock : ''}
+            </div>
+            ${zip ? `<div style="color:#6b7280;font-size:13px;margin-top:10px;">ZIP ${esc(zip)}</div>` : ''}
+          </td>
+        </tr>
+      </table>`;
+  })();
 
   const vehicleHtml = section('Vehicle Information',
     row('Year', vYear) + row('Make', vMake) + row('Model', vModel) +
@@ -757,7 +846,11 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
     row('FBCLID', body.fbclid) +
     row('MSCLKID', body.msclkid));
 
-  const locationHtml = section('Visitor Location',
+  // "Visitor Location" previously rendered even when every geo field was
+  // empty, leaving a location-titled block whose only row was the user
+  // agent. Only claim to show a location when one actually resolved.
+  const hasGeo = Boolean(geo.city || geo.region || geo.country || geo.isp);
+  const locationHtml = section(hasGeo ? 'Visitor Location' : 'Technical Details',
     row('IP Address', ip) +
     row('City', geo.city) +
     row('Region', geo.region) +
@@ -787,7 +880,15 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
           <div style="color:#9ca3af;font-size:13px;margin-top:4px;">${esc(formatEastern(receivedAt))}</div>
         </td></tr>
         <tr><td style="padding:20px;background:#f9fafb;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;">
-          ${customerHtml}${vehicleHtml}${serviceHtml}${messageHtml}${attribHtml}${locationHtml}${receiptHtml}
+          <!-- Order is deliberate: what the shop must act on first
+               (who to call, what they want, which vehicle), then the
+               internal marketing/technical data that is useful to have
+               but never the reason you opened the email. -->
+          ${contactCardHtml}${serviceHtml}${messageHtml}${vehicleHtml}
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:26px 0 14px 0;">
+            <tr><td style="border-top:1px solid #e5e7eb;padding-top:12px;color:#9ca3af;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;">Internal — Attribution &amp; Technical</td></tr>
+          </table>
+          ${attribHtml}${locationHtml}${receiptHtml}
         </td></tr>
         <tr><td style="padding:14px 20px;background:#111827;border-radius:0 0 8px 8px;text-align:center;">
           <div style="color:#9ca3af;font-size:12px;">Capital Upfitters · Rockville, MD · (301) 304-1419</div>
@@ -798,22 +899,27 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
   </table>
 </body></html>`;
 
-  // Plaintext fallback
+  // Plaintext fallback — mirrors the HTML priority order.
   const lines = [
     `CAPITAL UPFITTERS — NEW LEAD (${formLabel})`,
     formatEastern(receivedAt),
     '',
-    `Name: ${fullName}`,
-    `Email: ${email}`,
-    `Phone: ${phone}`,
+    '--- CONTACT ---',
+    `Name: ${fullName || 'Not provided'}`,
+    `Phone: ${phone || 'NOT PROVIDED — reply by email'}`,
+    `Email: ${email || 'Not provided'}`,
     business && `Business: ${business}`,
+    zip && `ZIP: ${zip}`,
+    '',
+    '--- REQUEST ---',
+    services && `Services: ${services}`,
+    prefDate && `Preferred Date: ${prefDate}`,
+    message && `Message: ${message}`,
     '',
     vYear && `Vehicle: ${[vYear, vMake, vModel, vTrim].filter(Boolean).join(' ')}`,
     vin && `VIN: ${vin}`,
     '',
-    services && `Services: ${services}`,
-    message && `Message: ${message}`,
-    '',
+    '--- INTERNAL ---',
     `Lead Source: ${leadSource}`,
     `Landing Page: ${body.landing_page || ''}`,
     `Referrer: ${body.referrer || ''}`,
