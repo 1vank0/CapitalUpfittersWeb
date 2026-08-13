@@ -315,15 +315,34 @@
 }
 .announce-close {
   position: absolute;
-  right: var(--space-4);
+  /* WCAG 2.2 SC 2.5.8. This button had no width/height and was sized
+     purely by its glyph -- 8.8 x 17.6px. It was the ONLY target-size
+     failure Lighthouse found, but it sits in the sitewide announcement
+     bar, so it failed on every route carrying that bar.
+     A 44x44 box anchored at right:0 centres the glyph at 353px on a
+     375px viewport, 1.6px from where it already sat, so the visual
+     position is effectively unchanged while the hit area becomes
+     thumb-sized. */
+  right: 0;
   top: 50%;
   transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
   background: none;
   border: none;
+  border-radius: 50%;
   color: #fff;
   cursor: pointer;
   font-size: 1.1rem;
   line-height: 1;
+}
+.announce-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
 }
 
 /* ── HERO ───────────────────────────────────────────────── */
