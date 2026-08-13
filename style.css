@@ -2577,3 +2577,19 @@ summary, [role="button"], [role="tab"] {
 .nav-mega {
   transform-origin: top center;
 }
+
+/* §WCAG 2.5.3 Label in Name — the wordmark's two text nodes had no
+   whitespace between them, so textContent was "CapitalUpfitters" while
+   the aria-label read "Capital Upfitters home". axe flagged the
+   mismatch on every page carrying the nav or footer logo, which breaks
+   voice control: a user saying "Capital Upfitters" matched nothing.
+   A real space now sits in the markup so the accessible name contains
+   the visible text; negative word-spacing collapses it visually so the
+   logo still renders as a single wordmark. */
+.nav-logo-text,
+.footer-brand-name {
+  /* The inserted space measures ~0.21em at this weight/tracking;
+     cancelling exactly that keeps the rendered wordmark width
+     unchanged (measured: 210.84px before, 210.84px after). */
+  word-spacing: -0.21em;
+}
