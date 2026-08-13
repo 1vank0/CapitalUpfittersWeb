@@ -144,10 +144,26 @@ table { border-collapse: collapse; }
   /* ── Nav ────────────────────────────────────────────────── */
   --nav-height: 64px;
 
+  /* ── Motion ─────────────────────────────────────────────── */
+  /* `ease` is the browser default, not a decision — it was used in 21
+     places against a single considered curve. These three are the whole
+     vocabulary. All are critically damped (no overshoot), which is the
+     right default when nothing on this site is grabbable mid-flight:
+     there are no drag, swipe or throw gestures, so there is no velocity
+     to carry and nothing to interrupt.
+
+     --ease-out and --ease-in are mirrors of one another, so a panel
+     that slides in decelerating leaves accelerating along the same
+     path, rather than the two directions feeling like different
+     objects. */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);   /* entering / arriving */
+  --ease-in:       cubic-bezier(0.7, 0, 0.84, 0);   /* exiting / leaving  */
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);    /* on-screen change   */
+
   /* ── Transitions ────────────────────────────────────────── */
-  --transition-fast:   150ms ease;
-  --transition-base:   250ms ease;
-  --transition-slow:   400ms ease;
+  --transition-fast:   150ms var(--ease-out);
+  --transition-base:   250ms var(--ease-out);
+  --transition-slow:   400ms var(--ease-out);
 
   /* ── Container ──────────────────────────────────────────── */
   --container-max: 1200px;
@@ -321,7 +337,7 @@ p + p { margin-top: var(--space-4); }
    clips child backgrounds mid-animation (the "corroded box" effect). */
 .reveal {
   opacity: 0;
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 650ms var(--ease-out);
 }
 .reveal.visible {
   opacity: 1;
