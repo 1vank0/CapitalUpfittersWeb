@@ -20,8 +20,8 @@
 - QA pass (`qa/final-qa-report.md`)
 
 ## Not done
-- Lighthouse scoring of the REDESIGNED pages (Unlighthouse blocks localhost; Preview timed out behind Vercel Auth). Production baseline IS measured — see `qa/skills-audit-addendum.md`.
-- Remaining a11y work: label-content-name-mismatch (25 routes), color-contrast (20), target-size (14), aria-prohibited-attr (10)
+- **color-contrast** — the only accessibility audit still failing anywhere. Authoritative failing nodes: `.section-label`, several `<p>`, `.picker-2026-card-cta`. See `qa/skills-audit-addendum.md` Part 4.
+- Re-run Lighthouse against the DEPLOYED Preview to get real-world Performance (local runs have no gzip/HTTP2, so they understate it).
 - Safari/real-device, reduced-motion, keyboard-nav testing
 - Visual redesign of the other 37 pages (they have the technical/claim/link fixes only)
 
@@ -37,6 +37,7 @@
 - All other trust claims stay off the site pending documentation.
 - Hero `h1` sitting at `opacity: 0.02` is an **intentional 1.8s idle-fade**, not a bug. `.reveal` elements not having `.visible` is also correct (scroll-timeline path, not the IO fallback). See `qa/final-qa-report.md` §4 before "fixing" either.
 - Lead-flow suite: normally 15 pass / 0 fail / 13 cancelled, identical on pristine `main`. **New evidence 2026-08-07:** one run completed all **28 pass / 0 fail / 0 cancelled**, proving the 13 are correct tests losing an event-loop race, not broken tests. Zero failures in every run observed.
+- **Lighthouse CAN be run locally.** Unlighthouse blocks localhost (SSRF guard, no override) but the Lighthouse CLI does not: `npx --yes lighthouse@11 http://localhost:PORT/page.html --form-factor=mobile --screenEmulation.mobile --chrome-flags="--headless=new --no-sandbox" --quiet`. Local numbers understate Performance because python http.server sends no compression.
 - **claude-seo tooling works.** Set `CLAUDE_SEO_PYTHON=/Users/ivanko/.local/bin/python3.11` then `claude-seo setup`. Default python3 is 3.9.6 and too old — that is the only reason it looked "unavailable" earlier. Chromium + Unlighthouse work after setup.
 
 ## Blockers
