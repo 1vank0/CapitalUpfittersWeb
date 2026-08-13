@@ -20,7 +20,7 @@
 <meta property="og:url" content="https://www.capitalupfitters.com/privacy.html">
 <meta property="og:title" content="Privacy Policy | Capital Upfitters">
 <meta property="og:description" content="How Capital Upfitters collects, uses, and protects information from website visitors and quote-request forms.">
-<meta property="og:image" content="https://www.capitalupfitters.com/assets/og-default.png">
+<meta property="og:image" content="https://www.capitalupfitters.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting Rockville MD">
@@ -28,6 +28,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
 
@@ -142,7 +143,7 @@
 }
 .rebate-expiry.exclusive {
   background: var(--color-accent-light);
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 .rebate-expiry.seasonal {
   background: #fef3c7;
@@ -317,15 +318,14 @@
         <div class="nav-dropdown nav-mega" role="menu">
           <!-- Bundle banner -->
           <a href="./services/" class="nav-bundle-banner">
-            <span class="nav-bundle-star">★</span>
             Most Popular Bundle — Bedliner + Tonneau Cover + Running Boards
-            <span class="nav-bundle-arrow">→</span>
+            <span class="nav-bundle-arrow" aria-hidden="true">→</span>
           </a>
           <div class="nav-mega-cols">
             <!-- Col A: Protection & Bedliners -->
             <div class="nav-mega-col">
               <div class="nav-mega-col-header nav-mega-col-header--gold">Protection &amp; Bedliners</div>
-              <a href="./services/bedliner.html">Spray-On Bedliners <span class="nav-mega-link-badge">★ Top Seller</span></a>
+              <a href="./services/bedliner.html">Spray-On Bedliners <span class="nav-mega-link-badge">Top Seller</span></a>
               <a href="./services/bedliner.html#uv-plus">Patriot Liner UV+ Upgrade <span class="nav-mega-link-badge">Premium</span></a>
               <a href="./services/ceramic-coating.html">Ceramic Coating &amp; PPF <span class="nav-mega-link-price">From $400</span></a>
               <a href="./services/undercoating.html">Undercoating &amp; Rust <span class="nav-mega-link-price">From $650</span></a>
@@ -335,8 +335,8 @@
             <!-- Col B: Truck Accessories -->
             <div class="nav-mega-col">
               <div class="nav-mega-col-header nav-mega-col-header--orange">Truck Accessories</div>
-              <a href="./services/tonneau.html">Tonneau / Bed Covers <span class="nav-mega-link-badge">★ Bundle</span></a>
-              <a href="./services/running-boards.html">Running Boards &amp; Steps <span class="nav-mega-link-badge">★ Bundle</span></a>
+              <a href="./services/tonneau.html">Tonneau / Bed Covers <span class="nav-mega-link-badge">Bundle</span></a>
+              <a href="./services/running-boards.html">Running Boards &amp; Steps <span class="nav-mega-link-badge">Bundle</span></a>
               <a href="./services/camper-shells.html">Camper Shells &amp; Caps <span class="nav-mega-link-price">From $800</span></a>
               <a href="./services/hitches.html">Hitches &amp; Towing <span class="nav-mega-link-price">From $150</span></a>
               <a href="./services/toolboxes.html">Toolboxes &amp; Storage <span class="nav-mega-link-price">From $300</span></a>
@@ -347,7 +347,7 @@
           </div>
           <div class="nav-mega-footer">
             <a href="./services/" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">View All 16 Services</a>
-            <a href="./rebates.html" class="nav-mega-footer-rebate">🏷 Rebates &amp; Offers</a>
+            <a href="./rebates.html" class="nav-mega-footer-rebate"><svg class="inline-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg> Rebates &amp; Offers</a>
           </div>
         </div>
       </li>
@@ -404,7 +404,7 @@
           <a href="./dealer-government.html#government">DOT &amp; EMS Upfitting</a>
           <a href="./dealer-government.html#government">Protective Coatings / GSA</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account →</a>
+          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account <span aria-hidden="true">→</span></a>
         </div>
       </li>
       <li><a href="./gallery.html">Gallery</a></li>
@@ -448,7 +448,7 @@
         <a href="./services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="./services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.6);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -469,7 +469,7 @@
         <a href="./services/undercoating.html" class="nav-mobile-sub-link">Fleet Undercoating</a>
         <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
-        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.6);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -593,10 +593,10 @@
           <div class="nav-logo-mark"><svg width="30" height="30" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M3.5 6.5 L20 3 L36.5 6.5 L36.5 18 C36.5 27.5 30 35 20 37.5 C10 35 3.5 27.5 3.5 18 Z" fill="#000000"/><path d="M5.5 8 L20 5 L34.5 8 L34.5 18 C34.5 26.5 28.8 33.4 20 35.7 C11.2 33.4 5.5 26.5 5.5 18 Z" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-linejoin="round"/><line x1="20" y1="22" x2="20" y2="35" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round"/><text x="13" y="24" text-anchor="middle" font-family="Impact, 'Arial Narrow Bold', 'Arial Black', sans-serif" font-size="16" font-weight="900" fill="#103b68" letter-spacing="-0.6">C</text><text x="27" y="24" text-anchor="middle" font-family="Impact, 'Arial Narrow Bold', 'Arial Black', sans-serif" font-size="16" font-weight="900" fill="#fcbf0d" letter-spacing="-0.6">U</text></svg></div>
           <div class="footer-brand-name"><svg class="footer-wordmark-svg" width="370" height="100" viewBox="0 0 740 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capital Upfitters — Auto Styling / Performance / Protection"><text x="25" y="98" font-family="'Ash', 'Barlow Condensed', Impact, 'Arial Narrow Bold', sans-serif" font-weight="400" font-size="100" fill="#ffffff">CAPITAL</text><text x="25" y="165" font-family="'Ash', 'Barlow Condensed', Impact, 'Arial Narrow Bold', sans-serif" font-weight="400" font-size="75" fill="#fcbf0d">UPFITTERS</text><line x1="25" y1="175" x2="370" y2="175" stroke="#ffffff" stroke-width="4"/><line x1="370" y1="175" x2="715" y2="175" stroke="#fcbf0d" stroke-width="4"/><text x="25" y="195" font-family="'Ash', 'Barlow Condensed', Impact, 'Arial Narrow Bold', sans-serif" font-weight="400" font-size="17" letter-spacing="1.4"><tspan fill="#ffffff">AUTO STYLING</tspan><tspan fill="#fcbf0d"> / </tspan><tspan fill="#ffffff">PERFORMANCE</tspan><tspan fill="#fcbf0d"> / </tspan><tspan fill="#ffffff">PROTECTION</tspan></text></svg></div>
         </a>
-        <p class="footer-tagline">Family-owned vehicle upfitting shop in Rockville, MD. Authorized Patriot Liner dealer. Serving the DMV 30+ years.</p>
+        <p class="footer-tagline">Vehicle upfitting shop in Rockville, MD, operating as Patriot Liner Rockville. Serving the DMV.</p>
         <div class="footer-contact">
           <a href="tel:3013041419" class="footer-contact-item" data-cms-global="settings.phone" data-cms-bind-href="settings.phone" data-cms-bind-href-prefix="tel:"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a>
-          <div class="footer-contact-item" data-cms-global="settings.address"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel St, Rockville MD 20852</div>
+          <div class="footer-contact-item" data-cms-global="settings.address"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel Street, Rockville MD 20852</div>
         </div>
       </div>
       <div>
@@ -639,7 +639,7 @@
 </footer>
 
 <!-- STICKY MOBILE CTA -->
-<div class="sticky-cta-bar" aria-label="Quick actions">
+<div class="sticky-cta-bar" role="group" aria-label="Quick actions">
   <a href="tel:3013041419" class="btn btn-outline">Call Now</a>
   <a href="./quote.html" class="btn btn-primary">Get Quote</a>
 </div>
@@ -652,9 +652,9 @@
 <script src="./animations.js" defer></script>
 
 <!-- Floating quote CTA -->
-<div class="float-cta" aria-hidden="true">
+<div class="float-cta">
   <a href="./quote.html" class="float-cta-btn">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     Get a Quote
   </a>
 </div>

@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  Capital Upfitters — Direction B: Technical Authority
+  ISOLATED DESIGN-DIRECTION PROTOTYPE — experiments/direction-b-technical/
+  Not the production site. Static HTML5 + hand-authored CSS + minimal
+  vanilla JS only. See NOTES.md in this folder for rationale.
+-->
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital Upfitters — Vehicle Upfitting Built to Spec | Rockville, MD</title>
+<meta name="description" content="Capital Upfitters (Rockville, MD): trailer hitches, spray-in bedliners, ceramic coating, fleet upfitting, and industrial coatings — fitment-checked and installed to manufacturer spec. Serving DC, Maryland &amp; Northern Virginia.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0c0f">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Capital Upfitters — Vehicle Upfitting Built to Spec">
+<meta property="og:description" content="Trailer hitches, bedliners, ceramic coating, fleet upfitting, and industrial coatings. Fitment-checked, installed to spec. Rockville, MD.">
+<meta property="og:image" content="../../og.png">
+
+<link rel="stylesheet" href="direction-b.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AutomotiveBusiness",
+      "name": "Capital Upfitters",
+      "alternateName": ["Capital Auto Upfitters & Protective Coatings", "Patriot Liner Rockville", "Capital Protective Coatings"],
+      "telephone": "+13013041419",
+      "email": "capitalupfitters@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "12019 Nebel Street",
+        "addressLocality": "Rockville",
+        "addressRegion": "MD",
+        "postalCode": "20852",
+        "addressCountry": "US"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:30",
+        "closes": "16:30"
+      },
+      "areaServed": ["Rockville, MD", "Bethesda, MD", "Silver Spring, MD", "Gaithersburg, MD", "Washington, DC", "Northern Virginia"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "How do you confirm a part will actually fit my vehicle?", "acceptedAnswer": {"@type": "Answer", "text": "We confirm hitch class, mounting points, and part number against your exact year, make, and model before anything is ordered — either by VIN or by year/make/model lookup. If a fitment question can't be resolved from the shop, we say so up front rather than guessing."}},
+        {"@type": "Question", "name": "Will an aftermarket install void my factory warranty?", "acceptedAnswer": {"@type": "Answer", "text": "In most cases, no. The Magnuson-Moss Warranty Act prevents a dealer from voiding your factory warranty solely because a non-OEM part was installed, as long as that part didn't cause the failure being claimed. We install to manufacturer torque specs and document the install for exactly this reason."}},
+        {"@type": "Question", "name": "Can I supply my own parts for installation?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for most services. Customer-supplied-parts labor is billed at a different rate than shop-supplied parts and labor, since we're not sourcing or warrantying the part itself. Ask for the specifics when you request a quote."}},
+        {"@type": "Question", "name": "How does quoting work for a fleet with multiple vehicles?", "acceptedAnswer": {"@type": "Answer", "text": "Fleet quotes are handled separately from single-vehicle retail quotes. We ask for fleet size, vehicle types/models, and your organization type up front so the quote reflects per-vehicle and bulk considerations rather than a one-size-fits-all retail estimate."}},
+        {"@type": "Question", "name": "What happens if something doesn't fit as expected once you're into the job?", "acceptedAnswer": {"@type": "Answer", "text": "We stop and call you before proceeding. Fitment is checked before ordering specifically to minimize this, but on vehicles with non-standard modifications we'll flag any deviation and get your sign-off before continuing."}}
+      ]
+    }
+  ]
+}
+</script>
+
+<script src="direction-b.js" defer></script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-flags">
+      <span>12019 Nebel St, Rockville, MD 20852</span>
+      <span>Mon–Fri 9:30–16:30</span>
+    </div>
+    <div class="topbar-flags">
+      <a href="mailto:capitalupfitters@gmail.com">capitalupfitters@gmail.com</a>
+      <a href="tel:3013041419">(301) 304-1419</a>
+    </div>
+  </div>
+</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Capital Upfitters home">
+      <span class="nav-logo-mark" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 36 36" fill="none"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg>
+      </span>
+      <span>
+        <span class="nav-logo-text">Capital<span>Upfitters</span></span>
+        <span class="nav-logo-sub">Direction B — Technical</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#fitment">Fitment Check</a>
+      <a href="#fleet">Fleet &amp; Government</a>
+      <a href="#trust">Verification</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="nav-phone">
+        <strong>(301) 304-1419</strong>
+        <span>Mon–Fri, 9:30–4:30</span>
+      </div>
+      <a href="#final-cta" class="btn btn-primary">Request Quote</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="nav-mobile-panel" id="nav-mobile" role="dialog" aria-label="Mobile menu">
+  <div class="nav-mobile-sheet">
+    <div class="nav-mobile-top">
+      <span class="nav-logo-text" style="color:#fff;">Menu</span>
+      <button class="nav-mobile-close" id="nav-mobile-close" aria-label="Close menu">&times;</button>
+    </div>
+    <a href="#services">Services</a>
+    <a href="#fitment">Fitment Check</a>
+    <a href="#fleet">Fleet &amp; Government</a>
+    <a href="#trust">Verification Status</a>
+    <a href="#faq">FAQ</a>
+    <div class="nav-mobile-cta">
+      <a href="tel:3013041419" class="btn btn-outline btn-block">Call (301) 304-1419</a>
+      <a href="#final-cta" class="btn btn-primary btn-block">Request Quote</a>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-media">
+    <video autoplay muted loop playsinline poster="../../media/gallery/homepage/hero-40342b4145-1672.webp" aria-hidden="true">
+      <source src="../../assets/amp-powerstep.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-scrim"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="container hero-content">
+    <span class="hero-badge"><span class="dot" aria-hidden="true"></span>Technical Authority &middot; Rockville, MD</span>
+    <h1>Vehicle upfitting built to spec, not guesswork.</h1>
+    <p class="hero-sub">Hitches, bedliners, coatings, and fleet builds — fitment confirmed before we order a single part, installed to manufacturer torque spec, and documented for warranty. For personal vehicles, fleets, government, and dealerships.</p>
+    <div class="hero-ctas">
+      <a href="#fitment" class="btn btn-primary btn-lg">Check Vehicle Fitment</a>
+      <a href="tel:3013041419" class="btn btn-outline btn-lg">Call (301) 304-1419</a>
+    </div>
+
+    <div class="hero-audience-strip" data-reveal>
+      <a href="#services" class="audience-tile">
+        <span class="audience-tile-label">Personal &amp; Retail</span>
+        <span class="audience-tile-title">Your Vehicle</span>
+        <span class="audience-tile-desc">Hitches, bedliners, coatings, and accessories for cars, trucks, and SUVs.</span>
+        <span class="audience-tile-link">Browse services →</span>
+      </a>
+      <a href="#fleet" class="audience-tile">
+        <span class="audience-tile-label">Fleet &amp; Government</span>
+        <span class="audience-tile-title">Fleet Accounts</span>
+        <span class="audience-tile-desc">Multi-vehicle upfitting, DOT-relevant builds, and agency intake.</span>
+        <span class="audience-tile-link">See fleet path →</span>
+      </a>
+      <a href="#final-cta" class="audience-tile">
+        <span class="audience-tile-label">Dealerships</span>
+        <span class="audience-tile-title">Dealer Accounts</span>
+        <span class="audience-tile-desc">Pre-delivery upfitting, ceramic/PPF, and standing dealer relationships.</span>
+        <span class="audience-tile-link">Start a conversation →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KPI STRIP ============ -->
+<section class="kpi-strip" aria-label="At a glance">
+  <div class="container kpi-grid">
+    <div class="kpi">
+      <div class="kpi-value">16</div>
+      <div class="kpi-label">Service categories, one shop</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-value">Class I–V</div>
+      <div class="kpi-label">Hitch classes serviced</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-value">9:30–16:30</div>
+      <div class="kpi-label">Mon–Fri shop hours</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-value">DC / MD / NoVA</div>
+      <div class="kpi-label">Service area</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICE CATEGORY OVERVIEW ============ -->
+<section class="section" id="services" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <div class="eyebrow">What We Do</div>
+      <h2 id="services-heading">Four categories. Sixteen services. One install standard.</h2>
+      <p>Grouped by what you're actually trying to solve — not a flat list of sixteen links.</p>
+    </div>
+    <div class="cat-grid">
+
+      <div class="cat-card" data-reveal>
+        <div class="cat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z"/></svg></div>
+        <div class="cat-count">04 SERVICES</div>
+        <div class="cat-title">Protection &amp; Coatings</div>
+        <p class="cat-desc">Spray-in and rust protection layered to the vehicle's actual exposure — not a one-size-fits-all package.</p>
+        <div class="cat-list">
+          <a href="hitches.html#related">Spray-In Bedliners (Patriot Liner)</a>
+          <a href="#">Ceramic Coating &amp; PPF</a>
+          <a href="#">Rust Prevention &amp; Undercoating (Waxoyl)</a>
+          <a href="#">Window Tint</a>
+        </div>
+      </div>
+
+      <div class="cat-card" data-reveal>
+        <div class="cat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <div class="cat-count">04 SERVICES</div>
+        <div class="cat-title">Towing &amp; Hitches</div>
+        <p class="cat-desc">Class I through V, plus Stealth Hitch installs for vehicles where a visible receiver isn't acceptable.</p>
+        <div class="cat-list">
+          <a href="hitches.html">Trailer Hitches &amp; Towing</a>
+          <a href="hitches.html#stealth">Stealth Hitches</a>
+          <a href="#">Truck Accessories</a>
+          <a href="#">Suspension, Wheels &amp; Tires</a>
+        </div>
+      </div>
+
+      <div class="cat-card" data-reveal>
+        <div class="cat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="15" height="12" rx="1"/><path d="M16 10h4l3 3v5h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18.5" cy="19" r="1.6"/></svg></div>
+        <div class="cat-count">05 SERVICES</div>
+        <div class="cat-title">Fleet &amp; Commercial</div>
+        <p class="cat-desc">Standardized builds across a fleet — same spec, same documentation, on every vehicle in the account.</p>
+        <div class="cat-list">
+          <a href="#fleet">Commercial Van &amp; Truck Upfitting</a>
+          <a href="#fleet">Fleet Upfitting Programs</a>
+          <a href="#fleet">Emergency &amp; Warning Lighting</a>
+          <a href="#fleet">Sirens &amp; Vehicle Electronics</a>
+          <a href="#fleet">Graphics Installation</a>
+        </div>
+      </div>
+
+      <div class="cat-card" data-reveal>
+        <div class="cat-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg></div>
+        <div class="cat-count">01 SERVICE &middot; DEDICATED PATH</div>
+        <div class="cat-title">Industrial Coatings</div>
+        <p class="cat-desc">Protective coatings for equipment, structures, and municipal assets — quoted separately from retail bedliner work.</p>
+        <div class="cat-list">
+          <a href="#final-cta">Industrial Protective Coatings</a>
+          <a href="#final-cta">Request an Industrial Quote →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIFFERENTIATION ============ -->
+<section class="section section--surface section-border-top" aria-labelledby="diff-heading">
+  <div class="container">
+    <div class="diff-layout">
+      <div>
+        <div class="eyebrow">Why Capital Upfitters</div>
+        <h2 id="diff-heading">We're Patriot Liner Rockville. We're also not a template.</h2>
+        <p>Capital Upfitters operates as Patriot Liner Rockville — we don't hide that. What we control locally is how the work is run: fitment confirmed before ordering, installs logged to spec, and a shop that answers technical questions instead of reciting a script.</p>
+        <div class="diff-points">
+          <div class="diff-point">
+            <span class="diff-point-mark mono">01</span>
+            <div class="diff-point-body">
+              <strong>Fitment before ordering, every time.</strong>
+              <p>Hitch class, mounting points, and part numbers are confirmed against your exact vehicle before anything ships — see the fitment section below.</p>
+            </div>
+          </div>
+          <div class="diff-point">
+            <span class="diff-point-mark mono">02</span>
+            <div class="diff-point-body">
+              <strong>Installed to manufacturer torque spec.</strong>
+              <p>Not "tightened by feel" — torqued and documented, which is also what keeps a Magnuson-Moss warranty argument on your side.</p>
+            </div>
+          </div>
+          <div class="diff-point">
+            <span class="diff-point-mark mono">03</span>
+            <div class="diff-point-body">
+              <strong>One shop, sixteen services, no hand-offs.</strong>
+              <p>Bedliner through industrial coatings, in the same building — a genuine breadth advantage over single-service competitors in the DMV.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="diff-media" data-reveal>
+        <picture>
+          <source type="image/avif" srcset="../../media/gallery/homepage/craft-why-80490f7f14-768.avif 768w, ../../media/gallery/homepage/craft-why-80490f7f14-1200.avif 1200w, ../../media/gallery/homepage/craft-why-80490f7f14-1536.avif 1536w" sizes="(max-width: 1080px) 90vw, 560px">
+          <source type="image/webp" srcset="../../media/gallery/homepage/craft-why-80490f7f14-768.webp 768w, ../../media/gallery/homepage/craft-why-80490f7f14-1200.webp 1200w, ../../media/gallery/homepage/craft-why-80490f7f14-1536.webp 1536w" sizes="(max-width: 1080px) 90vw, 560px">
+          <img src="../../media/gallery/homepage/craft-why-80490f7f14-1200.webp" alt="Technician working on vehicle upfitting install in the shop" width="1200" height="800" loading="lazy">
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="section" aria-labelledby="process-heading">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal>
+      <div class="eyebrow" style="justify-content:center;">Our Process</div>
+      <h2 id="process-heading">Four steps, same order, every vehicle.</h2>
+    </div>
+    <div class="process-rail">
+      <div class="process-step" data-reveal>
+        <div class="process-num">1</div>
+        <div class="process-title">Assess &amp; Confirm Fitment</div>
+        <p class="process-desc">Vehicle year/make/model or VIN checked against part fitment before we quote a firm price.</p>
+      </div>
+      <div class="process-step" data-reveal>
+        <div class="process-num">2</div>
+        <div class="process-title">Spec &amp; Order</div>
+        <p class="process-desc">Correct part numbers ordered — Stealth Hitches, EcoHitch, Curt, Draw-Tite, B&amp;W, and others as the vehicle requires.</p>
+      </div>
+      <div class="process-step" data-reveal>
+        <div class="process-num">3</div>
+        <div class="process-title">Install to Torque Spec</div>
+        <p class="process-desc">Installed per manufacturer torque and mounting specification, not by feel.</p>
+      </div>
+      <div class="process-step" data-reveal>
+        <div class="process-num">4</div>
+        <div class="process-title">QA &amp; Warranty Documentation</div>
+        <p class="process-desc">Final check performed and the install documented — useful if a warranty question ever comes up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FITMENT PANEL ============ -->
+<section class="section section--surface section-border-top" id="fitment" aria-labelledby="fitment-heading">
+  <div class="container">
+    <div class="fitment-panel" data-reveal>
+      <div class="fitment-copy">
+        <div class="eyebrow">Vehicle Fitment</div>
+        <h2 id="fitment-heading">Does this fit my vehicle?</h2>
+        <p>We don't run a full online configurator — vehicle-specific fitment on hitches, running boards, and tonneau covers gets confirmed by a person before anything is ordered. Here's what that check covers:</p>
+        <ul class="fitment-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span>Hitch class and receiver type for your exact year/make/model</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span>Frame mounting points and any existing modifications</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span>Wiring harness pin-out (4-pin vs. 7-pin) for trailer lighting</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><span>Bed dimensions and rail type for tonneau covers or running boards</span></li>
+        </ul>
+      </div>
+      <div class="fitment-widget">
+        <span class="fitment-widget-label">Start a fitment check</span>
+        <form id="fitment-check">
+          <div style="display:flex; flex-direction:column; gap: var(--space-4);">
+            <div class="fitment-field">
+              <label for="fit-make">Vehicle year &amp; make</label>
+              <input type="text" id="fit-make" name="fit-make" placeholder="e.g. 2022 Toyota Tacoma" required>
+            </div>
+            <div class="fitment-field">
+              <label for="fit-model">What are you trying to fit?</label>
+              <select id="fit-model" name="fit-model">
+                <option value="">Select a service</option>
+                <option value="a trailer hitch">Trailer hitch / towing</option>
+                <option value="a bedliner">Spray-in bedliner</option>
+                <option value="running boards">Running boards</option>
+                <option value="a tonneau cover">Tonneau cover</option>
+                <option value="something else">Something else</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Check Fitment</button>
+          </div>
+        </form>
+        <p id="fitment-result" class="fitment-result" role="status"></p>
+        <p style="font-size:0.78rem; color:var(--muted); margin-top:0;">This is a starting point, not a final answer — we confirm the real fitment by phone or in the shop before ordering parts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPEC TABLE ============ -->
+<section class="section" aria-labelledby="spec-heading">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <div class="eyebrow">Reference</div>
+      <h2 id="spec-heading">Hitch classes, at a glance</h2>
+      <p>Standard SAE hitch classifications — useful context before your fitment check, not a substitute for one.</p>
+    </div>
+    <div class="spec-table-wrap" data-reveal>
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th class="mono">Receiver</th>
+            <th class="mono">Typical GTW*</th>
+            <th>Common use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Class I</td>
+            <td class="mono">1.25"</td>
+            <td class="mono">Up to 2,000 lbs</td>
+            <td>Bike racks, small utility trailers — sedans &amp; crossovers</td>
+          </tr>
+          <tr>
+            <td>Class II</td>
+            <td class="mono">1.25"</td>
+            <td class="mono">Up to 3,500 lbs</td>
+            <td>Small trailers, cargo carriers — crossovers &amp; minivans</td>
+          </tr>
+          <tr>
+            <td>Class III</td>
+            <td class="mono">2"</td>
+            <td class="mono">Up to 8,000 lbs</td>
+            <td>Boats, campers, mid-size trailers — trucks &amp; SUVs</td>
+          </tr>
+          <tr>
+            <td>Class IV</td>
+            <td class="mono">2"</td>
+            <td class="mono">Up to 10,000 lbs</td>
+            <td>Heavier trailers, work equipment — full-size trucks</td>
+          </tr>
+          <tr>
+            <td>Class V</td>
+            <td class="mono">2" / 2.5"</td>
+            <td class="mono">Up to 20,000+ lbs</td>
+            <td>Commercial &amp; heavy-duty towing — HD pickups</td>
+          </tr>
+          <tr>
+            <td>Stealth Hitch</td>
+            <td class="mono">Concealed</td>
+            <td class="mono">Vehicle-dependent</td>
+            <td>Luxury SUVs &amp; EVs where a visible receiver isn't wanted</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="spec-table-note">*Gross Trailer Weight (GTW) figures are general SAE class references, not a quote for any specific vehicle. Your actual tow rating depends on the vehicle's factory towing package — confirmed during your fitment check.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLEET CREDIBILITY ZONE ============ -->
+<section class="fleet-zone" id="fleet" aria-labelledby="fleet-heading">
+  <div class="container fleet-layout">
+    <div>
+      <div class="eyebrow">Fleet &amp; Government</div>
+      <h2 id="fleet-heading">Built for accounts, not one-off jobs.</h2>
+      <p>Fleet and government leads get a different intake than a single retail vehicle — because the questions that matter are different. Manufacturer and partner relationships relevant to fleet work are listed below, flagged by verification status rather than asserted outright.</p>
+
+      <div class="fleet-badges">
+        <div class="fleet-badge">
+          <span class="fleet-badge-status"><span class="dot" aria-hidden="true"></span>Pending verification</span>
+          <span class="fleet-badge-name">Patriot Fleet Solutions</span>
+        </div>
+        <div class="fleet-badge">
+          <span class="fleet-badge-status"><span class="dot" aria-hidden="true"></span>Pending verification</span>
+          <span class="fleet-badge-name">RealTruck Dealer Status</span>
+        </div>
+        <div class="fleet-badge">
+          <span class="fleet-badge-status"><span class="dot" aria-hidden="true"></span>Pending verification</span>
+          <span class="fleet-badge-name">eTrailer Installer</span>
+        </div>
+        <div class="fleet-badge">
+          <span class="fleet-badge-status"><span class="dot" aria-hidden="true"></span>Pending verification</span>
+          <span class="fleet-badge-name">Stealth Hitches Installer</span>
+        </div>
+      </div>
+      <p style="font-size:0.8rem; margin-top: var(--space-5);">These relationships are listed in <code class="mono" style="background:rgba(255,255,255,0.08); padding:0.1rem 0.4rem; border-radius:4px;">project-memory/FACTS-TO-VERIFY.md</code> and will only display as confirmed once independently verified — see the full verification panel below.</p>
+    </div>
+
+    <div class="fleet-panel">
+      <h3 style="color:#fff;">Fleet &amp; government intake</h3>
+      <p style="font-size:0.88rem;">A dedicated fleet quote asks for this before pricing — not the same six fields as a retail bedliner quote.</p>
+      <div class="fleet-intake-list">
+        <div class="fleet-intake-item">
+          <span class="fleet-intake-num">01</span>
+          <div><strong>Fleet size</strong><span>Number of vehicles in the account</span></div>
+        </div>
+        <div class="fleet-intake-item">
+          <span class="fleet-intake-num">02</span>
+          <div><strong>Vehicle types &amp; models</strong><span>Mixed fleet or standardized make/model</span></div>
+        </div>
+        <div class="fleet-intake-item">
+          <span class="fleet-intake-num">03</span>
+          <div><strong>Agency / organization type</strong><span>Private fleet, municipal, or public-safety</span></div>
+        </div>
+        <div class="fleet-intake-item">
+          <span class="fleet-intake-num">04</span>
+          <div><strong>Procurement timeline</strong><span>Rolling intake vs. one-time bulk order</span></div>
+        </div>
+      </div>
+      <a href="#final-cta" class="btn btn-primary btn-block" style="margin-top: var(--space-7);">Start Fleet Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VERIFIED TRUST PANEL ============ -->
+<section class="section" id="trust" aria-labelledby="trust-heading">
+  <div class="container container--narrow">
+    <div class="section-head" data-reveal>
+      <div class="eyebrow">Verification Status</div>
+      <h2 id="trust-heading">Nothing ships as a claim until it's confirmed.</h2>
+      <p>Per this project's trust framework, every credential below stays flagged as pending until confirmed by business records or the named partner — no claim goes live by default.</p>
+    </div>
+    <div class="trust-panel" data-reveal>
+      <div class="trust-row">
+        <div class="trust-name">Patriot Liner Authorization</div>
+        <div class="trust-desc">Licensed application status with Patriot Liner</div>
+        <span class="trust-flag trust-flag--pending">Verify before launch</span>
+      </div>
+      <div class="trust-row">
+        <div class="trust-name">Years in Operation</div>
+        <div class="trust-desc">Shop history / operating-since date</div>
+        <span class="trust-flag trust-flag--pending">Verify before launch</span>
+      </div>
+      <div class="trust-row">
+        <div class="trust-name">Family Ownership</div>
+        <div class="trust-desc">Ownership structure claim</div>
+        <span class="trust-flag trust-flag--pending">Verify before launch</span>
+      </div>
+      <div class="trust-row">
+        <div class="trust-name">Waxoyl Application Center</div>
+        <div class="trust-desc">Certified application-center status</div>
+        <span class="trust-flag trust-flag--pending">Verify before launch</span>
+      </div>
+      <div class="trust-row">
+        <div class="trust-name">Government / Law-Enforcement Work</div>
+        <div class="trust-desc">Public-safety upfitting history</div>
+        <span class="trust-flag trust-flag--pending">Verify before launch</span>
+      </div>
+      <div class="trust-row">
+        <div class="trust-name">Review Ratings &amp; Counts</div>
+        <div class="trust-desc">Aggregate rating / review volume</div>
+        <span class="trust-flag trust-flag--pending">Verify before launch</span>
+      </div>
+      <div class="trust-row">
+        <div class="trust-name">Shop Address &amp; Hours</div>
+        <div class="trust-desc">12019 Nebel St, Rockville, MD · Mon–Fri 9:30–4:30</div>
+        <span class="trust-flag trust-flag--live">Confirmed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICE PREVIEW GRID ============ -->
+<section class="section section--surface section-border-top" aria-labelledby="svc-grid-heading">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <div class="eyebrow">Service Pages</div>
+      <h2 id="svc-grid-heading">Six of sixteen, shown here</h2>
+      <p>Each service page follows the same fitment-forward template — see the full <a href="hitches.html" style="color:var(--signal); font-weight:600;">Hitches &amp; Towing example</a>.</p>
+    </div>
+    <div class="svc-grid">
+
+      <a href="hitches.html" class="svc-card" data-reveal>
+        <div class="svc-card-media">
+          <picture>
+            <source type="image/avif" srcset="../../media/gallery/homepage/service-hitches-c899cd69d2-768.avif">
+            <img src="../../media/gallery/homepage/service-hitches-c899cd69d2-768.webp" alt="Trailer hitch installed on a truck receiver" width="768" height="576" loading="lazy">
+          </picture>
+        </div>
+        <div class="svc-card-body">
+          <div class="svc-card-cat">Towing &amp; Hitches</div>
+          <div class="svc-card-title">Hitches &amp; Towing</div>
+          <p class="svc-card-desc">Class I–V and Stealth Hitch installs, fitment-checked per vehicle.</p>
+          <span class="svc-card-link">View spec-forward template →</span>
+        </div>
+      </a>
+
+      <a href="#" class="svc-card" data-reveal>
+        <div class="svc-card-media">
+          <picture>
+            <source type="image/avif" srcset="../../media/gallery/homepage/service-bedliner-80c7badcf7-768.avif">
+            <img src="../../media/gallery/homepage/service-bedliner-80c7badcf7-768.webp" alt="Spray-in bedliner applied to a truck bed" width="768" height="576" loading="lazy">
+          </picture>
+        </div>
+        <div class="svc-card-body">
+          <div class="svc-card-cat">Protection &amp; Coatings</div>
+          <div class="svc-card-title">Spray-In Bedliners</div>
+          <p class="svc-card-desc">Patriot Liner spray-in protection, applied to spec per bed size.</p>
+          <span class="svc-card-link">View service page →</span>
+        </div>
+      </a>
+
+      <a href="#" class="svc-card" data-reveal>
+        <div class="svc-card-media">
+          <picture>
+            <source type="image/avif" srcset="../../media/gallery/homepage/service-ceramic-61c83aacf5-768.avif">
+            <img src="../../media/gallery/homepage/service-ceramic-61c83aacf5-768.webp" alt="Ceramic coating being applied to a vehicle exterior" width="768" height="576" loading="lazy">
+          </picture>
+        </div>
+        <div class="svc-card-body">
+          <div class="svc-card-cat">Protection &amp; Coatings</div>
+          <div class="svc-card-title">Ceramic Coating &amp; PPF</div>
+          <p class="svc-card-desc">Multi-layer protection systems, specified by exposure and vehicle use.</p>
+          <span class="svc-card-link">View service page →</span>
+        </div>
+      </a>
+
+      <a href="#" class="svc-card" data-reveal>
+        <div class="svc-card-media">
+          <picture>
+            <source type="image/avif" srcset="../../media/gallery/homepage/service-tonneau-d679a2b8b2-768.avif">
+            <img src="../../media/gallery/homepage/service-tonneau-d679a2b8b2-768.webp" alt="Tonneau bed cover installed on a pickup truck" width="768" height="576" loading="lazy">
+          </picture>
+        </div>
+        <div class="svc-card-body">
+          <div class="svc-card-cat">Towing &amp; Hitches</div>
+          <div class="svc-card-title">Tonneau Covers</div>
+          <p class="svc-card-desc">Bed-dimension and rail-type checked before ordering — see the fitment panel above.</p>
+          <span class="svc-card-link">View service page →</span>
+        </div>
+      </a>
+
+      <a href="#" class="svc-card" data-reveal>
+        <div class="svc-card-media">
+          <picture>
+            <source type="image/avif" srcset="../../media/gallery/homepage/service-running-boards-5008658350-768.avif">
+            <img src="../../media/gallery/homepage/service-running-boards-5008658350-768.webp" alt="Running boards installed under a truck cab" width="768" height="576" loading="lazy">
+          </picture>
+        </div>
+        <div class="svc-card-body">
+          <div class="svc-card-cat">Towing &amp; Hitches</div>
+          <div class="svc-card-title">Running Boards</div>
+          <p class="svc-card-desc">Mounting-point specific hardware, matched to cab and frame type.</p>
+          <span class="svc-card-link">View service page →</span>
+        </div>
+      </a>
+
+      <a href="#" class="svc-card" data-reveal>
+        <div class="svc-card-media">
+          <picture>
+            <source type="image/avif" srcset="../../media/gallery/homepage/service-undercoating-0b673a9514-768.avif">
+            <img src="../../media/gallery/homepage/service-undercoating-0b673a9514-768.webp" alt="Undercoating applied to a vehicle chassis" width="768" height="576" loading="lazy">
+          </picture>
+        </div>
+        <div class="svc-card-body">
+          <div class="svc-card-cat">Protection &amp; Coatings</div>
+          <div class="svc-card-title">Undercoating &amp; Rust Prevention</div>
+          <p class="svc-card-desc">Waxoyl-based rust prevention, specified for Mid-Atlantic winters.</p>
+          <span class="svc-card-link">View service page →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section section--surface section-border-top" id="faq" aria-labelledby="faq-heading">
+  <div class="container container--narrow">
+    <div class="section-head section-head--center" data-reveal>
+      <div class="eyebrow" style="justify-content:center;">Questions</div>
+      <h2 id="faq-heading">Frequently asked, answered plainly.</h2>
+    </div>
+    <div class="faq-list" data-reveal>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-1" id="faq-1-btn">
+          <span>How do you confirm a part will actually fit my vehicle?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq-1" role="region" aria-labelledby="faq-1-btn">
+          <div class="faq-a-inner">We confirm hitch class, mounting points, and part number against your exact year, make, and model before anything is ordered — either by VIN or year/make/model. If a fitment question can't be resolved from the shop, we say so up front rather than guessing.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-2" id="faq-2-btn">
+          <span>Will an aftermarket install void my factory warranty?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq-2" role="region" aria-labelledby="faq-2-btn">
+          <div class="faq-a-inner">In most cases, no. The Magnuson-Moss Warranty Act prevents a dealer from voiding your factory warranty solely because a non-OEM part was installed, as long as that part didn't cause the failure being claimed. We install to manufacturer torque spec and document the install for exactly this reason.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-3" id="faq-3-btn">
+          <span>Can I supply my own parts for installation?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq-3" role="region" aria-labelledby="faq-3-btn">
+          <div class="faq-a-inner">Yes, for most services. Customer-supplied-parts labor is billed at a different rate than shop-supplied parts and labor, since we're not sourcing or warrantying the part itself. Ask for specifics when you request a quote.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-4" id="faq-4-btn">
+          <span>How does quoting work for a fleet with multiple vehicles?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq-4" role="region" aria-labelledby="faq-4-btn">
+          <div class="faq-a-inner">Fleet quotes are handled separately from single-vehicle retail quotes. We ask for fleet size, vehicle types, and organization type up front so the quote reflects per-vehicle and bulk considerations rather than a one-size-fits-all retail estimate — see the Fleet &amp; Government section above.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq-5" id="faq-5-btn">
+          <span>What happens if something doesn't fit as expected mid-job?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq-5" role="region" aria-labelledby="faq-5-btn">
+          <div class="faq-a-inner">We stop and call you before proceeding. Fitment is checked before ordering specifically to minimize this, but on vehicles with non-standard modifications we'll flag any deviation and get your sign-off before continuing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta" id="final-cta" aria-labelledby="final-cta-heading">
+  <div class="container final-cta-layout">
+    <div>
+      <h2 id="final-cta-heading">Ready to get a fitment-checked quote?</h2>
+      <p>Tell us your vehicle (or fleet) and what you need — we'll confirm fitment before we quote a firm price.</p>
+    </div>
+    <div class="final-cta-ctas">
+      <a href="tel:3013041419" class="btn btn-primary btn-lg">Call (301) 304-1419</a>
+      <a href="mailto:capitalupfitters@gmail.com" class="btn btn-outline btn-lg">Email the Shop</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="nav-logo-mark" aria-hidden="true" style="width:30px;height:30px;">
+            <svg width="16" height="16" viewBox="0 0 36 36" fill="none"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg>
+          </span>
+          <span style="color:#fff; font-family: var(--font-display); font-weight:700;">Capital Upfitters</span>
+        </div>
+        <p style="max-width:32ch;">Capital Auto Upfitters &amp; Protective Coatings — operating as Patriot Liner Rockville and Capital Protective Coatings. Rockville, MD.</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <div class="footer-links">
+          <a href="#services">Protection &amp; Coatings</a>
+          <a href="hitches.html">Towing &amp; Hitches</a>
+          <a href="#fleet">Fleet &amp; Commercial</a>
+          <a href="#final-cta">Industrial Coatings</a>
+        </div>
+      </div>
+      <div>
+        <h5>Audience</h5>
+        <div class="footer-links">
+          <a href="#services">Personal &amp; Retail</a>
+          <a href="#fleet">Fleet &amp; Government</a>
+          <a href="#final-cta">Dealerships</a>
+          <a href="#trust">Verification Status</a>
+        </div>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <div class="footer-links">
+          <a href="tel:3013041419">(301) 304-1419</a>
+          <a href="mailto:capitalupfitters@gmail.com">capitalupfitters@gmail.com</a>
+          <span>12019 Nebel St, Rockville, MD 20852</span>
+          <span>Mon–Fri, 9:30 AM–4:30 PM</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Capital Upfitters. Design-direction prototype — not the production site.</span>
+      <span class="footer-note">Direction B: Technical Authority — experiments/direction-b-technical/</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a href="tel:3013041419" class="btn btn-outline">Call Now</a>
+  <a href="#final-cta" class="btn btn-primary">Get Quote</a>
+</div>
+
+</body>
+</html>

@@ -10,7 +10,48 @@
   z-index: 100;
   background: var(--color-nav-bg);
   height: var(--nav-height);
-  border-bottom: 1px solid var(--color-border-dark);
+  /* §12 SCROLL EDGE — no hard divider at rest. The separation appears only
+     when content is actually travelling underneath the chrome (.scrolled),
+     rather than drawing a permanent 1px line against nothing. Declared as
+     transparent (not `none`) so only the colour animates — no layout shift. */
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 200ms var(--ease-out),
+    border-bottom-color 200ms var(--ease-out),
+    box-shadow 200ms var(--ease-out);
+}
+
+/* §12 MATERIAL — the reduced-transparency and increased-contrast fallbacks
+   further down already expected a translucent nav, but the nav itself was
+   opaque, so those blocks were no-ops. Build the material they describe:
+   a floating translucent layer with content scrolling under it.
+   Gated on @supports so browsers without backdrop-filter keep the solid
+   bar (progressive enhancement) instead of a washed-out unreadable one. */
+@supports ((backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px))) {
+  .nav {
+    /* 0.82 is a measured floor, not a taste call. The lowest-contrast nav
+       text is the link blue #4DA3FF; composited over the worst possible
+       backdrop (pure white) the alpha->contrast curve is:
+         0.72 -> 3.52  FAIL     0.78 -> 4.46  FAIL
+         0.80 -> 4.81  pass     0.82 -> 5.18  pass (chosen, keeps margin)
+       Anything lighter fails WCAG AA on a page whose hero is bright, and
+       this nav ships on all 40 pages, so it must hold for any backdrop. */
+    background: rgba(0, 0, 0, 0.82);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+  }
+  .nav.scrolled {
+    /* Denser once real content is travelling behind it — 6.31:1 over white. */
+    background: rgba(0, 0, 0, 0.88);
+  }
+}
+
+/* Moved out of animations.js, which injected this rule into <head> at runtime.
+   As injected it landed after style.css and could not be overridden here, and
+   the transition only existed once JS had run. */
+.nav.scrolled {
+  border-bottom-color: var(--color-border-dark);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 .nav-inner {
   display: flex;
@@ -46,7 +87,7 @@
   line-height: 1;
 }
 .nav-logo-text span {
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 .nav-links {
   display: flex;
@@ -82,7 +123,7 @@
 /* ── Nav dropdown ──────────────────────────────────────── */
 .nav-item { position: relative; list-style: none; }
 .nav-item > a { display: flex; align-items: center; gap: 4px; }
-.nav-chevron { width: 10px; height: 10px; transition: transform 200ms ease; flex-shrink: 0; margin-top: 1px; }
+.nav-chevron { width: 10px; height: 10px; transition: transform 200ms var(--ease-out); flex-shrink: 0; margin-top: 1px; }
 .nav-item:hover .nav-chevron { transform: rotate(180deg); }
 .nav-dropdown {
   position: absolute;
@@ -97,7 +138,7 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+  transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out), visibility 0s linear 180ms;
   z-index: 200;
   box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
@@ -114,7 +155,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.6);
   padding: 8px 12px 4px;
   display: block;
 }
@@ -143,7 +184,7 @@
   opacity: 0;
   transform: translateY(14px);
   pointer-events: none;
-  transition: opacity 300ms ease, transform 300ms ease;
+  transition: opacity 300ms var(--ease-out), transform 300ms var(--ease-out);
 }
 .float-cta.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .float-cta-btn {
@@ -161,7 +202,7 @@
   border-radius: 9999px;
   text-decoration: none;
   box-shadow: 0 8px 28px rgba(32,48,85,0.55), 0 2px 8px rgba(0,0,0,0.25);
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  transition: transform 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
   white-space: nowrap;
 }
 .float-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(32,48,85,0.65); }
@@ -183,7 +224,7 @@
   background: var(--color-accent);
   color: #fff;
   border-radius: var(--radius-pill);
-  transition: all var(--transition-base);
+  transition: background-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
   white-space: nowrap;
 }
 .nav-cta:hover {
@@ -217,12 +258,23 @@
   height: 2px;
   background: var(--color-nav-text);
   border-radius: 2px;
-  transition: all var(--transition-base);
+  transition: transform var(--transition-base), opacity var(--transition-base);
 }
 
 /* Mobile nav */
 .nav-mobile {
-  display: none;
+  /* Was display:none -> display:flex, which cannot be transitioned: the
+     full-screen menu popped into existence with no spatial path, so the
+     user had no cue where it came from or how to get back.
+     It now enters and exits along the SAME path (in from the right, out to
+     the right), anchored to the hamburger that opens it — top-right.
+     visibility (not display) keeps it out of the a11y tree while closed
+     but still animatable. */
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(100%);
+  pointer-events: none;
   position: fixed;
   inset: 0;
   background: var(--color-nav-bg);
@@ -230,8 +282,21 @@
   flex-direction: column;
   padding: var(--space-8);
   overflow-y: auto;
+  transition:
+    transform 200ms var(--ease-out),
+    opacity 160ms var(--ease-out),
+    visibility 0s linear 200ms;
 }
-.nav-mobile.open { display: flex; }
+.nav-mobile.open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  transition:
+    transform 320ms var(--ease-out),
+    opacity 220ms var(--ease-out),
+    visibility 0s linear 0s;
+}
 .nav-mobile-close {
   align-self: flex-end;
   background: none;
@@ -291,15 +356,34 @@
 }
 .announce-close {
   position: absolute;
-  right: var(--space-4);
+  /* WCAG 2.2 SC 2.5.8. This button had no width/height and was sized
+     purely by its glyph -- 8.8 x 17.6px. It was the ONLY target-size
+     failure Lighthouse found, but it sits in the sitewide announcement
+     bar, so it failed on every route carrying that bar.
+     A 44x44 box anchored at right:0 centres the glyph at 353px on a
+     375px viewport, 1.6px from where it already sat, so the visual
+     position is effectively unchanged while the hit area becomes
+     thumb-sized. */
+  right: 0;
   top: 50%;
   transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
   background: none;
   border: none;
-  color: rgba(255,255,255,0.7);
+  border-radius: 50%;
+  color: #fff;
   cursor: pointer;
   font-size: 1.1rem;
   line-height: 1;
+}
+.announce-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
 }
 
 /* ── HERO ───────────────────────────────────────────────── */
@@ -321,7 +405,7 @@
   background-position: center;
   background-repeat: no-repeat;
   filter: brightness(0.45);
-  transition: transform 8s ease;
+  transition: transform 8s var(--ease-out);
 }
 .hero:hover .hero-bg { transform: scale(1.03); }
 .hero-overlay {
@@ -510,7 +594,7 @@
   background-position: right 12px center;
   padding-right: 32px;
   cursor: pointer;
-  transition: border-color 150ms ease, box-shadow 150ms ease;
+  transition: border-color 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
 }
 .vs-select:focus {
   outline: none;
@@ -537,7 +621,7 @@
   border-radius: var(--radius-pill);
   cursor: pointer;
   white-space: nowrap;
-  transition: background 140ms ease, transform 140ms ease;
+  transition: background 140ms var(--ease-out), transform 140ms var(--ease-out);
   flex-shrink: 0;
 }
 .vs-btn:hover { background: #162240; transform: translateY(-1px); }
@@ -581,7 +665,7 @@
   color: var(--color-text);
   font-weight: 500;
   text-decoration: none;
-  transition: all 150ms ease;
+  transition: background-color 150ms var(--ease-out), border-color 150ms var(--ease-out), box-shadow 150ms var(--ease-out), color 150ms var(--ease-out), transform 150ms var(--ease-out);
 }
 .vs-chip:hover {
   background: var(--color-accent);
@@ -684,7 +768,7 @@
   padding: 0.65rem 1.5rem;
   border: 1px solid rgba(255,255,255,0.4);
   border-radius: var(--radius-pill);
-  transition: all var(--transition-base);
+  transition: background-color var(--transition-base), border-color var(--transition-base), color var(--transition-base);
 }
 .funnel-card-link:hover {
   background: #fff;
@@ -835,7 +919,7 @@
 }
 .trust-item-text span {
   font-size: var(--text-xs);
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.6);
   font-weight: 400;
 }
 
@@ -866,7 +950,11 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.65);
+  /* On .stats-strip (background: var(--color-accent) = #0071e3) any
+     translucent white fails AA -- 0.65 measured 2.84:1 and even 0.9
+     only reaches 4.10:1. Full white is 4.70:1, the only passing value
+     for normal-size text on this surface. */
+  color: #fff;
   margin-top: var(--space-2);
   display: block;
 }
@@ -1061,7 +1149,7 @@
   color: #fff;
   line-height: 1;
 }
-.footer-brand-name span { color: var(--color-accent); }
+.footer-brand-name span { color: var(--color-accent-text); }
 .footer-tagline {
   font-size: var(--text-sm);
   color: var(--color-footer-text);
@@ -1084,7 +1172,7 @@
   transition: color var(--transition-fast);
 }
 .footer-contact-item:hover { color: #fff; }
-.footer-contact-item svg { flex-shrink: 0; color: var(--color-accent); }
+.footer-contact-item svg { flex-shrink: 0; color: var(--color-accent-text); }
 .footer-col-title {
   font-family: var(--font-display);
   font-size: var(--text-sm);
@@ -1144,7 +1232,7 @@
   align-items: center;
   justify-content: center;
   color: var(--color-footer-text);
-  transition: all var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
 }
 .footer-social a:hover {
   background: var(--color-accent);
@@ -1176,14 +1264,14 @@
   align-items: center;
   gap: var(--space-2);
   font-size: var(--text-xs);
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.6);
   font-family: var(--font-display);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 500;
   margin-bottom: var(--space-6);
 }
-.breadcrumb a { color: rgba(255,255,255,0.45); transition: color var(--transition-fast); }
+.breadcrumb a { color: rgba(255,255,255,0.6); transition: color var(--transition-fast); }
 .breadcrumb a:hover { color: #fff; }
 .breadcrumb-sep { opacity: 0.3; }
 .breadcrumb span { color: rgba(255,255,255,0.7); }
@@ -1216,7 +1304,7 @@
   margin-bottom: var(--space-5);
   max-width: 700px;
 }
-.page-hero h1 em { font-style: normal; color: rgba(255,255,255,0.45); }
+.page-hero h1 em { font-style: normal; color: rgba(255,255,255,0.6); }
 .page-hero-sub {
   font-size: var(--text-lg);
   color: rgba(255,255,255,0.65);
@@ -1249,7 +1337,7 @@
   background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
 }
 .gallery-filter-btn:hover,
 .gallery-filter-btn.active {
@@ -1361,7 +1449,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
 }
 .lightbox-nav:hover { background: var(--color-accent); border-color: var(--color-accent); }
 .lightbox-prev { left: -var(--space-14); }
@@ -1571,7 +1659,7 @@
   padding: 7px 14px;
   border-radius: var(--radius-pill);
   text-decoration: none;
-  transition: all 140ms;
+  transition: background-color 140ms, border-color 140ms, color 140ms;
   white-space: nowrap;
 }
 .nav-mega-footer-cta::after { display: none !important; }
@@ -1639,9 +1727,9 @@
 .nav-mobile-section-trigger.open .nav-mobile-chevron { transform: rotate(180deg); }
 .nav-mobile-chevron {
   width: 18px; height: 18px;
-  transition: transform 200ms ease;
+  transition: transform 200ms var(--ease-out);
   flex-shrink: 0;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.6);
 }
 .nav-mobile-section-body {
   display: none;
@@ -1654,7 +1742,7 @@
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.6);
   padding: var(--space-3) 0 var(--space-2);
   margin-top: var(--space-2);
 }
@@ -1728,12 +1816,12 @@
   background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
-  transition: all 160ms ease;
+  transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
   white-space: nowrap;
 }
 .svc-filter-btn:hover {
   border-color: var(--color-accent);
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 .svc-filter-btn.active {
   background: var(--color-accent);
@@ -2157,4 +2245,526 @@
 /* Align stats grid to top so variable-height cells start together */
 .stats-grid {
   align-items: start;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   === 2026 Redesign ===
+   Hybrid of Direction A (visual system/restraint), Direction C
+   (homepage structure + lead-capture mechanics), and Direction B
+   (fleet/technical modules + Verification Status trust pattern).
+   See reports/design-comparison-matrix.md for the full rationale.
+   Built on the real tokens in base.css (--brand-ink, --brand-amber
+   [Signal Blue], --brand-surface, --font-display/--font-body,
+   the clamp() type scale, --radius-pill) — no parallel token system.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── 2026 Redesign: Homepage hero v2 ─────────────────────────────────────
+   Keeps the existing video/fallback mechanism untouched (.hero-video-wrap,
+   .hero-bg-gradient, .hero-video-overlay, .hero-overlay, #hero-vid,
+   #hero-bg-fallback + the playlist script) but adds a SOLID text-backing
+   scrim behind the headline/CTA block. This is the fix for the confirmed
+   Direction C defect ("hero headline has a real contrast failure against
+   its background photo... nearly unreadable against busier images") —
+   a solid rgba backing plate is contrast-safe regardless of what frame
+   the video happens to be on, which a gradient alone is not. ───────────── */
+.hero-2026-scrim {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  max-width: 100%;
+  background: rgba(0, 0, 0, 0.66);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.hero-2026-scrim .hero-label { color: rgba(255, 255, 255, 0.75); }
+.hero-2026-scrim h1 { color: #fff; }
+.hero-2026-scrim .hero-sub { color: rgba(255, 255, 255, 0.88); }
+
+/* ── 2026 Redesign: Find My Fit picker ────────────────────────────────────
+   Positioned high, immediately after the hero and before the 4-category
+   grid, per Direction C's structure. Links straight into the existing
+   quote.html / service-preselect deep-link contract (?audience=,
+   ?service=) rather than inventing a new submission mechanism. ────────── */
+.picker-2026 {
+  background: var(--brand-white);
+  border-radius: var(--radius-2xl);
+  margin-top: clamp(-3rem, -6vw, -1.5rem);
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  padding: var(--space-8) var(--space-6);
+}
+@media (min-width: 640px) {
+  .picker-2026 { padding: var(--space-10) var(--space-10); }
+}
+.picker-2026-head { max-width: 46rem; margin-bottom: var(--space-8); }
+.picker-2026-head p { margin-top: var(--space-3); }
+.picker-2026-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+@media (min-width: 720px) {
+  .picker-2026-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.picker-2026-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  text-align: left;
+  padding: var(--space-6);
+  border: 1.5px solid var(--color-border, #e5e5e7);
+  border-radius: var(--radius-xl);
+  background: var(--color-bg, #fff);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+.picker-2026-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.picker-2026-icon {
+  width: 44px; height: 44px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-accent-text);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.picker-2026-card h3 { font-size: var(--text-xl); margin: 0; }
+.picker-2026-card p { font-size: var(--text-sm); color: var(--color-text-muted); flex: 1; margin: 0; }
+.picker-2026-card-cta {
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700;
+  color: var(--color-accent-text);
+}
+.picker-2026-microcopy {
+  display: flex; align-items: center; gap: var(--space-2);
+  font-size: var(--text-xs); color: var(--color-text-muted);
+  margin-top: var(--space-6);
+}
+.picker-2026-microcopy svg { color: var(--color-success); flex-shrink: 0; }
+
+/* ── 2026 Redesign: Service-category cards (scrim fix) ───────────────────
+   Direction A's card treatment, with the confirmed contrast defect fixed:
+   "service-category card headings... have low text/background contrast —
+   legible but weak." Fix: a strong, near-solid gradient scrim (not the
+   thin 40%→82% wash Direction A shipped) so headings stay fully legible
+   against any photo, bright or dark. ────────────────────────────────────── */
+.cat-grid-2026 {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+  margin-top: var(--space-10);
+}
+@media (min-width: 640px) { .cat-grid-2026 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .cat-grid-2026 { grid-template-columns: repeat(4, 1fr); } }
+.cat-card-2026 {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+  background: var(--color-surface-dark);
+  text-decoration: none;
+}
+.cat-card-2026 img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform 250ms var(--ease-out);
+}
+.cat-card-2026:hover img { transform: scale(1.05); }
+/* Strong scrim: solid wash across the whole card PLUS a heavier gradient
+   at the bottom, so the heading is legible no matter how bright/busy the
+   photo is — the direct fix for the Direction A defect above. */
+.cat-card-2026::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.30) 45%, rgba(0,0,0,0.94) 100%);
+}
+.cat-card-2026-body { position: relative; z-index: 1; padding: var(--space-6); width: 100%; }
+.cat-card-2026-count { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.85); }
+.cat-card-2026-body h3 { font-size: var(--text-xl); margin-top: var(--space-2); color: #fff; }
+.cat-card-2026-link { display: inline-flex; align-items: center; gap: 0.4em; margin-top: var(--space-3); font-size: var(--text-sm); font-weight: 700; color: #fff; }
+
+/* ── 2026 Redesign: Verification Status panel (sitewide) ─────────────────
+   Direction B's pattern for handling project-memory/FACTS-TO-VERIFY.md —
+   every unverified claim is explicitly flagged "pending" rather than
+   stated as fact or silently omitted. Used on index.html, fleet.html,
+   and services/hitches.html. ─────────────────────────────────────────── */
+.verify-panel {
+  border: 1px solid var(--color-border, #e5e5e7);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+.verify-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1.8fr auto;
+  gap: var(--space-4);
+  align-items: center;
+  padding: var(--space-5) var(--space-6);
+  border-top: 1px solid var(--color-border, #e5e5e7);
+}
+.verify-row:first-child { border-top: none; }
+.verify-row:nth-child(odd) { background: var(--color-surface); }
+.verify-name { font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm); color: var(--color-text); }
+.verify-desc { font-size: var(--text-sm); color: var(--color-text-muted); }
+.verify-flag {
+  justify-self: end;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.verify-flag--pending { background: rgba(210, 148, 23, 0.12); color: #8a5709; border: 1px solid rgba(210, 148, 23, 0.3); }
+.verify-flag--live { background: rgba(47, 143, 104, 0.12); color: #1f6b4c; border: 1px solid rgba(47, 143, 104, 0.3); }
+@media (max-width: 700px) {
+  .verify-row { grid-template-columns: 1fr; text-align: left; }
+  .verify-flag { justify-self: start; }
+}
+
+/* ── 2026 Redesign: Fleet credibility zone ────────────────────────────────
+   Direction B's dark section with partner-authorization badges (flagged
+   by verification status, never asserted outright) + a fleet-specific
+   intake framing distinct from the retail journey. ─────────────────────── */
+.fleet-zone-2026 {
+  background: var(--color-surface-dark);
+  color: #fff;
+  padding: var(--space-20) 0;
+}
+.fleet-zone-2026 h2, .fleet-zone-2026 h3 { color: #fff; }
+.fleet-zone-2026 p { color: rgba(255,255,255,0.62); }
+.fleet-zone-2026-layout {
+  display: grid;
+  gap: var(--space-10);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 960px) {
+  .fleet-zone-2026-layout { grid-template-columns: 1.05fr 0.95fr; gap: var(--space-14); }
+}
+.fleet-badges-2026 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+@media (max-width: 480px) { .fleet-badges-2026 { grid-template-columns: 1fr; } }
+.fleet-badge-2026 {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  display: flex; flex-direction: column; gap: var(--space-2);
+}
+.fleet-badge-2026-status {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-display); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; color: #ffb877;
+}
+.fleet-badge-2026-status .dot { width: 6px; height: 6px; border-radius: 50%; background: #ffb877; flex-shrink: 0; }
+.fleet-badge-2026-name { font-family: var(--font-display); font-weight: 700; font-size: 0.92rem; color: #fff; }
+.fleet-panel-2026 {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+}
+.fleet-panel-2026 h3 { margin-bottom: var(--space-2); }
+.fleet-intake-list-2026 { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6); }
+.fleet-intake-item-2026 { display: flex; gap: var(--space-3); align-items: flex-start; }
+.fleet-intake-num-2026 {
+  font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; color: #6db4ff;
+  width: 24px; flex-shrink: 0;
+}
+.fleet-intake-item-2026 strong { display: block; color: #fff; font-size: 0.92rem; }
+.fleet-intake-item-2026 span { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+
+/* ── 2026 Redesign: Spec table (hitch classes, fitment-adjacent pages) ── */
+.spec-table-2026-wrap { border: 1px solid var(--color-border, #e5e5e7); border-radius: var(--radius-xl); overflow: hidden; overflow-x: auto; }
+.spec-table-2026 { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 640px; }
+.spec-table-2026 thead th {
+  text-align: left; padding: var(--space-4) var(--space-5);
+  background: var(--color-surface-dark); color: rgba(255,255,255,0.55);
+  font-family: var(--font-display); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.spec-table-2026 tbody td { padding: var(--space-4) var(--space-5); border-top: 1px solid var(--color-border, #e5e5e7); color: var(--color-text-secondary); vertical-align: top; }
+.spec-table-2026 tbody tr:hover { background: var(--color-surface); }
+.spec-table-2026 tbody td:first-child { font-weight: 700; color: var(--color-text); font-family: var(--font-display); }
+.spec-table-2026-note { padding: var(--space-4) var(--space-5); background: var(--color-surface); border-top: 1px solid var(--color-border, #e5e5e7); font-size: 0.8rem; color: var(--color-text-muted); }
+
+/* ── 2026 Redesign: Vehicle-fitment note panel ───────────────────────── */
+.fitment-panel-2026 {
+  display: grid; grid-template-columns: 1fr; gap: 0;
+  border: 1px solid var(--color-border, #e5e5e7); border-radius: var(--radius-xl); overflow: hidden;
+}
+@media (min-width: 860px) { .fitment-panel-2026 { grid-template-columns: 1.1fr 0.9fr; } }
+.fitment-panel-2026-copy { padding: var(--space-8); }
+.fitment-panel-2026-widget { padding: var(--space-8); background: var(--color-surface); border-top: 1px solid var(--color-border, #e5e5e7); }
+@media (min-width: 860px) { .fitment-panel-2026-widget { border-top: none; border-left: 1px solid var(--color-border, #e5e5e7); } }
+.fitment-list-2026 { margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+.fitment-list-2026 li { display: flex; gap: var(--space-3); font-size: 0.9rem; color: var(--color-text-secondary); align-items: flex-start; }
+.fitment-list-2026 li svg { flex-shrink: 0; margin-top: 3px; color: var(--color-success); }
+
+/* === 2026 Redesign: mobile nav overflow fix =========================
+   Pre-existing bug (reproduced on main): at narrow widths the logo,
+   .nav-cta and .nav-hamburger together exceed .nav-inner, pushing the
+   CTA ~55px past the container edge and clipping it. The 900px query
+   above hides .nav-links/.nav-portal-link but never constrains the CTA.
+   Scale the CTA down before it can collide; below 430px the hamburger
+   menu and the sticky mobile action bar both still expose "Get a Quote",
+   so hiding the header CTA there costs no conversion path. */
+@media (max-width: 600px) {
+  .nav-cta {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    padding: 0.5rem 0.9rem;
+  }
+}
+@media (max-width: 430px) {
+  .nav-cta { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   APPLE FLUID-INTERFACE PASS (2026-08-07)
+   Evaluated against Apple's "Designing Fluid Interfaces" principles.
+   Measured before this block: 55 :hover rules, 1 :active rule.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* §1 RESPONSE — feedback belongs on pointer-DOWN, not on release.
+   The site had hover states everywhere and effectively no press states.
+   On touch — which is where most quote traffic lands — hover never
+   fires, so tapping a CTA produced no acknowledgement at all until the
+   next page painted. That is the exact "latency falls off a cliff"
+   failure. Scale is compositor-only, so it costs nothing per frame. */
+.btn:active,
+.nav-cta:active,
+.service-chip:active,
+.audience-tab:active,
+.photo-alt-btn:active,
+.vin-lookup-btn:active,
+.float-cta-btn:active,
+.sticky-cta-bar .btn:active,
+.nav-mobile-actions .btn:active {
+  transform: scale(0.97);
+  transition: transform 90ms var(--ease-out);
+}
+
+/* Cards travel further, so they compress less — a large surface that
+   shrinks as hard as a button reads as rubbery rather than solid. */
+.service-card:active,
+.related-card:active,
+.location-card:active,
+.contact-alt-card:active,
+.funnel-card:active {
+  transform: scale(0.99);
+  transition: transform 90ms var(--ease-out);
+}
+
+/* §1 RESPONSE — remove the ~300ms tap delay on everything interactive.
+   This is dead latency on the input path, which §1 says to hunt down. */
+a, button, .btn, .service-chip, .audience-tab, label.form-checkbox-item,
+summary, [role="button"], [role="tab"] {
+  touch-action: manipulation;
+}
+
+/* §14 REDUCED MOTION — the CSS layer previously had no reduced-motion
+   support at all; only animations.js checked it, so every CSS
+   transition ran regardless. Keep opacity (it aids comprehension),
+   drop travel and overshoot. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* The sheet still needs to appear/disappear — cross-fade instead of
+     sliding, which is the non-vestibular equivalent. */
+  .nav-mobile {
+    transform: none;
+    transition: opacity 200ms var(--ease-out), visibility 0s linear 200ms !important;
+  }
+  .nav-mobile.open {
+    transform: none;
+    transition: opacity 200ms var(--ease-out), visibility 0s linear 0s !important;
+  }
+}
+
+/* §14 REDUCED TRANSPARENCY — there are backdrop-filter surfaces on this
+   site and nothing honoured this preference, so users who asked for
+   reduced transparency still got blur. Make the material solid. */
+@media (prefers-reduced-transparency: reduce) {
+  .nav,
+  .nav.scrolled,
+  .nav-dropdown,
+  .nav-mega {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: var(--color-nav-bg) !important;
+  }
+}
+
+/* §14 INCREASED CONTRAST — near-solid backgrounds with defined borders. */
+@media (prefers-contrast: more) {
+  .nav,
+  .nav-dropdown,
+  .nav-mega {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: var(--color-nav-bg) !important;
+    border: 1px solid currentColor;
+  }
+  .btn,
+  .nav-cta,
+  .service-chip {
+    border: 1px solid currentColor;
+  }
+}
+
+/* §7 SPATIAL CONSISTENCY — a dropdown should scale from the nav item
+   that opened it, not from its own centre. Anchoring the origin makes
+   the button->panel relationship legible. */
+.nav-dropdown,
+.nav-mega {
+  transform-origin: top center;
+}
+
+/* §WCAG 2.5.3 Label in Name — the wordmark's two text nodes had no
+   whitespace between them, so textContent was "CapitalUpfitters" while
+   the aria-label read "Capital Upfitters home". axe flagged the
+   mismatch on every page carrying the nav or footer logo, which breaks
+   voice control: a user saying "Capital Upfitters" matched nothing.
+   A real space now sits in the markup so the accessible name contains
+   the visible text; negative word-spacing collapses it visually so the
+   logo still renders as a single wordmark. */
+.nav-logo-text,
+.footer-brand-name {
+  /* The inserted space measures ~0.21em at this weight/tracking;
+     cancelling exactly that keeps the rendered wordmark width
+     unchanged (measured: 210.84px before, 210.84px after). */
+  word-spacing: -0.21em;
+}
+
+/* Accent text on DARK surfaces needs the lighter variant. No single blue
+   can satisfy both: passing 4.5:1 against #f5f5f7 requires luminance
+   <= 0.161, passing it against #111827 requires >= 0.238 — the ranges
+   don't overlap, so two tokens are mandatory, not a preference.
+   Scoped by CONTAINER rather than by the text's own class, because the
+   same component (.btn-outline, .section-label) appears on both light
+   and dark surfaces. The dark containers were enumerated from the live
+   DOM, not guessed. */
+.nav :is(a, .btn, .btn-outline, .section-label, span),
+.cta-banner :is(a, .btn, .btn-outline, .section-label, span),
+.nav-mobile :is(a, .btn, .btn-outline, span),
+.footer :is(.btn, .btn-outline, .section-label),
+.section--dark :is(a, .btn, .btn-outline, .section-label),
+.page-hero :is(.btn-outline, .section-label),
+.sticky-cta-bar .btn-outline {
+  color: var(--color-accent-on-dark);
+}
+/* Solid-fill buttons keep white text — they are not accent-on-dark. */
+.nav .btn-primary,
+.cta-banner .btn-primary,
+.nav-mobile .btn-primary,
+.footer .btn-primary,
+.section--dark .btn-primary,
+.page-hero .btn-primary,
+.sticky-cta-bar .btn-primary,
+.nav .nav-cta {
+  color: #fff;
+}
+
+/* Inline icons that replaced emoji. Emoji render inconsistently across
+   platforms and are announced literally ("label", "wrench"), which does
+   not suit the restrained, technical tone the brand direction calls for. */
+.inline-ico {
+  vertical-align: -2px;
+  margin-right: 2px;
+  flex-shrink: 0;
+}
+
+/* The blog templates use .announce-bar-close (id="announce-close") while
+   every other page uses .announce-close. That class had NO styling at
+   all, so it rendered with browser-default button chrome — a grey box
+   with a 2px outset border — sitting on the blue announcement bar, at
+   11 x 26.4px. Same treatment as its sibling: transparent, white, and a
+   44x44 hit area for WCAG 2.2 SC 2.5.8. */
+.announce-bar-close {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.announce-bar-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+/* Faint text inside dark chrome needs the lighter faint value. Rather
+   than enumerate classes — which turned into whack-a-mole, since the
+   footer copyright, its legal links and the tagline all use faint text
+   under different classes — REDEFINE THE TOKEN inside dark containers.
+   Custom properties cascade, so every descendant that reads
+   --color-text-faint gets the correct value automatically, whatever
+   its class. */
+.footer,
+.cta-banner,
+.section--dark,
+.nav,
+.nav-mobile,
+.page-hero {
+  --color-text-faint: var(--color-text-faint-on-dark);
+}
+
+/* ── Touch: neutralise sticky hover state ────────────────────────────
+   The stylesheet had 51 :hover rules and zero pointer guards. On a
+   touch device :hover fires on tap and then STAYS until the user taps
+   somewhere else, so a tapped card stayed lifted, a tapped image stayed
+   zoomed, and the hero background stayed scaled. Most of this site's
+   traffic is mobile.
+   Only movement and elevation are reverted — colour and background
+   hover changes are left alone, because on touch they read as useful
+   tap feedback rather than a stuck state. Same specificity as the
+   originals, declared later, so no !important is needed.
+   Rules derived from the stylesheet, not hand-listed. */
+@media (hover: none), (pointer: coarse) {
+  .nav-item:hover .nav-chevron { transform: none; box-shadow: none; }
+  .float-cta-btn:hover { transform: none; box-shadow: none; }
+  .nav-cta:hover { transform: none; box-shadow: none; }
+  .hero:hover .hero-bg { transform: none; box-shadow: none; }
+  .vs-btn:hover { transform: none; box-shadow: none; }
+  .vs-chip:hover { transform: none; box-shadow: none; }
+  .funnel-card:hover { transform: none; box-shadow: none; }
+  .funnel-card:hover .funnel-card-bg { transform: none; box-shadow: none; }
+  .service-card:hover { transform: none; box-shadow: none; }
+  .service-card:hover .service-card-img { transform: none; box-shadow: none; }
+  .gallery-item:hover img { transform: none; box-shadow: none; }
+  .picker-2026-card:hover { transform: none; box-shadow: none; }
+  .cat-card-2026:hover img { transform: none; box-shadow: none; }
 }

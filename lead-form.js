@@ -235,6 +235,30 @@
     return 'We could not submit online right now.';
   }
 
+  /**
+   * Move focus to the services group when a services-specific error fires.
+   * The error banner renders at the top of the form, which on the long
+   * retail panel can sit well off-screen from the checkboxes it refers to.
+   * Focusing the group puts the user at the control they need to fix
+   * (WCAG 3.3.1) instead of leaving them to hunt for it.
+   * Purely additive: no effect on payload, submit flow, or response handling.
+   */
+  function focusServices(form) {
+    try {
+      var box = form.querySelector('input[name="services"]');
+      if (!box) return;
+      var group = box.closest('.form-field') || box;
+      if (typeof group.scrollIntoView === 'function') {
+        group.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      if (typeof box.focus === 'function') {
+        box.focus({ preventScroll: true });
+      }
+    } catch (err) {
+      /* focus is a progressive enhancement — never block submission on it */
+    }
+  }
+
   function validate(form) {
     var existing = form.querySelector('.cu-lead-banner');
     if (existing) existing.remove();
@@ -248,10 +272,12 @@
       var serviceCount = form.querySelectorAll('input[name="services"]:checked').length;
       if (serviceCount === 0) {
         showBanner(form, 'error', 'Please select at least one service before submitting.');
+        focusServices(form);
         return false;
       }
       if (serviceCount > 12) {
         showBanner(form, 'error', 'Please select no more than 12 services per request.');
+        focusServices(form);
         return false;
       }
     }

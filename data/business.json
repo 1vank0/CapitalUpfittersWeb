@@ -1,0 +1,27 @@
+{
+  "name": "Capital Auto Upfitters & Protective Coatings",
+  "alternateName": "Capital Upfitters",
+  "relatedIdentities": [
+    "Capital Auto Upfitters & Protective Coatings",
+    "Patriot Liner Rockville",
+    "Capital Protective Coatings"
+  ],
+  "phone": "(301) 304-1419",
+  "phoneTel": "+13013041419",
+  "address": {
+    "street": "12019 Nebel Street",
+    "city": "Rockville",
+    "state": "MD",
+    "zip": "20852"
+  },
+  "email": "capitalupfitters@gmail.com",
+  "hours": {
+    "monday": "9:30 AM–4:30 PM",
+    "tuesday": "9:30 AM–4:30 PM",
+    "wednesday": "9:30 AM–4:30 PM",
+    "thursday": "9:30 AM–4:30 PM",
+    "friday": "9:30 AM–4:30 PM",
+    "display": "Monday–Friday, 9:30 AM–4:30 PM",
+    "note": "Weekend hours are unverified and currently inconsistent in the live site (contact.html shows Saturday/Sunday 'Closed'; locations/rockville-md.html shows Saturday 'By Appointment'). project-memory/PROJECT-CONTEXT.md only confirms Monday–Friday 9:30 AM–4:30 PM — do not publish a weekend claim until Ivan confirms."
+  }
+}

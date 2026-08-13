@@ -20,7 +20,7 @@
 <meta property="og:url" content="https://www.capitalupfitters.com/services/">
 <meta property="og:title" content="Retail Vehicle Services — Capital Upfitters">
 <meta property="og:description" content="Six core vehicle upfitting services done in-house. Most complete same-day or within the week.">
-<meta property="og:image" content="https://www.capitalupfitters.com/assets/og-default.png">
+<meta property="og:image" content="https://www.capitalupfitters.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting Rockville MD">
@@ -28,7 +28,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap">
 
 <link rel="stylesheet" href="../base.css">
 <link rel="stylesheet" href="../style.css">
@@ -123,7 +123,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.6);
   margin-bottom: var(--space-4);
 }
 .service-hub-card-price strong {
@@ -198,7 +198,7 @@
   height: 52px;
   border-radius: var(--radius-lg);
   background: var(--color-accent-light);
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -269,7 +269,7 @@
           <path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/>
         </svg>
       </div>
-      <div class="nav-logo-text">Capital<span>Upfitters</span></div>
+      <div class="nav-logo-text">Capital <span>Upfitters</span></div>
     </a>
     <ul class="nav-links">
       <!-- SERVICES mega-dropdown -->
@@ -280,15 +280,14 @@
         <div class="nav-dropdown nav-mega" role="menu">
           <!-- Bundle banner -->
           <a href="../services/" class="nav-bundle-banner">
-            <span class="nav-bundle-star">★</span>
             Most Popular Bundle — Bedliner + Tonneau Cover + Running Boards
-            <span class="nav-bundle-arrow">→</span>
+            <span class="nav-bundle-arrow" aria-hidden="true">→</span>
           </a>
           <div class="nav-mega-cols">
             <!-- Col A: Protection & Bedliners -->
             <div class="nav-mega-col">
               <div class="nav-mega-col-header nav-mega-col-header--gold">Protection &amp; Bedliners</div>
-              <a href="../services/bedliner.html">Spray-On Bedliners <span class="nav-mega-link-badge">★ Top Seller</span></a>
+              <a href="../services/bedliner.html">Spray-On Bedliners <span class="nav-mega-link-badge">Top Seller</span></a>
               <a href="../services/bedliner.html#uv-plus">Patriot Liner UV+ Upgrade <span class="nav-mega-link-badge">Premium</span></a>
               <a href="../services/ceramic-coating.html">Ceramic Coating &amp; PPF <span class="nav-mega-link-price">From $400</span></a>
               <a href="../services/undercoating.html">Undercoating &amp; Rust <span class="nav-mega-link-price">From $650</span></a>
@@ -299,8 +298,8 @@
             <!-- Col B: Truck Accessories -->
             <div class="nav-mega-col">
               <div class="nav-mega-col-header nav-mega-col-header--orange">Truck Accessories</div>
-              <a href="../services/tonneau.html">Tonneau / Bed Covers <span class="nav-mega-link-badge">★ Bundle</span></a>
-              <a href="../services/running-boards.html">Running Boards &amp; Steps <span class="nav-mega-link-badge">★ Bundle</span></a>
+              <a href="../services/tonneau.html">Tonneau / Bed Covers <span class="nav-mega-link-badge">Bundle</span></a>
+              <a href="../services/running-boards.html">Running Boards &amp; Steps <span class="nav-mega-link-badge">Bundle</span></a>
               <a href="../services/camper-shells.html">Camper Shells &amp; Caps <span class="nav-mega-link-price">From $800</span></a>
               <a href="../services/hitches.html">Hitches &amp; Towing <span class="nav-mega-link-price">From $150</span></a>
               <a href="../services/toolboxes.html">Toolboxes &amp; Storage <span class="nav-mega-link-price">From $300</span></a>
@@ -311,7 +310,7 @@
           </div>
           <div class="nav-mega-footer">
             <a href="../services/" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">View All 16 Services</a>
-            <a href="../rebates.html" class="nav-mega-footer-rebate">🏷 Rebates &amp; Offers</a>
+            <a href="../rebates.html" class="nav-mega-footer-rebate"><svg class="inline-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg> Rebates &amp; Offers</a>
           </div>
         </div>
       </li>
@@ -368,7 +367,7 @@
           <a href="../dealer-government.html#government">DOT &amp; EMS Upfitting</a>
           <a href="../dealer-government.html#government">Protective Coatings / GSA</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="../dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account →</a>
+          <a href="../dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account <span aria-hidden="true">→</span></a>
         </div>
       </li>
       <li><a href="../gallery.html">Gallery</a></li>
@@ -412,7 +411,7 @@
         <a href="../services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="../services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="../services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.6);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -434,7 +433,7 @@
         <a href="../services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="../services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="../services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.6);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -482,9 +481,9 @@
       <span aria-current="page">Services</span>
     </nav>
 
-    <div class="section-label" style="color:rgba(255,255,255,0.45);">Retail Services</div>
+    <div class="section-label" style="color:rgba(255,255,255,0.6);">Retail Services</div>
     <h1 id="svc-hero-heading">EVERY SERVICE YOUR VEHICLE NEEDS.</h1>
-    <p class="page-hero-sub">16 services. All done in-house. Most complete same-day or within the week. Authorized installers for premium brands.</p>
+    <p class="page-hero-sub">16 services. All done in-house. Most complete same-day or within the week. Premium brands installed in-house.</p>
   </div>
 </section>
 
@@ -501,7 +500,7 @@
 
     <div class="svc-filter-tabs" role="tablist" aria-label="Filter services by category">
       <button class="svc-filter-btn active" data-filter="all" role="tab" aria-selected="true">All Services</button>
-      <button class="svc-filter-btn" data-filter="bundle" role="tab" aria-selected="false">★ Bundle Deals</button>
+      <button class="svc-filter-btn" data-filter="bundle" role="tab" aria-selected="false">Bundle Deals</button>
       <button class="svc-filter-btn" data-filter="fleet" role="tab" aria-selected="false">Fleet &amp; Commercial</button>
       <button class="svc-filter-btn" data-filter="protection" role="tab" aria-selected="false">Protection &amp; Coatings</button>
       <button class="svc-filter-btn" data-filter="accessories" role="tab" aria-selected="false">Truck Accessories</button>
@@ -514,7 +513,7 @@
         <div class="service-hub-card-bg svc-bg-bedliner"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
-          <div class="service-hub-card-eyebrow">★ Most Popular · Authorized Patriot Liner</div>
+          <div class="service-hub-card-eyebrow">Most Popular · Patriot Liner</div>
           <div class="service-hub-card-title">Spray-On Bedliners</div>
           <p class="service-hub-card-desc">Durable, textured spray liner permanently bonded to your truck bed. Lifetime warranty. Available in any color. UV+ upgrade available.</p>
           <div class="service-hub-card-price">Starting from <strong>$575</strong></div>
@@ -527,7 +526,7 @@
         <div class="service-hub-card-bg svc-bg-tonneau"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
-          <div class="service-hub-card-eyebrow">★ Bundle With Bedliner · Retrax · BAKFlip</div>
+          <div class="service-hub-card-eyebrow">Bundle With Bedliner · Retrax · BAKFlip</div>
           <div class="service-hub-card-title">Tonneau Covers</div>
           <p class="service-hub-card-desc">Soft fold, hard fold, retractable, and roll-up covers. Retrax Pro, BAKFlip MX4, TruXedo, and more. Same-day installation on in-stock units.</p>
           <div class="service-hub-card-price">Starting from <strong>$300</strong></div>
@@ -540,7 +539,7 @@
         <div class="service-hub-card-bg svc-bg-boards"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
-          <div class="service-hub-card-eyebrow">★ Bundle With Bedliner · AMP PowerStep</div>
+          <div class="service-hub-card-eyebrow">Bundle With Bedliner · AMP PowerStep</div>
           <div class="service-hub-card-title">Running Boards &amp; Steps</div>
           <p class="service-hub-card-desc">Steel, aluminum, and AMP Research electric running boards for trucks and SUVs. Powered steps deploy automatically on door open.</p>
           <div class="service-hub-card-price">Starting from <strong>$250</strong></div>
@@ -579,7 +578,7 @@
         <div class="service-hub-card-bg svc-bg-ceramic"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
-          <div class="service-hub-card-eyebrow">IGL &amp; System X Certified</div>
+          <div class="service-hub-card-eyebrow">IGL &amp; System X</div>
           <div class="service-hub-card-title">Ceramic Coating &amp; PPF</div>
           <p class="service-hub-card-desc">Professional-grade nano-ceramic protection and paint protection film. Locks in gloss, repels water, resists UV and chemical damage.</p>
           <div class="service-hub-card-price">Starting from <strong>$400</strong></div>

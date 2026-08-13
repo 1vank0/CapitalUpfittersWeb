@@ -9,7 +9,11 @@
 /* ── Google Fonts ─────────────────────────────────────────── */
 /* Manrope — geometric with subtle warmth (headings) */
 /* Inter — canonical UI sans (body) */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Fonts are loaded via <link> in each page's <head>, NOT via @import.
+   An @import here forced the browser to download and parse base.css
+   before it could even discover the font request -- a serialised
+   round-trip that Lighthouse measured as 776ms of render-blocking
+   time, on pages whose LCP element is the text <h1>. */
 
 /* ── Reset ────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,8 +36,25 @@ table { border-collapse: collapse; }
   --brand-white:           #ffffff;  /* Paper */
   --brand-surface:         #f5f5f7;  /* Eggshell — Apple's signature section bg */
   --brand-body:            #1d1d1f;  /* body copy on light */
-  --brand-muted:           #6e6e73;  /* Apple's secondary text */
-  --brand-line:            transparent; /* Apple uses zero borders */
+  --brand-muted:           #5f5f64;  /* darkened from #6e6e73: that value cleared AA on
+                                        white (5.07:1) but only reached 4.44:1 on
+                                        --color-surface-2 (#eef0f1), where muted text
+                                        is used for chips and tags. #5f5f64 is 5.83:1
+                                        on white and 5.50:1 on the tint, still visibly
+                                        muted. */;  /* Apple's secondary text */
+
+  /* Accent text on LIGHT surfaces. #0071e3 measures 4.70:1 on pure
+     white but only 4.31:1 on --brand-surface (#f5f5f7), so it fails AA
+     wherever the accent is used as text on a tinted panel. This darker
+     step is 5.57:1 on white and 5.11:1 on the surface. Use it for TEXT;
+     keep #0071e3 for fills, where white sits on top of it. */
+  --color-accent-text:     #0066cc;
+  /* Accent text on DARK surfaces. The base #0071e3 fails there too
+     (3.78:1 on the nav's #111827), and the darker text token above
+     would only make it worse -- light and dark surfaces need opposite
+     directions. #4da3ff is 6.76:1 on #111827 and better on the darker
+     greys. */
+  --color-accent-on-dark:  #4da3ff;  --brand-line:            transparent; /* Apple uses zero borders */
 
   /* ── Legacy aliases — kept so existing selectors don't break ── */
   --color-bg:              var(--brand-white);
@@ -45,7 +66,18 @@ table { border-collapse: collapse; }
   --color-text:            var(--brand-ink);
   --color-text-secondary:  var(--brand-body);
   --color-text-muted:      var(--brand-muted);
-  --color-text-faint:      #8a8f97;
+  /* #8a8f97 failed AA on every surface it is used on: 3.25:1 on white,
+     2.99:1 on --brand-surface, 2.85:1 on --color-surface-2. It styles
+     the privacy disclosure under the lead forms among other things.
+     #666b73 clears 4.5:1 on all three (5.36 / 4.93 / 4.69) while still
+     reading a step fainter than --brand-muted. */
+  --color-text-faint:      #666b73;
+  /* Faint text on DARK chrome. Darkening --color-text-faint for light
+     surfaces regressed the black footer from 6.46:1 to 3.92:1 —
+     the same light/dark split the accent tokens have. The original
+     #8a8f97 was always correct against black; it was only wrong on
+     white. Applied by container, not by class. */
+  --color-text-faint-on-dark: #8a8f97;
   --color-text-inverse:    var(--brand-white);
   --color-text-inverse-muted: rgba(255, 255, 255, 0.72);
 
@@ -123,10 +155,26 @@ table { border-collapse: collapse; }
   /* ── Nav ────────────────────────────────────────────────── */
   --nav-height: 64px;
 
+  /* ── Motion ─────────────────────────────────────────────── */
+  /* `ease` is the browser default, not a decision — it was used in 21
+     places against a single considered curve. These three are the whole
+     vocabulary. All are critically damped (no overshoot), which is the
+     right default when nothing on this site is grabbable mid-flight:
+     there are no drag, swipe or throw gestures, so there is no velocity
+     to carry and nothing to interrupt.
+
+     --ease-out and --ease-in are mirrors of one another, so a panel
+     that slides in decelerating leaves accelerating along the same
+     path, rather than the two directions feeling like different
+     objects. */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);   /* entering / arriving */
+  --ease-in:       cubic-bezier(0.7, 0, 0.84, 0);   /* exiting / leaving  */
+  --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);    /* on-screen change   */
+
   /* ── Transitions ────────────────────────────────────────── */
-  --transition-fast:   150ms ease;
-  --transition-base:   250ms ease;
-  --transition-slow:   400ms ease;
+  --transition-fast:   150ms var(--ease-out);
+  --transition-base:   250ms var(--ease-out);
+  --transition-slow:   400ms var(--ease-out);
 
   /* ── Container ──────────────────────────────────────────── */
   --container-max: 1200px;
@@ -141,7 +189,11 @@ table { border-collapse: collapse; }
   --color-text:            #f0f6fc;
   --color-text-secondary:  #c9d1d9;
   --color-text-muted:      #8b949e;
-  --color-text-faint:      #484f58;
+  /* Dark-theme faint. #484f58 was 2.28:1 on --color-bg. This block is
+     currently inert (nothing toggles data-theme), but a wrong value
+     left in place becomes a live bug the moment dark mode ships.
+     #8a929e is 6.03:1 on #0d1117 and 5.51:1 on #161b22. */
+  --color-text-faint:      #8a929e;
   --color-border:          #30363d;
   --color-divider:         #21262d;
   --color-accent-light:    rgba(249, 166, 7, 0.20);
@@ -224,7 +276,7 @@ p + p { margin-top: var(--space-4); }
   border-radius: var(--radius-pill);  /* Apple's signature pill button */
   border: none;
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition: background-color var(--transition-base), border-color var(--transition-base), color var(--transition-base), transform var(--transition-base);
   white-space: nowrap;
   line-height: 1;
 }
@@ -237,7 +289,7 @@ p + p { margin-top: var(--space-4); }
 }
 .btn-outline {
   background: transparent;
-  color: var(--color-accent);        /* Signal Blue text, no border */
+  color: var(--color-accent-text);        /* Signal Blue text, no border */
   border: none;
 }
 .btn-outline:hover {
@@ -246,7 +298,7 @@ p + p { margin-top: var(--space-4); }
 }
 .btn-ghost {
   background: transparent;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   border: none;
 }
 .btn-ghost:hover {
@@ -272,7 +324,7 @@ p + p { margin-top: var(--space-4); }
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   margin-bottom: var(--space-4);
 }
 .label::before {
@@ -300,15 +352,15 @@ p + p { margin-top: var(--space-4); }
    clips child backgrounds mid-animation (the "corroded box" effect). */
 .reveal {
   opacity: 0;
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 350ms var(--ease-out);
 }
 .reveal.visible {
   opacity: 1;
 }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-1 { transition-delay: 40ms; }
+.reveal-delay-2 { transition-delay: 80ms; }
+.reveal-delay-3 { transition-delay: 120ms; }
+.reveal-delay-4 { transition-delay: 160ms; }
 
 /* ── Section label ──────────────────────────────────────── */
 .section-label {
@@ -317,7 +369,7 @@ p + p { margin-top: var(--space-4); }
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   margin-bottom: var(--space-4);
   display: flex;
   align-items: center;

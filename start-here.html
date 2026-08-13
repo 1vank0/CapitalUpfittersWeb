@@ -11,7 +11,7 @@
 <link rel="shortcut icon" href="favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Start Here — Capital Upfitters | Rockville, MD</title>
-<meta name="description" content="Tell us what brings you in — personal vehicle, fleet, or dealer account. Capital Upfitters in Rockville, MD gets you to the right service fast."ll point you to the right services, pricing, and contact path. Personal vehicle, fleet, or dealer — we have a solution.">
+<meta name="description" content="Tell us what brings you in — personal vehicle, fleet, or dealer account. Capital Upfitters in Rockville, MD gets you to the right service fast.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.capitalupfitters.com/start-here.html">
 
@@ -20,7 +20,7 @@
 <meta property="og:url" content="https://www.capitalupfitters.com/start-here.html">
 <meta property="og:title" content="Start Here — Capital Upfitters">
 <meta property="og:description" content="Tell us about your situation and we'll point you to the right services, pricing, and contact path.">
-<meta property="og:image" content="https://www.capitalupfitters.com/assets/og-default.png">
+<meta property="og:image" content="https://www.capitalupfitters.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting Rockville MD">
@@ -29,6 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
 
@@ -105,7 +106,7 @@
   transition: color var(--transition-base);
 }
 .audience-card:hover .audience-card-number {
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   opacity: 0.25;
 }
 .audience-card-title {
@@ -162,7 +163,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   padding: 0.7rem 1.5rem;
   background: transparent;
   border: 1px solid var(--color-accent);
@@ -271,7 +272,7 @@
           <path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/>
         </svg>
       </div>
-      <div class="nav-logo-text">Capital<span>Upfitters</span></div>
+      <div class="nav-logo-text">Capital <span>Upfitters</span></div>
     </a>
     <ul class="nav-links">
       <!-- SERVICES mega-dropdown -->
@@ -282,15 +283,14 @@
         <div class="nav-dropdown nav-mega" role="menu">
           <!-- Bundle banner -->
           <a href="./services/" class="nav-bundle-banner">
-            <span class="nav-bundle-star">★</span>
             Most Popular Bundle — Bedliner + Tonneau Cover + Running Boards
-            <span class="nav-bundle-arrow">→</span>
+            <span class="nav-bundle-arrow" aria-hidden="true">→</span>
           </a>
           <div class="nav-mega-cols">
             <!-- Col A: Protection & Bedliners -->
             <div class="nav-mega-col">
               <div class="nav-mega-col-header nav-mega-col-header--gold">Protection &amp; Bedliners</div>
-              <a href="./services/bedliner.html">Spray-On Bedliners <span class="nav-mega-link-badge">★ Top Seller</span></a>
+              <a href="./services/bedliner.html">Spray-On Bedliners <span class="nav-mega-link-badge">Top Seller</span></a>
               <a href="./services/bedliner.html#uv-plus">Patriot Liner UV+ Upgrade <span class="nav-mega-link-badge">Premium</span></a>
               <a href="./services/ceramic-coating.html">Ceramic Coating &amp; PPF <span class="nav-mega-link-price">From $400</span></a>
               <a href="./services/undercoating.html">Undercoating &amp; Rust <span class="nav-mega-link-price">From $650</span></a>
@@ -301,8 +301,8 @@
             <!-- Col B: Truck Accessories -->
             <div class="nav-mega-col">
               <div class="nav-mega-col-header nav-mega-col-header--orange">Truck Accessories</div>
-              <a href="./services/tonneau.html">Tonneau / Bed Covers <span class="nav-mega-link-badge">★ Bundle</span></a>
-              <a href="./services/running-boards.html">Running Boards &amp; Steps <span class="nav-mega-link-badge">★ Bundle</span></a>
+              <a href="./services/tonneau.html">Tonneau / Bed Covers <span class="nav-mega-link-badge">Bundle</span></a>
+              <a href="./services/running-boards.html">Running Boards &amp; Steps <span class="nav-mega-link-badge">Bundle</span></a>
               <a href="./services/camper-shells.html">Camper Shells &amp; Caps <span class="nav-mega-link-price">From $800</span></a>
               <a href="./services/hitches.html">Hitches &amp; Towing <span class="nav-mega-link-price">From $150</span></a>
               <a href="./services/toolboxes.html">Toolboxes &amp; Storage <span class="nav-mega-link-price">From $300</span></a>
@@ -313,7 +313,7 @@
           </div>
           <div class="nav-mega-footer">
             <a href="./services/" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">View All 16 Services</a>
-            <a href="./rebates.html" class="nav-mega-footer-rebate">🏷 Rebates &amp; Offers</a>
+            <a href="./rebates.html" class="nav-mega-footer-rebate"><svg class="inline-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg> Rebates &amp; Offers</a>
           </div>
         </div>
       </li>
@@ -370,7 +370,7 @@
           <a href="./dealer-government.html#government">DOT &amp; EMS Upfitting</a>
           <a href="./dealer-government.html#government">Protective Coatings / GSA</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account →</a>
+          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account <span aria-hidden="true">→</span></a>
         </div>
       </li>
       <li><a href="./gallery.html">Gallery</a></li>
@@ -414,7 +414,7 @@
         <a href="./services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="./services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.6);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -436,7 +436,7 @@
         <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="./services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.6);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -476,7 +476,7 @@
   <div class="start-hero-bg"></div>
   <div class="page-hero-overlay"></div>
   <div class="container page-hero-content">
-    <div class="section-label" style="color:rgba(255,255,255,0.45);">Start Here</div>
+    <div class="section-label" style="color:rgba(255,255,255,0.6);">Start Here</div>
     <h1 id="start-hero-heading">WHAT BRINGS YOU IN?</h1>
     <p class="page-hero-sub">Tell us about your situation and we'll point you to the right services, pricing, and contact path.</p>
   </div>
@@ -573,8 +573,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
         <div class="trust-item-text">
-          <strong>Authorized Patriot Liner Dealer</strong>
-          <span>Official installer &amp; warranty</span>
+          <strong>Patriot Liner Rockville</strong>
+          <span>Genuine Patriot Liner product</span>
         </div>
       </div>
       <div class="trust-item">
@@ -582,17 +582,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <div class="trust-item-text">
-          <strong>IGL &amp; System X Certified</strong>
-          <span>Authorized ceramic applicators</span>
-        </div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-item-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <div class="trust-item-text">
-          <strong>5.0★ Google Rating</strong>
-          <span>96 verified Google reviews</span>
+          <strong>IGL &amp; System X Coatings</strong>
+          <span>Professional ceramic product lines</span>
         </div>
       </div>
       <div class="trust-item">
@@ -600,8 +591,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
         <div class="trust-item-text">
-          <strong>Family-Owned 30+ Years</strong>
-          <span>Serving DMV since 1994</span>
+          <strong>Rockville, MD Shop</strong>
+          <span>12019 Nebel Street</span>
         </div>
       </div>
       <div class="trust-item">
@@ -624,9 +615,9 @@
       <div>
         <a href="./index.html" class="footer-brand-logo" aria-label="Capital Upfitters">
           <div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div>
-          <div class="footer-brand-name">Capital<span>Upfitters</span></div>
+          <div class="footer-brand-name">Capital <span>Upfitters</span></div>
         </a>
-        <p class="footer-tagline">Family-owned vehicle upfitting shop in Rockville, MD. Serving the DMV region for 30+ years. Authorized Patriot Liner dealer.</p>
+        <p class="footer-tagline">Vehicle upfitting shop in Rockville, MD, operating as Patriot Liner Rockville. Serving the DMV region.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/capitalupfitters" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -649,7 +640,7 @@
           </a>
           <div class="footer-contact-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            12019 Nebel St, Rockville MD 20852
+            12019 Nebel Street, Rockville MD 20852
           </div>
         </div>
       </div>
@@ -698,7 +689,7 @@
 </footer>
 
 <!-- STICKY MOBILE CTA BAR -->
-<div class="sticky-cta-bar" aria-label="Quick actions">
+<div class="sticky-cta-bar" role="group" aria-label="Quick actions">
   <a href="tel:3013041419" class="btn btn-outline">Call Now</a>
   <a href="./quote.html" class="btn btn-primary">Get Quote</a>
 </div>
@@ -782,9 +773,9 @@
 <script src="animations.js" defer></script>
 
 <!-- Floating quote CTA -->
-<div class="float-cta" aria-hidden="true">
+<div class="float-cta">
   <a href="./quote.html" class="float-cta-btn">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     Get a Quote
   </a>
 </div>
