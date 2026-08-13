@@ -2654,3 +2654,33 @@ summary, [role="button"], [role="tab"] {
   margin-right: 2px;
   flex-shrink: 0;
 }
+
+/* The blog templates use .announce-bar-close (id="announce-close") while
+   every other page uses .announce-close. That class had NO styling at
+   all, so it rendered with browser-default button chrome — a grey box
+   with a 2px outset border — sitting on the blue announcement bar, at
+   11 x 26.4px. Same treatment as its sibling: transparent, white, and a
+   44x44 hit area for WCAG 2.2 SC 2.5.8. */
+.announce-bar-close {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.announce-bar-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}

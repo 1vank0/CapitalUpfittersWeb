@@ -9,7 +9,11 @@
 /* ── Google Fonts ─────────────────────────────────────────── */
 /* Manrope — geometric with subtle warmth (headings) */
 /* Inter — canonical UI sans (body) */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Fonts are loaded via <link> in each page's <head>, NOT via @import.
+   An @import here forced the browser to download and parse base.css
+   before it could even discover the font request -- a serialised
+   round-trip that Lighthouse measured as 776ms of render-blocking
+   time, on pages whose LCP element is the text <h1>. */
 
 /* ── Reset ────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
