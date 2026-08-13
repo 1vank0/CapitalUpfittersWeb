@@ -32,8 +32,25 @@ table { border-collapse: collapse; }
   --brand-white:           #ffffff;  /* Paper */
   --brand-surface:         #f5f5f7;  /* Eggshell — Apple's signature section bg */
   --brand-body:            #1d1d1f;  /* body copy on light */
-  --brand-muted:           #6e6e73;  /* Apple's secondary text */
-  --brand-line:            transparent; /* Apple uses zero borders */
+  --brand-muted:           #5f5f64;  /* darkened from #6e6e73: that value cleared AA on
+                                        white (5.07:1) but only reached 4.44:1 on
+                                        --color-surface-2 (#eef0f1), where muted text
+                                        is used for chips and tags. #5f5f64 is 5.83:1
+                                        on white and 5.50:1 on the tint, still visibly
+                                        muted. */;  /* Apple's secondary text */
+
+  /* Accent text on LIGHT surfaces. #0071e3 measures 4.70:1 on pure
+     white but only 4.31:1 on --brand-surface (#f5f5f7), so it fails AA
+     wherever the accent is used as text on a tinted panel. This darker
+     step is 5.57:1 on white and 5.11:1 on the surface. Use it for TEXT;
+     keep #0071e3 for fills, where white sits on top of it. */
+  --color-accent-text:     #0066cc;
+  /* Accent text on DARK surfaces. The base #0071e3 fails there too
+     (3.78:1 on the nav's #111827), and the darker text token above
+     would only make it worse -- light and dark surfaces need opposite
+     directions. #4da3ff is 6.76:1 on #111827 and better on the darker
+     greys. */
+  --color-accent-on-dark:  #4da3ff;  --brand-line:            transparent; /* Apple uses zero borders */
 
   /* ── Legacy aliases — kept so existing selectors don't break ── */
   --color-bg:              var(--brand-white);
@@ -237,7 +254,7 @@ p + p { margin-top: var(--space-4); }
 }
 .btn-outline {
   background: transparent;
-  color: var(--color-accent);        /* Signal Blue text, no border */
+  color: var(--color-accent-text);        /* Signal Blue text, no border */
   border: none;
 }
 .btn-outline:hover {
@@ -246,7 +263,7 @@ p + p { margin-top: var(--space-4); }
 }
 .btn-ghost {
   background: transparent;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   border: none;
 }
 .btn-ghost:hover {
@@ -272,7 +289,7 @@ p + p { margin-top: var(--space-4); }
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   margin-bottom: var(--space-4);
 }
 .label::before {
@@ -317,7 +334,7 @@ p + p { margin-top: var(--space-4); }
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   margin-bottom: var(--space-4);
   display: flex;
   align-items: center;

@@ -147,7 +147,7 @@
 .benefit-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-6); margin-top: var(--space-12); }
 .benefit-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-8) var(--space-6); text-align: center; transition: all var(--transition-base); }
 .benefit-card:hover { border-color: var(--color-accent); transform: translateY(-3px); box-shadow: var(--shadow-md); }
-.benefit-icon { width: 56px; height: 56px; border-radius: var(--radius-lg); background: var(--color-accent-light); color: var(--color-accent); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-5); }
+.benefit-icon { width: 56px; height: 56px; border-radius: var(--radius-lg); background: var(--color-accent-light); color: var(--color-accent-text); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-5); }
 .benefit-title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-text); margin-bottom: var(--space-3); }
 .benefit-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
 
@@ -163,7 +163,7 @@
 .rate-price { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; color: var(--color-text); white-space: nowrap; }
 .rate-row.header .rate-price { color: rgba(255,255,255,0.5); font-size: var(--text-xs); letter-spacing: 0.14em; font-weight: 600; }
 .rate-row.featured { background: var(--color-accent-light); border-color: rgba(32,48,85,0.2); }
-.rate-row.featured .rate-price { color: var(--color-accent); }
+.rate-row.featured .rate-price { color: var(--color-accent-text); }
 .pricing-note { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-6); font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-8); display: flex; align-items: flex-start; gap: var(--space-3); }
 
 /* Process */
@@ -195,7 +195,7 @@
 .related-card-body { padding: var(--space-5) var(--space-6); flex: 1; display: flex; flex-direction: column; }
 .related-card-title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-text); margin-bottom: var(--space-2); }
 .related-card-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.5; flex: 1; margin-bottom: var(--space-4); }
-.related-card-link { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); transition: gap var(--transition-fast); }
+.related-card-link { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-text); transition: gap var(--transition-fast); }
 .related-card:hover .related-card-link { gap: var(--space-3); }
 
 /* Testimonials */
@@ -227,7 +227,7 @@
 .towing-card { border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow:hidden; background: var(--color-bg); transition: all var(--transition-base); }
 .towing-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--color-accent); }
 .towing-card-header { padding: var(--space-6); background: var(--color-surface); border-bottom: 1px solid var(--color-border); display:flex; align-items:center; gap: var(--space-4); }
-.towing-card-icon { width:48px; height:48px; border-radius: var(--radius-md); background: var(--color-accent-light); color: var(--color-accent); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.towing-card-icon { width:48px; height:48px; border-radius: var(--radius-md); background: var(--color-accent-light); color: var(--color-accent-text); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .towing-card-name { font-family: var(--font-display); font-size: var(--text-lg); font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color: var(--color-text); }
 .towing-card-sub { font-size: var(--text-xs); color: var(--color-text-muted); margin-top:2px; }
 .towing-card-body { padding: var(--space-6); }
@@ -711,7 +711,7 @@
       </div>
     </div>
     <div class="pricing-note reveal">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0; margin-top:1px; color: var(--color-accent);" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0; margin-top:1px; color: var(--color-accent-text);" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <span>Standard hitch installation time varies by vehicle. Most complete in 2–3 hours. Contact us for a vehicle-specific quote — (301) 304-1419 or get a quote online.</span>
     </div>
   </div>
@@ -817,7 +817,7 @@
 
     </div>
     <div class="pricing-note reveal" style="margin-top: var(--space-8);">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0; margin-top:1px; color: var(--color-accent);" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0; margin-top:1px; color: var(--color-accent-text);" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <span>Advanced towing setups require vehicle-specific fitment confirmation. Call us at (301) 304-1419 or submit a quote and tell us your tow vehicle and trailer type — we'll spec the right system.</span>
     </div>
   </div>

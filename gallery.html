@@ -209,7 +209,7 @@
     }
     .lightbox-counter {
       font-size: var(--text-xs);
-      color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.5);
       margin-top: var(--space-2);
     }
     @media (max-width: 860px) {
@@ -474,7 +474,7 @@
         <a href="./services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="./services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.6);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -496,7 +496,7 @@
         <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="./services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.6);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -1072,7 +1072,7 @@ function openLightbox(idx) {
   const heightClass = ph ? (ph.classList.contains('tall') ? 'tall' : ph.classList.contains('short') ? 'short' : 'med') : 'med';
   const heights = { tall: '460px', med: '380px', short: '340px' };
   const h = heights[heightClass] || '380px';
-  lbDisplay.innerHTML = `<div class="lightbox-placeholder ${bgClass}" style="height:${h}; ${style}"><div style="display:flex;align-items:center;justify-content:center;height:100%;"><span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.25);">${label}</span></div></div>`;
+  lbDisplay.innerHTML = `<div class="lightbox-placeholder ${bgClass}" style="height:${h}; ${style}"><div style="display:flex;align-items:center;justify-content:center;height:100%;"><span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);">${label}</span></div></div>`;
   lbCaption.textContent = label;
   lbCounter.textContent = (idx + 1) + ' / ' + visible.length;
   lightbox.classList.add('open');

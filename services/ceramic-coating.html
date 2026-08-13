@@ -154,7 +154,7 @@
 .benefit-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-6); margin-top: var(--space-12); }
 .benefit-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-8) var(--space-6); text-align: center; transition: all var(--transition-base); }
 .benefit-card:hover { border-color: var(--color-accent); transform: translateY(-3px); box-shadow: var(--shadow-md); }
-.benefit-icon { width: 56px; height: 56px; border-radius: var(--radius-lg); background: var(--color-accent-light); color: var(--color-accent); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-5); }
+.benefit-icon { width: 56px; height: 56px; border-radius: var(--radius-lg); background: var(--color-accent-light); color: var(--color-accent-text); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-5); }
 .benefit-title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-text); margin-bottom: var(--space-3); }
 .benefit-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
 
@@ -176,7 +176,7 @@
 .tier-body { padding: var(--space-6); }
 .tier-features { display: flex; flex-direction: column; gap: var(--space-3); }
 .tier-feature { display: flex; align-items: center; gap: var(--space-3); font-size: var(--text-sm); color: var(--color-text-secondary); }
-.tier-check { width: 18px; height: 18px; border-radius: 50%; background: var(--color-accent-light); color: var(--color-accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.tier-check { width: 18px; height: 18px; border-radius: 50%; background: var(--color-accent-light); color: var(--color-accent-text); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .pricing-note { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-6); font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-8); display: flex; align-items: flex-start; gap: var(--space-3); }
 
 /* Process */
@@ -208,7 +208,7 @@
 .related-card-body { padding: var(--space-5) var(--space-6); flex: 1; display: flex; flex-direction: column; }
 .related-card-title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-text); margin-bottom: var(--space-2); }
 .related-card-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.5; flex: 1; margin-bottom: var(--space-4); }
-.related-card-link { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); transition: gap var(--transition-fast); }
+.related-card-link { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent-text); transition: gap var(--transition-fast); }
 .related-card:hover .related-card-link { gap: var(--space-3); }
 
 @media (max-width: 900px) {
@@ -411,7 +411,7 @@
         <a href="../services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="../services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="../services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.6);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -433,7 +433,7 @@
         <a href="../services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="../services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="../services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.6);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -605,7 +605,7 @@
       </div>
     </div>
     <div class="pricing-note reveal">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0; margin-top:1px; color: var(--color-accent);" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0; margin-top:1px; color: var(--color-accent-text);" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       <span>Quote depends on vehicle size, paint condition, and coverage level. Paint correction (polishing) is quoted separately based on paint assessment. Contact us for an accurate quote before booking.</span>
     </div>
   </div>
@@ -649,7 +649,7 @@
   <div class="container">
     <div class="geo-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); align-items:center;">
       <div>
-        <div class="section-label" style="color:rgba(255,255,255,0.45);">Ceramic Coating in the DMV</div>
+        <div class="section-label" style="color:rgba(255,255,255,0.6);">Ceramic Coating in the DMV</div>
         <h2 id="geo-heading-ceramic" style="color:#fff; margin-bottom: var(--space-5);">PROFESSIONAL CERAMIC COATING IN ROCKVILLE &amp; BETHESDA.</h2>
         <p style="color:rgba(255,255,255,0.65); font-size: var(--text-lg); line-height:1.7; margin-bottom: var(--space-8);">
           Car owners across Bethesda, Rockville, Potomac, and North Bethesda choose Capital Upfitters for IGL and System X ceramic coating — because proper paint protection starts with proper prep. Located at 12019 Nebel Street in Rockville, easily accessible from I-270 and Route 355.
@@ -682,7 +682,7 @@
         <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: var(--space-6) var(--space-7);">
           <div style="font-family: var(--font-display); font-size: var(--text-4xl); font-weight:800; color:#fff; line-height:1;">Mon&ndash;Fri</div>
           <div style="font-size: var(--text-sm); color:rgba(255,255,255,0.55); margin-top: var(--space-1);">Open 9:30 AM &ndash; 4:30 PM</div>
-          <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top: var(--space-3); font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.45); transition: color 180ms ease;">Read our Google reviews →</a>
+          <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" style="display:inline-block; margin-top: var(--space-3); font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.6); transition: color 180ms ease;">Read our Google reviews →</a>
         </div>
         <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: var(--space-6) var(--space-7);">
           <div style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight:800; color:#fff; line-height:1;">Rockville, MD</div>
