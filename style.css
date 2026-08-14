@@ -1781,15 +1781,58 @@
   .nav-links { gap: var(--space-5); }
 }
 
-/* 3. Hamburger breakpoint — keep nav visible down to 960px */
-@media (max-width: 960px) {
+/* 3. Hamburger breakpoint.
+   Was 960px, with an explicit 961–1160px override that FORCED the full
+   desktop nav visible. That range is exactly where it does not fit: at
+   1024x768 the seven top-level links cannot hold one line, so
+   "Fleet & Business" and "Dealer & Gov" wrapped to two lines and the
+   wordmark spilled its box into "Services", with "Contact" running
+   under the Get a Quote button.
+
+   It reads as a box-overlap bug but is not — the flex children stay
+   adjacent (logo 259px + links 562px + actions 152px = 973px inside a
+   973px bar). The overflow is inside the boxes, which is why it needs a
+   visual check rather than a geometry assertion.
+
+   The nav now switches to the hamburger below 1160px — the same width
+   at which .nav-portal-link already drops out, so the two thresholds
+   agree instead of fighting. Above 1160px there is room for one line. */
+@media (max-width: 1160px) {
   .nav-links, .nav-portal-link { display: none !important; }
   .nav-hamburger { display: flex !important; }
 }
-/* Override the old 900px breakpoint */
-@media (min-width: 961px) and (max-width: 1160px) {
-  .nav-links { display: flex !important; }
-  .nav-hamburger { display: none !important; }
+
+/* Phone widths — the nav bar overflowed.
+   Measured at 390x844: wordmark 259 + nav-cta 152 + hamburger 40 = 451px
+   of content in a 390px bar. It overflowed by 71px, which pushed the
+   HAMBURGER off-screen — so the only route into the menu was invisible,
+   and the page gained a horizontal scroll. Pre-existing, not caused by
+   the hamburger breakpoint above: at 390px the old 960px rule and the
+   new 1160px rule behave identically.
+
+   Two cases, because quote entry must never disappear:
+
+   1. Pages that DO have the bottom bar — drop the nav pill, since
+      .sticky-cta-bar already pins Call + Get Quote at this exact width,
+      so the pill is pure duplication.
+      Scoped with :has() rather than applied blindly: 17 of the 38 pages
+      carrying .nav-cta have NO .sticky-cta-bar — every blog post and all
+      four location pages, which are precisely where mobile search
+      traffic lands. Hiding it unconditionally would have left those
+      pages with no way to request a quote on a phone.
+      If :has() is unsupported the rule simply does not match, leaving
+      the pill visible — the old overflow, never a lost CTA. */
+@media (max-width: 680px) {
+  body:has(.sticky-cta-bar) .nav-cta { display: none !important; }
+}
+
+/* 2. Pages WITHOUT a bottom bar — keep the pill, make it fit. Compact
+      the label and let the wordmark shrink so all three fit one line. */
+@media (max-width: 680px) {
+  .nav-inner { gap: var(--space-2); }
+  .nav-logo { min-width: 0; flex-shrink: 1; overflow: hidden; }
+  .nav-logo-text { font-size: clamp(0.95rem, 4.4vw, 1.25rem); white-space: nowrap; }
+  .nav-cta { padding: 10px 14px; font-size: var(--text-xs); white-space: nowrap; }
 }
 
 /* 4. Mega dropdown: left-align to nav-item, not centered — prevents clipping */

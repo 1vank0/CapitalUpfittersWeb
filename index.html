@@ -1341,18 +1341,69 @@
   var mqReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
   if (mqReduce && mqReduce.matches) return;
 
-  var IDLE_MS   = 6000;   /* was 1800 — the label + h1 + sub run ~30 words,
-                             which is well over 1.8s at an unhurried pace */
-  var FADE_DUR  = '1.2s'; // text/overlay fade out
+  var IDLE_MS   = 6000;
+  var FADE_DUR  = '1.2s'; // decorative overlay fade
   var RECOV_DUR = '1.2s'; // snap back
 
-  // Label, headline, subtitle only — buttons + stats stay full
-  var TEXT_SELS = ['.hero-label', '.hero-content h1', '.hero-sub'];
-  // Both overlays (global dim + left gradient)
-  var OVL_SELS  = ['.hero-video-overlay', '.hero-overlay'];
+  /* COPY NEVER FADES.
+     Extending the timer was not a real fix: a visitor pausing to read
+     the headline or watch the video is not abandoning the page, and at
+     ANY timeout the value proposition eventually vanished. The hero
+     label, h1, sub and CTAs are now permanently at full opacity and are
+     not driven by this effect at all. Deliberately left EMPTY rather
+     than deleted, so the fade/restore plumbing below still runs for the
+     overlays and nobody re-adds selectors here by habit. */
+  var TEXT_SELS = [];
+
+  /* Only the DECORATIVE dim is animated.
+     The two overlays are not interchangeable:
+       .hero-video-overlay  flat rgba(17,24,39,0.30) across the hero —
+                            purely atmospheric, safe to fade.
+       .hero-overlay        left-to-right scrim, 70% on the text side
+                            down to 10% at the right edge. This is what
+                            makes white hero copy legible over moving
+                            video. Because the copy is now permanent, so
+                            is this. Fading it would leave the headline
+                            over raw footage.
+     Net effect: the video still brightens slightly when the visitor
+     goes idle, but nothing they need to read ever dims. */
+  var OVL_SELS  = ['.hero-video-overlay'];
 
   var hero = document.querySelector('.hero');
   if (!hero) return;
+
+  /* HERO COPY VISIBILITY GUARANTEE — runs once, never reverses.
+
+     The hero label/h1/sub/CTAs are revealed by `cu-hero-reveal`, a
+     time-based entrance animation injected by animations.js which
+     declares opacity:0 with fill:both. That is fine while the animation
+     runs, but it means the copy's visibility DEPENDS on that animation
+     completing. If it never ticks — JS error, blocked animation, a
+     throttled/background document — fill:both pins the element on its
+     `from` keyframe and the value proposition is invisible.
+
+     Previously ensureVisible() masked this accidentally by writing
+     inline opacity:1 on every idle-restore. Now that the copy is out of
+     the idle system entirely, that accidental safety net is gone, so
+     make it explicit and deliberate: once the page has loaded, pin the
+     hero copy to full opacity and clear the animation. One-shot, not on
+     a timer, and nothing below ever lowers it again. */
+  function pinHeroCopyVisible() {
+    ['.hero-label', '.hero-content h1', '.hero-sub', '.hero-ctas'].forEach(function(sel) {
+      var el = hero.querySelector(sel);
+      if (!el) return;
+      el.style.animation = 'none';
+      el.style.opacity   = '1';
+    });
+  }
+  if (document.readyState === 'complete') {
+    pinHeroCopyVisible();
+  } else {
+    window.addEventListener('load', pinHeroCopyVisible);
+  }
+  /* Belt and braces: if `load` is delayed by a slow video or font, do
+     not leave the headline invisible in the meantime. */
+  setTimeout(pinHeroCopyVisible, 2500);
 
   var idleTimer = null;
   var watching  = false;
