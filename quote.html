@@ -40,9 +40,25 @@
       flex-wrap: wrap;
       margin-bottom: var(--space-8);
     }
+
+    /* At 200% zoom on a phone (~195px) the two-up form rows floored at
+       their min-content and rendered 177px inside a 94px form, widening
+       the document. Stack them; every field stays full width and usable. */
+    @media (max-width: 460px) {
+      .form-row { grid-template-columns: minmax(0, 1fr) !important; display: grid !important; }
+      /* service picker grid: its tracks floored at min-content, leaving the
+         last chip 5px past the edge at 180px. */
+      .service-picker-grid { grid-template-columns: minmax(0, 1fr) !important; }
+      .service-chip { min-width: 0; max-width: 100%; }
+      .form-row > * { min-width: 0; max-width: 100%; }
+      .form-body, .form-panel, .form-field { min-width: 0; max-width: 100%; }
+    }
     .audience-tab {
       flex: 1;
-      min-width: 180px;
+      /* 180px exceeds the viewport at 200% zoom on a phone (195/180px),
+         which held the whole form panel wide. min() keeps the intended
+         180px wherever it fits and lets it shrink where it does not. */
+      min-width: min(180px, 100%);
       padding: var(--space-5) var(--space-6);
       border: 2px solid var(--color-border);
       border-radius: var(--radius-xl);
@@ -893,7 +909,11 @@
     transform: translateY(0);
     pointer-events: auto;
   }
-  .picker-cart-info { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 200px; }
+  /* min-width was a flat 200px, which is wider than the whole viewport
+     at 200% zoom on a phone (~195px/180px) and pinned the document at
+     243px. min() keeps the 200px intent wherever there is room and lets
+     it shrink where there is not. */
+  .picker-cart-info { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: min(200px, 100%); }
   .picker-cart-count {
     font-family: var(--font-display);
     font-weight: 700;

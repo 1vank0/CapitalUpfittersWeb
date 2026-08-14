@@ -2320,3 +2320,36 @@
   .audience-tabs, .trust-bar-inner, .hero-ctas, .vs-actions { flex-wrap: wrap; }
   .vin-lookup-row > *, .picker-cart-bar > * { flex: 1 1 100%; }
 }
+
+/* ══════════════════════════════════════════════════════════
+   Narrow-width component fixes (<=460px) — targeted, not blanket.
+   Measured at 195px: .picker-cart-count rendered 200px wide inside a
+   144px .picker-cart-bar, and the quote form's controls rendered 177px
+   inside a 144px .form-panel. Both overflowed their OWN containers, so
+   the document widened to 243px. These constrain the specific
+   components rather than adding more global rules.
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 460px) {
+  /* sticky picker cart: stack its parts instead of one wide row */
+  .picker-cart-bar { flex-direction: column; align-items: stretch; }
+  .picker-cart-count,
+  .picker-cart-list,
+  .picker-cart-actions { max-width: 100%; min-width: 0; flex-wrap: wrap; }
+  .picker-cart-actions > * { flex: 1 1 auto; }
+
+  /* form controls must not exceed their panel */
+  .form-input, .form-select, .form-textarea,
+  .form-label, .form-checkbox-item, .photo-preview-grid,
+  .vin-lookup-btn, .photo-upload-zone, .form-hint {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .form-input, .form-select, .form-textarea { width: 100%; }
+  .vin-lookup-btn { white-space: normal; }
+  .photo-preview-grid { grid-template-columns: repeat(auto-fill, minmax(0, 1fr)); }
+
+  /* nav bar: reclaim the few px the hamburger was pushing past the edge */
+  .nav-inner { padding-inline: 10px; gap: 6px; }
+  .nav-hamburger { flex: 0 0 auto; }
+}
