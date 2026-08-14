@@ -2353,3 +2353,19 @@
   .nav-inner { padding-inline: 10px; gap: 6px; }
   .nav-hamburger { flex: 0 0 auto; }
 }
+
+/* Hero commercial line + stats-strip utility line */
+.hero-commercial {
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.65);
+  font-family: var(--font-body);
+  max-width: 60ch;
+}
+.cu-strip-utility {
+  margin: var(--space-4) 0 0;
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+}
