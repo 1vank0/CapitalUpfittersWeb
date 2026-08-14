@@ -5,7 +5,7 @@
  *  - Mobile nav + scroll reveal
  *  - Audience tab switching (personal / fleet / dealer)
  *  - URL param preselect (?audience=fleet, ?service=bedliner,tonneau)
- *  - Service-picker checkboxes (16 services) + step progress
+ *  - Service-picker checkboxes (18 current groups) + step progress
  *
  * Lead submission is intentionally owned by /lead-form.js. Keeping this file
  * UI-only prevents one quote from being posted to multiple lead endpoints.
@@ -81,6 +81,8 @@ tabs.forEach(tab => {
     { value: 'tonneau_cover',         label: 'Tonneau Cover',         badge: '',    legacy: 'Tonneau Cover' },
     { value: 'running_boards',        label: 'Running Boards',        badge: '',    legacy: 'Running Boards' },
     { value: 'hitches_towing',        label: 'Hitches & Towing',      badge: '',    legacy: 'Hitches & Towing' },
+    { value: 'ladder_racks',          label: 'Ladder Racks',          badge: '',    legacy: 'Ladder Racks' },
+    { value: 'van_shelving',          label: 'Van Shelving',          badge: '',    legacy: 'Van Shelving' },
     { value: 'camper_shell',          label: 'Camper Shell',          badge: '',    legacy: 'Camper Shell' },
     { value: 'toolboxes',             label: 'Toolboxes',             badge: '',    legacy: 'Toolbox / Bed Storage' },
     { value: 'amp_powerstep',         label: 'AMP PowerStep',         badge: '',    legacy: 'AMP PowerStep' },
@@ -108,8 +110,11 @@ tabs.forEach(tab => {
 
   // ── Load initial selection: URL param wins, else localStorage ──────────────
   const params = new URLSearchParams(window.location.search);
-  const urlServices = (params.get('service') || params.get('services') || '')
+  const rawUrlServices = (params.get('service') || params.get('services') || '')
     .split(',').map(s => s.trim()).filter(Boolean);
+  const urlServices = window.CUQuoteDraft && typeof window.CUQuoteDraft.cleanServiceIds === 'function'
+    ? window.CUQuoteDraft.cleanServiceIds(rawUrlServices)
+    : rawUrlServices;
 
   let selected = new Set();
   let initialSelectionTrimmed = false;

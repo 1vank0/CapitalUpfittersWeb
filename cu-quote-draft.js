@@ -28,6 +28,33 @@
   var MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;   // 7 days
   var AUDIENCES  = ['retail', 'fleet', 'dealer'];
   var MAX_SERVICES = 12;                      // matches the picker's own cap
+  // Preserve older service-page links while storing only the current picker
+  // vocabulary. Bundle aliases deliberately expand to every included service.
+  var SERVICE_ALIASES = {
+    'ceramic-coating': ['ceramic_coating'],
+    'window-tinting': ['window_tinting'],
+    'tonneau': ['tonneau_cover'],
+    'tonneau-package': ['tonneau_cover', 'bedliner'],
+    'bundle': ['bedliner', 'tonneau_cover'],
+    'running-boards': ['running_boards'],
+    'amp-powerstep': ['amp_powerstep'],
+    'hitches': ['hitches_towing'],
+    'stealth-hitch': ['hitches_towing'],
+    'stealth-hitch-rack': ['hitches_towing'],
+    'stealth-hitch-combo': ['hitches_towing'],
+    'camper-shells': ['camper_shell'],
+    'suspension': ['suspension_lift'],
+    'leveling-kit': ['suspension_lift'],
+    'exterior': ['exterior_accessories'],
+    'lighting': ['led_lighting'],
+    'commercial-wraps': ['wraps_branding'],
+    'industrial-coatings': ['industrial_coatings'],
+    'mobile-detailing': ['mobile_detailing'],
+    'fleet-detailing': ['mobile_detailing'],
+    'van-shelving': ['van_shelving'],
+    'ladder-rack': ['ladder_racks'],
+    'tint-ceramic-bundle': ['window_tinting', 'ceramic_coating']
+  };
 
   // ── helpers ──────────────────────────────────────────────────────────
   function isStr(v) { return typeof v === 'string' && v.trim() !== ''; }
@@ -42,9 +69,13 @@
       if (typeof s !== 'string') continue;
       s = s.trim().toLowerCase();
       if (!/^[a-z0-9][a-z0-9_-]{0,39}$/.test(s)) continue;   // slug shape only
-      if (seen[s]) continue;                                  // dedupe
-      seen[s] = 1; out.push(s);
-      if (out.length >= MAX_SERVICES) break;
+      var targets = SERVICE_ALIASES[s] || [s];
+      for (var j = 0; j < targets.length; j++) {
+        var target = targets[j];
+        if (seen[target]) continue;                            // dedupe
+        seen[target] = 1; out.push(target);
+        if (out.length >= MAX_SERVICES) return out;
+      }
     }
     return out;
   }
@@ -195,6 +226,7 @@
   return {
     KEY: KEY, LEGACY_KEY: LEGACY_KEY, SCHEMA: SCHEMA, MAX_AGE_MS: MAX_AGE_MS,
     AUDIENCES: AUDIENCES.slice(), MAX_SERVICES: MAX_SERVICES,
+    SERVICE_ALIASES: SERVICE_ALIASES,
     resolve: resolve, read: read, write: write,
     cleanServiceIds: cleanServiceIds, cleanAudience: cleanAudience, validate: validate
   };

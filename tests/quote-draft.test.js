@@ -18,7 +18,7 @@ const NOW = 1_700_000_000_000;
 const fresh = (over = {}) => Object.assign({
   v: 1, updatedAt: NOW - 1000,
   vehicle: { year: '2025', make: 'Acura', model: 'ADX' },
-  services: ['bedliner', 'hitches'], audience: 'retail', source: 'find-my-fit'
+  services: ['bedliner', 'hitches_towing'], audience: 'retail', source: 'find-my-fit'
 }, over);
 
 /** Minimal in-memory Storage. `mode` forces failure paths. */
@@ -65,7 +65,7 @@ group('B. per-field override — services and audience are independent');
 
 it('B1 ?service= overrides services but NOT vehicle or audience', () => {
   const r = D.resolve({ search: '?service=tonneau,undercoating', storage: withDraft(fresh()), now: NOW });
-  assert.deepStrictEqual(r.services, ['tonneau', 'undercoating']);
+  assert.deepStrictEqual(r.services, ['tonneau_cover', 'undercoating']);
   assert.strictEqual(r.vehicle.make, 'Acura', 'vehicle was erased by a service param');
   assert.strictEqual(r.audience, 'retail', 'audience was erased by a service param');
 });
@@ -74,13 +74,13 @@ it('B2 ?audience= overrides audience but NOT vehicle or services', () => {
   const r = D.resolve({ search: '?audience=fleet', storage: withDraft(fresh()), now: NOW });
   assert.strictEqual(r.audience, 'fleet');
   assert.strictEqual(r.vehicle.make, 'Acura');
-  assert.deepStrictEqual(r.services, ['bedliner', 'hitches']);
+  assert.deepStrictEqual(r.services, ['bedliner', 'hitches_towing']);
 });
 
 it('B3 unrelated params erase nothing', () => {
   const r = D.resolve({ search: '?utm_source=google&gclid=abc&ref=x', storage: withDraft(fresh()), now: NOW });
   assert.strictEqual(r.vehicle.make, 'Acura');
-  assert.deepStrictEqual(r.services, ['bedliner', 'hitches']);
+  assert.deepStrictEqual(r.services, ['bedliner', 'hitches_towing']);
   assert.strictEqual(r.audience, 'retail');
   assert.strictEqual(r.carried.any, true);
 });
@@ -88,18 +88,30 @@ it('B3 unrelated params erase nothing', () => {
 group('C. service id hygiene');
 
 it('C1 duplicates are removed, order preserved', () => {
-  assert.deepStrictEqual(D.cleanServiceIds(['bedliner', 'bedliner', 'hitches', 'BEDLINER']), ['bedliner', 'hitches']);
+  assert.deepStrictEqual(D.cleanServiceIds(['bedliner', 'bedliner', 'hitches', 'BEDLINER']), ['bedliner', 'hitches_towing']);
 });
 it('C2 invalid ids are dropped, not coerced', () => {
   assert.deepStrictEqual(D.cleanServiceIds(['ok-id', '<script>', 'a b', '', null, 42, 'x'.repeat(80)]), ['ok-id']);
 });
 it('C3 dedupe applies to URL-sourced services too', () => {
   const r = D.resolve({ search: '?service=bedliner,bedliner,hitches', storage: null, now: NOW });
-  assert.deepStrictEqual(r.services, ['bedliner', 'hitches']);
+  assert.deepStrictEqual(r.services, ['bedliner', 'hitches_towing']);
 });
 it('C4 service count is capped', () => {
   const many = Array.from({ length: 30 }, (_, i) => 'svc-' + i);
   assert.strictEqual(D.cleanServiceIds(many).length, D.MAX_SERVICES);
+});
+it('C5 legacy service-page aliases resolve to visible picker ids', () => {
+  assert.deepStrictEqual(
+    D.cleanServiceIds(['industrial-coatings', 'van-shelving', 'ladder-rack', 'tint-ceramic-bundle']),
+    ['industrial_coatings', 'van_shelving', 'ladder_racks', 'window_tinting', 'ceramic_coating']
+  );
+});
+it('C6 product bundles expand without duplicates', () => {
+  assert.deepStrictEqual(
+    D.cleanServiceIds(['bundle', 'tonneau-package', 'bedliner']),
+    ['bedliner', 'tonneau_cover']
+  );
 });
 
 group('D. audience validity');
@@ -216,7 +228,7 @@ it('H1 write -> resolve returns what was written', () => {
                services: ['tonneau', 'tonneau', 'lighting'], audience: 'fleet', source: 'find-my-fit' }, NOW);
   const r = D.resolve({ search: '', storage: s, now: NOW });
   assert.deepStrictEqual(r.vehicle, { year: '2022', make: 'GMC', model: 'Sierra' });
-  assert.deepStrictEqual(r.services, ['tonneau', 'lighting']);
+  assert.deepStrictEqual(r.services, ['tonneau_cover', 'led_lighting']);
   assert.strictEqual(r.audience, 'fleet');
 });
 
