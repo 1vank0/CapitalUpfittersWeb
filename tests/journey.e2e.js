@@ -30,6 +30,40 @@ function check(vp, step, cond, detail) {
   if (!cond) process.exitCode = 1;
 }
 
+
+/**
+ * Drive Find My Fit to a rendered recommendation list.
+ *
+ * The three copies of this sequence were the only flaky part of the
+ * suite: they waited on `!vs-btn.disabled`, but the button is enabled by
+ * a change handler that runs after the model list is populated
+ * asynchronously, so the wait could observe a stale enabled/disabled
+ * state and then click a button that was not ready. Each step now waits
+ * on the OBSERVABLE RESULT of the previous one (option counts, then a
+ * non-empty value, then the rendered rows) instead of a proxy signal.
+ */
+async function selectVehicle(page, year, make, model) {
+  await page.waitForSelector('#vs-year', { state: 'visible' });
+  await page.selectOption('#vs-year', year);
+  await page.waitForFunction(() => document.querySelectorAll('#vs-make option').length > 1);
+  const mk = make || await page.evaluate(() => document.querySelectorAll('#vs-make option')[1].value);
+  await page.selectOption('#vs-make', mk);
+  await page.waitForFunction(() => document.getElementById('vs-make').value !== '');
+  await page.waitForFunction(() => document.querySelectorAll('#vs-model option').length > 1);
+  const md = model || await page.evaluate(() => document.querySelectorAll('#vs-model option')[1].value);
+  await page.selectOption('#vs-model', md);
+  await page.waitForFunction(() => document.getElementById('vs-model').value !== '');
+  await page.waitForFunction(() => {
+    const b = document.getElementById('vs-btn');
+    return b && !b.disabled && document.getElementById('vs-model').value !== '';
+  });
+  await page.click('#vs-btn');
+  // the rendered rows are the real end state, not the click itself
+  await page.waitForFunction(() => document.querySelectorAll('.vs-rec-add[data-service]').length > 0);
+  await page.waitForSelector('.vs-rec-add[data-service]', { state: 'visible' });
+  return { mk, md };
+}
+
 const draftOf = (page) => page.evaluate(() =>
   JSON.parse(localStorage.getItem('cu_quote_draft_v1') || 'null'));
 
@@ -51,15 +85,7 @@ async function run(vp) {
     check(vp.name, '1. storage cleared', (await draftOf(page)) === null);
 
     // ── 2. vehicle through the UI ────────────────────────────────────
-    await page.selectOption('#vs-year', '2022');
-    await page.waitForFunction(() => document.querySelectorAll('#vs-make option').length > 1);
-    const make = await page.evaluate(() => document.querySelectorAll('#vs-make option')[1].value);
-    await page.selectOption('#vs-make', make);
-    await page.waitForFunction(() => document.querySelectorAll('#vs-model option').length > 1);
-    const model = await page.evaluate(() => document.querySelectorAll('#vs-model option')[1].value);
-    await page.selectOption('#vs-model', model);
-    await page.click('#vs-btn');
-    await page.waitForSelector('.vs-rec-add[data-service]');
+    const { mk: make, md: model } = await selectVehicle(page, '2022');
     let d = await draftOf(page);
     check(vp.name, '2. vehicle chosen via UI', d && d.vehicle && d.vehicle.year === '2022',
       JSON.stringify(d && d.vehicle));
@@ -124,13 +150,8 @@ async function run(vp) {
       await page.click('#vs-continue');
     } else {
       // Find My Fit collapses on a fresh load; re-open it, then use the CTA.
-      await page.selectOption('#vs-year', '2022');
-      await page.waitForFunction(() => document.querySelectorAll('#vs-make option').length > 1);
-      await page.selectOption('#vs-make', make);
-      await page.waitForFunction(() => document.querySelectorAll('#vs-model option').length > 1);
-      await page.selectOption('#vs-model', model);
-      await page.click('#vs-btn');
-      await page.waitForSelector('#vs-continue');
+      await selectVehicle(page, '2022', make, model);
+      await page.waitForSelector('#vs-continue', { state: 'visible' });
       await page.click('#vs-continue');
     }
     await page.waitForLoadState('domcontentloaded');
@@ -227,15 +248,7 @@ async function run(vp) {
     await page.goto(BASE + '/index.html', { waitUntil: 'domcontentloaded' });
     await page.evaluate(() => localStorage.clear());
     await page.reload({ waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('#vs-year');
-    await page.selectOption('#vs-year', '2022');
-    await page.waitForFunction(() => document.querySelectorAll('#vs-make option').length > 1);
-    await page.selectOption('#vs-make', make);
-    await page.waitForFunction(() => document.querySelectorAll('#vs-model option').length > 1);
-    await page.selectOption('#vs-model', model);
-    await page.waitForFunction(() => !document.getElementById('vs-btn').disabled);
-    await page.click('#vs-btn');
-    await page.waitForSelector('.vs-rec-add[data-service]', { state: 'visible', timeout: 20000 });
+    await selectVehicle(page, '2022', make, model);
     const before = (await draftOf(page)).services.length;
     await page.focus('.vs-rec-add[data-service]');
     const focusVisible = await page.evaluate(() => {
@@ -259,15 +272,8 @@ async function run(vp) {
     // expert path works with nothing selected
     await page.evaluate(() => localStorage.clear());
     await page.goto(BASE + '/index.html', { waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('#vs-year');
-    await page.selectOption('#vs-year', '2022');
-    await page.waitForFunction(() => document.querySelectorAll('#vs-make option').length > 1);
-    await page.selectOption('#vs-make', make);
-    await page.waitForFunction(() => document.querySelectorAll('#vs-model option').length > 1);
-    await page.selectOption('#vs-model', model);
-    await page.waitForFunction(() => !document.getElementById('vs-btn').disabled);
-    await page.click('#vs-btn');
-    await page.waitForSelector('#vs-unsure', { state: 'visible', timeout: 20000 });
+    await selectVehicle(page, '2022', make, model);
+    await page.waitForSelector('#vs-unsure', { state: 'visible' });
     await page.click('#vs-unsure');
     await page.waitForLoadState('domcontentloaded');
     await page.waitForTimeout(700);

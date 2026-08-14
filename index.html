@@ -846,9 +846,22 @@
   <div class="container">
     <div class="cu-teaser-inner reveal">
       <div class="cu-teaser-copy">
-        <div class="section-label cu-teaser-label">Industrial &amp; Specialty Coatings</div>
-        <h2 id="industrial-prestige-heading" class="cu-teaser-title">Industrial &amp; Infrastructure Coatings</h2>
-        <p class="cu-teaser-desc">Blast mitigation, corrosion protection, anti-skid, and structural coatings for facilities, equipment, and large-scale fleets. Mobile application available &mdash; we come to your facility.</p>
+        <div class="section-label cu-teaser-label">Industrial</div>
+        <h2 id="industrial-prestige-heading" class="cu-teaser-title">Protective coatings for facilities, equipment and fleets</h2>
+        <!-- CLAIM STATUS — deliberately NOT enumerated here.
+             The previous sentence listed blast mitigation, corrosion
+             protection, anti-skid, structural coatings, large-scale fleets
+             and mobile application at customer facilities. Checked against
+             services/industrial-coatings.html: "structural coatings" and
+             "large-scale" appear ZERO times anywhere on that page, so that
+             wording originated on the old audience card and nowhere else.
+             The remaining four do appear on that page, but repetition on the
+             site is not evidence — there is no approved business record on
+             this branch to check them against. So the teaser now names the
+             service category only and sends the reader to the Industrial
+             page, which is the page that carries the detail. Re-add specific
+             capabilities here once Ivan confirms them. -->
+        <p class="cu-teaser-desc">Coating work for facilities, equipment and fleet vehicles, handled by the same shop as our vehicle upfitting.</p>
         <a class="btn btn-outline cu-teaser-cta" href="./services/industrial-coatings.html">
           Explore Industrial Capabilities
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1719,7 +1732,16 @@
 
     const popularGroup = document.createElement('optgroup');
     popularGroup.label = '★ Popular';
-    matchList(makes ? POPULAR_MAKES : null).forEach(name => {
+    /* Always pass the static list. matchList() already implements the
+       fallback ("use static when no API data") by returning its argument
+       untouched when `makes` is empty — but this call site used to pass
+       NULL in exactly that case, so the fallback returned null and the
+       next .forEach threw:
+         TypeError: Cannot read properties of null (reading 'forEach')
+       When the NHTSA lookup was slow or failed, the make dropdown never
+       populated and Find My Fit was dead for that visitor. Surfaced as a
+       ~1-in-5 flake in the journey suite; it is a real production bug. */
+    matchList(POPULAR_MAKES).forEach(name => {
       popularGroup.appendChild(new Option(name, name));
     });
 
@@ -1734,7 +1756,10 @@
     // Then exclude anything already in popular group
     const allUS = [...POPULAR_MAKES, ...OTHER_MAKES].sort();
     const popularLower = new Set(POPULAR_MAKES.map(n => n.toLowerCase()));
-    matchList(makes ? allUS : null).forEach(name => {
+    /* Same null-fallback bug as the popular list above: passing null
+       when `makes` is empty defeated matchList()'s static fallback and
+       threw on .forEach, leaving the dropdown with zero manufacturers. */
+    matchList(allUS).forEach(name => {
       if (!popularLower.has(name.toLowerCase())) {
         otherGroup.appendChild(new Option(name, name));
       }

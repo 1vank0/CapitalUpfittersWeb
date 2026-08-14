@@ -1172,7 +1172,17 @@
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 560px) {
-  .footer-grid { grid-template-columns: 1fr; }
+  /* minmax(0, 1fr), not 1fr.
+     A bare `1fr` track is minmax(auto, 1fr), and `auto` floors at
+     min-content — so the longest footer link ("Spray-On Bedliners")
+     held the column at 259px inside a 144px grid and pushed the whole
+     document to 318px. That was the true source of the horizontal
+     scroll at 200% zoom; the sticky bar merely stretched to the
+     already-overflowing document width, which is why fixing the bar
+     alone changed nothing. */
+  .footer-grid { grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
+  .footer-grid > * { min-width: 0; }
+  .footer-links a, .footer-col-title { overflow-wrap: anywhere; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
 
@@ -1443,8 +1453,48 @@
 }
 @media (max-width: 680px) {
   .sticky-cta-bar { display: flex; }
-  .sticky-cta-bar .btn { flex: 1; text-align: center; justify-content: center; font-size: var(--text-sm); }
-  body { padding-bottom: 72px; }
+  .sticky-cta-bar .btn {
+    flex: 1;
+    /* Flex items default to min-width:auto, so these three could not
+       shrink below their own text and pinned the document at 318px —
+       the source of the horizontal scroll at 200% zoom. */
+    min-width: 0;
+    text-align: center; justify-content: center; font-size: var(--text-sm);
+  }
+  .sticky-cta-bar { padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom, 0px)); }
+  body { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* ── Narrow / zoomed reflow ─────────────────────────────────────────
+   200% zoom on a 390px phone is a ~195px CSS viewport (WCAG 1.4.10
+   reflow). Three actions cannot sit on one line there without either
+   clipping or sub-usable text, so the bar becomes two rows:
+
+     row 1:  Text QUOTE | Call
+     row 2:  Get Quote (full width)
+
+   DOM order is Text, Call, Get Quote and the grid fills in that order,
+   so visual order and focus order still agree — no positive tab-index
+   or row-reversal tricks. Every action stays reachable; nothing is
+   hidden, and overflow-x is never clipped. Body padding grows to the
+   real two-row height so no field or content sits underneath. */
+@media (max-width: 420px) {
+  .sticky-cta-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    padding-bottom: calc(var(--space-2) + env(safe-area-inset-bottom, 0px));
+  }
+  .sticky-cta-bar .btn {
+    min-width: 0;
+    min-height: 44px;            /* keep the tap target at 44 */
+    padding-inline: var(--space-2);
+    font-size: var(--text-xs);
+    white-space: nowrap;
+  }
+  .sticky-cta-bar .btn-primary { grid-column: 1 / -1; }
+  body { padding-bottom: calc(116px + env(safe-area-inset-bottom, 0px)); }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -2206,4 +2256,67 @@
 /* Align stats grid to top so variable-height cells start together */
 .stats-grid {
   align-items: start;
+}
+
+/* ══════════════════════════════════════════════════════════
+   NARROW / ZOOMED REFLOW SAFETY  (WCAG 1.4.10)
+   200% zoom on a 390px phone is a ~195px CSS viewport. At that width
+   many sections overflowed INTERNALLY (section clientWidth 195 vs
+   scrollWidth up to 318): flex and grid children default to
+   min-width:auto, so they cannot shrink below their own content, and
+   several labels/buttons were nowrap.
+
+   This does not clip overflow-x, shrink text below usability, or hide
+   any action — it only lets existing content wrap and shrink.
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 460px) {
+  /* Universal at THIS BREAKPOINT ONLY. Enumerating components one by
+     one did not converge — after fixing the footer, teaser and audience
+     tabs, the next round surfaced .service-card-title, .location-card-city,
+     .stat-number, .quote-trust-num, .nav-logo and more. min-width:0 only
+     ever ALLOWS shrinking; it never forces it, and above 460px nothing
+     changes. */
+  *, *::before, *::after { min-width: 0; }
+
+  /* long unbroken strings (service names, headings) wrap instead of
+     setting a floor */
+  h1, h2, h3, p,
+  .section-label, .funnel-card-title, .funnel-card-desc,
+  .cu-teaser-title, .cu-teaser-desc,
+  .audience-tab-title, .audience-tab-sub,
+  .form-panel-title, .cu-audience-ask,
+  .footer-col-title, .footer-links a { overflow-wrap: anywhere; }
+
+  /* buttons may wrap to two lines rather than hold a wide floor */
+  .btn { white-space: normal; }
+
+  /* overflow-wrap:anywhere (not break-word) because only `anywhere`
+     lowers the MIN-CONTENT contribution, which is what sets the floor.
+     Applied to text-bearing elements so long service names and the
+     wordmark wrap instead of pinning the document wide. */
+  h1, h2, h3, h4, h5, p, span, li, td, th, label, button, a, div { overflow-wrap: anywhere; }
+}
+
+/* Final narrow-width offenders (<=460px).
+   The first two are rules I added in the correction-5 nav fix: nowrap
+   was right at 390px to keep the bar on one line, but at 195px it is
+   the last thing pinning the document wide. Allow wrapping only here.
+   The file input and the honeypot are off-screen form plumbing that was
+   still contributing layout width. */
+@media (max-width: 460px) {
+  .nav-logo-text { white-space: normal; }
+  .nav-cta { white-space: normal; }
+  .photo-upload-input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: normal; }
+  input[name="Website"], input[name="website"],
+  [aria-hidden="true"][style*="position: absolute"] { max-width: 100%; }
+}
+
+/* Quote-form flex rows keep their children side-by-side (flex-wrap
+   defaults to nowrap), so at ~195px the row's min-content still set a
+   floor even after min-width:0. Let them stack. */
+@media (max-width: 460px) {
+  .form-body, .form-field, .form-row, .vin-lookup-row,
+  .picker-cart-bar, .picker-cart-actions, .quote-trust-grid,
+  .audience-tabs, .trust-bar-inner, .hero-ctas, .vs-actions { flex-wrap: wrap; }
+  .vin-lookup-row > *, .picker-cart-bar > * { flex: 1 1 100%; }
 }
