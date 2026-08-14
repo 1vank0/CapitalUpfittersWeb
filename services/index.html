@@ -53,6 +53,23 @@
   pointer-events: none;
 }
 
+/* Keep the service decision point in the first viewport. The shared
+   sub-page hero is intentionally more dramatic; the service hub needs
+   to move visitors into choices quickly. */
+.page-hero {
+  padding-block: clamp(3.5rem, 6vw, 5rem) clamp(3rem, 5vw, 4rem);
+}
+#svc-hero-heading {
+  max-width: 880px;
+  font-size: clamp(2.75rem, 5.35vw, 4.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+.page-hero-sub {
+  max-width: 680px;
+  margin-bottom: 0;
+}
+
 /* Enhanced service card for hub (taller, with price) */
 .service-hub-card {
   position: relative;
