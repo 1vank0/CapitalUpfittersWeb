@@ -1505,12 +1505,12 @@
   <div class="container">
     <div class="quote-trust-grid">
       <div class="quote-trust-item reveal">
-        <span class="quote-trust-num">5,000+</span>
-        <span class="quote-trust-label">Vehicles Upfitted</span>
+        <span class="quote-trust-num">16</span>
+        <span class="quote-trust-label">Services Offered</span>
       </div>
       <div class="quote-trust-item reveal reveal-delay-1">
-        <span class="quote-trust-num">30+</span>
-        <span class="quote-trust-label">Years Experience</span>
+        <span class="quote-trust-num">Rockville</span>
+        <span class="quote-trust-label">MD Workshop</span>
       </div>
       <div class="quote-trust-item reveal reveal-delay-2">
         <span class="quote-trust-num">Same Day</span>
@@ -1555,10 +1555,26 @@
 
   // Auto-populate from vehicle selector URL params
   const params = new URLSearchParams(window.location.search);
-  const pYear  = params.get('year');
-  const pMake  = params.get('make');
-  const pModel = params.get('model');
+  let   pYear  = params.get('year');
+  let   pMake  = params.get('make');
+  let   pModel = params.get('model');
   const pSvc   = params.get('service');
+
+  /* No vehicle on the URL? Fall back to the one Find My Fit stored, so
+     arriving via the nav CTA or a direct visit still pre-fills. URL
+     params deliberately take precedence: a shared/bookmarked link must
+     describe its own vehicle, not whatever this browser looked at last.
+     Expires after 7 days so a stale vehicle never silently pre-fills. */
+  var cuCarried = false;
+  if (!pYear && !pMake && !pModel) {
+    try {
+      var saved = JSON.parse(localStorage.getItem('cu_vehicle') || 'null');
+      if (saved && saved.year && (Date.now() - (saved.ts || 0)) < 7 * 24 * 60 * 60 * 1000) {
+        pYear = saved.year; pMake = saved.make; pModel = saved.model;
+        cuCarried = true;
+      }
+    } catch (e) { /* storage unavailable — fall through un-prefilled */ }
+  }
 
   if (pYear) {
     sel.value = pYear;
@@ -1601,12 +1617,19 @@
     });
   }
 
-  // Show confirmation banner if auto-filled
+  /* Confirmation banner. Never pre-fill silently — a form that fills
+     itself with no explanation reads as a glitch, and the visitor cannot
+     tell which vehicle we think they mean. Wording distinguishes the two
+     sources, because a vehicle carried from an earlier visit is a
+     weaker assumption than one the visitor just clicked through with. */
   if (pYear && pMake && pModel) {
     const vinResult = document.getElementById('vin-result');
     if (vinResult) {
+      const lead = cuCarried
+        ? 'Using the vehicle you looked up earlier:'
+        : '✓ Vehicle pre-filled from your selection:';
       vinResult.className = 'vin-result success';
-      vinResult.innerHTML = `✓ Vehicle pre-filled from your selection: <strong>${pYear} ${pMake} ${pModel}</strong><br><span style="font-size:.85em;opacity:.75;">Please verify and update if needed.</span>`;
+      vinResult.innerHTML = `${lead} <strong>${pYear} ${pMake} ${pModel}</strong><br><span style="font-size:.85em;opacity:.75;">Not right? Just change the fields below.</span>`;
       vinResult.hidden = false;
     }
   }

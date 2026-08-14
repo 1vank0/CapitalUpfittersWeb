@@ -1667,6 +1667,19 @@
     const yr = yearSel.value, mk = makeSel.value, mdl = modelSel.value;
     if (!yr || !mk || !mdl) return;
 
+    /* Carry the vehicle for the rest of the session. Previously it rode
+       ONLY on the "Get a Quote for This Vehicle" chip's query string, so
+       a visitor who used Find My Fit and then reached the quote page any
+       other way — the nav CTA, a service card, the mobile bar — had to
+       type the same vehicle again. Persisting it means every route into
+       the quote form arrives pre-filled. URL params still win when
+       present, so a shared link keeps its own vehicle. */
+    try {
+      localStorage.setItem('cu_vehicle', JSON.stringify({
+        year: yr, make: mk, model: mdl, ts: Date.now()
+      }));
+    } catch (e) { /* private mode / storage disabled — non-fatal */ }
+
     const type = detectType(mk, mdl);
     const services = SERVICE_MAP[type] || SERVICE_MAP.other;
 
