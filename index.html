@@ -194,17 +194,22 @@
   inset: 0;
 }
 
-/* Why visual placeholder */
-.why-visual-placeholder {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #1a2742 0%, #203055 60%, #111827 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.why-visual-icon {
-  opacity: 0.12;
+/* #6C — .why-visual-placeholder / .why-visual-icon retired with the
+   shield. Nothing references them now; the rules are removed rather
+   than left orphaned so nobody restores the grey block by accident.
+
+   When the media slot is empty the grid is single-column, so the copy
+   reflows to full width instead of reserving a hole for a missing
+   image. :has() does the collapse where supported; the [hidden] host is
+   inert regardless, so the fallback is a wider text column, never a
+   visible gap. */
+.why-grid:has(> .why-visual[hidden]) { grid-template-columns: 1fr; }
+.why-visual[hidden] { display: none !important; }
+.cu-slot-figure { margin: 0; }
+.cu-slot-figure img { width: 100%; height: auto; border-radius: var(--radius-xl); display: block; }
+.cu-slot-figure figcaption {
+  margin-top: var(--space-3); font-size: var(--text-sm);
+  color: var(--color-text-muted); text-align: center;
 }
 
 /* Locations grid */
@@ -645,7 +650,7 @@
     <div class="reveal">
       <div class="section-label" style="color: rgba(255,255,255,0.45);">Who Do We Serve?</div>
       <h2 id="funnel-heading" style="color: #fff; max-width: 700px;">ONE SHOP. EVERY VEHICLE NEED.</h2>
-      <p style="color: rgba(255,255,255,0.55); max-width: 560px; margin-top: var(--space-4); font-family: var(--font-body);">Whether you own a personal truck, manage a commercial fleet, or run a dealership — we have a dedicated solution for you.</p>
+      <p style="color: rgba(255,255,255,0.55); max-width: 560px; margin-top: var(--space-4); font-family: var(--font-body);">Whether you own a personal truck, manage a commercial fleet, or buy for a dealership or agency &mdash; there is a dedicated path for you.</p>
     </div>
 
     <div class="funnel-grid">
@@ -674,7 +679,7 @@
           <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
         </div>
         <div class="funnel-card-body">
-          <div class="funnel-card-eyebrow">Commercial Fleet</div>
+          <div class="funnel-card-eyebrow">Fleet &amp; Commercial</div>
           <div class="funnel-card-title">I Manage a Fleet</div>
           <p class="funnel-card-desc">Van packages, pickup upfitting, DOT compliance, fleet branding, and bulk scheduling — one account.</p>
           <a href="./start-here.html?audience=fleet" class="funnel-card-link">
@@ -691,7 +696,7 @@
           <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
         <div class="funnel-card-body">
-          <div class="funnel-card-eyebrow">Dealer &amp; Gov</div>
+          <div class="funnel-card-eyebrow">Dealer &amp; Government</div>
           <div class="funnel-card-title">I'm a Dealer or Municipality</div>
           <p class="funnel-card-desc">Pre-delivery customization, state contract support, government fleet solutions, and the Upfit Portal.</p>
           <a href="./start-here.html?audience=dealer" class="funnel-card-link">
@@ -701,22 +706,6 @@
         </div>
       </article>
 
-      <!-- Card 4: Industrial / Infrastructure — NEW -->
-      <article class="funnel-card reveal reveal-delay-1" style="border: 1px solid rgba(245,158,11,0.25);">
-        <div style="position:absolute; inset:0; background: linear-gradient(160deg, #1c1a0e 0%, #111827 100%);"></div>
-        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; opacity:0.07;">
-          <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
-        <div class="funnel-card-body">
-          <div class="funnel-card-eyebrow" style="color: #f59e0b;">Infrastructure &amp; Industrial</div>
-          <div class="funnel-card-title">Critical Coating Projects</div>
-          <p class="funnel-card-desc">Blast mitigation, corrosion protection, anti-skid, and structural coatings for facilities, equipment, and large-scale fleets. Mobile application available.</p>
-          <a href="./services/industrial-coatings.html" class="funnel-card-link" style="color: #f59e0b;">
-            Industrial Solutions
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </article>
     </div>
   </div>
 </section>
@@ -833,35 +822,39 @@
 <!-- ═══════════════════════════════════════════════
      INDUSTRIAL PRESTIGE SECTION
 ═══════════════════════════════════════════════ -->
-<section class="section section--dark" aria-labelledby="industrial-prestige-heading" style="padding: var(--space-16) 0; background: linear-gradient(135deg, #0a0d14 0%, #111827 50%, #0f1520 100%);">
+<!-- ═══════════════════════════════════════════════════════
+     INDUSTRIAL TEASER  (#6B)
+     Was a full-height section headed by an unnamed trusted-by claim
+     naming government, healthcare and national institutions, plus three
+     emoji-icon cards. Both are gone: there are no approved reference
+     projects behind that claim, and emoji-as-icons were removed
+     sitewide in 346128e. (The original wording is intentionally not
+     repeated here, so claim scans stay clean.)
+
+     The capability sentence is carried over verbatim from the Industrial
+     audience card this replaces — existing verified capability language,
+     describing services offered, with no numbers, customers,
+     certifications or exclusivity added.
+
+     The media slot is CONDITIONAL. While homepage-industrial holds no
+     approved asset it renders nothing at all — no frame, grey box or
+     skeleton — and the copy takes the full width, so this reads as a
+     deliberate text-first band. Adding a verified photograph later is a
+     data change in cu-media-slots.js, not another rebuild.
+═══════════════════════════════════════════════════════ -->
+<section class="section cu-industrial-teaser" aria-labelledby="industrial-prestige-heading">
   <div class="container">
-    <div class="reveal" style="text-align:center; margin-bottom: var(--space-10);">
-      <div class="section-label" style="justify-content:center; color: rgba(245,158,11,0.6);">Industrial &amp; Specialty Coatings</div>
-      <h2 id="industrial-prestige-heading" style="color:#fff; max-width: 700px; margin-inline:auto;">TRUSTED BY GOVERNMENT AGENCIES, HEALTHCARE SYSTEMS &amp; NATIONAL INSTITUTIONS.</h2>
-      <p style="color:rgba(255,255,255,0.5); max-width:600px; margin: var(--space-4) auto 0; font-family: var(--font-body); font-size: var(--text-base);">For critical infrastructure, specialty coating projects, and industrial applications where failure is not an option. Mobile application available — we come to your facility.</p>
-    </div>
-
-    <div class="grid-3 reveal" style="margin-bottom: var(--space-12);">
-      <div style="background: rgba(255,255,255,0.04); border:1px solid rgba(245,158,11,0.15); border-radius: var(--radius-xl); padding: var(--space-7); text-align:center;">
-        <div style="font-size: 2rem; margin-bottom: var(--space-3);">🏥</div>
-        <div style="font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: var(--space-2);">Healthcare &amp; Life Sciences</div>
-        <p style="font-size: var(--text-sm); color: rgba(255,255,255,0.45); font-family: var(--font-body);">Hospital ramp anti-skid systems, pharmaceutical facility protective coatings, and corrosion mitigation for sensitive environments.</p>
+    <div class="cu-teaser-inner reveal">
+      <div class="cu-teaser-copy">
+        <div class="section-label cu-teaser-label">Industrial &amp; Specialty Coatings</div>
+        <h2 id="industrial-prestige-heading" class="cu-teaser-title">Industrial &amp; Infrastructure Coatings</h2>
+        <p class="cu-teaser-desc">Blast mitigation, corrosion protection, anti-skid, and structural coatings for facilities, equipment, and large-scale fleets. Mobile application available &mdash; we come to your facility.</p>
+        <a class="btn btn-outline cu-teaser-cta" href="./services/industrial-coatings.html">
+          Explore Industrial Capabilities
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
-      <div style="background: rgba(255,255,255,0.04); border:1px solid rgba(245,158,11,0.15); border-radius: var(--radius-xl); padding: var(--space-7); text-align:center;">
-        <div style="font-size: 2rem; margin-bottom: var(--space-3);">🏛️</div>
-        <div style="font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: var(--space-2);">Federal &amp; National Institutions</div>
-        <p style="font-size: var(--text-sm); color: rgba(255,255,255,0.45); font-family: var(--font-body);">Specialty preservation coatings for national collections, field equipment protection, and shipping container coatings for federal agencies.</p>
-      </div>
-      <div style="background: rgba(255,255,255,0.04); border:1px solid rgba(245,158,11,0.15); border-radius: var(--radius-xl); padding: var(--space-7); text-align:center;">
-        <div style="font-size: 2rem; margin-bottom: var(--space-3);">⚡</div>
-        <div style="font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: var(--space-2);">Industrial &amp; Energy Infrastructure</div>
-        <p style="font-size: var(--text-sm); color: rgba(255,255,255,0.45); font-family: var(--font-body);">Generator and tank protective coatings, refrigerant rack rust mitigation, helipad surfaces, and anti-skid solutions for mission-critical equipment.</p>
-      </div>
-    </div>
-
-    <div class="reveal" style="text-align:center; display:flex; gap: var(--space-4); justify-content:center; flex-wrap:wrap;">
-      <a href="./services/industrial-coatings.html" class="btn btn-primary">View Industrial Solutions</a>
-      <a href="./contact.html" class="btn btn-outline" style="border-color:rgba(245,158,11,0.3); color:rgba(245,158,11,0.85);">Contact for Project Inquiry</a>
+      <div class="cu-teaser-media" data-media-slot="homepage-industrial" hidden></div>
     </div>
   </div>
 </section>
@@ -935,21 +928,20 @@
         </div>
       </div>
 
-      <!-- Right visual placeholder -->
-      <div class="why-visual reveal reveal-delay-2">
-        <div class="why-visual-placeholder">
-          <svg class="why-visual-icon" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="0.5" aria-hidden="true">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
-        <div class="why-visual-badge">
-          <div class="why-visual-badge-num">16</div>
-          <div>
-            <div class="why-visual-badge-label">Services</div>
-            <div class="why-visual-badge-label">One Shop</div>
-          </div>
-        </div>
-      </div>
+      <!-- #6C — the oversized shield placeholder is gone.
+           It filled ~half the composition with a 12%-opacity icon and a
+           badge repeating a fact already stated in the copy, which read
+           as a slot waiting for a photograph.
+
+           Replaced by the conditional homepage-facility slot. While that
+           slot holds no approved asset it renders NOTHING and the
+           .why-grid collapses to a single column (see CSS), so the
+           verified copy occupies the full width by design rather than
+           sitting beside an empty frame. Dropping in a real shop, team
+           or approved-project photo later is a data change in
+           cu-media-slots.js. A neutral caption such as
+           "Capital Upfitters — Rockville, Maryland" is appropriate. -->
+      <div class="why-visual reveal reveal-delay-2" data-media-slot="homepage-facility" hidden></div>
     </div>
   </div>
 </section>
@@ -1374,7 +1366,38 @@
   .vs-unsure { justify-content:center; }
 }
 </style>
+<style>
+/* ── #6B Industrial teaser ─────────────────────────────────────────── */
+.cu-industrial-teaser {
+  background: linear-gradient(135deg, #0a0d14 0%, #111827 55%, #0f1520 100%);
+  padding: var(--space-12) 0;
+  border-block: 1px solid rgba(255,255,255,0.08);
+}
+.cu-teaser-inner { display: grid; gap: var(--space-8); align-items: center; }
+/* Two columns only when the media slot actually has an approved asset. */
+.cu-teaser-inner:has(> .cu-teaser-media[data-slot-state="ready"]) {
+  grid-template-columns: 1.1fr 0.9fr;
+}
+.cu-teaser-media[hidden] { display: none !important; }
+.cu-teaser-copy { max-width: 720px; }
+.cu-teaser-label { color: rgba(245,158,11,0.75); }
+.cu-teaser-title {
+  color: #fff; margin: var(--space-3) 0 var(--space-4);
+  font-size: clamp(1.6rem, 3vw, 2.35rem); line-height: 1.12; letter-spacing: -0.02em;
+}
+.cu-teaser-desc {
+  color: rgba(255,255,255,0.62); font-family: var(--font-body);
+  font-size: var(--text-base); max-width: 60ch; margin: 0 0 var(--space-6);
+}
+.cu-teaser-cta { min-height: 48px; display: inline-flex; align-items: center; gap: 8px; color: #fff; }
+@media (max-width: 680px) {
+  .cu-industrial-teaser { padding: var(--space-10) 0; }
+  .cu-teaser-cta { width: 100%; justify-content: center; }
+}
+</style>
+<script src="/cu-media-slots.js"></script>
 <script src="/cu-quote-draft.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(window.CUMediaSlots)CUMediaSlots.hydrateAll(document);});</script>
 <script src="animations.js" defer></script>
 
 <!-- HERO IDLE DIM -->
