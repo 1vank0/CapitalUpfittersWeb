@@ -86,15 +86,15 @@
       "name": "Do you offer a warranty on your work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Patriot Liner bedliners come with a lifetime warranty backed by the manufacturer, and we're the only factory-certified installer serving the Rockville–Bethesda corridor. Ceramic coatings, hitches, and other services carry manufacturer warranties from the brands we install; our own installation workmanship is guaranteed as long as you own the vehicle."
+        "text": "Yes. Patriot Liner bedliners carry a product warranty from the manufacturer, and ceramic coatings, hitches and other services carry manufacturer warranties from the brands we install. Our own installation labor is warranted for six months."
       }
     },
     {
       "@type": "Question",
-      "name": "Are you an authorized Patriot Liner dealer?",
+      "name": "Do you install Patriot Liner bedliners?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. We are the only authorized Patriot Liner dealer in the Rockville–Bethesda corridor. That means genuine Patriot Liner product, factory-trained installation technique, and access to the manufacturer's rebate programs."
+        "text": "Yes. We install Patriot Liner spray-in bedliners at our Rockville shop using genuine Patriot Liner product, and we can apply the manufacturer's rebate programs on qualifying jobs."
       }
     },
     {
@@ -890,7 +890,7 @@
             <div class="why-item-num">01</div>
             <div class="why-item-text">
               <strong>Patriot Liner Rockville</strong>
-              <p>Factory-certified installation with a lifetime warranty. The only authorized Patriot Liner dealer serving the Rockville–Bethesda corridor.</p>
+              <p>Professional spray-in bedliner installation, with a manufacturer product warranty and a six-month warranty on our installation labor.</p>
             </div>
           </div>
           <div class="why-item">
@@ -1016,16 +1016,16 @@
           <svg class="home-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="home-faq-answer" role="region">
-          <div class="home-faq-answer-inner">Yes. Patriot Liner bedliners come with a lifetime warranty backed by the manufacturer, and we're the only factory-certified installer serving the Rockville–Bethesda corridor. Ceramic coatings, hitches, and other services carry manufacturer warranties from the brands we install; our own installation workmanship is guaranteed as long as you own the vehicle.</div>
+          <div class="home-faq-answer-inner">Yes. Patriot Liner bedliners carry a product warranty from the manufacturer, and ceramic coatings, hitches and other services carry manufacturer warranties from the brands we install. Our own installation labor is warranted for six months.</div>
         </div>
       </div>
       <div class="home-faq-item">
         <button class="home-faq-question" aria-expanded="false">
-          <span>Are you an authorized Patriot Liner dealer?</span>
+          <span>Do you install Patriot Liner bedliners?</span>
           <svg class="home-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="home-faq-answer" role="region">
-          <div class="home-faq-answer-inner">Yes. We are the only authorized Patriot Liner dealer in the Rockville–Bethesda corridor. That means genuine Patriot Liner product, factory-trained installation technique, and access to the manufacturer's rebate programs.</div>
+          <div class="home-faq-answer-inner">Yes. We install Patriot Liner spray-in bedliners at our Rockville shop using genuine Patriot Liner product, and we can apply the manufacturer's rebate programs on qualifying jobs.</div>
         </div>
       </div>
       <div class="home-faq-item">
@@ -1326,7 +1326,23 @@
 </style>
 <script>
 (function() {
-  var IDLE_MS   = 1800;   // trigger after 1.8s idle
+  /* AUDIT P0 — "hero headline was not visible in the initial rendered
+     viewport". This effect is the cause. It fades the hero label, h1 and
+     sub to 2% opacity after a short idle, so any visitor who pauses to
+     READ the headline watches it disappear, and any screenshot taken
+     after load captures an empty hero. Reading is idleness, so the
+     effect punished the exact behaviour the hero exists to invite.
+
+     REDUCED MOTION — must not run at all here. The global reduced-motion
+     rule sets transition-duration: 0.01ms !important, which beats the
+     inline transition set below, so "fade faster" would mean the
+     headline BLINKS OUT instantly. For a decorative dim that hides copy,
+     the correct reduced-motion equivalent is to leave the copy alone. */
+  var mqReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (mqReduce && mqReduce.matches) return;
+
+  var IDLE_MS   = 6000;   /* was 1800 — the label + h1 + sub run ~30 words,
+                             which is well over 1.8s at an unhurried pace */
   var FADE_DUR  = '1.2s'; // text/overlay fade out
   var RECOV_DUR = '1.2s'; // snap back
 
@@ -1394,6 +1410,10 @@
         document.addEventListener('mousemove',  applyRestore);
         document.addEventListener('touchstart', applyRestore);
         document.addEventListener('keydown',    applyRestore);
+        /* Trackpad/wheel scrolling moves the page without firing mousemove,
+           so without these a visitor scrolling the hero read as idle. */
+        document.addEventListener('wheel',      applyRestore, { passive: true });
+        window.addEventListener('scroll',       applyRestore, { passive: true });
       } else {
         // Hero out of view: cancel everything, clean up
         clearTimeout(idleTimer);
@@ -1402,6 +1422,8 @@
         document.removeEventListener('mousemove',  applyRestore);
         document.removeEventListener('touchstart', applyRestore);
         document.removeEventListener('keydown',    applyRestore);
+        document.removeEventListener('wheel',      applyRestore);
+        window.removeEventListener('scroll',       applyRestore);
       }
     });
   }, { threshold: 0.3 });   // lower threshold so scroll-back triggers earlier
