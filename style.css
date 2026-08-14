@@ -2369,3 +2369,17 @@
   color: rgba(255,255,255,0.7);
   text-align: center;
 }
+
+/* Capability band: one responsive clamp and a shared maximum so
+   NATIONWIDE and SAME-DAY cannot dominate or wrap awkwardly next to the
+   much shorter A–Z and DMV-WIDE. */
+.stats-strip .stat-number {
+  font-size: clamp(1.05rem, 2.2vw, 1.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+@media (max-width: 680px) {
+  .stats-strip .stat-number { font-size: clamp(0.95rem, 4.4vw, 1.35rem); }
+}
