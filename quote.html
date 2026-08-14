@@ -406,6 +406,28 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting in Rockville, MD">
+  <!-- Not deferred: the inline hydration script below runs on DOM ready
+       and needs window.CUQuoteDraft to already exist. -->
+  <style>
+  /* Carried-over summary chips (quote draft hydration) */
+  .cu-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cu-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 8px 6px 12px; border-radius: 999px;
+    background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18);
+    font-size: 0.85rem; line-height: 1.2;
+  }
+  .cu-chip button {
+    all: unset; cursor: pointer;
+    width: 24px; height: 24px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 15px; line-height: 1; opacity: 0.7;
+  }
+  .cu-chip button:hover, .cu-chip button:focus-visible { opacity: 1; background: rgba(255,255,255,0.16); }
+  .cu-chip button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+  @media (hover: none), (pointer: coarse) { .cu-chip button { opacity: 1; } }
+</style>
+  <script src="/cu-quote-draft.js"></script>
   <script src="/attribution.js" defer></script>
   <script src="/lead-form.js" defer></script>
 
@@ -664,11 +686,18 @@
 
 <!-- ============================================================
      STEP 1: SERVICE PICKER (Phase 2 quote-cart retrofit)
-     Users select one or more services first. Selections persist
-     in localStorage and pre-check the matching service checkboxes
-     across all three audience panels below. Reads ?service=X,Y,Z
-     URL params so "Add to My Upfit" buttons on service pages can
-     deep-link here with pre-selected items.
+     Users select one or more services first; the selection pre-checks
+     the matching service checkboxes across all three audience panels
+     below. Reads ?service=X,Y,Z URL params so "Add to My Upfit"
+     buttons on service pages can deep-link here with pre-selected
+     items.
+
+     Persistence is handled by /cu-quote-draft.js (cu_quote_draft_v1),
+     which is the single source of truth for vehicle, services and
+     audience. An earlier version of this comment claimed selections
+     "persist in localStorage" before any such code existed — they did
+     not, and the only key in the flow was cu_vehicle. Do not describe
+     persistence here; describe it where it lives.
      ============================================================ -->
 <style>
   /* Service Picker uses the site's real design tokens (base.css).
@@ -1021,6 +1050,11 @@
       <!-- MAIN FORM AREA -->
       <div>
         <!-- Audience Tabs -->
+        <!-- Carried-over summary. Lives OUTSIDE the audience panels on
+             purpose: it previously rendered into #vin-result, which is
+             nested in #form-retail, so it vanished for every fleet and
+             dealer visitor the moment their panel was selected. -->
+        <div id="cu-carried-summary" class="vin-result" hidden aria-live="polite"></div>
         <div role="tablist" aria-label="Select your quote type" class="audience-tabs">
           <button class="audience-tab active" role="tab" aria-selected="true" aria-controls="form-retail" id="tab-retail" data-panel="form-retail">
             <div class="audience-tab-icon">
@@ -1553,28 +1587,26 @@
     sel.appendChild(opt);
   }
 
-  // Auto-populate from vehicle selector URL params
+  /* Resolution is owned entirely by CUQuoteDraft (cu-quote-draft.js).
+     This page does not read localStorage or decide precedence itself —
+     the same module the Node tests execute makes every call here, so the
+     rules cannot drift between what is tested and what ships:
+       - any vehicle URL param => the URL vehicle wins WHOLE (never
+         blended with a stored model from a different vehicle)
+       - ?service= / ?audience= override only their own field
+       - unrelated params (utm_*, gclid) erase nothing
+       - 7-day expiry; missing/corrupt/mismatched state fails closed */
   const params = new URLSearchParams(window.location.search);
-  let   pYear  = params.get('year');
-  let   pMake  = params.get('make');
-  let   pModel = params.get('model');
-  const pSvc   = params.get('service');
+  const CUD = window.CUQuoteDraft;
+  const draft = CUD
+    ? CUD.resolve({ search: window.location.search, storage: window.localStorage })
+    : { vehicle: null, services: [], audience: null, carried: { any: false, vehicle: false, services: false, audience: false } };
 
-  /* No vehicle on the URL? Fall back to the one Find My Fit stored, so
-     arriving via the nav CTA or a direct visit still pre-fills. URL
-     params deliberately take precedence: a shared/bookmarked link must
-     describe its own vehicle, not whatever this browser looked at last.
-     Expires after 7 days so a stale vehicle never silently pre-fills. */
-  var cuCarried = false;
-  if (!pYear && !pMake && !pModel) {
-    try {
-      var saved = JSON.parse(localStorage.getItem('cu_vehicle') || 'null');
-      if (saved && saved.year && (Date.now() - (saved.ts || 0)) < 7 * 24 * 60 * 60 * 1000) {
-        pYear = saved.year; pMake = saved.make; pModel = saved.model;
-        cuCarried = true;
-      }
-    } catch (e) { /* storage unavailable — fall through un-prefilled */ }
-  }
+  let pYear  = draft.vehicle ? draft.vehicle.year  : null;
+  let pMake  = draft.vehicle ? draft.vehicle.make  : null;
+  let pModel = draft.vehicle ? draft.vehicle.model : null;
+  const pSvc = draft.services && draft.services.length ? draft.services.join(',') : params.get('service');
+  var cuCarried = !!(draft.carried && draft.carried.vehicle);
 
   if (pYear) {
     sel.value = pYear;
@@ -1606,33 +1638,177 @@
     const modelIn = document.getElementById('r-model');
     if (modelIn) modelIn.value = pModel;
   }
-  if (pSvc) {
-    // Pre-check the matching service checkbox
-    const checkboxes = document.querySelectorAll('input[name="services"]');
-    const slug = pSvc.toLowerCase().replace(/-/g, ' ');
-    checkboxes.forEach(cb => {
-      if (cb.value.toLowerCase().includes(slug) || slug.includes(cb.value.toLowerCase().split(' ')[0])) {
-        cb.checked = true;
+  /* SERVICE IDS ARE EXACT, NOT FUZZY.
+     The canonical vocabulary is the underscore slug already shared by
+     the picker chips (button.service-chip[data-service]) and the form
+     checkboxes (input[name=services][value]): bedliner, hitches_towing,
+     ceramic_coating, tonneau_cover, running_boards...
+     The previous code fuzzy-matched a de-underscored slug against every
+     checkbox, which both missed real ids and risked checking the wrong
+     box (e.g. "hitches" silently matching nothing, while a partial
+     match could tick an unrelated service the visitor never chose). */
+  function applyServices(ids) {
+    const set = new Set(ids);
+    document.querySelectorAll('input[name="services"]').forEach(cb => {
+      if (set.has(cb.value.toLowerCase())) cb.checked = true;
+    });
+    // keep the Step-1 picker chips visually in sync with the same state
+    document.querySelectorAll('.service-chip[data-service]').forEach(chip => {
+      if (set.has((chip.getAttribute('data-service') || '').toLowerCase())) {
+        chip.classList.add('selected', 'active');
+        chip.setAttribute('aria-pressed', 'true');
       }
     });
   }
+  /* AUDIENCE — select the carried panel. Without this a fleet or dealer
+     visitor lands on the retail tab and is asked to re-declare something
+     already known.
+     The tabs carry data-panel="form-retail|form-fleet|form-dealer";
+     there is no data-audience attribute, so map through the panel id
+     rather than inventing one. */
+  const AUD_PANEL = { retail: 'form-retail', fleet: 'form-fleet', dealer: 'form-dealer' };
 
-  /* Confirmation banner. Never pre-fill silently — a form that fills
-     itself with no explanation reads as a glitch, and the visitor cannot
-     tell which vehicle we think they mean. Wording distinguishes the two
-     sources, because a vehicle carried from an earlier visit is a
-     weaker assumption than one the visitor just clicked through with. */
-  if (pYear && pMake && pModel) {
-    const vinResult = document.getElementById('vin-result');
-    if (vinResult) {
-      const lead = cuCarried
-        ? 'Using the vehicle you looked up earlier:'
-        : '✓ Vehicle pre-filled from your selection:';
-      vinResult.className = 'vin-result success';
-      vinResult.innerHTML = `${lead} <strong>${pYear} ${pMake} ${pModel}</strong><br><span style="font-size:.85em;opacity:.75;">Not right? Just change the fields below.</span>`;
-      vinResult.hidden = false;
+  /* TIMING — this must run AFTER the service picker and audience tabs
+     initialise. Verified in-browser: applying the same selectors by hand
+     post-load matched 2 checkboxes, 2 picker chips and the fleet tab,
+     while the same code inline matched nothing — the elements are either
+     not ready or are reset by their own initialisers. So hydration is
+     scheduled rather than run inline, and it is idempotent (it only ever
+     sets state ON), so running it more than once is harmless. */
+  function hydrateSelections() {
+    if (pSvc) applyServices(pSvc.split(',').map(s => s.trim().toLowerCase()).filter(Boolean));
+    if (draft.audience && AUD_PANEL[draft.audience]) {
+      const tab = document.querySelector('.audience-tab[data-panel="' + AUD_PANEL[draft.audience] + '"]');
+      if (tab && !tab.classList.contains('active')) tab.click();
     }
   }
+  function scheduleHydration() {
+    hydrateSelections();
+    if (document.readyState !== 'complete') {
+      window.addEventListener('load', () => { hydrateSelections(); renderSummary(); }, { once: true });
+    }
+    // one more pass after the current task queue drains, for initialisers
+    // that run on DOMContentLoaded after this script.
+    setTimeout(() => { hydrateSelections(); renderSummary(); }, 0);
+    setTimeout(() => { hydrateSelections(); renderSummary(); }, 300);
+
+    /* BACK/FORWARD (bfcache).
+       A back-navigation restores the previous DOM wholesale and does NOT
+       re-run scripts, so without this the restored form can disagree with
+       the draft — observed: form showing year 2020 while the stored draft
+       said 2022. Re-reading on pageshow(persisted) makes the draft the
+       single source of truth on every entry into the page, including the
+       ones the browser serves from cache. */
+    window.addEventListener('pageshow', ev => {
+      if (!ev.persisted) return;
+      const d = CUD ? CUD.resolve({ search: window.location.search, storage: window.localStorage }) : null;
+      if (d && d.vehicle) {
+        const set = (id, val) => { const e = document.getElementById(id); if (e && val != null) e.value = val; };
+        set('r-year', d.vehicle.year); set('r-make', d.vehicle.make); set('r-model', d.vehicle.model);
+      }
+      hydrateSelections();
+      renderSummary();
+    });
+  }
+
+  /* CARRIED-OVER SUMMARY.
+     Never pre-fill silently — a form that fills itself with no
+     explanation reads as a glitch, and the visitor cannot tell what we
+     think they mean. This shows every carried field (vehicle, audience,
+     services) with a control to remove each one individually, so
+     "change or remove each selection" does not mean hunting through the
+     form for whatever we guessed. */
+  const AUD_LABEL = { retail: 'Personal vehicle', fleet: 'Fleet or business', dealer: 'Dealer / government' };
+  const esc = s => String(s).replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+
+  function serviceLabel(id) {
+    // exact id match only — same vocabulary as the picker and checkboxes
+    const chip = document.querySelector('.service-chip[data-service="' + id + '"]');
+    if (chip) return chip.textContent.trim().replace(/\s+/g, ' ').slice(0, 40);
+    const cb = [...document.querySelectorAll('input[name="services"]')]
+      .find(c => c.value.toLowerCase() === id);
+    if (cb) {
+      const lab = cb.closest('label') || document.querySelector('label[for="' + cb.id + '"]');
+      if (lab) return lab.textContent.trim().replace(/\s+/g, ' ').slice(0, 40);
+    }
+    return id.replace(/[-_]/g, ' ').replace(/\b\w/g, m => m.toUpperCase());
+  }
+
+  function persist(patch) {
+    if (!CUD) return;
+    const cur = CUD.resolve({ search: '', storage: window.localStorage }) || {};
+    CUD.write(window.localStorage, Object.assign({
+      vehicle: cur.vehicle, services: cur.services, audience: cur.audience, source: cur.source
+    }, patch));
+  }
+
+  function renderSummary() {
+    const host = document.getElementById('cu-carried-summary');
+    if (!host) return;
+    const d = CUD ? CUD.resolve({ search: window.location.search, storage: window.localStorage }) : draft;
+    const bits = [];
+    if (d.vehicle && d.vehicle.year) {
+      const v = [d.vehicle.year, d.vehicle.make, d.vehicle.model].filter(Boolean).join(' ');
+      bits.push(`<span class="cu-chip" data-clear="vehicle">Vehicle: <strong>${esc(v)}</strong><button type="button" aria-label="Remove vehicle">×</button></span>`);
+    }
+    if (d.audience) {
+      bits.push(`<span class="cu-chip" data-clear="audience">${esc(AUD_LABEL[d.audience] || d.audience)}<button type="button" aria-label="Remove audience">×</button></span>`);
+    }
+    (d.services || []).forEach(id => {
+      bits.push(`<span class="cu-chip" data-clear="service" data-id="${esc(id)}">${esc(serviceLabel(id))}<button type="button" aria-label="Remove ${esc(id)}">×</button></span>`);
+    });
+
+    if (!bits.length) { host.hidden = true; return; }
+    const lead = (d.carried && d.carried.any)
+      ? 'Carried over from what you looked at earlier —'
+      : 'Using your selection —';
+    host.className = 'vin-result success';
+    host.innerHTML = `<div style="margin-bottom:6px;">${lead} <span style="opacity:.75;">everything below is editable.</span></div>
+      <div class="cu-chips">${bits.join('')}</div>`;
+    host.hidden = false;
+  }
+
+  // Removing a chip clears only that field, then re-renders from storage.
+  document.addEventListener('click', ev => {
+    const btn = ev.target.closest('.cu-chip button');
+    if (!btn) return;
+    const chip = btn.closest('.cu-chip');
+    const kind = chip.getAttribute('data-clear');
+    if (kind === 'vehicle') {
+      persist({ vehicle: null });
+      ['r-year','r-make','r-model'].forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
+    } else if (kind === 'audience') {
+      persist({ audience: null });
+    } else if (kind === 'service') {
+      const id = chip.getAttribute('data-id');
+      const cur = CUD ? CUD.resolve({ search: '', storage: window.localStorage }) : { services: [] };
+      persist({ services: (cur.services || []).filter(s => s !== id) });
+      document.querySelectorAll('input[name="services"]').forEach(cb => {
+        if (cb.value.toLowerCase() === id) cb.checked = false;
+      });
+      const pchip = document.querySelector('.service-chip[data-service="' + id + '"]');
+      if (pchip) { pchip.classList.remove('selected','active'); pchip.setAttribute('aria-pressed','false'); }
+    }
+    renderSummary();
+  });
+
+  /* Editing the form updates the draft. Writes go through the module, so
+     services are de-duplicated on every save and repeated edits cannot
+     accumulate duplicates. */
+  ['r-year','r-make','r-model'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('change', () => {
+      const y = (document.getElementById('r-year')||{}).value;
+      persist({ vehicle: y ? { year: y,
+        make: (document.getElementById('r-make')||{}).value || null,
+        model: (document.getElementById('r-model')||{}).value || null } : null });
+      renderSummary();
+    });
+  });
+
+  renderSummary();
+  scheduleHydration();
 })();
 
 // ── VIN Lookup via NHTSA free API ────────────────────────
