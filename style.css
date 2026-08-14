@@ -134,18 +134,24 @@
 .nav-dropdown a::after { display: none !important; }
 .nav-dropdown-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 4px 8px; }
 
-/* ── Floating quote CTA ──────────────────────────────── */
-.float-cta {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 900;
-  opacity: 0;
-  transform: translateY(14px);
-  pointer-events: none;
-  transition: opacity 300ms ease, transform 300ms ease;
-}
-.float-cta.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+/* ── Floating quote CTA — RETIRED ─────────────────────────
+   Removed per the 2026-08-13 audit: it was a third quote CTA that
+   followed the user down the page and overlapped real content (the
+   fourth audience card, service cards, review cards).
+
+   It is redundant at every width, which is why this is display:none
+   rather than a desktop-only hide:
+     - desktop: .nav-cta in the sticky header is always reachable
+     - mobile (<=680px): .sticky-cta-bar already pins Call + Get Quote
+       to the bottom, and .float-cta sat at bottom:28px right:28px,
+       directly ON TOP of that bar
+
+   Hidden here rather than deleted from markup because the element
+   appears on 36 pages; one rule retires it everywhere. The markup is
+   already aria-hidden="true", so nothing is exposed to assistive tech.
+   The JS toggle in animations.js is disabled to match. */
+.float-cta,
+.float-cta.visible { display: none; }
 .float-cta-btn {
   display: flex;
   align-items: center;

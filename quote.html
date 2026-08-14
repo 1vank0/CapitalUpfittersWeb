@@ -621,22 +621,44 @@
   </div>
 </div>
 
-<section class="page-hero" style="min-height: 38vh; display: flex; align-items: center;">
-  <div class="page-hero-bg" style="background: linear-gradient(135deg, #0d1117 0%, #1a2332 50%, #203055 100%);"></div>
-  <div class="page-hero-overlay"></div>
-  <div class="container page-hero-content">
+<!-- Compact quote header (2026-08-13 audit).
+     This was a 38vh page-hero with a display h1, a sub-paragraph and a
+     three-item trust row, which pushed the first actual question below
+     the fold. The visitor arrived here by clicking "Get a Quote" — they
+     have already been sold on requesting one, so a second sales hero
+     explaining that quotes are free only delays the first question.
+     Kept: the breadcrumb, one h1 (SEO + a single-h1 a11y structure) and
+     the response-time commitment, compressed to one line. -->
+<style>
+  .quote-intro {
+    background: var(--color-surface-dark);
+    padding: var(--space-6) 0 var(--space-5);
+    border-bottom: 1px solid var(--color-border-dark);
+  }
+  .quote-intro .breadcrumb { margin-bottom: var(--space-3); }
+  .quote-intro h1 {
+    color: #fff;
+    font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--space-2);
+  }
+  .quote-intro-sub {
+    color: rgba(255,255,255,0.72);
+    font-size: var(--text-base);
+    margin: 0;
+  }
+  .quote-intro-sub strong { color: #fff; font-weight: 600; }
+</style>
+<section class="quote-intro" aria-labelledby="quote-intro-heading">
+  <div class="container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="./index.html">Home</a>
       <span class="breadcrumb-sep">›</span>
       <span>Get a Quote</span>
     </nav>
-    <h1 class="reveal">GET YOUR <em>FREE QUOTE.</em></h1>
-    <p class="page-hero-sub reveal reveal-delay-1">We respond to every quote request within 24 hours — usually the same business day. No commitment required.</p>
-    <div class="trust-row reveal reveal-delay-2">
-      <div class="trust-row-item">Same-day response</div>
-      <div class="trust-row-item">Free estimate</div>
-      <div class="trust-row-item">No pressure</div>
-    </div>
+    <h1 id="quote-intro-heading">Let's build your quote</h1>
+    <p class="quote-intro-sub"><strong>Usually takes about 60 seconds.</strong> No commitment, and we respond within 24 hours — usually the same business day.</p>
   </div>
 </section>
 

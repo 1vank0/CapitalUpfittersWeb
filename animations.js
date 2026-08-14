@@ -530,20 +530,9 @@
 
 })();
 
-// ── Floating Quote CTA ───────────────────────────────────────
-(function() {
-  const el = document.querySelector('.float-cta');
-  if (!el) return;
-  let visible = false;
-  const toggle = () => {
-    const scrolled = window.scrollY > 420;
-    const nearBottom = (window.innerHeight + window.scrollY) >= (document.body.scrollHeight - 120);
-    const shouldShow = scrolled && !nearBottom;
-    if (shouldShow !== visible) {
-      visible = shouldShow;
-      el.classList.toggle('visible', visible);
-    }
-  };
-  window.addEventListener('scroll', toggle, { passive: true });
-  toggle();
-})();
+// ── Floating Quote CTA — RETIRED (2026-08-13 audit) ──────────
+// Was a third quote CTA that followed the user down the page and
+// overlapped real content. Hidden sitewide in style.css; the scroll
+// listener that toggled it is removed here so 36 pages no longer run a
+// handler whose only effect was toggling a class on a hidden element.
+// Quote entry is now: .nav-cta on desktop, .sticky-cta-bar on mobile.
