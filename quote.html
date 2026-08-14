@@ -410,6 +410,10 @@
        and needs window.CUQuoteDraft to already exist. -->
   <style>
   /* Carried-over summary chips (quote draft hydration) */
+  .cu-audience-ask {
+    margin: 0 0 10px; font-size: .95rem; font-weight: 600;
+    color: var(--color-accent-text, #0066cc);
+  }
   .cu-chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .cu-chip {
     display: inline-flex; align-items: center; gap: 8px;
@@ -419,13 +423,17 @@
   }
   .cu-chip button {
     all: unset; cursor: pointer;
-    width: 24px; height: 24px; border-radius: 50%;
+    /* 24px clears the WCAG floor but is not a premium touch target. */
+    width: 28px; height: 28px; border-radius: 50%;
     display: inline-flex; align-items: center; justify-content: center;
     font-size: 15px; line-height: 1; opacity: 0.7;
   }
   .cu-chip button:hover, .cu-chip button:focus-visible { opacity: 1; background: rgba(255,255,255,0.16); }
   .cu-chip button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
-  @media (hover: none), (pointer: coarse) { .cu-chip button { opacity: 1; } }
+  @media (hover: none), (pointer: coarse) {
+    .cu-chip button { opacity: 1; width: 44px; height: 44px; }   /* 44x44 on touch */
+    .cu-chip { padding: 4px 4px 4px 14px; }
+  }
 </style>
   <script src="/cu-quote-draft.js"></script>
   <script src="/attribution.js" defer></script>
@@ -1680,8 +1688,42 @@
     if (draft.audience && AUD_PANEL[draft.audience]) {
       const tab = document.querySelector('.audience-tab[data-panel="' + AUD_PANEL[draft.audience] + '"]');
       if (tab && !tab.classList.contains('active')) tab.click();
+    } else {
+      /* AUDIENCE UNKNOWN — ask, do not assume.
+         The tabs default to Personal Vehicle, which silently answers a
+         question the customer never answered and routes a fleet or
+         dealer lead into the retail form. Prompt once instead; the
+         moment they pick a tab it is recorded and this disappears. */
+      showAudiencePrompt();
     }
   }
+
+  function showAudiencePrompt() {
+    if (document.getElementById('cu-audience-ask')) return;
+    const tabs = document.querySelector('.audience-tabs');
+    if (!tabs) return;
+    const p = document.createElement('p');
+    p.id = 'cu-audience-ask';
+    p.className = 'cu-audience-ask';
+    p.setAttribute('role', 'status');
+    p.textContent = 'First — which of these describes you?';
+    tabs.parentNode.insertBefore(p, tabs);
+  }
+
+  /* Any tab click is an explicit audience declaration; record it and
+     retire the prompt. Delegated so it works however the tab is reached,
+     including by keyboard. */
+  document.addEventListener('click', ev => {
+    const tab = ev.target.closest && ev.target.closest('.audience-tab[data-panel]');
+    if (!tab || !CUD) return;
+    const panel = tab.getAttribute('data-panel');
+    const aud = Object.keys(AUD_PANEL).find(k => AUD_PANEL[k] === panel);
+    if (!aud) return;
+    persist({ audience: aud });
+    const ask = document.getElementById('cu-audience-ask');
+    if (ask) ask.remove();
+    renderSummary();
+  });
   function scheduleHydration() {
     hydrateSelections();
     if (document.readyState !== 'complete') {

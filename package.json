@@ -1,0 +1,13 @@
+{
+  "name": "capital-upfitters-website",
+  "private": true,
+  "description": "Static HTML site. This package.json exists ONLY to pin test tooling — it is not a build system and the site ships exactly the files in this repo, unbuilt.",
+  "scripts": {
+    "test": "node tests/quote-draft.test.js",
+    "test:e2e": "node tests/journey.e2e.js",
+    "test:all": "npm run test && npm run test:e2e"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}

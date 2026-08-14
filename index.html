@@ -610,11 +610,29 @@
     </div>
     <div class="vehicle-selector-hint">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      Select your vehicle to see compatible services and get a pre-filled quote
+      Select your vehicle to see recommended services and get a pre-filled quote
     </div>
-    <div class="vs-results" id="vs-results" aria-live="polite">
-      <div class="vs-results-label" id="vs-results-label">Services for your vehicle</div>
+    <div class="vs-results" id="vs-results">
+      <div class="vs-results-label" id="vs-results-label">Recommended services for your vehicle</div>
       <div class="vs-service-chips" id="vs-chips"></div>
+
+      <!-- Selected-count announcement. Separate from the results panel's
+           own region so adding a service announces the count, not the
+           entire re-rendered list. -->
+      <p id="vs-live" class="vs-sr-only" role="status" aria-live="polite">No services selected</p>
+
+      <div class="vs-actions">
+        <a class="btn btn-primary vs-continue" id="vs-continue" href="./quote.html">
+          Continue to Quote<span id="vs-count"></span>
+        </a>
+        <!-- Continuing without choosing anything must stay possible: a
+             visitor who does not know what they need is exactly the one
+             most worth talking to. Routes to the same form with a flag
+             instead of blocking on a selection. -->
+        <a class="vs-unsure" id="vs-unsure" href="./quote.html?help=expert">
+          I'm not sure &mdash; ask an expert
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -1311,6 +1329,51 @@
 })();
 </script>
 
+<style>
+/* ── Find My Fit: recommendation rows with a selection control ──────── */
+.vs-sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+.vs-service-chips { display:flex; flex-wrap:wrap; gap:10px; }
+.vs-rec { display:flex; align-items:stretch; border:1px solid var(--color-border-dark, rgba(255,255,255,.16));
+  border-radius:12px; overflow:hidden; background:rgba(255,255,255,.04); }
+.vs-rec-add {
+  all:unset; box-sizing:border-box; cursor:pointer;
+  display:flex; align-items:center; gap:10px;
+  /* 44px minimum tap target — the WCAG 24px floor is not the bar here. */
+  min-height:44px; padding:10px 14px; font-size:.92rem; line-height:1.2;
+  transition: background 160ms var(--ease-out, ease), color 160ms var(--ease-out, ease);
+}
+.vs-rec-add--static { cursor:default; opacity:.75; }
+.vs-rec-add:hover { background:rgba(255,255,255,.07); }
+.vs-rec-add:focus-visible { outline:2px solid var(--color-accent,#2b6cff); outline-offset:-2px; }
+.vs-rec-mark { width:20px; height:20px; flex:0 0 20px; border-radius:6px;
+  border:1.5px solid currentColor; opacity:.55; position:relative; }
+.vs-rec-add.is-selected { background:var(--color-accent,#2b6cff); color:#fff; }
+.vs-rec-add.is-selected .vs-rec-mark { opacity:1; background:#fff; border-color:#fff; }
+.vs-rec-add.is-selected .vs-rec-mark::after {
+  content:''; position:absolute; left:6px; top:2px; width:5px; height:10px;
+  border:solid var(--color-accent,#2b6cff); border-width:0 2px 2px 0; transform:rotate(45deg); }
+.vs-rec-details {
+  display:flex; align-items:center; min-height:44px; padding:0 14px;
+  border-left:1px solid rgba(255,255,255,.14);
+  font-size:.8rem; letter-spacing:.04em; text-transform:uppercase; text-decoration:none;
+  opacity:.75; white-space:nowrap;
+}
+.vs-rec-details:hover, .vs-rec-details:focus-visible { opacity:1; }
+.vs-rec-details:focus-visible { outline:2px solid var(--color-accent,#2b6cff); outline-offset:-2px; }
+.vs-actions { display:flex; flex-wrap:wrap; align-items:center; gap:16px; margin-top:18px; }
+.vs-continue { min-height:48px; display:inline-flex; align-items:center; }
+.vs-unsure { min-height:44px; display:inline-flex; align-items:center;
+  font-size:.9rem; text-decoration:underline; text-underline-offset:3px; opacity:.8; }
+.vs-unsure:hover, .vs-unsure:focus-visible { opacity:1; }
+@media (max-width: 680px) {
+  .vs-rec { width:100%; }
+  .vs-rec-add { flex:1 1 auto; }
+  .vs-actions { flex-direction:column; align-items:stretch; }
+  .vs-continue { justify-content:center; }
+  .vs-unsure { justify-content:center; }
+}
+</style>
 <script src="/cu-quote-draft.js"></script>
 <script src="animations.js" defer></script>
 
@@ -1520,52 +1583,52 @@
   // Keys: truck, suv, van, car, ev, other
   const SERVICE_MAP = {
     truck: [
-      { name: 'Spray-On Bedliner', url: './services/bedliner.html', icon: '🛡️' },
-      { name: 'Tonneau Cover', url: './services/tonneau.html', icon: '🔒' },
-      { name: 'Hitches & Towing', url: './services/hitches.html', icon: '🔗' },
-      { name: 'Running Boards', url: './services/running-boards.html', icon: '⤵️' },
-      { name: 'Toolboxes & Storage', url: './services/toolboxes.html', icon: '🧰' },
-      { name: 'Camper Shell', url: './services/camper-shells.html', icon: '⛺' },
-      { name: 'Undercoating', url: './services/undercoating.html', icon: '🛡️' },
-      { name: 'Suspension & Lifts', url: './services/suspension.html', icon: '⬆️' },
-      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
-      { name: 'Exterior Accessories', url: './services/exterior.html', icon: '🔧' },
+      { id: 'bedliner', name: 'Spray-On Bedliner', url: './services/bedliner.html' },
+      { id: 'tonneau_cover', name: 'Tonneau Cover', url: './services/tonneau.html' },
+      { id: 'hitches_towing', name: 'Hitches & Towing', url: './services/hitches.html' },
+      { id: 'running_boards', name: 'Running Boards', url: './services/running-boards.html' },
+      { id: 'toolboxes', name: 'Toolboxes & Storage', url: './services/toolboxes.html' },
+      { id: 'camper_shell', name: 'Camper Shell', url: './services/camper-shells.html' },
+      { id: 'undercoating', name: 'Undercoating', url: './services/undercoating.html' },
+      { id: 'suspension_lift', name: 'Suspension & Lifts', url: './services/suspension.html' },
+      { id: 'window_tinting', name: 'Window Tinting', url: './services/window-tinting.html' },
+      { id: 'exterior_accessories', name: 'Exterior Accessories', url: './services/exterior.html' },
     ],
     suv: [
-      { name: 'Running Boards', url: './services/running-boards.html', icon: '⤵️' },
-      { name: 'Hitches & Towing', url: './services/hitches.html', icon: '🔗' },
-      { name: 'Ceramic Coating', url: './services/ceramic-coating.html', icon: '✨' },
-      { name: 'Undercoating', url: './services/undercoating.html', icon: '🛡️' },
-      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
-      { name: 'Exterior Accessories', url: './services/exterior.html', icon: '🔧' },
-      { name: 'Suspension & Lifts', url: './services/suspension.html', icon: '⬆️' },
+      { id: 'running_boards', name: 'Running Boards', url: './services/running-boards.html' },
+      { id: 'hitches_towing', name: 'Hitches & Towing', url: './services/hitches.html' },
+      { id: 'ceramic_coating', name: 'Ceramic Coating', url: './services/ceramic-coating.html' },
+      { id: 'undercoating', name: 'Undercoating', url: './services/undercoating.html' },
+      { id: 'window_tinting', name: 'Window Tinting', url: './services/window-tinting.html' },
+      { id: 'exterior_accessories', name: 'Exterior Accessories', url: './services/exterior.html' },
+      { id: 'suspension_lift', name: 'Suspension & Lifts', url: './services/suspension.html' },
     ],
     van: [
-      { name: 'Van Shelving (Weatherguard)', url: './fleet.html', icon: '📦' },
-      { name: 'Ladder Racks', url: './fleet.html', icon: '🚜' },
-      { name: 'Spray-On Bedliner (Cargo Floor)', url: './services/bedliner.html', icon: '🛡️' },
-      { name: 'Commercial Wraps', url: './services/commercial-wraps.html', icon: '🎨' },
-      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
-      { name: 'LED Work Lights', url: './services/lighting.html', icon: '💡' },
-      { name: 'Hitches & Towing', url: './services/hitches.html', icon: '🔗' },
+      { id: null, name: 'Van Shelving (Weatherguard)', url: './fleet.html' },
+      { id: null, name: 'Ladder Racks', url: './fleet.html' },
+      { id: 'bedliner', name: 'Spray-On Bedliner (Cargo Floor)', url: './services/bedliner.html' },
+      { id: 'wraps_branding', name: 'Commercial Wraps', url: './services/commercial-wraps.html' },
+      { id: 'window_tinting', name: 'Window Tinting', url: './services/window-tinting.html' },
+      { id: 'led_lighting', name: 'LED Work Lights', url: './services/lighting.html' },
+      { id: 'hitches_towing', name: 'Hitches & Towing', url: './services/hitches.html' },
     ],
     car: [
-      { name: 'Ceramic Coating & PPF', url: './services/ceramic-coating.html', icon: '✨' },
-      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
-      { name: 'Undercoating', url: './services/undercoating.html', icon: '🛡️' },
-      { name: 'Hitches & Towing', url: './services/hitches.html', icon: '🔗' },
+      { id: 'ceramic_coating', name: 'Ceramic Coating & PPF', url: './services/ceramic-coating.html' },
+      { id: 'window_tinting', name: 'Window Tinting', url: './services/window-tinting.html' },
+      { id: 'undercoating', name: 'Undercoating', url: './services/undercoating.html' },
+      { id: 'hitches_towing', name: 'Hitches & Towing', url: './services/hitches.html' },
     ],
     ev: [
-      { name: 'Ceramic Coating & PPF', url: './services/ceramic-coating.html', icon: '✨' },
-      { name: 'Window Tinting (Ceramic)', url: './services/window-tinting.html', icon: '🕳️' },
-      { name: 'Running Boards', url: './services/running-boards.html', icon: '⤵️' },
-      { name: 'Exterior Accessories', url: './services/exterior.html', icon: '🔧' },
+      { id: 'ceramic_coating', name: 'Ceramic Coating & PPF', url: './services/ceramic-coating.html' },
+      { id: 'window_tinting', name: 'Window Tinting (Ceramic)', url: './services/window-tinting.html' },
+      { id: 'running_boards', name: 'Running Boards', url: './services/running-boards.html' },
+      { id: 'exterior_accessories', name: 'Exterior Accessories', url: './services/exterior.html' },
     ],
     other: [
-      { name: 'Spray-On Bedliner', url: './services/bedliner.html', icon: '🛡️' },
-      { name: 'Undercoating', url: './services/undercoating.html', icon: '🛡️' },
-      { name: 'Window Tinting', url: './services/window-tinting.html', icon: '🕳️' },
-      { name: 'Commercial Wraps', url: './services/commercial-wraps.html', icon: '🎨' },
+      { id: 'bedliner', name: 'Spray-On Bedliner', url: './services/bedliner.html' },
+      { id: 'undercoating', name: 'Undercoating', url: './services/undercoating.html' },
+      { id: 'window_tinting', name: 'Window Tinting', url: './services/window-tinting.html' },
+      { id: 'wraps_branding', name: 'Commercial Wraps', url: './services/commercial-wraps.html' },
     ],
   };
 
@@ -1714,6 +1777,132 @@
     btn.disabled = !modelSel.value;
   });
 
+  /* ── SELECTION LAYER ───────────────────────────────────────────────
+     Every state change goes through CUQuoteDraft. This block owns no
+     state of its own — it reads the draft, renders from it, and writes
+     back through the module, so the ids, dedupe and cap rules are the
+     same ones the quote page and the Node tests use. */
+  function draftNow() {
+    return (window.CUQuoteDraft
+      ? CUQuoteDraft.resolve({ search: '', storage: window.localStorage })
+      : { vehicle: null, services: [], audience: null }) || {};
+  }
+  function saveDraft(patch) {
+    if (!window.CUQuoteDraft) return;
+    var cur = draftNow();
+    CUQuoteDraft.write(window.localStorage, Object.assign({
+      vehicle: cur.vehicle, services: cur.services, audience: cur.audience, source: 'find-my-fit'
+    }, patch));
+  }
+
+  /* Reflects draft -> UI. Called after render and after every toggle so
+     the button state, the CTA count and the live-region announcement can
+     never drift from what is actually stored. */
+  function syncRecState() {
+    var sel = draftNow().services || [];
+    document.querySelectorAll('.vs-rec-add[data-service]').forEach(function (b) {
+      var on = sel.indexOf(b.getAttribute('data-service')) !== -1;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.classList.toggle('is-selected', on);
+      var nm = b.querySelector('.vs-rec-name');
+      if (nm) b.setAttribute('aria-label', (on ? 'Remove ' : 'Add ') + nm.textContent);
+    });
+    var cta = document.getElementById('vs-continue');
+    var cnt = document.getElementById('vs-count');
+    if (cnt) cnt.textContent = sel.length
+      ? ' \u00b7 ' + sel.length + ' selected'
+      : '';
+    if (cta) cta.setAttribute('aria-label',
+      'Continue to quote' + (sel.length ? ', ' + sel.length + ' service' + (sel.length === 1 ? '' : 's') + ' selected' : ''));
+    var live = document.getElementById('vs-live');
+    if (live) live.textContent = sel.length
+      ? sel.length + ' service' + (sel.length === 1 ? '' : 's') + ' selected'
+      : 'No services selected';
+  }
+
+  /* AUDIENCE FROM REAL UI.
+     The three audience cards already carry ?audience=retail|fleet|dealer
+     to start-here.html. Capturing the click writes that signal into the
+     draft too, so the customer's own declaration survives whichever
+     route they take into the quote form. Values are validated by the
+     module, so an edited href cannot inject an audience.
+       Personal Vehicle    -> retail
+       Fleet & Commercial  -> fleet
+       Dealer & Government -> dealer
+     No default is written. An unknown audience stays unknown and is
+     asked once on the quote page rather than silently assumed retail. */
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a[href*="audience="]');
+    if (!a || !window.CUQuoteDraft) return;
+    var m = /[?&]audience=([a-z]+)/i.exec(a.getAttribute('href') || '');
+    if (!m) return;
+    var aud = CUQuoteDraft.cleanAudience(m[1]);
+    if (aud) saveDraft({ audience: aud });
+  });
+
+  // Toggle add/remove. Delegated so it survives re-renders.
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('.vs-rec-add[data-service]');
+    if (!b) return;
+    ev.preventDefault();
+    var id = b.getAttribute('data-service');
+    var cur = draftNow().services || [];
+    var next = cur.indexOf(id) !== -1 ? cur.filter(function (x) { return x !== id; }) : cur.concat([id]);
+    saveDraft({ services: next });
+    syncRecState();
+  });
+
+  /* ── RESTORE ON RETURN ─────────────────────────────────────────────
+     Coming back to the homepage — browser Back, bfcache, or a fresh load
+     in the same session — must not throw away what the customer already
+     told us. Without this the results panel is collapsed, the selected
+     services are invisible and the Continue CTA is unreachable, so a
+     back-navigation silently looked like starting over.
+     Re-drives the same selects the customer used, then replays the same
+     button handler, so there is one render path and no duplicate logic. */
+  async function restoreFromDraft() {
+    if (!window.CUQuoteDraft) return;
+    var d = draftNow();
+    if (!d.vehicle || !d.vehicle.year) return;
+    if (results && results.classList.contains('visible')) { syncRecState(); return; }
+
+    var waitFor = function (sel, min) {
+      return new Promise(function (res) {
+        var tries = 0;
+        (function tick() {
+          if (sel.options.length >= min || ++tries > 40) return res();
+          setTimeout(tick, 100);
+        })();
+      });
+    };
+    yearSel.value = d.vehicle.year;
+    if (!yearSel.value) return;
+    yearSel.dispatchEvent(new Event('change'));
+    await waitFor(makeSel, 2);
+    if (d.vehicle.make) {
+      makeSel.value = d.vehicle.make;
+      if (!makeSel.value) return;
+      makeSel.dispatchEvent(new Event('change'));
+      await waitFor(modelSel, 2);
+      if (d.vehicle.model) {
+        modelSel.value = d.vehicle.model;
+        modelSel.dispatchEvent(new Event('change'));
+      }
+    }
+    if (!btn.disabled) btn.click();      // same render path as a real click
+    syncRecState();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', restoreFromDraft);
+  } else {
+    restoreFromDraft();
+  }
+  // bfcache restores the DOM without re-running scripts.
+  window.addEventListener('pageshow', function (ev) {
+    if (ev.persisted) { syncRecState(); restoreFromDraft(); }
+  });
+
   // ── Show results ──────────────────────────────────────────
   btn.addEventListener('click', () => {
     const yr = yearSel.value, mk = makeSel.value, mdl = modelSel.value;
@@ -1742,30 +1931,56 @@
     const type = detectType(mk, mdl);
     const services = SERVICE_MAP[type] || SERVICE_MAP.other;
 
-    label.textContent = `Popular services for your ${yr} ${mk} ${mdl}`;
+    /* "Recommended", never "compatible". These lists are category-level
+       suggestions keyed off a make/model heuristic — there is no fitment
+       data source behind them, so claiming confirmed fitment would be an
+       unsupported claim. */
+    label.textContent = `Recommended services for your ${yr} ${mk} ${mdl}`;
     chips.innerHTML = '';
 
+    /* Each row separates the two jobs the old chip conflated:
+         - a SELECTION control (button, toggles draft state)
+         - a DETAILS link (anchor, navigates)
+       They are siblings. Nothing interactive is nested inside the link,
+       which the previous single-anchor chip would have required. */
     services.forEach(svc => {
       const url = new URL(svc.url, window.location.href);
       url.searchParams.set('year', yr);
       url.searchParams.set('make', mk);
       url.searchParams.set('model', mdl);
-      const a = document.createElement('a');
-      a.className = 'vs-chip';
-      a.href = url.toString();
-      a.innerHTML = `<span class="vs-chip-icon" aria-hidden="true">${svc.icon}</span>${svc.name}`;
-      chips.appendChild(a);
+
+      const row = document.createElement('div');
+      row.className = 'vs-rec';
+
+      if (svc.id) {
+        const add = document.createElement('button');
+        add.type = 'button';
+        add.className = 'vs-rec-add';
+        add.setAttribute('data-service', svc.id);
+        add.setAttribute('aria-pressed', 'false');
+        add.innerHTML = `<span class="vs-rec-mark" aria-hidden="true"></span><span class="vs-rec-name">${svc.name}</span>`;
+        row.appendChild(add);
+      } else {
+        /* No canonical id exists for this item in cu-quote-draft.js's
+           vocabulary (van shelving, ladder racks). Rather than invent an
+           id that the quote form cannot honour, it is details-only. */
+        const t = document.createElement('span');
+        t.className = 'vs-rec-add vs-rec-add--static';
+        t.innerHTML = `<span class="vs-rec-name">${svc.name}</span>`;
+        row.appendChild(t);
+      }
+
+      const details = document.createElement('a');
+      details.className = 'vs-rec-details';
+      details.href = url.toString();
+      details.textContent = 'Details';
+      details.setAttribute('aria-label', `View service details for ${svc.name}`);
+      row.appendChild(details);
+
+      chips.appendChild(row);
     });
 
-    // Add universal quote chip
-    const qUrl = `./quote.html?year=${encodeURIComponent(yr)}&make=${encodeURIComponent(mk)}&model=${encodeURIComponent(mdl)}`;
-    const qa = document.createElement('a');
-    qa.className = 'vs-chip';
-    qa.href = qUrl;
-    qa.style.cssText = 'background:var(--color-accent); border-color:var(--color-accent); color:#fff; font-weight:700;';
-    qa.innerHTML = '<span aria-hidden="true">✉️</span> Get a Quote for This Vehicle';
-    chips.appendChild(qa);
-
+    syncRecState();
     results.classList.add('visible');
     results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
