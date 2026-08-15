@@ -1002,6 +1002,18 @@
     <div class="trustindex-widget reveal" aria-label="Verified customer reviews from Google">
       <script defer async src="https://cdn.trustindex.io/loader.js?4b0fb84780ce380f4576092cef2"></script>
     </div>
+    <script>
+    // Collapse the reviews panel if the embed never renders (blocked, offline, or preview domain)
+    (function () {
+      function checkWidget() {
+        var widget = document.querySelector('.trustindex-widget');
+        if (!widget) return;
+        var rendered = widget.querySelector('iframe, .ti-widget-container, [class*="ti-reviews"]');
+        if (!rendered) widget.classList.add('ti-empty');
+      }
+      window.addEventListener('load', function () { window.setTimeout(checkWidget, 6000); });
+    })();
+    </script>
 
     <div style="text-align: center; margin-top: var(--space-8);">
       <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
@@ -1145,7 +1157,7 @@
 
 <!-- STICKY MOBILE CTA BAR -->
 <div class="sticky-cta-bar" aria-label="Quick actions">
-  <a href="sms:3013041419?body=QUOTE" class="btn btn-outline" style="font-size:.7rem;" data-conversion="sticky_text">Text QUOTE</a>
+  <a href="sms:3013041419?body=QUOTE" class="btn btn-outline" style="font-size:.7rem;" data-conversion="sticky_text">Text Quote</a>
   <a href="tel:3013041419" class="btn btn-outline" data-conversion="sticky_call">Call</a>
   <a href="#project-intake" class="btn btn-primary" data-intake-target="retail" data-conversion="sticky_retail">Build Quote</a>
 </div>

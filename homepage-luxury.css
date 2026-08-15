@@ -740,7 +740,9 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(to top, rgba(5, 7, 9, 0.94) 0%, rgba(5, 7, 9, 0.45) 48%, rgba(5, 7, 9, 0.03) 82%);
+  background:
+    linear-gradient(to bottom, rgba(5, 7, 9, 0.9) 0%, rgba(5, 7, 9, 0.62) 34%, rgba(5, 7, 9, 0.08) 62%),
+    linear-gradient(to top, rgba(5, 7, 9, 0.82) 0%, rgba(5, 7, 9, 0) 32%);
   pointer-events: none;
 }
 
@@ -860,7 +862,9 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(to top, rgba(5, 7, 9, 0.95) 0%, rgba(5, 7, 9, 0.42) 48%, transparent 78%);
+  background:
+    linear-gradient(to bottom, rgba(5, 7, 9, 0.9) 0%, rgba(5, 7, 9, 0.6) 36%, rgba(5, 7, 9, 0.06) 64%),
+    linear-gradient(to top, rgba(5, 7, 9, 0.85) 0%, rgba(5, 7, 9, 0) 30%);
   pointer-events: none;
 }
 
@@ -917,7 +921,7 @@
   color: rgba(250, 249, 246, 0.68);
   font-size: 0.84rem;
   line-height: 1.55;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
 }
 
 .home-page .service-card:first-child .service-card-desc {
@@ -1203,6 +1207,11 @@
   font-size: clamp(2.6rem, 5vw, 4.7rem);
   letter-spacing: -0.045em;
   text-transform: none;
+  text-wrap: balance;
+}
+
+.home-page h2 {
+  text-wrap: balance;
 }
 
 .home-page .cta-banner p {
@@ -1211,6 +1220,57 @@
 
 .home-page .footer {
   background: var(--home-obsidian);
+}
+
+.home-page .footer-brand-name span {
+  color: var(--home-metal);
+}
+
+.home-page .footer-contact-item svg {
+  color: var(--home-metal);
+}
+
+.home-page .btn-ghost {
+  color: var(--home-obsidian);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(9, 11, 14, 0.3);
+}
+
+.home-page .btn-ghost:hover {
+  color: var(--home-metal-dark);
+  text-decoration-color: currentColor;
+}
+
+/* Sticky mobile CTA bar — luxury palette instead of legacy blue */
+.home-page .sticky-cta-bar {
+  background: rgba(9, 11, 14, 0.96);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+}
+
+.home-page .sticky-cta-bar .btn-outline {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: transparent;
+  color: var(--home-paper);
+}
+
+.home-page .sticky-cta-bar .btn-primary {
+  border: 1px solid transparent;
+  background: var(--home-porcelain);
+  color: var(--home-obsidian);
+}
+
+@media (max-width: 680px) {
+  /* Sticky bar already covers quick actions on small screens */
+  .home-page .float-cta {
+    display: none;
+  }
+}
+
+/* Reviews widget: collapse gracefully if the embed never renders */
+.home-page .trustindex-widget.ti-empty {
+  display: none;
 }
 
 .home-page .float-cta-btn {
