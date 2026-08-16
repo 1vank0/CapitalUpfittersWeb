@@ -11,7 +11,7 @@
 <link rel="shortcut icon" href="favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Capital Upfitters | Vehicle Upfitting Rockville, MD</title>
-<meta name="description" content="Family-owned vehicle upfitter in Rockville, MD. Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions. Serving the DMV since 2015. Same-week availability. Call (301) 304-1419.">
+<meta name="description" content="Family-owned vehicle upfitter in Rockville, MD. Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.capitalupfitters.com/">
 
@@ -20,8 +20,8 @@
 <meta property="og:url" content="https://www.capitalupfitters.com/">
 <meta property="og:title" content="Capital Upfitters — Premium Vehicle Upfitting in Rockville, MD">
 <meta property="og:description" content="Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions. Family-owned since 2015. Same-week availability.">
-<meta property="og:image" content="https://www.capitalupfitters.com/assets/og-default.png">
-<meta name="twitter:image" content="https://www.capitalupfitters.com/assets/og-default.png">
+<meta property="og:image" content="https://www.capitalupfitters.com/og.png">
+<meta name="twitter:image" content="https://www.capitalupfitters.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
 
 <!-- Fonts -->
@@ -41,7 +41,7 @@
       "name": "Capital Auto Upfitters & Protective Coatings",
       "alternateName": "Capital Upfitters",
       "url": "https://www.capitalupfitters.com/",
-      "logo": "https://www.capitalupfitters.com/assets/og-default.png",
+      "logo": "https://www.capitalupfitters.com/og.png",
       "sameAs": [
         "https://share.google/k9ejYM294VHEEm6xq",
         "https://www.facebook.com/CapitalUpfitters",
@@ -116,6 +116,67 @@
       "url": "https://www.capitalupfitters.com/",
       "name": "Capital Upfitters",
       "publisher": {"@id": "https://www.capitalupfitters.com/#organization"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.capitalupfitters.com/#breadcrumb",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.capitalupfitters.com/"}
+      ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.capitalupfitters.com/#service-bedliner",
+      "name": "Spray-On Bedliners",
+      "serviceType": "Spray-on truck bedliner installation",
+      "provider": {"@id": "https://www.capitalupfitters.com/#localbusiness"},
+      "areaServed": "DMV",
+      "url": "https://www.capitalupfitters.com/services/bedliner.html"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.capitalupfitters.com/#service-running-boards",
+      "name": "Running Boards & Steps",
+      "serviceType": "Running board and power step installation",
+      "provider": {"@id": "https://www.capitalupfitters.com/#localbusiness"},
+      "areaServed": "DMV",
+      "url": "https://www.capitalupfitters.com/services/running-boards.html"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.capitalupfitters.com/#service-hitches",
+      "name": "Hitches & Towing",
+      "serviceType": "Trailer hitch and towing package installation",
+      "provider": {"@id": "https://www.capitalupfitters.com/#localbusiness"},
+      "areaServed": "DMV",
+      "url": "https://www.capitalupfitters.com/services/hitches.html"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.capitalupfitters.com/#service-ceramic-coating",
+      "name": "Ceramic Coating",
+      "serviceType": "Ceramic coating and paint protection",
+      "provider": {"@id": "https://www.capitalupfitters.com/#localbusiness"},
+      "areaServed": "DMV",
+      "url": "https://www.capitalupfitters.com/services/ceramic-coating.html"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.capitalupfitters.com/#service-commercial-coatings",
+      "name": "Industrial & Protective Coatings",
+      "serviceType": "Industrial and protective fleet coatings",
+      "provider": {"@id": "https://www.capitalupfitters.com/#localbusiness"},
+      "areaServed": "DMV",
+      "url": "https://www.capitalupfitters.com/services/industrial-coatings.html"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.capitalupfitters.com/#service-window-tinting",
+      "name": "Window Tinting",
+      "serviceType": "Automotive ceramic window tint installation",
+      "provider": {"@id": "https://www.capitalupfitters.com/#localbusiness"},
+      "areaServed": "DMV",
+      "url": "https://www.capitalupfitters.com/services/window-tinting.html"
     },
     {
       "@type": "FAQPage",
@@ -313,6 +374,168 @@
   .locations-grid { grid-template-columns: 1fr; }
 }
 </style>
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO SERVICE SLIDER (Phase 4)
+     Scoped to .hero. Every rule here is additive — no existing
+     hero rule in style.css is overridden, so the static no-JS
+     hero renders exactly as it did before this block existed.
+═══════════════════════════════════════════════════════ -->
+<style>
+  /* Poster layer — sits under the video, above the gradient fallback.
+     Shown on its own for slides that have no video yet. */
+  .hero-poster-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .hero-poster-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.55);
+  }
+  /* Ken-Burns drift, only for video-less slides */
+  .hero-poster-wrap img.is-drifting {
+    animation: hero-kenburns 9s ease-out forwards;
+  }
+  @keyframes hero-kenburns {
+    from { transform: scale(1.02) translate3d(0, 0, 0); }
+    to   { transform: scale(1.10) translate3d(-1.2%, -1%, 0); }
+  }
+  /* Video wrap hides (poster shows through) on video-less slides */
+  .hero-video-wrap.is-hidden { opacity: 0; }
+
+  /* Cross-fade wrapper. Wraps eyebrow + h1 + sub + CTAs so the whole
+     copy block fades as one unit. Opacity composes with the inline
+     opacity the HERO IDLE DIM script sets on the children, so the two
+     effects coexist instead of fighting. */
+  .hero-slide-copy {
+    transition: opacity 500ms ease;
+  }
+  .hero-slide-copy.is-transitioning { opacity: 0; }
+  .hero-slide-copy:focus { outline: none; }
+  .hero-slide-copy:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 8px;
+    border-radius: var(--radius-md);
+  }
+
+  /* Hairline progress bar pinned to the top edge of the hero */
+  .hero-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 3;
+    background: rgba(255,255,255,0.10);
+    pointer-events: none;
+  }
+  .hero-progress-fill {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: var(--color-accent);
+    opacity: 0.9;
+    transition: opacity 200ms ease;
+  }
+  .hero:hover .hero-progress-fill { opacity: 1; }
+
+  /* Slide indicator dots — centred, stacked above the stats block */
+  .hero-dots {
+    position: absolute;
+    bottom: calc(var(--space-6) + 84px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .hero-dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0.3;
+    cursor: pointer;
+    transition: opacity 200ms ease, transform 200ms ease, background 200ms ease;
+  }
+  .hero-dot:hover { opacity: 0.7; transform: scale(1.25); }
+  .hero-dot.is-active { background: var(--color-accent); opacity: 1; }
+  .hero-dot:focus { outline: none; }
+  .hero-dot:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+  /* A `display` declaration outranks the UA's [hidden] { display: none },
+     so the hidden state has to be restated for anything that sets display.
+     Without this the dots and the pill render for no-JS visitors. */
+  .hero-dots[hidden] { display: none; }
+
+  /* Unmute pill — bottom-right, clear of the stats block */
+  .hero-mute-pill {
+    position: absolute;
+    right: var(--space-6);
+    bottom: calc(var(--space-6) + 84px);
+    z-index: 3;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0 var(--space-4);
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(255,255,255,0.22);
+    background: rgba(17,24,39,0.55);
+    backdrop-filter: blur(10px);
+    color: rgba(255,255,255,0.9);
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 200ms ease, border-color 200ms ease;
+  }
+  .hero-mute-pill[hidden] { display: none; }
+  .hero-mute-pill:hover {
+    background: rgba(17,24,39,0.75);
+    border-color: rgba(255,255,255,0.45);
+  }
+  .hero-mute-pill:focus { outline: none; }
+  .hero-mute-pill:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+  .hero-mute-pill svg { flex-shrink: 0; }
+  .hero-mute-pill .icon-unmuted { display: none; }
+  .hero-mute-pill.is-muted .icon-muted { display: block; }
+  .hero-mute-pill.is-muted .icon-unmuted { display: none; }
+  .hero-mute-pill:not(.is-muted) .icon-muted { display: none; }
+  .hero-mute-pill:not(.is-muted) .icon-unmuted { display: block; }
+
+  /* Stats block is hidden under 680px — drop the controls back down */
+  @media (max-width: 680px) {
+    .hero-dots { bottom: var(--space-6); }
+    .hero-mute-pill {
+      right: auto;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: calc(var(--space-6) + 34px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slide-copy { transition: none; }
+    .hero-poster-wrap img.is-drifting { animation: none; }
+  }
+</style>
+
   <script src="/attribution.js" defer></script>
   <script src="/lead-form.js" defer></script>
 
@@ -355,27 +578,27 @@
               <div class="nav-mega-col-header nav-mega-col-header--gold">Protection &amp; Bedliners</div>
               <a href="./services/bedliner.html">Spray-On Bedliners <span class="nav-mega-link-badge">★ Top Seller</span></a>
               <a href="./services/bedliner.html#uv-plus">Patriot Liner UV+ Upgrade <span class="nav-mega-link-badge">Premium</span></a>
-              <a href="./services/ceramic-coating.html">Ceramic Coating &amp; PPF <span class="nav-mega-link-price">From $400</span></a>
-              <a href="./services/undercoating.html">Undercoating &amp; Rust <span class="nav-mega-link-price">From $650</span></a>
-              <a href="./services/window-tinting.html">Window Tinting <span class="nav-mega-link-price">From $75</span></a>
+              <a href="./services/ceramic-coating.html">Ceramic Coating &amp; PPF</a>
+              <a href="./services/undercoating.html">Undercoating &amp; Rust</a>
+              <a href="./services/window-tinting.html">Window Tinting</a>
               <a href="./services/stealth-hitches.html">Stealth Hitch — Luxury &amp; EV <span class="nav-mega-link-badge" style="background:rgba(30,100,180,0.2);color:#60a5fa;">Preferred</span></a>
-              <a href="./services/mobile-detailing.html">Mobile Detailing <span class="nav-mega-link-price">From $125</span></a>
+              <a href="./services/mobile-detailing.html">Mobile Detailing</a>
             </div>
             <!-- Col B: Truck Accessories -->
             <div class="nav-mega-col">
               <div class="nav-mega-col-header nav-mega-col-header--orange">Truck Accessories</div>
               <a href="./services/tonneau.html">Tonneau / Bed Covers <span class="nav-mega-link-badge">★ Bundle</span></a>
               <a href="./services/running-boards.html">Running Boards &amp; Steps <span class="nav-mega-link-badge">★ Bundle</span></a>
-              <a href="./services/camper-shells.html">Camper Shells &amp; Caps <span class="nav-mega-link-price">From $800</span></a>
-              <a href="./services/hitches.html">Hitches &amp; Towing <span class="nav-mega-link-price">From $150</span></a>
-              <a href="./services/toolboxes.html">Toolboxes &amp; Storage <span class="nav-mega-link-price">From $300</span></a>
-              <a href="./services/suspension.html">Suspension, Lifts &amp; Wheels <span class="nav-mega-link-price">From $225</span></a>
-              <a href="./services/exterior.html">Exterior Accessories <span class="nav-mega-link-price">From $125</span></a>
-              <a href="./services/lighting.html">LED Lighting <span class="nav-mega-link-price">From $175</span></a>
+              <a href="./services/camper-shells.html">Camper Shells &amp; Caps</a>
+              <a href="./services/hitches.html">Hitches &amp; Towing</a>
+              <a href="./services/toolboxes.html">Toolboxes &amp; Storage</a>
+              <a href="./services/suspension.html">Suspension, Lifts &amp; Wheels</a>
+              <a href="./services/exterior.html">Exterior Accessories</a>
+              <a href="./services/lighting.html">LED Lighting</a>
             </div>
           </div>
           <div class="nav-mega-footer">
-            <a href="./services/" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">View All 16 Services</a>
+            <a href="./services/" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">View All Services</a>
             <a href="./rebates.html" class="nav-mega-footer-rebate">🏷 Rebates &amp; Offers</a>
           </div>
         </div>
@@ -401,8 +624,8 @@
             <!-- Col B: Fleet Protection -->
             <div class="nav-mega-col">
               <div class="nav-mega-col-header nav-mega-col-header--orange">Fleet Protection</div>
-              <a href="./services/bedliner.html">Fleet Bedliners <span class="nav-mega-link-price">Bulk pricing</span></a>
-              <a href="./services/undercoating.html">Fleet Undercoating <span class="nav-mega-link-price">Per-vehicle</span></a>
+              <a href="./services/bedliner.html">Fleet Bedliners</a>
+              <a href="./services/undercoating.html">Fleet Undercoating</a>
               <a href="./services/window-tinting.html">Fleet Window Tinting</a>
               <a href="./services/industrial-coatings.html">Industrial &amp; Protective Coatings <span class="nav-mega-link-badge">Mobile App</span></a>
             </div>
@@ -543,10 +766,23 @@
      HERO
 ═══════════════════════════════════════════════════════ -->
 <section class="hero" aria-label="Hero">
-  <!-- Fallback static image (fades out once video plays) -->
+  <!-- Slider progress bar (hidden until the slider hydrates) -->
+  <div class="hero-progress" id="hero-progress" aria-hidden="true" hidden>
+    <span class="hero-progress-fill" id="hero-progress-fill"></span>
+  </div>
+
+  <!-- Fallback static image (fades out once video plays). Also the backstop
+       if a slide's poster 404s — the gradient is pure CSS, never missing. -->
   <div class="hero-bg-gradient" id="hero-bg-fallback"></div>
 
-  <!-- MP4 video background — chains Patriot Liner → AMP PowerStep → repeat -->
+  <!-- Per-service poster. Decorative: the hero's meaning lives in the h1/sub,
+       so this is presentational and must not be announced. -->
+  <div class="hero-poster-wrap" aria-hidden="true">
+    <img id="hero-poster" src="./media/next/bedliner-v1.webp" alt="" role="presentation"
+         width="1440" height="960" fetchpriority="high" decoding="async">
+  </div>
+
+  <!-- MP4 video background — src is driven by SERVICE_SLIDES once hydrated -->
   <div class="hero-video-wrap" aria-hidden="true">
     <video id="hero-vid" autoplay muted playsinline preload="auto">
       <source src="https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4" type="video/mp4">
@@ -558,14 +794,30 @@
   <div class="hero-overlay"></div>
 
   <div class="hero-content container">
-    <div class="hero-label">Rockville, MD &middot; <span style="color:rgba(255,255,255,.6);">4.9&#9733; Google &middot; Authorized Patriot Liner Dealer</span></div>
-    <h1>Built for What Comes Next.</h1>
-    <p class="hero-sub">Bedliners, hitches, ceramic coating &amp; fleet upfitting for Rockville, MD trucks — serving the DMV with same-week installs.</p>
-    <div class="hero-ctas">
-      <a href="./quote.html" class="btn btn-primary btn-lg">Get Instant Quote</a>
-      <a href="./services/bedliner.html#bundles" class="btn btn-outline btn-lg">See Bedliner Bundles</a>
+    <!-- Static copy below is slide 0 pre-hydration and the permanent no-JS
+         state. The slider rewrites the text of these same nodes — there is
+         only ever one <h1> in the DOM. -->
+    <div class="hero-slide-copy" id="hero-slide-copy" tabindex="-1">
+      <div class="hero-label" id="hero-eyebrow">Rockville, MD &middot; <span style="color:rgba(255,255,255,.6);">4.9&#9733; Google &middot; Authorized Patriot Liner Dealer</span></div>
+      <h1 id="hero-h1">Built for What Comes Next.</h1>
+      <p class="hero-sub" id="hero-sub">Bedliners, hitches, ceramic coating &amp; fleet upfitting for Rockville, MD trucks — serving the DMV with same-week installs.</p>
+      <div class="hero-ctas">
+        <a href="./quote.html" class="btn btn-primary btn-lg" id="hero-cta-primary">Request Installed Pricing</a>
+        <a href="./services/bedliner.html#bundles" class="btn btn-outline btn-lg" id="hero-cta-secondary">See Bedliner Bundles</a>
+      </div>
     </div>
   </div>
+
+  <!-- Audio toggle. Hidden until the slider hydrates so a no-JS visitor is
+       never offered a control that cannot work. -->
+  <button type="button" class="hero-mute-pill is-muted" id="hero-mute" aria-pressed="true" aria-label="Unmute video" hidden>
+    <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+    <svg class="icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    <span class="hero-mute-label">Unmute</span>
+  </button>
+
+  <!-- Slide indicator dots (populated on hydration) -->
+  <div class="hero-dots" id="hero-dots" role="group" aria-label="Hero service slides" hidden></div>
 
   <!-- Stats bottom-right -->
   <div class="hero-stats" aria-label="Quick stats">
@@ -926,7 +1178,6 @@
           <div class="service-card-tag">Authorized Patriot Liner</div>
           <div class="service-card-title">Spray-On Bedliners</div>
           <p class="service-card-desc">Durable, textured spray liner permanently bonded to your truck bed. Lifetime warranty. Available in any color.</p>
-          <div class="service-card-price">Starting from <strong>$575</strong></div>
           <div class="service-card-arrow">
             Learn More
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -940,8 +1191,7 @@
         <div class="service-card-body">
           <div class="service-card-tag">★ Bundle With Bedliner</div>
           <div class="service-card-title">Tonneau Covers</div>
-          <p class="service-card-desc">Soft fold, hard fold, retractable, and roll-up covers for all popular truck models. Same-day installation on most in-stock units.</p>
-          <div class="service-card-price">Starting from <strong>$300</strong></div>
+          <p class="service-card-desc">Soft fold, hard fold, retractable, and roll-up covers for all popular truck models. Installed from in-stock inventory where available.</p>
           <div class="service-card-arrow">
             Learn More
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -956,7 +1206,6 @@
           <div class="service-card-tag">★ Bundle With Bedliner</div>
           <div class="service-card-title">Running Boards &amp; Steps</div>
           <p class="service-card-desc">Steel, aluminum, and AMP Research electric running boards for trucks and SUVs. Powered steps deploy automatically on door open.</p>
-          <div class="service-card-price">Starting from <strong>$250</strong></div>
           <div class="service-card-arrow">
             Learn More
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -971,7 +1220,6 @@
           <div class="service-card-tag">IGL &amp; System X Certified</div>
           <div class="service-card-title">Ceramic Coating &amp; PPF</div>
           <p class="service-card-desc">Professional-grade nano-ceramic protection and paint protection film. Locks in gloss, repels water, resists UV and chemical damage.</p>
-          <div class="service-card-price">Starting from <strong>$400</strong></div>
           <div class="service-card-arrow">
             Learn More
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -986,7 +1234,6 @@
           <div class="service-card-tag">Rust-Proofing Specialists</div>
           <div class="service-card-title">Undercoating &amp; Rust Protection</div>
           <p class="service-card-desc">Full undercarriage coating to prevent rust, reduce road noise, and extend the life of your vehicle — especially vital in DMV winters.</p>
-          <div class="service-card-price">Starting from <strong>$650</strong></div>
           <div class="service-card-arrow">
             Learn More
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1001,7 +1248,6 @@
           <div class="service-card-tag">All Classes &amp; Configurations</div>
           <div class="service-card-title">Hitches &amp; Towing</div>
           <p class="service-card-desc">Receiver hitches, fifth-wheel preps, gooseneck conversions, brake controllers, and wiring for trucks, SUVs, and vans.</p>
-          <div class="service-card-price">Starting from <strong>$150+</strong></div>
           <div class="service-card-arrow">
             Learn More
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -1344,7 +1590,7 @@
     <h2 id="cta-heading">READY TO UPFIT YOUR VEHICLE?</h2>
     <p>Call, quote online, or walk in Mon&ndash;Fri 9:30am&ndash;4:30pm.<br>Same-week appointments available.</p>
     <div class="cta-banner-actions">
-      <a href="./quote.html" class="btn btn-primary btn-lg">Get Instant Quote</a>
+      <a href="./quote.html" class="btn btn-primary btn-lg">Request Installed Pricing</a>
       <a href="tel:3013041419" class="btn btn-outline btn-lg">Call Now — (301) 304-1419</a>
     </div>
   </div>
@@ -1618,32 +1864,370 @@
 })();
 </script>
 
-<!-- HERO VIDEO CHAIN + FALLBACK FADE -->
+<!-- HERO SERVICE SLIDER (replaces the old 2-item video chain) -->
 <script>
-(function() {
-  var vid = document.getElementById('hero-vid');
-  var fb  = document.getElementById('hero-bg-fallback');
-  if (!vid) return;
+(function () {
+  'use strict';
 
-  // Playlist: Patriot Liner first, then AMP PowerStep, then repeat
-  var PLAYLIST = [
-    'https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4',
-    './assets/amp-powerstep.mp4'
+  // ── SERVICE_SLIDES — the ONLY service list in this slider. ────────────
+  // Add / remove / reorder a service by editing this array; nothing else
+  // in the code below names a service.
+  //   video       : URL string, or null to show the poster with a Ken-Burns
+  //                 drift for duration_ms (still a full slide in rotation).
+  //   duration_ms : video-less slides only. Defaults to 6500.
+  //   eyebrow     : 3-6 words, shown above the H1 while this slide is active.
+  //   h1          : 3-6 words, replaces the hero H1 while active.
+  //   sub         : one sentence, replaces .hero-sub while active.
+  //   poster      : image shown as fallback and as initial paint.
+  //   cta_primary / cta_secondary : {label, href}
+  //
+  // Posters point at the repo's existing per-service art in ./media/next/.
+  // The brief's ./assets/hero-poster-*.jpg paths do not exist in this repo
+  // and four of the six slides are poster-only, so those 404s would have
+  // blanked two thirds of the hero. Same field, real files.
+  var SERVICE_SLIDES = [
+    {
+      key: 'bedliner',
+      eyebrow: 'Spray-On Protection',
+      h1: 'Bedliners Built to Outlast the Truck.',
+      sub: 'Patriot Liner spray-on protection with a lifetime warranty — installed same-week in Rockville, MD.',
+      video: 'https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4',
+      poster: './media/next/bedliner-v1.webp',
+      cta_primary:   { label: 'Get Bedliner Quote',   href: './quote.html?service=bedliner' },
+      cta_secondary: { label: 'See Bedliner Bundles', href: './services/bedliner.html#bundles' }
+    },
+    {
+      key: 'running-boards',
+      eyebrow: 'Step In With Confidence',
+      h1: 'Running Boards That Deploy On Demand.',
+      sub: 'AMP Research PowerStep and premium fixed boards — pro installation for trucks and SUVs across the DMV.',
+      video: './assets/amp-powerstep.mp4',
+      poster: './media/next/running-boards-v1.webp',
+      cta_primary:   { label: 'Quote Running Boards', href: './quote.html?service=running-boards' },
+      cta_secondary: { label: 'Compare Boards',       href: './services/running-boards.html' }
+    },
+    {
+      key: 'hitches',
+      eyebrow: 'Tow Anything, Anywhere',
+      h1: 'Hitches Rated for Real Work.',
+      sub: 'Class II–V receiver hitches, gooseneck, and stealth hitches — wired, tested, and road-ready.',
+      video: null,
+      duration_ms: 6500,
+      poster: './media/next/hitches-v1.webp',
+      cta_primary:   { label: 'Get Hitch Quote', href: './quote.html?service=hitches' },
+      cta_secondary: { label: 'Explore Hitches', href: './services/hitches.html' }
+    },
+    {
+      key: 'ceramic-coating',
+      eyebrow: 'Show-Room Gloss, Daily Driver',
+      h1: 'Ceramic Coating That Holds Its Shine.',
+      sub: 'Multi-year hydrophobic protection with UV and swirl resistance — for trucks, fleets, and enthusiast rides.',
+      video: null,
+      duration_ms: 6500,
+      poster: './media/next/ceramic-coating-v1.webp',
+      cta_primary:   { label: 'Quote Ceramic Coating', href: './quote.html?service=ceramic-coating' },
+      cta_secondary: { label: 'Coating Packages',      href: './services/ceramic-coating.html' }
+    },
+    {
+      key: 'commercial-coatings',
+      eyebrow: 'DOT + Municipal Grade',
+      h1: 'Industrial Coatings for Working Fleets.',
+      sub: 'Chemical, chip, and corrosion-resistant coatings for DOT, utility, and municipal fleet specifications.',
+      video: null,
+      duration_ms: 6500,
+      poster: './media/next/industrial-coatings-v1.webp',
+      cta_primary:   { label: 'Fleet Coating Quote', href: './quote.html?service=commercial-coatings' },
+      cta_secondary: { label: 'Industrial Services', href: './services/industrial-coatings.html' }
+    },
+    {
+      key: 'window-tinting',
+      eyebrow: 'Heat, Glare, UV — Blocked',
+      h1: 'Window Tint That Won\'t Purple.',
+      sub: 'Premium ceramic tint with a lifetime warranty — legal DMV shades installed in a single visit.',
+      video: null,
+      duration_ms: 6500,
+      poster: './media/next/window-tinting-v1.webp',
+      cta_primary:   { label: 'Quote Window Tint', href: './quote.html?service=window-tinting' },
+      cta_secondary: { label: 'Tint Shade Guide',  href: './services/window-tinting.html' }
+    }
   ];
-  var current = 0;
 
-  // Fade out fallback image on first play
-  vid.addEventListener('playing', function() {
-    if (fb) setTimeout(function() { fb.classList.add('hidden'); }, 600);
+  var vid       = document.getElementById('hero-vid');
+  var fb        = document.getElementById('hero-bg-fallback');
+  var copy      = document.getElementById('hero-slide-copy');
+  var eyebrowEl = document.getElementById('hero-eyebrow');
+  var h1El      = document.getElementById('hero-h1');
+  var subEl     = document.getElementById('hero-sub');
+  var ctaP      = document.getElementById('hero-cta-primary');
+  var ctaS      = document.getElementById('hero-cta-secondary');
+  var posterEl  = document.getElementById('hero-poster');
+  var videoWrap = document.querySelector('.hero-video-wrap');
+  var dotsWrap  = document.getElementById('hero-dots');
+  var muteBtn   = document.getElementById('hero-mute');
+  var progress  = document.getElementById('hero-progress');
+  var barFill   = document.getElementById('hero-progress-fill');
+
+  // Bail cleanly: the static hero authored in the HTML stays exactly as-is.
+  if (!vid || !copy || !h1El || !SERVICE_SLIDES.length) return;
+  if (typeof vid.canPlayType !== 'function') return;
+
+  var LS_INDEX   = 'cu_last_slide_index';
+  var LS_MUTED   = 'cu_hero_muted';
+  var FADE_MS    = 500;
+  var WRAP_MS    = 200;    // beat when the rotation laps back to slide 0
+  var STALL_MS   = 8000;   // give up on a video that never reports metadata
+  var REDUCED_MS = 10000;
+
+  var mq = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reduce = !!(mq && mq.matches);
+
+  // Safari private mode throws on both read and write.
+  function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* no-op */ } }
+
+  var idx = 0;
+  var saved = parseInt(lsGet(LS_INDEX), 10);
+  if (!isNaN(saved) && saved >= 0 && saved < SERVICE_SLIDES.length) {
+    idx = (saved + 1) % SERVICE_SLIDES.length;   // resume from the NEXT service
+  }
+
+  var advTimer = null, fadeTimer = null, stallTimer = null, rafId = null;
+  var startTs = 0, curDur = 0, preloader = null;
+  // A <video> whose src is swapped mid-flight still delivers the aborted
+  // request's 'error' to whatever listener is attached when it lands — which
+  // is the NEXT slide's listener. Without these two guards one dead video
+  // skips two services. MEDIA_GUARD_MS is shorter than any real clip and
+  // longer than the swap, so a genuinely broken source is still skipped.
+  var MEDIA_GUARD_MS = 600;
+  var mediaAt = 0;        // when the current slide's media was attached
+  var advancing = false;  // collapses duplicate advance requests per slide
+
+  function slide() { return SERVICE_SLIDES[idx]; }
+
+  // Readable service name derived from the key — keeps the config schema
+  // untouched while still giving dots a meaningful accessible label.
+  function slideName(s) {
+    return s.key.replace(/-/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+  }
+
+  function durationFor(s) {
+    return (typeof s.duration_ms === 'number' && s.duration_ms > 0) ? s.duration_ms : 6500;
+  }
+
+  function clearTimers() {
+    if (advTimer)   { clearTimeout(advTimer);   advTimer = null; }
+    if (fadeTimer)  { clearTimeout(fadeTimer);  fadeTimer = null; }
+    if (stallTimer) { clearTimeout(stallTimer); stallTimer = null; }
+    if (rafId)      { cancelAnimationFrame(rafId); rafId = null; }
+  }
+
+  function setProgress(p) {
+    if (barFill) barFill.style.width = (Math.max(0, Math.min(1, p)) * 100) + '%';
+  }
+
+  function tick() {
+    var s = slide(), p = 0;
+    if (usesVideo(s) && isFinite(vid.duration) && vid.duration > 0) {
+      p = vid.currentTime / vid.duration;
+    } else if (curDur > 0) {
+      p = (Date.now() - startTs) / curDur;
+    }
+    setProgress(p);
+    rafId = requestAnimationFrame(tick);
+  }
+
+  // Reduced motion downgrades every slide to a still poster on a long timer.
+  function usesVideo(s) { return !!s.video && !reduce; }
+
+  function next() {
+    if (advancing) return;
+    advancing = true;
+    var n = (idx + 1) % SERVICE_SLIDES.length;
+    clearTimers();
+    if (n === 0) { advTimer = setTimeout(function () { show(n); }, WRAP_MS); }
+    else { show(n); }
+  }
+
+  // Entry point for media-driven advancement ('ended' / 'error').
+  function requestAdvance() {
+    if (Date.now() - mediaAt < MEDIA_GUARD_MS) return;   // stale, previous slide
+    next();
+  }
+
+  function render(s) {
+    if (eyebrowEl) eyebrowEl.textContent = s.eyebrow;
+    h1El.textContent = s.h1;
+    if (subEl) subEl.textContent = s.sub;
+    if (ctaP && s.cta_primary) {
+      ctaP.textContent = s.cta_primary.label;
+      ctaP.setAttribute('href', s.cta_primary.href);
+    }
+    if (ctaS && s.cta_secondary) {
+      ctaS.textContent = s.cta_secondary.label;
+      ctaS.setAttribute('href', s.cta_secondary.href);
+    }
+    // The HERO IDLE DIM script parks inline opacity on these nodes after
+    // 1.8s of stillness. Clear it so a freshly swapped headline is visible.
+    [eyebrowEl, h1El, subEl].forEach(function (el) { if (el) el.style.opacity = '1'; });
+  }
+
+  function applyMedia(s) {
+    var withVideo = usesVideo(s);
+    mediaAt = Date.now();
+
+    if (posterEl && s.poster && posterEl.getAttribute('src') !== s.poster) {
+      posterEl.setAttribute('src', s.poster);
+    }
+    if (posterEl) {
+      posterEl.classList.remove('is-drifting');
+      if (!withVideo && !reduce) {
+        void posterEl.offsetWidth;            // restart the Ken-Burns run
+        posterEl.classList.add('is-drifting');
+      }
+    }
+    if (videoWrap) videoWrap.classList.toggle('is-hidden', !withVideo);
+    if (muteBtn) muteBtn.hidden = !withVideo;
+
+    if (withVideo) {
+      if (vid.getAttribute('src') !== s.video) {
+        vid.setAttribute('src', s.video);
+        vid.load();
+      }
+      var played = vid.play();
+      if (played && played.catch) played.catch(function () { /* autoplay refused */ });
+      // A hotlinked video that never loads must not freeze the rotation.
+      stallTimer = setTimeout(function () {
+        if (!isFinite(vid.duration) || vid.duration <= 0) requestAdvance();
+      }, STALL_MS);
+    } else {
+      try { vid.pause(); } catch (e) { /* no-op */ }
+    }
+  }
+
+  function syncDots() {
+    if (!dotsWrap) return;
+    var kids = dotsWrap.childNodes;
+    for (var i = 0; i < kids.length; i++) {
+      if (!kids[i].classList) continue;
+      kids[i].classList.toggle('is-active', i === idx);
+      kids[i].setAttribute('aria-current', i === idx ? 'true' : 'false');
+    }
+  }
+
+  // Current slide is already loading; warm only the one after it.
+  function preloadNext() {
+    var n = SERVICE_SLIDES[(idx + 1) % SERVICE_SLIDES.length];
+    if (!n) return;
+    if (usesVideo(n)) {
+      preloader = document.createElement('video');
+      preloader.preload = 'auto';
+      preloader.muted = true;
+      preloader.src = n.video;
+    } else if (n.poster) {
+      preloader = new Image();
+      preloader.src = n.poster;
+    }
+  }
+
+  function show(target, instant) {
+    idx = ((target % SERVICE_SLIDES.length) + SERVICE_SLIDES.length) % SERVICE_SLIDES.length;
+    // Written when a slide STARTS, so a mid-play refresh still moves forward.
+    lsSet(LS_INDEX, String(idx));
+
+    var s = slide();
+    var commit = function () {
+      fadeTimer = null;
+      render(s);
+      applyMedia(s);
+      syncDots();
+      copy.classList.remove('is-transitioning');
+      setProgress(0);
+      advancing = false;
+      startTs = Date.now();
+      curDur = usesVideo(s) ? 0 : (reduce ? REDUCED_MS : durationFor(s));
+      if (curDur > 0) advTimer = setTimeout(next, curDur);
+      rafId = requestAnimationFrame(tick);
+      preloadNext();
+    };
+
+    clearTimers();
+    if (reduce || instant) { commit(); return; }
+    copy.classList.add('is-transitioning');
+    fadeTimer = setTimeout(commit, FADE_MS);
+  }
+
+  // ── Wiring ───────────────────────────────────────────────────────────
+  vid.loop = false;
+
+  vid.addEventListener('ended', function () {
+    if (usesVideo(slide())) requestAdvance();
+  });
+  vid.addEventListener('error', function () {
+    if (usesVideo(slide())) requestAdvance();
+  });
+  vid.addEventListener('loadedmetadata', function () {
+    if (stallTimer) { clearTimeout(stallTimer); stallTimer = null; }
+  });
+  vid.addEventListener('playing', function () {
+    if (fb) setTimeout(function () { fb.classList.add('hidden'); }, 600);
   }, { once: true });
 
-  // On video end, switch to next in playlist
-  vid.addEventListener('ended', function() {
-    current = (current + 1) % PLAYLIST.length;
-    vid.src = PLAYLIST[current];
-    vid.load();
-    vid.play().catch(function() {});
-  });
+  if (dotsWrap) {
+    SERVICE_SLIDES.forEach(function (s, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'hero-dot';
+      b.setAttribute('aria-label',
+        'Go to slide ' + (i + 1) + ' of ' + SERVICE_SLIDES.length + ': ' + slideName(s));
+      b.addEventListener('click', function () {
+        if (i !== idx) show(i);
+        // Hand focus back to the copy so screen readers land on the new headline.
+        copy.focus();
+      });
+      dotsWrap.appendChild(b);
+    });
+    dotsWrap.hidden = false;
+  }
+
+  if (muteBtn) {
+    var syncMute = function () {
+      var m = !!vid.muted;
+      muteBtn.classList.toggle('is-muted', m);
+      muteBtn.setAttribute('aria-pressed', m ? 'true' : 'false');
+      muteBtn.setAttribute('aria-label', m ? 'Unmute video' : 'Mute video');
+      var lbl = muteBtn.querySelector('.hero-mute-label');
+      if (lbl) lbl.textContent = m ? 'Unmute' : 'Mute';
+    };
+    muteBtn.addEventListener('click', function () {
+      vid.muted = !vid.muted;
+      lsSet(LS_MUTED, vid.muted ? '1' : '0');
+      if (!vid.muted) {
+        var p = vid.play();
+        if (p && p.catch) p.catch(function () {});
+      }
+      syncMute();
+    });
+    syncMute();
+
+    // Autoplay requires muted=true at load, so a stored "unmuted" preference
+    // is honoured on the first real interaction rather than on page load —
+    // unmuting before a gesture makes the browser refuse to play at all.
+    if (lsGet(LS_MUTED) === '0') {
+      var restore = function () {
+        vid.muted = false;
+        syncMute();
+        document.removeEventListener('pointerdown', restore);
+        document.removeEventListener('keydown', restore);
+      };
+      document.addEventListener('pointerdown', restore, { once: true });
+      document.addEventListener('keydown', restore, { once: true });
+    }
+  }
+
+  if (progress) progress.hidden = false;
+
+  // Hydrate: paints slide `idx` immediately, no opening fade.
+  show(idx, true);
 })();
 </script>
 
