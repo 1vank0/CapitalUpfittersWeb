@@ -4,14 +4,14 @@
 <!--
   Capital Upfitters — Phase 1
   Built by IVANKODev (https://IVANKODevelopment.com)
-  Design system: Barlow Condensed + Inter, onehourhitch.com color palette
+  Design system: Manrope + Inter, Apple-style Signal Blue (#0071e3), pill buttons. See DESIGN.md.
 -->
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="shortcut icon" href="favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Capital Upfitters | Vehicle Upfitting Rockville, MD</title>
-<meta name="description" content="Family-owned vehicle upfitter in Rockville, MD. Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions. 30+ years serving the DMV. Same-week availability. Call (301) 304-1419.">
+<meta name="description" content="Family-owned vehicle upfitter in Rockville, MD. Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions. Serving the DMV since 2015. Same-week availability. Call (301) 304-1419.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.capitalupfitters.com/">
 
@@ -19,7 +19,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.capitalupfitters.com/">
 <meta property="og:title" content="Capital Upfitters — Premium Vehicle Upfitting in Rockville, MD">
-<meta property="og:description" content="Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions. Family-owned 30+ years. Same-week availability.">
+<meta property="og:description" content="Patriot Liner bedliners, ceramic coatings, hitches, undercoating, and full fleet solutions. Family-owned since 2015. Same-week availability.">
 <meta property="og:image" content="https://www.capitalupfitters.com/assets/og-default.png">
 <meta name="twitter:image" content="https://www.capitalupfitters.com/assets/og-default.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -30,46 +30,96 @@
 
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
-<!-- JSON-LD LocalBusiness -->
+<!-- JSON-LD: Organization / AutoRepair / WebSite graph -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "AutoRepair",
-  "name": "Capital Auto Upfitters & Protective Coatings",
-  "alternateName": "Capital Upfitters",
-  "url": "https://capitalupfitters.com",
-  "telephone": "+13013041419",
-  "email": "CapitalUpfitters@gmail.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "12019 Nebel Street",
-    "addressLocality": "Rockville",
-    "addressRegion": "MD",
-    "postalCode": "20852",
-    "addressCountry": "US"
-  },
-  "openingHoursSpecification": [
+  "@graph": [
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-      "opens": "09:30",
-      "closes": "16:30"
-    }
-  ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "96"
-  },
-  "description": "Family-owned vehicle upfitting shop in Rockville, MD. Authorized Patriot Liner dealer. Serving the DMV region for 30+ years.",
-  "creator": {"@type": "Organization", "name": "IVANKODev", "url": "https://IVANKODevelopment.com"}
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+      "@type": "Organization",
+      "@id": "https://www.capitalupfitters.com/#organization",
+      "name": "Capital Auto Upfitters & Protective Coatings",
+      "alternateName": "Capital Upfitters",
+      "url": "https://www.capitalupfitters.com/",
+      "logo": "https://www.capitalupfitters.com/assets/og-default.png",
+      "sameAs": [
+        "https://share.google/k9ejYM294VHEEm6xq",
+        "https://www.facebook.com/CapitalUpfitters",
+        "https://www.instagram.com/capitalupfitters",
+        "https://youtube.com/@capitalupfitters"
+      ]
+    },
+    {
+      "@type": "AutoRepair",
+      "@id": "https://www.capitalupfitters.com/#localbusiness",
+      "name": "Capital Auto Upfitters & Protective Coatings",
+      "alternateName": "Capital Upfitters",
+      "url": "https://www.capitalupfitters.com/",
+      "telephone": "+13013041419",
+      "email": "CapitalUpfitters@gmail.com",
+      "parentOrganization": {"@id": "https://www.capitalupfitters.com/#organization"},
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "12019 Nebel Street",
+        "addressLocality": "Rockville",
+        "addressRegion": "MD",
+        "postalCode": "20852",
+        "addressCountry": "US"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:30",
+          "closes": "16:30"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "110"
+      },
+      "sameAs": [
+        "https://share.google/k9ejYM294VHEEm6xq",
+        "https://www.facebook.com/CapitalUpfitters",
+        "https://www.instagram.com/capitalupfitters",
+        "https://youtube.com/@capitalupfitters"
+      ],
+      "description": "Family-owned vehicle upfitting shop in Rockville, MD. Authorized Patriot Liner dealer. Serving the DMV region since 2015.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Vehicle Upfitting Services",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Spray-On Bedliners", "url": "https://www.capitalupfitters.com/services/bedliner.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Hitches & Towing", "url": "https://www.capitalupfitters.com/services/hitches.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Stealth Hitches", "url": "https://www.capitalupfitters.com/services/stealth-hitches.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Ceramic Coating", "url": "https://www.capitalupfitters.com/services/ceramic-coating.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Undercoating & Rust Protection", "url": "https://www.capitalupfitters.com/services/undercoating.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tonneau Covers", "url": "https://www.capitalupfitters.com/services/tonneau.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Running Boards & Steps", "url": "https://www.capitalupfitters.com/services/running-boards.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Commercial Vehicle Wraps", "url": "https://www.capitalupfitters.com/services/commercial-wraps.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Camper Shells", "url": "https://www.capitalupfitters.com/services/camper-shells.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Toolboxes & Bed Storage", "url": "https://www.capitalupfitters.com/services/toolboxes.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Suspension Lift & Leveling Kits", "url": "https://www.capitalupfitters.com/services/suspension.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Exterior Accessories", "url": "https://www.capitalupfitters.com/services/exterior.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LED Lighting", "url": "https://www.capitalupfitters.com/services/lighting.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Industrial & Protective Coatings", "url": "https://www.capitalupfitters.com/services/industrial-coatings.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mobile Detailing", "url": "https://www.capitalupfitters.com/services/mobile-detailing.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Window Tinting", "url": "https://www.capitalupfitters.com/services/window-tinting.html"}}
+        ]
+      },
+      "creator": {"@type": "Organization", "name": "IVANKODev", "url": "https://IVANKODevelopment.com"}
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.capitalupfitters.com/#website",
+      "url": "https://www.capitalupfitters.com/",
+      "name": "Capital Upfitters",
+      "publisher": {"@id": "https://www.capitalupfitters.com/#organization"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
     {
       "@type": "Question",
       "name": "How quickly can you upfit my vehicle?",
@@ -117,6 +167,8 @@
         "@type": "Answer",
         "text": "Financing is available on qualifying services. When you request a quote, ask us about payment options and we'll walk you through what's a fit for your build."
       }
+    }
+      ]
     }
   ]
 }
@@ -480,6 +532,13 @@
   </div>
 </div>
 
+<!-- H1 candidates:
+     A (used below): "Built for What Comes Next."
+     B: "Your Vehicle, Ready for Anything."
+     C: "Built Right. Ready for the Job."
+     Rationale for A: shortest, most outcome-first, avoids echoing the git-a-7fc43d
+     reference too closely while keeping the same forward-looking register. All three
+     are number-free and contain no "since <year>" construction per the hard constraints. -->
 <!-- ═══════════════════════════════════════════════════════
      HERO
 ═══════════════════════════════════════════════════════ -->
@@ -499,9 +558,9 @@
   <div class="hero-overlay"></div>
 
   <div class="hero-content container">
-    <div class="hero-label">Rockville, MD &mdash; Serving the DMV Since 1994 &mdash; <span style="color:rgba(255,255,255,.6);">4.8&#9733; on Google</span></div>
-    <h1>Premium Vehicle Upfitting.<br><em>DMV's Most Trusted Shop.</em></h1>
-    <p class="hero-sub">Industrial coatings, fleet upfitting &amp; vehicle protection for fleets, government and personal vehicles across the DMV. Family-owned since 1994.</p>
+    <div class="hero-label">Rockville, MD &middot; <span style="color:rgba(255,255,255,.6);">4.9&#9733; Google &middot; Authorized Patriot Liner Dealer</span></div>
+    <h1>Built for What Comes Next.</h1>
+    <p class="hero-sub">Bedliners, hitches, ceramic coating &amp; fleet upfitting for Rockville, MD trucks — serving the DMV with same-week installs.</p>
     <div class="hero-ctas">
       <a href="./quote.html" class="btn btn-primary btn-lg">Get Instant Quote</a>
       <a href="./services/bedliner.html#bundles" class="btn btn-outline btn-lg">See Bedliner Bundles</a>
@@ -511,20 +570,164 @@
   <!-- Stats bottom-right -->
   <div class="hero-stats" aria-label="Quick stats">
     <div class="hero-stat">
-      <span class="hero-stat-value">30+</span>
-      <span class="hero-stat-label">Years</span>
+      <span class="hero-stat-value">Same-Week</span>
+      <span class="hero-stat-label">Availability</span>
     </div>
     <div class="hero-stat">
-      <span class="hero-stat-value">5,000+</span>
-      <span class="hero-stat-label">Vehicles</span>
+      <span class="hero-stat-value">DMV-Wide</span>
+      <span class="hero-stat-label">Coverage</span>
     </div>
     <div class="hero-stat">
-      <span class="hero-stat-value">5.0★</span>
+      <span class="hero-stat-value">4.9★</span>
       <span class="hero-stat-label">Google</span>
     </div>
     <div class="hero-stat">
-      <span class="hero-stat-value">150+</span>
-      <span class="hero-stat-label">Brands</span>
+      <span class="hero-stat-value">Patriot Liner</span>
+      <span class="hero-stat-label">Dealer</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     AUDIENCE SPLIT (scoped styles below — do not remove
+     .audience-* rules if this section is edited later)
+═══════════════════════════════════════════════════════ -->
+<style>
+  .audience-split { padding: var(--space-16) 0 var(--space-20); background: var(--color-bg); }
+  .audience-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    margin-top: var(--space-10);
+  }
+  @media (min-width: 600px) {
+    .audience-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .audience-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .audience-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    transition: transform var(--transition-base), border-color var(--transition-base);
+  }
+  .audience-card:hover { transform: translateY(-4px); border-color: var(--color-accent); }
+  .audience-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    background: var(--color-accent-light);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-4);
+    flex-shrink: 0;
+  }
+  .audience-card-eyebrow {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+  .audience-card-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+  .audience-card-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-5);
+    font-family: var(--font-body);
+    flex-grow: 1;
+  }
+  .audience-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-accent-navy);
+  }
+  .audience-card-cta svg { transition: transform var(--transition-base); }
+  .audience-card:hover .audience-card-cta svg { transform: translateX(3px); }
+</style>
+<section class="section audience-split" aria-labelledby="audience-split-heading">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Find Your Path</div>
+      <h2 id="audience-split-heading">WHAT ARE YOU BUILDING?</h2>
+    </div>
+
+    <div class="audience-grid">
+      <!-- Card 1: Personal Vehicle -->
+      <article class="audience-card reveal reveal-delay-1">
+        <div class="audience-card-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div class="audience-card-eyebrow">I own a truck or SUV</div>
+        <div class="audience-card-title">Personal upgrades</div>
+        <p class="audience-card-desc">Bedliners, tonneau covers, and ceramic coating — matched to your exact truck or SUV.</p>
+        <a href="./quote.html" class="audience-card-cta">
+          Build my quote
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Card 2: Commercial Fleet -->
+      <article class="audience-card reveal reveal-delay-2">
+        <div class="audience-card-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <div class="audience-card-eyebrow">I manage a fleet</div>
+        <div class="audience-card-title">Fleet &amp; van builds</div>
+        <p class="audience-card-desc">Repeatable specs, documentation, and scheduled rollout across your entire commercial fleet.</p>
+        <a href="./fleet.html" class="audience-card-cta">
+          Build a project brief
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Card 3: Dealer / Government -->
+      <article class="audience-card reveal reveal-delay-3">
+        <div class="audience-card-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <div class="audience-card-eyebrow">Dealer or municipality</div>
+        <div class="audience-card-title">Pre-delivery &amp; procurement</div>
+        <p class="audience-card-desc">Pre-delivery customization and procurement-ready documentation for dealers and government fleets.</p>
+        <a href="./dealer-government.html" class="audience-card-cta">
+          Start a dealer brief
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Card 4: Industrial Coatings -->
+      <article class="audience-card reveal reveal-delay-4">
+        <div class="audience-card-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="audience-card-eyebrow">Critical coating projects</div>
+        <div class="audience-card-title">Industrial &amp; protective</div>
+        <p class="audience-card-desc">Blast, corrosion, and anti-skid coatings applied at facility scale, on-site or in-shop.</p>
+        <a href="./services/industrial-coatings.html" class="audience-card-cta">
+          Industrial solutions
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
     </div>
   </div>
 </section>
@@ -558,8 +761,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
         <div class="trust-item-text">
-          <strong>5.0★ Google Rating</strong>
-          <span>96 verified Google reviews</span>
+          <strong>4.9★ Google Rating</strong>
+          <span>110 verified Google reviews</span>
         </div>
       </div>
       <div class="trust-item">
@@ -567,8 +770,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
         <div class="trust-item-text">
-          <strong>Family-Owned 30+ Years</strong>
-          <span>Serving DMV since 1994</span>
+          <strong>Family-Owned</strong>
+          <span>Serving DMV since 2015</span>
         </div>
       </div>
       <div class="trust-item">
@@ -857,20 +1060,20 @@
   <div class="container">
     <div class="stats-grid">
       <div class="reveal">
-        <span class="stat-number">30+</span>
-        <span class="stat-label">Years Serving DMV</span>
+        <span class="stat-number">Est. 2015</span>
+        <span class="stat-label">Rockville, MD</span>
       </div>
       <div class="reveal reveal-delay-1">
-        <span class="stat-number">5,000+</span>
-        <span class="stat-label">Vehicles Upfitted</span>
+        <span class="stat-number">DMV-Wide</span>
+        <span class="stat-label">Service Coverage</span>
       </div>
       <div class="reveal reveal-delay-2">
-        <span class="stat-number">5.0★</span>
+        <span class="stat-number">4.9★</span>
         <span class="stat-label">Average Google Rating</span>
       </div>
       <div class="reveal reveal-delay-3">
-        <span class="stat-number">150+</span>
-        <span class="stat-label">Brands in Stock</span>
+        <span class="stat-number">Patriot Liner</span>
+        <span class="stat-label">Authorized Dealer</span>
                     <div style="margin-top: var(--space-5); display:inline-flex; align-items:center; gap: var(--space-3); background:rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-pill); padding: 0.4rem 1.2rem; font-size: var(--text-xs); color:rgba(255,255,255,0.65); font-family: var(--font-display); letter-spacing:0.08em; text-transform:uppercase;">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
                 Financing available on qualifying services
@@ -915,8 +1118,8 @@
           <div class="why-item">
             <div class="why-item-num">04</div>
             <div class="why-item-text">
-              <strong>30-Year Track Record in the DMV</strong>
-              <p>Family-owned since 1994. Our reputation is built on referrals, repeat customers, and zero shortcuts.</p>
+              <strong>Trusted Track Record in the DMV</strong>
+              <p>Family-owned since 2015. Our reputation is built on referrals, repeat customers, and zero shortcuts.</p>
             </div>
           </div>
         </div>
@@ -930,10 +1133,10 @@
           </svg>
         </div>
         <div class="why-visual-badge">
-          <div class="why-visual-badge-num">30+</div>
+          <div class="why-visual-badge-num">4.9★</div>
           <div>
-            <div class="why-visual-badge-label">Years of</div>
-            <div class="why-visual-badge-label">Excellence</div>
+            <div class="why-visual-badge-label">Google</div>
+            <div class="why-visual-badge-label">Rating</div>
           </div>
         </div>
       </div>
@@ -1156,7 +1359,7 @@
           <div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div>
           <div class="footer-brand-name">Capital<span>Upfitters</span></div>
         </a>
-        <p class="footer-tagline">Family-owned vehicle upfitting shop in Rockville, MD. Serving the DMV region for 30+ years. Authorized Patriot Liner dealer.</p>
+        <p class="footer-tagline">Family-owned vehicle upfitting shop in Rockville, MD. Serving the DMV region since 2015. Authorized Patriot Liner dealer.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/capitalupfitters" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
