@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "redirects": [
+    { "source": "/quote", "destination": "/quote.html", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
