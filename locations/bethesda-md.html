@@ -4,7 +4,7 @@
 <!--
   Capital Upfitters — Bethesda MD Geo Landing Page
   Built by IVANKODev (https://IVANKODevelopment.com)
-  Design system: Barlow Condensed + Inter, #111827 / #203055 palette
+  Design system: Manrope + Inter, Apple-style Signal Blue (#0071e3), pill buttons. See DESIGN.md.
 -->
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -35,7 +35,16 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "AutoRepair",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.capitalupfitters.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Bethesda, MD", "item": "https://www.capitalupfitters.com/locations/bethesda-md.html"}
+      ]
+    },
+    {
+      "@type": "AutoRepair",
   "name": "Capital Upfitters",
   "description": "Professional vehicle upfitting serving Bethesda MD. Bedliners, hitches, ceramic coatings, undercoating, tonneau covers, and running boards. 15 minutes from Bethesda.",
   "url": "https://www.capitalupfitters.com/locations/bethesda-md.html",
@@ -62,7 +71,9 @@
     {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:30", "closes": "16:30"}
   ],
   "priceRange": "$$",
-  "creator": {"@type": "Organization", "name": "IVANKODev", "url": "https://IVANKODevelopment.com"}
+      "creator": {"@type": "Organization", "name": "IVANKODev", "url": "https://IVANKODevelopment.com"}
+    }
+  ]
 }
 </script>
 

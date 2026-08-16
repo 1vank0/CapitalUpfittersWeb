@@ -4,7 +4,7 @@
 <!--
   Capital Upfitters — Phase 1
   Built by IVANKODev (https://IVANKODevelopment.com)
-  Design system: Barlow Condensed + Inter, onehourhitch.com color palette
+  Design system: Manrope + Inter, Apple-style Signal Blue (#0071e3), pill buttons. See DESIGN.md.
 -->
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -30,46 +30,96 @@
 
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
-<!-- JSON-LD LocalBusiness -->
+<!-- JSON-LD: Organization / AutoRepair / WebSite graph -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "AutoRepair",
-  "name": "Capital Auto Upfitters & Protective Coatings",
-  "alternateName": "Capital Upfitters",
-  "url": "https://capitalupfitters.com",
-  "telephone": "+13013041419",
-  "email": "CapitalUpfitters@gmail.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "12019 Nebel Street",
-    "addressLocality": "Rockville",
-    "addressRegion": "MD",
-    "postalCode": "20852",
-    "addressCountry": "US"
-  },
-  "openingHoursSpecification": [
+  "@graph": [
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-      "opens": "09:30",
-      "closes": "16:30"
-    }
-  ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "110"
-  },
-  "description": "Family-owned vehicle upfitting shop in Rockville, MD. Authorized Patriot Liner dealer. Serving the DMV region since 2015.",
-  "creator": {"@type": "Organization", "name": "IVANKODev", "url": "https://IVANKODevelopment.com"}
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+      "@type": "Organization",
+      "@id": "https://www.capitalupfitters.com/#organization",
+      "name": "Capital Auto Upfitters & Protective Coatings",
+      "alternateName": "Capital Upfitters",
+      "url": "https://www.capitalupfitters.com/",
+      "logo": "https://www.capitalupfitters.com/assets/og-default.png",
+      "sameAs": [
+        "https://share.google/k9ejYM294VHEEm6xq",
+        "https://www.facebook.com/CapitalUpfitters",
+        "https://www.instagram.com/capitalupfitters",
+        "https://youtube.com/@capitalupfitters"
+      ]
+    },
+    {
+      "@type": "AutoRepair",
+      "@id": "https://www.capitalupfitters.com/#localbusiness",
+      "name": "Capital Auto Upfitters & Protective Coatings",
+      "alternateName": "Capital Upfitters",
+      "url": "https://www.capitalupfitters.com/",
+      "telephone": "+13013041419",
+      "email": "CapitalUpfitters@gmail.com",
+      "parentOrganization": {"@id": "https://www.capitalupfitters.com/#organization"},
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "12019 Nebel Street",
+        "addressLocality": "Rockville",
+        "addressRegion": "MD",
+        "postalCode": "20852",
+        "addressCountry": "US"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:30",
+          "closes": "16:30"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "110"
+      },
+      "sameAs": [
+        "https://share.google/k9ejYM294VHEEm6xq",
+        "https://www.facebook.com/CapitalUpfitters",
+        "https://www.instagram.com/capitalupfitters",
+        "https://youtube.com/@capitalupfitters"
+      ],
+      "description": "Family-owned vehicle upfitting shop in Rockville, MD. Authorized Patriot Liner dealer. Serving the DMV region since 2015.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Vehicle Upfitting Services",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Spray-On Bedliners", "url": "https://www.capitalupfitters.com/services/bedliner.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Hitches & Towing", "url": "https://www.capitalupfitters.com/services/hitches.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Stealth Hitches", "url": "https://www.capitalupfitters.com/services/stealth-hitches.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Ceramic Coating", "url": "https://www.capitalupfitters.com/services/ceramic-coating.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Undercoating & Rust Protection", "url": "https://www.capitalupfitters.com/services/undercoating.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tonneau Covers", "url": "https://www.capitalupfitters.com/services/tonneau.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Running Boards & Steps", "url": "https://www.capitalupfitters.com/services/running-boards.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Commercial Vehicle Wraps", "url": "https://www.capitalupfitters.com/services/commercial-wraps.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Camper Shells", "url": "https://www.capitalupfitters.com/services/camper-shells.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Toolboxes & Bed Storage", "url": "https://www.capitalupfitters.com/services/toolboxes.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Suspension Lift & Leveling Kits", "url": "https://www.capitalupfitters.com/services/suspension.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Exterior Accessories", "url": "https://www.capitalupfitters.com/services/exterior.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LED Lighting", "url": "https://www.capitalupfitters.com/services/lighting.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Industrial & Protective Coatings", "url": "https://www.capitalupfitters.com/services/industrial-coatings.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mobile Detailing", "url": "https://www.capitalupfitters.com/services/mobile-detailing.html"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Window Tinting", "url": "https://www.capitalupfitters.com/services/window-tinting.html"}}
+        ]
+      },
+      "creator": {"@type": "Organization", "name": "IVANKODev", "url": "https://IVANKODevelopment.com"}
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.capitalupfitters.com/#website",
+      "url": "https://www.capitalupfitters.com/",
+      "name": "Capital Upfitters",
+      "publisher": {"@id": "https://www.capitalupfitters.com/#organization"}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
     {
       "@type": "Question",
       "name": "How quickly can you upfit my vehicle?",
@@ -117,6 +167,8 @@
         "@type": "Answer",
         "text": "Financing is available on qualifying services. When you request a quote, ask us about payment options and we'll walk you through what's a fit for your build."
       }
+    }
+      ]
     }
   ]
 }
@@ -500,8 +552,8 @@
 
   <div class="hero-content container">
     <div class="hero-label">Rockville, MD &mdash; Family-Owned Since 2015 &mdash; <span style="color:rgba(255,255,255,.6);">4.9&#9733; on Google</span></div>
-    <h1>Premium Vehicle Upfitting.<br><em>DMV's Most Trusted Shop.</em></h1>
-    <p class="hero-sub">Industrial coatings, fleet upfitting &amp; vehicle protection for fleets, government and personal vehicles across the DMV. Family-owned since 2015.</p>
+    <h1>Bedliners, Hitches &amp; Ceramic Coatings.<br><em>Fleet Upfitting — Rockville, MD.</em></h1>
+    <p class="hero-sub">DMV's authorized Patriot Liner shop. Same-week installs. Free quote in one business day.</p>
     <div class="hero-ctas">
       <a href="./quote.html" class="btn btn-primary btn-lg">Get Instant Quote</a>
       <a href="./services/bedliner.html#bundles" class="btn btn-outline btn-lg">See Bedliner Bundles</a>
