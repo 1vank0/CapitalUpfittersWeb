@@ -147,7 +147,7 @@
     }
 
     showBanner(form, 'success',
-      'Thanks — your request was received. We respond same business day at (301) 304-1419.');
+      'Thanks — your request was received. We will review it and confirm the next step.');
   }
 
   function setSubmitting(form, isSubmitting) {

@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-08-05",
+  "items": [
+    {
+      "key": "home.hero",
+      "kind": "illustrative",
+      "alt": "Illustrative black upfitted pickup in a dark architectural workshop.",
+      "caption": "Illustrative concept image; not a completed customer project.",
+      "width": 1672,
+      "height": 941,
+      "focalPoint": { "x": 72, "y": 52 },
+      "sizes": "100vw",
+      "fallback": "/media/gallery/homepage/hero-40342b4145-960.webp",
+      "sources": {
+        "avif": [
+          { "src": "/media/gallery/homepage/hero-40342b4145-960.avif", "width": 960 },
+          { "src": "/media/gallery/homepage/hero-40342b4145-1440.avif", "width": 1440 },
+          { "src": "/media/gallery/homepage/hero-40342b4145-1672.avif", "width": 1672 }
+        ],
+        "webp": [
+          { "src": "/media/gallery/homepage/hero-40342b4145-960.webp", "width": 960 },
+          { "src": "/media/gallery/homepage/hero-40342b4145-1440.webp", "width": 1440 },
+          { "src": "/media/gallery/homepage/hero-40342b4145-1672.webp", "width": 1672 }
+        ]
+      }
+    },
+    {
+      "key": "home.audience.personal",
+      "kind": "illustrative",
+      "alt": "Illustrative charcoal adventure-ready truck at dawn.",
+      "caption": "Illustrative concept image; not a completed customer project.",
+      "width": 1448,
+      "height": 1086,
+      "focalPoint": { "x": 58, "y": 55 },
+      "sizes": "(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 48vw",
+      "fallback": "/media/gallery/homepage/audience-personal-e4999b4cf5-768.webp",
+      "sources": {
+        "avif": [
+          { "src": "/media/gallery/homepage/audience-personal-e4999b4cf5-480.avif", "width": 480 },
+          { "src": "/media/gallery/homepage/audience-personal-e4999b4cf5-768.avif", "width": 768 },
+          { "src": "/media/gallery/homepage/audience-personal-e4999b4cf5-1024.avif", "width": 1024 },
+          { "src": "/media/gallery/homepage/audience-personal-e4999b4cf5-1448.avif", "width": 1448 }
+        ],
+        "webp": [
+          { "src": "/media/gallery/homepage/audience-personal-e4999b4cf5-480.webp", "width": 480 },
+          { "src": "/media/gallery/homepage/audience-personal-e4999b4cf5-768.webp", "width": 768 },
+          { "src": "/media/gallery/homepage/audience-personal-e4999b4cf5-1024.webp", "width": 1024 },
+          { "src": "/media/gallery/homepage/audience-personal-e4999b4cf5-1448.webp", "width": 1448 }
+        ]
+      }
+    },
+    {
+      "key": "home.audience.fleet",
+      "kind": "illustrative",
+      "alt": "Illustrative coordinated commercial fleet outside a modern facility at blue hour.",
+      "caption": "Illustrative concept image; not a completed customer project.",
+      "width": 1448,
+      "height": 1086,
+      "focalPoint": { "x": 52, "y": 52 },
+      "sizes": "(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 48vw",
+      "fallback": "/media/gallery/homepage/audience-fleet-0f65a3bbd8-768.webp",
+      "sources": {
+        "avif": [
+          { "src": "/media/gallery/homepage/audience-fleet-0f65a3bbd8-480.avif", "width": 480 },
+          { "src": "/media/gallery/homepage/audience-fleet-0f65a3bbd8-768.avif", "width": 768 },
+          { "src": "/media/gallery/homepage/audience-fleet-0f65a3bbd8-1024.avif", "width": 1024 },
+          { "src": "/media/gallery/homepage/audience-fleet-0f65a3bbd8-1448.avif", "width": 1448 }
+        ],
+        "webp": [
+          { "src": "/media/gallery/homepage/audience-fleet-0f65a3bbd8-480.webp", "width": 480 },
+          { "src": "/media/gallery/homepage/audience-fleet-0f65a3bbd8-768.webp", "width": 768 },
+          { "src": "/media/gallery/homepage/audience-fleet-0f65a3bbd8-1024.webp", "width": 1024 },
+          { "src": "/media/gallery/homepage/audience-fleet-0f65a3bbd8-1448.webp", "width": 1448 }
+        ]
+      }
+    },
+    {
+      "key": "home.audience.dealer",
+      "kind": "illustrative",
+      "alt": "Illustrative unmarked dealer- or municipal-prepared vehicle in a clean delivery bay.",
+      "caption": "Illustrative concept image; not a completed customer project.",
+      "width": 1448,
+      "height": 1086,
+      "focalPoint": { "x": 50, "y": 52 },
+      "sizes": "(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 56vw",
+      "fallback": "/media/gallery/homepage/audience-dealer-754aacac1f-768.webp",
+      "sources": {
+        "avif": [
+          { "src": "/media/gallery/homepage/audience-dealer-754aacac1f-480.avif", "width": 480 },
+          { "src": "/media/gallery/homepage/audience-dealer-754aacac1f-768.avif", "width": 768 },
+          { "src": "/media/gallery/homepage/audience-dealer-754aacac1f-1024.avif", "width": 1024 },
+          { "src": "/media/gallery/homepage/audience-dealer-754aacac1f-1448.avif", "width": 1448 }
+        ],
+        "webp": [
+          { "src": "/media/gallery/homepage/audience-dealer-754aacac1f-480.webp", "width": 480 },
+          { "src": "/media/gallery/homepage/audience-dealer-754aacac1f-768.webp", "width": 768 },
+          { "src": "/media/gallery/homepage/audience-dealer-754aacac1f-1024.webp", "width": 1024 },
+          { "src": "/media/gallery/homepage/audience-dealer-754aacac1f-1448.webp", "width": 1448 }
+        ]
+      }
+    },
+    {
+      "key": "home.audience.industrial",
+      "kind": "illustrative",
+      "alt": "Illustrative coating technician in protective equipment working on industrial machinery.",
+      "caption": "Illustrative concept image; not a completed customer project.",
+      "width": 1672,
+      "height": 941,
+      "focalPoint": { "x": 38, "y": 50 },
+      "sizes": "(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 44vw",
+      "fallback": "/media/gallery/homepage/audience-industrial-4ba197ed3e-768.webp",
+      "sources": {
+        "avif": [
+          { "src": "/media/gallery/homepage/audience-industrial-4ba197ed3e-768.avif", "width": 768 },
+          { "src": "/media/gallery/homepage/audience-industrial-4ba197ed3e-1200.avif", "width": 1200 },
+          { "src": "/media/gallery/homepage/audience-industrial-4ba197ed3e-1672.avif", "width": 1672 }
+        ],
+        "webp": [
+          { "src": "/media/gallery/homepage/audience-industrial-4ba197ed3e-768.webp", "width": 768 },
+          { "src": "/media/gallery/homepage/audience-industrial-4ba197ed3e-1200.webp", "width": 1200 },
+          { "src": "/media/gallery/homepage/audience-industrial-4ba197ed3e-1672.webp", "width": 1672 }
+        ]
+      }
+    },
+    {
+      "key": "home.service.bedliner",
+      "kind": "illustrative",
+      "alt": "Illustrative close-up of a freshly coated black pickup bed.",
+      "caption": "Illustrative concept image; not a completed customer project.",
+      "width": 1448,
+      "height": 1086,
+      "focalPoint": { "x": 50, "y": 52 },
+      "sizes": "(max-width: 720px) 100vw, (max-width: 1100px) 60vw, 56vw",
+      "fallback": "/media/gallery/homepage/service-bedliner-80c7badcf7-768.webp",
+      "sources": {
+        "avif": [
+          { "src": "/media/gallery/homepage/service-bedliner-80c7badcf7-480.avif", "width": 480 },
+          { "src": "/media/gallery/homepage/service-bedliner-80c7badcf7-768.avif", "width": 768 },
+          { "src": "/media/gallery/homepage/service-bedliner-80c7badcf7-1024.avif", "width": 1024 },
+          { "src": "/media/gallery/homepage/service-bedliner-80c7badcf7-1448.avif", "width": 1448 }
+        ],
+        "webp": [
+          { "src": "/media/gallery/homepage/service-bedliner-80c7badcf7-480.webp", "width": 480 },
+          { "src": "/media/gallery/homepage/service-bedliner-80c7badcf7-768.webp", "width": 768 },
+          { "src": "/media/gallery/homepage/service-bedliner-80c7badcf7-1024.webp", "width": 1024 },
+          { "src": "/media/gallery/homepage/service-bedliner-80c7badcf7-1448.webp", "width": 1448 }
+        ]
+      }
+    },
+    {
+      "key": "home.service.tonneau",
+      "kind": "illustrative",
+      "alt": "Illustrative black pickup fitted with a flush premium tonneau cover.",
+      "caption": "Illustrative concept image; not a completed customer project.",
+      "width": 1448,
+      "height": 1086,
+      "focalPoint": { "x": 54, "y": 45 },
+      "sizes": "(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 40vw",
+      "fallback": "/media/gallery/homepage/service-tonneau-d679a2b8b2-768.webp",
+      "sources": {
+        "avif": [
+          { "src": "/media/gallery/homepage/service-tonneau-d679a2b8b2-480.avif", "width": 480 },
+          { "src": "/media/gallery/homepage/service-tonneau-d679a2b8b2-768.avif", "width": 768 },
+          { "src": "/media/gallery/homepage/service-tonneau-d679a2b8b2-1024.avif", "width": 1024 },
+          { "src": "/media/gallery/homepage/service-tonneau-d679a2b8b2-1448.avif", "width": 1448 }
+        ],
+        "webp": [
+          { "src": "/media/gallery/homepage/service-tonneau-d679a2b8b2-480.webp", "width": 480 },
+          { "src": "/media/gallery/homepage/service-tonneau-d679a2b8b2-768.webp", "width": 768 },
+          { "src": "/media/gallery/homepage/service-tonneau-d679a2b8b2-1024.webp", "width": 1024 },
+          { "src": "/media/gallery/homepage/service-tonneau-d679a2b8b2-1448.webp", "width": 1448 }
+        ]
+      }
+    },
+    {
+      "key": "home.service.running-boards",
+      "kind": "illustrative",
+      "alt": "Illustrative powered running board deployed beside a graphite vehicle.",
+      "caption": "Illustrative concept image; not a completed customer project.",
+      "width": 1448,
+      "height": 1086,
+      "focalPoint": { "x": 50, "y": 58 },
+      "sizes": "(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 40vw",
+      "fallback": "/media/gallery/homepage/service-running-boards-5008658350-768.webp",
+      "sources": {
+        "avif": [
+          { "src": "/media/gallery/homepage/service-running-boards-5008658350-480.avif", "width": 480 },
+          { "src": "/media/gallery/homepage/service-running-boards-5008658350-768.avif", "width": 768 },
+          { "src": "/media/gallery/homepage/service-running-boards-5008658350-1024.avif", "width": 1024 },
+          { "src": "/media/gallery/homepage/service-running-boards-5008658350-1448.avif", "width": 1448 }
+        ],
+        "webp": [
+          { "src": "/media/gallery/homepage/service-running-boards-5008658350-480.webp", "width": 480 },
+          { "src": "/media/gallery/homepage/service-running-boards-5008658350-768.webp", "width": 768 },
+          { "src": "/media/gallery/homepage/service-running-boards-5008658350-1024.webp", "width": 1024 },
+          { "src": "/media/gallery/homepage/service-running-boards-5008658350-1448.webp", "width": 1448 }
+        ]
+      }
+    },
+    {
+      "key": "home.service.ceramic",
+      "kind": "illustrative",
+      "alt": "Illustrative technician finishing ceramic protection on a graphite vehicle.",
+      "caption": "Illustrative concept image; not a completed customer project.",
+      "width": 1448,
+      "height": 1086,
+      "focalPoint": { "x": 55, "y": 50 },
+      "sizes": "(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 32vw",
+      "fallback": "/media/gallery/homepage/service-ceramic-61c83aacf5-768.webp",
+      "sources": {
+        "avif": [
+          { "src": "/media/gallery/homepage/service-ceramic-61c83aacf5-480.avif", "width": 480 },
+          { "src": "/media/gallery/homepage/service-ceramic-61c83aacf5-768.avif", "width": 768 },
+          { "src": "/media/gallery/homepage/service-ceramic-61c83aacf5-1024.avif", "width": 1024 },
+          { "src": "/media/gallery/homepage/service-ceramic-61c83aacf5-1448.avif", "width": 1448 }
+        ],
+        "webp": [
+          { "src": "/media/gallery/homepage/service-ceramic-61c83aacf5-480.webp", "width": 480 },
+          { "src": "/media/gallery/homepage/service-ceramic-61c83aacf5-768.webp", "width": 768 },
+          { "src": "/media/gallery/homepage/service-ceramic-61c83aacf5-1024.webp", "width": 1024 },
+          { "src": "/media/gallery/homepage/service-ceramic-61c83aacf5-1448.webp", "width": 1448 }
+        ]
+      }
+    },
+    {
+      "key": "home.service.undercoating",
+      "kind": "illustrative",
+      "alt": "Illustrative technician applying protective undercoating beneath a pickup.",
+      "caption": "Illustrative concept image; not a completed customer project.",
+      "width": 1448,
+      "height": 1086,
+      "focalPoint": { "x": 57, "y": 52 },
+      "sizes": "(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 32vw",
+      "fallback": "/media/gallery/homepage/service-undercoating-0b673a9514-768.webp",
+      "sources": {
+        "avif": [
+          { "src": "/media/gallery/homepage/service-undercoating-0b673a9514-480.avif", "width": 480 },
+          { "src": "/media/gallery/homepage/service-undercoating-0b673a9514-768.avif", "width": 768 },
+          { "src": "/media/gallery/homepage/service-undercoating-0b673a9514-1024.avif", "width": 1024 },
+          { "src": "/media/gallery/homepage/service-undercoating-0b673a9514-1448.avif", "width": 1448 }
+        ],
+        "webp": [
+          { "src": "/media/gallery/homepage/service-undercoating-0b673a9514-480.webp", "width": 480 },
+          { "src": "/media/gallery/homepage/service-undercoating-0b673a9514-768.webp", "width": 768 },
+          { "src": "/media/gallery/homepage/service-undercoating-0b673a9514-1024.webp", "width": 1024 },
+          { "src": "/media/gallery/homepage/service-undercoating-0b673a9514-1448.webp", "width": 1448 }
+        ]
+      }
+    },
+    {
+      "key": "home.service.hitches",
+      "kind": "illustrative",
+      "alt": "Illustrative close-up of a professionally installed receiver hitch and wiring connector.",
+      "caption": "Illustrative concept image; not a completed customer project.",
+      "width": 1448,
+      "height": 1086,
+      "focalPoint": { "x": 62, "y": 62 },
+      "sizes": "(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 32vw",
+      "fallback": "/media/gallery/homepage/service-hitches-c899cd69d2-768.webp",
+      "sources": {
+        "avif": [
+          { "src": "/media/gallery/homepage/service-hitches-c899cd69d2-480.avif", "width": 480 },
+          { "src": "/media/gallery/homepage/service-hitches-c899cd69d2-768.avif", "width": 768 },
+          { "src": "/media/gallery/homepage/service-hitches-c899cd69d2-1024.avif", "width": 1024 },
+          { "src": "/media/gallery/homepage/service-hitches-c899cd69d2-1448.avif", "width": 1448 }
+        ],
+        "webp": [
+          { "src": "/media/gallery/homepage/service-hitches-c899cd69d2-480.webp", "width": 480 },
+          { "src": "/media/gallery/homepage/service-hitches-c899cd69d2-768.webp", "width": 768 },
+          { "src": "/media/gallery/homepage/service-hitches-c899cd69d2-1024.webp", "width": 1024 },
+          { "src": "/media/gallery/homepage/service-hitches-c899cd69d2-1448.webp", "width": 1448 }
+        ]
+      }
+    },
+    {
+      "key": "home.craft.why",
+      "kind": "illustrative",
+      "alt": "Illustrative upfitting technician measuring a premium truck-bed accessory.",
+      "caption": "Illustrative concept image; not a completed customer project.",
+      "width": 1536,
+      "height": 1024,
+      "focalPoint": { "x": 40, "y": 52 },
+      "sizes": "(max-width: 900px) 100vw, 52vw",
+      "fallback": "/media/gallery/homepage/craft-why-80490f7f14-768.webp",
+      "sources": {
+        "avif": [
+          { "src": "/media/gallery/homepage/craft-why-80490f7f14-768.avif", "width": 768 },
+          { "src": "/media/gallery/homepage/craft-why-80490f7f14-1200.avif", "width": 1200 },
+          { "src": "/media/gallery/homepage/craft-why-80490f7f14-1536.avif", "width": 1536 }
+        ],
+        "webp": [
+          { "src": "/media/gallery/homepage/craft-why-80490f7f14-768.webp", "width": 768 },
+          { "src": "/media/gallery/homepage/craft-why-80490f7f14-1200.webp", "width": 1200 },
+          { "src": "/media/gallery/homepage/craft-why-80490f7f14-1536.webp", "width": 1536 }
+        ]
+      }
+    }
+  ]
+}
