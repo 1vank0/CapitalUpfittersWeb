@@ -704,1578 +704,1614 @@
   </div>
 </div>
 
-<section class="page-hero" style="min-height: 38vh; display: flex; align-items: center;">
-  <div class="page-hero-bg" style="background: linear-gradient(135deg, #0d1117 0%, #1a2332 50%, #203055 100%);"></div>
-  <div class="page-hero-overlay"></div>
-  <div class="container page-hero-content">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="./index.html">Home</a>
-      <span class="breadcrumb-sep">›</span>
-      <span>Get a Quote</span>
-    </nav>
-    <h1 class="reveal">Get your free quote.</h1>
-    <p class="quote-hero-sub reveal">Pick what you want done, tell us the truck, hit send. Real pricing back within one business day — no bots, no pushy follow-ups.</p>
 
-    <!-- Audience switcher pills -->
-    <div class="q6-audience-switcher" role="tablist" aria-label="Choose the type of quote">
-      <button type="button" class="q6-pill is-active" data-mode="retail" role="tab" aria-selected="true" id="q6-pill-retail">Personal vehicle</button>
-      <button type="button" class="q6-pill" data-mode="fleet" role="tab" aria-selected="false" id="q6-pill-fleet">Fleet &amp; commercial</button>
-      <button type="button" class="q6-pill" data-mode="dealer" role="tab" aria-selected="false" id="q6-pill-dealer">Dealer &amp; government</button>
-    </div>
-  </div>
-</section>
-
-<!-- ==================================================================
-     PHASE 6 QUOTE BUILDER — Patriot 2-step for retail, single-page for fleet/dealer
-     Backend contract preserved. lead-form.js still owns submit.
-     ================================================================== -->
+<!-- ============ PHASE 6B QUOTE SCRIPT (Patriot-fidelity graft) ============ -->
 <style>
-/* Phase 6 scoped styles — prefix q6- */
-:root {
-  --q6-bar-h: 88px;
-  --q6-bar-h-mobile: 68px;
-  --q6-tile-radius: var(--radius-lg, 18px);
-  --q6-accent: var(--color-accent, #f59e0b);
-  --q6-navy: var(--brand-navy, #0A1F3D);
-  --q6-body-color: var(--brand-body, #1e293b);
-  --q6-muted: var(--brand-muted, #64748b);
-  --q6-line: var(--brand-line, #e5e7eb);
-  --q6-surface: var(--brand-surface, #f8fafc);
-  --q6-tile-tint: rgba(10, 31, 61, 0.02);
+.cu-p6 {
+  --bg:#F4F5F7;
+  --card:#FFFFFF;
+  --ink:#0E0F11;
+  --ink-2:#3A404B;
+  --muted:#6B7280;
+  --line:#E7E9EE;
+  --line-2:#D7DBE3;
+  --blue:#1B6EF3;
+  --blue-dk:#0F4FBF;
+  --blue-soft:#EAF1FE;
+  --blue-soft-2:#DCE8FD;
+  --cream:#F5EEE1;
+  --amber:#B4741A;
+  --amber-soft:#FBF1E0;
+  --ok:#0E9F6E;
+  --r-lg:18px;
+  --r-md:14px;
+  --r-sm:10px;
+  --shadow-1:0 1px 2px rgba(16,24,40,.05);
+  --shadow-2:0 1px 2px rgba(16,24,40,.04), 0 10px 26px rgba(16,24,40,.06);
+  --shadow-3:0 18px 50px rgba(16,24,40,.14);
+  --fh:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --fb:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.cu-p6 * {box-sizing:border-box}
+.cu-p6 html, .cu-p6 body {margin:0;padding:0}
+.cu-p6 body {
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--fb);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  padding-bottom:132px;
+}
+.cu-p6 button {font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.cu-p6 input, .cu-p6 select {font:inherit;color:inherit}
+
+.cu-p6 .wrap {max-width:1240px;margin:0 auto;padding:56px 28px 40px}
+
+/* ---------- header ---------- */
+.cu-p6 .eyebrow {
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:max-content;margin:0 auto 26px;
+  background:var(--cream);
+  border-radius:999px;
+  padding:11px 26px;
+  font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--blue);
+}
+.cu-p6 .eyebrow .dot {width:7px;height:7px;border-radius:50%;background:var(--blue);flex:none}
+.cu-p6 .eyebrow .sep {color:#B9AE99}
+.cu-p6 .eyebrow .step-lbl {color:#1B1B1B}
+.cu-p6 h1.title {
+  font-family:var(--fh);
+  font-weight:800;
+  font-size:clamp(34px,5.6vw,66px);
+  line-height:1.02;
+  letter-spacing:-.02em;
+  text-align:center;
+  margin:0 0 18px;
+  text-transform:uppercase;
+}
+.cu-p6 .lede {
+  max-width:640px;margin:0 auto 40px;
+  text-align:center;font-size:18px;line-height:1.6;color:#4C525E;
+}
+.cu-p6 .lede b {font-weight:600;color:#25292F}
+
+/* ---------- service grid ---------- */
+.cu-p6 .grid {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:18px;
+  align-items:start;
+}
+.cu-p6 .tile {
+  position:relative;
+  background:var(--card);
+  border:1.5px solid transparent;
+  border-radius:var(--r-md);
+  box-shadow:var(--shadow-1);
+  padding:26px 22px;
+  min-height:88px;
+  display:flex;align-items:center;gap:12px;
+  text-align:left;
+  transition:box-shadow .18s ease, border-color .18s ease, transform .18s ease, background .18s ease;
+}
+.cu-p6 .tile:hover {box-shadow:var(--shadow-2);transform:translateY(-1px)}
+.cu-p6 .tile:focus-visible {outline:3px solid var(--blue-soft-2);outline-offset:2px}
+.cu-p6 .tile .t-name {font-size:19px;font-weight:500;letter-spacing:-.01em;line-height:1.25;flex:1}
+.cu-p6 .tile .t-badge {
+  background:var(--cream);color:var(--blue);
+  font-size:12px;font-weight:700;letter-spacing:.09em;
+  padding:6px 12px;border-radius:8px;flex:none;
+}
+.cu-p6 .tile .t-chosen {
+  display:block;margin-top:5px;font-size:13.5px;font-weight:500;color:var(--blue);line-height:1.35;
+}
+.cu-p6 .tile .t-chosen .plus {color:var(--amber)}
+.cu-p6 .tile .t-check {
+  position:absolute;top:-9px;right:-9px;
+  width:26px;height:26px;border-radius:50%;
+  background:var(--blue);color:#fff;
+  display:none;align-items:center;justify-content:center;
+  box-shadow:0 3px 10px rgba(27,110,243,.4);
+}
+.cu-p6 .tile.is-open {border-color:var(--blue);background:#FBFCFF;box-shadow:0 0 0 4px rgba(27,110,243,.09)}
+.cu-p6 .tile.is-open .t-check {display:flex}
+.cu-p6 .tile.is-capped {opacity:.42;cursor:not-allowed}
+.cu-p6 .tile.is-capped:hover {transform:none;box-shadow:var(--shadow-1)}
+
+/* ---------- options panel ---------- */
+.cu-p6 .panel {
+  grid-column:1/-1;
+  background:#fff;
+  border:1.5px solid var(--blue-soft-2);
+  border-radius:var(--r-lg);
+  padding:26px 26px 28px;
+  box-shadow:var(--shadow-2);
+  animation:panelIn .26s cubic-bezier(.22,.9,.3,1) both;
+}
+@keyframes panelIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.panel-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.panel-head h3{
+  font-family:var(--fh);font-size:21px;font-weight:800;letter-spacing:-.01em;margin:0;
+  text-transform:uppercase;
+}
+.cu-p6 .panel-head .req {
+  font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--blue);background:var(--blue-soft);padding:5px 10px;border-radius:7px;
+}
+.cu-p6 .panel-sub {font-size:14.5px;color:var(--muted);margin:0 0 20px}
+.cu-p6 .panel .sect-label {
+  display:flex;align-items:center;gap:10px;
+  font-size:12px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  color:#8A909C;margin:26px 0 14px;
+}
+.cu-p6 .panel .sect-label::after {content:"";flex:1;height:1px;background:var(--line)}
+.cu-p6 .opt-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+
+.cu-p6 .opt {
+  position:relative;
+  display:flex;gap:14px;align-items:flex-start;
+  background:#fff;
+  border:1.5px solid var(--line);
+  border-radius:var(--r-md);
+  padding:16px 16px 16px 16px;
+  text-align:left;
+  transition:border-color .16s ease, box-shadow .16s ease, transform .16s ease, background .16s ease;
+}
+.cu-p6 .opt:hover {border-color:var(--line-2);box-shadow:var(--shadow-2);transform:translateY(-1px)}
+.cu-p6 .opt:focus-visible {outline:3px solid var(--blue-soft-2);outline-offset:2px}
+.cu-p6 .opt .thumb {
+  flex:none;width:60px;height:60px;border-radius:13px;
+  background:linear-gradient(160deg,#EFF4FE 0%,#E3ECFD 100%);
+  color:var(--blue-dk);
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid #DEE8FB;
+}
+.cu-p6 .opt .thumb svg {width:32px;height:32px}
+.cu-p6 .opt .body {flex:1;min-width:0;padding-right:26px;padding-bottom:8px}
+.cu-p6 .opt .o-name {font-size:15.5px;font-weight:600;letter-spacing:-.005em;line-height:1.3;margin:2px 0 5px;display:block}
+.cu-p6 .opt .o-desc {font-size:13px;line-height:1.45;color:var(--muted);margin:0}
+.cu-p6 .opt .mark {
+  position:absolute;left:-1px;top:-1px;width:0;height:0;
+}
+.cu-p6 .opt.sel {border-color:var(--blue);background:#F8FAFF;box-shadow:0 0 0 3px rgba(27,110,243,.1)}
+.cu-p6 .opt.sel .thumb {background:linear-gradient(160deg,#1B6EF3 0%,#2C7BFA 100%);color:#fff;border-color:#1B6EF3}
+.cu-p6 .opt .tick {
+  position:absolute;bottom:13px;right:13px;width:21px;height:21px;border-radius:50%;
+  border:1.5px solid var(--line-2);display:flex;align-items:center;justify-content:center;
+  transition:.16s ease;background:#fff;
+}
+.cu-p6 .opt.addon .tick {border-radius:6px}
+.cu-p6 .opt.sel .tick {background:var(--blue);border-color:var(--blue);color:#fff}
+.cu-p6 .opt.sel.addon .tick {background:var(--amber);border-color:var(--amber)}
+.cu-p6 .opt .tick svg {width:12px;height:12px;opacity:0;transition:.16s}
+.cu-p6 .opt.sel .tick svg {opacity:1}
+
+/* add-on flavour */
+.cu-p6 .opt.addon .thumb {background:linear-gradient(160deg,#FDF6E9 0%,#F8EDD8 100%);color:var(--amber);border-color:#F1E3CA}
+.cu-p6 .opt.addon.sel {border-color:var(--amber);background:#FFFBF4;box-shadow:0 0 0 3px rgba(180,116,26,.11)}
+.cu-p6 .opt.addon.sel .thumb {background:linear-gradient(160deg,#B4741A 0%,#CE8A2A 100%);color:#fff;border-color:var(--amber)}
+.cu-p6 .opt .combo {
+  display:inline-flex;align-items:center;gap:5px;margin-top:8px;
+  font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--amber);background:var(--amber-soft);padding:4px 8px;border-radius:6px;
+}
+.cu-p6 .addons-wrap.locked .opt {opacity:.45;pointer-events:none}
+.cu-p6 .lock-note {
+  display:none;align-items:center;gap:8px;margin:0 0 12px;
+  font-size:13px;color:var(--amber);background:var(--amber-soft);
+  border:1px solid #F1E3CA;border-radius:9px;padding:9px 12px;
+}
+.cu-p6 .addons-wrap.locked .lock-note {display:flex}
+
+/* info button + tooltip */
+.cu-p6 .info {
+  position:absolute;top:11px;right:11px;
+  width:22px;height:22px;border-radius:50%;
+  border:1.5px solid var(--line-2);color:#9AA1AE;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-size:12px;font-weight:700;
+  transition:.15s ease;z-index:2;
+}
+.cu-p6 .info:hover, .cu-p6 .info.on {background:var(--ink);border-color:var(--ink);color:#fff}
+.cu-p6 .info:focus-visible {outline:3px solid var(--blue-soft-2);outline-offset:2px}
+.cu-p6 #tip {
+  position:fixed;z-index:120;max-width:290px;
+  background:#14161A;color:#EDEFF3;
+  font-size:13px;line-height:1.5;
+  padding:11px 13px;border-radius:11px;
+  box-shadow:var(--shadow-3);
+  opacity:0;transform:translateY(4px) scale(.98);
+  transition:opacity .14s ease, transform .14s ease;
+  pointer-events:none;
+}
+.cu-p6 #tip.show {opacity:1;transform:none}
+.cu-p6 #tip b {display:block;color:#fff;font-weight:600;margin-bottom:3px;font-size:13px}
+.cu-p6 #tip::after {
+  content:"";position:absolute;left:var(--ax,50%);
+  width:9px;height:9px;background:#14161A;transform:translateX(-50%) rotate(45deg);
+}
+.cu-p6 #tip[data-pos="top"]::after {bottom:-4px}
+.cu-p6 #tip[data-pos="bottom"]::after {top:-4px}
+
+/* notice */
+.cu-p6 .notice {
+  display:none;align-items:center;gap:10px;justify-content:center;
+  margin:18px auto 0;width:max-content;max-width:100%;
+  background:#FFF4F3;border:1px solid #FBD5D1;color:#B42318;
+  border-radius:10px;padding:10px 16px;font-size:14px;font-weight:500;
+}
+.cu-p6 .notice.show {display:flex;animation:panelIn .22s ease both}
+
+/* ---------- sticky summary ---------- */
+.cu-p6-bar {
+  position:fixed;left:0;right:0;bottom:0;z-index:90;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid #E7E9EE;
+  box-shadow:0 -6px 24px rgba(16,24,40,.06);
+}
+.cu-p6-bar-in {
+  max-width:1240px;margin:0 auto;padding:16px 28px;
+  display:flex;align-items:center;gap:20px;
+}
+.cu-p6-bar .counts {font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#8A909C;flex:none}
+.cu-p6-bar .counts b {color:#0E0F11;font-size:15px;letter-spacing:0;display:block;margin-top:3px;text-transform:none;font-weight:600}
+.cu-p6-bar .chips {display:flex;flex-wrap:wrap;gap:8px;flex:1;min-width:0;max-height:62px;overflow:auto}
+.cu-p6-bar .chip {
+  display:inline-flex;align-items:center;gap:7px;
+  background:#EAF1FE;color:#0F4FBF;
+  border:1px solid #DCE8FD;
+  border-radius:999px;padding:6px 8px 6px 12px;font-size:13px;font-weight:500;white-space:nowrap;
+}
+.cu-p6-bar .chip .x {width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(15,79,191,.12)}
+.cu-p6-bar .chip .x:hover {background:rgba(15,79,191,.25)}
+.cu-p6-bar .chip.warn {background:#FFF7EA;border-color:#F1E3CA;color:#B4741A}
+.cu-p6-bar .chip .cnt {background:rgba(15,79,191,.14);border-radius:999px;padding:1px 7px;font-size:11.5px;font-weight:700}
+.cu-p6-bar .empty {font-size:14px;color:#6B7280;flex:1}
+.cu-p6-bar .btn, .cu-p6 .btn {
+  flex:none;background:#1B6EF3;color:#fff;
+  border-radius:11px;padding:14px 26px;
+  font-size:15px;font-weight:600;letter-spacing:-.01em;
+  box-shadow:0 6px 18px rgba(27,110,243,.28);
+  transition:.16s ease;display:inline-flex;align-items:center;gap:9px;
+}
+.cu-p6-bar .btn:hover, .cu-p6 .btn:hover {background:#1560DC;transform:translateY(-1px)}
+.cu-p6-bar .btn:disabled, .cu-p6 .btn:disabled {background:#C9CEDA;box-shadow:none;cursor:not-allowed;transform:none}
+.cu-p6-bar .btn.ghost, .cu-p6 .btn.ghost {background:#fff;color:#0E0F11;border:1.5px solid #D7DBE3;box-shadow:none}
+.cu-p6-bar .btn.ghost:hover, .cu-p6 .btn.ghost:hover {background:#F7F8FA;border-color:#BFC5D1}
+
+/* ---------- step 2 ---------- */
+.cu-p6 .step2 {display:none}
+.cu-p6 .review {
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:8px 26px;box-shadow:var(--shadow-1);margin-bottom:22px;
+}
+.cu-p6 .rrow {display:flex;gap:18px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--line)}
+.cu-p6 .rrow:last-child {border-bottom:0}
+.cu-p6 .rrow .rico {
+  flex:none;width:46px;height:46px;border-radius:11px;background:var(--blue-soft);
+  color:var(--blue-dk);display:flex;align-items:center;justify-content:center;border:1px solid var(--blue-soft-2)
+}
+.cu-p6 .rrow .rico svg {width:24px;height:24px}
+.cu-p6 .rrow .rbody {flex:1;min-width:0}
+.cu-p6 .rrow .rsvc {font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8A909C;margin-bottom:4px}
+.cu-p6 .rrow .rpick {font-size:16.5px;font-weight:600;letter-spacing:-.01em}
+.cu-p6 .rrow .radds {margin-top:7px;display:flex;flex-wrap:wrap;gap:7px}
+.cu-p6 .rrow .radd {font-size:12.5px;font-weight:600;color:var(--amber);background:var(--amber-soft);border:1px solid #F1E3CA;border-radius:7px;padding:4px 9px}
+.cu-p6 .rrow .redit {flex:none;font-size:13.5px;font-weight:600;color:var(--blue)}
+.cu-p6 .rrow .redit:hover {text-decoration:underline}
+.cu-p6 .form {background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;box-shadow:var(--shadow-1)}
+.cu-p6 .form h3 {font-family:var(--fh);text-transform:uppercase;font-size:19px;font-weight:800;margin:0 0 4px}
+.cu-p6 .form p.fs {margin:0 0 20px;color:var(--muted);font-size:14.5px}
+.cu-p6 .fgrid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.cu-p6 .field {display:flex;flex-direction:column;gap:6px}
+.cu-p6 .field.full {grid-column:1/-1}
+.cu-p6 .field label {font-size:13px;font-weight:600;color:var(--ink-2)}
+.cu-p6 .field input, .cu-p6 .field select, .cu-p6 .field textarea {
+  border:1.5px solid var(--line);border-radius:10px;padding:12px 13px;font-size:15px;background:#fff;
+  transition:.15s ease;font-family:var(--fb);
+}
+.cu-p6 .field input:focus, .cu-p6 .field select:focus, .cu-p6 .field textarea:focus {outline:0;border-color:var(--blue);box-shadow:0 0 0 3px rgba(27,110,243,.12)}
+.cu-p6 .done {
+  display:none;text-align:center;background:#fff;border:1px solid var(--line);
+  border-radius:var(--r-lg);padding:56px 26px;box-shadow:var(--shadow-1);
+}
+.cu-p6 .done .big {width:64px;height:64px;border-radius:50%;background:#E6F7F1;color:var(--ok);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.cu-p6 .done h3 {font-family:var(--fh);text-transform:uppercase;font-size:26px;font-weight:800;margin:0 0 8px}
+.cu-p6 .done p {color:var(--muted);margin:0 auto;max-width:440px;line-height:1.6}
+
+@media (max-width:1080px){
+  .cu-p6 .grid {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cu-p6 .opt-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:820px){
+  .cu-p6 .wrap {padding:40px 18px 30px}
+  .cu-p6 .grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .cu-p6 .tile {padding:20px 16px;min-height:74px}
+  .cu-p6 .tile .t-name {font-size:16px}
+  .cu-p6 .panel {padding:20px 16px 22px}
+  .cu-p6-bar-in {padding:12px 16px;gap:12px;flex-wrap:wrap}
+  .cu-p6-bar .chips {order:3;width:100%;max-height:56px}
+  .cu-p6-bar .btn, .cu-p6 .btn {flex:1;justify-content:center}
+  .cu-p6 .fgrid {grid-template-columns:1fr}
+}
+@media (max-width:540px){
+  .cu-p6 .opt-grid {grid-template-columns:1fr}
+  .cu-p6 .grid {grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .cu-p6 * {animation-duration:.001ms !important;transition-duration:.001ms !important}
 }
 
-.quote-hero-sub {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  color: var(--q6-muted);
-  max-width: 640px;
-  margin: 1rem auto 2rem;
-  line-height: 1.55;
-  text-align: center;
-}
 
-/* Audience pill switcher */
-.q6-audience-switcher {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 0.375rem;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid var(--q6-line);
-  border-radius: 999px;
-  margin: 0 auto 2.5rem;
-  justify-content: center;
+/* Phase 6B additions on top of Patriot CSS */
+.cu-p6 { position:relative; margin-top: -1px; }
+.cu-p6-switcher-wrap {
+  background: var(--bg);
+  padding: 40px 20px 0;
+  position: sticky; top: 0; z-index: 40;
 }
-.q6-pill {
-  border: none;
-  background: transparent;
-  padding: 0.625rem 1.25rem;
-  border-radius: 999px;
-  font: inherit;
-  font-weight: 600;
-  color: var(--q6-muted);
-  cursor: pointer;
-  transition: background 0.18s ease, color 0.18s ease;
-  font-size: 0.95rem;
-  letter-spacing: -0.01em;
+.cu-p6-switcher {
+  display: inline-flex; gap: 4px; padding: 4px;
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 999px; box-shadow: var(--shadow-1);
+  margin: 0 auto 0;
 }
-.q6-pill:hover { color: var(--q6-navy); }
-.q6-pill.is-active {
-  background: var(--q6-navy);
-  color: #fff;
-  box-shadow: 0 1px 3px rgba(10, 31, 61, 0.2);
+.cu-p6-switcher-outer {
+  display: flex; justify-content: center;
+  max-width: 1240px; margin: 0 auto; padding: 40px 28px 0;
 }
-.q6-pill:focus-visible {
-  outline: 2px solid var(--q6-accent);
-  outline-offset: 2px;
+.cu-p6-pill {
+  padding: 10px 22px; font-size: 14px; font-weight: 600;
+  color: #3A404B; background: transparent;
+  border: 0; cursor: pointer;
+  border-radius: 999px; letter-spacing: -.005em;
+  transition: all .18s ease;
+  font-family: 'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
-
-/* Wrapper for the three modes */
-.q6-mode { display: none; }
-.q6-mode.is-active { display: block; }
-
-/* ================ RETAIL 2-STEP BUILDER ================ */
-.q6-retail-wrap {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 1.25rem 8rem;
+.cu-p6-pill:hover { color: #0E0F11; background: #F7F8FA; }
+.cu-p6-pill.is-active {
+  background: #0E0F11; color: #fff;
+  box-shadow: 0 4px 12px rgba(14,15,17,.25);
 }
-
-/* Step chrome */
-.q6-step-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
+.cu-p6-switcher-outer, .cu-p6-switcher {
+  background: #F4F5F7;
 }
-.q6-step-title-block {
-  flex: 1;
-  min-width: 260px;
-}
-.q6-step-eyebrow {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--q6-accent);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 0.375rem;
-}
-.q6-step-title {
-  font-family: var(--font-display, 'Archivo', system-ui);
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 800;
-  color: var(--q6-navy);
-  line-height: 1.15;
-  margin: 0;
-  letter-spacing: -0.02em;
-}
-.q6-step-lede {
-  color: var(--q6-muted);
-  margin: 0.5rem 0 0;
-  font-size: 1rem;
-  max-width: 560px;
-}
-.q6-progress {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  font-size: 0.85rem;
-  color: var(--q6-muted);
-  font-weight: 600;
-}
-.q6-progress-dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--q6-line);
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.q6-progress-dot.is-current { background: var(--q6-navy); transform: scale(1.25); }
-.q6-progress-dot.is-done { background: var(--q6-accent); }
-
-/* Service tile grid */
-.q6-tile-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-@media (max-width: 900px) {
-  .q6-tile-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-@media (max-width: 640px) {
-  .q6-tile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-.q6-tile {
-  position: relative;
+.cu-p6-switcher {
   background: #fff;
-  border: 1.5px solid var(--q6-line);
-  border-radius: var(--q6-tile-radius);
-  padding: 1.25rem 1rem 1.125rem;
-  cursor: pointer;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, transform 0.18s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 0.625rem;
-  min-height: 140px;
+  border: 1px solid #E7E9EE;
 }
-.q6-tile:hover {
-  border-color: var(--q6-navy);
-  box-shadow: 0 4px 12px rgba(10, 31, 61, 0.08);
-  transform: translateY(-1px);
+.cu-p6-mode { display: none; }
+.cu-p6-mode.is-active { display: block; }
+/* Fleet & dealer forms use Patriot .form card look but sit standalone */
+.cu-p6-mode--fleet .wrap, .cu-p6-mode--dealer .wrap { padding-top: 40px; padding-bottom: 60px; }
+.cu-p6-standalone-form {
+  max-width: 780px; margin: 0 auto;
 }
-.q6-tile.is-open {
-  border-color: var(--q6-navy);
-  background: var(--q6-tile-tint);
-  box-shadow: 0 4px 16px rgba(10, 31, 61, 0.1);
+.cu-p6-standalone-form .form { padding: 32px 28px; }
+/* Error state for validation */
+.cu-p6 .field.error input,
+.cu-p6 .field.error select,
+.cu-p6 .field.error textarea { border-color: #D92D20; box-shadow: 0 0 0 3px rgba(217,45,32,.12); }
+.cu-p6 .field-err { display:none; font-size:12.5px; color:#B42318; font-weight:500; margin-top:4px; }
+.cu-p6 .field.error .field-err { display:block; }
+/* Success card - override Patriot .done to render CU reference */
+.cu-p6 .done.cu-success-active { display:block; }
+.cu-p6 .done .cu-ref {
+  display:inline-block; margin-top:16px;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-size:14px; letter-spacing:.02em;
+  background:#F4F5F7; border:1px solid var(--line);
+  border-radius:8px; padding:8px 14px; color:var(--ink);
 }
-.q6-tile.is-capped {
-  opacity: 0.42;
-  cursor: not-allowed;
-  pointer-events: none;
+.cu-p6 .done .cu-warning {
+  display:none; margin:14px auto 0; max-width:440px;
+  font-size:13.5px; color:var(--amber); background:var(--amber-soft);
+  border:1px solid #F1E3CA; border-radius:9px; padding:10px 14px;
 }
-.q6-tile-icon {
-  width: 32px; height: 32px;
-  color: var(--q6-navy);
-  flex-shrink: 0;
+.cu-p6 .done .cu-warning.show { display:block; }
+/* Body override — Patriot CSS set body{padding-bottom:132px} which we DON'T want globally.
+   The scoper wrote ".cu-p6 body{...}" which won't match anything, so we compensate here. */
+body.cu-p6-active { padding-bottom: 132px !important; }
+@media (max-width:820px) {
+  body.cu-p6-active { padding-bottom: 158px !important; }
 }
-.q6-tile-name {
-  font-family: var(--font-display, 'Archivo', system-ui);
-  font-weight: 700;
-  color: var(--q6-navy);
-  font-size: 0.9375rem;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-}
-.q6-tile-badge {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 0.2rem 0.5rem;
-  background: rgba(245, 158, 11, 0.14);
-  color: #b45309;
-  border-radius: 999px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.q6-tile-check {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: var(--q6-accent);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transform: scale(0.4);
-  transition: opacity 0.18s ease, transform 0.18s ease;
-  pointer-events: none;
-}
-.q6-tile.is-open .q6-tile-check {
-  opacity: 1;
-  transform: scale(1);
-}
-.q6-tile.is-open .q6-tile-badge {
-  opacity: 0;
-}
+/* Hide sticky bar when not in retail mode */
+.cu-p6-container:not([data-mode="retail"]) .cu-p6-bar { display: none !important; }
+/* Fleet & dealer titles use Patriot title style */
+.cu-p6-mode--fleet .title, .cu-p6-mode--dealer .title { text-align:center; }
 
-/* Inline tile expansion — options + add-ons */
-.q6-tile-options {
-  display: none;
-  grid-column: 1 / -1;
-  background: #fff;
-  border: 1.5px solid var(--q6-navy);
-  border-radius: var(--q6-tile-radius);
-  padding: 1.5rem;
-  margin-top: -0.5rem;
-  box-shadow: 0 6px 18px rgba(10, 31, 61, 0.08);
-  animation: q6-slide-in 0.24s ease-out;
-}
-.q6-tile-options.is-visible { display: block; }
-@keyframes q6-slide-in {
-  from { opacity: 0; transform: translateY(-6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.q6-options-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 1rem;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.q6-options-title {
-  font-family: var(--font-display, 'Archivo', system-ui);
-  font-size: 1.125rem;
-  font-weight: 800;
-  color: var(--q6-navy);
-  margin: 0;
-  letter-spacing: -0.01em;
-}
-.q6-options-close {
-  background: none;
-  border: none;
-  color: var(--q6-muted);
-  font: inherit;
-  font-size: 0.85rem;
-  cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  border-radius: 6px;
-}
-.q6-options-close:hover { color: var(--q6-navy); background: var(--q6-surface); }
-.q6-options-group-label {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--q6-muted);
-  margin: 1.25rem 0 0.625rem;
-}
-.q6-options-group-label:first-child { margin-top: 0; }
-
-.q6-option-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.625rem;
-}
-.q6-option-card {
-  border: 1.5px solid var(--q6-line);
-  border-radius: 12px;
-  padding: 0.75rem 0.875rem;
-  cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--q6-body-color);
-  background: #fff;
-  user-select: none;
-}
-.q6-option-card:hover { border-color: var(--q6-navy); }
-.q6-option-card input {
-  accent-color: var(--q6-navy);
-  flex-shrink: 0;
-  margin: 0;
-}
-.q6-option-card.is-checked {
-  border-color: var(--q6-navy);
-  background: var(--q6-tile-tint);
-  font-weight: 600;
-}
-
-/* Sticky bottom bar */
-.q6-bar {
-  position: fixed;
-  left: 0; right: 0; bottom: 0;
-  z-index: 90;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid var(--q6-line);
-  box-shadow: 0 -4px 20px rgba(10, 31, 61, 0.06);
-  height: var(--q6-bar-h);
-  display: flex;
-  align-items: center;
-  padding: 0 1.5rem;
-  transition: transform 0.25s ease;
-}
-.q6-bar-inner {
-  max-width: 1240px;
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-.q6-bar-count {
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
-  min-width: 140px;
-}
-.q6-bar-count-label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--q6-muted);
-}
-.q6-bar-count-value {
-  font-family: var(--font-display, 'Archivo', system-ui);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--q6-navy);
-  letter-spacing: -0.01em;
-}
-.q6-bar-chips {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 0.375rem;
-  flex: 1;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.q6-bar-chips::-webkit-scrollbar { display: none; }
-.q6-bar-chip {
-  font-size: 0.8rem;
-  padding: 0.375rem 0.75rem;
-  background: var(--q6-surface);
-  border: 1px solid var(--q6-line);
-  border-radius: 999px;
-  color: var(--q6-body-color);
-  white-space: nowrap;
-  font-weight: 500;
-}
-.q6-bar-actions {
-  display: flex;
-  gap: 0.625rem;
-  flex-shrink: 0;
-}
-.q6-bar-btn {
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
-  font-size: 0.95rem;
-}
-.q6-bar-btn.is-primary {
-  background: var(--q6-navy);
-  color: #fff;
-}
-.q6-bar-btn.is-primary:hover:not(:disabled) {
-  background: #0f2a52;
-  transform: translateY(-1px);
-}
-.q6-bar-btn.is-primary:disabled {
-  background: #cbd5e1;
-  color: #64748b;
-  cursor: not-allowed;
-}
-.q6-bar-btn.is-secondary {
-  background: transparent;
-  color: var(--q6-navy);
-  border: 1.5px solid var(--q6-line);
-}
-.q6-bar-btn.is-secondary:hover { border-color: var(--q6-navy); }
-.q6-bar-notice {
-  font-size: 0.8rem;
-  color: #b45309;
-  margin-top: 0.25rem;
-  display: none;
-}
-.q6-bar-notice.is-visible { display: block; }
-
-@media (max-width: 700px) {
-  .q6-bar { height: var(--q6-bar-h-mobile); padding: 0 1rem; }
-  .q6-bar-count { min-width: auto; }
-  .q6-bar-count-label { display: none; }
-  .q6-bar-chips { display: none; }
-  .q6-bar-btn { padding: 0.625rem 1rem; font-size: 0.9rem; }
-}
-
-/* Step 2 — Review + form */
-.q6-review-wrap {
-  display: none;
-  gap: 1.5rem;
-  grid-template-columns: 1fr 1.4fr;
-  align-items: start;
-}
-.q6-review-wrap.is-visible { display: grid; }
-@media (max-width: 900px) {
-  .q6-review-wrap { grid-template-columns: 1fr; }
-}
-
-.q6-review-card, .q6-contact-card {
-  background: #fff;
-  border: 1px solid var(--q6-line);
-  border-radius: var(--q6-tile-radius);
-  padding: 1.75rem;
-  box-shadow: 0 2px 8px rgba(10, 31, 61, 0.04);
-}
-.q6-review-title, .q6-contact-title {
-  font-family: var(--font-display, 'Archivo', system-ui);
-  font-size: 1.35rem;
-  font-weight: 800;
-  color: var(--q6-navy);
-  margin: 0 0 0.375rem;
-  letter-spacing: -0.02em;
-}
-.q6-contact-subtitle {
-  color: var(--q6-muted);
-  margin: 0 0 1.25rem;
-  font-size: 0.95rem;
-}
-.q6-review-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-  margin: 1rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-.q6-review-item {
-  padding: 0.875rem 0;
-  border-bottom: 1px solid var(--q6-line);
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-.q6-review-item:last-child { border-bottom: 0; padding-bottom: 0; }
-.q6-review-item-body {
-  flex: 1;
-  min-width: 0;
-}
-.q6-review-item-name {
-  font-weight: 700;
-  color: var(--q6-navy);
-  font-size: 0.975rem;
-  margin: 0 0 0.25rem;
-}
-.q6-review-item-detail {
-  font-size: 0.85rem;
-  color: var(--q6-muted);
-  margin: 0;
-  line-height: 1.45;
-}
-.q6-review-edit {
-  background: none;
-  border: none;
-  color: var(--q6-navy);
-  font: inherit;
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  border-radius: 6px;
-  flex-shrink: 0;
-}
-.q6-review-edit:hover { background: var(--q6-surface); }
-
-.q6-review-empty {
-  color: var(--q6-muted);
-  font-style: italic;
-  padding: 0.75rem 0;
-}
-
-/* Contact form fields */
-.q6-form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.875rem;
-}
-.q6-field { display: flex; flex-direction: column; gap: 0.375rem; }
-.q6-field.q6-field-full { grid-column: 1 / -1; }
-.q6-field-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
-.q6-field label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--q6-navy);
-  letter-spacing: -0.01em;
-}
-.q6-field label .q6-req { color: #dc2626; }
-.q6-field input,
-.q6-field select,
-.q6-field textarea {
-  width: 100%;
-  padding: 0.7rem 0.875rem;
-  border: 1.5px solid var(--q6-line);
-  border-radius: 10px;
-  font: inherit;
-  font-size: 0.95rem;
-  color: var(--q6-body-color);
-  background: #fff;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-  font-family: inherit;
-}
-.q6-field input:focus,
-.q6-field select:focus,
-.q6-field textarea:focus {
-  outline: none;
-  border-color: var(--q6-navy);
-  box-shadow: 0 0 0 3px rgba(10, 31, 61, 0.08);
-}
-.q6-field textarea { min-height: 96px; resize: vertical; }
-.q6-field-hint {
-  font-size: 0.75rem;
-  color: var(--q6-muted);
-  margin-top: 0.25rem;
-}
-@media (max-width: 640px) {
-  .q6-form-grid, .q6-field-row { grid-template-columns: 1fr; }
-}
-
-/* Success + diagnostic */
-.q6-success {
-  display: none;
-  background: #fff;
-  border: 1px solid var(--q6-line);
-  border-radius: var(--q6-tile-radius);
-  padding: 3rem 2rem;
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto;
-}
-.q6-success.is-visible { display: block; }
-.q6-success-check {
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  background: rgba(16, 185, 129, 0.12);
-  color: #10b981;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.5rem;
-}
-.q6-success-title {
-  font-family: var(--font-display, 'Archivo', system-ui);
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: var(--q6-navy);
-  margin: 0 0 0.75rem;
-}
-.q6-success-body {
-  color: var(--q6-muted);
-  line-height: 1.55;
-  margin: 0 0 1rem;
-  font-size: 1rem;
-}
-.q6-success-ref {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: var(--q6-surface);
-  border: 1px dashed var(--q6-line);
-  border-radius: 10px;
-  font-family: var(--font-mono, 'JetBrains Mono', ui-monospace, monospace);
-  font-weight: 600;
-  color: var(--q6-navy);
-  font-size: 0.95rem;
-  margin: 0.75rem 0;
-}
-.q6-success-warning {
-  font-size: 0.85rem;
-  color: #b45309;
-  background: rgba(245, 158, 11, 0.08);
-  border-radius: 8px;
-  padding: 0.75rem;
-  margin-top: 1rem;
-  text-align: left;
-}
-.q6-diagnostic {
-  margin-top: 1.5rem;
-  text-align: left;
-  font-size: 0.8rem;
-}
-.q6-diagnostic summary {
-  cursor: pointer;
-  color: var(--q6-muted);
-  font-weight: 600;
-}
-.q6-diagnostic pre {
-  background: #0f172a;
-  color: #cbd5e1;
-  padding: 0.875rem;
-  border-radius: 8px;
-  overflow-x: auto;
-  font-size: 0.75rem;
-  margin-top: 0.5rem;
-}
-
-/* Fleet / dealer single-page form */
-.q6-single-wrap {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 1.25rem 6rem;
-}
-.q6-single-card {
-  background: #fff;
-  border: 1px solid var(--q6-line);
-  border-radius: var(--q6-tile-radius);
-  padding: 2rem;
-  box-shadow: 0 4px 16px rgba(10, 31, 61, 0.06);
-}
-.q6-single-header { margin-bottom: 1.5rem; }
-.q6-single-header h2 {
-  font-family: var(--font-display, 'Archivo', system-ui);
-  font-size: 1.65rem;
-  font-weight: 800;
-  color: var(--q6-navy);
-  margin: 0 0 0.375rem;
-  letter-spacing: -0.02em;
-}
-.q6-single-header p {
-  color: var(--q6-muted);
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-.q6-service-checks {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-}
-@media (max-width: 500px) {
-  .q6-service-checks { grid-template-columns: 1fr; }
-}
-.q6-service-check {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 0.75rem;
-  border: 1.5px solid var(--q6-line);
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: var(--q6-body-color);
-  user-select: none;
-  transition: border-color 0.15s ease, background 0.15s ease;
-}
-.q6-service-check:hover { border-color: var(--q6-navy); }
-.q6-service-check.is-checked {
-  border-color: var(--q6-navy);
-  background: var(--q6-tile-tint);
-  font-weight: 600;
-}
-.q6-service-check input { accent-color: var(--q6-navy); }
-
-.q6-submit-row {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 1.5rem;
-  gap: 0.75rem;
-  align-items: center;
-}
-.q6-submit-btn {
-  background: var(--q6-navy);
-  color: #fff;
-  border: none;
-  padding: 0.875rem 2rem;
-  border-radius: 10px;
-  font: inherit;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.15s ease, transform 0.1s ease;
-}
-.q6-submit-btn:hover:not(:disabled) {
-  background: #0f2a52;
-  transform: translateY(-1px);
-}
-.q6-submit-btn:disabled {
-  background: #cbd5e1;
-  cursor: not-allowed;
-}
-
-/* Reduce motion */
-@media (prefers-reduced-motion: reduce) {
-  .q6-tile, .q6-tile-options, .q6-bar-btn, .q6-bar { transition: none; animation: none; }
-}
 </style>
 
-<section class="section" style="padding-top: 1rem; padding-bottom: 0;">
-  <div class="container">
-
-    <!-- ================ RETAIL 2-STEP BUILDER ================ -->
-    <div class="q6-mode is-active" data-q6-mode="retail" id="q6-mode-retail">
-      <div class="q6-retail-wrap">
-
-        <!-- STEP 1: pick services -->
-        <div class="q6-step" data-q6-step="1" id="q6-step-1">
-          <div class="q6-step-header">
-            <div class="q6-step-title-block">
-              <p class="q6-step-eyebrow">Step 1 of 2</p>
-              <h2 class="q6-step-title">What are you looking to add?</h2>
-              <p class="q6-step-lede">Tap a service to see options. Pick as many as you need — up to 12.</p>
-            </div>
-            <div class="q6-progress" aria-hidden="true">
-              <span class="q6-progress-dot is-current"></span>
-              <span class="q6-progress-dot"></span>
-            </div>
-          </div>
-
-          <div class="q6-tile-grid" id="q6-tile-grid" role="list">
-            <!-- Tiles rendered by JS -->
-          </div>
-        </div>
-
-        <!-- STEP 2: review + contact -->
-        <div class="q6-review-wrap" id="q6-step-2">
-          <div class="q6-review-card">
-            <p class="q6-step-eyebrow">Your build</p>
-            <h3 class="q6-review-title">Here's what you're asking about</h3>
-            <ul class="q6-review-list" id="q6-review-list">
-              <!-- Populated by JS -->
-            </ul>
-          </div>
-
-          <div class="q6-contact-card">
-            <div id="form-retail-body" data-success-body="form-retail-body">
-              <p class="q6-step-eyebrow">Step 2 of 2</p>
-              <h3 class="q6-contact-title">Where should we send it?</h3>
-              <p class="q6-contact-subtitle">We'll follow up the same business day with pricing and the next open installation window.</p>
-
-              <form id="quote-retail" method="POST" class="form-body" novalidate data-cms-form="retail" data-success-body="form-retail-body" data-success-panel="form-retail-success">
-                <div class="q6-form-grid">
-                  <div class="q6-field q6-field-full">
-                    <label>Full name <span class="q6-req" aria-hidden="true">*</span></label>
-                    <div class="q6-field-row">
-                      <input type="text" name="First Name" placeholder="First" autocomplete="given-name" required>
-                      <input type="text" name="Last Name" placeholder="Last" autocomplete="family-name" required>
-                    </div>
-                  </div>
-
-                  <div class="q6-field">
-                    <label for="q6-retail-phone">Phone <span class="q6-req" aria-hidden="true">*</span></label>
-                    <input id="q6-retail-phone" type="tel" name="Phone" placeholder="(301) 555-0100" autocomplete="tel" required>
-                  </div>
-                  <div class="q6-field">
-                    <label for="q6-retail-email">Email <span class="q6-req" aria-hidden="true">*</span></label>
-                    <input id="q6-retail-email" type="email" name="Email" placeholder="you@example.com" autocomplete="email" required>
-                  </div>
-
-                  <div class="q6-field">
-                    <label for="q6-retail-year">Vehicle year <span class="q6-req" aria-hidden="true">*</span></label>
-                    <input id="q6-retail-year" type="text" name="Vehicle Year" inputmode="numeric" placeholder="2023" maxlength="4" required>
-                  </div>
-                  <div class="q6-field">
-                    <label>Make &amp; model <span class="q6-req" aria-hidden="true">*</span></label>
-                    <div class="q6-field-row">
-                      <input type="text" name="Vehicle Make" placeholder="Ford" required>
-                      <input type="text" name="Vehicle Model" placeholder="F-150" required>
-                    </div>
-                  </div>
-
-                  <div class="q6-field">
-                    <label for="q6-retail-zip">ZIP</label>
-                    <input id="q6-retail-zip" type="text" name="ZIP" inputmode="numeric" placeholder="20852" maxlength="5" autocomplete="postal-code">
-                  </div>
-                  <div class="q6-field">
-                    <label for="q6-retail-timing">Timing</label>
-                    <select id="q6-retail-timing" name="Preferred Date">
-                      <option value="">Choose one</option>
-                      <option value="As soon as possible">As soon as possible</option>
-                      <option value="Within 2 weeks">Within 2 weeks</option>
-                      <option value="This month">This month</option>
-                      <option value="Just pricing for now">Just pricing for now</option>
-                    </select>
-                  </div>
-
-                  <div class="q6-field q6-field-full">
-                    <label for="q6-retail-message">Anything else?</label>
-                    <textarea id="q6-retail-message" name="Message" placeholder="Fleet of 6 trucks, need them done in pairs…"></textarea>
-                    <p class="q6-field-hint">Optional — the more detail, the sharper the quote.</p>
-                  </div>
-                </div>
-
-                <div class="q6-submit-row">
-                  <button type="submit" class="q6-submit-btn" id="q6-retail-submit">Send my quote →</button>
-                </div>
-              </form>
-            </div>
-
-            <!-- Success panel — swapped in by lead-form.js on success -->
-            <div id="form-retail-success" class="q6-success" data-q6-success="retail">
-              <div class="q6-success-check">
-                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <h3 class="q6-success-title">Quote request sent</h3>
-              <p class="q6-success-body">Your request is in front of the right specialist now. Expect a call or email from us the same business day.</p>
-              <div class="q6-success-ref" data-q6-ref-slot>Reference will appear here</div>
-              <p class="q6-success-body">If you don't hear back within 24 hours, call us at <a href="tel:3013041419" style="color:var(--q6-navy);font-weight:600;">(301) 304-1419</a>.</p>
-              <div class="q6-success-warning" data-q6-warning-slot hidden>Note: our automated confirmation email may be delayed today. Your reference number above is enough to reach us.</div>
-              <details class="q6-diagnostic" data-q6-diagnostic-slot hidden>
-                <summary>Diagnostic (debug mode)</summary>
-                <pre></pre>
-              </details>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sticky bottom bar (retail only) -->
-        <div class="q6-bar" id="q6-bar" role="region" aria-label="Your quote build">
-          <div class="q6-bar-inner">
-            <div class="q6-bar-count">
-              <span class="q6-bar-count-label">Your build</span>
-              <span class="q6-bar-count-value" id="q6-bar-count-value">Nothing selected yet</span>
-              <span class="q6-bar-notice" id="q6-bar-notice">Cap reached — remove a service to add another.</span>
-            </div>
-            <div class="q6-bar-chips" id="q6-bar-chips"></div>
-            <div class="q6-bar-actions">
-              <button type="button" class="q6-bar-btn is-secondary" id="q6-bar-back" hidden>← Back to services</button>
-              <button type="button" class="q6-bar-btn is-primary" id="q6-bar-continue" disabled>Continue →</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================ FLEET SINGLE-PAGE FORM ================ -->
-    <div class="q6-mode" data-q6-mode="fleet" id="q6-mode-fleet">
-      <div class="q6-single-wrap">
-        <div class="q6-single-card">
-          <div id="form-fleet-body" data-success-body="form-fleet-body">
-            <div class="q6-single-header">
-              <p class="q6-step-eyebrow">Fleet &amp; commercial</p>
-              <h2>Tell us about your fleet.</h2>
-              <p>Fleet pricing kicks in at 3+ vehicles. Consolidated invoicing, staggered scheduling, and one point of contact.</p>
-            </div>
-
-            <form id="quote-fleet" method="POST" class="form-body" novalidate data-cms-form="fleet" data-success-body="form-fleet-body" data-success-panel="form-fleet-success">
-              <div class="q6-form-grid">
-                <div class="q6-field">
-                  <label for="q6-fleet-biz">Business name <span class="q6-req">*</span></label>
-                  <input id="q6-fleet-biz" type="text" name="Business Name" required autocomplete="organization">
-                </div>
-                <div class="q6-field">
-                  <label for="q6-fleet-contact">Contact name <span class="q6-req">*</span></label>
-                  <input id="q6-fleet-contact" type="text" name="Contact Name" required autocomplete="name">
-                </div>
-                <div class="q6-field">
-                  <label for="q6-fleet-email">Business email <span class="q6-req">*</span></label>
-                  <input id="q6-fleet-email" type="email" name="Business Email" required autocomplete="email">
-                </div>
-                <div class="q6-field">
-                  <label for="q6-fleet-phone">Phone <span class="q6-req">*</span></label>
-                  <input id="q6-fleet-phone" type="tel" name="Phone" required autocomplete="tel">
-                </div>
-                <div class="q6-field">
-                  <label for="q6-fleet-count">Vehicle count <span class="q6-req">*</span></label>
-                  <input id="q6-fleet-count" type="text" name="Vehicle Count" inputmode="numeric" placeholder="e.g. 8" required>
-                </div>
-                <div class="q6-field">
-                  <label for="q6-fleet-timeline">Timeline</label>
-                  <select id="q6-fleet-timeline" name="Timeline">
-                    <option value="">Choose one</option>
-                    <option value="This week">This week</option>
-                    <option value="Within 2 weeks">Within 2 weeks</option>
-                    <option value="Within a month">Within a month</option>
-                    <option value="Just pricing for now">Just pricing for now</option>
-                  </select>
-                </div>
-                <div class="q6-field q6-field-full">
-                  <label>What do the vehicles need? <span class="q6-req">*</span></label>
-                  <div class="q6-service-checks" id="q6-fleet-services">
-                    <!-- Rendered by JS -->
-                  </div>
-                </div>
-                <div class="q6-field q6-field-full">
-                  <label for="q6-fleet-msg">Anything else?</label>
-                  <textarea id="q6-fleet-msg" name="Message" placeholder="e.g. staggered so we always have 6 on the road."></textarea>
-                </div>
-              </div>
-
-              <div class="q6-submit-row">
-                <button type="submit" class="q6-submit-btn">Send fleet inquiry →</button>
-              </div>
-            </form>
-          </div>
-
-          <div id="form-fleet-success" class="q6-success" data-q6-success="fleet">
-            <div class="q6-success-check">
-              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </div>
-            <h3 class="q6-success-title">Fleet inquiry sent</h3>
-            <p class="q6-success-body">Our fleet coordinator will reach out the same business day with scheduling and volume pricing.</p>
-            <div class="q6-success-ref" data-q6-ref-slot>Reference will appear here</div>
-            <p class="q6-success-body">Need to talk sooner? Call <a href="tel:3013041419" style="color:var(--q6-navy);font-weight:600;">(301) 304-1419</a>.</p>
-            <div class="q6-success-warning" data-q6-warning-slot hidden></div>
-            <details class="q6-diagnostic" data-q6-diagnostic-slot hidden><summary>Diagnostic</summary><pre></pre></details>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================ DEALER SINGLE-PAGE FORM ================ -->
-    <div class="q6-mode" data-q6-mode="dealer" id="q6-mode-dealer">
-      <div class="q6-single-wrap">
-        <div class="q6-single-card">
-          <div id="form-dealer-body" data-success-body="form-dealer-body">
-            <div class="q6-single-header">
-              <p class="q6-step-eyebrow">Dealer &amp; government</p>
-              <h2>Set up a dealer or government account.</h2>
-              <p>Volume pricing, PO invoicing, and dedicated scheduling for dealers, municipalities, and government fleets.</p>
-            </div>
-
-            <form id="quote-dealer" method="POST" class="form-body" novalidate data-cms-form="dealer" data-success-body="form-dealer-body" data-success-panel="form-dealer-success">
-              <div class="q6-form-grid">
-                <div class="q6-field">
-                  <label for="q6-dealer-biz">Organization name <span class="q6-req">*</span></label>
-                  <input id="q6-dealer-biz" type="text" name="Business Name" required autocomplete="organization">
-                </div>
-                <div class="q6-field">
-                  <label for="q6-dealer-contact">Contact name <span class="q6-req">*</span></label>
-                  <input id="q6-dealer-contact" type="text" name="Contact Name" required autocomplete="name">
-                </div>
-                <div class="q6-field">
-                  <label for="q6-dealer-email">Work email <span class="q6-req">*</span></label>
-                  <input id="q6-dealer-email" type="email" name="Work Email" required autocomplete="email">
-                </div>
-                <div class="q6-field">
-                  <label for="q6-dealer-phone">Phone <span class="q6-req">*</span></label>
-                  <input id="q6-dealer-phone" type="tel" name="Phone" required autocomplete="tel">
-                </div>
-                <div class="q6-field">
-                  <label for="q6-dealer-org">Organization type <span class="q6-req">*</span></label>
-                  <select id="q6-dealer-org" name="Organization Type" required>
-                    <option value="">Choose one</option>
-                    <option value="Franchise dealer">Franchise dealer</option>
-                    <option value="Independent dealer">Independent dealer</option>
-                    <option value="Municipal fleet">Municipal fleet</option>
-                    <option value="State/federal agency">State / federal agency</option>
-                    <option value="Utility / service company">Utility or service company</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-                <div class="q6-field">
-                  <label for="q6-dealer-volume">Monthly volume <span class="q6-req">*</span></label>
-                  <select id="q6-dealer-volume" name="Monthly Volume" required>
-                    <option value="">Choose one</option>
-                    <option value="1-5 vehicles">1–5 vehicles</option>
-                    <option value="6-15 vehicles">6–15 vehicles</option>
-                    <option value="16-30 vehicles">16–30 vehicles</option>
-                    <option value="30+ vehicles">30+ vehicles</option>
-                  </select>
-                </div>
-                <div class="q6-field q6-field-full">
-                  <label>Common upfits <span class="q6-req">*</span></label>
-                  <div class="q6-service-checks" id="q6-dealer-services">
-                    <!-- Rendered by JS -->
-                  </div>
-                </div>
-                <div class="q6-field q6-field-full">
-                  <label for="q6-dealer-msg">Anything else?</label>
-                  <textarea id="q6-dealer-msg" name="Message" placeholder="e.g. we run 3 makes and need pricing sheets for each."></textarea>
-                </div>
-              </div>
-
-              <div class="q6-submit-row">
-                <button type="submit" class="q6-submit-btn">Set up my account →</button>
-              </div>
-            </form>
-          </div>
-
-          <div id="form-dealer-success" class="q6-success" data-q6-success="dealer">
-            <div class="q6-success-check">
-              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </div>
-            <h3 class="q6-success-title">Account inquiry sent</h3>
-            <p class="q6-success-body">Our accounts team will reach out the same business day with a pricing sheet and PO instructions.</p>
-            <div class="q6-success-ref" data-q6-ref-slot>Reference will appear here</div>
-            <p class="q6-success-body">Need to talk sooner? Call <a href="tel:3013041419" style="color:var(--q6-navy);font-weight:600;">(301) 304-1419</a>.</p>
-            <div class="q6-success-warning" data-q6-warning-slot hidden></div>
-            <details class="q6-diagnostic" data-q6-diagnostic-slot hidden><summary>Diagnostic</summary><pre></pre></details>
-          </div>
-        </div>
-      </div>
-    </div>
-
+<!-- ============ PHASE 6B: PATRIOT-FIDELITY QUOTE ============ -->
+<section class="page-hero" style="min-height:auto;padding:80px 0 32px;">
+  <div class="page-hero-bg" style="background: linear-gradient(135deg, #0d1117 0%, #1a2332 50%, #203055 100%);"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content" style="text-align:center;position:relative;z-index:2;">
+    <p style="color:#f59e0b;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px;">Free — same-business-day response</p>
+    <h1 style="color:#fff;font-family:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:800;font-size:clamp(32px,4.6vw,54px);line-height:1.05;letter-spacing:-.02em;margin:0 0 12px;">Build your quote.</h1>
+    <p style="color:rgba(255,255,255,.72);font-size:17px;line-height:1.5;max-width:640px;margin:0 auto;">Tell us what you want done and where to send the price. We&rsquo;ll get back the same business day.</p>
   </div>
 </section>
 
-<!-- ==================================================================
-     PHASE 6 QUOTE BUILDER — client logic
-     Pure vanilla JS, IIFE-scoped. lead-form.js still owns submission.
-     ================================================================== -->
+<div class="cu-p6-switcher-outer">
+  <div class="cu-p6-switcher" role="tablist" aria-label="Quote type">
+    <button type="button" class="cu-p6-pill is-active" data-mode="retail" role="tab" aria-selected="true">Personal vehicle</button>
+    <button type="button" class="cu-p6-pill" data-mode="fleet" role="tab" aria-selected="false">Fleet &amp; commercial</button>
+    <button type="button" class="cu-p6-pill" data-mode="dealer" role="tab" aria-selected="false">Dealer &amp; government</button>
+  </div>
+</div>
+
+<div class="cu-p6" data-mode="retail">
+
+  <!-- ============ RETAIL MODE ============ -->
+  <section class="cu-p6-mode cu-p6-mode--retail is-active" data-mode-body="retail">
+<div class="wrap">
+
+  <!-- ============ STEP 1 ============ -->
+  <section class="step1" id="step1">
+    <div class="eyebrow">
+      <span class="dot"></span>
+      <span class="step-lbl">Step 1 of 2</span>
+      <span class="sep">&middot;</span>
+      <span>Pick Services</span>
+    </div>
+
+    <h1 class="title">What are you looking to add?</h1>
+
+    <p class="lede">
+      Pick one or more services below. Each one opens up its own options &mdash; hover the
+      <b>&#9432;</b> on any card if you want the plain-English version. Choose up to 12 services.
+    </p>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="notice" id="notice">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" width="18" height="18"><path d="M12 8v5"/><path d="M12 16.5h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      <span id="notice-text"></span>
+    </div>
+  </section>
+
+  <!-- ============ STEP 2 ============ -->
+  <section class="step2" id="step2">
+    <div class="eyebrow">
+      <span class="dot"></span>
+      <span class="step-lbl">Step 2 of 2</span>
+      <span class="sep">&middot;</span>
+      <span>Review &amp; Send</span>
+    </div>
+
+    <h1 class="title">Here&rsquo;s your build.</h1>
+    <p class="lede">Check it over, then tell us where to send the quote. Nothing is locked in &mdash; we&rsquo;ll confirm every line with you before any work starts.</p>
+
+    <div class="review" id="review"></div>
+
+    <form class="form" id="formCard" data-cms-form="retail" data-success-body="retail-form-body" data-success-panel="retail-form-success" method="POST" novalidate>
+      <div data-role="form-body" id="retail-form-body">
+        <h3>Where should we send it?</h3>
+        <p class="fs">We&rsquo;ll get back to you the same business day with pricing and the next open slot.</p>
+        <div class="fgrid">
+          <div class="field"><label for="f-fname">First name *</label><input id="f-fname" name="First Name" placeholder="Jane" autocomplete="given-name" required><span class="field-err">Required.</span></div>
+          <div class="field"><label for="f-lname">Last name *</label><input id="f-lname" name="Last Name" placeholder="Doe" autocomplete="family-name" required><span class="field-err">Required.</span></div>
+          <div class="field"><label for="f-phone">Phone *</label><input id="f-phone" name="Phone" placeholder="(555) 123-4567" autocomplete="tel" inputmode="tel" required><span class="field-err">Required.</span></div>
+          <div class="field"><label for="f-email">Email *</label><input id="f-email" name="Email" type="email" placeholder="you@company.com" autocomplete="email" required><span class="field-err">Valid email required.</span></div>
+          <div class="field"><label for="f-year">Vehicle year</label><input id="f-year" name="Vehicle Year" placeholder="2023" inputmode="numeric"></div>
+          <div class="field"><label for="f-make">Vehicle make</label><input id="f-make" name="Vehicle Make" placeholder="Ford"></div>
+          <div class="field"><label for="f-model">Vehicle model</label><input id="f-model" name="Vehicle Model" placeholder="F-150 SuperCrew"></div>
+          <div class="field"><label for="f-zip">ZIP code</label><input id="f-zip" name="ZIP" placeholder="20850" inputmode="numeric"></div>
+          <div class="field full"><label for="f-when">Timing</label>
+            <select id="f-when" name="Preferred Date">
+              <option>As soon as possible</option>
+              <option>Within 2 weeks</option>
+              <option>This month</option>
+              <option>Just pricing for now</option>
+            </select>
+          </div>
+          <div class="field full"><label for="f-notes">Anything else? (optional)</label><input id="f-notes" name="Message" placeholder="Fleet of 6 trucks, need them done in pairs&hellip;"></div>
+        </div>
+        <div id="retail-hidden-services"></div>
+      </div>
+      <div data-role="form-success" id="retail-form-success" hidden></div>
+    </form>
+
+    <div class="done" id="done">
+      <div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="30" height="30"><path d="M4.5 12.5l5 5 10-11"/></svg></div>
+      <h3>Quote request sent</h3>
+      <p>Your build is with the right specialist now. Expect a call or email the same business day &mdash; and a written breakdown line by line.</p>
+      <div class="cu-ref" data-cu-ref-slot>Reference: pending</div>
+      <div class="cu-warning" data-cu-warning-slot></div>
+    </div>
+  </section>
+
+</div>
+
+<!-- sticky summary -->
+<div class="cu-p6-bar" id="bar">
+  <div class="cu-p6-bar-in">
+    <div class="counts" id="counts">Your build<b id="countsText">Nothing selected yet</b></div>
+    <div class="chips" id="chips"></div>
+    <button class="btn ghost" id="backBtn" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17"><path d="M14 6l-6 6 6 6"/></svg>
+      Back
+    </button>
+    <button class="btn" id="nextBtn" disabled>
+      <span id="nextLabel">Continue</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17"><path d="M10 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<div id="tip" role="tooltip" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============ FLEET MODE ============ -->
+
+  <section class="cu-p6-mode cu-p6-mode--fleet" data-mode-body="fleet">
+    <div class="wrap">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        <span class="step-lbl">Fleet &amp; Commercial</span>
+        <span class="sep">&middot;</span>
+        <span>Request Quote</span>
+      </div>
+      <h1 class="title">Upfit your fleet.</h1>
+      <p class="lede">Tell us about your operation and volumes. We&rsquo;ll build a program &mdash; consistent specs across every unit, DOT-compliant, priced by tier.</p>
+      <div class="cu-p6-standalone-form">
+        <form class="form" id="quote-fleet" data-cms-form="fleet" data-success-body="fleet-form-body" data-success-panel="fleet-form-success" method="POST" novalidate>
+          <div data-role="form-body" id="fleet-form-body">
+            <h3>Fleet quote request</h3>
+            <p class="fs">Priority scheduling for 3+ vehicle programs. We&rsquo;ll respond same business day.</p>
+            <div class="fgrid">
+              <div class="field"><label for="fl-biz">Business name *</label><input id="fl-biz" name="Business Name" required><span class="field-err">Required.</span></div>
+              <div class="field"><label for="fl-contact">Contact name *</label><input id="fl-contact" name="Contact Name" autocomplete="name" required><span class="field-err">Required.</span></div>
+              <div class="field"><label for="fl-email">Business email *</label><input id="fl-email" name="Business Email" type="email" autocomplete="email" required><span class="field-err">Valid email required.</span></div>
+              <div class="field"><label for="fl-phone">Phone *</label><input id="fl-phone" name="Phone" type="tel" autocomplete="tel" required><span class="field-err">Required.</span></div>
+              <div class="field"><label for="fl-count">Vehicle count *</label>
+                <select id="fl-count" name="Vehicle Count" required>
+                  <option value="">Select…</option>
+                  <option>3–5 vehicles</option>
+                  <option>6–15 vehicles</option>
+                  <option>16–50 vehicles</option>
+                  <option>50+ vehicles</option>
+                </select>
+                <span class="field-err">Required.</span>
+              </div>
+              <div class="field"><label for="fl-timeline">Timeline</label>
+                <select id="fl-timeline" name="Timeline">
+                  <option>Within 30 days</option>
+                  <option>1–3 months</option>
+                  <option>3–6 months</option>
+                  <option>Planning for next fiscal year</option>
+                  <option>Just pricing for now</option>
+                </select>
+              </div>
+              <div class="field full"><label>Services needed *</label>
+                <div style="display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:2px">
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Bedliners"> Bedliners</label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Ceramic Coating"> Ceramic Coating</label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Undercoating"> Undercoating</label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Window Tint"> Window Tint</label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Racks & Cargo"> Racks &amp; Cargo</label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Wraps & Branding"> Wraps &amp; Branding</label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Toolboxes & Storage"> Toolboxes &amp; Storage</label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Suspension & Lift"> Suspension &amp; Lift</label>
+                </div>
+              </div>
+              <div class="field full"><label for="fl-notes">Tell us about the fleet</label><textarea id="fl-notes" name="Message" rows="3" placeholder="Fleet composition, in-service constraints, brand standards&hellip;"></textarea></div>
+            </div>
+          </div>
+          <div data-role="form-success" id="fleet-form-success" hidden></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ DEALER MODE ============ -->
+
+  <section class="cu-p6-mode cu-p6-mode--dealer" data-mode-body="dealer">
+    <div class="wrap">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        <span class="step-lbl">Dealer &amp; Government</span>
+        <span class="sep">&middot;</span>
+        <span>Wholesale Pricing</span>
+      </div>
+      <h1 class="title">Wholesale pricing.</h1>
+      <p class="lede">For franchised dealers, independents, government fleets and municipal accounts. Consistent turnaround, DOT-compliant specs, direct-billed accounts.</p>
+      <div class="cu-p6-standalone-form">
+        <form class="form" id="quote-dealer" data-cms-form="dealer" data-success-body="dealer-form-body" data-success-panel="dealer-form-success" method="POST" novalidate>
+          <div data-role="form-body" id="dealer-form-body">
+            <h3>Dealer / government inquiry</h3>
+            <p class="fs">Same-day response. Volume programs available for franchised dealers, government fleets, and municipal accounts.</p>
+            <div class="fgrid">
+              <div class="field"><label for="dl-org">Organization *</label><input id="dl-org" name="Organization Name" required><span class="field-err">Required.</span></div>
+              <div class="field"><label for="dl-orgtype">Organization type *</label>
+                <select id="dl-orgtype" name="Organization Type" required>
+                  <option value="">Select…</option>
+                  <option>Franchised Dealer</option>
+                  <option>Independent Dealer</option>
+                  <option>Government / Municipal</option>
+                  <option>Emergency Services</option>
+                  <option>Auction / Wholesaler</option>
+                </select>
+                <span class="field-err">Required.</span>
+              </div>
+              <div class="field"><label for="dl-contact">Contact name *</label><input id="dl-contact" name="Contact Name" autocomplete="name" required><span class="field-err">Required.</span></div>
+              <div class="field"><label for="dl-title">Title</label><input id="dl-title" name="Contact Title" autocomplete="organization-title"></div>
+              <div class="field"><label for="dl-email">Work email *</label><input id="dl-email" name="Work Email" type="email" autocomplete="email" required><span class="field-err">Valid email required.</span></div>
+              <div class="field"><label for="dl-phone">Phone *</label><input id="dl-phone" name="Phone" type="tel" autocomplete="tel" required><span class="field-err">Required.</span></div>
+              <div class="field"><label for="dl-vol">Monthly volume *</label>
+                <select id="dl-vol" name="Monthly Volume" required>
+                  <option value="">Select…</option>
+                  <option>1–5 units / month</option>
+                  <option>6–15 units / month</option>
+                  <option>16–40 units / month</option>
+                  <option>40+ units / month</option>
+                </select>
+                <span class="field-err">Required.</span>
+              </div>
+              <div class="field"><label for="dl-timeline">Program start</label>
+                <select id="dl-timeline" name="Timeline">
+                  <option>ASAP</option>
+                  <option>Within 30 days</option>
+                  <option>Next quarter</option>
+                  <option>Exploring options</option>
+                </select>
+              </div>
+              <div class="field full"><label>Services *</label>
+                <div style="display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:2px">
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Bedliners"> Bedliners</label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Ceramic Coating"> Ceramic Coating</label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="PPF"> PPF</label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Undercoating"> Undercoating</label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Window Tint"> Window Tint</label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Emergency Vehicle Upfit"> Emergency Vehicle Upfit</label>
+                  <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Wraps & Branding"> Wraps &amp; Branding</label>
+                </div>
+              </div>
+              <div class="field full"><label for="dl-notes">Program notes</label><textarea id="dl-notes" name="Message" rows="3" placeholder="Preferred billing arrangement, DOT specs, brand standards&hellip;"></textarea></div>
+            </div>
+          </div>
+          <div data-role="form-success" id="dealer-form-success" hidden></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+</div>
+
+
 <script>
-(function () {
+/* ============================================================
+   1. ILLUSTRATION LIBRARY
+   Simple line drawings, 24x24 grid. Swap any value for your own
+   SVG (or set an option's `img` to a photo URL - see note below).
+   ============================================================ */
+const ART = {
+  /* --- bedliner --- */
+  bedStd:      '<path d="M2.5 9.5h19v8.5a1 1 0 0 1-1 1h-17a1 1 0 0 1-1-1z"/><path d="M2.5 9.5 5 5.5h14l2.5 4"/><path d="M7 13.5h10"/>',
+  bedPrem:     '<path d="M2.5 9.5h19v8.5a1 1 0 0 1-1 1h-17a1 1 0 0 1-1-1z"/><path d="M2.5 9.5 5 5.5h14l2.5 4"/><path d="m12 11.4.85 1.9 1.9.85-1.9.85-.85 1.9-.85-1.9-1.9-.85 1.9-.85z"/>',
+  wheelWell:   '<path d="M2.5 18h19"/><path d="M6 18a6 6 0 0 1 12 0"/><path d="M9 18a3 3 0 0 1 6 0"/><path d="M4.5 12.5h.01M7 9h.01M12 7.5h.01M17 9h.01M19.5 12.5h.01"/>',
+
+  /* --- tonneau --- */
+  rollup:      '<rect x="2.5" y="5.5" width="19" height="3.6" rx="1.8"/><path d="M4 9.1v9h16v-9"/><path d="M7.5 13h9"/>',
+  trifold:     '<rect x="2.5" y="7.5" width="19" height="9" rx="1.2"/><path d="M8.8 7.5v9"/><path d="M15.2 7.5v9"/>',
+  retrax:      '<rect x="2.5" y="5" width="4.6" height="14" rx="2.3"/><path d="M7.1 8.5H21"/><path d="M7.1 15.5H21"/><path d="M21 8.5v7"/>',
+
+  /* --- undercoating --- */
+  waxShield:   '<path d="M12 3 19 6v5.6c0 4.2-3 6.9-7 8.4-4-1.5-7-4.2-7-8.4V6z"/><path d="M12 9.4c1.2 1.5 2 2.6 2 3.5a2 2 0 0 1-4 0c0-.9.8-2 2-3.5z"/>',
+  cavityWax:   '<rect x="2.5" y="8" width="19" height="8" rx="2"/><path d="M12 9.6c1.1 1.4 1.8 2.3 1.8 3.1a1.8 1.8 0 0 1-3.6 0c0-.8.7-1.7 1.8-3.1z"/><path d="M6 12h1.5M16.5 12H18"/>',
+  rustRemove:  '<path d="m4 20 4-1 9.2-9.2a2.1 2.1 0 0 0-3-3L5 16z"/><path d="m13.6 6.6 3.8 3.8"/><path d="M18 17h4M20 15v4"/>',
+
+  /* --- running boards --- */
+  nerfBar:     '<path d="M3.5 8h17"/><rect x="6.5" y="12.5" width="11" height="3.2" rx="1.6"/><path d="M9 8v4.5M15 8v4.5"/>',
+  oemBoard:    '<path d="M3.5 8.5h17"/><rect x="2.5" y="13" width="19" height="3.2" rx="1"/><path d="M6.5 8.5V13M17.5 8.5V13"/>',
+  ampStep:     '<path d="M3.5 8h17"/><rect x="6" y="14" width="12" height="3.2" rx="1.6"/><path d="M8.5 8 7 14M15.5 8l1.5 6"/><path d="M12.9 2.6 10.4 6.6h2.9l-1.6 3.2"/>',
+  ampXL:       '<path d="M3.5 8h17"/><rect x="3.5" y="14" width="17" height="3.2" rx="1.6"/><path d="M12.9 2.6 10.4 6.6h2.9l-1.6 3.2"/><path d="M2 15.6h-.01M22 15.6h.01"/>',
+  ampSmart:    '<path d="M3.5 9.5h17"/><rect x="6" y="14.5" width="12" height="3.2" rx="1.6"/><path d="M8.6 5.4a4.8 4.8 0 0 1 6.8 0"/><path d="M10.6 7.6a2 2 0 0 1 2.8 0"/><path d="M12 10h.01"/>',
+
+  /* --- hitches --- */
+  hitchBasic:  '<path d="M2.5 9.5h11.5a3.2 3.2 0 0 1 3.2 3.2v1.1"/><circle cx="17.2" cy="16.8" r="2.4"/><path d="M2.5 7.5v4"/><path d="M6 9.5v2.5"/>',
+  hitchStealth:'<path d="M4.5 10h9a3.2 3.2 0 0 1 3.2 3.2"/><circle cx="16.7" cy="16.6" r="2.3"/><path d="M16.7 13.2v1.1"/><rect x="1.6" y="8" width="2.9" height="4" rx=".8"/><path d="M20 9.5c1.4 1.6 1.4 3.4 0 5"/>',
+  hitchEco:    '<path d="M3.5 10.5h9.5a3.2 3.2 0 0 1 3.2 3.2"/><circle cx="16.2" cy="17" r="2.3"/><path d="M21.5 3.5c0 4.3-2.6 6.4-5.4 6.4 0-3.8 2.2-6.4 5.4-6.4z"/>',
+  plug4:       '<rect x="3.5" y="6.5" width="17" height="11" rx="3.4"/><path d="M9 10.5h.01M15 10.5h.01M9 13.8h.01M15 13.8h.01"/>',
+  plug7:       '<rect x="3.5" y="6" width="17" height="12" rx="3.6"/><path d="M8.6 9.5h.01M12 9h.01M15.4 9.5h.01M8.2 12.8h.01M12 11.9h.01M15.8 12.8h.01M12 15.1h.01"/>',
+  brakeCtrl:   '<rect x="3.5" y="4.5" width="11" height="15" rx="2.4"/><path d="M6.8 8.5h4.4"/><circle cx="9" cy="14" r="2.2"/><path d="M17.4 8.6a4.6 4.6 0 0 1 0 6.8"/><path d="M20.4 6.3a8 8 0 0 1 0 11.4"/>',
+
+  /* --- ceramic --- */
+  ceramic1:    '<path d="M12 3 19 6.2v5.4c0 4.2-3 6.9-7 8.4-4-1.5-7-4.2-7-8.4V6.2z"/><path d="m9.3 11.8 1.9 1.9 3.6-3.8"/>',
+  ceramic5:    '<path d="M12 3 19 6.2v5.4c0 4.2-3 6.9-7 8.4-4-1.5-7-4.2-7-8.4V6.2z"/><path d="M8.4 10h7.2M9.4 13h5.2M10.6 16h2.8"/>',
+  graphene:    '<circle cx="12" cy="12" r="8.8"/><path d="M12 3.2v17.6M4.4 7.6l15.2 8.8M4.4 16.4l15.2-8.8"/><circle cx="12" cy="12" r="2.1"/>',
+  wheelCoat:   '<circle cx="12" cy="12" r="7.6"/><circle cx="12" cy="12" r="2.9"/><path d="M12 4.4v3.1M12 16.5v3.1M4.4 12h3.1M16.5 12h3.1"/>',
+  glassTrim:   '<rect x="3.5" y="5" width="17" height="12" rx="2"/><path d="M7 17l-1 2.6M17 17l1 2.6"/><path d="m6.5 12.5 3.5-3.5"/><path d="m11 14 5-5"/>',
+  paintCorr:   '<circle cx="9.5" cy="13.5" r="5"/><path d="m14 9.9 4.4-4.4a2.1 2.1 0 0 1 3 3L17 12.9"/><path d="M9.5 11a2.5 2.5 0 0 0-2.5 2.5"/>',
+
+  /* --- tint --- */
+  tintCarbon:  '<rect x="4" y="4.5" width="16" height="15" rx="1.6"/><path d="M4 12h16"/><path d="M9 4.5v15"/>',
+  tintCeramic: '<rect x="2.5" y="7" width="13.5" height="11.5" rx="1.6"/><circle cx="19.2" cy="5.2" r="2.2"/><path d="M19.2 1.4v.8M22.9 5.2h.8M21.9 2.5l.6-.6M16.5 2.5l-.6-.6"/><path d="M6 11.5h6M6 14.5h4"/>',
+  windshield:  '<path d="m3 16.5 3.6-8.5h10.8l3.6 8.5z"/><path d="M12 8v8.5"/><path d="M3 16.5h18"/>',
+  sunroof:     '<path d="M3.5 15.5V10L12 5.2 20.5 10v5.5"/><rect x="8" y="8.6" width="8" height="4.4" rx="1"/>',
+  tintRemove:  '<path d="M4.5 4.5h15v9l-6 6h-9z"/><path d="M19.5 13.5h-6v6"/><path d="M8 8.5h6"/>',
+
+  /* --- camper shell --- */
+  shellFg:     '<path d="M2.5 17.5v-6L6 6.5h10.5l3.5 5v6"/><path d="M1.5 17.5h21"/><rect x="8" y="9.5" width="6.4" height="4.2" rx="1"/>',
+  shellAl:     '<path d="M2.5 17.5v-5.2l3.2-5.3h11.6l3.2 5.3v5.2"/><path d="M1.5 17.5h21"/><path d="M5.5 12.3h13"/><path d="M9 12.3v5.2M15 12.3v5.2"/>',
+  shellSoft:   '<path d="M3 17.5c0-5.5 2.4-8.5 9-8.5s9 3 9 8.5"/><path d="M1.5 17.5h21"/><path d="M12 9v8.5"/><path d="M6.5 12.4c3.6-1.5 7.4-1.5 11 0"/>',
+  shellLed:    '<path d="M4 9.5h16"/><path d="M7 13.2h.01M12 13.2h.01M17 13.2h.01"/><path d="M7 16.4v2M12 16.4v2M17 16.4v2"/><path d="M4 6.5h16"/>',
+  roofRack:    '<path d="M3 13.5h18M3 10.5h18"/><path d="M6.5 13.5v-3M17.5 13.5v-3"/><path d="M4.5 18c2.5-2 12.5-2 15 0"/>',
+
+  /* --- toolbox --- */
+  boxCross:    '<rect x="2.2" y="7.8" width="19.6" height="9.2" rx="1.6"/><path d="M2.2 12.4h19.6"/><rect x="9.8" y="10.4" width="4.4" height="4" rx="1"/>',
+  boxLow:      '<rect x="2.2" y="9.8" width="19.6" height="6" rx="1.6"/><path d="M2.2 12.8h19.6"/><rect x="10.2" y="11.2" width="3.6" height="3.2" rx=".9"/><path d="M4.5 8.2h15"/>',
+  boxSide:     '<rect x="3.5" y="6.8" width="10" height="11.4" rx="1.6"/><path d="M3.5 12.5h10"/><path d="m15.8 8.6 4.7 2.3v6.2l-4.7 2.3z"/>',
+  lockUp:      '<rect x="4.6" y="10" width="14.8" height="9.2" rx="2.2"/><path d="M8.2 10V7.6a3.8 3.8 0 0 1 7.6 0V10"/><circle cx="12" cy="14.4" r="1.4"/>',
+  railMount:   '<path d="M3.5 7.5h17"/><path d="M6.8 7.5v7.4M17.2 7.5v7.4"/><rect x="4.5" y="14.9" width="15" height="3.4" rx="1.2"/>',
+
+  /* --- suspension --- */
+  levelKit:    '<rect x="2.2" y="9.4" width="19.6" height="5.2" rx="1.6"/><circle cx="12" cy="12" r="1.7"/><path d="M7 10.4v3.2M17 10.4v3.2"/>',
+  liftKit:     '<path d="M6 4h12"/><path d="M18 4 6 8.3l12 3.9-12 3.9L18 20"/><path d="M6 20h12"/>',
+  lowerKit:    '<path d="M3.5 14.5h17"/><path d="M12 3.5v7.4"/><path d="m8.7 8 3.3 3.3L15.3 8"/><path d="M6 18h12"/>',
+  alignment:   '<circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="12" r="2.2"/><path d="M12 3.8v3.4M12 16.8v3.4M3.8 12h3.4M16.8 12h3.4"/>',
+  shocks:      '<rect x="9" y="2.6" width="6" height="8.4" rx="3"/><path d="M12 11v2.6"/><path d="M8.4 13.6h7.2L14.4 21H9.6z"/>',
+
+  /* --- exterior --- */
+  fenderFlare: '<path d="M2.5 18h19"/><path d="M5 18a7 7 0 0 1 14 0"/><path d="M2.6 16.2a9.6 9.6 0 0 1 18.8 0"/>',
+  mudFlap:     '<path d="M3.5 16.6a5 5 0 0 1 9.6 0"/><rect x="14.2" y="9.4" width="5.8" height="9.2" rx="1.2"/><path d="M2.5 18.6h19"/>',
+  bullBar:     '<rect x="4.2" y="7.6" width="15.6" height="9.4" rx="2"/><path d="M8.3 7.6v9.4M12 7.6v9.4M15.7 7.6v9.4"/><path d="M4.2 12.3h15.6"/>',
+  hoodDefl:    '<path d="M3.5 15q6.5-7.5 17-7.5"/><path d="M3.5 15h17"/><path d="m9 11.4 1 3.2M14.2 9.2l1 5.4"/>',
+  ventVisor:   '<rect x="4" y="7.5" width="16" height="10.5" rx="2"/><path d="M4 11q8-5.2 16 0"/><path d="M7.5 14.5h4"/>',
+
+  /* --- lighting --- */
+  lightBar:    '<rect x="2.6" y="9.2" width="18.8" height="4.2" rx="2.1"/><path d="m6 16.4-1.2 3.2M12 16.4v3.2M18 16.4l1.2 3.2"/><path d="M6 9.2V7M18 9.2V7"/>',
+  podLight:    '<circle cx="8.4" cy="12" r="4.4"/><circle cx="8.4" cy="12" r="1.5"/><path d="m14.4 7.6 4.2-2M14.4 12h4.9M14.4 16.4l4.2 2"/>',
+  underGlow:   '<path d="M3.5 10h17"/><path d="m5.6 10 1.6-3.4h9.6L18.4 10"/><path d="M4.6 14.5h2.2M10.9 14.5h2.2M17.2 14.5h2.2"/><path d="M3.5 18h17"/>',
+  harness:     '<rect x="13" y="8.6" width="8" height="7.4" rx="2.2"/><path d="M3 6h3.4a4.4 4.4 0 0 1 4.4 4.4v1.9"/><path d="M17 11.4v2.4"/><circle cx="3" cy="6" r="1.4"/>',
+  beacon:      '<path d="M8 16.2h8l-1-5.2a3 3 0 0 0-6 0z"/><path d="M5.6 19h12.8"/><path d="M12 2.6v3M5.8 5.4l2.1 2.1M18.2 5.4l-2.1 2.1"/>',
+
+  /* --- wraps --- */
+  vinylLetter: '<path d="M4.5 18V6.5h3.6a2.9 2.9 0 0 1 0 5.8H4.5"/><path d="m11.4 18 3.7-11.5L18.8 18"/><path d="M12.9 14.4h4.4"/>',
+  partialWrap: '<rect x="2.6" y="6.6" width="18.8" height="10.8" rx="2"/><path d="m13.4 6.6-5 10.8M18.6 6.6l-5 10.8"/>',
+  fullWrap:    '<rect x="2.6" y="6.6" width="18.8" height="10.8" rx="2"/><path d="m6.4 17.4 6.2-10.8M11.4 17.4l6.2-10.8M16.4 17.4 21.4 9"/>',
+  designSvc:   '<path d="M12 3a9 9 0 1 0 0 18c1.2 0 2.1-.9 2.1-1.9 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .9-1.9 1.9-1.9h1.2A4.8 4.8 0 0 0 21 10c0-3.9-4-7-9-7z"/><path d="M7.8 10.2h.01M12 7.7h.01M16.2 10.2h.01"/>',
+  chromeTrim:  '<path d="m11 2.8 1.9 4.7 4.7 1.9-4.7 1.9-1.9 4.7-1.9-4.7-4.7-1.9 4.7-1.9z"/><path d="m18 15.4.95 2.15 2.15.95-2.15.95L18 21.6l-.95-2.15-2.15-.95 2.15-.95z"/>',
+
+  /* --- industrial --- */
+  trailerCoat: '<rect x="2.6" y="7.6" width="14" height="6.4" rx="1.2"/><circle cx="6.6" cy="17" r="2.1"/><circle cx="12.6" cy="17" r="2.1"/><path d="M16.6 10.8h4.8"/><path d="M19 8.4v4.8"/>',
+  nonSlip:     '<rect x="2.6" y="6" width="18.8" height="12" rx="2"/><path d="M6.6 9.6h.01M11 9.6h.01M15.4 9.6h.01M19 9.6h.01M8.6 12.5h.01M13 12.5h.01M17.4 12.5h.01M6.6 15.4h.01M11 15.4h.01M15.4 15.4h.01M19 15.4h.01"/>',
+  tankLining:  '<rect x="4.6" y="4.6" width="14.8" height="14.8" rx="4.2"/><path d="M4.6 12.4c2.5 2 4.6-2 7.4 0s4.9 2 7.4 0"/><path d="M12 4.6V9"/>',
+  sandblast:   '<path d="M2.6 8.4 8 11.4l-5.4 3z"/><path d="M8 11.4h3.4"/><path d="M14 7.4h.01M17.4 6.2h.01M15.2 11.4h.01M19.6 10.8h.01M14 15.4h.01M17.8 16.6h.01M21.4 13.8h.01"/>',
+  colorMatch:  '<rect x="2.6" y="3.6" width="7.4" height="7.4" rx="1.6"/><rect x="13.4" y="3.6" width="7.4" height="7.4" rx="1.6"/><rect x="8" y="13" width="7.4" height="7.4" rx="1.6"/><path d="m18.4 15.4 1.7 1.7 2.6-2.9"/>',
+
+  /* --- detailing --- */
+  washExpress: '<path d="M4.6 9.6h14.8L18 19.4H6z"/><path d="M9 6.4c0 .9-.8 1.4-.8 2.2M12.4 4.6c0 1.1-1 1.7-1 2.6M15.8 6.4c0 .9-.8 1.4-.8 2.2"/>',
+  fullDetail:  '<path d="M2.6 15.4h18.8"/><path d="m4.8 15.4 1.7-4.4h11l1.7 4.4"/><circle cx="7.4" cy="17.6" r="1.8"/><circle cx="16.6" cy="17.6" r="1.8"/><path d="m12 2.6.75 1.95 1.95.75-1.95.75L12 8l-.75-1.95-1.95-.75 1.95-.75z"/>',
+  deconPolish: '<circle cx="12" cy="12" r="8.4"/><path d="M7.6 14c1.6-2.2 2.8-2.2 4.4 0s2.8 2.2 4.4 0"/><path d="M8.6 9.2h.01M12.4 8.2h.01M15.8 9.6h.01"/>',
+  engineBay:   '<path d="M3.4 15.6v-4.4h3l2-2h4.2v2h2.2l3.8 2.4v2z"/><path d="M6 15.6v2.2M18.6 15.6v2.2"/><path d="M12.6 6.6v2.6"/><path d="M9.4 6.6h6"/>',
+  ozone:       '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.8a9.2 9.2 0 0 1 0 18.4"/><path d="M4.4 7.6c2.2 1.7 4 2.2 7.6 2.2M4.4 16.4c2.2-1.7 4-2.2 7.6-2.2"/>',
+};
+
+/* ============================================================
+   2. SERVICES + OPTIONS
+   -----------------------------------------------------------
+   base[]   -> pick ONE (radio behaviour)
+   addons[] -> stack on top of the base pick (multi-select).
+               Anything you list here is treated as an "add ..."
+               item: it combines with whatever base option is
+               already selected for that service.
+   art      -> key from ART above.
+   img      -> OPTIONAL. Set to a photo URL and it replaces the
+               drawing on that card. e.g. img:'/img/bedliner.jpg'
+   info     -> the plain-English explainer shown on (i) hover.
+   ============================================================ */
+const SERVICES = [
+{
+  id:'bedliner', name:'Bedliner', top:true,
+  sub:'Spray-in protection for the bed floor, walls and rails.',
+  base:[
+    {id:'std', name:'Standard Patriot Liner', art:'bedStd',
+     desc:'Even-textured spray-in coat over the bed floor, walls and tailgate.',
+     info:'Our everyday spray-in liner. It bonds to the bare metal, so it will not shift, trap water or rattle the way a plastic drop-in does. Textured finish for grip, and it seals the seams where rust normally starts.'},
+    {id:'prem', name:'Premium Patriot Liner', art:'bedPrem',
+     desc:'Thicker build, UV-stable topcoat, sharper edge lines.',
+     info:'Same bond as the standard liner but laid down heavier, with a UV-stable topcoat so it holds its colour instead of chalking out in the sun. Best pick for a truck that works hard or sits outside year-round.'},
+    {id:'wells', name:'Under Wheel Wells', art:'wheelWell',
+     desc:'Liner sprayed into the wheel arches for chip and noise control.',
+     info:'Coats the inner wheel arches, where road spray, salt and stones hit hardest. It stops paint chipping into rust and noticeably knocks down tyre roar inside the cab.'}
+  ]
+},
+{
+  id:'ceramic', name:'Ceramic Coating',
+  sub:'A hard, hydrophobic layer bonded to your paint.',
+  base:[
+    {id:'entry', name:'1-Year Entry Ceramic', art:'ceramic1',
+     desc:'Single-layer coating with a light gloss and water beading.',
+     info:'The entry point. One bonded layer that makes the paint slick, easy to rinse and far less grabby with dirt. Roughly a year of protection with normal washing.'},
+    {id:'pro', name:'5-Year Pro Ceramic', art:'ceramic5',
+     desc:'Multi-layer system with deeper gloss and stronger chemical resistance.',
+     info:'Several layers built up on prepped paint. Handles bug guts, tree sap and bird droppings without etching, and holds its gloss for years rather than months. Includes the paint prep needed to make the coating stick properly.'},
+    {id:'graphene', name:'9H Graphene Ceramic', art:'graphene',
+     desc:'Our hardest finish - slicker surface, less water spotting.',
+     info:'Graphene-infused ceramic. It spreads heat more evenly across the panel, which cuts down on the water spotting you get with regular ceramic on a hot hood, and the surface is even slicker to the touch.'}
+  ],
+  addons:[
+    {id:'wheels', name:'Wheel & Caliper Coating', art:'wheelCoat',
+     desc:'Same coating on the wheel faces, barrels and calipers.',
+     info:'Brake dust normally bakes onto hot wheels. Coated wheels release it with a rinse instead of a scrub, and the calipers stop looking dusty a week after a wash.'},
+    {id:'glass', name:'Glass & Trim Coating', art:'glassTrim',
+     desc:'Water-shedding layer on the glass, plus trim restoration.',
+     info:'On the windscreen, rain beads and flies off above about 45 mph, so wipers barely get used. On plastic trim it stops the grey, sun-faded look coming back.'},
+    {id:'correct', name:'Paint Correction (1-Step)', art:'paintCorr',
+     desc:'Machine polish before coating to remove swirls and haze.',
+     info:'A ceramic locks in whatever is underneath it. This is the machine polish that removes wash swirls and light haze first, so you seal in clean paint rather than sealing in the scratches.'}
+  ]
+},
+{
+  id:'undercoating', name:'Undercoating',
+  sub:'Rust defence for the frame, floor pans and cavities.',
+  base:[
+    {id:'wax', name:'Wax-based Undercoating', art:'waxShield',
+     desc:'Self-healing wax film over the underbody and frame.',
+     info:'A soft wax film sprayed across the underbody. Because it never fully hardens, a stone chip closes back over itself instead of leaving bare metal open the way cracked rubberised coatings do. Reapplied annually.'}
+  ],
+  addons:[
+    {id:'cavity', name:'Cavity Wax / Rustproofing', art:'cavityWax',
+     desc:'Creeping wax fogged inside rockers, doors and frame rails.',
+     info:'Most trucks rot from the inside out. This one is fogged into the closed sections - rockers, doors, tailgate, frame rails - through the factory access holes, and it creeps along the seams where the spray gun cannot reach.'},
+    {id:'rust', name:'Rust Removal', art:'rustRemove',
+     desc:'Existing surface rust knocked back and treated before coating.',
+     info:'Coating over live rust just hides it. We wire-wheel and treat the affected areas first, then convert what is left so the new coating goes onto stable metal. Priced by how much we find.'}
+  ]
+},
+{
+  id:'tint', name:'Window Tinting',
+  sub:'Heat, glare and UV control - cut and fitted in-house.',
+  base:[
+    {id:'carbon', name:'Carbon Film Tint', art:'tintCarbon',
+     desc:'Matte, non-reflective film that will not fade purple.',
+     info:'A solid everyday film. No metal in it, so nothing interferes with GPS, radio or tyre sensors, and the carbon pigment holds its colour instead of turning purple like cheap dyed film.'},
+    {id:'ceramic', name:'Ceramic IR Film Tint', art:'tintCeramic',
+     desc:'Top-tier heat rejection without going darker.',
+     info:'The one to pick if heat is the actual problem. It blocks a large share of infrared, so the cabin stays noticeably cooler - and it does that at a light shade, which matters in states with strict darkness limits.'},
+    {id:'strip', name:'Windshield Strip / Full Front', art:'windshield',
+     desc:'Sun visor strip along the top, or a clear full-windshield film.',
+     info:'Two choices on the front glass: a shade band across the top for low sun, or a nearly clear IR film over the whole windscreen that cuts heat without changing how it looks. We will confirm what is legal for your state.'}
+  ],
+  addons:[
+    {id:'sunroof', name:'Sunroof Tint', art:'sunroof',
+     desc:'Matching film on the roof glass.',
+     info:'A sunroof is often the single biggest heat source in the cabin. Tinting it matches the rest of the vehicle and takes a real bite out of interior temperature.'},
+    {id:'removal', name:'Old Tint Removal', art:'tintRemove',
+     desc:'Strip failed film and clean off the adhesive.',
+     info:'Bubbled or purple film has to come off before anything new goes on. This covers steaming it off and scraping the leftover adhesive - including working carefully around rear-window defroster lines.'}
+  ]
+},
+{
+  id:'tonneau', name:'Tonneau Cover',
+  sub:'Cover the bed - dry, locked and out of the wind.',
+  base:[
+    {id:'soft', name:'Soft Roll Up Cover', art:'rollup',
+     desc:'Vinyl cover that rolls to the cab in seconds.',
+     info:'Lightest and quickest option. Rolls forward and straps down, so you can go from covered to a fully open bed in under a minute, and it stores flat when you need the whole bed.'},
+    {id:'trifold', name:'Hard Trifold Cover', art:'trifold',
+     desc:'Three rigid panels - security and weather sealing.',
+     info:'Hard panels you can stand a load on, folding forward in thirds. Much better sealed than a soft cover and far harder to get into, while still letting you open the bed without tools.'},
+    {id:'retrax', name:'Retrax Bed Cover', art:'retrax',
+     desc:'Sealed aluminium slats that retract into a canister.',
+     info:'The premium option. Rigid slats roll back into a low-profile canister at the cab, so the cover never leaves the truck and there is nothing to store. Locks at any point along the rails.'}
+  ]
+},
+{
+  id:'boards', name:'Running Boards',
+  sub:'Make the step up easier - fixed or powered.',
+  base:[
+    {id:'nerf', name:'Nerf Bars', art:'nerfBar',
+     desc:'Round tube bars with grip step pads.',
+     info:'Tube-style bars with a stepping pad at each door. Lighter and more open than a full board, so mud and snow fall straight through instead of packing on top.'},
+    {id:'oem', name:'OEM Style Running Boards', art:'oemBoard',
+     desc:'Full-length flat boards, factory look.',
+     info:'A wide flat board running the length of the cab - the widest, most sure-footed step, and closest to the factory look. Best choice if passengers or kids are getting in and out often.'},
+    {id:'amp', name:'AMP Research Power Steps', art:'ampStep',
+     desc:'Motorised step that drops when the door opens.',
+     info:'Tucks flat under the rocker for ground clearance and full aerodynamics, then drops down automatically the moment a door opens. Wires into the factory harness - no cutting.'}
+  ]
+},
+{
+  id:'hitch', name:'Hitches & Towing',
+  sub:'Receiver, wiring and control - a complete tow setup.',
+  base:[
+    {id:'curt', name:'Basic Curt Hitch', art:'hitchBasic',
+     desc:'Bolt-on receiver sized to your vehicle rating.',
+     info:'A dependable bolt-on receiver rated to your vehicle. Covers trailers, bike racks and cargo carriers, and installs into the factory mounting points so nothing gets drilled.'},
+    {id:'stealth', name:'Premium Stealth Hitch', art:'hitchStealth',
+     desc:'Receiver hides behind the bumper when not in use.',
+     info:'The receiver stows out of sight behind the bumper and the removable bar drops in when you need it. Nothing hanging below the bumper, nothing to bark your shin on, no visible hardware.'},
+    {id:'eco', name:'Stainless Eco Hitch', art:'hitchEco',
+     desc:'Stainless build with a low-profile finish.',
+     info:'Stainless construction, so it will not bloom rust at the welds after a couple of salted winters. Sits tight to the bumper with a tidy finish - popular on SUVs and crossovers.'}
+  ],
+  addons:[
+    {id:'4pin', name:'Electrical 4-Pin Wire', art:'plug4',
+     desc:'Basic trailer lighting - turn, brake and tail.',
+     info:'The standard connector for small trailers and bike racks: running lights, brake lights and indicators. It does not carry trailer brakes or charge power.'},
+    {id:'7pin', name:'Electrical 7-Pin Wire', art:'plug7',
+     desc:'Full towing circuit with brake and charge lines.',
+     info:'What you need for a trailer with its own brakes. Adds the electric brake line, reverse and a 12V charge feed on top of the lighting circuit. Required for most travel trailers and larger equipment trailers.'},
+    {id:'brake', name:'Brake Wireless Controller', art:'brakeCtrl',
+     desc:'Proportional trailer braking, no dash box to mount.',
+     info:'Applies the trailer brakes in proportion to yours, so the trailer does not shove you into a stop. The wireless version keeps the module at the hitch and controls it from your phone - nothing drilled into the dash.'}
+  ]
+},
+{
+  id:'shell', name:'Camper Shell',
+  sub:'Turn the bed into lockable, dry, enclosed space.',
+  base:[
+    {id:'fg', name:'Fiberglass Color-Matched Shell', art:'shellFg',
+     desc:'Painted to your truck code, cab-height glass all round.',
+     info:'Sprayed to your factory paint code so it reads as one vehicle, not an add-on. Sealed glass, headliner and interior lighting - the choice when it is a daily driver as well as a work truck.'},
+    {id:'al', name:'Aluminum Contractor Cap', art:'shellAl',
+     desc:'Heavy-duty cap with racks and side access doors.',
+     info:'Built for tools. Aluminium construction takes a roof rack and ladders, and the side doors let you reach gear without climbing into the bed. Far lighter than it looks.'},
+    {id:'soft', name:'Soft Truck Topper', art:'shellSoft',
+     desc:'Framed fabric topper - removable in minutes.',
+     info:'A framed fabric cover that gives you covered, weatherproof height over the bed but comes off in minutes when you need to haul something tall. Lowest cost way to get enclosed space.'}
+  ],
+  addons:[
+    {id:'led', name:'Interior LED Kit', art:'shellLed',
+     desc:'Switched LED strips inside the shell.',
+     info:'Strip lighting along the inside edges with its own switch, so you are not working out of a shell by phone torch at five in the morning.'},
+    {id:'rack', name:'Roof Rack / Crossbars', art:'roofRack',
+     desc:'Load bars rated for ladders, lumber and boxes.',
+     info:'Rated crossbars mounted into the shell structure - not just screwed to the skin - so you can carry ladders, pipe or a roof box without cracking the roof.'}
+  ]
+},
+{
+  id:'toolbox', name:'Toolboxes',
+  sub:'Secure, weather-sealed storage in the bed.',
+  base:[
+    {id:'cross', name:'Crossover Aluminum Toolbox', art:'boxCross',
+     desc:'Classic box across the bed behind the cab.',
+     info:'The standard crossover box: sits on the bed rails behind the cab, opens from either side and keeps the rest of the bed clear. Weather-sealed lid and a keyed latch.'},
+    {id:'low', name:'Low-Profile Crossover', art:'boxLow',
+     desc:'Sits below the rail line - works with most covers.',
+     info:'Same idea, kept below the bed rails so it does not spoil the roofline and, more usefully, still lets a tonneau cover close over the top of it.'},
+    {id:'side', name:'Side-Mount / Chest Box', art:'boxSide',
+     desc:'Mounts along a rail or against the bulkhead.',
+     info:'Runs along one side of the bed or stands against the front wall. The best pick if you need to keep the full bed floor free for pallets, sheets or a dirt bike.'}
+  ],
+  addons:[
+    {id:'lock', name:'Locking Upgrade', art:'lockUp',
+     desc:'Stainless paddle latch and reinforced strike.',
+     info:'Swaps the standard latch for a stainless paddle with a reinforced strike plate - considerably harder to pop with a pry bar than a factory latch.'},
+    {id:'rail', name:'Bed Rail Mount Kit', art:'railMount',
+     desc:'Clamp hardware - no drilling into the bed.',
+     info:'Clamps the box to the bed rails instead of drilling through them. Nothing punctured means nothing to rust, and the box comes off cleanly if you sell the truck.'}
+  ]
+},
+{
+  id:'powerstep', name:'AMP PowerStep',
+  sub:'Powered steps that deploy the moment a door opens.',
+  base:[
+    {id:'std', name:'AMP PowerStep', art:'ampStep',
+     desc:'The original - drops on door open, tucks away after.',
+     info:'Motorised step that stays hidden under the rocker until you open a door. You keep full ground clearance and a clean profile, and get a proper step exactly when you need one.'},
+    {id:'xl', name:'AMP PowerStep XL', art:'ampXL',
+     desc:'Extends further out and lower for taller lifts.',
+     info:'Reaches further out and sits lower than the standard unit. This is the version for a lifted truck or anyone who finds the standard step still too high to be comfortable.'},
+    {id:'smart', name:'AMP PowerStep Smart Series', art:'ampSmart',
+     desc:'App-controlled with adjustable deploy behaviour.',
+     info:'Adds app control on top: hold the step down while loading, deploy it without opening a door, or change which doors trigger it. Handy on a shared or fleet vehicle.'}
+  ],
+  addons:[
+    {id:'harness', name:'Plug-and-Play Harness', art:'harness',
+     desc:'Vehicle-specific harness - no cut wires.',
+     info:'A harness made for your exact vehicle that plugs into factory connectors. No splicing, no tape joints under the carpet, and nothing that will upset the warranty conversation.'},
+    {id:'led', name:'Integrated LED Light Kit', art:'lightBar',
+     desc:'Step lighting that comes on with the door.',
+     info:'Lights built into the step itself, wired to come on with the door. Genuinely useful on a dark job site or a gravel driveway.'}
+  ]
+},
+{
+  id:'suspension', name:'Suspension / Lift',
+  sub:'Change ride height, stance and load behaviour.',
+  base:[
+    {id:'level', name:'Leveling Kit (2")', art:'levelKit',
+     desc:'Raise the front to match the rear - room for bigger tyres.',
+     info:'Trucks leave the factory nose-down so they sit flat under load. A leveling kit lifts the front to match the rear, kills the rake, and usually opens up room for one tyre size larger.'},
+    {id:'lift', name:'Full Suspension Lift (4-6")', art:'liftKit',
+     desc:'Complete lift with corrected geometry.',
+     info:'A full kit - not just spacers. Control arms, shocks and driveline angles are addressed together so the truck still drives properly at height, rather than wandering and eating ball joints.'},
+    {id:'lower', name:'Lowering / Load-Level Kit', art:'lowerKit',
+     desc:'Drop the stance, or keep it level under weight.',
+     info:'Two directions, one job: drop the ride height for a lower stance and better road manners, or add air/load-level springs so the rear stops squatting under a trailer or a slide-in camper.'}
+  ],
+  addons:[
+    {id:'align', name:'Alignment', art:'alignment',
+     desc:'Full alignment after the height change.',
+     info:'Any height change moves your alignment angles. Skipping this is how a new set of tyres gets ruined in a few thousand miles - it is genuinely not optional after a lift or a drop.'},
+    {id:'shocks', name:'Upgraded Shocks', art:'shocks',
+     desc:'Correct-length performance shocks for the new height.',
+     info:'Factory shocks are the wrong length once you change ride height, so they run out of travel and wear fast. Correct-length performance shocks fix the travel and sharpen the ride at the same time.'}
+  ]
+},
+{
+  id:'exterior', name:'Exterior Accessories',
+  sub:'Trim and protection around the body.',
+  base:[
+    {id:'flares', name:'Fender Flares', art:'fenderFlare',
+     desc:'Cover wider tyres and stop body spray.',
+     info:'Widen the arch coverage so bigger tyres are legal and the sides of your truck stop getting sandblasted with road spray. Available in textured black or painted to match.'},
+    {id:'mud', name:'Mud Flaps & Splash Guards', art:'mudFlap',
+     desc:'Keep stones and salt off the rockers and paint.',
+     info:'The cheapest rust prevention there is. They catch the grit thrown forward off the tyres before it chips the rockers and doors - and stop you throwing stones at whoever is behind you.'},
+    {id:'bull', name:'Grille Guard / Bull Bar', art:'bullBar',
+     desc:'Front-end protection with a light mounting point.',
+     info:'Protects the grille and lower front end from low-speed knocks and brush, and gives you a solid place to hang auxiliary lighting. We will match it to your sensor and airbag setup.'}
+  ],
+  addons:[
+    {id:'hood', name:'Hood Deflector', art:'hoodDefl',
+     desc:'Lifts airflow over the leading edge of the hood.',
+     info:'Pushes the airstream - and the stones and bugs riding in it - up and over the front of the hood and the base of the windscreen.'},
+    {id:'vent', name:'Vent Visors', art:'ventVisor',
+     desc:'Crack the windows in the rain without getting wet.',
+     info:'In-channel deflectors that let you leave the windows open an inch in the rain, which keeps the cab from cooking on a hot day and cuts wind noise at motorway speed.'}
+  ]
+},
+{
+  id:'led', name:'LED Lighting',
+  sub:'Auxiliary lighting, wired and switched properly.',
+  base:[
+    {id:'bar', name:'Light Bar (Roof / Bumper)', art:'lightBar',
+     desc:'High-output bar with a combo beam pattern.',
+     info:'The big one. Combo optics give you distance down the middle and spread at the edges. We size the bar to the mounting point and aim it so it is actually useful rather than just bright.'},
+    {id:'pod', name:'Pod / Ditch Lights', art:'podLight',
+     desc:'Small pods aimed into the verges and corners.',
+     info:'Compact pods mounted at the A-pillar or bumper, aimed off to the sides. They light the ditch, the driveway edge and the inside of a turn - where the headlights are not pointing.'},
+    {id:'bed', name:'Bed & Rock Under-Glow Kit', art:'underGlow',
+     desc:'Work lighting in the bed and under the body.',
+     info:'Strips inside the bed rails plus optional pods under the body. Turns loading in the dark from a two-hands-and-a-torch job into a switch.'}
+  ],
+  addons:[
+    {id:'harness', name:'Wiring Harness & Switch', art:'harness',
+     desc:'Relay, fused feed and a proper dash switch.',
+     info:'Relay, in-line fuse and a switch mounted somewhere sensible. This is the difference between lighting that lasts and lighting that melts a connector in a year.'},
+    {id:'beacon', name:'Amber Beacon / Strobe', art:'beacon',
+     desc:'Amber warning light for work and site rules.',
+     info:'Amber warning lighting for site access, roadside work or snow removal. Many yards and job sites will not let you in without one.'}
+  ]
+},
+{
+  id:'wraps', name:'Wraps & Branding',
+  sub:'Lettering, partial and full-vehicle vinyl.',
+  base:[
+    {id:'letters', name:'Cut Vinyl Lettering & Logos', art:'vinylLetter',
+     desc:'Name, number and logo cut in solid vinyl.',
+     info:'Cut vinyl applied straight to the paint - no background panel. The cheapest way to look like a real company, and the easiest to remove or update when a number changes.'},
+    {id:'partial', name:'Partial Wrap', art:'partialWrap',
+     desc:'Printed panels on doors, bed sides and rear.',
+     info:'Printed graphics on the high-visibility panels while leaving the rest of the paint showing. You get most of the visual impact of a full wrap for a fraction of the material.'},
+    {id:'full', name:'Full Color-Change Wrap', art:'fullWrap',
+     desc:'Every panel wrapped - new colour, paint protected.',
+     info:'Every panel covered, edges tucked. It changes the colour completely and shields the paint underneath, so the factory finish comes back intact when the wrap comes off.'}
+  ],
+  addons:[
+    {id:'design', name:'Design & Layout Service', art:'designSvc',
+     desc:'We draw the artwork and proof it on your vehicle.',
+     info:'Our designer builds the layout on a template of your actual vehicle and sends a proof, so you see how it sits around door handles, body lines and the fuel filler before anything is printed.'},
+    {id:'chrome', name:'Reflective / Chrome Accents', art:'chromeTrim',
+     desc:'Reflective striping or chrome accent panels.',
+     info:'Reflective vinyl lights up under headlights, which is a safety win for anything parked roadside at night. Chrome accents are the same material family, used for contrast.'}
+  ]
+},
+{
+  id:'industrial', name:'Industrial Coatings',
+  sub:'Protective coatings for equipment, trailers and tanks.',
+  base:[
+    {id:'equip', name:'Equipment & Trailer Coating', art:'trailerCoat',
+     desc:'Abrasion-resistant coating on decks and frames.',
+     info:'The same chemistry as a bedliner, used on trailer decks, ramps, toolboxes and equipment frames. It takes impact and abrasion that paint simply cannot.'},
+    {id:'nonslip', name:'Non-Slip Deck Coating', art:'nonSlip',
+     desc:'Aggregate-textured surface for wet footing.',
+     info:'Aggregate is broadcast into the coating to build a gritted, high-traction surface. Used on steps, ramps, walkways and trailer decks that get wet or oily.'},
+    {id:'tank', name:'Tank / Container Lining', art:'tankLining',
+     desc:'Chemical-resistant lining for tanks and containers.',
+     info:'A seamless lining sprayed inside tanks, bins and containers to stop corrosion and product contamination. Chemistry is chosen for whatever is going to live inside it - tell us the contents.'}
+  ],
+  addons:[
+    {id:'blast', name:'Sandblast Prep', art:'sandblast',
+     desc:'Blast to bare metal before coating.',
+     info:'Adhesion is everything on industrial work. Blasting to a clean profile is what makes the coating actually bond instead of peeling off in sheets a year later.'},
+    {id:'color', name:'Custom Color Match', art:'colorMatch',
+     desc:'Tinted to your fleet or brand colour.',
+     info:'We tint the coating to your fleet or brand colour so equipment matches the trucks. Send us a code, a sample panel or a photo of what you are matching to.'}
+  ]
+},
+{
+  id:'detailing', name:'Mobile Detailing',
+  sub:'We come to you - driveway, yard or job site.',
+  base:[
+    {id:'express', name:'Express Wash & Vac', art:'washExpress',
+     desc:'Exterior wash, wheels, glass and interior vacuum.',
+     info:'The regular upkeep visit. Hand wash, wheels, glass and a full interior vacuum and wipe-down. Ideal on a repeating schedule for a fleet or a daily driver.'},
+    {id:'full', name:'Full Interior + Exterior Detail', art:'fullDetail',
+     desc:'Deep clean throughout - seats, carpets, vents, trim.',
+     info:'The full reset. Seats and carpets extracted, vents and crevices cleaned, leather conditioned, trim dressed, exterior washed and sealed. This is the one before you sell or hand over a vehicle.'},
+    {id:'decon', name:'Paint Decontamination & Polish', art:'deconPolish',
+     desc:'Clay, chemical decon and a gloss-restoring polish.',
+     info:'Pulls the embedded grit, rail dust and fallout out of the paint that washing leaves behind, then polishes the surface back to gloss. The right prep step before any coating or wax.'}
+  ],
+  addons:[
+    {id:'engine', name:'Engine Bay Cleaning', art:'engineBay',
+     desc:'Degrease and dress the bay - electronics protected.',
+     info:'Sensitive components are covered, the bay is degreased and rinsed low-pressure, then plastics and hoses are dressed. A clean bay also makes an oil or coolant leak obvious early.'},
+    {id:'ozone', name:'Odor / Ozone Treatment', art:'ozone',
+     desc:'Neutralise smoke, pet and mildew odour at the source.',
+     info:'Ozone oxidises the odour-causing compounds in the fabric and the vents rather than covering them with fragrance. The go-to for smoke, pets, spilled milk or a damp carpet.'}
+  ]
+}
+];
+const MAX_SERVICES = 12;
+
+/* ============================================================
+   3. STATE + HELPERS
+   ============================================================ */
+const state = {
+  open: [],     // service ids, in click order
+  pick: {},     // serviceId -> base option id
+  adds: {}      // serviceId -> Set of addon option ids
+};
+
+const $  = (s,r)=> (r||document).querySelector(s);
+const $$ = (s,r)=> Array.from((r||document).querySelectorAll(s));
+const svc = id => SERVICES.find(s=>s.id===id);
+const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function icon(key, size){
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" '+
+         'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"'+
+         (size? ' width="'+size+'" height="'+size+'"':'')+'>'+(ART[key]||ART.bedStd)+'</svg>';
+}
+function thumb(o){
+  // If an option has a photo URL, it wins over the drawing.
+  return o.img
+    ? '<img src="'+esc(o.img)+'" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:12px">'
+    : icon(o.art);
+}
+const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"/></svg>';
+
+/* ============================================================
+   4. RENDER: service grid
+   ============================================================ */
+const grid = $('#grid');
+
+function buildGrid(){
+  grid.innerHTML = SERVICES.map(s=>
+    '<button class="tile" type="button" role="checkbox" aria-checked="false" data-svc="'+s.id+'">'+
+      '<span class="t-check">'+CHECK.replace('stroke-width="3"','stroke-width="3.4"')
+        .replace('<svg','<svg width="14" height="14"')+'</span>'+
+      '<span class="t-name">'+esc(s.name)+'<span class="t-chosen" hidden></span></span>'+
+      (s.top? '<span class="t-badge">TOP</span>':'')+
+    '</button>'
+  ).join('');
+}
+
+/* ============================================================
+   5. RENDER: option panel for one service
+   ============================================================ */
+function optionCard(sId, o, kind){
+  const isAdd = kind==='addon';
+  const sel = isAdd ? (state.adds[sId] && state.adds[sId].has(o.id)) : state.pick[sId]===o.id;
+  return '<div class="opt'+(isAdd?' addon':'')+(sel?' sel':'')+'" role="'+(isAdd?'checkbox':'radio')+'" '+
+           'tabindex="0" aria-checked="'+(sel?'true':'false')+'" '+
+           'data-svc="'+sId+'" data-opt="'+o.id+'" data-kind="'+kind+'">'+
+      '<span class="thumb">'+thumb(o)+'</span>'+
+      '<span class="body">'+
+        '<span class="o-name">'+esc(o.name)+'</span>'+
+        '<p class="o-desc">'+esc(o.desc)+'</p>'+
+        (isAdd? '<span class="combo">'+
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" width="10" height="10"><path d="M12 5v14M5 12h14"/></svg>'+
+            'Adds to your pick</span>' : '')+
+      '</span>'+
+      '<span class="tick">'+CHECK+'</span>'+
+      '<button class="info" type="button" tabindex="0" aria-label="What is '+esc(o.name)+'?" '+
+        'data-title="'+esc(o.name)+'" data-info="'+esc(o.info)+'">i</button>'+
+    '</div>';
+}
+
+function panelHTML(s){
+  const hasAdds = s.addons && s.addons.length;
+  const locked  = hasAdds && !state.pick[s.id];
+  return '<div class="panel" data-panel="'+s.id+'">'+
+    '<div class="panel-head">'+
+      '<h3>'+esc(s.name)+'</h3>'+
+      '<span class="req">Choose one</span>'+
+    '</div>'+
+    '<p class="panel-sub">'+esc(s.sub)+'</p>'+
+    '<div class="opt-grid">'+ s.base.map(o=>optionCard(s.id,o,'base')).join('') +'</div>'+
+    (hasAdds ?
+      '<div class="addons-wrap'+(locked?' locked':'')+'">'+
+        '<div class="sect-label">Add-ons &mdash; stack on top</div>'+
+        '<div class="lock-note">'+
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" width="16" height="16"><rect x="4.5" y="10.5" width="15" height="9" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>'+
+          'Pick an option above first &mdash; add-ons combine with it.'+
+        '</div>'+
+        '<div class="opt-grid">'+ s.addons.map(o=>optionCard(s.id,o,'addon')).join('') +'</div>'+
+      '</div>' : '')+
+  '</div>';
+}
+
+/* ============================================================
+   6. Place panels directly under the row of their tile
+   ============================================================ */
+function columnCount(){
+  const t = getComputedStyle(grid).gridTemplateColumns;
+  return Math.max(1, t.split(' ').filter(Boolean).length);
+}
+
+function layoutPanels(){
+  $$('.panel', grid).forEach(p=>p.remove());
+  if(!state.open.length) return;
+  const tiles = $$('.tile', grid);
+  const cols  = columnCount();
+  const order = SERVICES.filter(s=>state.open.includes(s.id));
+
+  order.forEach(s=>{
+    const idx  = SERVICES.findIndex(x=>x.id===s.id);
+    const row  = Math.floor(idx/cols);
+    const anchorIdx = (row+1)*cols;              // first tile of the NEXT row
+    const anchor = tiles[anchorIdx] || null;
+    const wrap = document.createElement('div');
+    wrap.innerHTML = panelHTML(s);
+    const node = wrap.firstElementChild;
+    grid.insertBefore(node, anchor);
+  });
+}
+
+/* ============================================================
+   7. Tile state + summary
+   ============================================================ */
+function refreshTiles(){
+  const capped = state.open.length >= MAX_SERVICES;
+  $$('.tile', grid).forEach(t=>{
+    const id = t.dataset.svc;
+    const on = state.open.includes(id);
+    t.classList.toggle('is-open', on);
+    t.classList.toggle('is-capped', !on && capped);
+    t.setAttribute('aria-checked', on?'true':'false');
+
+    const label = $('.t-chosen', t);
+    const s = svc(id);
+    const pickId = state.pick[id];
+    if(on && pickId){
+      const base = s.base.find(o=>o.id===pickId);
+      const n = state.adds[id] ? state.adds[id].size : 0;
+      label.innerHTML = esc(base.name) + (n? ' <span class="plus">+'+n+' add-on'+(n>1?'s':'')+'</span>':'');
+      label.hidden = false;
+    } else {
+      label.hidden = true;
+      label.textContent = '';
+    }
+  });
+}
+
+function refreshSummary(){
+  const chips = $('#chips');
+  const n = state.open.length;
+  const picked = state.open.filter(id=>state.pick[id]).length;
+  const addCount = state.open.reduce((a,id)=> a + (state.adds[id]? state.adds[id].size:0), 0);
+
+  $('#countsText').textContent = n
+    ? n+' service'+(n>1?'s':'') + ' · ' + picked+'/'+n+' configured' + (addCount? ' · '+addCount+' add-on'+(addCount>1?'s':''):'')
+    : 'Nothing selected yet';
+
+  chips.innerHTML = state.open.map(id=>{
+    const s = svc(id), p = state.pick[id];
+    const base = p ? s.base.find(o=>o.id===p) : null;
+    const nAdd = state.adds[id] ? state.adds[id].size : 0;
+    return '<span class="chip'+(base?'':' warn')+'" data-chip="'+id+'">'+
+      '<span>'+esc(s.name)+(base? ' — '+esc(base.name) : ' — pick an option')+'</span>'+
+      (nAdd? '<span class="cnt">+'+nAdd+'</span>':'')+
+      '<button class="x" type="button" aria-label="Remove '+esc(s.name)+'" data-remove="'+id+'">'+
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" width="9" height="9"><path d="M6 6l12 12M18 6L6 18"/></svg>'+
+      '</button></span>';
+  }).join('');
+
+  const ready = n>0 && picked===n;
+  $('#nextBtn').disabled = !ready;
+  $('#nextLabel').textContent = n===0 ? 'Continue'
+    : ready ? 'Continue to Step 2'
+    : 'Pick an option for '+(n-picked)+' service'+((n-picked)>1?'s':'');
+}
+
+function refreshAll(){ refreshTiles(); refreshSummary(); }
+
+/* ============================================================
+   8. Interactions
+   ============================================================ */
+let noticeTimer;
+function notify(msg){
+  const n = $('#notice');
+  $('#notice-text').textContent = msg;
+  n.classList.add('show');
+  clearTimeout(noticeTimer);
+  noticeTimer = setTimeout(()=>n.classList.remove('show'), 3600);
+}
+
+function toggleService(id){
+  const i = state.open.indexOf(id);
+  if(i>-1){
+    state.open.splice(i,1);
+    delete state.pick[id];
+    delete state.adds[id];
+  } else {
+    if(state.open.length >= MAX_SERVICES){
+      notify('You can pick up to '+MAX_SERVICES+' services. Remove one to add another.');
+      return;
+    }
+    state.open.push(id);
+  }
+  layoutPanels();
+  refreshAll();
+}
+
+function choose(sId, oId, kind){
+  if(kind==='base'){
+    state.pick[sId] = (state.pick[sId]===oId) ? undefined : oId;
+    if(!state.pick[sId]){ delete state.pick[sId]; delete state.adds[sId]; }
+  } else {
+    if(!state.pick[sId]) return;                // add-ons need a base pick
+    const set = state.adds[sId] || (state.adds[sId] = new Set());
+    set.has(oId) ? set.delete(oId) : set.add(oId);
+    if(!set.size) delete state.adds[sId];
+  }
+  // repaint just this panel, keep the rest untouched
+  const panel = $('.panel[data-panel="'+sId+'"]');
+  if(panel){
+    const wrap = document.createElement('div');
+    wrap.innerHTML = panelHTML(svc(sId));
+    const fresh = wrap.firstElementChild;
+    fresh.style.animation = 'none';
+    panel.replaceWith(fresh);
+  }
+  refreshAll();
+}
+
+grid.addEventListener('click', e=>{
+  const info = e.target.closest('.info');
+  if(info){ e.stopPropagation(); toggleTip(info); return; }
+  const opt = e.target.closest('.opt');
+  if(opt){ choose(opt.dataset.svc, opt.dataset.opt, opt.dataset.kind); return; }
+  const tile = e.target.closest('.tile');
+  if(tile) toggleService(tile.dataset.svc);
+});
+
+grid.addEventListener('keydown', e=>{
+  if(e.key!==' ' && e.key!=='Enter') return;
+  const opt = e.target.closest('.opt');
+  if(opt && !e.target.closest('.info')){
+    e.preventDefault();
+    choose(opt.dataset.svc, opt.dataset.opt, opt.dataset.kind);
+  }
+});
+
+$('#chips').addEventListener('click', e=>{
+  const b = e.target.closest('[data-remove]');
+  if(b) toggleService(b.dataset.remove);
+});
+
+let rz;
+window.addEventListener('resize', ()=>{ clearTimeout(rz); rz = setTimeout(layoutPanels, 140); });
+
+/* ============================================================
+   9. (i) tooltip  — hover, keyboard focus and tap
+   ============================================================ */
+const tip = $('#tip');
+let tipOwner = null;
+
+function placeTip(btn){
+  const r = btn.getBoundingClientRect();
+  tip.style.left = '0px'; tip.style.top = '0px';
+  const tr = tip.getBoundingClientRect();
+  const pad = 10;
+  let left = r.left + r.width/2 - tr.width/2;
+  left = Math.max(pad, Math.min(left, window.innerWidth - tr.width - pad));
+  let top = r.top - tr.height - 12;
+  let pos = 'top';
+  if(top < pad){ top = r.bottom + 12; pos = 'bottom'; }
+  tip.style.left = left+'px';
+  tip.style.top  = top+'px';
+  tip.dataset.pos = pos;
+  tip.style.setProperty('--ax', (r.left + r.width/2 - left)+'px');
+}
+function showTip(btn){
+  tip.innerHTML = '<b>'+esc(btn.dataset.title)+'</b>'+esc(btn.dataset.info);
+  tip.setAttribute('aria-hidden','false');
+  placeTip(btn);
+  tip.classList.add('show');
+  btn.classList.add('on');
+  tipOwner = btn;
+}
+function hideTip(){
+  tip.classList.remove('show');
+  tip.setAttribute('aria-hidden','true');
+  if(tipOwner) tipOwner.classList.remove('on');
+  tipOwner = null;
+}
+function toggleTip(btn){ tipOwner===btn ? hideTip() : showTip(btn); }
+
+document.addEventListener('mouseover', e=>{
+  const b = e.target.closest('.info');
+  if(b && b!==tipOwner) showTip(b);
+});
+document.addEventListener('mouseout', e=>{
+  const b = e.target.closest('.info');
+  if(b && b===tipOwner && !b.contains(e.relatedTarget)) hideTip();
+});
+document.addEventListener('focusin', e=>{
+  const b = e.target.closest('.info');
+  if(b) showTip(b); else if(tipOwner) hideTip();
+});
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') hideTip(); });
+window.addEventListener('scroll', ()=>{ if(tipOwner) hideTip(); }, true);
+document.addEventListener('click', e=>{ if(tipOwner && !e.target.closest('.info')) hideTip(); });
+
+/* ============================================================
+   10. Step 2 — review + contact
+   ============================================================ */
+let screen = 1;
+
+function renderReview(){
+  $('#review').innerHTML = state.open.map(id=>{
+    const s = svc(id);
+    const base = s.base.find(o=>o.id===state.pick[id]);
+    const adds = state.adds[id] ? s.addons.filter(a=>state.adds[id].has(a.id)) : [];
+    return '<div class="rrow">'+
+      '<span class="rico">'+icon(base.art)+'</span>'+
+      '<span class="rbody">'+
+        '<span class="rsvc">'+esc(s.name)+'</span>'+
+        '<div class="rpick">'+esc(base.name)+'</div>'+
+        (adds.length? '<div class="radds">'+adds.map(a=>'<span class="radd">+ '+esc(a.name)+'</span>').join('')+'</div>':'')+
+      '</span>'+
+      '<button class="redit" type="button" data-edit="'+id+'">Change</button>'+
+    '</div>';
+  }).join('');
+}
+
+function goStep(n){
+  screen = n;
+  $('#step1').style.display = n===1 ? '' : 'none';
+  $('#step2').style.display = n===2 ? 'block' : 'none';
+  $('#backBtn').style.display = n===2 ? 'inline-flex' : 'none';
+  $('#chips').style.display  = n===2 ? 'none' : 'flex';
+  $('#counts').style.display = n===2 ? 'none' : 'block';
+  if(n===2){ renderReview(); $('#nextLabel').textContent='Request my quote'; $('#nextBtn').disabled=false; }
+  else refreshSummary();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+$('#review').addEventListener('click', e=>{
+  const b = e.target.closest('[data-edit]');
+  if(!b) return;
+  goStep(1);
+  setTimeout(()=>{
+    const t = $('.tile[data-svc="'+b.dataset.edit+'"]');
+    if(t) t.scrollIntoView({behavior:'smooth', block:'center'});
+  }, 60);
+});
+
+$('#backBtn').addEventListener('click', ()=>goStep(1));
+
+$('#nextBtn').addEventListener('click', ()=>{
+  if(screen===1){ goStep(2); return; }
+  // ---- CU submit: inject hidden services + delegate to lead-form.js via form.requestSubmit()
+  var form = document.getElementById('formCard');
+  var svcContainer = document.getElementById('retail-hidden-services');
+  svcContainer.innerHTML = '';
+  state.open.forEach(function(id){
+    var s = svc(id);
+    var pick = s.base.find(function(o){ return o.id === state.pick[id]; });
+    var pickName = pick ? pick.name : '';
+    var addonNames = (state.adds[id] ? s.addons.filter(function(a){ return state.adds[id].has(a.id); }).map(function(a){ return a.name; }) : []);
+    // service label
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'services';
+    input.value = s.name + ' — ' + pickName + (addonNames.length ? ' (+ ' + addonNames.join(', ') + ')' : '');
+    svcContainer.appendChild(input);
+  });
+  // client-side validation
+  var required = form.querySelectorAll('[required]');
+  var ok = true;
+  required.forEach(function(el){
+    var wrap = el.closest('.field');
+    if(!el.value.trim() || (el.type === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value))){
+      wrap.classList.add('error');
+      ok = false;
+    } else {
+      wrap.classList.remove('error');
+    }
+  });
+  if(!ok){
+    var firstErr = form.querySelector('.field.error input, .field.error select');
+    if(firstErr) firstErr.focus();
+    return;
+  }
+  // hand off to lead-form.js
+  if (typeof form.requestSubmit === 'function') {
+    form.requestSubmit();
+  } else {
+    // fallback for very old browsers
+    var btn = document.createElement('button'); btn.type='submit'; btn.style.display='none';
+    form.appendChild(btn); btn.click(); form.removeChild(btn);
+  }
+});
+
+/* ============================================================
+   11. Go
+   ============================================================ */
+buildGrid();
+refreshAll();
+
+/* ============================================================
+   Phase 6B tail: pill switcher + lead-success listener
+   ============================================================ */
+(function(){
   'use strict';
-
-  // ==================== DATA ====================
-  // Icon SVGs — line-drawn, currentColor
-  var ICON = {
-    truck: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>',
-    cover: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="10" rx="1"/><path d="M3 12h18"/><path d="M12 8v10"/></svg>',
-    step: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M6 20V8h4v12"/><path d="M14 20v-6h4v6"/></svg>',
-    hitch: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M12 11v9"/><path d="M6 20h12"/></svg>',
-    shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"/></svg>',
-    tint: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 12h18"/></svg>',
-    ceramic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>',
-    light: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21h6"/><path d="M12 17a5 5 0 1 0-4-8 5 5 0 0 0-1 8"/><path d="M12 17v4"/></svg>',
-    box: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M3 12h18"/><path d="M8 7V4h8v3"/></svg>',
-    rack: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M5 6v14"/><path d="M19 6v14"/><path d="M3 12h18"/><path d="M3 18h18"/></svg>',
-    suspension: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M12 4v16"/><path d="M8 8l4 4-4 4"/><path d="M16 8l-4 4 4 4"/></svg>',
-    wrap: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16"/><path d="M12 4v16"/></svg>'
-  };
-
-  var TILES = [
-    { id: 'bedliner', name: 'Spray-on bedliner', icon: 'truck', badge: 'Most requested',
-      tiers: ['Patriot Standard', 'Patriot Premium (metallic)'],
-      addons: ['Wheel wells', 'Cab corners'] },
-    { id: 'tonneau', name: 'Tonneau cover', icon: 'cover',
-      tiers: ['Roll-up soft', 'Tri-fold', 'Retractable hard'],
-      addons: ['Weather seals', 'LED bed lights'] },
-    { id: 'boards', name: 'Running boards & steps', icon: 'step',
-      tiers: ['Nerf bar', 'OEM board', 'AMP power step', 'AMP XL', 'AMP smart'],
-      addons: ['LED accent lights'] },
-    { id: 'hitch', name: 'Hitch & towing', icon: 'hitch',
-      tiers: ['Class III', 'Class IV', 'Class V', 'Gooseneck'],
-      addons: ['Brake controller', 'Wiring harness'] },
-    { id: 'undercoating', name: 'Undercoating & rust protection', icon: 'shield',
-      tiers: ['Wax shield', 'Cavity wax', 'Rust remove + reapply'],
-      addons: ['Fluid film top-off (annual)'] },
-    { id: 'tint', name: 'Window tinting', icon: 'tint',
-      tiers: ['Legal spec', 'Ceramic film', 'Full ceramic + windshield'],
-      addons: ['Sunroof tint'] },
-    { id: 'ceramic', name: 'Ceramic coating & PPF', icon: 'ceramic', badge: 'Bundle discount',
-      tiers: ['Coating only', 'PPF hood + front', 'Full front + fenders + doors'],
-      addons: ['Wheel-face coating'] },
-    { id: 'lighting', name: 'Lighting', icon: 'light',
-      tiers: ['Interior LED', 'Auxiliary bar', 'Light pod set'],
-      addons: ['Custom color program'] },
-    { id: 'storage', name: 'Storage & toolboxes', icon: 'box',
-      tiers: ['Cross-bed toolbox', 'Wheel-well box', 'Slide-out drawer'],
-      addons: ['Drawer dividers'] },
-    { id: 'rack', name: 'Rack systems', icon: 'rack',
-      tiers: ['Bed rack', 'Roof rack', 'Ladder rack'],
-      addons: ['Load stops', 'Cargo net'] },
-    { id: 'suspension', name: 'Suspension & levelling', icon: 'suspension',
-      tiers: ['Level kit', '2" lift', '4" lift', 'Full custom lift'],
-      addons: ['Shock upgrade', 'Alignment'] },
-    { id: 'wrap', name: 'Wraps & branding', icon: 'wrap',
-      tiers: ['Partial wrap', 'Full wrap', 'Fleet decal set'],
-      addons: ['Reflective safety kit'] }
-  ];
-
-  var FLEET_SERVICES = [
-    'Bedliners', 'Tonneau covers', 'Running boards', 'Hitches & towing',
-    'Undercoating', 'Ceramic coating', 'Racks & storage', 'Wraps & decals',
-    'Suspension work', 'Lighting'
-  ];
-
-  var DEALER_SERVICES = [
-    'Bedliners', 'Tonneau covers', 'Running boards',
-    'Ceramic coating', 'Wraps & decals', 'Hitches & towing'
-  ];
-
-  var MAX_SELECTIONS = 12;
-
-  // ==================== STATE ====================
-  var state = {
-    mode: 'retail',           // retail | fleet | dealer
-    step: 1,                  // retail: 1 or 2
-    open: [],                 // ordered service ids currently open/selected
-    tier: {},                 // { serviceId: 'Patriot Standard' }
-    adds: {}                  // { serviceId: ['Wheel wells', ...] }
-  };
-
-  // ==================== DOM refs ====================
-  var pills = document.querySelectorAll('.q6-pill');
-  var modes = document.querySelectorAll('.q6-mode');
-  var tileGrid = document.getElementById('q6-tile-grid');
-  var step1 = document.getElementById('q6-step-1');
-  var step2 = document.getElementById('q6-step-2');
-  var bar = document.getElementById('q6-bar');
-  var barCountValue = document.getElementById('q6-bar-count-value');
-  var barNotice = document.getElementById('q6-bar-notice');
-  var barChips = document.getElementById('q6-bar-chips');
-  var barBack = document.getElementById('q6-bar-back');
-  var barContinue = document.getElementById('q6-bar-continue');
-  var reviewList = document.getElementById('q6-review-list');
-  var retailForm = document.getElementById('quote-retail');
-  var progressDots = document.querySelectorAll('.q6-progress-dot');
-
-  // ==================== INIT ====================
-  function init() {
-    if (!tileGrid) return;
-    renderTiles();
-    renderFleetChecks();
-    renderDealerChecks();
-    wirePills();
-    wireBar();
-    wireLeadSuccess();
-    wireDebugFlag();
-
-    // Read ?type= query param to set initial mode
-    var params = new URLSearchParams(location.search);
-    var type = params.get('type') || params.get('audience');
-    if (type === 'fleet' || type === 'dealer') {
-      activateMode(type);
-    }
-
-    // Read ?service=bedliner,tonneau to preselect
-    var svc = params.get('service') || params.get('services');
-    if (svc && state.mode === 'retail') {
-      var wanted = svc.split(',').map(function (s) { return s.trim().toLowerCase(); });
-      wanted.forEach(function (id) {
-        var tile = TILES.find(function (t) { return t.id === id; });
-        if (tile) toggleTile(tile.id, true);
-      });
-    }
-
-    updateBar();
-  }
-
-  // ==================== TILE GRID ====================
-  function renderTiles() {
-    tileGrid.innerHTML = '';
-    TILES.forEach(function (t) {
-      var el = document.createElement('button');
-      el.type = 'button';
-      el.className = 'q6-tile';
-      el.setAttribute('role', 'listitem');
-      el.setAttribute('aria-pressed', 'false');
-      el.dataset.tile = t.id;
-      var iconSpan = '<span class="q6-tile-icon">' + (ICON[t.icon] || '') + '</span>';
-      var badge = t.badge ? '<span class="q6-tile-badge">' + t.badge + '</span>' : '';
-      var check = '<span class="q6-tile-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>';
-      el.innerHTML = iconSpan + '<span class="q6-tile-name">' + t.name + '</span>' + badge + check;
-      el.addEventListener('click', function () { onTileClick(t.id); });
-      tileGrid.appendChild(el);
-    });
-  }
-
-  function onTileClick(id) {
-    var isOpen = state.open.indexOf(id) !== -1;
-    if (!isOpen && state.open.length >= MAX_SELECTIONS) {
-      showCapNotice();
-      return;
-    }
-    if (isOpen) {
-      // Collapse: remove options block, deselect
-      removeOptionsBlock(id);
-      state.open = state.open.filter(function (x) { return x !== id; });
-      delete state.tier[id];
-      delete state.adds[id];
-      updateTileVisual(id, false);
-    } else {
-      state.open.push(id);
-      var tile = TILES.find(function (t) { return t.id === id; });
-      state.tier[id] = tile.tiers[0]; // default to first tier
-      state.adds[id] = [];
-      insertOptionsBlock(tile);
-      updateTileVisual(id, true);
-    }
-    updateBar();
-  }
-
-  function toggleTile(id, forceOn) {
-    var isOpen = state.open.indexOf(id) !== -1;
-    if (forceOn && !isOpen) onTileClick(id);
-    if (!forceOn && isOpen) onTileClick(id);
-  }
-
-  function updateTileVisual(id, on) {
-    var el = tileGrid.querySelector('[data-tile="' + id + '"]');
-    if (!el) return;
-    el.classList.toggle('is-open', on);
-    el.setAttribute('aria-pressed', on ? 'true' : 'false');
-    // Update capped state on all other tiles
-    var atCap = state.open.length >= MAX_SELECTIONS;
-    tileGrid.querySelectorAll('.q6-tile').forEach(function (t) {
-      var openHere = state.open.indexOf(t.dataset.tile) !== -1;
-      t.classList.toggle('is-capped', atCap && !openHere);
-    });
-  }
-
-  function insertOptionsBlock(tile) {
-    var block = document.createElement('div');
-    block.className = 'q6-tile-options is-visible';
-    block.dataset.optionsFor = tile.id;
-
-    var header = '<div class="q6-options-header"><h4 class="q6-options-title">' + tile.name + '</h4><button type="button" class="q6-options-close" data-close="' + tile.id + '">Remove</button></div>';
-
-    var tiersHtml = '<span class="q6-options-group-label">Choose one</span><div class="q6-option-cards">';
-    tile.tiers.forEach(function (t, i) {
-      var id = 'q6-tier-' + tile.id + '-' + i;
-      tiersHtml += '<label class="q6-option-card' + (i === 0 ? ' is-checked' : '') + '" for="' + id + '"><input type="radio" id="' + id + '" name="q6-tier-' + tile.id + '" value="' + escapeAttr(t) + '"' + (i === 0 ? ' checked' : '') + '><span>' + escapeHtml(t) + '</span></label>';
-    });
-    tiersHtml += '</div>';
-
-    var addonsHtml = '';
-    if (tile.addons && tile.addons.length) {
-      addonsHtml = '<span class="q6-options-group-label">Add-ons (optional)</span><div class="q6-option-cards">';
-      tile.addons.forEach(function (a, i) {
-        var id = 'q6-add-' + tile.id + '-' + i;
-        addonsHtml += '<label class="q6-option-card" for="' + id + '"><input type="checkbox" id="' + id + '" name="q6-add-' + tile.id + '" value="' + escapeAttr(a) + '"><span>' + escapeHtml(a) + '</span></label>';
-      });
-      addonsHtml += '</div>';
-    }
-
-    block.innerHTML = header + tiersHtml + addonsHtml;
-
-    // Insert AFTER the tile row it belongs to.
-    // Grid is flat, so we append the options block to the grid
-    // (grid-column: 1 / -1 makes it span full row visually).
-    // We want it to appear right after the tile — the simplest way is
-    // to append and rely on order of tiles. Better: place immediately
-    // after the tile element.
-    var tileEl = tileGrid.querySelector('[data-tile="' + tile.id + '"]');
-    if (tileEl && tileEl.nextSibling) {
-      tileGrid.insertBefore(block, tileEl.nextSibling);
-    } else {
-      tileGrid.appendChild(block);
-    }
-
-    // Wire tier + addon changes
-    block.querySelectorAll('input[type="radio"]').forEach(function (r) {
-      r.addEventListener('change', function () {
-        if (r.checked) {
-          state.tier[tile.id] = r.value;
-          // Update visual checkmark on cards
-          block.querySelectorAll('label.q6-option-card').forEach(function (l) {
-            var inp = l.querySelector('input[type="radio"]');
-            if (inp) l.classList.toggle('is-checked', inp.checked);
-          });
-          updateBar();
-        }
-      });
-    });
-    block.querySelectorAll('input[type="checkbox"]').forEach(function (c) {
-      c.addEventListener('change', function () {
-        var current = state.adds[tile.id] || [];
-        if (c.checked && current.indexOf(c.value) === -1) current.push(c.value);
-        if (!c.checked) current = current.filter(function (x) { return x !== c.value; });
-        state.adds[tile.id] = current;
-        c.closest('label').classList.toggle('is-checked', c.checked);
-        updateBar();
-      });
-    });
-    // Close button
-    var closeBtn = block.querySelector('[data-close]');
-    if (closeBtn) closeBtn.addEventListener('click', function () { onTileClick(tile.id); });
-  }
-
-  function removeOptionsBlock(id) {
-    var block = tileGrid.querySelector('[data-options-for="' + id + '"]');
-    if (block) block.remove();
-  }
-
-  // ==================== BAR ====================
-  function updateBar() {
-    var count = state.open.length;
-
-    if (state.step === 2) {
-      barBack.hidden = false;
-      barContinue.textContent = 'Send my quote →';
-    } else {
-      barBack.hidden = true;
-      barContinue.textContent = 'Continue →';
-    }
-
-    if (count === 0) {
-      barCountValue.textContent = 'Nothing selected yet';
-      barContinue.disabled = state.step !== 2;
-      barChips.innerHTML = '';
-    } else {
-      barCountValue.textContent = count + (count === 1 ? ' service selected' : ' services selected');
-      barContinue.disabled = false;
-      barChips.innerHTML = state.open.map(function (id) {
-        var t = TILES.find(function (x) { return x.id === id; });
-        return '<span class="q6-bar-chip">' + escapeHtml(t ? t.name : id) + '</span>';
-      }).join('');
-    }
-  }
-
-  function showCapNotice() {
-    barNotice.classList.add('is-visible');
-    clearTimeout(showCapNotice._t);
-    showCapNotice._t = setTimeout(function () { barNotice.classList.remove('is-visible'); }, 3200);
-  }
-
-  // ==================== STEP TRANSITIONS ====================
-  function goToStep(n) {
-    state.step = n;
-    if (n === 1) {
-      step1.style.display = 'block';
-      step2.classList.remove('is-visible');
-      progressDots[0].classList.add('is-current');
-      progressDots[0].classList.remove('is-done');
-      progressDots[1].classList.remove('is-current', 'is-done');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      // Guard: at least 1 service
-      if (state.open.length === 0) return;
-      buildReviewList();
-      injectHiddenServiceInputs();
-      step1.style.display = 'none';
-      step2.classList.add('is-visible');
-      progressDots[0].classList.remove('is-current');
-      progressDots[0].classList.add('is-done');
-      progressDots[1].classList.add('is-current');
-      // Scroll to top of step 2 with slight offset so header is visible
-      var target = step2.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top: target, behavior: 'smooth' });
-    }
-    updateBar();
-  }
-
-  function buildReviewList() {
-    if (state.open.length === 0) {
-      reviewList.innerHTML = '<li class="q6-review-empty">No services selected yet. <button type="button" class="q6-review-edit" data-edit-back>Go back</button></li>';
-      var backBtn = reviewList.querySelector('[data-edit-back]');
-      if (backBtn) backBtn.addEventListener('click', function () { goToStep(1); });
-      return;
-    }
-    reviewList.innerHTML = state.open.map(function (id) {
-      var tile = TILES.find(function (t) { return t.id === id; });
-      var tier = state.tier[id] || '';
-      var adds = (state.adds[id] || []);
-      var detailParts = [];
-      if (tier) detailParts.push(tier);
-      if (adds.length) detailParts.push('+ ' + adds.join(', '));
-      var detail = detailParts.join(' · ') || 'Standard';
-      return '<li class="q6-review-item">' +
-        '<div class="q6-review-item-body">' +
-          '<p class="q6-review-item-name">' + escapeHtml(tile ? tile.name : id) + '</p>' +
-          '<p class="q6-review-item-detail">' + escapeHtml(detail) + '</p>' +
-        '</div>' +
-        '<button type="button" class="q6-review-edit" data-edit="' + id + '">Edit</button>' +
-      '</li>';
-    }).join('');
-    // Wire edit buttons
-    reviewList.querySelectorAll('[data-edit]').forEach(function (b) {
-      b.addEventListener('click', function () { goToStep(1); });
-    });
-  }
-
-  // Inject hidden <input name="services"> inputs into retailForm
-  // so lead-form.js picks them up on submit.
-  function injectHiddenServiceInputs() {
-    // Remove any previously injected
-    retailForm.querySelectorAll('[data-q6-hidden]').forEach(function (n) { n.remove(); });
-    state.open.forEach(function (id) {
-      var tile = TILES.find(function (t) { return t.id === id; });
-      var name = tile ? tile.name : id;
-      var tier = state.tier[id] || '';
-      var adds = state.adds[id] || [];
-      var full = name + (tier ? ' — ' + tier : '') + (adds.length ? ' (' + adds.join(', ') + ')' : '');
-      var input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = 'services';
-      input.value = full;
-      input.dataset.q6Hidden = '1';
-      retailForm.appendChild(input);
-    });
-  }
-
-  // ==================== PILL SWITCHER ====================
-  function wirePills() {
-    pills.forEach(function (p) {
-      p.addEventListener('click', function () { activateMode(p.dataset.mode); });
-    });
-  }
-  function activateMode(mode) {
-    state.mode = mode;
-    pills.forEach(function (p) {
-      var on = p.dataset.mode === mode;
+  document.body.classList.add('cu-p6-active');
+  var container = document.querySelector('.cu-p6');
+  var pills = document.querySelectorAll('.cu-p6-pill');
+  var modes = document.querySelectorAll('.cu-p6-mode');
+  function setMode(target){
+    pills.forEach(function(p){
+      var on = p.dataset.mode === target;
       p.classList.toggle('is-active', on);
       p.setAttribute('aria-selected', on ? 'true' : 'false');
     });
-    modes.forEach(function (m) {
-      m.classList.toggle('is-active', m.dataset.q6Mode === mode);
+    modes.forEach(function(s){
+      s.classList.toggle('is-active', s.dataset.modeBody === target);
     });
-    // Bar only visible in retail
-    if (mode === 'retail') {
-      bar.style.display = 'flex';
-      // If we were in step 2 earlier and now retail is re-selected, restore state
-    } else {
-      bar.style.display = 'none';
+    container.setAttribute('data-mode', target);
+    // sticky bar only for retail
+    var bar = document.getElementById('bar');
+    if(bar){ bar.style.display = (target === 'retail') ? '' : 'none'; }
+    // scroll to top of switcher on change
+    var sw = document.querySelector('.cu-p6-switcher-outer');
+    if(sw){ sw.scrollIntoView({behavior:'smooth', block:'start'}); }
+  }
+  pills.forEach(function(p){
+    p.addEventListener('click', function(){ setMode(p.dataset.mode); });
+  });
+
+  // Listen for lead-form.js success and swap Patriot .done state into view
+  document.addEventListener('cu:lead-success', function(ev){
+    var d = ev.detail || {};
+    // Retail flow uses Patriot's step2 -> .done UI
+    if(d.formId === 'formCard' || d.formId === 'retail'){
+      var review = document.getElementById('review'); if(review) review.style.display = 'none';
+      var formCard = document.getElementById('formCard'); if(formCard) formCard.style.display = 'none';
+      var done = document.getElementById('done'); if(done){ done.style.display = 'block'; }
+      var bar = document.getElementById('bar'); if(bar) bar.style.display = 'none';
+      var refSlot = document.querySelector('[data-cu-ref-slot]');
+      if(refSlot) refSlot.textContent = 'Reference: ' + (d.reference || 'pending');
+      var warnSlot = document.querySelector('[data-cu-warning-slot]');
+      if(warnSlot && d.warning){
+        warnSlot.textContent = d.warning;
+        warnSlot.classList.add('show');
+      }
+      window.scrollTo({top:0, behavior:'smooth'});
     }
-    // Update URL param without reload
-    var url = new URL(location.href);
-    if (mode === 'retail') url.searchParams.delete('type');
-    else url.searchParams.set('type', mode);
-    history.replaceState(null, '', url.toString());
-  }
+    // Fleet & dealer: lead-form.js will handle its own success panel swap via
+    // data-success-body / data-success-panel. Nothing extra needed.
+  });
 
-  // ==================== BAR WIRING ====================
-  function wireBar() {
-    barBack.addEventListener('click', function () { goToStep(1); });
-    barContinue.addEventListener('click', function () {
-      if (state.step === 1) {
-        goToStep(2);
-      } else {
-        // Submit the retail form
-        if (retailForm.reportValidity()) {
-          if (typeof retailForm.requestSubmit === 'function') retailForm.requestSubmit();
-          else retailForm.submit();
-        }
-      }
-    });
-  }
-
-  // ==================== FLEET / DEALER CHECKBOXES ====================
-  function renderFleetChecks() {
-    var host = document.getElementById('q6-fleet-services');
-    if (!host) return;
-    host.innerHTML = FLEET_SERVICES.map(function (s, i) {
-      return '<label class="q6-service-check" for="q6-fleet-svc-' + i + '">' +
-        '<input id="q6-fleet-svc-' + i + '" type="checkbox" name="services" value="' + escapeAttr(s) + '"><span>' + escapeHtml(s) + '</span>' +
-      '</label>';
-    }).join('');
-    host.querySelectorAll('input[type="checkbox"]').forEach(function (c) {
-      c.addEventListener('change', function () {
-        c.closest('label').classList.toggle('is-checked', c.checked);
-      });
-    });
-  }
-  function renderDealerChecks() {
-    var host = document.getElementById('q6-dealer-services');
-    if (!host) return;
-    host.innerHTML = DEALER_SERVICES.map(function (s, i) {
-      return '<label class="q6-service-check" for="q6-dealer-svc-' + i + '">' +
-        '<input id="q6-dealer-svc-' + i + '" type="checkbox" name="services" value="' + escapeAttr(s) + '"><span>' + escapeHtml(s) + '</span>' +
-      '</label>';
-    }).join('');
-    host.querySelectorAll('input[type="checkbox"]').forEach(function (c) {
-      c.addEventListener('change', function () {
-        c.closest('label').classList.toggle('is-checked', c.checked);
-      });
-    });
-  }
-
-  // ==================== LEAD SUCCESS EVENT ====================
-  // lead-form.js dispatches cu:lead-success with { formId, reference, customerConfirmation, deliveryMode, warning, diagnostic }
-  function wireLeadSuccess() {
-    document.addEventListener('cu:lead-success', function (event) {
-      var detail = event.detail || {};
-      var formId = detail.formId || '';
-      // Find success panel by conventional id
-      var panelId = 'form-' + (formId.replace('quote-', '')) + '-success';
-      var panel = document.getElementById(panelId);
-      if (!panel) return;
-      // Inject reference
-      var refSlot = panel.querySelector('[data-q6-ref-slot]');
-      if (refSlot && detail.reference) {
-        refSlot.textContent = 'Reference: ' + detail.reference;
-      } else if (refSlot) {
-        refSlot.hidden = true;
-      }
-      // Show warning if delivered:false (persisted-only mode)
-      if (detail.deliveryMode === 'persisted_only' || detail.customerConfirmation === false) {
-        var w = panel.querySelector('[data-q6-warning-slot]');
-        if (w) {
-          w.hidden = false;
-          if (detail.warning && detail.warning.length) {
-            w.textContent = detail.warning;
-          } else {
-            w.textContent = 'Note: our automated confirmation email may be delayed today. Your reference number above is enough to reach us.';
-          }
-        }
-      }
-      // Debug diagnostic
-      if (detail.diagnostic && new URLSearchParams(location.search).has('debug')) {
-        var d = panel.querySelector('[data-q6-diagnostic-slot]');
-        if (d) {
-          d.hidden = false;
-          var pre = d.querySelector('pre');
-          if (pre) pre.textContent = JSON.stringify(detail.diagnostic, null, 2);
-        }
-      }
-      // Hide sticky bar after successful retail submit
-      if (formId === 'quote-retail') {
-        bar.style.display = 'none';
-      }
-    });
-  }
-
-  // ==================== DEBUG FLAG ====================
-  function wireDebugFlag() {
-    // Debug indicator so Ivan can confirm he's in debug mode
-    if (new URLSearchParams(location.search).has('debug')) {
-      var el = document.createElement('div');
-      el.style.cssText = 'position:fixed;top:8px;right:8px;background:#0f172a;color:#fbbf24;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;z-index:1000;font-family:ui-monospace,monospace;';
-      el.textContent = 'DEBUG MODE';
-      document.body.appendChild(el);
-    }
-  }
-
-  // ==================== HELPERS ====================
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
-  }
-  function escapeAttr(s) {
-    return String(s).replace(/"/g, '&quot;');
-  }
-
-  // Start
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  // Fleet & dealer: on native form submit, prevent, do lead-form.js flow.
+  // lead-form.js already binds to [data-cms-form] forms, so no wiring needed here.
 })();
+
 </script>
+
 <footer class="footer" role="contentinfo"><div class="container"><div class="footer-grid">
 <div><a href="./index.html" class="footer-brand-logo"><div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div><div class="footer-brand-name">Capital<span>Upfitters</span></div></a><p class="footer-tagline">Family-owned vehicle upfitting in Rockville, MD. Authorized Patriot Liner dealer.</p><div class="footer-contact"><a href="tel:3013041419" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel St, Rockville MD 20852</div></div></div>
 <div><div class="footer-col-title">Services</div><ul class="footer-links"><li><a href="./services/bedliner.html">Spray-On Bedliners</a></li><li><a href="./services/hitches.html">Hitches & Towing</a></li><li><a href="./services/ceramic-coating.html">Ceramic Coating</a></li><li><a href="./services/undercoating.html">Undercoating</a></li><li><a href="./services/tonneau.html">Tonneau Covers</a></li><li><a href="./services/running-boards.html">Running Boards</a></li></ul></div>
@@ -2287,283 +2323,51 @@
 <script src="animations.js" defer></script>
 
 <script>
-// ── Populate Year dropdown + auto-fill from URL params ────────
-(function() {
-  const sel = document.getElementById('r-year');
-  if (!sel) return;
-  const now = new Date().getFullYear() + 1;
-  for (let y = now; y >= 1990; y--) {
-    const opt = document.createElement('option');
-    opt.value = y;
-    opt.textContent = y;
-    sel.appendChild(opt);
-  }
-
-  // Auto-populate from vehicle selector URL params
+/* ============================================================
+   Phase 6B: URL-param deep-linking for the retail form
+   Populates Year / Make / Model from ?year=…&make=…&model=… and
+   pre-selects a service tile from ?service=<slug>.
+   ============================================================ */
+(function () {
+  'use strict';
   const params = new URLSearchParams(window.location.search);
   const pYear  = params.get('year');
   const pMake  = params.get('make');
   const pModel = params.get('model');
   const pSvc   = params.get('service');
 
-  if (pYear) {
-    sel.value = pYear;
-    if (!sel.value) {
-      const opt = new Option(pYear, pYear, true, true);
-      sel.insertBefore(opt, sel.options[1]);
-      sel.value = pYear;
-    }
+  function setValue(id, val) {
+    const el = document.getElementById(id);
+    if (el && val) el.value = val;
   }
-  if (pMake) {
-    const makeSel = document.getElementById('r-make');
-    if (makeSel) {
-      let matched = false;
-      for (const opt of makeSel.options) {
-        if (opt.value.toLowerCase() === pMake.toLowerCase()) {
-          makeSel.value = opt.value;
-          matched = true;
-          break;
-        }
-      }
-      if (!matched) {
-        const opt = new Option(pMake, pMake, true, true);
-        makeSel.insertBefore(opt, makeSel.options[1]);
-        makeSel.value = pMake;
-      }
-    }
-  }
-  if (pModel) {
-    const modelIn = document.getElementById('r-model');
-    if (modelIn) modelIn.value = pModel;
-  }
+  setValue('f-year',  pYear);
+  setValue('f-make',  pMake);
+  setValue('f-model', pModel);
+
+  // Pre-select a service tile if ?service=<slug> matches a Patriot service id
   if (pSvc) {
-    // Pre-check the matching service checkbox
-    const checkboxes = document.querySelectorAll('input[name="services"]');
-    const slug = pSvc.toLowerCase().replace(/-/g, ' ');
-    checkboxes.forEach(cb => {
-      if (cb.value.toLowerCase().includes(slug) || slug.includes(cb.value.toLowerCase().split(' ')[0])) {
-        cb.checked = true;
-      }
-    });
-  }
-
-  // Show confirmation banner if auto-filled
-  if (pYear && pMake && pModel) {
-    const vinResult = document.getElementById('vin-result');
-    if (vinResult) {
-      vinResult.className = 'vin-result success';
-      vinResult.innerHTML = `✓ Vehicle pre-filled from your selection: <strong>${pYear} ${pMake} ${pModel}</strong><br><span style="font-size:.85em;opacity:.75;">Please verify and update if needed.</span>`;
-      vinResult.hidden = false;
+    const slug = pSvc.toLowerCase().replace(/[^a-z0-9]/g, '');
+    // Wait for the grid to render, then click the tile whose data-id matches
+    const clickTile = () => {
+      const tiles = document.querySelectorAll('.tile[data-svc]');
+      let clicked = false;
+      tiles.forEach(t => {
+        const tid = (t.dataset.svc || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (!clicked && (tid === slug || tid.startsWith(slug) || slug.startsWith(tid))) {
+          t.click();
+          clicked = true;
+        }
+      });
+      return clicked;
+    };
+    if (!clickTile()) {
+      // Retry once after DOM settles (Patriot script builds tiles at end of body)
+      setTimeout(clickTile, 100);
     }
   }
 })();
-
-// ── VIN Lookup via NHTSA free API ────────────────────────
-(function() {
-  const vinInput   = document.getElementById('r-vin');
-  const btn        = document.getElementById('vin-lookup-btn');
-  const resultBox  = document.getElementById('vin-result');
-  const yearSel    = document.getElementById('r-year');
-  const makeSel    = document.getElementById('r-make');
-  const modelInput = document.getElementById('r-model');
-  const trimInput  = document.getElementById('r-trim');
-
-  if (!vinInput || !btn) return;
-
-  // Auto-uppercase VIN as typed
-  vinInput.addEventListener('input', () => {
-    vinInput.value = vinInput.value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g, '');
-  });
-
-  // Trigger on button click
-  btn.addEventListener('click', lookupVIN);
-
-  // Trigger on Enter key in VIN field
-  vinInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') { e.preventDefault(); lookupVIN(); }
-  });
-
-  async function lookupVIN() {
-    const vin = vinInput.value.trim();
-    if (vin.length !== 17) {
-      showResult('error', 'VIN must be exactly 17 characters.');
-      return;
-    }
-
-    setLoading(true);
-    resultBox.hidden = true;
-    resultBox.className = 'vin-result';
-
-    try {
-      const url = `https://vpic.nhtsa.dot.gov/api/vehicles/decodevinvalues/${vin}?format=json`;
-      const res  = await fetch(url);
-      const data = await res.json();
-      const v    = data.Results?.[0];
-
-      if (!v || v.ErrorCode === '0' && !v.Make) {
-        showResult('error', 'VIN not found. Please check and try again, or fill in vehicle details manually.');
-        return;
-      }
-
-      const year  = v.ModelYear?.trim();
-      const make  = v.Make?.trim();
-      const model = v.Model?.trim();
-      const trim  = [v.Trim, v.Series, v.BodyClass].filter(Boolean).join(' · ');
-      const plant = v.PlantCountry ? `· Made in ${v.PlantCountry}` : '';
-
-      // Auto-fill form fields
-      if (year && yearSel) {
-        yearSel.value = year;
-        if (!yearSel.value) { // year not in dropdown range
-          const opt = new Option(year, year);
-          yearSel.insertBefore(opt, yearSel.options[1]);
-          yearSel.value = year;
-        }
-      }
-      if (make && makeSel) {
-        const normalized = make.charAt(0) + make.slice(1).toLowerCase();
-        // Try exact match first, then normalized
-        let matched = false;
-        for (const opt of makeSel.options) {
-          if (opt.value.toLowerCase() === make.toLowerCase()) {
-            makeSel.value = opt.value;
-            matched = true;
-            break;
-          }
-        }
-        if (!matched) {
-          const opt = new Option(normalized, normalized, true, true);
-          makeSel.insertBefore(opt, makeSel.options[1]);
-          makeSel.value = normalized;
-        }
-      }
-      if (model && modelInput) modelInput.value = model;
-      if (trim  && trimInput)  trimInput.value  = trim;
-
-      // VIN lookup succeeded — Year/Make/Model are now redundant manual entry.
-      // Drop `required` so a filled VIN never blocks submit on fields it already answered.
-      if (year && make && model) {
-        [['r-year', yearSel], ['r-make', makeSel], ['r-model', modelInput]].forEach(([id, el]) => {
-          if (!el) return;
-          el.removeAttribute('required');
-          const label = document.querySelector(`label[for="${id}"]`);
-          if (label) label.textContent = label.textContent.replace(/\s*\*\s*$/, '');
-        });
-        // Reveal the pre-filled trim so it doesn't silently disappear into the collapsed toggle
-        if (trim) {
-          const detailsEl = document.getElementById('vehicle-details-toggle');
-          if (detailsEl) detailsEl.open = true;
-        }
-      }
-
-      const summary = [
-        year && `<strong>${year}</strong>`,
-        make  && `<strong>${make.charAt(0)+make.slice(1).toLowerCase()}</strong>`,
-        model && `<strong>${model}</strong>`,
-        trim  ? `&mdash; ${trim}` : ''
-      ].filter(Boolean).join(' ');
-
-      showResult('success', `✓ Vehicle found: ${summary} ${plant}<br><span style="font-size:.85em;opacity:.75;">Vehicle details have been filled in below. Please verify and correct if needed.</span>`);
-
-    } catch (err) {
-      showResult('error', 'Could not reach the VIN database. Please fill in vehicle details manually.');
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  function setLoading(loading) {
-    btn.disabled = loading;
-    btn.querySelector('.vin-lookup-label').hidden = loading;
-    btn.querySelector('.vin-lookup-spinner').hidden = !loading;
-  }
-
-  function showResult(type, html) {
-    resultBox.className = `vin-result ${type}`;
-    resultBox.innerHTML = html;
-    resultBox.hidden = false;
-  }
-})();
-
-// ── Photo Upload & Preview ─────────────────────────────
-(function() {
-  const zone    = document.getElementById('photo-drop-zone');
-  const input   = document.getElementById('r-photos');
-  const grid    = document.getElementById('photo-preview-grid');
-  if (!zone || !input || !grid) return;
-
-  const MAX_FILES = 5;
-  const MAX_MB    = 10;
-  let uploadedFiles = [];
-
-  function refreshGrid() {
-    grid.innerHTML = '';
-    uploadedFiles.forEach((file, i) => {
-      const reader = new FileReader();
-      reader.onload = e => {
-        const item = document.createElement('div');
-        item.className = 'photo-preview-item';
-        const img = document.createElement('img');
-        img.src = e.target.result;
-        img.alt = file.name;
-        const btn = document.createElement('button');
-        btn.className = 'photo-preview-remove';
-        btn.type = 'button';
-        btn.setAttribute('aria-label', `Remove ${file.name}`);
-        btn.textContent = '×';
-        btn.addEventListener('click', () => {
-          uploadedFiles.splice(i, 1);
-          refreshGrid();
-          updateHint();
-        });
-        item.appendChild(img);
-        item.appendChild(btn);
-        grid.appendChild(item);
-      };
-      reader.readAsDataURL(file);
-    });
-    updateHint();
-  }
-
-  function updateHint() {
-    const hint = zone.querySelector('.photo-upload-hint');
-    if (uploadedFiles.length > 0) {
-      hint.textContent = `${uploadedFiles.length}/${MAX_FILES} photo${uploadedFiles.length > 1 ? 's' : ''} selected`;
-    } else {
-      hint.textContent = `JPG, PNG, HEIC up to ${MAX_MB} MB each · Max ${MAX_FILES} photos`;
-    }
-  }
-
-  function addFiles(files) {
-    const remaining = MAX_FILES - uploadedFiles.length;
-    const toAdd = Array.from(files).slice(0, remaining).filter(f => {
-      const ok = f.size <= MAX_MB * 1024 * 1024;
-      if (!ok) alert(`“${f.name}” exceeds ${MAX_MB} MB and was skipped.`);
-      return ok;
-    });
-    uploadedFiles = uploadedFiles.concat(toAdd);
-    refreshGrid();
-  }
-
-  input.addEventListener('change', () => addFiles(input.files));
-
-  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
-  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
-  zone.addEventListener('drop', e => {
-    e.preventDefault();
-    zone.classList.remove('drag-over');
-    addFiles(e.dataTransfer.files);
-  });
-
-  // Keyboard accessible
-  zone.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); }
-  });
-})();
-
-// ── Floating CTA ──────────────────────────────────────
-// No float CTA on the quote page itself — user is already quoting
 </script>
+
 
 <!-- Floating quote CTA (hidden on quote page) -->
 
