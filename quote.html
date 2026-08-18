@@ -713,941 +713,1569 @@
       <span class="breadcrumb-sep">›</span>
       <span>Get a Quote</span>
     </nav>
-    <h1 class="reveal">GET YOUR <em>FREE QUOTE.</em></h1>
-    <!-- Sub-headline candidates:
-         A (used below): "One business day and you'll have real pricing — no bots, no upsells, no obligation."
-         B: "We reply within one business day, often same day — real answers, no pressure tactics."
-         C: "Real pricing back in one business day. No bots, no pushy follow-ups, no obligation."
-         Rationale for A: leads with the response-time promise, closest in register to the brief's
-         reference line, and avoids the word "quote" (already used in the H1 above) per the hard rule. -->
-    <p class="page-hero-sub reveal reveal-delay-1">One business day and you'll have real pricing — no bots, no upsells, no obligation.</p>
-    <div class="trust-row reveal reveal-delay-2">
-      <div class="trust-row-item">Same-day response</div>
-      <div class="trust-row-item">Free estimate</div>
-      <div class="trust-row-item">No pressure</div>
+    <h1 class="reveal">Get your free quote.</h1>
+    <p class="quote-hero-sub reveal">Pick what you want done, tell us the truck, hit send. Real pricing back within one business day — no bots, no pushy follow-ups.</p>
+
+    <!-- Audience switcher pills -->
+    <div class="q6-audience-switcher" role="tablist" aria-label="Choose the type of quote">
+      <button type="button" class="q6-pill is-active" data-mode="retail" role="tab" aria-selected="true" id="q6-pill-retail">Personal vehicle</button>
+      <button type="button" class="q6-pill" data-mode="fleet" role="tab" aria-selected="false" id="q6-pill-fleet">Fleet &amp; commercial</button>
+      <button type="button" class="q6-pill" data-mode="dealer" role="tab" aria-selected="false" id="q6-pill-dealer">Dealer &amp; government</button>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     STEP 1: SERVICE PICKER (Phase 2 quote-cart retrofit)
-     Users select one or more services first. Selections persist
-     in localStorage and pre-check the matching service checkboxes
-     across all three audience panels below. Reads ?service=X,Y,Z
-     URL params so "Add to My Upfit" buttons on service pages can
-     deep-link here with pre-selected items.
-     ============================================================ -->
+<!-- ==================================================================
+     PHASE 6 QUOTE BUILDER — Patriot 2-step for retail, single-page for fleet/dealer
+     Backend contract preserved. lead-form.js still owns submit.
+     ================================================================== -->
 <style>
-  /* Service Picker uses the site's real design tokens (base.css).
-     Accent is navy (#203055) — do NOT hardcode orange RGBAs. */
-  .service-picker {
-    padding: var(--space-16) 0 var(--space-8);
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
-  }
-  .service-picker-header {
-    text-align: center;
-    margin-bottom: var(--space-8);
-  }
-  .service-picker-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: var(--text-xs);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    background: var(--color-accent-light);
-    padding: 0.4rem 0.95rem;
-    border-radius: var(--radius-pill);
-    margin-bottom: var(--space-4);
-  }
-  .service-picker-eyebrow::before {
-    content: "";
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--color-accent);
-  }
-  .service-picker-title {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(var(--text-3xl), 3.8vw, var(--text-5xl));
-    text-transform: uppercase;
-    letter-spacing: -0.005em;
-    color: var(--color-text);
-    margin: 0 0 var(--space-3);
-    line-height: 1;
-  }
-  .service-picker-sub {
-    color: var(--color-text-secondary);
-    max-width: 560px;
-    margin: 0 auto;
-    font-size: var(--text-base);
-    line-height: 1.55;
-  }
-  .picker-sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-  .service-picker-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: var(--space-3);
-    margin-bottom: var(--space-6);
-  }
-  .service-chip {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    padding: var(--space-4) var(--space-5);
-    background: var(--color-bg);
-    border: 1.5px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    cursor: pointer;
-    transition:
-      border-color 180ms cubic-bezier(0.16,1,0.3,1),
-      background 180ms cubic-bezier(0.16,1,0.3,1),
-      transform 180ms cubic-bezier(0.16,1,0.3,1),
-      box-shadow 180ms cubic-bezier(0.16,1,0.3,1);
-    text-align: left;
-    color: var(--color-text);
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    position: relative;
-    user-select: none;
-  }
-  .service-chip:hover {
-    border-color: var(--color-accent);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px -8px rgba(32, 48, 85, 0.25);
-  }
-  .service-chip:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 3px var(--color-accent-light), 0 0 0 4px var(--color-accent);
-  }
-  .service-chip.selected {
-    border-color: var(--color-accent);
-    background: var(--color-accent-light);
-    box-shadow: 0 4px 12px -6px rgba(32, 48, 85, 0.3);
-  }
-  .service-chip.selected:hover {
-    transform: translateY(-2px);
-  }
-  .service-chip[aria-disabled="true"] {
-    cursor: not-allowed;
-    opacity: 0.55;
-  }
-  .service-chip[aria-disabled="true"]:hover {
-    border-color: var(--color-border);
-    transform: none;
-    box-shadow: none;
-  }
-  .service-chip-check {
-    width: 20px;
-    height: 20px;
-    border-radius: var(--radius-sm);
-    border: 1.5px solid var(--color-border);
-    background: var(--color-bg);
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 180ms cubic-bezier(0.16,1,0.3,1);
-  }
-  .service-chip.selected .service-chip-check {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    transform: scale(1.05);
-  }
-  .service-chip.selected .service-chip-check::after {
-    content: "✓";
-    color: #fff;
-    font-size: 13px;
-    font-weight: 800;
-    line-height: 1;
-  }
-  .service-chip-label {
-    flex: 1;
-    min-width: 0;
-  }
-  .service-chip-badge {
-    margin-left: auto;
-    font-family: var(--font-display);
-    font-size: var(--text-xs);
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    background: var(--color-accent-light);
-    padding: 2px 8px;
-    border-radius: var(--radius-sm);
-  }
-  .picker-cart-bar {
-    position: sticky;
-    bottom: var(--space-3);
-    z-index: 20;
-    background: var(--color-surface-dark);
-    color: var(--color-text-inverse);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: var(--radius-xl);
-    padding: var(--space-4) var(--space-5);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-4);
-    box-shadow:
-      0 20px 40px -12px rgba(17, 24, 39, 0.4),
-      0 8px 16px -8px rgba(17, 24, 39, 0.3);
-    flex-wrap: wrap;
-    opacity: 0;
-    transform: translateY(16px);
-    pointer-events: none;
-    transition:
-      opacity 260ms cubic-bezier(0.16,1,0.3,1),
-      transform 260ms cubic-bezier(0.16,1,0.3,1);
-  }
-  .picker-cart-bar.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-  .picker-cart-info { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 200px; }
-  .picker-cart-count {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: var(--text-lg);
-    letter-spacing: 0.02em;
-    color: var(--color-text-inverse);
-    text-transform: uppercase;
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-2);
-  }
-  .picker-cart-count strong {
-    color: #fff;
-    font-size: var(--text-2xl);
-    font-weight: 800;
-    font-variant-numeric: tabular-nums;
-    transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
-    display: inline-block;
-  }
-  .picker-cart-count strong.pulse {
-    transform: scale(1.25);
-  }
-  .picker-cart-list {
-    color: var(--color-text-inverse-muted);
-    font-size: var(--text-sm);
-    line-height: 1.4;
-  }
-  .picker-cart-actions { display: flex; gap: var(--space-2); flex-shrink: 0; }
-  .picker-cart-btn-clear {
-    background: transparent;
-    color: var(--color-text-inverse-muted);
-    border: 1px solid rgba(255,255,255,0.15);
-    padding: var(--space-3) var(--space-4);
-    border-radius: var(--radius-md);
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: var(--text-xs);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: color 160ms, border-color 160ms;
-  }
-  .picker-cart-btn-clear:hover {
-    color: #fff;
-    border-color: rgba(255,255,255,0.3);
-  }
-  .picker-cart-btn-clear:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(255,255,255,0.25);
-  }
-  .picker-cart-btn-continue {
-    background: #fff;
-    color: var(--color-surface-dark);
-    border: 1px solid #fff;
-    padding: var(--space-3) var(--space-5);
-    border-radius: var(--radius-md);
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: var(--text-sm);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: transform 160ms, box-shadow 160ms;
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-  }
-  .picker-cart-btn-continue:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px -6px rgba(0,0,0,0.4);
-  }
-  .picker-cart-btn-continue:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(255,255,255,0.5);
-  }
-  .picker-cart-btn-continue svg {
-    width: 14px;
-    height: 14px;
-    transition: transform 200ms cubic-bezier(0.16,1,0.3,1);
-  }
-  .picker-cart-btn-continue:hover svg {
-    transform: translateX(3px);
-  }
-  .picker-skip {
-    display: block;
-    margin: var(--space-5) auto 0;
-    color: var(--color-text-muted);
-    background: none;
-    border: none;
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    cursor: pointer;
-    text-align: center;
-    padding: var(--space-2) var(--space-4);
-  }
-  .picker-skip:hover { color: var(--color-text); }
-  .picker-skip:focus-visible {
-    outline: none;
-    color: var(--color-text);
-    box-shadow: 0 0 0 2px var(--color-accent);
-    border-radius: var(--radius-sm);
-  }
+/* Phase 6 scoped styles — prefix q6- */
+:root {
+  --q6-bar-h: 88px;
+  --q6-bar-h-mobile: 68px;
+  --q6-tile-radius: var(--radius-lg, 18px);
+  --q6-accent: var(--color-accent, #f59e0b);
+  --q6-navy: var(--brand-navy, #0A1F3D);
+  --q6-body-color: var(--brand-body, #1e293b);
+  --q6-muted: var(--brand-muted, #64748b);
+  --q6-line: var(--brand-line, #e5e7eb);
+  --q6-surface: var(--brand-surface, #f8fafc);
+  --q6-tile-tint: rgba(10, 31, 61, 0.02);
+}
 
-  @media (max-width: 640px) {
-    .service-picker { padding: var(--space-10) 0 var(--space-6); }
-    .service-picker-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: var(--space-2); margin-bottom: var(--space-5); }
-    .service-chip { padding: var(--space-3) var(--space-4); font-size: var(--text-sm); gap: var(--space-2); }
-    .service-chip-badge { display: none; }
-    .picker-cart-bar { flex-direction: column; align-items: stretch; gap: var(--space-3); padding: var(--space-3) var(--space-4); }
-    .picker-cart-list { display: none; }
-    .picker-cart-actions { display: grid; grid-template-columns: auto 1fr; }
-    .picker-cart-btn-continue { justify-content: center; }
-  }
+.quote-hero-sub {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--q6-muted);
+  max-width: 640px;
+  margin: 1rem auto 2rem;
+  line-height: 1.55;
+  text-align: center;
+}
 
-  @media (prefers-reduced-motion: reduce) {
-    .service-chip, .picker-cart-bar, .picker-cart-count strong, .service-chip-check, .picker-cart-btn-continue svg {
-      transition: none !important;
-      animation: none !important;
-    }
-    .service-chip:hover { transform: none; }
-  }
+/* Audience pill switcher */
+.q6-audience-switcher {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.375rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--q6-line);
+  border-radius: 999px;
+  margin: 0 auto 2.5rem;
+  justify-content: center;
+}
+.q6-pill {
+  border: none;
+  background: transparent;
+  padding: 0.625rem 1.25rem;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--q6-muted);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+}
+.q6-pill:hover { color: var(--q6-navy); }
+.q6-pill.is-active {
+  background: var(--q6-navy);
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(10, 31, 61, 0.2);
+}
+.q6-pill:focus-visible {
+  outline: 2px solid var(--q6-accent);
+  outline-offset: 2px;
+}
+
+/* Wrapper for the three modes */
+.q6-mode { display: none; }
+.q6-mode.is-active { display: block; }
+
+/* ================ RETAIL 2-STEP BUILDER ================ */
+.q6-retail-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.25rem 8rem;
+}
+
+/* Step chrome */
+.q6-step-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.q6-step-title-block {
+  flex: 1;
+  min-width: 260px;
+}
+.q6-step-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--q6-accent);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.375rem;
+}
+.q6-step-title {
+  font-family: var(--font-display, 'Archivo', system-ui);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--q6-navy);
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+.q6-step-lede {
+  color: var(--q6-muted);
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  max-width: 560px;
+}
+.q6-progress {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--q6-muted);
+  font-weight: 600;
+}
+.q6-progress-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--q6-line);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.q6-progress-dot.is-current { background: var(--q6-navy); transform: scale(1.25); }
+.q6-progress-dot.is-done { background: var(--q6-accent); }
+
+/* Service tile grid */
+.q6-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+@media (max-width: 900px) {
+  .q6-tile-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .q6-tile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.q6-tile {
+  position: relative;
+  background: #fff;
+  border: 1.5px solid var(--q6-line);
+  border-radius: var(--q6-tile-radius);
+  padding: 1.25rem 1rem 1.125rem;
+  cursor: pointer;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, transform 0.18s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 0.625rem;
+  min-height: 140px;
+}
+.q6-tile:hover {
+  border-color: var(--q6-navy);
+  box-shadow: 0 4px 12px rgba(10, 31, 61, 0.08);
+  transform: translateY(-1px);
+}
+.q6-tile.is-open {
+  border-color: var(--q6-navy);
+  background: var(--q6-tile-tint);
+  box-shadow: 0 4px 16px rgba(10, 31, 61, 0.1);
+}
+.q6-tile.is-capped {
+  opacity: 0.42;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.q6-tile-icon {
+  width: 32px; height: 32px;
+  color: var(--q6-navy);
+  flex-shrink: 0;
+}
+.q6-tile-name {
+  font-family: var(--font-display, 'Archivo', system-ui);
+  font-weight: 700;
+  color: var(--q6-navy);
+  font-size: 0.9375rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.q6-tile-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  background: rgba(245, 158, 11, 0.14);
+  color: #b45309;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.q6-tile-check {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--q6-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+}
+.q6-tile.is-open .q6-tile-check {
+  opacity: 1;
+  transform: scale(1);
+}
+.q6-tile.is-open .q6-tile-badge {
+  opacity: 0;
+}
+
+/* Inline tile expansion — options + add-ons */
+.q6-tile-options {
+  display: none;
+  grid-column: 1 / -1;
+  background: #fff;
+  border: 1.5px solid var(--q6-navy);
+  border-radius: var(--q6-tile-radius);
+  padding: 1.5rem;
+  margin-top: -0.5rem;
+  box-shadow: 0 6px 18px rgba(10, 31, 61, 0.08);
+  animation: q6-slide-in 0.24s ease-out;
+}
+.q6-tile-options.is-visible { display: block; }
+@keyframes q6-slide-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.q6-options-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.q6-options-title {
+  font-family: var(--font-display, 'Archivo', system-ui);
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--q6-navy);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.q6-options-close {
+  background: none;
+  border: none;
+  color: var(--q6-muted);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+.q6-options-close:hover { color: var(--q6-navy); background: var(--q6-surface); }
+.q6-options-group-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--q6-muted);
+  margin: 1.25rem 0 0.625rem;
+}
+.q6-options-group-label:first-child { margin-top: 0; }
+
+.q6-option-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.625rem;
+}
+.q6-option-card {
+  border: 1.5px solid var(--q6-line);
+  border-radius: 12px;
+  padding: 0.75rem 0.875rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--q6-body-color);
+  background: #fff;
+  user-select: none;
+}
+.q6-option-card:hover { border-color: var(--q6-navy); }
+.q6-option-card input {
+  accent-color: var(--q6-navy);
+  flex-shrink: 0;
+  margin: 0;
+}
+.q6-option-card.is-checked {
+  border-color: var(--q6-navy);
+  background: var(--q6-tile-tint);
+  font-weight: 600;
+}
+
+/* Sticky bottom bar */
+.q6-bar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 90;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--q6-line);
+  box-shadow: 0 -4px 20px rgba(10, 31, 61, 0.06);
+  height: var(--q6-bar-h);
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  transition: transform 0.25s ease;
+}
+.q6-bar-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.q6-bar-count {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 140px;
+}
+.q6-bar-count-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--q6-muted);
+}
+.q6-bar-count-value {
+  font-family: var(--font-display, 'Archivo', system-ui);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--q6-navy);
+  letter-spacing: -0.01em;
+}
+.q6-bar-chips {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.375rem;
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.q6-bar-chips::-webkit-scrollbar { display: none; }
+.q6-bar-chip {
+  font-size: 0.8rem;
+  padding: 0.375rem 0.75rem;
+  background: var(--q6-surface);
+  border: 1px solid var(--q6-line);
+  border-radius: 999px;
+  color: var(--q6-body-color);
+  white-space: nowrap;
+  font-weight: 500;
+}
+.q6-bar-actions {
+  display: flex;
+  gap: 0.625rem;
+  flex-shrink: 0;
+}
+.q6-bar-btn {
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  font-size: 0.95rem;
+}
+.q6-bar-btn.is-primary {
+  background: var(--q6-navy);
+  color: #fff;
+}
+.q6-bar-btn.is-primary:hover:not(:disabled) {
+  background: #0f2a52;
+  transform: translateY(-1px);
+}
+.q6-bar-btn.is-primary:disabled {
+  background: #cbd5e1;
+  color: #64748b;
+  cursor: not-allowed;
+}
+.q6-bar-btn.is-secondary {
+  background: transparent;
+  color: var(--q6-navy);
+  border: 1.5px solid var(--q6-line);
+}
+.q6-bar-btn.is-secondary:hover { border-color: var(--q6-navy); }
+.q6-bar-notice {
+  font-size: 0.8rem;
+  color: #b45309;
+  margin-top: 0.25rem;
+  display: none;
+}
+.q6-bar-notice.is-visible { display: block; }
+
+@media (max-width: 700px) {
+  .q6-bar { height: var(--q6-bar-h-mobile); padding: 0 1rem; }
+  .q6-bar-count { min-width: auto; }
+  .q6-bar-count-label { display: none; }
+  .q6-bar-chips { display: none; }
+  .q6-bar-btn { padding: 0.625rem 1rem; font-size: 0.9rem; }
+}
+
+/* Step 2 — Review + form */
+.q6-review-wrap {
+  display: none;
+  gap: 1.5rem;
+  grid-template-columns: 1fr 1.4fr;
+  align-items: start;
+}
+.q6-review-wrap.is-visible { display: grid; }
+@media (max-width: 900px) {
+  .q6-review-wrap { grid-template-columns: 1fr; }
+}
+
+.q6-review-card, .q6-contact-card {
+  background: #fff;
+  border: 1px solid var(--q6-line);
+  border-radius: var(--q6-tile-radius);
+  padding: 1.75rem;
+  box-shadow: 0 2px 8px rgba(10, 31, 61, 0.04);
+}
+.q6-review-title, .q6-contact-title {
+  font-family: var(--font-display, 'Archivo', system-ui);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--q6-navy);
+  margin: 0 0 0.375rem;
+  letter-spacing: -0.02em;
+}
+.q6-contact-subtitle {
+  color: var(--q6-muted);
+  margin: 0 0 1.25rem;
+  font-size: 0.95rem;
+}
+.q6-review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.q6-review-item {
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--q6-line);
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.q6-review-item:last-child { border-bottom: 0; padding-bottom: 0; }
+.q6-review-item-body {
+  flex: 1;
+  min-width: 0;
+}
+.q6-review-item-name {
+  font-weight: 700;
+  color: var(--q6-navy);
+  font-size: 0.975rem;
+  margin: 0 0 0.25rem;
+}
+.q6-review-item-detail {
+  font-size: 0.85rem;
+  color: var(--q6-muted);
+  margin: 0;
+  line-height: 1.45;
+}
+.q6-review-edit {
+  background: none;
+  border: none;
+  color: var(--q6-navy);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.q6-review-edit:hover { background: var(--q6-surface); }
+
+.q6-review-empty {
+  color: var(--q6-muted);
+  font-style: italic;
+  padding: 0.75rem 0;
+}
+
+/* Contact form fields */
+.q6-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem;
+}
+.q6-field { display: flex; flex-direction: column; gap: 0.375rem; }
+.q6-field.q6-field-full { grid-column: 1 / -1; }
+.q6-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.q6-field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--q6-navy);
+  letter-spacing: -0.01em;
+}
+.q6-field label .q6-req { color: #dc2626; }
+.q6-field input,
+.q6-field select,
+.q6-field textarea {
+  width: 100%;
+  padding: 0.7rem 0.875rem;
+  border: 1.5px solid var(--q6-line);
+  border-radius: 10px;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--q6-body-color);
+  background: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  font-family: inherit;
+}
+.q6-field input:focus,
+.q6-field select:focus,
+.q6-field textarea:focus {
+  outline: none;
+  border-color: var(--q6-navy);
+  box-shadow: 0 0 0 3px rgba(10, 31, 61, 0.08);
+}
+.q6-field textarea { min-height: 96px; resize: vertical; }
+.q6-field-hint {
+  font-size: 0.75rem;
+  color: var(--q6-muted);
+  margin-top: 0.25rem;
+}
+@media (max-width: 640px) {
+  .q6-form-grid, .q6-field-row { grid-template-columns: 1fr; }
+}
+
+/* Success + diagnostic */
+.q6-success {
+  display: none;
+  background: #fff;
+  border: 1px solid var(--q6-line);
+  border-radius: var(--q6-tile-radius);
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.q6-success.is-visible { display: block; }
+.q6-success-check {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+.q6-success-title {
+  font-family: var(--font-display, 'Archivo', system-ui);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--q6-navy);
+  margin: 0 0 0.75rem;
+}
+.q6-success-body {
+  color: var(--q6-muted);
+  line-height: 1.55;
+  margin: 0 0 1rem;
+  font-size: 1rem;
+}
+.q6-success-ref {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--q6-surface);
+  border: 1px dashed var(--q6-line);
+  border-radius: 10px;
+  font-family: var(--font-mono, 'JetBrains Mono', ui-monospace, monospace);
+  font-weight: 600;
+  color: var(--q6-navy);
+  font-size: 0.95rem;
+  margin: 0.75rem 0;
+}
+.q6-success-warning {
+  font-size: 0.85rem;
+  color: #b45309;
+  background: rgba(245, 158, 11, 0.08);
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  text-align: left;
+}
+.q6-diagnostic {
+  margin-top: 1.5rem;
+  text-align: left;
+  font-size: 0.8rem;
+}
+.q6-diagnostic summary {
+  cursor: pointer;
+  color: var(--q6-muted);
+  font-weight: 600;
+}
+.q6-diagnostic pre {
+  background: #0f172a;
+  color: #cbd5e1;
+  padding: 0.875rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Fleet / dealer single-page form */
+.q6-single-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.25rem 6rem;
+}
+.q6-single-card {
+  background: #fff;
+  border: 1px solid var(--q6-line);
+  border-radius: var(--q6-tile-radius);
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(10, 31, 61, 0.06);
+}
+.q6-single-header { margin-bottom: 1.5rem; }
+.q6-single-header h2 {
+  font-family: var(--font-display, 'Archivo', system-ui);
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--q6-navy);
+  margin: 0 0 0.375rem;
+  letter-spacing: -0.02em;
+}
+.q6-single-header p {
+  color: var(--q6-muted);
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.q6-service-checks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+@media (max-width: 500px) {
+  .q6-service-checks { grid-template-columns: 1fr; }
+}
+.q6-service-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  border: 1.5px solid var(--q6-line);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--q6-body-color);
+  user-select: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.q6-service-check:hover { border-color: var(--q6-navy); }
+.q6-service-check.is-checked {
+  border-color: var(--q6-navy);
+  background: var(--q6-tile-tint);
+  font-weight: 600;
+}
+.q6-service-check input { accent-color: var(--q6-navy); }
+
+.q6-submit-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+  gap: 0.75rem;
+  align-items: center;
+}
+.q6-submit-btn {
+  background: var(--q6-navy);
+  color: #fff;
+  border: none;
+  padding: 0.875rem 2rem;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+.q6-submit-btn:hover:not(:disabled) {
+  background: #0f2a52;
+  transform: translateY(-1px);
+}
+.q6-submit-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .q6-tile, .q6-tile-options, .q6-bar-btn, .q6-bar { transition: none; animation: none; }
+}
 </style>
 
-<section class="service-picker" aria-labelledby="picker-heading">
-  <div class="container" style="max-width: 960px;">
-    <div class="service-picker-header">
-      <div class="service-picker-eyebrow">Step 1 of 2 &nbsp;·&nbsp; Pick services</div>
-      <h2 id="picker-heading" class="service-picker-title">What are you looking to add?</h2>
-      <p class="service-picker-sub">Pick one or more services below. You can adjust anything on the next step — this just routes your quote to the right specialist. <span id="service-picker-limit-copy">Choose up to 12 services.</span></p>
-    </div>
-
-    <div class="service-picker-grid" id="service-picker-grid" role="group" aria-label="Select services" aria-describedby="service-picker-limit-copy">
-      <!-- Populated by JS. Kept in JS so the source list stays in one place and matches the form checkboxes below. -->
-    </div>
-    <p id="service-picker-announcement" class="picker-sr-only" aria-live="polite" aria-atomic="true"></p>
-
-    <div class="picker-cart-bar" id="picker-cart-bar" role="status" aria-live="polite">
-      <div class="picker-cart-info">
-        <div class="picker-cart-count"><strong id="picker-cart-count">0</strong> <span>selected</span></div>
-        <div class="picker-cart-list" id="picker-cart-list"></div>
-      </div>
-      <div class="picker-cart-actions">
-        <button type="button" class="picker-cart-btn-clear" id="picker-cart-clear">Clear</button>
-        <button type="button" class="picker-cart-btn-continue" id="picker-cart-continue">
-          Continue
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h8"/><path d="m9 4 3 4-3 4"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <button type="button" class="picker-skip" id="picker-skip">Skip — I'll pick services on the form</button>
-  </div>
-</section>
-
-<!-- QUOTE SECTION -->
-<section class="quote-section" id="quote-form-section">
+<section class="section" style="padding-top: 1rem; padding-bottom: 0;">
   <div class="container">
-    <div class="quote-layout">
 
-      <!-- MAIN FORM AREA -->
-      <div>
-        <!-- Audience Tabs -->
-        <div role="tablist" aria-label="Select your quote type" class="audience-tabs">
-          <button class="audience-tab active" role="tab" aria-selected="true" aria-controls="form-retail" id="tab-retail" data-panel="form-retail">
-            <div class="audience-tab-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <!-- ================ RETAIL 2-STEP BUILDER ================ -->
+    <div class="q6-mode is-active" data-q6-mode="retail" id="q6-mode-retail">
+      <div class="q6-retail-wrap">
+
+        <!-- STEP 1: pick services -->
+        <div class="q6-step" data-q6-step="1" id="q6-step-1">
+          <div class="q6-step-header">
+            <div class="q6-step-title-block">
+              <p class="q6-step-eyebrow">Step 1 of 2</p>
+              <h2 class="q6-step-title">What are you looking to add?</h2>
+              <p class="q6-step-lede">Tap a service to see options. Pick as many as you need — up to 12.</p>
             </div>
-            <span class="audience-tab-title">Personal Vehicle</span>
-            <span class="audience-tab-sub">Retail quote for your truck, SUV, or car</span>
-          </button>
-          <button class="audience-tab" role="tab" aria-selected="false" aria-controls="form-fleet" id="tab-fleet" data-panel="form-fleet">
-            <div class="audience-tab-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="11" width="22" height="9" rx="1"/><path d="M1 11l3-7h12l3 7"/><circle cx="7" cy="20" r="2"/><circle cx="17" cy="20" r="2"/></svg>
+            <div class="q6-progress" aria-hidden="true">
+              <span class="q6-progress-dot is-current"></span>
+              <span class="q6-progress-dot"></span>
             </div>
-            <span class="audience-tab-title">Fleet or Business</span>
-            <span class="audience-tab-sub">2+ vehicles, work trucks, commercial fleets</span>
-          </button>
-          <button class="audience-tab" role="tab" aria-selected="false" aria-controls="form-dealer" id="tab-dealer" data-panel="form-dealer">
-            <div class="audience-tab-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            </div>
-            <span class="audience-tab-title">Dealer / Government</span>
-            <span class="audience-tab-sub">Pre-delivery, contracts, bulk accounts</span>
-          </button>
+          </div>
+
+          <div class="q6-tile-grid" id="q6-tile-grid" role="list">
+            <!-- Tiles rendered by JS -->
+          </div>
         </div>
 
-        <!-- PANEL 1: Retail -->
-        <div class="form-panel" id="form-retail" role="tabpanel" aria-labelledby="tab-retail">
-          <div id="form-retail-success" class="form-success-panel">
-            <div class="form-success-icon">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <h3>Quote Request Received!</h3>
-            <p>We'll reach out within one business day — usually the same business day.</p>
-            <a href="./services/index.html" class="btn btn-ghost" style="margin-top: var(--space-6);">Browse Services</a>
+        <!-- STEP 2: review + contact -->
+        <div class="q6-review-wrap" id="q6-step-2">
+          <div class="q6-review-card">
+            <p class="q6-step-eyebrow">Your build</p>
+            <h3 class="q6-review-title">Here's what you're asking about</h3>
+            <ul class="q6-review-list" id="q6-review-list">
+              <!-- Populated by JS -->
+            </ul>
           </div>
-          <div id="form-retail-body">
-            <div class="form-panel-title">Personal Vehicle Quote</div>
-            <div class="form-panel-sub">Tell us about your vehicle and what you're looking for. No commitment required.</div>
-            <div class="form-progress-hint">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              About 90 seconds — most fields below are optional
-            </div>
-            <form id="quote-retail" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="form-body" novalidate data-cms-form="retail" data-success-body="form-retail-body" data-success-panel="form-retail-success">
-              <!-- Attribution (auto-filled by /attribution.js) -->
-              <input type="hidden" name="ip_address" data-cu-attr="1">
-              <input type="hidden" name="geo_city" data-cu-attr="1">
-              <input type="hidden" name="geo_region" data-cu-attr="1">
-              <input type="hidden" name="geo_country" data-cu-attr="1">
-              <input type="hidden" name="isp" data-cu-attr="1">
-              <input type="hidden" name="landing_page" data-cu-attr="1">
-              <input type="hidden" name="form_page" data-cu-attr="1">
-              <input type="hidden" name="referrer" data-cu-attr="1">
-              <input type="hidden" name="referrer_domain" data-cu-attr="1">
-              <input type="hidden" name="utm_source" data-cu-attr="1">
-              <input type="hidden" name="utm_medium" data-cu-attr="1">
-              <input type="hidden" name="utm_campaign" data-cu-attr="1">
-              <input type="hidden" name="utm_term" data-cu-attr="1">
-              <input type="hidden" name="utm_content" data-cu-attr="1">
-              <input type="hidden" name="gclid" data-cu-attr="1">
-              <input type="hidden" name="fbclid" data-cu-attr="1">
-              <input type="hidden" name="msclkid" data-cu-attr="1">
-              <input type="hidden" name="lead_source" data-cu-attr="1">
-              <input type="hidden" name="user_agent" data-cu-attr="1">
 
-              <div class="form-row">
-                <div class="form-field">
-                  <label class="form-label" for="r-fname">First Name *</label>
-                  <input class="form-input" type="text" id="r-fname" name="First Name" placeholder="John" required>
-                </div>
-                <div class="form-field">
-                  <label class="form-label" for="r-lname">Last Name *</label>
-                  <input class="form-input" type="text" id="r-lname" name="Last Name" placeholder="Smith" required>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-field">
-                  <label class="form-label" for="r-email">Email *</label>
-                  <input class="form-input" type="email" id="r-email" name="Email" placeholder="john@email.com" required>
-                </div>
-                <div class="form-field">
-                  <label class="form-label" for="r-phone">Phone</label>
-                  <input class="form-input" type="tel" id="r-phone" name="Phone" placeholder="(301) 555-0100" pattern="[0-9\s+\(\)\.\-]{7,30}" minlength="7" maxlength="30" title="Enter a valid phone number using digits and + ( ) - .">
-                </div>
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="r-zip">ZIP Code</label>
-                <input class="form-input" type="text" id="r-zip" name="ZIP" placeholder="20852" maxlength="10">
-              </div>
-              <!-- VIN LOOKUP ───────────────────────────────── -->
-              <div class="form-field">
-                <label class="form-label" for="r-vin">VIN <span style="font-weight:400; color: var(--color-text-muted);">— optional, auto-fills vehicle info</span></label>
-                <div class="vin-lookup-row">
-                  <input class="form-input" type="text" id="r-vin" name="VIN" placeholder="e.g. 1FTFW1ET5DFA12345" maxlength="17" autocomplete="off" style="font-family: monospace; letter-spacing: 0.05em; text-transform: uppercase;">
-                  <button type="button" class="vin-lookup-btn" id="vin-lookup-btn" aria-label="Look up VIN">
-                    <span class="vin-lookup-label">Look Up</span>
-                    <span class="vin-lookup-spinner" hidden>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="spin-icon"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke-opacity="0.3"/><path d="M21 12a9 9 0 0 0-9-9"/></svg>
-                    </span>
-                  </button>
-                </div>
-                <div class="vin-result" id="vin-result" hidden></div>
-              </div>
+          <div class="q6-contact-card">
+            <div id="form-retail-body" data-success-body="form-retail-body">
+              <p class="q6-step-eyebrow">Step 2 of 2</p>
+              <h3 class="q6-contact-title">Where should we send it?</h3>
+              <p class="q6-contact-subtitle">We'll follow up the same business day with pricing and the next open installation window.</p>
 
-              <!-- LICENSE PLATE (collapsed — most people don't have it handy) ── -->
-              <details class="form-toggle">
-                <summary>
-                  More options
-                  <svg class="form-toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                </summary>
-                <div class="form-toggle-body">
-                  <div class="form-row">
-                    <div class="form-field">
-                      <label class="form-label" for="r-plate">License Plate <span style="font-weight:400; color: var(--color-text-muted);">— optional</span></label>
-                      <input class="form-input" type="text" id="r-plate" name="License Plate" placeholder="MD: ABC1234" maxlength="12" style="text-transform: uppercase;">
-                    </div>
-                    <div class="form-field">
-                      <label class="form-label" for="r-plate-state">Plate State</label>
-                      <select class="form-input form-select" id="r-plate-state" name="Plate State">
-                        <option value="">State (optional)</option>
-                        <option value="MD" selected>Maryland</option>
-                        <option value="VA">Virginia</option>
-                        <option value="DC">Washington DC</option>
-                        <option value="PA">Pennsylvania</option>
-                        <option value="DE">Delaware</option>
-                        <option value="WV">West Virginia</option>
-                        <option value="Other">Other</option>
-                      </select>
+              <form id="quote-retail" method="POST" class="form-body" novalidate data-cms-form="retail" data-success-body="form-retail-body" data-success-panel="form-retail-success">
+                <div class="q6-form-grid">
+                  <div class="q6-field q6-field-full">
+                    <label>Full name <span class="q6-req" aria-hidden="true">*</span></label>
+                    <div class="q6-field-row">
+                      <input type="text" name="First Name" placeholder="First" autocomplete="given-name" required>
+                      <input type="text" name="Last Name" placeholder="Last" autocomplete="family-name" required>
                     </div>
                   </div>
-                </div>
-              </details>
 
-              <!-- VEHICLE INFO (Year / Make / Model / Trim) ─────── -->
-              <div class="vehicle-fields" id="vehicle-fields">
-                <div class="form-row">
-                  <div class="form-field">
-                    <label class="form-label" for="r-year">Year *</label>
-                    <select class="form-input form-select" id="r-year" name="Vehicle Year" required>
-                      <option value="">Select year</option>
+                  <div class="q6-field">
+                    <label for="q6-retail-phone">Phone <span class="q6-req" aria-hidden="true">*</span></label>
+                    <input id="q6-retail-phone" type="tel" name="Phone" placeholder="(301) 555-0100" autocomplete="tel" required>
+                  </div>
+                  <div class="q6-field">
+                    <label for="q6-retail-email">Email <span class="q6-req" aria-hidden="true">*</span></label>
+                    <input id="q6-retail-email" type="email" name="Email" placeholder="you@example.com" autocomplete="email" required>
+                  </div>
+
+                  <div class="q6-field">
+                    <label for="q6-retail-year">Vehicle year <span class="q6-req" aria-hidden="true">*</span></label>
+                    <input id="q6-retail-year" type="text" name="Vehicle Year" inputmode="numeric" placeholder="2023" maxlength="4" required>
+                  </div>
+                  <div class="q6-field">
+                    <label>Make &amp; model <span class="q6-req" aria-hidden="true">*</span></label>
+                    <div class="q6-field-row">
+                      <input type="text" name="Vehicle Make" placeholder="Ford" required>
+                      <input type="text" name="Vehicle Model" placeholder="F-150" required>
+                    </div>
+                  </div>
+
+                  <div class="q6-field">
+                    <label for="q6-retail-zip">ZIP</label>
+                    <input id="q6-retail-zip" type="text" name="ZIP" inputmode="numeric" placeholder="20852" maxlength="5" autocomplete="postal-code">
+                  </div>
+                  <div class="q6-field">
+                    <label for="q6-retail-timing">Timing</label>
+                    <select id="q6-retail-timing" name="Preferred Date">
+                      <option value="">Choose one</option>
+                      <option value="As soon as possible">As soon as possible</option>
+                      <option value="Within 2 weeks">Within 2 weeks</option>
+                      <option value="This month">This month</option>
+                      <option value="Just pricing for now">Just pricing for now</option>
                     </select>
                   </div>
-                  <div class="form-field">
-                    <label class="form-label" for="r-make">Make *</label>
-                    <select class="form-input form-select" id="r-make" name="Vehicle Make" required>
-                      <option value="">Select make</option>
-                      <option>Ford</option>
-                      <option>Chevrolet</option>
-                      <option>GMC</option>
-                      <option>RAM</option>
-                      <option>Toyota</option>
-                      <option>Nissan</option>
-                      <option>Honda</option>
-                      <option>Jeep</option>
-                      <option>Dodge</option>
-                      <option>Subaru</option>
-                      <option>Hyundai</option>
-                      <option>Kia</option>
-                      <option>Volkswagen</option>
-                      <option>BMW</option>
-                      <option>Mercedes-Benz</option>
-                      <option>Audi</option>
-                      <option>Lexus</option>
-                      <option>Mazda</option>
-                      <option>Mitsubishi</option>
-                      <option>Tesla</option>
-                      <option>Rivian</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-field">
-                  <label class="form-label" for="r-model">Model *</label>
-                  <input class="form-input" type="text" id="r-model" name="Vehicle Model" placeholder="F-150, Silverado, Ram 1500…" required>
-                </div>
-              </div>
 
-              <!-- TRIM / COLOR / PHOTOS (collapsed — helps accuracy, hurts completion if forced) -->
-              <details class="form-toggle" id="vehicle-details-toggle">
-                <summary>
-                  Add vehicle details (optional)
-                  <svg class="form-toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                </summary>
-                <div class="form-toggle-body">
-                  <div class="form-field">
-                    <label class="form-label" for="r-trim">Trim / Config <span style="font-weight:400; color: var(--color-text-muted);">optional</span></label>
-                    <input class="form-input" type="text" id="r-trim" name="Vehicle Trim" placeholder="XLT, Crew Cab, 4x4…">
-                  </div>
-                  <div class="form-field">
-                    <label class="form-label" for="r-color">Exterior Color <span style="font-weight:400; color: var(--color-text-muted);">optional — helps with paint match</span></label>
-                    <input class="form-input" type="text" id="r-color" name="Vehicle Color" placeholder="e.g. Oxford White, Magnetic Gray, Rapid Red…">
-                  </div>
-                  <div class="form-field">
-                    <label class="form-label">Vehicle Photos <span style="font-weight:400; color: var(--color-text-muted);">optional — up to 5 photos help us quote accurately</span></label>
-                    <div class="photo-upload-zone" id="photo-drop-zone" tabindex="0" role="button" aria-label="Upload vehicle photos">
-                      <div class="photo-upload-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                      </div>
-                      <div class="photo-upload-text">Drop photos here or <span class="photo-upload-link">browse</span></div>
-                      <div class="photo-upload-hint">JPG, PNG, HEIC up to 10 MB each &middot; Max 5 photos</div>
-                      <input type="file" id="r-photos" name="Vehicle Photos" accept="image/*" multiple class="photo-upload-input" aria-label="Upload vehicle photos">
-                    </div>
-                    <div class="photo-preview-grid" id="photo-preview-grid"></div>
+                  <div class="q6-field q6-field-full">
+                    <label for="q6-retail-message">Anything else?</label>
+                    <textarea id="q6-retail-message" name="Message" placeholder="Fleet of 6 trucks, need them done in pairs…"></textarea>
+                    <p class="q6-field-hint">Optional — the more detail, the sharper the quote.</p>
                   </div>
                 </div>
+
+                <div class="q6-submit-row">
+                  <button type="submit" class="q6-submit-btn" id="q6-retail-submit">Send my quote →</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Success panel — swapped in by lead-form.js on success -->
+            <div id="form-retail-success" class="q6-success" data-q6-success="retail">
+              <div class="q6-success-check">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <h3 class="q6-success-title">Quote request sent</h3>
+              <p class="q6-success-body">Your request is in front of the right specialist now. Expect a call or email from us the same business day.</p>
+              <div class="q6-success-ref" data-q6-ref-slot>Reference will appear here</div>
+              <p class="q6-success-body">If you don't hear back within 24 hours, call us at <a href="tel:3013041419" style="color:var(--q6-navy);font-weight:600;">(301) 304-1419</a>.</p>
+              <div class="q6-success-warning" data-q6-warning-slot hidden>Note: our automated confirmation email may be delayed today. Your reference number above is enough to reach us.</div>
+              <details class="q6-diagnostic" data-q6-diagnostic-slot hidden>
+                <summary>Diagnostic (debug mode)</summary>
+                <pre></pre>
               </details>
-
-              <!-- SERVICES (collapsed — 17 checkboxes upfront is overwhelming) -->
-              <details class="form-toggle">
-                <summary>
-                  Select services →
-                  <svg class="form-toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                </summary>
-                <div class="form-toggle-body">
-                  <div class="form-field">
-                    <label class="form-label">Services Needed</label>
-                    <div class="form-checkboxes">
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Bedliner"> Bedliner</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Camper Shell"> Camper Shell</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Hitches & Towing"> Hitches &amp; Towing</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Ceramic Coating"> Ceramic Coating</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Undercoating"> Undercoating</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Tonneau Cover"> Tonneau Cover</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Toolbox / Bed Storage"> Toolbox / Bed Storage</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Running Boards"> Running Boards</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="AMP PowerStep"> AMP PowerStep (Electric)</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Suspension / Lift Kit"> Suspension / Lift Kit</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Exterior Accessories"> Exterior Accessories</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="LED Lighting"> LED Lighting</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Commercial Wraps"> Commercial Wraps</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Window Tinting"> Window Tinting</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Industrial Coatings"> Industrial Coatings</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Mobile Detailing"> Mobile Detailing</label>
-                      <label class="form-checkbox-item"><input type="checkbox" name="services" value="Other"> Other</label>
-                    </div>
-                  </div>
-                </div>
-              </details>
-
-              <!-- SCHEDULING (collapsed) -->
-              <details class="form-toggle">
-                <summary>
-                  Add scheduling preferences (optional)
-                  <svg class="form-toggle-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-                </summary>
-                <div class="form-toggle-body">
-                  <div class="form-field">
-                    <label class="form-label" for="r-date">Preferred Date</label>
-                    <input class="form-input" type="date" id="r-date" name="Preferred Date">
-                  </div>
-                </div>
-              </details>
-              <div class="form-field">
-                <label class="form-label" for="r-msg">Additional Details</label>
-                <textarea class="form-textarea" id="r-msg" name="Message" placeholder="Any additional info about your vehicle or the work you're looking for…"></textarea>
-              </div>
-              <div class="form-trust-strip">
-                <span class="form-trust-strip-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                  4.9★ Google · 110 reviews
-                </span>
-                <span class="form-trust-strip-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                  Authorized Patriot Liner Dealer
-                </span>
-                <span class="form-trust-strip-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  Response in 1 business day
-                </span>
-              </div>
-              <div class="form-submit-row">
-                <button type="submit" class="btn btn-primary btn-lg">Get My Quote →</button>
-                <span class="form-privacy">We never share your info. No spam, ever.</span>
-              </div>
-              <p class="form-privacy-note" style="margin-top:1rem;font-size:12px;line-height:1.5;color:#9ca3af;">
-                By submitting this form you acknowledge that we may capture technical data — including your IP address, referral source, browser, and approximate location — for fraud prevention, analytics, and lead attribution. See our <a href="/privacy.html" style="color:inherit;text-decoration:underline;">Privacy Policy</a>.
-              </p>
-
-            </form>
+            </div>
           </div>
         </div>
 
-        <!-- PANEL 2: Fleet -->
-        <div class="form-panel" id="form-fleet" role="tabpanel" aria-labelledby="tab-fleet" hidden>
-          <div id="form-fleet-success" class="form-success-panel">
-            <div class="form-success-icon">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        <!-- Sticky bottom bar (retail only) -->
+        <div class="q6-bar" id="q6-bar" role="region" aria-label="Your quote build">
+          <div class="q6-bar-inner">
+            <div class="q6-bar-count">
+              <span class="q6-bar-count-label">Your build</span>
+              <span class="q6-bar-count-value" id="q6-bar-count-value">Nothing selected yet</span>
+              <span class="q6-bar-notice" id="q6-bar-notice">Cap reached — remove a service to add another.</span>
             </div>
-            <h3>Fleet Inquiry Submitted!</h3>
-            <p>Our fleet team will reach out within one business day to discuss your requirements and volume pricing.</p>
-            <a href="./fleet.html" class="btn btn-ghost" style="margin-top: var(--space-6);">Learn About Fleet Accounts</a>
-          </div>
-          <div id="form-fleet-body">
-            <div class="form-panel-title">Fleet / Business Quote</div>
-            <div class="form-panel-sub">Tell us about your business and fleet requirements. A fleet account specialist will respond within one business day.</div>
-            <form id="quote-fleet" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="form-body" novalidate data-cms-form="fleet" data-success-body="form-fleet-body" data-success-panel="form-fleet-success">
-              <!-- Attribution (auto-filled by /attribution.js) -->
-              <input type="hidden" name="ip_address" data-cu-attr="1">
-              <input type="hidden" name="geo_city" data-cu-attr="1">
-              <input type="hidden" name="geo_region" data-cu-attr="1">
-              <input type="hidden" name="geo_country" data-cu-attr="1">
-              <input type="hidden" name="isp" data-cu-attr="1">
-              <input type="hidden" name="landing_page" data-cu-attr="1">
-              <input type="hidden" name="form_page" data-cu-attr="1">
-              <input type="hidden" name="referrer" data-cu-attr="1">
-              <input type="hidden" name="referrer_domain" data-cu-attr="1">
-              <input type="hidden" name="utm_source" data-cu-attr="1">
-              <input type="hidden" name="utm_medium" data-cu-attr="1">
-              <input type="hidden" name="utm_campaign" data-cu-attr="1">
-              <input type="hidden" name="utm_term" data-cu-attr="1">
-              <input type="hidden" name="utm_content" data-cu-attr="1">
-              <input type="hidden" name="gclid" data-cu-attr="1">
-              <input type="hidden" name="fbclid" data-cu-attr="1">
-              <input type="hidden" name="msclkid" data-cu-attr="1">
-              <input type="hidden" name="lead_source" data-cu-attr="1">
-              <input type="hidden" name="user_agent" data-cu-attr="1">
-
-              <div class="form-row">
-                <div class="form-field">
-                  <label class="form-label" for="f-biz">Business Name *</label>
-                  <input class="form-input" type="text" id="f-biz" name="Business Name" placeholder="Acme Services LLC" required>
-                </div>
-                <div class="form-field">
-                  <label class="form-label" for="f-contact">Contact Name *</label>
-                  <input class="form-input" type="text" id="f-contact" name="Contact Name" placeholder="Jane Doe" required>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-field">
-                  <label class="form-label" for="f-email">Work Email *</label>
-                  <input class="form-input" type="email" id="f-email" name="Business Email" placeholder="jane@company.com" required>
-                </div>
-                <div class="form-field">
-                  <label class="form-label" for="f-phone">Phone *</label>
-                  <input class="form-input" type="tel" id="f-phone" name="Phone" placeholder="(301) 555-0100" pattern="[0-9\s+\(\)\.\-]{7,30}" minlength="7" maxlength="30" title="Enter a valid phone number using digits and + ( ) - ." required>
-                </div>
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="f-count">Number of Vehicles *</label>
-                <select class="form-select" id="f-count" name="Vehicle Count" required>
-                  <option value="">Select range…</option>
-                  <option>1–5</option>
-                  <option>6–15</option>
-                  <option>16–30</option>
-                  <option>30+</option>
-                </select>
-              </div>
-              <div class="form-field">
-                <label class="form-label">Services Needed</label>
-                <div class="form-checkboxes">
-                  <label class="form-checkbox-item"><input type="checkbox" name="services" value="Pickup Upfitting"> Pickup Upfitting</label>
-                  <label class="form-checkbox-item"><input type="checkbox" name="services" value="Van Packages"> Van Packages</label>
-                  <label class="form-checkbox-item"><input type="checkbox" name="services" value="DOT Compliance"> DOT Compliance</label>
-                  <label class="form-checkbox-item"><input type="checkbox" name="services" value="Fleet Branding"> Fleet Branding</label>
-                  <label class="form-checkbox-item"><input type="checkbox" name="services" value="Custom Fabrication"> Custom Fabrication</label>
-                </div>
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="f-timeline">Timeline</label>
-                <select class="form-select" id="f-timeline" name="Timeline">
-                  <option value="">Select timeline…</option>
-                  <option>Immediate</option>
-                  <option>Within 1 month</option>
-                  <option>Within 3 months</option>
-                  <option>Planning stage</option>
-                </select>
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="f-msg">Message</label>
-                <textarea class="form-textarea" id="f-msg" name="Message" placeholder="Describe your fleet's upfitting needs, vehicle types, operational requirements…"></textarea>
-              </div>
-              <div class="form-submit-row">
-                <button type="submit" class="btn btn-primary btn-lg">Submit Fleet Inquiry →</button>
-                <span class="form-privacy">We never share your info. No spam, ever.</span>
-              </div>
-              <p class="form-privacy-note" style="margin-top:1rem;font-size:12px;line-height:1.5;color:#9ca3af;">
-                By submitting this form you acknowledge that we may capture technical data — including your IP address, referral source, browser, and approximate location — for fraud prevention, analytics, and lead attribution. See our <a href="/privacy.html" style="color:inherit;text-decoration:underline;">Privacy Policy</a>.
-              </p>
-
-            </form>
-          </div>
-        </div>
-
-        <!-- PANEL 3: Dealer/Gov -->
-        <div class="form-panel" id="form-dealer" role="tabpanel" aria-labelledby="tab-dealer" hidden>
-          <div id="form-dealer-success" class="form-success-panel">
-            <div class="form-success-icon">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <div class="q6-bar-chips" id="q6-bar-chips"></div>
+            <div class="q6-bar-actions">
+              <button type="button" class="q6-bar-btn is-secondary" id="q6-bar-back" hidden>← Back to services</button>
+              <button type="button" class="q6-bar-btn is-primary" id="q6-bar-continue" disabled>Continue →</button>
             </div>
-            <h3>Dealer Inquiry Submitted!</h3>
-            <p>Our dealer team will reach out within one business day. You can also <a href="https://upfit-portal-58190af9.base44.app/DealerRegister" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent);">register directly in the Upfit Portal</a>.</p>
-            <a href="./dealer-government.html" class="btn btn-ghost" style="margin-top: var(--space-6);">Dealer & Gov Solutions</a>
-          </div>
-          <div id="form-dealer-body">
-            <div class="form-panel-title">Dealer / Government Inquiry</div>
-            <div class="form-panel-sub">Apply for a dealer account or submit a government/municipal inquiry. Alternatively, <a href="https://upfit-portal-58190af9.base44.app/DealerRegister" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent);">register directly in the Upfit Portal</a>.</div>
-            <form id="quote-dealer" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="form-body" novalidate data-cms-form="dealer" data-success-body="form-dealer-body" data-success-panel="form-dealer-success">
-              <!-- Attribution (auto-filled by /attribution.js) -->
-              <input type="hidden" name="ip_address" data-cu-attr="1">
-              <input type="hidden" name="geo_city" data-cu-attr="1">
-              <input type="hidden" name="geo_region" data-cu-attr="1">
-              <input type="hidden" name="geo_country" data-cu-attr="1">
-              <input type="hidden" name="isp" data-cu-attr="1">
-              <input type="hidden" name="landing_page" data-cu-attr="1">
-              <input type="hidden" name="form_page" data-cu-attr="1">
-              <input type="hidden" name="referrer" data-cu-attr="1">
-              <input type="hidden" name="referrer_domain" data-cu-attr="1">
-              <input type="hidden" name="utm_source" data-cu-attr="1">
-              <input type="hidden" name="utm_medium" data-cu-attr="1">
-              <input type="hidden" name="utm_campaign" data-cu-attr="1">
-              <input type="hidden" name="utm_term" data-cu-attr="1">
-              <input type="hidden" name="utm_content" data-cu-attr="1">
-              <input type="hidden" name="gclid" data-cu-attr="1">
-              <input type="hidden" name="fbclid" data-cu-attr="1">
-              <input type="hidden" name="msclkid" data-cu-attr="1">
-              <input type="hidden" name="lead_source" data-cu-attr="1">
-              <input type="hidden" name="user_agent" data-cu-attr="1">
-
-              <div class="form-row">
-                <div class="form-field">
-                  <label class="form-label" for="d-biz">Business/Agency Name *</label>
-                  <input class="form-input" type="text" id="d-biz" name="Business Name" placeholder="ABC Auto Group" required>
-                </div>
-                <div class="form-field">
-                  <label class="form-label" for="d-contact">Contact Name *</label>
-                  <input class="form-input" type="text" id="d-contact" name="Contact Name" placeholder="John Smith" required>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-field">
-                  <label class="form-label" for="d-email">Work Email *</label>
-                  <input class="form-input" type="email" id="d-email" name="Work Email" placeholder="john@dealership.com" required>
-                </div>
-                <div class="form-field">
-                  <label class="form-label" for="d-phone">Phone *</label>
-                  <input class="form-input" type="tel" id="d-phone" name="Phone" placeholder="(301) 555-0100" pattern="[0-9\s+\(\)\.\-]{7,30}" minlength="7" maxlength="30" title="Enter a valid phone number using digits and + ( ) - ." required>
-                </div>
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="d-type">Organization Type *</label>
-                <select class="form-select" id="d-type" name="Organization Type" required>
-                  <option value="">Select type…</option>
-                  <option>Dealership</option>
-                  <option>Fleet Operator</option>
-                  <option>Government Agency</option>
-                  <option>Municipality</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="d-volume">Monthly Volume Estimate</label>
-                <select class="form-select" id="d-volume" name="Monthly Volume">
-                  <option value="">Select volume…</option>
-                  <option>3–9 vehicles/month</option>
-                  <option>10–24 vehicles/month</option>
-                  <option>25+ vehicles/month</option>
-                  <option>Unknown / Variable</option>
-                </select>
-              </div>
-              <div class="form-field">
-                <label class="form-label">Services of Interest</label>
-                <div class="form-checkboxes">
-                  <label class="form-checkbox-item"><input type="checkbox" name="services" value="Pre-delivery bedliner/undercoating/hitches"> Pre-delivery bedliner / undercoating / hitches</label>
-                  <label class="form-checkbox-item"><input type="checkbox" name="services" value="Fleet upfitting"> Fleet upfitting</label>
-                  <label class="form-checkbox-item"><input type="checkbox" name="services" value="Dealer program"> Dealer program</label>
-                  <label class="form-checkbox-item"><input type="checkbox" name="services" value="Government contracts"> Government contracts</label>
-                </div>
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="d-msg">Message</label>
-                <textarea class="form-textarea" id="d-msg" name="Message" placeholder="Describe your requirements, current volume, and any specific questions…"></textarea>
-              </div>
-              <div class="form-submit-row">
-                <button type="submit" class="btn btn-primary btn-lg">Submit Dealer Inquiry →</button>
-                <span class="form-privacy">We never share your info. No spam, ever.</span>
-              </div>
-              <p class="form-privacy-note" style="margin-top:1rem;font-size:12px;line-height:1.5;color:#9ca3af;">
-                By submitting this form you acknowledge that we may capture technical data — including your IP address, referral source, browser, and approximate location — for fraud prevention, analytics, and lead attribution. See our <a href="/privacy.html" style="color:inherit;text-decoration:underline;">Privacy Policy</a>.
-              </p>
-
-            </form>
           </div>
         </div>
       </div>
-
-      <!-- SIDEBAR -->
-      <div class="quote-sidebar">
-        <div class="contact-alt-cards">
-          <p class="section-label" style="margin-bottom: var(--space-2);">Other Ways to Reach Us</p>
-          <div class="contact-alt-card">
-            <div class="contact-alt-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <div>
-              <strong>Call Us</strong>
-              <a href="tel:3013041419">(301) 304-1419</a>
-              <p>Mon–Fri 9:30am–4:30pm. We answer every call during business hours.</p>
-            </div>
-          </div>
-          <div class="contact-alt-card">
-            <div class="contact-alt-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div>
-              <strong>Email Us</strong>
-              <a href="mailto:CapitalUpfitters@gmail.com">CapitalUpfitters@gmail.com</a>
-              <p>We respond within 24 hours — usually the same business day.</p>
-            </div>
-          </div>
-          <div class="contact-alt-card">
-            <div class="contact-alt-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div>
-              <strong>Visit Us</strong>
-              <a href="https://maps.google.com/?q=12019+Nebel+St+Rockville+MD+20852" target="_blank" rel="noopener noreferrer">12019 Nebel St, Rockville MD</a>
-              <p>By appointment, Mon–Fri 9:30am–4:30pm. Request a quote online any time.</p>
-            </div>
-          </div>
-          <!-- Portal box -->
-          <div style="background: linear-gradient(135deg, #1a2332, #203055); border-radius: var(--radius-xl); padding: var(--space-6); margin-top: var(--space-2);">
-            <p style="font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: var(--space-3);">Dealer Partner?</p>
-            <p style="font-family: var(--font-display); font-size: var(--text-xl); font-weight: 800; text-transform: uppercase; color: #fff; margin-bottom: var(--space-2);">Use the Upfit Portal</p>
-            <p style="font-size: var(--text-sm); color: rgba(255,255,255,0.6); margin-bottom: var(--space-5);">Submit jobs, track status, and manage invoices in real-time.</p>
-            <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%; justify-content: center;">Access Portal</a>
-          </div>
-        </div>
-      </div>
-
     </div>
+
+    <!-- ================ FLEET SINGLE-PAGE FORM ================ -->
+    <div class="q6-mode" data-q6-mode="fleet" id="q6-mode-fleet">
+      <div class="q6-single-wrap">
+        <div class="q6-single-card">
+          <div id="form-fleet-body" data-success-body="form-fleet-body">
+            <div class="q6-single-header">
+              <p class="q6-step-eyebrow">Fleet &amp; commercial</p>
+              <h2>Tell us about your fleet.</h2>
+              <p>Fleet pricing kicks in at 3+ vehicles. Consolidated invoicing, staggered scheduling, and one point of contact.</p>
+            </div>
+
+            <form id="quote-fleet" method="POST" class="form-body" novalidate data-cms-form="fleet" data-success-body="form-fleet-body" data-success-panel="form-fleet-success">
+              <div class="q6-form-grid">
+                <div class="q6-field">
+                  <label for="q6-fleet-biz">Business name <span class="q6-req">*</span></label>
+                  <input id="q6-fleet-biz" type="text" name="Business Name" required autocomplete="organization">
+                </div>
+                <div class="q6-field">
+                  <label for="q6-fleet-contact">Contact name <span class="q6-req">*</span></label>
+                  <input id="q6-fleet-contact" type="text" name="Contact Name" required autocomplete="name">
+                </div>
+                <div class="q6-field">
+                  <label for="q6-fleet-email">Business email <span class="q6-req">*</span></label>
+                  <input id="q6-fleet-email" type="email" name="Business Email" required autocomplete="email">
+                </div>
+                <div class="q6-field">
+                  <label for="q6-fleet-phone">Phone <span class="q6-req">*</span></label>
+                  <input id="q6-fleet-phone" type="tel" name="Phone" required autocomplete="tel">
+                </div>
+                <div class="q6-field">
+                  <label for="q6-fleet-count">Vehicle count <span class="q6-req">*</span></label>
+                  <input id="q6-fleet-count" type="text" name="Vehicle Count" inputmode="numeric" placeholder="e.g. 8" required>
+                </div>
+                <div class="q6-field">
+                  <label for="q6-fleet-timeline">Timeline</label>
+                  <select id="q6-fleet-timeline" name="Timeline">
+                    <option value="">Choose one</option>
+                    <option value="This week">This week</option>
+                    <option value="Within 2 weeks">Within 2 weeks</option>
+                    <option value="Within a month">Within a month</option>
+                    <option value="Just pricing for now">Just pricing for now</option>
+                  </select>
+                </div>
+                <div class="q6-field q6-field-full">
+                  <label>What do the vehicles need? <span class="q6-req">*</span></label>
+                  <div class="q6-service-checks" id="q6-fleet-services">
+                    <!-- Rendered by JS -->
+                  </div>
+                </div>
+                <div class="q6-field q6-field-full">
+                  <label for="q6-fleet-msg">Anything else?</label>
+                  <textarea id="q6-fleet-msg" name="Message" placeholder="e.g. staggered so we always have 6 on the road."></textarea>
+                </div>
+              </div>
+
+              <div class="q6-submit-row">
+                <button type="submit" class="q6-submit-btn">Send fleet inquiry →</button>
+              </div>
+            </form>
+          </div>
+
+          <div id="form-fleet-success" class="q6-success" data-q6-success="fleet">
+            <div class="q6-success-check">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h3 class="q6-success-title">Fleet inquiry sent</h3>
+            <p class="q6-success-body">Our fleet coordinator will reach out the same business day with scheduling and volume pricing.</p>
+            <div class="q6-success-ref" data-q6-ref-slot>Reference will appear here</div>
+            <p class="q6-success-body">Need to talk sooner? Call <a href="tel:3013041419" style="color:var(--q6-navy);font-weight:600;">(301) 304-1419</a>.</p>
+            <div class="q6-success-warning" data-q6-warning-slot hidden></div>
+            <details class="q6-diagnostic" data-q6-diagnostic-slot hidden><summary>Diagnostic</summary><pre></pre></details>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================ DEALER SINGLE-PAGE FORM ================ -->
+    <div class="q6-mode" data-q6-mode="dealer" id="q6-mode-dealer">
+      <div class="q6-single-wrap">
+        <div class="q6-single-card">
+          <div id="form-dealer-body" data-success-body="form-dealer-body">
+            <div class="q6-single-header">
+              <p class="q6-step-eyebrow">Dealer &amp; government</p>
+              <h2>Set up a dealer or government account.</h2>
+              <p>Volume pricing, PO invoicing, and dedicated scheduling for dealers, municipalities, and government fleets.</p>
+            </div>
+
+            <form id="quote-dealer" method="POST" class="form-body" novalidate data-cms-form="dealer" data-success-body="form-dealer-body" data-success-panel="form-dealer-success">
+              <div class="q6-form-grid">
+                <div class="q6-field">
+                  <label for="q6-dealer-biz">Organization name <span class="q6-req">*</span></label>
+                  <input id="q6-dealer-biz" type="text" name="Business Name" required autocomplete="organization">
+                </div>
+                <div class="q6-field">
+                  <label for="q6-dealer-contact">Contact name <span class="q6-req">*</span></label>
+                  <input id="q6-dealer-contact" type="text" name="Contact Name" required autocomplete="name">
+                </div>
+                <div class="q6-field">
+                  <label for="q6-dealer-email">Work email <span class="q6-req">*</span></label>
+                  <input id="q6-dealer-email" type="email" name="Work Email" required autocomplete="email">
+                </div>
+                <div class="q6-field">
+                  <label for="q6-dealer-phone">Phone <span class="q6-req">*</span></label>
+                  <input id="q6-dealer-phone" type="tel" name="Phone" required autocomplete="tel">
+                </div>
+                <div class="q6-field">
+                  <label for="q6-dealer-org">Organization type <span class="q6-req">*</span></label>
+                  <select id="q6-dealer-org" name="Organization Type" required>
+                    <option value="">Choose one</option>
+                    <option value="Franchise dealer">Franchise dealer</option>
+                    <option value="Independent dealer">Independent dealer</option>
+                    <option value="Municipal fleet">Municipal fleet</option>
+                    <option value="State/federal agency">State / federal agency</option>
+                    <option value="Utility / service company">Utility or service company</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="q6-field">
+                  <label for="q6-dealer-volume">Monthly volume <span class="q6-req">*</span></label>
+                  <select id="q6-dealer-volume" name="Monthly Volume" required>
+                    <option value="">Choose one</option>
+                    <option value="1-5 vehicles">1–5 vehicles</option>
+                    <option value="6-15 vehicles">6–15 vehicles</option>
+                    <option value="16-30 vehicles">16–30 vehicles</option>
+                    <option value="30+ vehicles">30+ vehicles</option>
+                  </select>
+                </div>
+                <div class="q6-field q6-field-full">
+                  <label>Common upfits <span class="q6-req">*</span></label>
+                  <div class="q6-service-checks" id="q6-dealer-services">
+                    <!-- Rendered by JS -->
+                  </div>
+                </div>
+                <div class="q6-field q6-field-full">
+                  <label for="q6-dealer-msg">Anything else?</label>
+                  <textarea id="q6-dealer-msg" name="Message" placeholder="e.g. we run 3 makes and need pricing sheets for each."></textarea>
+                </div>
+              </div>
+
+              <div class="q6-submit-row">
+                <button type="submit" class="q6-submit-btn">Set up my account →</button>
+              </div>
+            </form>
+          </div>
+
+          <div id="form-dealer-success" class="q6-success" data-q6-success="dealer">
+            <div class="q6-success-check">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h3 class="q6-success-title">Account inquiry sent</h3>
+            <p class="q6-success-body">Our accounts team will reach out the same business day with a pricing sheet and PO instructions.</p>
+            <div class="q6-success-ref" data-q6-ref-slot>Reference will appear here</div>
+            <p class="q6-success-body">Need to talk sooner? Call <a href="tel:3013041419" style="color:var(--q6-navy);font-weight:600;">(301) 304-1419</a>.</p>
+            <div class="q6-success-warning" data-q6-warning-slot hidden></div>
+            <details class="q6-diagnostic" data-q6-diagnostic-slot hidden><summary>Diagnostic</summary><pre></pre></details>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- TRUST STATS -->
-<section class="quote-trust">
-  <div class="container">
-    <div class="quote-trust-grid">
-      <div class="quote-trust-item reveal">
-        <span class="quote-trust-num">DMV-Wide</span>
-        <span class="quote-trust-label">Service Coverage</span>
-      </div>
-      <div class="quote-trust-item reveal reveal-delay-1">
-        <span class="quote-trust-num">4.9★</span>
-        <span class="quote-trust-label">Google Rating</span>
-      </div>
-      <div class="quote-trust-item reveal reveal-delay-2">
-        <span class="quote-trust-num">Same Day</span>
-        <span class="quote-trust-label">Response Time</span>
-      </div>
-      <div class="quote-trust-item reveal reveal-delay-3">
-        <span class="quote-trust-num">Free</span>
-        <span class="quote-trust-label">No-Obligation Estimate</span>
-      </div>
-      <div class="quote-trust-item reveal reveal-delay-4">
-        <span class="quote-trust-num">24–48h</span>
-        <span class="quote-trust-label">Typical Turnaround</span>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ==================================================================
+     PHASE 6 QUOTE BUILDER — client logic
+     Pure vanilla JS, IIFE-scoped. lead-form.js still owns submission.
+     ================================================================== -->
+<script>
+(function () {
+  'use strict';
 
-<!-- FOOTER -->
+  // ==================== DATA ====================
+  // Icon SVGs — line-drawn, currentColor
+  var ICON = {
+    truck: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>',
+    cover: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="10" rx="1"/><path d="M3 12h18"/><path d="M12 8v10"/></svg>',
+    step: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M6 20V8h4v12"/><path d="M14 20v-6h4v6"/></svg>',
+    hitch: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><path d="M12 11v9"/><path d="M6 20h12"/></svg>',
+    shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4z"/></svg>',
+    tint: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 12h18"/></svg>',
+    ceramic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>',
+    light: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21h6"/><path d="M12 17a5 5 0 1 0-4-8 5 5 0 0 0-1 8"/><path d="M12 17v4"/></svg>',
+    box: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M3 12h18"/><path d="M8 7V4h8v3"/></svg>',
+    rack: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M5 6v14"/><path d="M19 6v14"/><path d="M3 12h18"/><path d="M3 18h18"/></svg>',
+    suspension: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M12 4v16"/><path d="M8 8l4 4-4 4"/><path d="M16 8l-4 4 4 4"/></svg>',
+    wrap: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16"/><path d="M12 4v16"/></svg>'
+  };
+
+  var TILES = [
+    { id: 'bedliner', name: 'Spray-on bedliner', icon: 'truck', badge: 'Most requested',
+      tiers: ['Patriot Standard', 'Patriot Premium (metallic)'],
+      addons: ['Wheel wells', 'Cab corners'] },
+    { id: 'tonneau', name: 'Tonneau cover', icon: 'cover',
+      tiers: ['Roll-up soft', 'Tri-fold', 'Retractable hard'],
+      addons: ['Weather seals', 'LED bed lights'] },
+    { id: 'boards', name: 'Running boards & steps', icon: 'step',
+      tiers: ['Nerf bar', 'OEM board', 'AMP power step', 'AMP XL', 'AMP smart'],
+      addons: ['LED accent lights'] },
+    { id: 'hitch', name: 'Hitch & towing', icon: 'hitch',
+      tiers: ['Class III', 'Class IV', 'Class V', 'Gooseneck'],
+      addons: ['Brake controller', 'Wiring harness'] },
+    { id: 'undercoating', name: 'Undercoating & rust protection', icon: 'shield',
+      tiers: ['Wax shield', 'Cavity wax', 'Rust remove + reapply'],
+      addons: ['Fluid film top-off (annual)'] },
+    { id: 'tint', name: 'Window tinting', icon: 'tint',
+      tiers: ['Legal spec', 'Ceramic film', 'Full ceramic + windshield'],
+      addons: ['Sunroof tint'] },
+    { id: 'ceramic', name: 'Ceramic coating & PPF', icon: 'ceramic', badge: 'Bundle discount',
+      tiers: ['Coating only', 'PPF hood + front', 'Full front + fenders + doors'],
+      addons: ['Wheel-face coating'] },
+    { id: 'lighting', name: 'Lighting', icon: 'light',
+      tiers: ['Interior LED', 'Auxiliary bar', 'Light pod set'],
+      addons: ['Custom color program'] },
+    { id: 'storage', name: 'Storage & toolboxes', icon: 'box',
+      tiers: ['Cross-bed toolbox', 'Wheel-well box', 'Slide-out drawer'],
+      addons: ['Drawer dividers'] },
+    { id: 'rack', name: 'Rack systems', icon: 'rack',
+      tiers: ['Bed rack', 'Roof rack', 'Ladder rack'],
+      addons: ['Load stops', 'Cargo net'] },
+    { id: 'suspension', name: 'Suspension & levelling', icon: 'suspension',
+      tiers: ['Level kit', '2" lift', '4" lift', 'Full custom lift'],
+      addons: ['Shock upgrade', 'Alignment'] },
+    { id: 'wrap', name: 'Wraps & branding', icon: 'wrap',
+      tiers: ['Partial wrap', 'Full wrap', 'Fleet decal set'],
+      addons: ['Reflective safety kit'] }
+  ];
+
+  var FLEET_SERVICES = [
+    'Bedliners', 'Tonneau covers', 'Running boards', 'Hitches & towing',
+    'Undercoating', 'Ceramic coating', 'Racks & storage', 'Wraps & decals',
+    'Suspension work', 'Lighting'
+  ];
+
+  var DEALER_SERVICES = [
+    'Bedliners', 'Tonneau covers', 'Running boards',
+    'Ceramic coating', 'Wraps & decals', 'Hitches & towing'
+  ];
+
+  var MAX_SELECTIONS = 12;
+
+  // ==================== STATE ====================
+  var state = {
+    mode: 'retail',           // retail | fleet | dealer
+    step: 1,                  // retail: 1 or 2
+    open: [],                 // ordered service ids currently open/selected
+    tier: {},                 // { serviceId: 'Patriot Standard' }
+    adds: {}                  // { serviceId: ['Wheel wells', ...] }
+  };
+
+  // ==================== DOM refs ====================
+  var pills = document.querySelectorAll('.q6-pill');
+  var modes = document.querySelectorAll('.q6-mode');
+  var tileGrid = document.getElementById('q6-tile-grid');
+  var step1 = document.getElementById('q6-step-1');
+  var step2 = document.getElementById('q6-step-2');
+  var bar = document.getElementById('q6-bar');
+  var barCountValue = document.getElementById('q6-bar-count-value');
+  var barNotice = document.getElementById('q6-bar-notice');
+  var barChips = document.getElementById('q6-bar-chips');
+  var barBack = document.getElementById('q6-bar-back');
+  var barContinue = document.getElementById('q6-bar-continue');
+  var reviewList = document.getElementById('q6-review-list');
+  var retailForm = document.getElementById('quote-retail');
+  var progressDots = document.querySelectorAll('.q6-progress-dot');
+
+  // ==================== INIT ====================
+  function init() {
+    if (!tileGrid) return;
+    renderTiles();
+    renderFleetChecks();
+    renderDealerChecks();
+    wirePills();
+    wireBar();
+    wireLeadSuccess();
+    wireDebugFlag();
+
+    // Read ?type= query param to set initial mode
+    var params = new URLSearchParams(location.search);
+    var type = params.get('type') || params.get('audience');
+    if (type === 'fleet' || type === 'dealer') {
+      activateMode(type);
+    }
+
+    // Read ?service=bedliner,tonneau to preselect
+    var svc = params.get('service') || params.get('services');
+    if (svc && state.mode === 'retail') {
+      var wanted = svc.split(',').map(function (s) { return s.trim().toLowerCase(); });
+      wanted.forEach(function (id) {
+        var tile = TILES.find(function (t) { return t.id === id; });
+        if (tile) toggleTile(tile.id, true);
+      });
+    }
+
+    updateBar();
+  }
+
+  // ==================== TILE GRID ====================
+  function renderTiles() {
+    tileGrid.innerHTML = '';
+    TILES.forEach(function (t) {
+      var el = document.createElement('button');
+      el.type = 'button';
+      el.className = 'q6-tile';
+      el.setAttribute('role', 'listitem');
+      el.setAttribute('aria-pressed', 'false');
+      el.dataset.tile = t.id;
+      var iconSpan = '<span class="q6-tile-icon">' + (ICON[t.icon] || '') + '</span>';
+      var badge = t.badge ? '<span class="q6-tile-badge">' + t.badge + '</span>' : '';
+      var check = '<span class="q6-tile-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>';
+      el.innerHTML = iconSpan + '<span class="q6-tile-name">' + t.name + '</span>' + badge + check;
+      el.addEventListener('click', function () { onTileClick(t.id); });
+      tileGrid.appendChild(el);
+    });
+  }
+
+  function onTileClick(id) {
+    var isOpen = state.open.indexOf(id) !== -1;
+    if (!isOpen && state.open.length >= MAX_SELECTIONS) {
+      showCapNotice();
+      return;
+    }
+    if (isOpen) {
+      // Collapse: remove options block, deselect
+      removeOptionsBlock(id);
+      state.open = state.open.filter(function (x) { return x !== id; });
+      delete state.tier[id];
+      delete state.adds[id];
+      updateTileVisual(id, false);
+    } else {
+      state.open.push(id);
+      var tile = TILES.find(function (t) { return t.id === id; });
+      state.tier[id] = tile.tiers[0]; // default to first tier
+      state.adds[id] = [];
+      insertOptionsBlock(tile);
+      updateTileVisual(id, true);
+    }
+    updateBar();
+  }
+
+  function toggleTile(id, forceOn) {
+    var isOpen = state.open.indexOf(id) !== -1;
+    if (forceOn && !isOpen) onTileClick(id);
+    if (!forceOn && isOpen) onTileClick(id);
+  }
+
+  function updateTileVisual(id, on) {
+    var el = tileGrid.querySelector('[data-tile="' + id + '"]');
+    if (!el) return;
+    el.classList.toggle('is-open', on);
+    el.setAttribute('aria-pressed', on ? 'true' : 'false');
+    // Update capped state on all other tiles
+    var atCap = state.open.length >= MAX_SELECTIONS;
+    tileGrid.querySelectorAll('.q6-tile').forEach(function (t) {
+      var openHere = state.open.indexOf(t.dataset.tile) !== -1;
+      t.classList.toggle('is-capped', atCap && !openHere);
+    });
+  }
+
+  function insertOptionsBlock(tile) {
+    var block = document.createElement('div');
+    block.className = 'q6-tile-options is-visible';
+    block.dataset.optionsFor = tile.id;
+
+    var header = '<div class="q6-options-header"><h4 class="q6-options-title">' + tile.name + '</h4><button type="button" class="q6-options-close" data-close="' + tile.id + '">Remove</button></div>';
+
+    var tiersHtml = '<span class="q6-options-group-label">Choose one</span><div class="q6-option-cards">';
+    tile.tiers.forEach(function (t, i) {
+      var id = 'q6-tier-' + tile.id + '-' + i;
+      tiersHtml += '<label class="q6-option-card' + (i === 0 ? ' is-checked' : '') + '" for="' + id + '"><input type="radio" id="' + id + '" name="q6-tier-' + tile.id + '" value="' + escapeAttr(t) + '"' + (i === 0 ? ' checked' : '') + '><span>' + escapeHtml(t) + '</span></label>';
+    });
+    tiersHtml += '</div>';
+
+    var addonsHtml = '';
+    if (tile.addons && tile.addons.length) {
+      addonsHtml = '<span class="q6-options-group-label">Add-ons (optional)</span><div class="q6-option-cards">';
+      tile.addons.forEach(function (a, i) {
+        var id = 'q6-add-' + tile.id + '-' + i;
+        addonsHtml += '<label class="q6-option-card" for="' + id + '"><input type="checkbox" id="' + id + '" name="q6-add-' + tile.id + '" value="' + escapeAttr(a) + '"><span>' + escapeHtml(a) + '</span></label>';
+      });
+      addonsHtml += '</div>';
+    }
+
+    block.innerHTML = header + tiersHtml + addonsHtml;
+
+    // Insert AFTER the tile row it belongs to.
+    // Grid is flat, so we append the options block to the grid
+    // (grid-column: 1 / -1 makes it span full row visually).
+    // We want it to appear right after the tile — the simplest way is
+    // to append and rely on order of tiles. Better: place immediately
+    // after the tile element.
+    var tileEl = tileGrid.querySelector('[data-tile="' + tile.id + '"]');
+    if (tileEl && tileEl.nextSibling) {
+      tileGrid.insertBefore(block, tileEl.nextSibling);
+    } else {
+      tileGrid.appendChild(block);
+    }
+
+    // Wire tier + addon changes
+    block.querySelectorAll('input[type="radio"]').forEach(function (r) {
+      r.addEventListener('change', function () {
+        if (r.checked) {
+          state.tier[tile.id] = r.value;
+          // Update visual checkmark on cards
+          block.querySelectorAll('label.q6-option-card').forEach(function (l) {
+            var inp = l.querySelector('input[type="radio"]');
+            if (inp) l.classList.toggle('is-checked', inp.checked);
+          });
+          updateBar();
+        }
+      });
+    });
+    block.querySelectorAll('input[type="checkbox"]').forEach(function (c) {
+      c.addEventListener('change', function () {
+        var current = state.adds[tile.id] || [];
+        if (c.checked && current.indexOf(c.value) === -1) current.push(c.value);
+        if (!c.checked) current = current.filter(function (x) { return x !== c.value; });
+        state.adds[tile.id] = current;
+        c.closest('label').classList.toggle('is-checked', c.checked);
+        updateBar();
+      });
+    });
+    // Close button
+    var closeBtn = block.querySelector('[data-close]');
+    if (closeBtn) closeBtn.addEventListener('click', function () { onTileClick(tile.id); });
+  }
+
+  function removeOptionsBlock(id) {
+    var block = tileGrid.querySelector('[data-options-for="' + id + '"]');
+    if (block) block.remove();
+  }
+
+  // ==================== BAR ====================
+  function updateBar() {
+    var count = state.open.length;
+
+    if (state.step === 2) {
+      barBack.hidden = false;
+      barContinue.textContent = 'Send my quote →';
+    } else {
+      barBack.hidden = true;
+      barContinue.textContent = 'Continue →';
+    }
+
+    if (count === 0) {
+      barCountValue.textContent = 'Nothing selected yet';
+      barContinue.disabled = state.step !== 2;
+      barChips.innerHTML = '';
+    } else {
+      barCountValue.textContent = count + (count === 1 ? ' service selected' : ' services selected');
+      barContinue.disabled = false;
+      barChips.innerHTML = state.open.map(function (id) {
+        var t = TILES.find(function (x) { return x.id === id; });
+        return '<span class="q6-bar-chip">' + escapeHtml(t ? t.name : id) + '</span>';
+      }).join('');
+    }
+  }
+
+  function showCapNotice() {
+    barNotice.classList.add('is-visible');
+    clearTimeout(showCapNotice._t);
+    showCapNotice._t = setTimeout(function () { barNotice.classList.remove('is-visible'); }, 3200);
+  }
+
+  // ==================== STEP TRANSITIONS ====================
+  function goToStep(n) {
+    state.step = n;
+    if (n === 1) {
+      step1.style.display = 'block';
+      step2.classList.remove('is-visible');
+      progressDots[0].classList.add('is-current');
+      progressDots[0].classList.remove('is-done');
+      progressDots[1].classList.remove('is-current', 'is-done');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // Guard: at least 1 service
+      if (state.open.length === 0) return;
+      buildReviewList();
+      injectHiddenServiceInputs();
+      step1.style.display = 'none';
+      step2.classList.add('is-visible');
+      progressDots[0].classList.remove('is-current');
+      progressDots[0].classList.add('is-done');
+      progressDots[1].classList.add('is-current');
+      // Scroll to top of step 2 with slight offset so header is visible
+      var target = step2.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: target, behavior: 'smooth' });
+    }
+    updateBar();
+  }
+
+  function buildReviewList() {
+    if (state.open.length === 0) {
+      reviewList.innerHTML = '<li class="q6-review-empty">No services selected yet. <button type="button" class="q6-review-edit" data-edit-back>Go back</button></li>';
+      var backBtn = reviewList.querySelector('[data-edit-back]');
+      if (backBtn) backBtn.addEventListener('click', function () { goToStep(1); });
+      return;
+    }
+    reviewList.innerHTML = state.open.map(function (id) {
+      var tile = TILES.find(function (t) { return t.id === id; });
+      var tier = state.tier[id] || '';
+      var adds = (state.adds[id] || []);
+      var detailParts = [];
+      if (tier) detailParts.push(tier);
+      if (adds.length) detailParts.push('+ ' + adds.join(', '));
+      var detail = detailParts.join(' · ') || 'Standard';
+      return '<li class="q6-review-item">' +
+        '<div class="q6-review-item-body">' +
+          '<p class="q6-review-item-name">' + escapeHtml(tile ? tile.name : id) + '</p>' +
+          '<p class="q6-review-item-detail">' + escapeHtml(detail) + '</p>' +
+        '</div>' +
+        '<button type="button" class="q6-review-edit" data-edit="' + id + '">Edit</button>' +
+      '</li>';
+    }).join('');
+    // Wire edit buttons
+    reviewList.querySelectorAll('[data-edit]').forEach(function (b) {
+      b.addEventListener('click', function () { goToStep(1); });
+    });
+  }
+
+  // Inject hidden <input name="services"> inputs into retailForm
+  // so lead-form.js picks them up on submit.
+  function injectHiddenServiceInputs() {
+    // Remove any previously injected
+    retailForm.querySelectorAll('[data-q6-hidden]').forEach(function (n) { n.remove(); });
+    state.open.forEach(function (id) {
+      var tile = TILES.find(function (t) { return t.id === id; });
+      var name = tile ? tile.name : id;
+      var tier = state.tier[id] || '';
+      var adds = state.adds[id] || [];
+      var full = name + (tier ? ' — ' + tier : '') + (adds.length ? ' (' + adds.join(', ') + ')' : '');
+      var input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'services';
+      input.value = full;
+      input.dataset.q6Hidden = '1';
+      retailForm.appendChild(input);
+    });
+  }
+
+  // ==================== PILL SWITCHER ====================
+  function wirePills() {
+    pills.forEach(function (p) {
+      p.addEventListener('click', function () { activateMode(p.dataset.mode); });
+    });
+  }
+  function activateMode(mode) {
+    state.mode = mode;
+    pills.forEach(function (p) {
+      var on = p.dataset.mode === mode;
+      p.classList.toggle('is-active', on);
+      p.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    modes.forEach(function (m) {
+      m.classList.toggle('is-active', m.dataset.q6Mode === mode);
+    });
+    // Bar only visible in retail
+    if (mode === 'retail') {
+      bar.style.display = 'flex';
+      // If we were in step 2 earlier and now retail is re-selected, restore state
+    } else {
+      bar.style.display = 'none';
+    }
+    // Update URL param without reload
+    var url = new URL(location.href);
+    if (mode === 'retail') url.searchParams.delete('type');
+    else url.searchParams.set('type', mode);
+    history.replaceState(null, '', url.toString());
+  }
+
+  // ==================== BAR WIRING ====================
+  function wireBar() {
+    barBack.addEventListener('click', function () { goToStep(1); });
+    barContinue.addEventListener('click', function () {
+      if (state.step === 1) {
+        goToStep(2);
+      } else {
+        // Submit the retail form
+        if (retailForm.reportValidity()) {
+          if (typeof retailForm.requestSubmit === 'function') retailForm.requestSubmit();
+          else retailForm.submit();
+        }
+      }
+    });
+  }
+
+  // ==================== FLEET / DEALER CHECKBOXES ====================
+  function renderFleetChecks() {
+    var host = document.getElementById('q6-fleet-services');
+    if (!host) return;
+    host.innerHTML = FLEET_SERVICES.map(function (s, i) {
+      return '<label class="q6-service-check" for="q6-fleet-svc-' + i + '">' +
+        '<input id="q6-fleet-svc-' + i + '" type="checkbox" name="services" value="' + escapeAttr(s) + '"><span>' + escapeHtml(s) + '</span>' +
+      '</label>';
+    }).join('');
+    host.querySelectorAll('input[type="checkbox"]').forEach(function (c) {
+      c.addEventListener('change', function () {
+        c.closest('label').classList.toggle('is-checked', c.checked);
+      });
+    });
+  }
+  function renderDealerChecks() {
+    var host = document.getElementById('q6-dealer-services');
+    if (!host) return;
+    host.innerHTML = DEALER_SERVICES.map(function (s, i) {
+      return '<label class="q6-service-check" for="q6-dealer-svc-' + i + '">' +
+        '<input id="q6-dealer-svc-' + i + '" type="checkbox" name="services" value="' + escapeAttr(s) + '"><span>' + escapeHtml(s) + '</span>' +
+      '</label>';
+    }).join('');
+    host.querySelectorAll('input[type="checkbox"]').forEach(function (c) {
+      c.addEventListener('change', function () {
+        c.closest('label').classList.toggle('is-checked', c.checked);
+      });
+    });
+  }
+
+  // ==================== LEAD SUCCESS EVENT ====================
+  // lead-form.js dispatches cu:lead-success with { formId, reference, customerConfirmation, deliveryMode, warning, diagnostic }
+  function wireLeadSuccess() {
+    document.addEventListener('cu:lead-success', function (event) {
+      var detail = event.detail || {};
+      var formId = detail.formId || '';
+      // Find success panel by conventional id
+      var panelId = 'form-' + (formId.replace('quote-', '')) + '-success';
+      var panel = document.getElementById(panelId);
+      if (!panel) return;
+      // Inject reference
+      var refSlot = panel.querySelector('[data-q6-ref-slot]');
+      if (refSlot && detail.reference) {
+        refSlot.textContent = 'Reference: ' + detail.reference;
+      } else if (refSlot) {
+        refSlot.hidden = true;
+      }
+      // Show warning if delivered:false (persisted-only mode)
+      if (detail.deliveryMode === 'persisted_only' || detail.customerConfirmation === false) {
+        var w = panel.querySelector('[data-q6-warning-slot]');
+        if (w) {
+          w.hidden = false;
+          if (detail.warning && detail.warning.length) {
+            w.textContent = detail.warning;
+          } else {
+            w.textContent = 'Note: our automated confirmation email may be delayed today. Your reference number above is enough to reach us.';
+          }
+        }
+      }
+      // Debug diagnostic
+      if (detail.diagnostic && new URLSearchParams(location.search).has('debug')) {
+        var d = panel.querySelector('[data-q6-diagnostic-slot]');
+        if (d) {
+          d.hidden = false;
+          var pre = d.querySelector('pre');
+          if (pre) pre.textContent = JSON.stringify(detail.diagnostic, null, 2);
+        }
+      }
+      // Hide sticky bar after successful retail submit
+      if (formId === 'quote-retail') {
+        bar.style.display = 'none';
+      }
+    });
+  }
+
+  // ==================== DEBUG FLAG ====================
+  function wireDebugFlag() {
+    // Debug indicator so Ivan can confirm he's in debug mode
+    if (new URLSearchParams(location.search).has('debug')) {
+      var el = document.createElement('div');
+      el.style.cssText = 'position:fixed;top:8px;right:8px;background:#0f172a;color:#fbbf24;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;z-index:1000;font-family:ui-monospace,monospace;';
+      el.textContent = 'DEBUG MODE';
+      document.body.appendChild(el);
+    }
+  }
+
+  // ==================== HELPERS ====================
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function escapeAttr(s) {
+    return String(s).replace(/"/g, '&quot;');
+  }
+
+  // Start
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 <footer class="footer" role="contentinfo"><div class="container"><div class="footer-grid">
 <div><a href="./index.html" class="footer-brand-logo"><div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div><div class="footer-brand-name">Capital<span>Upfitters</span></div></a><p class="footer-tagline">Family-owned vehicle upfitting in Rockville, MD. Authorized Patriot Liner dealer.</p><div class="footer-contact"><a href="tel:3013041419" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel St, Rockville MD 20852</div></div></div>
 <div><div class="footer-col-title">Services</div><ul class="footer-links"><li><a href="./services/bedliner.html">Spray-On Bedliners</a></li><li><a href="./services/hitches.html">Hitches & Towing</a></li><li><a href="./services/ceramic-coating.html">Ceramic Coating</a></li><li><a href="./services/undercoating.html">Undercoating</a></li><li><a href="./services/tonneau.html">Tonneau Covers</a></li><li><a href="./services/running-boards.html">Running Boards</a></li></ul></div>
@@ -1655,7 +2283,6 @@
 <div><div class="footer-col-title">Locations</div><ul class="footer-links"><li><a href="./locations/rockville-md.html">Rockville, MD</a></li><li><a href="./locations/bethesda-md.html">Bethesda, MD</a></li><li><a href="./locations/silver-spring-md.html">Silver Spring, MD</a></li><li><a href="./locations/gaithersburg-md.html">Gaithersburg, MD</a></li></ul></div>
 </div><div class="footer-bottom"><p class="footer-copyright">&copy; 2026 Capital Auto Upfitters & Protective Coatings. All rights reserved.</p><nav class="footer-legal"><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a></nav><p class="footer-pplx"><a href="https://IVANKODevelopment.com" target="_blank" rel="noopener noreferrer">Built by IVANKODev</a></p></div></div></footer>
 
-<script src="./quote-form.js" defer></script>
 
 <script src="animations.js" defer></script>
 
