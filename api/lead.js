@@ -1100,6 +1100,30 @@ module.exports = async function handler(req, res) {
   });
   const internalDelivered = Boolean(result.internal && result.internal.ok);
   if (!internalDelivered) {
+    const internalReason = result.internal && result.internal.reason ? String(result.internal.reason) : '';
+    const customerReason = result.customer && result.customer.reason ? String(result.customer.reason) : '';
+    console.error('[lead] internal delivery failed', { reference: persistence.reference || '', internalReason, customerReason });
+
+    // Fail-open safety net: if the lead was durably persisted, don't
+    // penalize the customer with a 502. The lead is safe in the store;
+    // Ivan can pick it up from there while we chase the Resend issue.
+    if (persistence.required && persistence.ok) {
+      return send(res, 200, {
+        ok: true,
+        persisted: true,
+        reference: persistence.reference || '',
+        delivered: false,
+        customer_confirmation: Boolean(result.customer && result.customer.ok),
+        delivery_mode: 'persisted_only',
+        warning: 'Your request was saved but our automated notification is delayed. We\'ll still see it and respond.',
+        delivery_diagnostic: {
+          internal_reason: internalReason,
+          customer_reason: customerReason
+        }
+      });
+    }
+
+    // Both persistence and internal email failed — real hard error.
     return send(res, 502, {
       ok: false,
       persisted: persistence.required ? persistence.ok === true : null,
@@ -1108,7 +1132,11 @@ module.exports = async function handler(req, res) {
       customer_confirmation: Boolean(result.customer && result.customer.ok),
       error: persistence.required && persistence.ok
         ? 'Your request was saved, but we could not confirm the shop notification. Please call or email the shop directly.'
-        : 'We could not confirm delivery. Please call or email the shop directly.'
+        : 'We could not confirm delivery. Please call or email the shop directly.',
+      delivery_diagnostic: {
+        internal_reason: internalReason,
+        customer_reason: customerReason
+      }
     });
   }
 

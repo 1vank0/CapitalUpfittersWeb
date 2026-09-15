@@ -298,7 +298,11 @@
 
         var result = null;
         try { result = await resp.json(); } catch (_) {}
-        if (!resp.ok || !result || result.ok !== true || result.delivered !== true) {
+        // Treat ok:true as success even when delivered:false — the API now
+        // returns 200 + delivery_mode:'persisted_only' when Resend fails but
+        // the lead was durably stored. UI will show a soft warning instead of
+        // a hard error, so the customer isn't turned away.
+        if (!resp.ok || !result || result.ok !== true) {
           if (resp.status === 409) rotateSubmissionIdentity(form, fingerprint);
           var submissionError = new Error(safeApiErrorMessage(result, resp.status));
           submissionError.cuSafeForCustomer = true;
@@ -314,7 +318,10 @@
           detail: {
             formId: form.id || '',
             reference: result.reference || '',
-            customerConfirmation: result.customer_confirmation === true
+            customerConfirmation: result.customer_confirmation === true,
+            deliveryMode: result.delivery_mode || '',
+            warning: result.warning || '',
+            diagnostic: result.delivery_diagnostic || null
           }
         }));
         clearSubmissionIdentity(form);
