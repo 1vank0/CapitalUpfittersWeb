@@ -45,7 +45,7 @@ const BRIDGE_SIGNATURE_HEADER = 'X-Capital-Bridge-Signature';
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX = 8;
 const MAX_FIELD_CHARS = 8000;
-const MAX_SERVICE_CHARS = 80;
+const MAX_SERVICE_CHARS = 240;
 const UUID_V4_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[+()\-.\s\d]+$/;
@@ -496,6 +496,19 @@ function buildPersistencePayload(body) {
     const isCallback = audience === 'callback';
     const year = Number.parseInt(pickFirst(body, ['Vehicle Year', 'year']), 10);
     const currentYear = new Date().getFullYear();
+    const requestDetails = [
+      ['Quote type', pickFirst(body, ['Parts Supply'])],
+      ['Hitch use', pickFirst(body, ['Hitch Use'])],
+      ['Hitch style', pickFirst(body, ['Hitch Style'])],
+      ['Customer parts', pickFirst(body, ['Customer Parts'])],
+      ['Trailer details', pickFirst(body, ['Trailer Details'])],
+      ['Installation location', pickFirst(body, ['Installation Location'])],
+      ['Service address', pickFirst(body, ['Service Address'])],
+      ['Workspace confirmed', pickFirst(body, ['Workspace Confirmed'])],
+      ['Mobile prepayment accepted', pickFirst(body, ['Mobile Prepayment Accepted'])]
+    ].filter((entry) => entry[1]).map((entry) => `${entry[0]}: ${entry[1]}`);
+    const customerNotes = optionalString(pickFirst(body, ['Message', 'message']), 4000);
+    const notes = [...requestDetails, customerNotes].filter(Boolean).join('\n').slice(0, 4000);
     return {
       ...envelope,
       kind: 'retail',
@@ -514,7 +527,7 @@ function buildPersistencePayload(body) {
           : optionalString(pickFirst(body, ['Vehicle Trim', 'trim']), 100)
       },
       preferences: {
-        notes: optionalString(pickFirst(body, ['Message', 'message']), 4000),
+        notes: notes || undefined,
         timing: optionalString(pickFirst(body, [
           isCallback ? 'Best Time to Call' : 'Preferred Date'
         ]), 120)
@@ -701,6 +714,15 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
   const callTime = pickFirst(body, ['Best Time to Call']);
   const message  = pickFirst(body, ['Message', 'message']);
   const monthlyVol = pickFirst(body, ['Monthly Volume']);
+  const partsSupply = pickFirst(body, ['Parts Supply']);
+  const hitchUse = pickFirst(body, ['Hitch Use']);
+  const hitchStyle = pickFirst(body, ['Hitch Style']);
+  const customerParts = pickFirst(body, ['Customer Parts']);
+  const trailerDetails = pickFirst(body, ['Trailer Details']);
+  const installLocation = pickFirst(body, ['Installation Location']);
+  const serviceAddress = pickFirst(body, ['Service Address']);
+  const workspaceConfirmed = pickFirst(body, ['Workspace Confirmed']);
+  const mobilePrepayment = pickFirst(body, ['Mobile Prepayment Accepted']);
 
   function row(label, value) {
     if (value === '' || value === undefined || value === null) return '';
@@ -737,6 +759,11 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
 
   const serviceHtml = section('Requested Service',
     row('Services', services) + row('Monthly Volume', monthlyVol) +
+    row('Quote Type', partsSupply) + row('Hitch Use', hitchUse) +
+    row('Hitch Style', hitchStyle) + row('Customer Parts', customerParts) +
+    row('Trailer Details', trailerDetails) + row('Installation Location', installLocation) +
+    row('Service Address', serviceAddress) + row('Workspace Confirmed', workspaceConfirmed) +
+    row('Mobile Prepayment Accepted', mobilePrepayment) +
     row('Preferred Date', prefDate) + row('Best Time to Call', callTime));
 
   const messageHtml = message ? section('Message',

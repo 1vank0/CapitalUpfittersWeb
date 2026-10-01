@@ -160,6 +160,17 @@
       border-top: 1px solid var(--color-border);
       flex-wrap: wrap;
     }
+    .hitch-fulfillment {
+      margin: 1.5rem 0;
+      padding: 1.25rem;
+      background: var(--color-surface);
+      border-radius: var(--radius-xl);
+    }
+    .hitch-fulfillment h3 { margin-bottom: .35rem; }
+    .hitch-fulfillment > p { color: var(--color-text-muted); margin-bottom: 1rem; }
+    .hitch-choice-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .hitch-policy { margin-top:1rem; padding:1rem; background:var(--color-bg); border-radius:var(--radius-lg); font-size:.875rem; }
+    @media (max-width:700px) { .hitch-choice-grid { grid-template-columns:1fr; } }
 
     /* VIN lookup */
     .vin-lookup-row { display: flex; gap: var(--space-3); align-items: stretch; }
@@ -1187,8 +1198,31 @@ body.cu-p6-active { padding-bottom: 132px !important; }
 
     <div class="review" id="review"></div>
 
-    <form class="form" id="formCard" data-cms-form="retail" data-success-body="retail-form-body" data-success-panel="retail-form-success" method="POST" novalidate>
+    <form class="form" id="quote-retail" data-cms-form="retail" data-success-body="retail-form-body" data-success-panel="retail-form-success" method="POST" novalidate>
       <div data-role="form-body" id="retail-form-body">
+        <div class="hitch-fulfillment" id="hitch-fulfillment" hidden>
+          <h3>How should we quote your hitch?</h3>
+          <p>Choose parts and installation location. We confirm fitment and the final written price before work begins.</p>
+          <div class="hitch-choice-grid">
+            <div class="field"><label for="f-hitch-supply">Parts option *</label>
+              <select id="f-hitch-supply" name="Parts Supply">
+                <option value="parts-labor">Parts + Labor — $165/hour labor</option>
+                <option value="csp">Labor Only (CSP) — $195/hour labor</option>
+              </select>
+              <small>$220 minimum labor charge. CSP means Customer Supplied Parts.</small>
+            </div>
+            <div class="field"><label for="f-hitch-location">Installation location *</label>
+              <select id="f-hitch-location" name="Installation Location">
+                <option value="shop">Capital Upfitters — Rockville</option>
+                <option value="mobile">Mobile — add $150–$200</option>
+              </select>
+            </div>
+            <div class="field full" id="f-csp-wrap" hidden><label for="f-csp-parts">Customer-supplied part details *</label><input id="f-csp-parts" name="Customer Parts" placeholder="Brand, part number, condition and included hardware"></div>
+            <div class="field full" id="f-mobile-wrap" hidden><label for="f-service-address">Mobile service address *</label><input id="f-service-address" name="Service Address" placeholder="Street, city and state" autocomplete="street-address">
+              <div class="hitch-policy"><label><input id="f-mobile-prepay" type="checkbox" name="Mobile Prepayment Accepted" value="yes"> I understand all mobile services must be paid in full before they can be scheduled. This request does not reserve an appointment.</label></div>
+            </div>
+          </div>
+        </div>
         <h3>Where should we send it?</h3>
         <p class="fs">We&rsquo;ll get back to you the same business day with pricing and the next open slot.</p>
         <div class="fgrid">
@@ -2186,7 +2220,7 @@ function goStep(n){
   $('#backBtn').style.display = n===2 ? 'inline-flex' : 'none';
   $('#chips').style.display  = n===2 ? 'none' : 'flex';
   $('#counts').style.display = n===2 ? 'none' : 'block';
-  if(n===2){ renderReview(); $('#nextLabel').textContent='Request my quote'; $('#nextBtn').disabled=false; }
+  if(n===2){ renderReview(); updateHitchFulfillment(); $('#nextLabel').textContent='Request my quote'; $('#nextBtn').disabled=false; }
   else refreshSummary();
   window.scrollTo({top:0, behavior:'smooth'});
 }
@@ -2206,7 +2240,7 @@ $('#backBtn').addEventListener('click', ()=>goStep(1));
 $('#nextBtn').addEventListener('click', ()=>{
   if(screen===1){ goStep(2); return; }
   // ---- CU submit: inject hidden services + delegate to lead-form.js via form.requestSubmit()
-  var form = document.getElementById('formCard');
+  var form = document.getElementById('quote-retail');
   var svcContainer = document.getElementById('retail-hidden-services');
   svcContainer.innerHTML = '';
   state.open.forEach(function(id){
@@ -2254,6 +2288,34 @@ $('#nextBtn').addEventListener('click', ()=>{
 buildGrid();
 refreshAll();
 
+function updateHitchFulfillment(){
+  var active = state.open.includes('hitch');
+  var section = document.getElementById('hitch-fulfillment');
+  section.hidden = !active;
+  var supply = document.getElementById('f-hitch-supply');
+  var location = document.getElementById('f-hitch-location');
+  var cspWrap = document.getElementById('f-csp-wrap');
+  var cspParts = document.getElementById('f-csp-parts');
+  var mobileWrap = document.getElementById('f-mobile-wrap');
+  var mobileAddress = document.getElementById('f-service-address');
+  var mobilePrepay = document.getElementById('f-mobile-prepay');
+  supply.disabled = !active;
+  location.disabled = !active;
+  var isCsp = active && supply.value === 'csp';
+  cspWrap.hidden = !isCsp;
+  cspParts.required = isCsp;
+  cspParts.disabled = !isCsp;
+  var isMobile = active && location.value === 'mobile';
+  mobileWrap.hidden = !isMobile;
+  mobileAddress.required = isMobile;
+  mobileAddress.disabled = !isMobile;
+  mobilePrepay.required = isMobile;
+  mobilePrepay.disabled = !isMobile;
+}
+document.getElementById('f-hitch-supply').addEventListener('change', updateHitchFulfillment);
+document.getElementById('f-hitch-location').addEventListener('change', updateHitchFulfillment);
+updateHitchFulfillment();
+
 /* ============================================================
    Phase 6B tail: pill switcher + lead-success listener
    ============================================================ */
@@ -2288,9 +2350,9 @@ refreshAll();
   document.addEventListener('cu:lead-success', function(ev){
     var d = ev.detail || {};
     // Retail flow uses Patriot's step2 -> .done UI
-    if(d.formId === 'formCard' || d.formId === 'retail'){
+    if(d.formId === 'quote-retail' || d.formId === 'retail'){
       var review = document.getElementById('review'); if(review) review.style.display = 'none';
-      var formCard = document.getElementById('formCard'); if(formCard) formCard.style.display = 'none';
+      var formCard = document.getElementById('quote-retail'); if(formCard) formCard.style.display = 'none';
       var done = document.getElementById('done'); if(done){ done.style.display = 'block'; }
       var bar = document.getElementById('bar'); if(bar) bar.style.display = 'none';
       var refSlot = document.querySelector('[data-cu-ref-slot]');

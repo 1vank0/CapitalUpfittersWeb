@@ -40,7 +40,14 @@
 
   <url>
     <loc>https://www.capitalupfitters.com/quote.html</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.capitalupfitters.com/hitch-quote.html</loc>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -55,7 +62,7 @@
 
   <url>
     <loc>https://www.capitalupfitters.com/services/hitches.html</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>

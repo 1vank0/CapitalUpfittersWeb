@@ -138,7 +138,9 @@
     var panel = panelId ? document.getElementById(panelId) : null;
 
     if (body && panel) {
+      body.hidden = true;
       body.style.display = 'none';
+      panel.hidden = false;
       panel.style.display = 'block';
       panel.setAttribute('tabindex', '-1');
       panel.focus({ preventScroll: true });
@@ -245,7 +247,10 @@
     }
 
     if (/^quote-(retail|fleet|dealer)$/.test(form.id || '')) {
-      var serviceCount = form.querySelectorAll('input[name="services"]:checked').length;
+      var serviceCount = Array.from(form.querySelectorAll('input[name="services"]'))
+        .filter(function (input) {
+          return input.value && (input.type !== 'checkbox' && input.type !== 'radio' || input.checked);
+        }).length;
       if (serviceCount === 0) {
         showBanner(form, 'error', 'Please select at least one service before submitting.');
         return false;
