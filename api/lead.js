@@ -17,7 +17,7 @@
 //   LEAD_PERSISTENCE_BYPASS_SECRET — Vercel protection bypass for preview persistence
 //   LEAD_ALLOWED_ORIGIN     — comma-separated browser origins (same-host previews
 //                             are also accepted dynamically)
-//   LEAD_PERSISTENCE_TIMEOUT_MS — durable endpoint deadline (default 5000)
+//   LEAD_PERSISTENCE_TIMEOUT_MS — durable endpoint deadline (default 25000)
 //   LEAD_RESEND_TIMEOUT_MS      — per-email deadline (default 5000)
 //
 // Lead email layout (matches the spec):
@@ -36,7 +36,11 @@ const MAX_JSON_BYTES = 128 * 1024;
 const LEAD_SCHEMA_VERSION = '2026-07-15';
 const DEFAULT_PERSISTENCE_URL = 'https://capital-upfitters-next.vercel.app/api/leads/';
 const DEFAULT_SITE_ORIGIN = 'https://capitalupfitters.com';
-const DEFAULT_PERSISTENCE_TIMEOUT_MS = 5000;
+// The shared lead service has a relatively expensive cold start. Five seconds
+// was too aggressive in production and caused successfully emailed leads to
+// lose their durable reference. Keep this below the function's overall limit,
+// but long enough for the upstream service to wake and commit the lead.
+const DEFAULT_PERSISTENCE_TIMEOUT_MS = 25000;
 const DEFAULT_RESEND_TIMEOUT_MS = 5000;
 const BRIDGE_SIGNATURE_VERSION = 'capital-upfitters-lead-bridge-v1';
 const BRIDGE_CLIENT_IP_HEADER = 'X-Capital-Bridge-Client-IP';
@@ -135,7 +139,7 @@ function validateRequestOrigin(req) {
 
 function timeoutFromEnv(name, fallback) {
   const value = Number.parseInt(process.env[name] || '', 10);
-  return Number.isFinite(value) && value >= 10 && value <= 15000 ? value : fallback;
+  return Number.isFinite(value) && value >= 10 && value <= 30000 ? value : fallback;
 }
 
 async function fetchWithTimeout(url, options, timeoutMs, consume) {
@@ -684,7 +688,7 @@ async function persistLeadRequest(body, req) {
 
 // ------- email rendering --------------------------------------------------
 
-function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
+function buildEmail({ body, ip, geo, leadSource, receivedAt, reference }) {
   const formLabel = FORM_LABEL[body.form_id] || 'Lead';
 
   // Customer fields (the input names vary across the three forms — pick first match).
@@ -723,84 +727,69 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
   const serviceAddress = pickFirst(body, ['Service Address']);
   const workspaceConfirmed = pickFirst(body, ['Workspace Confirmed']);
   const mobilePrepayment = pickFirst(body, ['Mobile Prepayment Accepted']);
+  const vehicle = [vYear, vMake, vModel, vTrim].filter(Boolean).join(' ');
+
+  function pagePath(value) {
+    const raw = scalarString(value, 1000);
+    if (!raw) return '';
+    try {
+      const parsed = new URL(raw);
+      return `${parsed.pathname}${parsed.search}`;
+    } catch (_) {
+      return raw;
+    }
+  }
 
   function row(label, value) {
     if (value === '' || value === undefined || value === null) return '';
     return `
       <tr>
-        <td style="padding:6px 12px 6px 0;color:#6b7280;font-size:13px;font-weight:600;white-space:nowrap;vertical-align:top;width:180px;">${esc(label)}</td>
-        <td style="padding:6px 0;color:#111827;font-size:14px;vertical-align:top;word-break:break-word;">${esc(value)}</td>
+        <td style="padding:5px 12px 5px 0;color:#6b7280;font-size:13px;font-weight:600;white-space:nowrap;vertical-align:top;width:145px;">${esc(label)}</td>
+        <td style="padding:5px 0;color:#111827;font-size:14px;vertical-align:top;word-break:break-word;">${esc(value)}</td>
       </tr>`;
   }
 
   function section(title, rowsHtml) {
     if (!rowsHtml.replace(/\s+/g, '')) return '';
     return `
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 22px 0;border-collapse:collapse;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 14px 0;border-collapse:collapse;">
         <tr>
           <td style="padding:10px 16px;background:#103b68;color:#fcbf0d;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:6px 6px 0 0;">${esc(title)}</td>
         </tr>
         <tr>
-          <td style="padding:12px 16px;background:#ffffff;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 6px 6px;">
+          <td style="padding:9px 14px;background:#ffffff;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 6px 6px;">
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">${rowsHtml}</table>
           </td>
         </tr>
       </table>`;
   }
 
-  const customerHtml = section('Customer Information',
-    row('Name', fullName) + row('Email', email) + row('Phone', phone) +
-    row('ZIP', zip) + row('Business / Agency', business) + row('Organization Type', orgType));
-
-  const vehicleHtml = section('Vehicle Information',
-    row('Year', vYear) + row('Make', vMake) + row('Model', vModel) +
-    row('Trim', vTrim) + row('Color', vColor) + row('VIN', vin) +
-    row('License Plate', plate ? plate + (plateState ? ' (' + plateState + ')' : '') : ''));
-
-  const serviceHtml = section('Requested Service',
-    row('Services', services) + row('Monthly Volume', monthlyVol) +
-    row('Quote Type', partsSupply) + row('Hitch Use', hitchUse) +
-    row('Hitch Style', hitchStyle) + row('Customer Parts', customerParts) +
-    row('Trailer Details', trailerDetails) + row('Installation Location', installLocation) +
-    row('Service Address', serviceAddress) + row('Workspace Confirmed', workspaceConfirmed) +
-    row('Mobile Prepayment Accepted', mobilePrepayment) +
+  const summaryHtml = section('Lead Summary',
+    row('Reference', reference) +
+    row('Service', services) +
+    row('Vehicle', vehicle) +
+    row('VIN', vin) +
+    row('Plate', plate ? plate + (plateState ? ' (' + plateState + ')' : '') : '') +
+    row('Customer', fullName) + row('Phone', phone) + row('Email', email) +
+    row('ZIP', zip) + row('Business / Agency', business) + row('Organization Type', orgType) +
     row('Preferred Date', prefDate) + row('Best Time to Call', callTime));
 
-  const messageHtml = message ? section('Message',
-    `<tr><td style="padding:6px 0;color:#111827;font-size:14px;line-height:1.55;white-space:pre-wrap;">${esc(message)}</td></tr>`) : '';
+  const jobHtml = section('Job Details',
+    row('Quote Type', partsSupply) + row('Hitch Use', hitchUse) +
+    row('Hitch Style', hitchStyle) + row('Customer Parts', customerParts) +
+    row('Trailer Details', trailerDetails) + row('Install Location', installLocation) +
+    row('Service Address', serviceAddress) + row('Workspace Ready', workspaceConfirmed) +
+    row('Mobile Prepayment Accepted', mobilePrepayment) + row('Monthly Volume', monthlyVol) +
+    row('Vehicle Color', vColor) + row('Customer Notes', message));
 
-  const attribHtml = section('Lead Attribution',
-    row('Lead Source', leadSource) +
-    row('Referrer Domain', body.referrer_domain) +
-    row('Referrer URL', body.referrer) +
-    row('Landing Page', body.landing_page) +
-    row('Form Page', body.form_page) +
-    row('UTM Source', body.utm_source) +
-    row('UTM Medium', body.utm_medium) +
-    row('UTM Campaign', body.utm_campaign) +
-    row('UTM Term', body.utm_term) +
-    row('UTM Content', body.utm_content) +
-    row('GCLID', body.gclid) +
-    row('FBCLID', body.fbclid) +
-    row('MSCLKID', body.msclkid));
+  const sourceParts = [
+    leadSource,
+    body.utm_campaign ? `Campaign: ${scalarString(body.utm_campaign, 160)}` : '',
+    [geo.city, geo.region].filter(Boolean).join(', '),
+    pagePath(body.form_page || body.landing_page)
+  ].filter(Boolean).join(' · ');
 
-  const locationHtml = section('Visitor Location',
-    row('IP Address', ip) +
-    row('City', geo.city) +
-    row('Region', geo.region) +
-    row('Country', geo.country) +
-    row('ISP / Organization', geo.isp) +
-    row('User Agent', body.user_agent));
-
-  const receiptHtml = section('Receipt Information',
-    row('Form', formLabel) +
-    row('Form ID', body.form_id) +
-    row('Submitted', formatEastern(receivedAt)));
-
-  const headline = (() => {
-    const who = fullName || email || 'New visitor';
-    return `${who} — ${formLabel}`;
-  })();
+  const headline = `${fullName || business || email || 'New lead'} — ${services || formLabel}`;
 
   const html = `<!doctype html>
 <html><head><meta charset="utf-8"></head>
@@ -811,14 +800,15 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
         <tr><td style="padding:16px 20px;background:#111827;border-radius:8px 8px 0 0;">
           <div style="color:#fcbf0d;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;">Capital Upfitters · New Lead</div>
           <div style="color:#ffffff;font-size:20px;font-weight:700;margin-top:4px;">${esc(headline)}</div>
-          <div style="color:#9ca3af;font-size:13px;margin-top:4px;">${esc(formatEastern(receivedAt))}</div>
+          <div style="color:#9ca3af;font-size:13px;margin-top:4px;">${esc(reference ? `${reference} · ${formatEastern(receivedAt)}` : formatEastern(receivedAt))}</div>
         </td></tr>
         <tr><td style="padding:20px;background:#f9fafb;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;">
-          ${customerHtml}${vehicleHtml}${serviceHtml}${messageHtml}${attribHtml}${locationHtml}${receiptHtml}
+          ${summaryHtml}${jobHtml}
+          <div style="padding:2px 2px 0;color:#6b7280;font-size:11px;line-height:1.45;">${esc(sourceParts)}</div>
         </td></tr>
         <tr><td style="padding:14px 20px;background:#111827;border-radius:0 0 8px 8px;text-align:center;">
           <div style="color:#9ca3af;font-size:12px;">Capital Upfitters · Rockville, MD · (301) 304-1419</div>
-          <div style="color:#6b7280;font-size:11px;margin-top:4px;">Submitted via capitalupfitters.com — reply directly to ${esc(email || 'the customer')}.</div>
+          <div style="color:#6b7280;font-size:11px;margin-top:4px;">Reply to this email to contact ${esc(fullName || email || 'the customer')}.</div>
         </td></tr>
       </table>
     </td></tr>
@@ -827,35 +817,41 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
 
   // Plaintext fallback
   const lines = [
-    `CAPITAL UPFITTERS — NEW LEAD (${formLabel})`,
-    formatEastern(receivedAt),
+    `CAPITAL UPFITTERS — ${services || formLabel}`,
+    reference && `Reference: ${reference}`,
+    `Submitted: ${formatEastern(receivedAt)}`,
     '',
     `Name: ${fullName}`,
     `Email: ${email}`,
     `Phone: ${phone}`,
+    zip && `ZIP: ${zip}`,
     business && `Business: ${business}`,
     '',
-    vYear && `Vehicle: ${[vYear, vMake, vModel, vTrim].filter(Boolean).join(' ')}`,
+    vehicle && `Vehicle: ${vehicle}`,
     vin && `VIN: ${vin}`,
     '',
     services && `Services: ${services}`,
+    partsSupply && `Quote Type: ${partsSupply}`,
+    hitchUse && `Hitch Use: ${hitchUse}`,
+    hitchStyle && `Hitch Style: ${hitchStyle}`,
+    customerParts && `Customer Parts: ${customerParts}`,
+    trailerDetails && `Trailer Details: ${trailerDetails}`,
+    installLocation && `Installation Location: ${installLocation}`,
+    serviceAddress && `Service Address: ${serviceAddress}`,
+    workspaceConfirmed && `Workspace Ready: ${workspaceConfirmed}`,
+    mobilePrepayment && `Prepayment Accepted: ${mobilePrepayment}`,
+    prefDate && `Preferred Date: ${prefDate}`,
+    callTime && `Best Time to Call: ${callTime}`,
     message && `Message: ${message}`,
     '',
-    `Lead Source: ${leadSource}`,
-    `Landing Page: ${body.landing_page || ''}`,
-    `Referrer: ${body.referrer || ''}`,
-    body.utm_source && `UTM: ${body.utm_source} / ${body.utm_medium || ''} / ${body.utm_campaign || ''}`,
-    body.gclid && `GCLID: ${body.gclid}`,
-    body.fbclid && `FBCLID: ${body.fbclid}`,
-    '',
-    `IP: ${ip}`,
-    `Location: ${[geo.city, geo.region, geo.country].filter(Boolean).join(', ')}`,
-    geo.isp && `ISP: ${geo.isp}`,
-    `User Agent: ${body.user_agent || ''}`
+    `Source: ${sourceParts || leadSource}`
   ].filter(Boolean);
 
+  const subjectLead = services || formLabel;
+  const subjectWho = fullName || business || vehicle || email || 'New lead';
+
   return {
-    subject: `[CU Lead] ${headline}`,
+    subject: `[CU] ${subjectLead} — ${subjectWho}`.slice(0, 180),
     html, text: lines.join('\n'),
     replyTo: email || undefined
   };
@@ -1113,7 +1109,8 @@ module.exports = async function handler(req, res) {
     ip: emailIp,
     geo: emailGeo,
     leadSource,
-    receivedAt
+    receivedAt,
+    reference: persistence.reference || ''
   });
   const customer = buildCustomerConfirmation({ body, leadSource, receivedAt });
   const bodyIdempotency = scalarString(body.idempotency_key, 80);

@@ -227,6 +227,9 @@ test('mobile CSP hitch request reaches persistence and the shop notification', a
     assert.match(shopEmail.html, /Customer Parts/);
     assert.match(shopEmail.html, /CURT 13416/);
     assert.match(shopEmail.html, /Mobile Prepayment Accepted/);
+    assert.match(shopEmail.html, /CU-HITCH-1/);
+    assert.match(shopEmail.subject, /^\[CU\] hitches — QA Retail$/);
+    assert.doesNotMatch(shopEmail.html, /User Agent|Referrer URL|Form ID/);
   });
 });
 
@@ -1027,6 +1030,7 @@ test('missing contact, malformed JSON, and oversized JSON have zero side effects
 });
 
 test('one shared client controller owns every form submit and success state', () => {
+  const api = fs.readFileSync(path.join(ROOT, 'api', 'lead.js'), 'utf8');
   const lead = fs.readFileSync(path.join(ROOT, 'lead-form.js'), 'utf8');
   const quoteHtml = fs.readFileSync(path.join(ROOT, 'quote.html'), 'utf8');
   const contactHtml = fs.readFileSync(path.join(ROOT, 'contact.html'), 'utf8');
@@ -1037,6 +1041,7 @@ test('one shared client controller owns every form submit and success state', ()
   assert.doesNotMatch(quoteHtml, /capital-upfitters-next\.vercel\.app\/api\/leads/);
   assert.doesNotMatch(contactHtml, /callback-form['"]\)\.addEventListener\(['"]submit/);
   assert.doesNotMatch(dealerHtml, /apply-form['"]\)\.addEventListener\(['"]submit/);
+  assert.match(api, /DEFAULT_PERSISTENCE_TIMEOUT_MS = 25000/);
 
   assert.match(quoteHtml, /id="quote-retail"[^>]*data-success-body="retail-form-body"[^>]*data-success-panel="retail-form-success"/);
   assert.match(quoteHtml, /id="quote-fleet"[^>]*data-success-body="fleet-form-body"[^>]*data-success-panel="fleet-form-success"/);
