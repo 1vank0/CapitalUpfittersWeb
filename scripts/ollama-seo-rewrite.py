@@ -644,19 +644,37 @@ def cmd_apply():
 
 class Seq(HTMLParser):
     def __init__(self):
-        super().__init__(convert_charrefs=True); self.seq = []; self.ld = []; self._ld = None; self.titles = 0; self.descs = 0; self.h1 = 0
+        super().__init__(convert_charrefs=True); self.seq = []; self.ld = []; self._ld = None; self.titles = 0; self.descs = 0; self.h1 = 0; self._skipstack = []
+    # Presentational-only attributes are ignored by the structure check so the
+    # brand/mobile CSS passes (inline style, hover handlers, class tweaks) and
+    # image sizing attrs don't trip it. Decorative elements added by the design
+    # pass (span.accent-word in the H1, img.card-media card images) are skipped.
+    IGNORE_ATTRS = {'style', 'class', 'onmouseover', 'onmouseout', 'onmouseenter', 'onmouseleave',
+                    'width', 'height', 'loading', 'decoding', 'fetchpriority', 'aria-hidden',
+                    'fill', 'stroke', 'stop-color'}
+    SKIP = (('span', 'accent-word'), ('img', 'card-media'))
+
+    def _skip(self, tag, a):
+        cls = (a.get('class') or '').split()
+        return any(tag == t and c in cls for t, c in self.SKIP)
+
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
+        if self._skip(tag, a):
+            if tag != 'img': self._skipstack.append(tag)
+            return
         if tag == 'meta' and (a.get('name') in META_KEYS or a.get('property') in META_KEYS):
             a.pop('content', None)
             if a.get('name') == 'description': self.descs += 1
         if tag == 'title': self.titles += 1
         if tag == 'h1': self.h1 += 1
         if tag == 'script' and a.get('type') == 'application/ld+json': self._ld = ''
-        self.seq.append(('S', tag, tuple(sorted(a.items()))))
+        self.seq.append(('S', tag, tuple(sorted((k, v) for k, v in a.items() if k not in self.IGNORE_ATTRS))))
     def handle_startendtag(self, tag, attrs):
         self.handle_starttag(tag, attrs)
     def handle_endtag(self, tag):
+        if self._skipstack and self._skipstack[-1] == tag:
+            self._skipstack.pop(); return
         if tag == 'script' and self._ld is not None: self.ld.append(self._ld); self._ld = None
         self.seq.append(('E', tag))
     def handle_data(self, d):
