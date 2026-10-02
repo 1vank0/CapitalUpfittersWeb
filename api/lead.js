@@ -688,7 +688,7 @@ async function persistLeadRequest(body, req) {
 
 // ------- email rendering --------------------------------------------------
 
-function buildEmail({ body, ip, geo, leadSource, receivedAt, reference }) {
+function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
   const formLabel = FORM_LABEL[body.form_id] || 'Lead';
 
   // Customer fields (the input names vary across the three forms — pick first match).
@@ -749,6 +749,20 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt, reference }) {
       </tr>`;
   }
 
+  function contactRow(number, label, value, href) {
+    const displayValue = value || 'Not provided';
+    const valueHtml = href && value
+      ? `<a href="${esc(href)}" style="display:block;color:#0b63ce;font-size:18px;font-weight:700;line-height:1.35;text-decoration:underline;word-break:break-word;user-select:all;">${esc(displayValue)}</a>`
+      : `<div style="color:${value ? '#111827' : '#9ca3af'};font-size:18px;font-weight:700;line-height:1.35;word-break:break-word;user-select:all;">${esc(displayValue)}</div>`;
+    return `
+      <tr>
+        <td style="padding:12px 14px;border-bottom:${number < 3 ? '1px solid #e5e7eb' : 'none'};background:#ffffff;">
+          <div style="margin-bottom:3px;color:#6b7280;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;">${number} · ${esc(label)}</div>
+          ${valueHtml}
+        </td>
+      </tr>`;
+  }
+
   function section(title, rowsHtml) {
     if (!rowsHtml.replace(/\s+/g, '')) return '';
     return `
@@ -764,13 +778,16 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt, reference }) {
       </table>`;
   }
 
-  const summaryHtml = section('Lead Summary',
-    row('Reference', reference) +
+  const contactHtml = section('Customer — Copy / Tap',
+    contactRow(1, 'Name', fullName) +
+    contactRow(2, 'Phone', phone, phone ? `tel:${phone.replace(/[^\d+]/g, '')}` : '') +
+    contactRow(3, 'Email', email, email ? `mailto:${email}` : ''));
+
+  const summaryHtml = section('Request',
     row('Service', services) +
     row('Vehicle', vehicle) +
     row('VIN', vin) +
     row('Plate', plate ? plate + (plateState ? ' (' + plateState + ')' : '') : '') +
-    row('Customer', fullName) + row('Phone', phone) + row('Email', email) +
     row('ZIP', zip) + row('Business / Agency', business) + row('Organization Type', orgType) +
     row('Preferred Date', prefDate) + row('Best Time to Call', callTime));
 
@@ -784,12 +801,14 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt, reference }) {
 
   const sourceParts = [
     leadSource,
+    body.utm_source ? `UTM source: ${scalarString(body.utm_source, 160)}` : '',
+    body.utm_medium ? `Medium: ${scalarString(body.utm_medium, 160)}` : '',
     body.utm_campaign ? `Campaign: ${scalarString(body.utm_campaign, 160)}` : '',
     [geo.city, geo.region].filter(Boolean).join(', '),
     pagePath(body.form_page || body.landing_page)
   ].filter(Boolean).join(' · ');
 
-  const headline = `${fullName || business || email || 'New lead'} — ${services || formLabel}`;
+  const headline = services || formLabel;
 
   const html = `<!doctype html>
 <html><head><meta charset="utf-8"></head>
@@ -800,10 +819,10 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt, reference }) {
         <tr><td style="padding:16px 20px;background:#111827;border-radius:8px 8px 0 0;">
           <div style="color:#fcbf0d;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;">Capital Upfitters · New Lead</div>
           <div style="color:#ffffff;font-size:20px;font-weight:700;margin-top:4px;">${esc(headline)}</div>
-          <div style="color:#9ca3af;font-size:13px;margin-top:4px;">${esc(reference ? `${reference} · ${formatEastern(receivedAt)}` : formatEastern(receivedAt))}</div>
+          <div style="color:#9ca3af;font-size:13px;margin-top:4px;">${esc(formatEastern(receivedAt))}</div>
         </td></tr>
         <tr><td style="padding:20px;background:#f9fafb;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;">
-          ${summaryHtml}${jobHtml}
+          ${contactHtml}${summaryHtml}${jobHtml}
           <div style="padding:2px 2px 0;color:#6b7280;font-size:11px;line-height:1.45;">${esc(sourceParts)}</div>
         </td></tr>
         <tr><td style="padding:14px 20px;background:#111827;border-radius:0 0 8px 8px;text-align:center;">
@@ -818,12 +837,11 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt, reference }) {
   // Plaintext fallback
   const lines = [
     `CAPITAL UPFITTERS — ${services || formLabel}`,
-    reference && `Reference: ${reference}`,
     `Submitted: ${formatEastern(receivedAt)}`,
     '',
     `Name: ${fullName}`,
-    `Email: ${email}`,
     `Phone: ${phone}`,
+    `Email: ${email}`,
     zip && `ZIP: ${zip}`,
     business && `Business: ${business}`,
     '',
@@ -1109,8 +1127,7 @@ module.exports = async function handler(req, res) {
     ip: emailIp,
     geo: emailGeo,
     leadSource,
-    receivedAt,
-    reference: persistence.reference || ''
+    receivedAt
   });
   const customer = buildCustomerConfirmation({ body, leadSource, receivedAt });
   const bodyIdempotency = scalarString(body.idempotency_key, 80);
