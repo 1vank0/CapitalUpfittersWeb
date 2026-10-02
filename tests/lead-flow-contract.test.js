@@ -214,10 +214,14 @@ test('mobile CSP hitch request reaches persistence and the shop notification', a
       'Hitch Use': 'rack',
       'Hitch Style': 'standard',
       'Customer Parts': 'CURT 13416, new in box',
+      Phone: '301-555-0142',
       'Installation Location': 'mobile',
       'Service Address': '100 Test Street, Rockville, MD',
       'Workspace Confirmed': 'yes',
-      'Mobile Prepayment Accepted': 'yes'
+      'Mobile Prepayment Accepted': 'yes',
+      utm_source: 'google',
+      utm_medium: 'cpc',
+      utm_campaign: 'mobile-hitch'
     }));
 
     assert.equal(result.status, 200);
@@ -227,9 +231,20 @@ test('mobile CSP hitch request reaches persistence and the shop notification', a
     assert.match(shopEmail.html, /Customer Parts/);
     assert.match(shopEmail.html, /CURT 13416/);
     assert.match(shopEmail.html, /Mobile Prepayment Accepted/);
-    assert.match(shopEmail.html, /CU-HITCH-1/);
     assert.match(shopEmail.subject, /^\[CU\] hitches — QA Retail$/);
     assert.doesNotMatch(shopEmail.html, /User Agent|Referrer URL|Form ID/);
+    assert.match(shopEmail.html, /Customer — Copy \/ Tap/);
+    assert.match(shopEmail.html, /1 · Name/);
+    assert.match(shopEmail.html, /2 · Phone/);
+    assert.match(shopEmail.html, /3 · Email/);
+    assert.match(shopEmail.html, /href="tel:3015550142"/);
+    assert.match(shopEmail.html, /href="mailto:retail@example.com"/);
+    assert.ok(shopEmail.html.indexOf('1 · Name') < shopEmail.html.indexOf('2 · Phone'));
+    assert.ok(shopEmail.html.indexOf('2 · Phone') < shopEmail.html.indexOf('3 · Email'));
+    assert.ok(shopEmail.html.indexOf('3 · Email') < shopEmail.html.indexOf('Request'));
+    assert.match(shopEmail.html, /UTM source: google/);
+    assert.match(shopEmail.html, /Medium: cpc/);
+    assert.match(shopEmail.html, /Campaign: mobile-hitch/);
   });
 });
 
@@ -328,6 +343,46 @@ test('same-payload retries keep Resend bodies and idempotency keys byte-identica
         emailCalls[index + 2].headers['Idempotency-Key']
       );
     }
+  });
+});
+
+test('timeout fallback and later persisted retry keep the shop email byte-identical', async () => {
+  await withRuntime(async () => {
+    let persistenceAttempts = 0;
+    const shopEmails = [];
+    global.fetch = async (url, options) => {
+      if (url === 'https://persistence.test/api/leads/') {
+        persistenceAttempts += 1;
+        if (persistenceAttempts === 1) {
+          return jsonResponse({
+            ok: false,
+            persisted: false,
+            error: {
+              code: 'PERSISTENCE_UNAVAILABLE',
+              message: 'Temporary storage delay.'
+            }
+          }, 503);
+        }
+        return jsonResponse({ ok: true, persisted: true, reference: 'CU-LATE-1' }, 201);
+      }
+      const email = JSON.parse(options.body);
+      if (email.to === 'CapitalUpfitters@gmail.com') {
+        shopEmails.push({ body: options.body, key: options.headers['Idempotency-Key'] });
+      }
+      return jsonResponse({ id: 'email-id' });
+    };
+
+    const body = retailBody();
+    const fallback = await invoke(body);
+    const persistedRetry = await invoke(body);
+
+    assert.equal(fallback.status, 200);
+    assert.equal(fallback.body.delivery_mode, 'email_fallback');
+    assert.equal(persistedRetry.status, 200);
+    assert.equal(persistedRetry.body.reference, 'CU-LATE-1');
+    assert.equal(shopEmails.length, 2);
+    assert.equal(shopEmails[0].key, shopEmails[1].key);
+    assert.equal(shopEmails[0].body, shopEmails[1].body);
   });
 });
 
