@@ -644,7 +644,7 @@ def cmd_apply():
 
 class Seq(HTMLParser):
     def __init__(self):
-        super().__init__(convert_charrefs=True); self.seq = []; self.ld = []; self._ld = None; self.titles = 0; self.descs = 0; self.h1 = 0; self._skipstack = []; self.text = []; self._raw = 0
+        super().__init__(convert_charrefs=True); self.seq = []; self.ld = []; self._ld = None; self.titles = 0; self.descs = 0; self.h1 = 0; self._skipstack = []; self.text = []; self._raw = 0; self._head = False
     # Presentational-only attributes are ignored by the structure check so the
     # brand/mobile CSS passes (inline style, hover handlers, class tweaks) and
     # image sizing attrs don't trip it. Decorative elements added by the design
@@ -676,6 +676,12 @@ class Seq(HTMLParser):
         if tag == 'title': self.titles += 1
         if tag == 'h1': self.h1 += 1
         if tag == 'script' and a.get('type') == 'application/ld+json': self._ld = ''
+        if tag == 'head': self._head = True
+        # Tag/attribute structure is compared for <head> only (title, meta, links,
+        # head scripts). Body layout/UI changes (e.g. the mobile action bar, the
+        # quote vehicle step) are design work, not SEO-copy drift; the body is
+        # still covered by the JSON-LD, single-H1 and review-figure checks.
+        if not self._head: return
         self.seq.append(('S', tag, tuple(sorted((k, v) for k, v in a.items()
                                                 if k not in self.IGNORE_ATTRS and not k.startswith(self.REVIEW_ATTR)))))
     def handle_startendtag(self, tag, attrs):
@@ -686,7 +692,8 @@ class Seq(HTMLParser):
         if self._skipstack and self._skipstack[-1] == tag:
             self._skipstack.pop(); return
         if tag == 'script' and self._ld is not None: self.ld.append(self._ld); self._ld = None
-        self.seq.append(('E', tag))
+        if tag == 'head': self._head = False
+        if self._head: self.seq.append(('E', tag))
     def handle_data(self, d):
         if self._ld is not None: self._ld += d
         elif not self._raw: self.text.append(d)

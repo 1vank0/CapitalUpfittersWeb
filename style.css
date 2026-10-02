@@ -1441,11 +1441,7 @@
   padding: var(--space-3) var(--space-4);
   gap: var(--space-3);
 }
-@media (max-width: 680px) {
-  .sticky-cta-bar { display: flex; }
-  .sticky-cta-bar .btn { flex: 1; text-align: center; justify-content: center; font-size: 13px; padding: 0.75rem 0.5rem; white-space: nowrap; min-height: 44px; }
-  body { padding-bottom: 72px; }
-}
+/* (legacy .sticky-cta-bar replaced by .mobile-action-bar — see end of file) */
 
 /* ══════════════════════════════════════════════════════════
    MEGA-DROPDOWN NAV — Services + Fleet & Business panels
@@ -2349,14 +2345,6 @@
   textarea { font-size: 16px !important; }
 }
 
-/* Floating quote pill vs sticky bottom bar — never both on phones */
-@media (max-width: 680px) {
-  body:has(.sticky-cta-bar) .float-cta { display: none !important; }
-  .float-cta { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
-  body:not(:has(.sticky-cta-bar)) { padding-bottom: 88px; }
-  .sticky-cta-bar { padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom, 0px)); }
-  body:has(.sticky-cta-bar) { padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
-}
 
 /* Grids — inline grid-template-columns never collapsed on phones */
 @media (max-width: 860px) {
@@ -2475,3 +2463,53 @@
 
 /* Mobile: camper-shells service-area pills meet 44px tap target */
 a[href*="wikipedia.org/wiki/"][style*="radius-pill"] { min-height: 44px; }
+
+
+/* ══════════════════════════════════════════════════════════
+   MOBILE ACTION BAR (<=768px) — Call · Text · Get a Quote
+   One fixed bar on every page; replaces the old sticky CTA bar
+   and the floating quote pill on phones/tablets.
+   ══════════════════════════════════════════════════════════ */
+.mobile-action-bar { display: none; }
+@media (max-width: 768px) {
+  .mobile-action-bar {
+    --mab-h: 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.5fr;
+    gap: 8px;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 95;
+    padding: 8px max(10px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(10px, env(safe-area-inset-left, 0px));
+    background: #0a0a0b;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 -6px 20px rgba(0,0,0,0.25);
+  }
+  .mab-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; min-width: 44px;
+    border-radius: 999px;
+    font-family: var(--font-display, inherit);
+    font-size: 15px; font-weight: 700; letter-spacing: 0.01em;
+    text-decoration: none; white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mab-call, .mab-text {
+    background: #17181b; color: #fff;
+    border: 1px solid rgba(255,255,255,0.18);
+  }
+  .mab-call .mab-ico, .mab-text .mab-ico { color: #0066fc; flex: none; }
+  .mab-call:active, .mab-text:active { background: #222428; }
+  .mab-quote { background: #fcd800; color: #0a0a0b; border: 1px solid #fcd800; }
+  .mab-quote:active { background: #e6c400; }
+  .mab-btn:focus-visible { outline: 3px solid #4d94ff; outline-offset: 2px; }
+
+  /* nothing else floats over the bar; the footer clears it */
+  .float-cta, .sticky-cta-bar { display: none !important; }
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)) !important; }
+}
+@media (max-width: 360px) {
+  .mab-btn { font-size: 14px; gap: 6px; }
+  .mobile-action-bar { gap: 6px; }
+}
+@media print { .mobile-action-bar { display: none !important; } }
