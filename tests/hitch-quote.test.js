@@ -41,3 +41,26 @@ test('the general quote form exposes the same hitch choices', () => {
   assert.match(html, /Mobile — add \$150–\$200/);
   assert.match(html, /all mobile services must be paid in full/i);
 });
+
+test('the general quote service chooser is grouped and explains each service', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'quote.html'), 'utf8');
+  assert.match(html, /Protection & Appearance/);
+  assert.match(html, /Truck Bed & Access/);
+  assert.match(html, /Towing & Performance/);
+  assert.match(html, /Business & Specialty/);
+  assert.match(html, /class="t-sub"/);
+  assert.match(html, /class="t-icon"/);
+  assert.match(html, /Start with one or select several for a package quote/);
+});
+
+test('each service appears in exactly one chooser group', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'quote.html'), 'utf8');
+  const servicesBlock = html.match(/const SERVICES = \[([\s\S]*?)\n\];\nconst MAX_SERVICES/);
+  const groupsBlock = html.match(/const SERVICE_GROUPS = \[([\s\S]*?)\n\];\n\n\/\* =+/);
+  assert.ok(servicesBlock && groupsBlock);
+  const serviceIds = [...servicesBlock[1].matchAll(/^\s*id:'([^']+)', name:/gm)].map((match) => match[1]);
+  const groupedIds = [...groupsBlock[1].matchAll(/ids:\[([^\]]+)\]/g)]
+    .flatMap((match) => [...match[1].matchAll(/'([^']+)'/g)].map((idMatch) => idMatch[1]));
+  assert.deepEqual([...groupedIds].sort(), [...serviceIds].sort());
+  assert.equal(new Set(groupedIds).size, groupedIds.length);
+});
