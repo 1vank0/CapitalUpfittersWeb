@@ -1699,7 +1699,7 @@
       "directionsTitle": "UNDER 10 MINUTES AWAY",
       "directionsBody": "12019 Nebel Street, Rockville MD 20852\n\nVia I-270 South: Head south on I-270 from Gaithersburg toward Rockville. Take Exit 4 (Democracy Blvd). Turn east on Democracy Blvd, then south on Nebel St.\n\nVia Rockville Pike (MD-355): Head south on Rockville Pike through North Bethesda. Turn left on Edmonston Dr or Montrose Rd, then right on Nebel St.\n\nWalk-ins welcome Mon–Fri 9:30am–4:30pm. Only 5–8 miles from most Gaithersburg locations.",
       "seoTitle": "Truck Upfitting Gaithersburg MD | Capital Upfitters",
-      "seoDescription": "Truck upfitting for Gaithersburg, MD delivered from our Rockville shop. Rated 4.9 stars on Google from 110 reviews. Same-week service. Call (301) 304-1419.",
+      "seoDescription": "Truck upfitting for Gaithersburg, MD delivered from our Rockville shop. Authorized Patriot Liner dealer. Same-week service. Call (301) 304-1419.",
       "body": "Serving Gaithersburg and Montgomery County from our Rockville shop — less than 10 minutes away.\n\n## MONTGOMERY COUNTY'S UPFIT SHOP\n\nGaithersburg's commercial corridors, tech campuses, and residential neighborhoods generate some of the highest demand for professional vehicle upfitting in the DMV. Capital Upfitters handles everything from personal truck accessories to full commercial fleet programs.\n\nWhether you're a Gaithersburg contractor, a Crown Farm business managing a service fleet, or a resident who just picked up a new truck — we're less than 10 minutes away and ready to help.\n\n## UNDER 10 MINUTES AWAY\n\n12019 Nebel Street, Rockville MD 20852\n\nVia I-270 South: Head south on I-270 from Gaithersburg toward Rockville. Take Exit 4 (Democracy Blvd). Turn east on Democracy Blvd, then south on Nebel St.\n\nVia Rockville Pike (MD-355): Head south on Rockville Pike through North Bethesda. Turn left on Edmonston Dr or Montrose Rd, then right on Nebel St.\n\nWalk-ins welcome Mon–Fri 9:30am–4:30pm. Only 5–8 miles from most Gaithersburg locations.",
       "_file": "gaithersburg-md.md"
     },
@@ -2390,7 +2390,7 @@
       "slug": "stats-strip",
       "title": "Stats Strip",
       "type": "stats",
-      "body": "## By the numbers\n\n* **2015** — Established\n* **4.9★** — Average Google Rating\n* **Same-week** — Turnaround",
+      "body": "## By the numbers\n\n* **2015** — Established\n* **Google** — Verified customer reviews\n* **Same-week** — Turnaround",
       "_file": "stats-strip.md"
     }
   ],
@@ -2448,7 +2448,7 @@
         "subheadline": "Browse our portfolio of installed services — bedliners, ceramic coatings, hitches, undercoating, fleet builds, and more."
       },
       "seoTitle": "Work Gallery Rockville MD | Capital Upfitters",
-      "seoDescription": "Explore our work gallery of truck and van upfits in Rockville, MD. We earned 4.9 stars on Google from 110 reviews. Request installed pricing now.",
+      "seoDescription": "Explore our work gallery of truck and van upfits from our Rockville, MD shop. Authorized Patriot Liner dealer. Request installed pricing now.",
       "body": "Browse our portfolio of installed services — bedliners, ceramic coatings, hitches, undercoating, fleet builds, and more.",
       "_file": "gallery.md"
     },
@@ -2527,8 +2527,8 @@
     },
     {
       "key": "5-0-google-rating",
-      "name": "4.9★ Google Rating",
-      "tagline": "110 verified Google reviews",
+      "name": "Google Reviews",
+      "tagline": "Verified Google reviews",
       "sortOrder": 30,
       "_file": "5-0-google-rating.json"
     },

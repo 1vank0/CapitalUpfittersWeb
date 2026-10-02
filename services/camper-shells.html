@@ -63,12 +63,6 @@
           "addressLocality": "Rockville",
           "addressRegion": "MD",
           "postalCode": "20852"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "110",
-          "bestRating": "5"
         }
       },
       "areaServed": [
@@ -1113,7 +1107,7 @@
       <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-8) var(--space-7);">
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);">
           <div style="text-align:center; padding: var(--space-4);">
-            <div style="font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 800; color: var(--color-brand-text); line-height: 1; margin-bottom: var(--space-2);">4.9★</div>
+            <div style="font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 800; color: var(--color-brand-text); line-height: 1; margin-bottom: var(--space-2);" data-review-text="{rating}★">★</div>
             <div style="font-family: var(--font-display); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted);">Google Reviews</div>
           </div>
           <div style="text-align:center; padding: var(--space-4);">
@@ -1464,5 +1458,6 @@ if (navClose && navMobile) {
     if(c&&m){c.addEventListener('click',function(){m.classList.remove('open');document.body.style.overflow='';});}
   })();
   </script>
+<script src="../reviews.js" defer></script>
 </body>
 </html>

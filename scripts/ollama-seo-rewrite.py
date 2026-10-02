@@ -644,18 +644,22 @@ def cmd_apply():
 
 class Seq(HTMLParser):
     def __init__(self):
-        super().__init__(convert_charrefs=True); self.seq = []; self.ld = []; self._ld = None; self.titles = 0; self.descs = 0; self.h1 = 0; self._skipstack = []
+        super().__init__(convert_charrefs=True); self.seq = []; self.ld = []; self._ld = None; self.titles = 0; self.descs = 0; self.h1 = 0; self._skipstack = []; self.text = []; self._raw = 0
     # Presentational-only attributes are ignored by the structure check so the
     # brand/mobile CSS passes (inline style, hover handlers, class tweaks) and
     # image sizing attrs don't trip it. Decorative elements added by the design
     # pass (span.accent-word in the H1, img.card-media card images) are skipped.
     IGNORE_ATTRS = {'style', 'class', 'onmouseover', 'onmouseout', 'onmouseenter', 'onmouseleave',
                     'width', 'height', 'loading', 'decoding', 'fetchpriority', 'aria-hidden',
-                    'fill', 'stroke', 'stop-color'}
+                    'fill', 'stroke', 'stop-color', 'aria-label'}
     SKIP = (('span', 'accent-word'), ('img', 'card-media'))
+    # Live review figures: data-review-* templates are filled by reviews.js from
+    # Trustindex, and the reviews.js include itself is not a structural change.
+    REVIEW_ATTR = 'data-review-'
 
     def _skip(self, tag, a):
         cls = (a.get('class') or '').split()
+        if tag == 'script' and (a.get('src') or '').endswith('reviews.js'): return True
         return any(tag == t and c in cls for t, c in self.SKIP)
 
     def handle_starttag(self, tag, attrs):
@@ -663,22 +667,50 @@ class Seq(HTMLParser):
         if self._skip(tag, a):
             if tag != 'img': self._skipstack.append(tag)
             return
+        for k in ('content', 'alt', 'title', 'aria-label'):
+            if a.get(k): self.text.append(a[k])
+        if tag in ('script', 'style'): self._raw += 1
         if tag == 'meta' and (a.get('name') in META_KEYS or a.get('property') in META_KEYS):
             a.pop('content', None)
             if a.get('name') == 'description': self.descs += 1
         if tag == 'title': self.titles += 1
         if tag == 'h1': self.h1 += 1
         if tag == 'script' and a.get('type') == 'application/ld+json': self._ld = ''
-        self.seq.append(('S', tag, tuple(sorted((k, v) for k, v in a.items() if k not in self.IGNORE_ATTRS))))
+        self.seq.append(('S', tag, tuple(sorted((k, v) for k, v in a.items()
+                                                if k not in self.IGNORE_ATTRS and not k.startswith(self.REVIEW_ATTR)))))
     def handle_startendtag(self, tag, attrs):
         self.handle_starttag(tag, attrs)
+        if tag in ('script', 'style'): self._raw -= 1
     def handle_endtag(self, tag):
+        if tag in ('script', 'style') and self._raw: self._raw -= 1
         if self._skipstack and self._skipstack[-1] == tag:
             self._skipstack.pop(); return
         if tag == 'script' and self._ld is not None: self.ld.append(self._ld); self._ld = None
         self.seq.append(('E', tag))
     def handle_data(self, d):
         if self._ld is not None: self._ld += d
+        elif not self._raw: self.text.append(d)
+
+
+# Hardcoded review figures (rating or count) in visible text, meta/alt/title/aria.
+# Live figures come from reviews.js (Trustindex) via data-review-* templates.
+REVIEW_NUM_RE = re.compile(
+    r'\b\d[\d,]*\+?[^\S\n]+(?:verified[^\S\n]+|google[^\S\n]+|customer[^\S\n]+|5-star[^\S\n]+|five-star[^\S\n]+)*reviews?\b'
+    r'|\b[1-5]\.\d\s*(?:★|-?stars?\b|/\s*5\b|google\b|average\b|rating\b)'
+    r'|\brated\s+[1-5](?:\.\d)?\b', re.I)
+
+
+def ld_norm(blobs):
+    out = []
+    for blob in blobs:
+        try: obj = json.loads(blob)
+        except Exception: out.append(blob); continue
+        def strip(o):
+            if isinstance(o, dict): return {k: strip(v) for k, v in o.items() if k != 'aggregateRating'}
+            if isinstance(o, list): return [strip(v) for v in o]
+            return o
+        out.append(json.dumps(strip(obj), sort_keys=True))
+    return out
 
 
 def cmd_check():
@@ -689,8 +721,15 @@ def cmd_check():
         a, b = Seq(), Seq()
         a.feed(old); b.feed(new)
         probs = []
-        if a.seq != b.seq: probs.append('tag/attribute sequence changed')
-        if a.ld != b.ld: probs.append('JSON-LD changed')
+        if a.seq != b.seq:
+            # A file that was truncated at HEAD (no </html>) may get its missing tail restored.
+            restored = '</html>' not in old and b.seq[:len(a.seq)] == a.seq
+            if not restored: probs.append('tag/attribute sequence changed')
+        # JSON-LD must be unchanged except for removing hardcoded aggregateRating.
+        if ld_norm(a.ld) != ld_norm(b.ld): probs.append('JSON-LD changed')
+        if any('aggregateRating' in blob for blob in b.ld): probs.append('hardcoded aggregateRating in JSON-LD')
+        hits = sorted(set(m.group(0) for m in REVIEW_NUM_RE.finditer('\n'.join(b.text))))
+        if hits: probs.append('hardcoded review figure(s): %s' % hits)
         for blob in b.ld:
             try: json.loads(blob)
             except Exception as e: probs.append('JSON-LD invalid: %s' % e)

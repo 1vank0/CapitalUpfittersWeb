@@ -74,11 +74,6 @@
           "closes": "16:30"
         }
       ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "110"
-      },
       "sameAs": [
         "https://share.google/k9ejYM294VHEEm6xq",
         "https://www.facebook.com/CapitalUpfitters",
@@ -811,7 +806,7 @@
          state. The slider rewrites the text of these same nodes — there is
          only ever one <h1> in the DOM. -->
     <div class="hero-slide-copy" id="hero-slide-copy" tabindex="-1">
-      <div class="hero-label" id="hero-eyebrow">Rockville, MD &middot; <span style="color:rgba(255,255,255,.6);">4.9&#9733; Google &middot; Authorized Patriot Liner Dealer</span></div>
+      <div class="hero-label" id="hero-eyebrow">Rockville, MD &middot; <span style="color:rgba(255,255,255,.6);" data-review-text="{rating}&#9733; Google &middot; Authorized Patriot Liner Dealer">Authorized Patriot Liner Dealer</span></div>
       <h1 id="hero-h1">BUILT FOR REAL <span class="accent-word">WORK</span>.</h1>
       <p class="hero-sub" id="hero-sub">Bedliners, hitches, ceramic coating &amp; fleet upfitting for Rockville, MD trucks — serving the DMV with same-week installs.</p>
       <div class="hero-ctas">
@@ -843,8 +838,8 @@
       <span class="hero-stat-label">Coverage</span>
     </div>
     <div class="hero-stat">
-      <span class="hero-stat-value">4.9★</span>
-      <span class="hero-stat-label">Google</span>
+      <span class="hero-stat-value" data-review-text="{rating}★">Google</span>
+      <span class="hero-stat-label" data-review-text="Google">Reviews</span>
     </div>
     <div class="hero-stat">
       <span class="hero-stat-value">Patriot Liner</span>
@@ -1026,8 +1021,8 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
         <div class="trust-item-text">
-          <strong>4.9★ Google Rating</strong>
-          <span>110 verified Google reviews</span>
+          <strong data-review-text="{rating}★ Google Rating">Google Reviews</strong>
+          <span data-review-text="{count} verified Google reviews">Verified reviews on Google</span>
         </div>
       </div>
       <div class="trust-item">
@@ -1327,8 +1322,8 @@
         <span class="stat-label">Service Coverage</span>
       </div>
       <div class="reveal reveal-delay-2">
-        <span class="stat-number">4.9★</span>
-        <span class="stat-label">Average Google Rating</span>
+        <span class="stat-number" data-review-text="{rating}★">Google</span>
+        <span class="stat-label" data-review-text="Average Google Rating">Customer Reviews</span>
       </div>
       <div class="reveal reveal-delay-3">
         <span class="stat-number">Patriot Liner</span>
@@ -1392,10 +1387,10 @@
           </svg>
         </div>
         <div class="why-visual-badge">
-          <div class="why-visual-badge-num">4.9★</div>
+          <div class="why-visual-badge-num" data-review-text="{rating}★">★</div>
           <div>
             <div class="why-visual-badge-label">Google</div>
-            <div class="why-visual-badge-label">Rating</div>
+            <div class="why-visual-badge-label" data-review-text="Rating">Reviews</div>
           </div>
         </div>
       </div>
@@ -2526,5 +2521,6 @@
     if(c&&m){c.addEventListener('click',function(){m.classList.remove('open');document.body.style.overflow='';});}
   })();
   </script>
+<script src="reviews.js" defer></script>
 </body>
 </html>

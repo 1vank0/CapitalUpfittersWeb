@@ -63,12 +63,6 @@
           "addressLocality": "Rockville",
           "addressRegion": "MD",
           "postalCode": "20852"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "110",
-          "bestRating": "5"
         }
       },
       "areaServed": [
@@ -1108,15 +1102,15 @@
           </div>
         </div>
         <div style="display:flex; align-items:center; gap: var(--space-2); margin-bottom: var(--space-3);">
-          <div style="display:flex; gap:2px; color:var(--color-rating);" aria-label="5 stars">
+          <div style="display:flex; gap:2px; color:var(--color-rating);" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
-          <span style="font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; color: var(--color-text);">4.9</span>
-          <span style="font-size: var(--text-sm); color: var(--color-text-muted);">&bull; 110 Google reviews</span>
+          <span style="font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700; color: var(--color-text);" data-review-rating></span>
+          <span style="font-size: var(--text-sm); color: var(--color-text-muted);" data-review-text="&bull; {count} Google reviews">Google reviews</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: var(--space-2); font-size: var(--text-sm); color: var(--color-text-secondary);">
           <div style="display:flex; align-items:center; gap: var(--space-2);">
@@ -1452,5 +1446,6 @@ if (nav) {
     if(c&&m){c.addEventListener('click',function(){m.classList.remove('open');document.body.style.overflow='';});}
   })();
   </script>
+<script src="../reviews.js" defer></script>
 </body>
 </html>
