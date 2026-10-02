@@ -60,7 +60,7 @@
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.65);
       margin-bottom: var(--space-3);
     }
     .audience-card h3 {
@@ -87,7 +87,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--color-accent);
+      background: var(--color-brand);
       flex-shrink: 0;
     }
     @media (max-width: 860px) {
@@ -111,11 +111,11 @@
       transition: border-color var(--transition-base), box-shadow var(--transition-base);
     }
     .tier-card:hover {
-      border-color: var(--color-accent);
+      border-color: var(--color-brand);
       box-shadow: var(--shadow-md);
     }
     .tier-card.featured {
-      border-color: var(--color-accent);
+      border-color: var(--color-brand);
       background: #fff;
       box-shadow: var(--shadow-lg);
     }
@@ -124,7 +124,7 @@
       top: -12px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--color-accent);
+      background: var(--color-brand);
       color: #fff;
       font-family: var(--font-display);
       font-size: var(--text-xs);
@@ -153,7 +153,7 @@
       font-family: var(--font-display);
       font-size: var(--text-4xl);
       font-weight: 800;
-      color: var(--color-accent);
+      color: var(--color-brand-text);
       line-height: 1;
       margin-bottom: var(--space-1);
     }
@@ -177,7 +177,7 @@
       font-size: var(--text-sm);
       color: var(--color-text-secondary);
     }
-    .tier-feature svg { color: var(--color-accent); flex-shrink: 0; }
+    .tier-feature svg { color: var(--color-brand-text); flex-shrink: 0; }
     .tier-note {
       font-size: var(--text-xs);
       color: var(--color-text-faint);
@@ -236,7 +236,7 @@
       color: var(--color-text);
     }
     .table-profit {
-      color: var(--color-accent);
+      color: var(--color-brand-text);
       font-weight: 600;
     }
     .table-check { color: #22c55e; font-size: 1.1rem; }
@@ -257,7 +257,7 @@
       left: 10%;
       right: 10%;
       height: 2px;
-      background: linear-gradient(to right, var(--color-accent), rgba(32,48,85,0.2));
+      background: linear-gradient(to right, var(--color-brand), rgba(32,48,85,0.2));
     }
     .portal-step {
       text-align: center;
@@ -268,7 +268,7 @@
       width: 56px;
       height: 56px;
       border-radius: 50%;
-      background: var(--color-accent);
+      background: var(--color-brand);
       color: #fff;
       font-family: var(--font-display);
       font-size: var(--text-xl);
@@ -287,12 +287,12 @@
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--color-text);
+      color: #fff;
       margin-bottom: var(--space-2);
     }
     .portal-step p {
       font-size: var(--text-sm);
-      color: var(--color-text-muted);
+      color: rgba(255,255,255,0.72);
     }
     @media (max-width: 680px) {
       .portal-steps { grid-template-columns: repeat(2, 1fr); }
@@ -301,7 +301,7 @@
 
     /* Patriot liner callout */
     .rebate-callout {
-      background: var(--color-accent);
+      background: var(--color-brand);
       border-radius: var(--radius-2xl);
       padding: var(--space-10) var(--space-12);
       display: flex;
@@ -315,7 +315,7 @@
       margin-bottom: var(--space-3);
     }
     .rebate-callout-text p {
-      color: rgba(255,255,255,0.7);
+      color: #fff;
       max-width: 480px;
     }
     .rebate-callout-stats {
@@ -340,7 +340,7 @@
       font-size: var(--text-xs);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
+      color: #fff;
       margin-top: var(--space-1);
     }
 
@@ -370,7 +370,7 @@
       font-size: var(--text-sm);
       color: var(--color-text-secondary);
     }
-    .apply-contact-item svg { color: var(--color-accent); flex-shrink: 0; }
+    .apply-contact-item svg { color: var(--color-brand-text); flex-shrink: 0; }
     .form-card {
       background: #fff;
       border: 1px solid var(--color-border);
@@ -408,7 +408,7 @@
     .form-checkbox-item input[type="checkbox"] {
       width: 16px;
       height: 16px;
-      accent-color: var(--color-accent);
+      accent-color: var(--color-brand);
       cursor: pointer;
     }
     .form-success {
@@ -444,13 +444,13 @@
     border-radius: var(--radius-pill);
     border: 2px solid rgba(255,255,255,0.2);
     background: transparent;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.65);
     cursor: pointer;
     transition: all 160ms ease;
   }
   .dg-tab.active, .dg-tab:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
+    background: var(--color-brand);
+    border-color: var(--color-brand);
     color: #fff;
   }
   .dg-panel { display: none; }
@@ -469,7 +469,7 @@
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.6);
     padding: 0.3rem 1rem;
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: var(--radius-pill);
@@ -522,7 +522,7 @@
   }
   .dg-svc-desc {
     font-size: var(--text-xs);
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.65);
     line-height: 1.5;
   }
   @media (max-width: 860px) { .dg-svc-grid { grid-template-columns: repeat(2,1fr); } }
@@ -708,7 +708,7 @@
           <a href="./dealer-government.html#government">DOT &amp; EMS Upfitting</a>
           <a href="./dealer-government.html#government">Protective Coatings / GSA</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account →</a>
+          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.65); font-size: 11px;">Apply for Account →</a>
         </div>
       </li>
       <li><a href="./gallery.html">Gallery</a></li>
@@ -751,7 +751,7 @@
         <a href="./services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="./services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -773,7 +773,7 @@
         <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="./services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -828,7 +828,7 @@
 <section class="section section--dark" aria-labelledby="audience-heading">
   <div class="container">
     <div class="reveal" style="text-align:center; margin-bottom: var(--space-6);">
-      <p class="section-label" style="color:rgba(255,255,255,0.4); justify-content:center;">Who We Serve</p>
+      <p class="section-label" style="color:var(--color-brand-on-dark); justify-content:center;">Who We Serve</p>
       <h2 id="audience-heading" style="color:#fff;">SELECT YOUR ACCOUNT TYPE.</h2>
       <p style="max-width:540px; margin: var(--space-3) auto 0; color:rgba(255,255,255,0.6);">We run dedicated programs for dealerships and government agencies — each with specific service mixes, pricing, and workflows.</p>
     </div>
@@ -1143,14 +1143,14 @@ function showDGPanel(id, btn) {
     <h2 class="reveal">How Dealer Pricing Works</h2>
     <p style="max-width: 540px; margin-top: var(--space-3); margin-bottom: var(--space-10);" class="reveal reveal-delay-1">Dealer cost depends on the vehicle, the product line, and your monthly volume. We review fitment on your inventory first, then issue a written cost sheet to your account.</p>
 
-    <p class="pricing-cta" style="max-width:540px; margin:var(--space-6) 0 0; padding:var(--space-4) var(--space-5); background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg); font-family:var(--font-body); font-size:var(--text-sm); color:var(--color-text-secondary);">Written installed pricing after fitment review. <a href="/quote.html" style="color:var(--color-accent); font-weight:600;">Request a quote &rarr;</a></p>
+    <p class="pricing-cta" style="max-width:540px; margin:var(--space-6) 0 0; padding:var(--space-4) var(--space-5); background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-lg); font-family:var(--font-body); font-size:var(--text-sm); color:var(--color-text-secondary);">Written installed pricing after fitment review. <a href="/quote.html" style="color:var(--color-brand-text); font-weight:600;">Request a quote &rarr;</a></p>
   </div>
 </section>
 
 <!-- UPFIT PORTAL SECTION -->
 <section class="section section--dark">
   <div class="container">
-    <p class="section-label" style="color: rgba(255,255,255,0.4);">Digital Tools</p>
+    <p class="section-label" style="color: var(--color-brand-on-dark);">Digital Tools</p>
     <h2 style="color: #fff;" class="reveal">The Upfit Portal: Your Business Hub</h2>
     <p style="color: rgba(255,255,255,0.6); max-width: 560px; margin-top: var(--space-3);" class="reveal reveal-delay-1">Every dealer and fleet partner gets access to the Upfit Portal — a purpose-built platform that replaces spreadsheets, phone calls, and email chains with a single dashboard.</p>
 
@@ -1191,7 +1191,7 @@ function showDGPanel(id, btn) {
       <div class="rebate-callout-text">
         <h3>PATRIOT LINER REBATE PROGRAM</h3>
         <p>Install 10+ Patriot Liner bedliners per month and you're automatically eligible for quarterly rebate payouts. No paperwork. No manual tracking. The portal handles it all.</p>
-        <a href="https://upfit-portal-58190af9.base44.app/DealerRegister" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="margin-top: var(--space-5); border-color: rgba(255,255,255,0.4);">Start Earning Rebates</a>
+        <a href="https://upfit-portal-58190af9.base44.app/DealerRegister" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="margin-top: var(--space-5); border-color: var(--color-action); color: #fff;">Start Earning Rebates</a>
       </div>
       <div class="rebate-callout-stats">
         <div class="rebate-stat">
@@ -1320,7 +1320,7 @@ function showDGPanel(id, btn) {
               <textarea class="form-textarea" id="message" name="Message" placeholder="Tell us about your business and upfitting needs…"></textarea>
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; font-size: var(--text-base);">Submit Dealer Inquiry →</button>
-              <p class="form-privacy-note" style="margin-top:1rem;font-size:12px;line-height:1.5;color:#9ca3af;">
+              <p class="form-privacy-note" style="margin-top:1rem;font-size:12px;line-height:1.5;color:#6e6e73;">
                 By submitting this form you acknowledge that we may capture technical data — including your IP address, referral source, browser, and approximate location — for fraud prevention, analytics, and lead attribution. See our <a href="/privacy.html" style="color:inherit;text-decoration:underline;">Privacy Policy</a>.
               </p>
 

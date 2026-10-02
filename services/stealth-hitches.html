@@ -201,18 +201,18 @@
   gap: 8px;
   font-family: var(--font-body);
   font-size: var(--text-xs);
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.65);
   margin-bottom: var(--space-8);
   flex-wrap: wrap;
 }
 .sh-breadcrumb a {
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.65);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 .sh-breadcrumb a:hover { color: rgba(255,255,255,0.85); }
 .sh-breadcrumb-sep {
-  color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.65);
   font-size: 10px;
 }
 .sh-breadcrumb-current {
@@ -241,7 +241,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #f59e0b;
+  background: var(--color-brand);
   flex-shrink: 0;
 }
 
@@ -263,7 +263,7 @@
   line-height: 1;
   letter-spacing: 0;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.65);
   margin: 0 0 var(--space-8);
 }
 .sh-hero-desc {
@@ -286,8 +286,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #203055;
-  color: #fff;
+  background: var(--color-action);
+  color: var(--color-on-action);
   font-family: var(--font-display);
   font-size: var(--text-base);
   font-weight: 700;
@@ -300,10 +300,11 @@
   transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 .sh-btn-primary:hover {
-  background: #162240;
+  background: var(--color-action-hover);
   border-color: #162240;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(32,48,85,0.5);
+  color: var(--color-on-action);
 }
 .sh-btn-outline {
   display: inline-flex;
@@ -341,11 +342,11 @@
   gap: 8px;
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.65);
   font-weight: 500;
 }
 .sh-trust-check {
-  color: #f59e0b;
+  color: var(--color-brand-on-dark);
   font-weight: 700;
   font-size: 15px;
 }
@@ -362,7 +363,7 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #f59e0b;
+  color: var(--color-brand-text);
   margin-bottom: var(--space-3);
 }
 .sh-section-title {
@@ -471,7 +472,7 @@
 }
 .sh-dark-section .sh-section-title { color: #ffffff; }
 .sh-dark-section .sh-section-sub { color: rgba(255,255,255,0.6); }
-.sh-dark-section .sh-section-eyebrow { color: #f59e0b; }
+.sh-dark-section .sh-section-eyebrow { color: var(--color-brand-on-dark); }
 
 .sh-feature-cards {
   display: grid;
@@ -501,7 +502,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-6);
-  color: #f59e0b;
+  color: var(--color-brand-text);
 }
 .sh-feature-title {
   font-family: var(--font-display);
@@ -515,7 +516,7 @@
 .sh-feature-desc {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.65);
   line-height: 1.7;
 }
 
@@ -615,7 +616,7 @@
 }
 .sh-vehicles-section .sh-section-title { color: #ffffff; }
 .sh-vehicles-section .sh-section-sub { color: rgba(255,255,255,0.6); }
-.sh-vehicles-section .sh-section-eyebrow { color: #f59e0b; }
+.sh-vehicles-section .sh-section-eyebrow { color: var(--color-brand-on-dark); }
 
 .sh-vehicle-grid {
   display: grid;
@@ -631,8 +632,8 @@
   transition: all var(--transition-base);
 }
 .sh-vehicle-card:hover {
-  border-color: rgba(245,158,11,0.35);
-  background: rgba(245,158,11,0.04);
+  border-color: rgba(0,102,252,0.35);
+  background: rgba(0,102,252,0.04);
   transform: translateY(-2px);
 }
 .sh-vehicle-brand {
@@ -648,7 +649,7 @@
 .sh-vehicle-models {
   font-family: var(--font-body);
   font-size: 11px;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.65);
   line-height: 1.5;
   margin-bottom: var(--space-4);
 }
@@ -657,13 +658,13 @@
   font-size: var(--text-base);
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: #f59e0b;
+  color: var(--color-brand-on-dark);
 }
 .sh-vehicle-note {
   margin-top: var(--space-8);
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.65);
   text-align: center;
 }
 .sh-vehicle-note a {
@@ -808,7 +809,7 @@
   font-family: var(--font-display);
   font-size: var(--text-lg);
   font-weight: 800;
-  color: #f59e0b;
+  color: var(--color-brand-text);
 }
 .sh-price-note {
   font-family: var(--font-body);
@@ -864,7 +865,7 @@
   padding: var(--space-24) 0;
 }
 .sh-trust-section .sh-section-title { color: #ffffff; }
-.sh-trust-section .sh-section-eyebrow { color: #f59e0b; }
+.sh-trust-section .sh-section-eyebrow { color: var(--color-brand-on-dark); }
 
 .sh-trust-cards {
   display: grid;
@@ -895,7 +896,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #f59e0b;
+  color: var(--color-brand-text);
   flex-shrink: 0;
 }
 .sh-trust-card-title {
@@ -909,7 +910,7 @@
 .sh-trust-card-desc {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.65);
   line-height: 1.7;
 }
 
@@ -1016,7 +1017,7 @@
 .sh-cta-addr {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.65);
 }
 
 /* ─── RESPONSIVE ───────────────────────────────────────────────────────── */
@@ -1165,7 +1166,7 @@
           <a href="../dealer-government.html#government">DOT &amp; EMS Upfitting</a>
           <a href="../dealer-government.html#government">Protective Coatings / GSA</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="../dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account →</a>
+          <a href="../dealer-government.html" style="color: rgba(255,255,255,0.65); font-size: 11px;">Apply for Account →</a>
         </div>
       </li>
       <li><a href="../gallery.html">Gallery</a></li>
@@ -1209,7 +1210,7 @@
         <a href="../services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="../services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="../services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -1230,7 +1231,7 @@
         <a href="../services/undercoating.html" class="nav-mobile-sub-link">Fleet Undercoating</a>
         <a href="../services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="../services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
-        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 

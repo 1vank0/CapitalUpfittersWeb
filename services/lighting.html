@@ -4,7 +4,7 @@
 <!--
   Capital Upfitters — LED Lighting Service Page
   Built by IVANKODev (https://IVANKODevelopment.com)
-  Design system: Manrope + Inter, Apple-style Signal Blue (#0071e3), pill buttons. See DESIGN.md.
+  Design system: Manrope + Inter, locked brand: blue #0066fc identity, yellow #fcd800 actions (see base.css), pill buttons. See DESIGN.md.
 -->
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -175,7 +175,7 @@
   transition: all var(--transition-base);
 }
 .benefit-card:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-brand);
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
@@ -183,8 +183,8 @@
   width: 56px;
   height: 56px;
   border-radius: var(--radius-lg);
-  background: var(--color-accent-light);
-  color: var(--color-accent);
+  background: var(--color-brand-soft);
+  color: var(--color-brand-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -223,7 +223,7 @@
   gap: var(--space-4);
 }
 .product-card:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-brand);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
@@ -236,8 +236,8 @@
   width: 52px;
   height: 52px;
   border-radius: var(--radius-lg);
-  background: var(--color-accent-light);
-  color: var(--color-accent);
+  background: var(--color-brand-soft);
+  color: var(--color-brand-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -255,8 +255,8 @@
 }
 .product-price-tag {
   display: inline-block;
-  background: var(--color-accent-light);
-  color: var(--color-accent);
+  background: var(--color-brand-soft);
+  color: var(--color-brand-text);
   font-family: var(--font-display);
   font-size: var(--text-xs);
   font-weight: 700;
@@ -315,7 +315,7 @@
 }
 .product-spec-row::before {
   content: '·';
-  color: var(--color-accent);
+  color: var(--color-brand-text);
   font-size: 1rem;
   line-height: 1;
   flex-shrink: 0;
@@ -337,7 +337,7 @@
   font-size: var(--text-5xl);
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--color-accent);
+  color: var(--color-brand-text);
   line-height: 1;
   margin-bottom: var(--space-2);
 }
@@ -376,7 +376,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--color-accent);
+  background: var(--color-brand);
   color: #fff;
   font-family: var(--font-display);
   font-size: var(--text-xl);
@@ -453,7 +453,7 @@
   color: var(--color-text-muted);
 }
 .faq-btn[aria-expanded="true"] .faq-icon {
-  background: var(--color-accent);
+  background: var(--color-brand);
   color: #fff;
   transform: rotate(45deg);
 }
@@ -486,7 +486,7 @@
 .testimonial-stars {
   display: flex;
   gap: 3px;
-  color: #f59e0b;
+  color: var(--color-rating);
 }
 .testimonial-quote {
   font-size: var(--text-base);
@@ -533,7 +533,7 @@
   transition: all var(--transition-base);
 }
 .related-card:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-brand);
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
@@ -574,7 +574,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-brand-text);
   transition: gap var(--transition-fast);
 }
 .related-card:hover .related-card-link { gap: var(--space-3); }
@@ -726,7 +726,7 @@
           <a href="../dealer-government.html#government">DOT &amp; EMS Upfitting</a>
           <a href="../dealer-government.html#government">Protective Coatings / GSA</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="../dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account →</a>
+          <a href="../dealer-government.html" style="color: rgba(255,255,255,0.65); font-size: 11px;">Apply for Account →</a>
         </div>
       </li>
       <li><a href="../gallery.html">Gallery</a></li>
@@ -770,7 +770,7 @@
         <a href="../services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="../services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="../services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -792,7 +792,7 @@
         <a href="../services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="../services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="../services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -1003,9 +1003,9 @@
       </div>
 
       <!-- Fleet Lighting Packages -->
-      <div class="product-card" style="border-color: var(--color-accent); position: relative;">
+      <div class="product-card" style="border-color: var(--color-brand); position: relative;">
         <!-- Featured badge -->
-        <div style="position:absolute; top:-12px; left: var(--space-7); background: var(--color-accent); color:#fff; font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.875rem; border-radius: var(--radius-pill);">Fleet Specialty</div>
+        <div style="position:absolute; top:-12px; left: var(--space-7); background: var(--color-brand); color:#fff; font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:0.25rem 0.875rem; border-radius: var(--radius-pill);">Fleet Specialty</div>
         <div class="product-card-header" style="margin-top: var(--space-2);">
           <div class="product-icon" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
@@ -1096,31 +1096,31 @@
           </div>
         </div>
         <div style="display:flex; align-items:center; gap: var(--space-2); margin-bottom: var(--space-4);">
-          <span style="color:#f59e0b; font-size: 1.1rem;">★★★★★</span>
+          <span style="color:var(--color-rating); font-size: 1.1rem;">★★★★★</span>
           <span style="font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm); color: var(--color-text);">4.9</span>
           <span style="font-size: var(--text-xs); color: var(--color-text-muted);">· 110 Google reviews</span>
         </div>
         <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap: var(--space-3);">
           <li style="display:flex; align-items:center; gap: var(--space-3); font-size: var(--text-sm); color: var(--color-text-secondary);">
-            <span style="width:20px; height:20px; border-radius:50%; background: var(--color-accent-light); color: var(--color-accent); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <span style="width:20px; height:20px; border-radius:50%; background: var(--color-brand-soft); color: var(--color-brand-text); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
             </span>
             Est. 2015
           </li>
           <li style="display:flex; align-items:center; gap: var(--space-3); font-size: var(--text-sm); color: var(--color-text-secondary);">
-            <span style="width:20px; height:20px; border-radius:50%; background: var(--color-accent-light); color: var(--color-accent); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <span style="width:20px; height:20px; border-radius:50%; background: var(--color-brand-soft); color: var(--color-brand-text); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
             </span>
             Same-week turnaround
           </li>
           <li style="display:flex; align-items:center; gap: var(--space-3); font-size: var(--text-sm); color: var(--color-text-secondary);">
-            <span style="width:20px; height:20px; border-radius:50%; background: var(--color-accent-light); color: var(--color-accent); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <span style="width:20px; height:20px; border-radius:50%; background: var(--color-brand-soft); color: var(--color-brand-text); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
             </span>
             Government &amp; fleet accounts welcome
           </li>
           <li style="display:flex; align-items:center; gap: var(--space-3); font-size: var(--text-sm); color: var(--color-text-secondary);">
-            <span style="width:20px; height:20px; border-radius:50%; background: var(--color-accent-light); color: var(--color-accent); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <span style="width:20px; height:20px; border-radius:50%; background: var(--color-brand-soft); color: var(--color-brand-text); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
             </span>
             Mon–Fri 9:30am–4:30pm
@@ -1244,7 +1244,7 @@
 ═══════════════════════════════════════════════════════ -->
 <section class="section section--dark reveal" aria-labelledby="cta-heading" style="background: linear-gradient(135deg, #111827 0%, #203055 100%); color: #fff; text-align: center;">
   <div class="container" style="max-width: 700px;">
-    <div class="section-label" style="justify-content:center; color: rgba(255,255,255,0.55);">Get Started</div>
+    <div class="section-label" style="justify-content:center; color: rgba(255,255,255,0.65);">Get Started</div>
     <h2 id="cta-heading" style="color:#fff; margin-bottom: var(--space-5);">LIGHT UP YOUR TRUCK OR FLEET.</h2>
     <p style="color: rgba(255,255,255,0.7); font-size: var(--text-lg); line-height: 1.65; margin-bottom: var(--space-8);">Whether you need a single off-road bar or a standardized package across 20 fleet vehicles — we've got you covered. Call or click to get started.</p>
     <div style="display:flex; gap: var(--space-4); justify-content:center; flex-wrap:wrap;">

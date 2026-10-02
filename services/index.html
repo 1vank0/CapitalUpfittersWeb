@@ -4,7 +4,7 @@
 <!--
   Capital Upfitters — Phase 1
   Built by IVANKODev (https://IVANKODevelopment.com)
-  Design system: Manrope + Inter, Apple-style Signal Blue (#0071e3), pill buttons. See DESIGN.md.
+  Design system: Manrope + Inter, locked brand: blue #0066fc identity, yellow #fcd800 actions (see base.css), pill buttons. See DESIGN.md.
 -->
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -85,7 +85,7 @@
 .service-hub-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(17,24,39,0.94) 0%, rgba(17,24,39,0.3) 55%, transparent 100%);
+  background: linear-gradient(to top, rgba(10,10,11,0.96) 0%, rgba(10,10,11,0.82) 45%, rgba(10,10,11,0.35) 80%, rgba(10,10,11,0.15) 100%);
 }
 .service-hub-card-body {
   position: relative;
@@ -98,7 +98,7 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.65);
   margin-bottom: var(--space-2);
 }
 .service-hub-card-title {
@@ -127,7 +127,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.65);
   margin-bottom: var(--space-4);
 }
 .service-hub-card-price strong {
@@ -193,7 +193,7 @@
   transition: all var(--transition-base);
 }
 .why-compact-card:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-brand);
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
@@ -201,8 +201,8 @@
   width: 52px;
   height: 52px;
   border-radius: var(--radius-lg);
-  background: var(--color-accent-light);
-  color: var(--color-accent);
+  background: var(--color-brand-soft);
+  color: var(--color-brand-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -372,7 +372,7 @@
           <a href="../dealer-government.html#government">DOT &amp; EMS Upfitting</a>
           <a href="../dealer-government.html#government">Protective Coatings / GSA</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="../dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account →</a>
+          <a href="../dealer-government.html" style="color: rgba(255,255,255,0.65); font-size: 11px;">Apply for Account →</a>
         </div>
       </li>
       <li><a href="../gallery.html">Gallery</a></li>
@@ -416,7 +416,7 @@
         <a href="../services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="../services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="../services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -438,7 +438,7 @@
         <a href="../services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="../services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="../services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -486,7 +486,7 @@
       <span aria-current="page">Services</span>
     </nav>
 
-    <div class="section-label" style="color:rgba(255,255,255,0.45);">Retail Services</div>
+    <div class="section-label" style="color:rgba(255,255,255,0.65);">Retail Services</div>
     <h1 id="svc-hero-heading">EVERY SERVICE YOUR VEHICLE NEEDS.</h1>
     <p class="page-hero-sub">A full range of installed solutions, all done in-house. Most complete within the week. Authorized installers for premium brands.</p>
   </div>
@@ -515,7 +515,7 @@
 
       <!-- Bedliners — Most Popular -->
       <a href="./bedliner.html" class="service-hub-card" data-category="all bundle protection fleet" aria-label="Spray-On Bedliners — Learn More">
-        <div class="service-hub-card-bg svc-bg-bedliner"></div>
+        <div class="service-hub-card-bg svc-bg-bedliner"><img class="card-media" src="../assets/img/services/bedliner-card.webp" alt="Matte black pickup truck bed coated in textured black spray-on bedliner" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">★ Most Popular · Authorized Patriot Liner</div>
@@ -528,7 +528,7 @@
 
       <!-- Tonneau Covers — Bundle -->
       <a href="./tonneau.html" class="service-hub-card" data-category="all bundle accessories" aria-label="Tonneau Covers — Learn More">
-        <div class="service-hub-card-bg svc-bg-tonneau"></div>
+        <div class="service-hub-card-bg svc-bg-tonneau"><img class="card-media" src="../assets/img/services/tonneau-card.webp" alt="Dark pickup truck with a low-profile hard folding tonneau cover in a dim shop" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">★ Bundle With Bedliner · Retrax · BAKFlip</div>
@@ -541,7 +541,7 @@
 
       <!-- Running Boards — Bundle -->
       <a href="./running-boards.html" class="service-hub-card" data-category="all bundle accessories" aria-label="Running Boards & Steps — Learn More">
-        <div class="service-hub-card-bg svc-bg-boards"></div>
+        <div class="service-hub-card-bg svc-bg-boards"><img class="card-media" src="../assets/img/services/running-boards-card.webp" alt="Black running board step mounted below the doors of a dark pickup truck" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">★ Bundle With Bedliner · AMP PowerStep</div>
@@ -553,21 +553,21 @@
       </a>
 
       <!-- Industrial Coatings — Fleet + Prestige -->
-      <a href="./industrial-coatings.html" class="service-hub-card" data-category="all fleet protection" aria-label="Industrial Coatings — Learn More" style="border: 1px solid rgba(245,158,11,0.2);">
-        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #1c1a0e 0%, #111827 100%);"></div>
+      <a href="./industrial-coatings.html" class="service-hub-card" data-category="all fleet protection" aria-label="Industrial Coatings — Learn More" style="border: 1px solid rgba(0,102,252,0.2);">
+        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #1c1a0e 0%, #111827 100%);"><img class="card-media" src="../assets/img/services/industrial-coatings-card.webp" alt="Industrial equipment coated with a dark protective coating in a facility" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
-          <div class="service-hub-card-eyebrow" style="color: rgba(245,158,11,0.8);">Commercial &amp; Industrial · Mobile Application</div>
+          <div class="service-hub-card-eyebrow" style="color: var(--color-brand-on-dark);">Commercial &amp; Industrial · Mobile Application</div>
           <div class="service-hub-card-title">Industrial &amp; Protective Coatings</div>
           <p class="service-hub-card-desc">Blast mitigation, corrosion protection, anti-skid, and structural coatings for facilities, equipment, fleets, and critical infrastructure. We come to you.</p>
-          <div class="service-hub-card-price" style="color: rgba(245,158,11,0.7);">Project-Based Pricing</div>
+          <div class="service-hub-card-price" style="color: var(--color-brand-on-dark);">Project-Based Pricing</div>
           <span class="service-hub-card-link">Learn More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
         </div>
       </a>
 
       <!-- Commercial Wraps — Fleet -->
       <a href="./commercial-wraps.html" class="service-hub-card" data-category="all fleet" aria-label="Commercial Vehicle Wraps — Learn More">
-        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #1a2742 0%, #111827 100%);"></div>
+        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #1a2742 0%, #111827 100%);"><img class="card-media" src="../assets/img/services/commercial-wraps-card.webp" alt="Commercial cargo van with a fleet vinyl wrap in a studio" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">Fleet Branding · 3M &amp; Avery Dennison</div>
@@ -580,7 +580,7 @@
 
       <!-- Ceramic Coating -->
       <a href="./ceramic-coating.html" class="service-hub-card" data-category="all protection" aria-label="Ceramic Coating & PPF — Learn More">
-        <div class="service-hub-card-bg svc-bg-ceramic"></div>
+        <div class="service-hub-card-bg svc-bg-ceramic"><img class="card-media" src="../assets/img/services/ceramic-coating-card.webp" alt="Glossy black SUV with a fresh ceramic coating under shop lights" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">IGL &amp; System X Certified</div>
@@ -593,7 +593,7 @@
 
       <!-- Undercoating -->
       <a href="./undercoating.html" class="service-hub-card" data-category="all protection fleet" aria-label="Undercoating & Rust Protection — Learn More">
-        <div class="service-hub-card-bg svc-bg-under"></div>
+        <div class="service-hub-card-bg svc-bg-under"><img class="card-media" src="../assets/img/services/undercoating-card.webp" alt="Pickup truck on a lift with its frame protected by black undercoating" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">Rust-Proofing Specialists · Fleet Pricing</div>
@@ -606,7 +606,7 @@
 
       <!-- Window Tinting -->
       <a href="./window-tinting.html" class="service-hub-card" data-category="all protection fleet" aria-label="Window Tinting — Learn More">
-        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #131d2e 0%, #0d1520 100%);"></div>
+        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #131d2e 0%, #0d1520 100%);"><img class="card-media" src="../assets/img/services/window-tinting-card.webp" alt="Dark SUV with deep ceramic window tint" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">Carbon &amp; Ceramic · MD Legal · Fleet Pricing</div>
@@ -619,7 +619,7 @@
 
       <!-- Mobile Detailing -->
       <a href="./mobile-detailing.html" class="service-hub-card" data-category="all protection" aria-label="Mobile Detailing — Learn More">
-        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #1a2035 0%, #111827 100%);"></div>
+        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #1a2035 0%, #111827 100%);"><img class="card-media" src="../assets/img/services/mobile-detailing-card.webp" alt="Technician polishing a dark SUV during a mobile detail" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">Mobile · Fleet &amp; Gov Pricing Available</div>
@@ -632,7 +632,7 @@
 
       <!-- Hitches -->
       <a href="./hitches.html" class="service-hub-card" data-category="all accessories fleet" aria-label="Hitches & Towing — Learn More">
-        <div class="service-hub-card-bg svc-bg-hitch"></div>
+        <div class="service-hub-card-bg svc-bg-hitch"><img class="card-media" src="../assets/img/services/hitches-card.webp" alt="Rear of a dark heavy-duty pickup truck with a receiver hitch" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">All Classes &amp; Configurations</div>
@@ -645,7 +645,7 @@
 
       <!-- Toolboxes -->
       <a href="./toolboxes.html" class="service-hub-card" data-category="all accessories fleet" aria-label="Toolboxes & Bed Storage — Learn More">
-        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #1c2535 0%, #111827 100%);"></div>
+        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #1c2535 0%, #111827 100%);"><img class="card-media" src="../assets/img/services/toolboxes-card.webp" alt="Pickup truck bed with an open drawer storage system and toolbox" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">CamLocker · Dee Zee · DECKED · UWS</div>
@@ -658,7 +658,7 @@
 
       <!-- LED Lighting -->
       <a href="./lighting.html" class="service-hub-card" data-category="all accessories fleet" aria-label="LED Lighting — Learn More">
-        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #0f1d2e 0%, #111827 100%);"></div>
+        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #0f1d2e 0%, #111827 100%);"><img class="card-media" src="../assets/img/services/lighting-card.webp" alt="Upfitted work van with LED lighting glowing at dusk" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">RIGID Industries · Fleet Work Lights</div>
@@ -671,7 +671,7 @@
 
       <!-- Suspension -->
       <a href="./suspension.html" class="service-hub-card" data-category="all accessories" aria-label="Suspension & Lift Kits — Learn More">
-        <div class="service-hub-card-bg svc-bg-under"></div>
+        <div class="service-hub-card-bg svc-bg-under"><img class="card-media" src="../assets/img/services/suspension-card.webp" alt="Lifted dark pickup truck on off-road wheels and tires" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">Leveling Kits · Lift Kits · Wheels &amp; Tires</div>
@@ -684,7 +684,7 @@
 
       <!-- Camper Shells -->
       <a href="./camper-shells.html" class="service-hub-card" data-category="all accessories" aria-label="Camper Shells & Caps — Learn More">
-        <div class="service-hub-card-bg svc-bg-bedliner"></div>
+        <div class="service-hub-card-bg svc-bg-bedliner"><img class="card-media" src="../assets/img/services/camper-shells-card.webp" alt="Dark pickup truck fitted with a color-matched camper shell" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">Ranch Fiberglass · 7 Models</div>
@@ -697,7 +697,7 @@
 
       <!-- Exterior Accessories -->
       <a href="./exterior.html" class="service-hub-card" data-category="all accessories" aria-label="Exterior Accessories — Learn More">
-        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #1e2c45 0%, #111827 100%);"></div>
+        <div class="service-hub-card-bg" style="background: linear-gradient(160deg, #1e2c45 0%, #111827 100%);"><img class="card-media" src="../assets/img/services/exterior-card.webp" alt="Dark pickup truck with grille guard and exterior accessories" width="800" height="533" loading="lazy" decoding="async"></div>
         <div class="service-hub-card-overlay"></div>
         <div class="service-hub-card-body">
           <div class="service-hub-card-eyebrow">Grille Guards · Fender Flares · More</div>

@@ -4,7 +4,7 @@
 <!--
   Capital Upfitters — Phase 1
   Built by IVANKODev (https://IVANKODevelopment.com)
-  Design system: Manrope + Inter, Apple-style Signal Blue (#0071e3), pill buttons. See DESIGN.md.
+  Design system: Manrope + Inter, locked brand: blue #0066fc identity, yellow #fcd800 actions (see base.css), pill buttons. See DESIGN.md.
 -->
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -86,13 +86,13 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: var(--color-accent);
+  background: var(--color-brand);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--transition-base);
 }
 .audience-card:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-brand);
   transform: translateY(-4px);
   box-shadow: var(--shadow-xl);
 }
@@ -109,7 +109,7 @@
   transition: color var(--transition-base);
 }
 .audience-card:hover .audience-card-number {
-  color: var(--color-accent);
+  color: var(--color-brand-text);
   opacity: 0.25;
 }
 .audience-card-title {
@@ -144,15 +144,17 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--color-on-action);
   padding: 0.9rem 1.5rem;
-  background: var(--color-accent);
+  min-height: 48px;
+  background: var(--color-action);
   border-radius: var(--radius-pill);
   transition: all var(--transition-base);
   text-decoration: none;
 }
 .audience-card-primary:hover {
-  background: var(--color-accent-hover);
+  background: var(--color-action-hover);
+  color: var(--color-on-action);
   transform: translateY(-1px);
   box-shadow: var(--shadow-md);
 }
@@ -166,22 +168,23 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-text);
   padding: 0.7rem 1.5rem;
+  min-height: 44px;
   background: transparent;
-  border: 1px solid var(--color-accent);
+  border: 2px solid var(--color-text);
   border-radius: var(--radius-pill);
   transition: all var(--transition-base);
   text-decoration: none;
 }
 .audience-card-secondary:hover {
-  background: var(--color-accent);
+  background: var(--color-text);
   color: #fff;
 }
 
 /* Highlight an option based on URL param */
 .audience-card[data-audience].highlighted {
-  border-color: var(--color-accent);
+  border-color: var(--color-brand);
   box-shadow: 0 0 0 3px rgba(32, 48, 85, 0.12);
 }
 .audience-card[data-audience].highlighted::before {
@@ -374,7 +377,7 @@
           <a href="./dealer-government.html#government">DOT &amp; EMS Upfitting</a>
           <a href="./dealer-government.html#government">Protective Coatings / GSA</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account →</a>
+          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.65); font-size: 11px;">Apply for Account →</a>
         </div>
       </li>
       <li><a href="./gallery.html">Gallery</a></li>
@@ -418,7 +421,7 @@
         <a href="./services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="./services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -440,7 +443,7 @@
         <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="./services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -480,7 +483,7 @@
   <div class="start-hero-bg"></div>
   <div class="page-hero-overlay"></div>
   <div class="container page-hero-content">
-    <div class="section-label" style="color:rgba(255,255,255,0.45);">Start Here</div>
+    <div class="section-label" style="color:rgba(255,255,255,0.65);">Start Here</div>
     <h1 id="start-hero-heading">WHAT BRINGS YOU IN?</h1>
     <p class="page-hero-sub">Tell us about your situation and we'll point you to the right services, pricing, and contact path.</p>
   </div>
