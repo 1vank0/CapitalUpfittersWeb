@@ -20,14 +20,11 @@
 //   LEAD_PERSISTENCE_TIMEOUT_MS — durable endpoint deadline (default 25000)
 //   LEAD_RESEND_TIMEOUT_MS      — per-email deadline (default 5000)
 //
-// Lead email layout (matches the spec):
-//   1. Customer Information
-//   2. Vehicle Information
-//   3. Requested Service
-//   4. Message
-//   5. Lead Attribution
-//   6. Visitor Location
-//   7. Receipt Information
+// Shop email layout:
+//   1. Customer contact and one-click actions
+//   2. Quote request at a glance
+//   3. Only the job details that were actually provided
+//   4. Compact source / receipt metadata
 
 const { createHmac, randomUUID } = require('node:crypto');
 const { isIP } = require('node:net');
@@ -729,6 +726,43 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
   const mobilePrepayment = pickFirst(body, ['Mobile Prepayment Accepted']);
   const vehicle = [vYear, vMake, vModel, vTrim].filter(Boolean).join(' ');
 
+  const serviceLabels = {
+    bedliner: 'Spray-In Bedliner',
+    hitches: 'Hitches & Towing',
+    'hitches_and_towing': 'Hitches & Towing',
+    undercoating: 'Undercoating & Rust Protection',
+    tonneau: 'Tonneau Cover',
+    boards: 'Running Boards & Steps',
+    ceramic: 'Ceramic Coating',
+    tint: 'Window Tinting',
+    detailing: 'Mobile Detailing',
+    suspension: 'Suspension / Lift',
+    led: 'LED Lighting',
+    wraps: 'Wraps & Branding',
+    industrial: 'Industrial Coatings'
+  };
+
+  function friendly(value, labels = {}) {
+    const raw = scalarString(value, 800);
+    if (!raw) return '';
+    return labels[raw.toLowerCase()] || raw.replace(/[_-]+/g, ' ').replace(/\b\w/g, (m) => m.toUpperCase());
+  }
+
+  function friendlyServices(value) {
+    return scalarString(value, 800).split(/\s*,\s*/).filter(Boolean)
+      .map((item) => friendly(item, serviceLabels)).join(', ');
+  }
+
+  function displayPhone(value) {
+    const digits = scalarString(value, 40).replace(/\D/g, '');
+    if (digits.length === 10) return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+    if (digits.length === 11 && digits[0] === '1') return `+1 (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
+    return scalarString(value, 40);
+  }
+
+  const serviceDisplay = friendlyServices(services) || formLabel;
+  const phoneHref = phone ? phone.replace(/[^\d+]/g, '') : '';
+
   function pagePath(value) {
     const raw = scalarString(value, 1000);
     if (!raw) return '';
@@ -740,25 +774,34 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
     }
   }
 
-  function row(label, value) {
+  function row(label, value, options = {}) {
     if (value === '' || value === undefined || value === null) return '';
+    const valueHtml = options.link
+      ? `<a href="${esc(options.link)}" style="color:#075fbd;font-weight:${options.emphasis ? '700' : '600'};text-decoration:underline;word-break:break-word;">${esc(value)}</a>`
+      : `<span style="font-weight:${options.emphasis ? '700' : '500'};">${esc(value)}</span>`;
     return `
       <tr>
-        <td style="padding:5px 12px 5px 0;color:#6b7280;font-size:13px;font-weight:600;white-space:nowrap;vertical-align:top;width:145px;">${esc(label)}</td>
-        <td style="padding:5px 0;color:#111827;font-size:14px;vertical-align:top;word-break:break-word;">${esc(value)}</td>
+        <td style="padding:6px 14px 6px 0;color:#667085;font-size:13px;font-weight:700;white-space:nowrap;vertical-align:top;width:132px;">${esc(label)}</td>
+        <td style="padding:6px 0;color:#101828;font-size:14px;line-height:1.45;vertical-align:top;word-break:break-word;">${valueHtml}</td>
       </tr>`;
   }
 
-  function contactRow(number, label, value, href) {
+  function action(label, href) {
+    if (!href) return '';
+    return `<a href="${esc(href)}" style="display:inline-block;margin:7px 6px 0 0;padding:7px 11px;background:#eef5ff;border:1px solid #c7dcf7;border-radius:6px;color:#075fbd;font-size:11px;font-weight:800;letter-spacing:.04em;text-decoration:none;text-transform:uppercase;">${esc(label)}</a>`;
+  }
+
+  function contactRow(number, label, value, href, actions = '') {
     const displayValue = value || 'Not provided';
     const valueHtml = href && value
-      ? `<a href="${esc(href)}" style="display:block;color:#0b63ce;font-size:18px;font-weight:700;line-height:1.35;text-decoration:underline;word-break:break-word;user-select:all;">${esc(displayValue)}</a>`
-      : `<div style="color:${value ? '#111827' : '#9ca3af'};font-size:18px;font-weight:700;line-height:1.35;word-break:break-word;user-select:all;">${esc(displayValue)}</div>`;
+      ? `<a href="${esc(href)}" style="color:#075fbd;font-size:17px;font-weight:750;line-height:1.35;text-decoration:underline;word-break:break-word;user-select:all;">${esc(displayValue)}</a>`
+      : `<span style="color:${value ? '#101828' : '#98a2b3'};font-size:17px;font-weight:750;line-height:1.35;word-break:break-word;user-select:all;">${esc(displayValue)}</span>`;
     return `
       <tr>
-        <td style="padding:12px 14px;border-bottom:${number < 3 ? '1px solid #e5e7eb' : 'none'};background:#ffffff;">
-          <div style="margin-bottom:3px;color:#6b7280;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;">${number} · ${esc(label)}</div>
-          ${valueHtml}
+        <td style="padding:11px 14px;border-bottom:${number < 3 ? '1px solid #e4e7ec' : 'none'};background:#ffffff;">
+          <div style="margin-bottom:3px;color:#667085;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;">${number} · ${esc(label)}</div>
+          <div>${valueHtml}</div>
+          ${actions ? `<div>${actions}</div>` : ''}
         </td>
       </tr>`;
   }
@@ -766,38 +809,59 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
   function section(title, rowsHtml) {
     if (!rowsHtml.replace(/\s+/g, '')) return '';
     return `
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 14px 0;border-collapse:collapse;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 12px 0;border-collapse:collapse;">
         <tr>
-          <td style="padding:10px 16px;background:#103b68;color:#fcbf0d;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:6px 6px 0 0;">${esc(title)}</td>
+          <td style="padding:9px 14px;background:#123f70;color:#ffc328;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;border-radius:6px 6px 0 0;">${esc(title)}</td>
         </tr>
         <tr>
-          <td style="padding:9px 14px;background:#ffffff;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 6px 6px;">
+          <td style="padding:8px 14px;background:#ffffff;border:1px solid #e4e7ec;border-top:none;border-radius:0 0 6px 6px;">
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">${rowsHtml}</table>
           </td>
         </tr>
       </table>`;
   }
 
-  const contactHtml = section('Customer — Copy / Tap',
+  const contactHtml = section('Customer Contact',
     contactRow(1, 'Name', fullName) +
-    contactRow(2, 'Phone', phone, phone ? `tel:${phone.replace(/[^\d+]/g, '')}` : '') +
-    contactRow(3, 'Email', email, email ? `mailto:${email}` : ''));
+    contactRow(2, 'Phone', displayPhone(phone), phoneHref ? `tel:${phoneHref}` : '',
+      action('Call', phoneHref ? `tel:${phoneHref}` : '') + action('Text', phoneHref ? `sms:${phoneHref}` : '')) +
+    contactRow(3, 'Email', email, email ? `mailto:${email}` : '', action('Email', email ? `mailto:${email}` : '')));
 
-  const summaryHtml = section('Request',
-    row('Service', services) +
-    row('Vehicle', vehicle) +
+  const summaryHtml = section('Quote Request',
+    row('Service', serviceDisplay, { emphasis: true }) +
+    row('Vehicle', vehicle, { emphasis: true }) +
     row('VIN', vin) +
     row('Plate', plate ? plate + (plateState ? ' (' + plateState + ')' : '') : '') +
     row('ZIP', zip) + row('Business / Agency', business) + row('Organization Type', orgType) +
     row('Preferred Date', prefDate) + row('Best Time to Call', callTime));
 
   const jobHtml = section('Job Details',
-    row('Quote Type', partsSupply) + row('Hitch Use', hitchUse) +
-    row('Hitch Style', hitchStyle) + row('Customer Parts', customerParts) +
-    row('Trailer Details', trailerDetails) + row('Install Location', installLocation) +
-    row('Service Address', serviceAddress) + row('Workspace Ready', workspaceConfirmed) +
-    row('Mobile Prepayment Accepted', mobilePrepayment) + row('Monthly Volume', monthlyVol) +
-    row('Vehicle Color', vColor) + row('Customer Notes', message));
+    row('Pricing', friendly(partsSupply, {
+      'parts-labor': 'Parts + installation',
+      csp: 'Labor only — customer supplies parts'
+    })) + row('Hitch Use', friendly(hitchUse, {
+      rack: 'Bike rack / cargo carrier',
+      towing: 'Trailer towing',
+      both: 'Towing + rack / cargo carrier'
+    })) +
+    row('Hitch Style', friendly(hitchStyle, {
+      standard: 'Standard exposed receiver',
+      stealth: 'Hidden / removable receiver',
+      ecohitch: 'Low-profile EcoHitch'
+    })) + row('Customer Parts', customerParts) +
+    row('Trailer Details', trailerDetails) + row('Install Location', friendly(installLocation, {
+      shop: 'Capital Upfitters shop',
+      mobile: 'Mobile installation'
+    })) +
+    row('Service Address', serviceAddress) + row('Workspace Ready', friendly(workspaceConfirmed, {
+      yes: 'Yes',
+      no: 'No'
+    })) +
+    row('Mobile Prepayment Accepted', friendly(mobilePrepayment, {
+      yes: 'Yes',
+      no: 'No'
+    })) + row('Monthly Volume', monthlyVol) +
+    row('Vehicle Color', vColor) + row('Customer Notes', message, { emphasis: true }));
 
   const sourceParts = [
     leadSource,
@@ -808,26 +872,26 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
     pagePath(body.form_page || body.landing_page)
   ].filter(Boolean).join(' · ');
 
-  const headline = services || formLabel;
+  const headline = serviceDisplay;
 
   const html = `<!doctype html>
-<html><head><meta charset="utf-8"></head>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f3f4f6;">
-    <tr><td align="center" style="padding:24px 12px;">
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="640" style="max-width:640px;width:100%;">
-        <tr><td style="padding:16px 20px;background:#111827;border-radius:8px 8px 0 0;">
+    <tr><td align="center" style="padding:18px 10px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="660" style="max-width:660px;width:100%;">
+        <tr><td style="padding:14px 18px;background:#101828;border-radius:8px 8px 0 0;">
           <div style="color:#fcbf0d;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;">Capital Upfitters · New Lead</div>
-          <div style="color:#ffffff;font-size:20px;font-weight:700;margin-top:4px;">${esc(headline)}</div>
-          <div style="color:#9ca3af;font-size:13px;margin-top:4px;">${esc(formatEastern(receivedAt))}</div>
+          <div style="color:#ffffff;font-size:21px;font-weight:750;line-height:1.25;margin-top:5px;">${esc(headline)}</div>
+          <div style="color:#aeb7c6;font-size:12px;margin-top:4px;">${esc([fullName, vehicle, formatEastern(receivedAt)].filter(Boolean).join(' · '))}</div>
         </td></tr>
-        <tr><td style="padding:20px;background:#f9fafb;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;">
+        <tr><td style="padding:14px;background:#f8fafc;border-left:1px solid #e4e7ec;border-right:1px solid #e4e7ec;">
           ${contactHtml}${summaryHtml}${jobHtml}
           <div style="padding:2px 2px 0;color:#6b7280;font-size:11px;line-height:1.45;">${esc(sourceParts)}</div>
         </td></tr>
-        <tr><td style="padding:14px 20px;background:#111827;border-radius:0 0 8px 8px;text-align:center;">
+        <tr><td style="padding:11px 18px;background:#101828;border-radius:0 0 8px 8px;text-align:center;">
           <div style="color:#9ca3af;font-size:12px;">Capital Upfitters · Rockville, MD · (301) 304-1419</div>
-          <div style="color:#6b7280;font-size:11px;margin-top:4px;">Reply to this email to contact ${esc(fullName || email || 'the customer')}.</div>
+          <div style="color:#667085;font-size:11px;margin-top:3px;">Reply to contact ${esc(fullName || email || 'the customer')}.</div>
         </td></tr>
       </table>
     </td></tr>
@@ -865,7 +929,7 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
     `Source: ${sourceParts || leadSource}`
   ].filter(Boolean);
 
-  const subjectLead = services || formLabel;
+  const subjectLead = serviceDisplay;
   const subjectWho = fullName || business || vehicle || email || 'New lead';
 
   return {
