@@ -494,6 +494,7 @@
   <script src="/attribution.js" defer></script>
   <script src="/lead-form.js" defer></script>
 
+<script src="/analytics.js" defer></script>
 </head>
 <body>
 
@@ -2246,6 +2247,8 @@ function goStep(n, noScroll){
   else if(n===1) refreshSummary();
   else refreshVehicle();
   if(!noScroll) window.scrollTo({top:0, behavior:'smooth'});
+  // analytics.js listens for this (quote_step); noScroll calls are the initial render / URL prefill
+  document.dispatchEvent(new CustomEvent('cu:quote-step', {detail:{step:n+1, initial:!!noScroll}}));
 }
 
 $('#review').addEventListener('click', e=>{

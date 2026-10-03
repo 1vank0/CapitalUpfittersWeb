@@ -659,7 +659,7 @@ class Seq(HTMLParser):
 
     def _skip(self, tag, a):
         cls = (a.get('class') or '').split()
-        if tag == 'script' and (a.get('src') or '').endswith('reviews.js'): return True
+        if tag == 'script' and (a.get('src') or '').endswith(('reviews.js', '/analytics.js')): return True
         return any(tag == t and c in cls for t, c in self.SKIP)
 
     def handle_starttag(self, tag, attrs):
