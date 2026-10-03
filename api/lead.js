@@ -875,7 +875,7 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
   const headline = serviceDisplay;
 
   const html = `<!doctype html>
-<html><head><meta charset="utf-8"></head>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f3f4f6;">
     <tr><td align="center" style="padding:18px 10px;">
