@@ -149,7 +149,7 @@
     }
 
     showBanner(form, 'success',
-      'Thanks — your request was received. We respond same business day at (301) 304-1419.');
+      'Thanks — we reply within one business day. Watch for a confirmation email (reply with photos if you have them), or call (301) 304-1419.');
   }
 
   function setSubmitting(form, isSubmitting) {
@@ -203,7 +203,8 @@
   }
 
   function rotateSubmissionIdentity(form, fingerprint) {
-    var nextStartedAt = new Date().toISOString();
+    var openedMs = Number(form.dataset.cuFormOpenedAt || 0);
+    var nextStartedAt = openedMs ? new Date(openedMs).toISOString() : new Date().toISOString();
     if (nextStartedAt === form.dataset.cuSubmissionStartedAt) {
       nextStartedAt = new Date(Date.parse(nextStartedAt) + 1).toISOString();
     }
@@ -237,12 +238,74 @@
     return 'We could not submit online right now.';
   }
 
+  function countUrls(text) {
+    var m = String(text || '').match(/https?:\/\/|www\.|[a-z0-9.-]+\.(com|net|org|io|co|us|biz)\b/gi);
+    return m ? m.length : 0;
+  }
+
+  function digitsOf(phone) {
+    return String(phone || '').replace(/\D/g, '');
+  }
+
+  function normalizeUsPhone(phone) {
+    var d = digitsOf(phone);
+    if (d.length === 11 && d.charAt(0) === '1') d = d.slice(1);
+    return d;
+  }
+
+  function clientRateLimited() {
+    try {
+      var key = 'cu_lead_subs_v1';
+      var now = Date.now();
+      var windowMs = 10 * 60 * 1000;
+      var max = 3;
+      var stamps = JSON.parse(localStorage.getItem(key) || '[]').filter(function (t) { return now - t < windowMs; });
+      if (stamps.length >= max) return true;
+      stamps.push(now);
+      localStorage.setItem(key, JSON.stringify(stamps));
+      return false;
+    } catch (e) { return false; }
+  }
+
   function validate(form) {
     var existing = form.querySelector('.cu-lead-banner');
     if (existing) existing.remove();
 
+    // Minimum time-to-submit (opened → submit). Bots that fill instantly fail.
+    var opened = Number(form.dataset.cuFormOpenedAt || 0);
+    if (opened && Date.now() - opened < 3000) {
+      showBanner(form, 'error', 'Please take a moment to review your details, then try again.');
+      return false;
+    }
+
     if (!form.checkValidity()) {
       form.reportValidity();
+      return false;
+    }
+
+    // Phone: US 10-digit (after stripping leading 1). Keep international length 7–15 as a soft floor for non-quote forms.
+    var phoneEl = form.querySelector('input[name="Phone"], input[type="tel"]');
+    if (phoneEl && phoneEl.value.trim()) {
+      var d = normalizeUsPhone(phoneEl.value);
+      if (d.length !== 10 && !(digitsOf(phoneEl.value).length >= 7 && digitsOf(phoneEl.value).length <= 15 && phoneEl.value.trim().charAt(0) === '+')) {
+        showBanner(form, 'error', 'Please enter a valid 10-digit US phone number.');
+        phoneEl.focus();
+        return false;
+      }
+      // Write back a tidy display form without changing the name=Phone field contract.
+      if (d.length === 10) phoneEl.value = '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+    }
+
+    // Free-text URL limit (Message / notes / Anything else)
+    var freeText = '';
+    form.querySelectorAll('textarea, input[name="Message"]').forEach(function (el) { freeText += ' ' + (el.value || ''); });
+    if (countUrls(freeText) > 1) {
+      showBanner(form, 'error', 'Please remove extra website links from your message.');
+      return false;
+    }
+
+    if (clientRateLimited()) {
+      showBanner(form, 'error', 'You already sent a few requests. Please wait a few minutes or call (301) 304-1419.');
       return false;
     }
 
@@ -271,6 +334,7 @@
     ensureHiddenFields(form);
     ensureHoneypot(form);
     fillAttribution(form);
+    if (!form.dataset.cuFormOpenedAt) form.dataset.cuFormOpenedAt = String(Date.now());
 
     // Refresh attribution right before submit (in case the visitor opened
     // the form, then arrived at a new UTM-tagged URL via SPA-like nav).
