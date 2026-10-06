@@ -2475,7 +2475,7 @@ a[href*="wikipedia.org/wiki/"][style*="radius-pill"] { min-height: 44px; }
   .mobile-action-bar {
     --mab-h: 64px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1.5fr;
+    grid-template-columns: 1fr 1.6fr;
     gap: 8px;
     position: fixed;
     left: 0; right: 0; bottom: 0;
@@ -2494,12 +2494,12 @@ a[href*="wikipedia.org/wiki/"][style*="radius-pill"] { min-height: 44px; }
     text-decoration: none; white-space: nowrap;
     -webkit-tap-highlight-color: transparent;
   }
-  .mab-call, .mab-text {
+  .mab-call {
     background: #17181b; color: #fff;
     border: 1px solid rgba(255,255,255,0.18);
   }
-  .mab-call .mab-ico, .mab-text .mab-ico { color: #0066fc; flex: none; }
-  .mab-call:active, .mab-text:active { background: #222428; }
+  .mab-call .mab-ico { color: #0066fc; flex: none; }
+  .mab-call:active { background: #222428; }
   .mab-quote { background: #fcd800; color: #0a0a0b; border: 1px solid #fcd800; }
   .mab-quote:active { background: #e6c400; }
   .mab-btn:focus-visible { outline: 3px solid #4d94ff; outline-offset: 2px; }
