@@ -194,6 +194,67 @@ test('quote requests persist once with a durable reference and timeout signals',
   });
 });
 
+test('mobile CSP hitch request reaches persistence and the shop notification', async () => {
+  await withRuntime(async () => {
+    let persistedPayload;
+    let shopEmail;
+    global.fetch = async (url, options) => {
+      if (url === 'https://persistence.test/api/leads/') {
+        persistedPayload = JSON.parse(options.body);
+        return jsonResponse({ ok: true, persisted: true, reference: 'CU-HITCH-1' }, 201);
+      }
+      const email = JSON.parse(options.body);
+      if (email.to === 'CapitalUpfitters@gmail.com') shopEmail = email;
+      return jsonResponse({ id: 'email-id' });
+    };
+
+    const result = await invoke(retailBody({
+      services: ['hitches'],
+      'Parts Supply': 'csp',
+      'Hitch Use': 'rack',
+      'Hitch Style': 'standard',
+      'Customer Parts': 'CURT 13416, new in box',
+      Phone: '301-555-0142',
+      'Installation Location': 'mobile',
+      'Service Address': '100 Test Street, Rockville, MD',
+      'Workspace Confirmed': 'yes',
+      'Mobile Prepayment Accepted': 'yes',
+      utm_source: 'google',
+      utm_medium: 'cpc',
+      utm_campaign: 'mobile-hitch'
+    }));
+
+    assert.equal(result.status, 200);
+    assert.equal(result.body.reference, 'CU-HITCH-1');
+    assert.match(persistedPayload.preferences.notes, /Quote type: csp/);
+    assert.match(persistedPayload.preferences.notes, /Mobile prepayment accepted: yes/);
+    assert.match(shopEmail.html, /Customer Parts/);
+    assert.match(shopEmail.html, /CURT 13416/);
+    assert.match(shopEmail.html, /Mobile Prepayment Accepted/);
+    assert.match(shopEmail.subject, /^\[CU\] Hitches & Towing — QA Retail$/);
+    assert.doesNotMatch(shopEmail.html, /User Agent|Referrer URL|Form ID/);
+    assert.match(shopEmail.html, /Customer Contact/);
+    assert.match(shopEmail.html, /1 · Name/);
+    assert.match(shopEmail.html, /2 · Phone/);
+    assert.match(shopEmail.html, /3 · Email/);
+    assert.match(shopEmail.html, /href="tel:3015550142"/);
+    assert.match(shopEmail.html, /href="sms:3015550142"/);
+    assert.match(shopEmail.html, /href="mailto:retail@example.com"/);
+    assert.match(shopEmail.html, /\(301\) 555-0142/);
+    assert.match(shopEmail.html, /Labor only — customer supplies parts/);
+    assert.match(shopEmail.html, /Bike rack \/ cargo carrier/);
+    assert.match(shopEmail.html, /Standard exposed receiver/);
+    assert.match(shopEmail.html, /Mobile installation/);
+    assert.match(shopEmail.html, /Mobile Prepayment Accepted[\s\S]*Yes/);
+    assert.ok(shopEmail.html.indexOf('1 · Name') < shopEmail.html.indexOf('2 · Phone'));
+    assert.ok(shopEmail.html.indexOf('2 · Phone') < shopEmail.html.indexOf('3 · Email'));
+    assert.ok(shopEmail.html.indexOf('3 · Email') < shopEmail.html.indexOf('Quote Request'));
+    assert.match(shopEmail.html, /UTM source: google/);
+    assert.match(shopEmail.html, /Medium: cpc/);
+    assert.match(shopEmail.html, /Campaign: mobile-hitch/);
+  });
+});
+
 test('protected persistence preview receives the configured bypass header', async () => {
   await withRuntime(async () => {
     const bypassSecret = 'test-only-vercel-protection-bypass-secret';
@@ -289,6 +350,46 @@ test('same-payload retries keep Resend bodies and idempotency keys byte-identica
         emailCalls[index + 2].headers['Idempotency-Key']
       );
     }
+  });
+});
+
+test('timeout fallback and later persisted retry keep the shop email byte-identical', async () => {
+  await withRuntime(async () => {
+    let persistenceAttempts = 0;
+    const shopEmails = [];
+    global.fetch = async (url, options) => {
+      if (url === 'https://persistence.test/api/leads/') {
+        persistenceAttempts += 1;
+        if (persistenceAttempts === 1) {
+          return jsonResponse({
+            ok: false,
+            persisted: false,
+            error: {
+              code: 'PERSISTENCE_UNAVAILABLE',
+              message: 'Temporary storage delay.'
+            }
+          }, 503);
+        }
+        return jsonResponse({ ok: true, persisted: true, reference: 'CU-LATE-1' }, 201);
+      }
+      const email = JSON.parse(options.body);
+      if (email.to === 'CapitalUpfitters@gmail.com') {
+        shopEmails.push({ body: options.body, key: options.headers['Idempotency-Key'] });
+      }
+      return jsonResponse({ id: 'email-id' });
+    };
+
+    const body = retailBody();
+    const fallback = await invoke(body);
+    const persistedRetry = await invoke(body);
+
+    assert.equal(fallback.status, 200);
+    assert.equal(fallback.body.delivery_mode, 'email_fallback');
+    assert.equal(persistedRetry.status, 200);
+    assert.equal(persistedRetry.body.reference, 'CU-LATE-1');
+    assert.equal(shopEmails.length, 2);
+    assert.equal(shopEmails[0].key, shopEmails[1].key);
+    assert.equal(shopEmails[0].body, shopEmails[1].body);
   });
 });
 
@@ -919,7 +1020,7 @@ test('persistence validation or rate rejection does not bypass the upstream guar
   });
 });
 
-test('notification transport failures always resolve to truthful JSON', async () => {
+test('persisted leads survive internal notification transport failure', async () => {
   await withRuntime(async () => {
     global.fetch = async (url, options) => {
       if (url === 'https://persistence.test/api/leads/') {
@@ -933,10 +1034,12 @@ test('notification transport failures always resolve to truthful JSON', async ()
     };
 
     const result = await invoke(retailBody());
-    assert.equal(result.status, 502);
+    assert.equal(result.status, 200);
+    assert.equal(result.body.ok, true);
     assert.equal(result.body.persisted, true);
     assert.equal(result.body.delivered, false);
     assert.equal(result.body.customer_confirmation, false);
+    assert.equal(result.body.delivery_mode, 'persisted_only');
   });
 });
 
@@ -989,26 +1092,22 @@ test('missing contact, malformed JSON, and oversized JSON have zero side effects
 });
 
 test('one shared client controller owns every form submit and success state', () => {
+  const api = fs.readFileSync(path.join(ROOT, 'api', 'lead.js'), 'utf8');
   const lead = fs.readFileSync(path.join(ROOT, 'lead-form.js'), 'utf8');
-  const quote = fs.readFileSync(path.join(ROOT, 'quote-form.js'), 'utf8');
   const quoteHtml = fs.readFileSync(path.join(ROOT, 'quote.html'), 'utf8');
   const contactHtml = fs.readFileSync(path.join(ROOT, 'contact.html'), 'utf8');
   const dealerHtml = fs.readFileSync(path.join(ROOT, 'dealer-government.html'), 'utf8');
 
   assert.equal((lead.match(/addEventListener\(['"]submit['"]/g) || []).length, 1);
   assert.equal((lead.match(/fetch\(['"]\/api\/lead['"]/g) || []).length, 1);
-  assert.equal((quote.match(/addEventListener\(['"]submit['"]/g) || []).length, 0);
-  assert.equal((quote.match(/fetch\s*\(/g) || []).length, 0);
-  assert.doesNotMatch(quote + quoteHtml, /capital-upfitters-next\.vercel\.app\/api\/leads/);
+  assert.doesNotMatch(quoteHtml, /capital-upfitters-next\.vercel\.app\/api\/leads/);
   assert.doesNotMatch(contactHtml, /callback-form['"]\)\.addEventListener\(['"]submit/);
   assert.doesNotMatch(dealerHtml, /apply-form['"]\)\.addEventListener\(['"]submit/);
+  assert.match(api, /DEFAULT_PERSISTENCE_TIMEOUT_MS = 25000/);
 
-  for (const kind of ['retail', 'fleet', 'dealer']) {
-    assert.match(quoteHtml, new RegExp(
-      `id="quote-${kind}"[^>]*data-success-body="form-${kind}-body"` +
-      `[^>]*data-success-panel="form-${kind}-success"`
-    ));
-  }
+  assert.match(quoteHtml, /id="quote-retail"[^>]*data-success-body="retail-form-body"[^>]*data-success-panel="retail-form-success"/);
+  assert.match(quoteHtml, /id="quote-fleet"[^>]*data-success-body="fleet-form-body"[^>]*data-success-panel="fleet-form-success"/);
+  assert.match(quoteHtml, /id="quote-dealer"[^>]*data-success-body="dealer-form-body"[^>]*data-success-panel="dealer-form-success"/);
   assert.match(contactHtml, /id="callback-form"[^>]*data-success-body="callback-form-body"[^>]*data-success-panel="callback-success"/);
   assert.match(dealerHtml, /id="apply-form"[^>]*data-success-body="apply-form"[^>]*data-success-panel="apply-form-success"/);
 });

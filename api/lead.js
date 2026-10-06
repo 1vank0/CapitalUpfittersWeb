@@ -17,17 +17,14 @@
 //   LEAD_PERSISTENCE_BYPASS_SECRET — Vercel protection bypass for preview persistence
 //   LEAD_ALLOWED_ORIGIN     — comma-separated browser origins (same-host previews
 //                             are also accepted dynamically)
-//   LEAD_PERSISTENCE_TIMEOUT_MS — durable endpoint deadline (default 5000)
+//   LEAD_PERSISTENCE_TIMEOUT_MS — durable endpoint deadline (default 25000)
 //   LEAD_RESEND_TIMEOUT_MS      — per-email deadline (default 5000)
 //
-// Lead email layout (matches the spec):
-//   1. Customer Information
-//   2. Vehicle Information
-//   3. Requested Service
-//   4. Message
-//   5. Lead Attribution
-//   6. Visitor Location
-//   7. Receipt Information
+// Shop email layout:
+//   1. Customer contact and one-click actions
+//   2. Quote request at a glance
+//   3. Only the job details that were actually provided
+//   4. Compact source / receipt metadata
 
 const { createHmac, randomUUID } = require('node:crypto');
 const { isIP } = require('node:net');
@@ -36,7 +33,11 @@ const MAX_JSON_BYTES = 128 * 1024;
 const LEAD_SCHEMA_VERSION = '2026-07-15';
 const DEFAULT_PERSISTENCE_URL = 'https://capital-upfitters-next.vercel.app/api/leads/';
 const DEFAULT_SITE_ORIGIN = 'https://capitalupfitters.com';
-const DEFAULT_PERSISTENCE_TIMEOUT_MS = 5000;
+// The shared lead service has a relatively expensive cold start. Five seconds
+// was too aggressive in production and caused successfully emailed leads to
+// lose their durable reference. Keep this below the function's overall limit,
+// but long enough for the upstream service to wake and commit the lead.
+const DEFAULT_PERSISTENCE_TIMEOUT_MS = 25000;
 const DEFAULT_RESEND_TIMEOUT_MS = 5000;
 const BRIDGE_SIGNATURE_VERSION = 'capital-upfitters-lead-bridge-v1';
 const BRIDGE_CLIENT_IP_HEADER = 'X-Capital-Bridge-Client-IP';
@@ -45,7 +46,7 @@ const BRIDGE_SIGNATURE_HEADER = 'X-Capital-Bridge-Signature';
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX = 8;
 const MAX_FIELD_CHARS = 8000;
-const MAX_SERVICE_CHARS = 80;
+const MAX_SERVICE_CHARS = 240;
 const UUID_V4_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[+()\-.\s\d]+$/;
@@ -135,7 +136,7 @@ function validateRequestOrigin(req) {
 
 function timeoutFromEnv(name, fallback) {
   const value = Number.parseInt(process.env[name] || '', 10);
-  return Number.isFinite(value) && value >= 10 && value <= 15000 ? value : fallback;
+  return Number.isFinite(value) && value >= 10 && value <= 30000 ? value : fallback;
 }
 
 async function fetchWithTimeout(url, options, timeoutMs, consume) {
@@ -496,6 +497,19 @@ function buildPersistencePayload(body) {
     const isCallback = audience === 'callback';
     const year = Number.parseInt(pickFirst(body, ['Vehicle Year', 'year']), 10);
     const currentYear = new Date().getFullYear();
+    const requestDetails = [
+      ['Quote type', pickFirst(body, ['Parts Supply'])],
+      ['Hitch use', pickFirst(body, ['Hitch Use'])],
+      ['Hitch style', pickFirst(body, ['Hitch Style'])],
+      ['Customer parts', pickFirst(body, ['Customer Parts'])],
+      ['Trailer details', pickFirst(body, ['Trailer Details'])],
+      ['Installation location', pickFirst(body, ['Installation Location'])],
+      ['Service address', pickFirst(body, ['Service Address'])],
+      ['Workspace confirmed', pickFirst(body, ['Workspace Confirmed'])],
+      ['Mobile prepayment accepted', pickFirst(body, ['Mobile Prepayment Accepted'])]
+    ].filter((entry) => entry[1]).map((entry) => `${entry[0]}: ${entry[1]}`);
+    const customerNotes = optionalString(pickFirst(body, ['Message', 'message']), 4000);
+    const notes = [...requestDetails, customerNotes].filter(Boolean).join('\n').slice(0, 4000);
     return {
       ...envelope,
       kind: 'retail',
@@ -514,7 +528,7 @@ function buildPersistencePayload(body) {
           : optionalString(pickFirst(body, ['Vehicle Trim', 'trim']), 100)
       },
       preferences: {
-        notes: optionalString(pickFirst(body, ['Message', 'message']), 4000),
+        notes: notes || undefined,
         timing: optionalString(pickFirst(body, [
           isCallback ? 'Best Time to Call' : 'Preferred Date'
         ]), 120)
@@ -701,97 +715,183 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
   const callTime = pickFirst(body, ['Best Time to Call']);
   const message  = pickFirst(body, ['Message', 'message']);
   const monthlyVol = pickFirst(body, ['Monthly Volume']);
+  const partsSupply = pickFirst(body, ['Parts Supply']);
+  const hitchUse = pickFirst(body, ['Hitch Use']);
+  const hitchStyle = pickFirst(body, ['Hitch Style']);
+  const customerParts = pickFirst(body, ['Customer Parts']);
+  const trailerDetails = pickFirst(body, ['Trailer Details']);
+  const installLocation = pickFirst(body, ['Installation Location']);
+  const serviceAddress = pickFirst(body, ['Service Address']);
+  const workspaceConfirmed = pickFirst(body, ['Workspace Confirmed']);
+  const mobilePrepayment = pickFirst(body, ['Mobile Prepayment Accepted']);
+  const vehicle = [vYear, vMake, vModel, vTrim].filter(Boolean).join(' ');
 
-  function row(label, value) {
+  const serviceLabels = {
+    bedliner: 'Spray-In Bedliner',
+    hitches: 'Hitches & Towing',
+    'hitches_and_towing': 'Hitches & Towing',
+    undercoating: 'Undercoating & Rust Protection',
+    tonneau: 'Tonneau Cover',
+    boards: 'Running Boards & Steps',
+    ceramic: 'Ceramic Coating',
+    tint: 'Window Tinting',
+    detailing: 'Mobile Detailing',
+    suspension: 'Suspension / Lift',
+    led: 'LED Lighting',
+    wraps: 'Wraps & Branding',
+    industrial: 'Industrial Coatings'
+  };
+
+  function friendly(value, labels = {}) {
+    const raw = scalarString(value, 800);
+    if (!raw) return '';
+    return labels[raw.toLowerCase()] || raw.replace(/[_-]+/g, ' ').replace(/\b\w/g, (m) => m.toUpperCase());
+  }
+
+  function friendlyServices(value) {
+    return scalarString(value, 800).split(/\s*,\s*/).filter(Boolean)
+      .map((item) => friendly(item, serviceLabels)).join(', ');
+  }
+
+  function displayPhone(value) {
+    const digits = scalarString(value, 40).replace(/\D/g, '');
+    if (digits.length === 10) return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+    if (digits.length === 11 && digits[0] === '1') return `+1 (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
+    return scalarString(value, 40);
+  }
+
+  const serviceDisplay = friendlyServices(services) || formLabel;
+  const phoneHref = phone ? phone.replace(/[^\d+]/g, '') : '';
+
+  function pagePath(value) {
+    const raw = scalarString(value, 1000);
+    if (!raw) return '';
+    try {
+      const parsed = new URL(raw);
+      return `${parsed.pathname}${parsed.search}`;
+    } catch (_) {
+      return raw;
+    }
+  }
+
+  function row(label, value, options = {}) {
     if (value === '' || value === undefined || value === null) return '';
+    const valueHtml = options.link
+      ? `<a href="${esc(options.link)}" style="color:#075fbd;font-weight:${options.emphasis ? '700' : '600'};text-decoration:underline;word-break:break-word;">${esc(value)}</a>`
+      : `<span style="font-weight:${options.emphasis ? '700' : '500'};">${esc(value)}</span>`;
     return `
       <tr>
-        <td style="padding:6px 12px 6px 0;color:#6b7280;font-size:13px;font-weight:600;white-space:nowrap;vertical-align:top;width:180px;">${esc(label)}</td>
-        <td style="padding:6px 0;color:#111827;font-size:14px;vertical-align:top;word-break:break-word;">${esc(value)}</td>
+        <td style="padding:6px 14px 6px 0;color:#667085;font-size:13px;font-weight:700;white-space:nowrap;vertical-align:top;width:132px;">${esc(label)}</td>
+        <td style="padding:6px 0;color:#101828;font-size:14px;line-height:1.45;vertical-align:top;word-break:break-word;">${valueHtml}</td>
+      </tr>`;
+  }
+
+  function action(label, href) {
+    if (!href) return '';
+    return `<a href="${esc(href)}" style="display:inline-block;margin:7px 6px 0 0;padding:7px 11px;background:#eef5ff;border:1px solid #c7dcf7;border-radius:6px;color:#075fbd;font-size:11px;font-weight:800;letter-spacing:.04em;text-decoration:none;text-transform:uppercase;">${esc(label)}</a>`;
+  }
+
+  function contactRow(number, label, value, href, actions = '') {
+    const displayValue = value || 'Not provided';
+    const valueHtml = href && value
+      ? `<a href="${esc(href)}" style="color:#075fbd;font-size:17px;font-weight:750;line-height:1.35;text-decoration:underline;word-break:break-word;user-select:all;">${esc(displayValue)}</a>`
+      : `<span style="color:${value ? '#101828' : '#98a2b3'};font-size:17px;font-weight:750;line-height:1.35;word-break:break-word;user-select:all;">${esc(displayValue)}</span>`;
+    return `
+      <tr>
+        <td style="padding:11px 14px;border-bottom:${number < 3 ? '1px solid #e4e7ec' : 'none'};background:#ffffff;">
+          <div style="margin-bottom:3px;color:#667085;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;">${number} · ${esc(label)}</div>
+          <div>${valueHtml}</div>
+          ${actions ? `<div>${actions}</div>` : ''}
+        </td>
       </tr>`;
   }
 
   function section(title, rowsHtml) {
     if (!rowsHtml.replace(/\s+/g, '')) return '';
     return `
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 22px 0;border-collapse:collapse;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 12px 0;border-collapse:collapse;">
         <tr>
-          <td style="padding:10px 16px;background:#103b68;color:#fcbf0d;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:6px 6px 0 0;">${esc(title)}</td>
+          <td style="padding:9px 14px;background:#123f70;color:#ffc328;font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;border-radius:6px 6px 0 0;">${esc(title)}</td>
         </tr>
         <tr>
-          <td style="padding:12px 16px;background:#ffffff;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 6px 6px;">
+          <td style="padding:8px 14px;background:#ffffff;border:1px solid #e4e7ec;border-top:none;border-radius:0 0 6px 6px;">
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">${rowsHtml}</table>
           </td>
         </tr>
       </table>`;
   }
 
-  const customerHtml = section('Customer Information',
-    row('Name', fullName) + row('Email', email) + row('Phone', phone) +
-    row('ZIP', zip) + row('Business / Agency', business) + row('Organization Type', orgType));
+  const contactHtml = section('Customer Contact',
+    contactRow(1, 'Name', fullName) +
+    contactRow(2, 'Phone', displayPhone(phone), phoneHref ? `tel:${phoneHref}` : '',
+      action('Call', phoneHref ? `tel:${phoneHref}` : '') + action('Text', phoneHref ? `sms:${phoneHref}` : '')) +
+    contactRow(3, 'Email', email, email ? `mailto:${email}` : '', action('Email', email ? `mailto:${email}` : '')));
 
-  const vehicleHtml = section('Vehicle Information',
-    row('Year', vYear) + row('Make', vMake) + row('Model', vModel) +
-    row('Trim', vTrim) + row('Color', vColor) + row('VIN', vin) +
-    row('License Plate', plate ? plate + (plateState ? ' (' + plateState + ')' : '') : ''));
-
-  const serviceHtml = section('Requested Service',
-    row('Services', services) + row('Monthly Volume', monthlyVol) +
+  const summaryHtml = section('Quote Request',
+    row('Service', serviceDisplay, { emphasis: true }) +
+    row('Vehicle', vehicle, { emphasis: true }) +
+    row('VIN', vin) +
+    row('Plate', plate ? plate + (plateState ? ' (' + plateState + ')' : '') : '') +
+    row('ZIP', zip) + row('Business / Agency', business) + row('Organization Type', orgType) +
     row('Preferred Date', prefDate) + row('Best Time to Call', callTime));
 
-  const messageHtml = message ? section('Message',
-    `<tr><td style="padding:6px 0;color:#111827;font-size:14px;line-height:1.55;white-space:pre-wrap;">${esc(message)}</td></tr>`) : '';
+  const jobHtml = section('Job Details',
+    row('Pricing', friendly(partsSupply, {
+      'parts-labor': 'Parts + installation',
+      csp: 'Labor only — customer supplies parts'
+    })) + row('Hitch Use', friendly(hitchUse, {
+      rack: 'Bike rack / cargo carrier',
+      towing: 'Trailer towing',
+      both: 'Towing + rack / cargo carrier'
+    })) +
+    row('Hitch Style', friendly(hitchStyle, {
+      standard: 'Standard exposed receiver',
+      stealth: 'Hidden / removable receiver',
+      ecohitch: 'Low-profile EcoHitch'
+    })) + row('Customer Parts', customerParts) +
+    row('Trailer Details', trailerDetails) + row('Install Location', friendly(installLocation, {
+      shop: 'Capital Upfitters shop',
+      mobile: 'Mobile installation'
+    })) +
+    row('Service Address', serviceAddress) + row('Workspace Ready', friendly(workspaceConfirmed, {
+      yes: 'Yes',
+      no: 'No'
+    })) +
+    row('Mobile Prepayment Accepted', friendly(mobilePrepayment, {
+      yes: 'Yes',
+      no: 'No'
+    })) + row('Monthly Volume', monthlyVol) +
+    row('Vehicle Color', vColor) + row('Customer Notes', message, { emphasis: true }));
 
-  const attribHtml = section('Lead Attribution',
-    row('Lead Source', leadSource) +
-    row('Referrer Domain', body.referrer_domain) +
-    row('Referrer URL', body.referrer) +
-    row('Landing Page', body.landing_page) +
-    row('Form Page', body.form_page) +
-    row('UTM Source', body.utm_source) +
-    row('UTM Medium', body.utm_medium) +
-    row('UTM Campaign', body.utm_campaign) +
-    row('UTM Term', body.utm_term) +
-    row('UTM Content', body.utm_content) +
-    row('GCLID', body.gclid) +
-    row('FBCLID', body.fbclid) +
-    row('MSCLKID', body.msclkid));
+  const sourceParts = [
+    leadSource,
+    body.utm_source ? `UTM source: ${scalarString(body.utm_source, 160)}` : '',
+    body.utm_medium ? `Medium: ${scalarString(body.utm_medium, 160)}` : '',
+    body.utm_campaign ? `Campaign: ${scalarString(body.utm_campaign, 160)}` : '',
+    [geo.city, geo.region].filter(Boolean).join(', '),
+    pagePath(body.form_page || body.landing_page)
+  ].filter(Boolean).join(' · ');
 
-  const locationHtml = section('Visitor Location',
-    row('IP Address', ip) +
-    row('City', geo.city) +
-    row('Region', geo.region) +
-    row('Country', geo.country) +
-    row('ISP / Organization', geo.isp) +
-    row('User Agent', body.user_agent));
-
-  const receiptHtml = section('Receipt Information',
-    row('Form', formLabel) +
-    row('Form ID', body.form_id) +
-    row('Submitted', formatEastern(receivedAt)));
-
-  const headline = (() => {
-    const who = fullName || email || 'New visitor';
-    return `${who} — ${formLabel}`;
-  })();
+  const headline = serviceDisplay;
 
   const html = `<!doctype html>
-<html><head><meta charset="utf-8"></head>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f3f4f6;">
-    <tr><td align="center" style="padding:24px 12px;">
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="640" style="max-width:640px;width:100%;">
-        <tr><td style="padding:16px 20px;background:#111827;border-radius:8px 8px 0 0;">
+    <tr><td align="center" style="padding:18px 10px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="660" style="max-width:660px;width:100%;">
+        <tr><td style="padding:14px 18px;background:#101828;border-radius:8px 8px 0 0;">
           <div style="color:#fcbf0d;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;">Capital Upfitters · New Lead</div>
-          <div style="color:#ffffff;font-size:20px;font-weight:700;margin-top:4px;">${esc(headline)}</div>
-          <div style="color:#9ca3af;font-size:13px;margin-top:4px;">${esc(formatEastern(receivedAt))}</div>
+          <div style="color:#ffffff;font-size:21px;font-weight:750;line-height:1.25;margin-top:5px;">${esc(headline)}</div>
+          <div style="color:#aeb7c6;font-size:12px;margin-top:4px;">${esc([fullName, vehicle, formatEastern(receivedAt)].filter(Boolean).join(' · '))}</div>
         </td></tr>
-        <tr><td style="padding:20px;background:#f9fafb;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;">
-          ${customerHtml}${vehicleHtml}${serviceHtml}${messageHtml}${attribHtml}${locationHtml}${receiptHtml}
+        <tr><td style="padding:14px;background:#f8fafc;border-left:1px solid #e4e7ec;border-right:1px solid #e4e7ec;">
+          ${contactHtml}${summaryHtml}${jobHtml}
+          <div style="padding:2px 2px 0;color:#6b7280;font-size:11px;line-height:1.45;">${esc(sourceParts)}</div>
         </td></tr>
-        <tr><td style="padding:14px 20px;background:#111827;border-radius:0 0 8px 8px;text-align:center;">
+        <tr><td style="padding:11px 18px;background:#101828;border-radius:0 0 8px 8px;text-align:center;">
           <div style="color:#9ca3af;font-size:12px;">Capital Upfitters · Rockville, MD · (301) 304-1419</div>
-          <div style="color:#6b7280;font-size:11px;margin-top:4px;">Submitted via capitalupfitters.com — reply directly to ${esc(email || 'the customer')}.</div>
+          <div style="color:#667085;font-size:11px;margin-top:3px;">Reply to contact ${esc(fullName || email || 'the customer')}.</div>
         </td></tr>
       </table>
     </td></tr>
@@ -800,35 +900,40 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
 
   // Plaintext fallback
   const lines = [
-    `CAPITAL UPFITTERS — NEW LEAD (${formLabel})`,
-    formatEastern(receivedAt),
+    `CAPITAL UPFITTERS — ${services || formLabel}`,
+    `Submitted: ${formatEastern(receivedAt)}`,
     '',
     `Name: ${fullName}`,
-    `Email: ${email}`,
     `Phone: ${phone}`,
+    `Email: ${email}`,
+    zip && `ZIP: ${zip}`,
     business && `Business: ${business}`,
     '',
-    vYear && `Vehicle: ${[vYear, vMake, vModel, vTrim].filter(Boolean).join(' ')}`,
+    vehicle && `Vehicle: ${vehicle}`,
     vin && `VIN: ${vin}`,
     '',
     services && `Services: ${services}`,
+    partsSupply && `Quote Type: ${partsSupply}`,
+    hitchUse && `Hitch Use: ${hitchUse}`,
+    hitchStyle && `Hitch Style: ${hitchStyle}`,
+    customerParts && `Customer Parts: ${customerParts}`,
+    trailerDetails && `Trailer Details: ${trailerDetails}`,
+    installLocation && `Installation Location: ${installLocation}`,
+    serviceAddress && `Service Address: ${serviceAddress}`,
+    workspaceConfirmed && `Workspace Ready: ${workspaceConfirmed}`,
+    mobilePrepayment && `Prepayment Accepted: ${mobilePrepayment}`,
+    prefDate && `Preferred Date: ${prefDate}`,
+    callTime && `Best Time to Call: ${callTime}`,
     message && `Message: ${message}`,
     '',
-    `Lead Source: ${leadSource}`,
-    `Landing Page: ${body.landing_page || ''}`,
-    `Referrer: ${body.referrer || ''}`,
-    body.utm_source && `UTM: ${body.utm_source} / ${body.utm_medium || ''} / ${body.utm_campaign || ''}`,
-    body.gclid && `GCLID: ${body.gclid}`,
-    body.fbclid && `FBCLID: ${body.fbclid}`,
-    '',
-    `IP: ${ip}`,
-    `Location: ${[geo.city, geo.region, geo.country].filter(Boolean).join(', ')}`,
-    geo.isp && `ISP: ${geo.isp}`,
-    `User Agent: ${body.user_agent || ''}`
+    `Source: ${sourceParts || leadSource}`
   ].filter(Boolean);
 
+  const subjectLead = serviceDisplay;
+  const subjectWho = fullName || business || vehicle || email || 'New lead';
+
   return {
-    subject: `[CU Lead] ${headline}`,
+    subject: `[CU] ${subjectLead} — ${subjectWho}`.slice(0, 180),
     html, text: lines.join('\n'),
     replyTo: email || undefined
   };

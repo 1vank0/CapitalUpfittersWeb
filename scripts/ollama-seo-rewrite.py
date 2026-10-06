@@ -728,12 +728,15 @@ def cmd_check():
         a, b = Seq(), Seq()
         a.feed(old); b.feed(new)
         probs = []
-        if a.seq != b.seq:
+        # Brand-new pages (not in HEAD) only need basic SEO shape — no "h1 count
+        # changed" vs an empty baseline. Existing pages keep the stricter diffs.
+        is_new = not old.strip()
+        if a.seq != b.seq and not is_new:
             # A file that was truncated at HEAD (no </html>) may get its missing tail restored.
             restored = '</html>' not in old and b.seq[:len(a.seq)] == a.seq
             if not restored: probs.append('tag/attribute sequence changed')
         # JSON-LD must be unchanged except for removing hardcoded aggregateRating.
-        if ld_norm(a.ld) != ld_norm(b.ld): probs.append('JSON-LD changed')
+        if not is_new and ld_norm(a.ld) != ld_norm(b.ld): probs.append('JSON-LD changed')
         if any('aggregateRating' in blob for blob in b.ld): probs.append('hardcoded aggregateRating in JSON-LD')
         hits = sorted(set(m.group(0) for m in REVIEW_NUM_RE.finditer('\n'.join(b.text))))
         if hits: probs.append('hardcoded review figure(s): %s' % hits)
@@ -742,7 +745,10 @@ def cmd_check():
             except Exception as e: probs.append('JSON-LD invalid: %s' % e)
         if b.titles != 1: probs.append('%d <title>' % b.titles)
         if b.descs != 1: probs.append('%d meta description' % b.descs)
-        if b.h1 != a.h1: probs.append('h1 count changed')
+        if is_new:
+            if b.h1 != 1: probs.append('%d <h1> on new page' % b.h1)
+        elif b.h1 != a.h1:
+            probs.append('h1 count changed')
         changed = old != new
         print('%-42s %s %s' % (path, 'CHANGED' if changed else 'same   ', 'OK' if not probs else 'FAIL ' + '; '.join(probs)))
         bad += bool(probs)
