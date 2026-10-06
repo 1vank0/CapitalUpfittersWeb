@@ -907,6 +907,41 @@
 </section>
 
 <!-- FOOTER -->
+
+<!-- T37: Trustindex lazy-loaded below the fold -->
+<section class="ti-lazy-section contain" style="padding:var(--space-10,3rem) 0;" aria-label="Customer reviews">
+  <div id="ti-lazy-mount" class="trustindex-widget" data-ti-lazy="1">
+    <p style="text-align:center;opacity:.7;margin:0;">Loading reviews…</p>
+  </div>
+</section>
+<script>
+(function(){
+  var mount = document.getElementById('ti-lazy-mount');
+  if (!mount) return;
+  var loaded = false;
+  function loadTI(){
+    if (loaded) return; loaded = true;
+    mount.innerHTML = '';
+    var s = document.createElement('script');
+    s.src = 'https://cdn.trustindex.io/loader.js?4b0fb84780ce380f4576092cef2';
+    s.async = true; s.defer = true;
+    mount.appendChild(s);
+    try {
+      if (window.CU && CU.track) CU.track('reviews_view', { placement: 'lazy' });
+      else if (window.gtag) gtag('event', 'reviews_view', { placement: 'lazy' });
+    } catch (e) {}
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting) { loadTI(); io.disconnect(); } });
+    }, { rootMargin: '200px 0px' });
+    io.observe(mount);
+  } else {
+    setTimeout(loadTI, 2500);
+  }
+})();
+</script>
+
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
@@ -976,6 +1011,8 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
 (function () {
   'use strict';
   var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+  // CMS_DISABLED: stale preview URL — CORS errors. Remove this return to re-enable.
+  return;
   var SLUG = 'hitches';
 
   /* ── helpers ── */

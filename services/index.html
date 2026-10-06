@@ -468,6 +468,7 @@
   </nav>
   <div class="nav-mobile-actions">
     <a href="../quote.html" class="btn btn-primary">Get a Quote</a>
+          <p class="cta-review-line" style="margin-top:.65rem;font-size:.9rem;opacity:.85;" data-review-text="Rated {rating}★ on Google">See our Google reviews</p>
     <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Portal Login</a>
   </div>
 </div>
@@ -797,6 +798,8 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
 (function () {
   'use strict';
   var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+  // CMS_DISABLED: stale preview URL — CORS errors. Remove this return to re-enable.
+  return;
   var SLUG = 'bedliner';
 
   /* ── helpers ── */

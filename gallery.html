@@ -1129,6 +1129,8 @@ lightbox.addEventListener('touchend', e => {
 <script>
 (function() {
   var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+  // CMS_DISABLED: stale preview URL — CORS errors. Remove this return to re-enable.
+  return;
 
   function reinitFilter() {
     var filterBtns = document.querySelectorAll('.gallery-filter-btn');

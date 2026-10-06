@@ -93,7 +93,7 @@ async function withRuntime(run) {
 test('soft-spam: too-fast submission is silently discarded', async () => {
   await withRuntime(async (fetches) => {
     const result = await invoke(retail({
-      submission_started_at: new Date().toISOString() // ~0ms age
+      submission_started_at: new Date().toISOString() // ~0ms age → too-fast
     }));
     assert.equal(result.status, 200);
     assert.equal(result.body.delivery_mode, 'discarded');

@@ -716,13 +716,24 @@ REVIEW_NUM_RE = re.compile(
 
 
 def ld_norm(blobs):
+    """Normalize JSON-LD for sanity diffs.
+
+    Allows intentional T25 NAP cleanup (Nebel Street → Nebel St) and additive
+    areaServed / sameAs expansions without failing the check.
+    """
     out = []
     for blob in blobs:
         try: obj = json.loads(blob)
         except Exception: out.append(blob); continue
         def strip(o):
-            if isinstance(o, dict): return {k: strip(v) for k, v in o.items() if k != 'aggregateRating'}
+            if isinstance(o, dict):
+                return {
+                    k: strip(v) for k, v in o.items()
+                    if k not in ('aggregateRating', 'areaServed')
+                }
             if isinstance(o, list): return [strip(v) for v in o]
+            if isinstance(o, str):
+                return o.replace('12019 Nebel Street', '12019 Nebel St')
             return o
         out.append(json.dumps(strip(obj), sort_keys=True))
     return out
@@ -756,7 +767,11 @@ def cmd_check():
         if is_new:
             if b.h1 != 1: probs.append('%d <h1> on new page' % b.h1)
         elif b.h1 != a.h1:
-            probs.append('h1 count changed')
+            # T23: quote.html demotes secondary titles to h2 (target exactly 1 h1).
+            if path.endswith('quote.html') and b.h1 == 1 and a.h1 > 1:
+                pass
+            else:
+                probs.append('h1 count changed')
         changed = old != new
         print('%-42s %s %s' % (path, 'CHANGED' if changed else 'same   ', 'OK' if not probs else 'FAIL ' + '; '.join(probs)))
         bad += bool(probs)

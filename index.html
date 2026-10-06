@@ -60,7 +60,7 @@
       "parentOrganization": {"@id": "https://www.capitalupfitters.com/#organization"},
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "12019 Nebel Street",
+        "streetAddress": "12019 Nebel St",
         "addressLocality": "Rockville",
         "addressRegion": "MD",
         "postalCode": "20852",
@@ -189,7 +189,7 @@
       "name": "What areas do you serve?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Our shop is in Rockville, MD (12019 Nebel Street) and we serve the entire DMV — Bethesda, Silver Spring, Gaithersburg, and surrounding Montgomery County, plus Northern Virginia and DC."
+        "text": "Our shop is in Rockville, MD (12019 Nebel St) and we serve the entire DMV — Bethesda, Silver Spring, Gaithersburg, and surrounding Montgomery County, plus Northern Virginia and DC."
       }
     },
     {
@@ -452,11 +452,10 @@
     align-items: center;
     gap: 0;
   }
-  /* 28px hit area (WCAG 2.5.8 target size) around a 9px visual dot */
+  /* 44px hit area (WCAG 2.5.5) around a 9px visual dot */
   .hero-dot {
     position: relative;
-    width: 28px;
-    height: 28px;
+    width: 44px; height: 44px;
     padding: 0;
     border: none;
     border-radius: 50%;
@@ -793,8 +792,8 @@
 
   <!-- MP4 video background — src is driven by SERVICE_SLIDES once hydrated -->
   <div class="hero-video-wrap" aria-hidden="true">
-    <video id="hero-vid" autoplay muted playsinline preload="auto">
-      <source src="https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4" type="video/mp4">
+    <video id="hero-vid" autoplay muted playsinline preload="none" poster="./media/next/home-hero-v1.webp">
+      <!-- T28: source attached after first paint to avoid competing with LCP -->
     </video>
   </div>
 
@@ -1470,7 +1469,7 @@
           <svg class="home-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="home-faq-answer" role="region">
-          <div class="home-faq-answer-inner">Our shop is in Rockville, MD (12019 Nebel Street) and we serve the entire DMV — Bethesda, Silver Spring, Gaithersburg, and surrounding Montgomery County, plus Northern Virginia and DC. See our <a href="/locations/rockville-md.html">location pages</a> for service-area details.</div>
+          <div class="home-faq-answer-inner">Our shop is in Rockville, MD (12019 Nebel St) and we serve the entire DMV — Bethesda, Silver Spring, Gaithersburg, and surrounding Montgomery County, plus Northern Virginia and DC. See our <a href="/locations/rockville-md.html">location pages</a> for service-area details.</div>
         </div>
       </div>
       <div class="home-faq-item">
@@ -1563,7 +1562,7 @@
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center; color:rgba(255,255,255,0.65);">Service Area</div>
       <h2 id="locations-heading" style="color:#fff;">ROCKVILLE-BASED. DMV-WIDE.</h2>
-      <p style="color:rgba(255,255,255,0.65); max-width:480px; margin: var(--space-4) auto 0; font-family: var(--font-body);">Based at 12019 Nebel Street in Rockville, we serve customers from across the DC Metro area.</p>
+      <p style="color:rgba(255,255,255,0.65); max-width:480px; margin: var(--space-4) auto 0; font-family: var(--font-body);">Based at 12019 Nebel St in Rockville, we serve customers from across the DC Metro area.</p>
     </div>
 
     <div class="locations-grid">
@@ -1719,6 +1718,8 @@
 <script>
 (function() {
   var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+  // CMS_DISABLED: stale preview URL — CORS errors. Remove this return to re-enable.
+  return;
   // PHASE-1 DISABLED: stale CMS preview URL threw CORS errors. Re-enable by removing this line + updating URL.
   return;
 
@@ -1957,6 +1958,21 @@
   ];
 
   var vid       = document.getElementById('hero-vid');
+  // T28: attach initial hero source after first paint
+  (function deferHeroSrc(){
+    if (!vid) return;
+    var SRC = 'https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4';
+    function attach(){
+      if (vid.getAttribute('data-src-attached')) return;
+      vid.setAttribute('data-src-attached','1');
+      var src = document.createElement('source');
+      src.src = SRC; src.type = 'video/mp4';
+      vid.appendChild(src);
+      try { vid.load(); vid.play().catch(function(){}); } catch(e){}
+    }
+    if ('requestIdleCallback' in window) requestIdleCallback(attach, {timeout: 1800});
+    else setTimeout(attach, 600);
+  })();
   var fb        = document.getElementById('hero-bg-fallback');
   var copy      = document.getElementById('hero-slide-copy');
   var eyebrowEl = document.getElementById('hero-eyebrow');

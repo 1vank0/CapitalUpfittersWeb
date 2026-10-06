@@ -2513,3 +2513,18 @@ a[href*="wikipedia.org/wiki/"][style*="radius-pill"] { min-height: 44px; }
   .mobile-action-bar { gap: 6px; }
 }
 @media print { .mobile-action-bar { display: none !important; } }
+
+/* T35 footer / breadcrumb link heights ≥24px (WCAG 2.2) */
+.site-footer a, footer a, .breadcrumb a, .breadcrumbs a {
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+/* Mobile overflow guards (T04/T33) */
+.portal-info-box-actions { display:flex; flex-wrap:wrap; gap:.75rem; max-width:100%; }
+.portal-info-box-actions .btn { max-width:100%; box-sizing:border-box; }
+.page-hero-bg { max-width:100%; }
+.mobile-action-bar, .mab-btn { max-width:100%; box-sizing:border-box; }

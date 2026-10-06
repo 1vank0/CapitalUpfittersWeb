@@ -257,14 +257,18 @@
     try {
       var key = 'cu_lead_subs_v1';
       var now = Date.now();
-      var windowMs = 10 * 60 * 1000;
-      var max = 3;
-      var stamps = JSON.parse(localStorage.getItem(key) || '[]').filter(function (t) { return now - t < windowMs; });
-      if (stamps.length >= max) return true;
+      var stamps = JSON.parse(localStorage.getItem(key) || '[]').filter(function (t) { return now - t < 10 * 60 * 1000; });
+      return stamps.length >= 3;
+    } catch (e) { return false; }
+  }
+  function recordClientSubmit() {
+    try {
+      var key = 'cu_lead_subs_v1';
+      var now = Date.now();
+      var stamps = JSON.parse(localStorage.getItem(key) || '[]').filter(function (t) { return now - t < 10 * 60 * 1000; });
       stamps.push(now);
       localStorage.setItem(key, JSON.stringify(stamps));
-      return false;
-    } catch (e) { return false; }
+    } catch (e) {}
   }
 
   function validate(form) {
@@ -382,6 +386,7 @@
         form.reset();
         // Re-fill hidden attribution after reset so a second submit still works.
         fillAttribution(form);
+        recordClientSubmit();
         showSuccess(form);
         document.dispatchEvent(new CustomEvent('cu:lead-success', {
           detail: {

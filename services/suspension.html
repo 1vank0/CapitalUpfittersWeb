@@ -1314,6 +1314,48 @@
 <!-- ═══════════════════════════════════════════════════════
      FOOTER
 ═══════════════════════════════════════════════════════ -->
+
+
+<aside class="related-links contain" style="padding:2rem 1.25rem;margin:1rem auto;max-width:1100px;">
+  <h2 style="font-size:1.15rem;margin:0 0 .75rem;">Serving the DMV</h2>
+  <p style="margin:0 0 .5rem;"><a href="../locations/rockville-md.html">Rockville</a> · <a href="../locations/bethesda-md.html">Bethesda</a> · <a href="../locations/gaithersburg-md.html">Gaithersburg</a> · <a href="../locations/silver-spring-md.html">Silver Spring</a></p>
+  <p style="margin:0;"><a href="../quote.html">Get a Quote</a> · <a href="../faq.html">FAQ</a></p>
+</aside>
+
+<!-- T37: Trustindex lazy-loaded below the fold -->
+<section class="ti-lazy-section contain" style="padding:var(--space-10,3rem) 0;" aria-label="Customer reviews">
+  <div id="ti-lazy-mount" class="trustindex-widget" data-ti-lazy="1">
+    <p style="text-align:center;opacity:.7;margin:0;">Loading reviews…</p>
+  </div>
+</section>
+<script>
+(function(){
+  var mount = document.getElementById('ti-lazy-mount');
+  if (!mount) return;
+  var loaded = false;
+  function loadTI(){
+    if (loaded) return; loaded = true;
+    mount.innerHTML = '';
+    var s = document.createElement('script');
+    s.src = 'https://cdn.trustindex.io/loader.js?4b0fb84780ce380f4576092cef2';
+    s.async = true; s.defer = true;
+    mount.appendChild(s);
+    try {
+      if (window.CU && CU.track) CU.track('reviews_view', { placement: 'lazy' });
+      else if (window.gtag) gtag('event', 'reviews_view', { placement: 'lazy' });
+    } catch (e) {}
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting) { loadTI(); io.disconnect(); } });
+    }, { rootMargin: '200px 0px' });
+    io.observe(mount);
+  } else {
+    setTimeout(loadTI, 2500);
+  }
+})();
+</script>
+
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-top">
@@ -1324,7 +1366,7 @@
         </a>
         <p class="footer-tagline">Est. 2015</p>
         <address class="footer-address" style="font-style:normal; font-size: var(--text-sm); color: var(--color-footer-text); line-height: 1.8; margin-top: var(--space-4);">
-          12019 Nebel Street<br>Rockville, MD 20852<br>
+          12019 Nebel St<br>Rockville, MD 20852<br>
           <a href="tel:3013041419" style="color:inherit;">(301) 304-1419</a><br>
           <a href="mailto:CapitalUpfitters@gmail.com" style="color:inherit;">CapitalUpfitters@gmail.com</a>
         </address>

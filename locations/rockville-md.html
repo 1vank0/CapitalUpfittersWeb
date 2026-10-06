@@ -461,6 +461,38 @@
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .geo-hero { padding: var(--space-16) 0 var(--space-14); }
 }
+
+/* T30: Google Maps click-to-load facade */
+.map-facade {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  background: #e8eef5 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 24 24' fill='none' stroke='%230066fc' stroke-width='1.5'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z'/%3E%3Ccircle cx='12' cy='9' r='2.5'/%3E%3C/svg%3E") center 38% no-repeat;
+  background-size: auto, 64px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+.map-facade:focus-visible { outline: 3px solid #0066fc; outline-offset: 2px; }
+.map-facade-label {
+  margin: 0 0 1.25rem;
+  background: #fcd800;
+  color: #0a0a0b;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  pointer-events: none;
+}
+.map-embed.is-loaded .map-facade { display: none; }
+.map-embed iframe { display: none; width: 100%; height: 100%; border: 0; }
+.map-embed.is-loaded iframe { display: block; }
+
 </style>
 
 <script type="application/ld+json">
@@ -700,7 +732,7 @@
       <span class="breadcrumb-current">Rockville, MD</span>
     </nav>
     <h1 id="geo-h1">VEHICLE UPFITTING <em>IN ROCKVILLE, MD.</em></h1>
-    <p class="geo-hero-sub">Capital Upfitters is your local shop — right here in Rockville at 12019 Nebel Street. By appointment, Mon–Fri 9:30am–4:30pm.</p>
+    <p class="geo-hero-sub">Capital Upfitters is your local shop — right here in Rockville at 12019 Nebel St. By appointment, Mon–Fri 9:30am–4:30pm.</p>
     <div class="geo-hero-ctas">
       <a href="../quote.html" class="btn btn-primary btn-lg">Get a Quote</a>
       <a href="tel:3013041419" class="btn btn-outline btn-lg">Call (301) 304-1419</a>
@@ -780,7 +812,7 @@
       <div class="directions-text reveal">
         <p class="section-eyebrow">Find Us</p>
         <h2 id="directions-heading" style="font-family:var(--font-display);font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:900;letter-spacing:0.03em;text-transform:uppercase;color:var(--color-text);margin-bottom:var(--space-4);">GETTING HERE</h2>
-        <p class="directions-address">12019 Nebel Street, Rockville MD 20852</p>
+        <p class="directions-address">12019 Nebel St, Rockville MD 20852</p>
         <div class="directions-steps">
           <div class="directions-step">
             <div class="directions-step-num">1</div>
@@ -797,9 +829,10 @@
         </div>
       </div>
       <div class="map-embed reveal">
-        <iframe
+        <button type="button" class="map-facade" aria-label="Load interactive Google Map"><span class="map-facade-label">Tap to load map</span></button>
+<iframe
           title="Capital Upfitters location map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3103.5!2d-77.1152!3d39.0537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7cc!2s12019+Nebel+St%2C+Rockville%2C+MD+20852!5e0!3m2!1sen!2sus!4v1"
+          data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3103.5!2d-77.1152!3d39.0537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7cc!2s12019+Nebel+St%2C+Rockville%2C+MD+20852!5e0!3m2!1sen!2sus!4v1" loading="lazy"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade">
@@ -879,6 +912,54 @@
 </section>
 
 <!-- FOOTER -->
+
+
+<aside class="related-links contain" style="padding:2rem 1.25rem;margin:1rem auto;max-width:1100px;">
+  <h2 style="font-size:1.15rem;margin:0 0 .75rem;">Popular services</h2>
+  <p style="margin:0;line-height:1.8;">
+    <a href="../services/bedliner.html">Bedliners</a> ·
+    <a href="../services/hitches.html">Hitches</a> ·
+    <a href="../services/window-tinting.html">Window Tint</a> ·
+    <a href="../services/ceramic-coating.html">Ceramic Coating</a> ·
+    <a href="../services/running-boards.html">Running Boards</a> ·
+    <a href="../quote.html">Get a Quote</a>
+  </p>
+</aside>
+
+<!-- T37: Trustindex lazy-loaded below the fold -->
+<section class="ti-lazy-section contain" style="padding:var(--space-10,3rem) 0;" aria-label="Customer reviews">
+  <div id="ti-lazy-mount" class="trustindex-widget" data-ti-lazy="1">
+    <p style="text-align:center;opacity:.7;margin:0;">Loading reviews…</p>
+  </div>
+</section>
+<script>
+(function(){
+  var mount = document.getElementById('ti-lazy-mount');
+  if (!mount) return;
+  var loaded = false;
+  function loadTI(){
+    if (loaded) return; loaded = true;
+    mount.innerHTML = '';
+    var s = document.createElement('script');
+    s.src = 'https://cdn.trustindex.io/loader.js?4b0fb84780ce380f4576092cef2';
+    s.async = true; s.defer = true;
+    mount.appendChild(s);
+    try {
+      if (window.CU && CU.track) CU.track('reviews_view', { placement: 'lazy' });
+      else if (window.gtag) gtag('event', 'reviews_view', { placement: 'lazy' });
+    } catch (e) {}
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting) { loadTI(); io.disconnect(); } });
+    }, { rootMargin: '200px 0px' });
+    io.observe(mount);
+  } else {
+    setTimeout(loadTI, 2500);
+  }
+})();
+</script>
+
 <footer class="footer"><div class="container"><div class="footer-grid">
 <div><a href="../index.html" class="footer-brand-logo"><div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div><div class="footer-brand-name">Capital<span>Upfitters</span></div></a><p class="footer-tagline">Family-owned upfitter in Rockville, MD. Serving the DMV since 2015.</p><div class="footer-contact"><a href="tel:3013041419" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel St, Rockville MD 20852</div></div></div>
 <div><div class="footer-col-title">Services</div><ul class="footer-links"><li><a href="../services/bedliner.html">Bedliners</a></li><li><a href="../services/hitches.html">Hitches</a></li><li><a href="../services/ceramic-coating.html">Ceramic Coating</a></li><li><a href="../services/undercoating.html">Undercoating</a></li><li><a href="../services/tonneau.html">Tonneau Covers</a></li><li><a href="../services/running-boards.html">Running Boards</a></li></ul></div>
@@ -896,6 +977,8 @@
 (function() {
   var GEO_SLUG = 'rockville-md';
   var CMS_BASE = 'https://capital-upfitters-6iq57bc73-ivan-s-projects-fc67197c.vercel.app';
+  // CMS_DISABLED: stale preview URL — CORS errors. Remove this return to re-enable.
+  return;
 
   function applyGeoData(geo) {
     if (!geo) return;
@@ -981,5 +1064,27 @@
   <a href="tel:+13013041419" class="mab-btn mab-call"><svg class="mab-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a>
   <a href="../quote.html" class="mab-btn mab-quote">Get a Quote</a>
 </nav>
+
+<script>
+(function(){
+  function activate(wrap){
+    if (!wrap || wrap.classList.contains('is-loaded')) return;
+    var iframe = wrap.querySelector('iframe[data-src]');
+    if (!iframe) return;
+    iframe.src = iframe.getAttribute('data-src');
+    iframe.removeAttribute('data-src');
+    wrap.classList.add('is-loaded');
+  }
+  document.querySelectorAll('.map-embed').forEach(function(wrap){
+    var facade = wrap.querySelector('.map-facade');
+    if (!facade) return;
+    facade.addEventListener('click', function(){ activate(wrap); });
+    facade.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(wrap); }
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

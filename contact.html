@@ -23,7 +23,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Visit Our Shop In Rockville MD | Capital Upfitters</title>
 <link rel="canonical" href="https://www.capitalupfitters.com/contact.html">
-  <meta name="description" content="Contact Capital Upfitters in Rockville, MD. Call (301) 304-1419, email, or visit us at 12019 Nebel Street. Mon–Fri 9:30am–4:30pm. By appointment.">
+  <meta name="description" content="Contact Capital Upfitters in Rockville, MD. Call (301) 304-1419, email, or visit us at 12019 Nebel St. Mon–Fri 9:30am–4:30pm. By appointment.">
   <link rel="stylesheet" href="./base.css">
   <link rel="stylesheet" href="./style.css">
 
@@ -295,7 +295,13 @@
       display: flex;
       gap: var(--space-3);
       flex-wrap: wrap;
-      flex-shrink: 0;
+      max-width: 100%;
+    }
+    .portal-info-box-actions .btn {
+      flex: 1 1 12rem;
+      max-width: 100%;
+      box-sizing: border-box;
+      text-align: center;
     }
 
     /* Careers section */
@@ -317,7 +323,39 @@
     .careers-card-text h4 { margin-bottom: var(--space-2); }
     .careers-card-text p { font-size: var(--text-sm); color: var(--color-text-muted); max-width: 540px; }
     .careers-card-text a { color: var(--color-brand-text); font-weight: 600; }
-  </style>
+  
+/* T30: Google Maps click-to-load facade */
+.map-facade {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  background: #e8eef5 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 24 24' fill='none' stroke='%230066fc' stroke-width='1.5'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z'/%3E%3Ccircle cx='12' cy='9' r='2.5'/%3E%3C/svg%3E") center 38% no-repeat;
+  background-size: auto, 64px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+.map-facade:focus-visible { outline: 3px solid #0066fc; outline-offset: 2px; }
+.map-facade-label {
+  margin: 0 0 1.25rem;
+  background: #fcd800;
+  color: #0a0a0b;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  pointer-events: none;
+}
+.map-embed.is-loaded .map-facade { display: none; }
+.map-embed iframe { display: none; width: 100%; height: 100%; border: 0; }
+.map-embed.is-loaded iframe { display: block; }
+
+</style>
 
 <script type="application/ld+json">
 {
@@ -342,14 +380,14 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.capitalupfitters.com/contact.html">
 <meta property="og:title" content="Visit Our Shop In Rockville MD | Capital Upfitters">
-<meta property="og:description" content="Contact Capital Upfitters in Rockville, MD. Call (301) 304-1419, email, or visit us at 12019 Nebel Street. Mon–Fri 9:30am–4:30pm. By appointment.">
+<meta property="og:description" content="Contact Capital Upfitters in Rockville, MD. Call (301) 304-1419, email, or visit us at 12019 Nebel St. Mon–Fri 9:30am–4:30pm. By appointment.">
 <meta property="og:image" content="https://www.capitalupfitters.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting in Rockville, MD">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Visit Our Shop In Rockville MD | Capital Upfitters">
-<meta name="twitter:description" content="Contact Capital Upfitters in Rockville, MD. Call (301) 304-1419, email, or visit us at 12019 Nebel Street. Mon–Fri 9:30am–4:30pm. By appointment.">
+<meta name="twitter:description" content="Contact Capital Upfitters in Rockville, MD. Call (301) 304-1419, email, or visit us at 12019 Nebel St. Mon–Fri 9:30am–4:30pm. By appointment.">
 <meta name="twitter:image" content="https://www.capitalupfitters.com/og.png">
   <script src="/attribution.js" defer></script>
   <script src="/lead-form.js" defer></script>
@@ -611,7 +649,7 @@
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <h4>Address</h4>
-        <a href="https://maps.google.com/?q=12019+Nebel+St+Rockville+MD+20852" target="_blank" rel="noopener noreferrer" class="contact-card-value" style="font-size: var(--text-base);">12019 Nebel Street<br>Rockville MD 20852</a>
+        <a href="https://maps.google.com/?q=12019+Nebel+St+Rockville+MD+20852" target="_blank" rel="noopener noreferrer" class="contact-card-value" style="font-size: var(--text-base);">12019 Nebel St<br>Rockville MD 20852</a>
         <p>By appointment, Mon–Fri 9:30am–4:30pm.</p>
       </div>
 
@@ -627,8 +665,9 @@
         <p class="section-label">Our Location</p>
         <h2 class="reveal" style="margin-bottom: var(--space-8);">Find Our Shop</h2>
         <div class="map-embed reveal reveal-delay-1">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3099.2041!2d-77.1152!3d39.0537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7cd!2s12019+Nebel+St+Rockville+MD!5e0!3m2!1sen!2sus!4v1"
+          <button type="button" class="map-facade" aria-label="Load interactive Google Map"><span class="map-facade-label">Tap to load map</span></button>
+<iframe
+            data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3099.2041!2d-77.1152!3d39.0537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7cd!2s12019+Nebel+St+Rockville+MD!5e0!3m2!1sen!2sus!4v1" loading="lazy"
             width="100%"
             height="450"
             style="border:0;"
@@ -654,7 +693,7 @@
             </div>
             <div class="map-info-text">
               <strong>Address</strong>
-              <span>12019 Nebel Street<br>Rockville, MD 20852</span>
+              <span>12019 Nebel St<br>Rockville, MD 20852</span>
             </div>
           </div>
 
@@ -861,5 +900,27 @@
   <a href="tel:+13013041419" class="mab-btn mab-call"><svg class="mab-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a>
   <a href="./quote.html" class="mab-btn mab-quote">Get a Quote</a>
 </nav>
+
+<script>
+(function(){
+  function activate(wrap){
+    if (!wrap || wrap.classList.contains('is-loaded')) return;
+    var iframe = wrap.querySelector('iframe[data-src]');
+    if (!iframe) return;
+    iframe.src = iframe.getAttribute('data-src');
+    iframe.removeAttribute('data-src');
+    wrap.classList.add('is-loaded');
+  }
+  document.querySelectorAll('.map-embed').forEach(function(wrap){
+    var facade = wrap.querySelector('.map-facade');
+    if (!facade) return;
+    facade.addEventListener('click', function(){ activate(wrap); });
+    facade.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(wrap); }
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
