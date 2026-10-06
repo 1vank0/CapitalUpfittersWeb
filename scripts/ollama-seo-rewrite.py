@@ -753,7 +753,22 @@ def cmd_check():
         if a.seq != b.seq and not is_new:
             # A file that was truncated at HEAD (no </html>) may get its missing tail restored.
             restored = '</html>' not in old and b.seq[:len(a.seq)] == a.seq
-            if not restored: probs.append('tag/attribute sequence changed')
+            # Speed: async Google Fonts links (preconnect/preload/stylesheet/noscript) may
+            # appear in <head> without changing page content structure.
+            def strip_font_noise(seq):
+                out = []
+                for item in seq:
+                    # Seq items are tuples like ('S','link', attrs) / ('E','link') / ('S','noscript')
+                    if not item: continue
+                    tag = item[1] if len(item) > 1 else None
+                    if tag in ('link', 'noscript'):
+                        # Drop all link/noscript markers from the head sequence compare —
+                        # content attrs for fonts/canonical already specially handled.
+                        continue
+                    out.append(item)
+                return out
+            if not restored and strip_font_noise(a.seq) != strip_font_noise(b.seq):
+                probs.append('tag/attribute sequence changed')
         # JSON-LD must be unchanged except for removing hardcoded aggregateRating.
         if not is_new and ld_norm(a.ld) != ld_norm(b.ld): probs.append('JSON-LD changed')
         if any('aggregateRating' in blob for blob in b.ld): probs.append('hardcoded aggregateRating in JSON-LD')

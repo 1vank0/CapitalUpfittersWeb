@@ -12,7 +12,7 @@
 /* ── Google Fonts ─────────────────────────────────────────── */
 /* Manrope — geometric with subtle warmth (headings) */
 /* Inter — canonical UI sans (body) */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+/* fonts loaded async from HTML (display=swap) — avoids CSS @import R-B */
 
 /* ── Reset ────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

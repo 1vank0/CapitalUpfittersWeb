@@ -28,6 +28,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+<link rel="preload" as="image" href="./media/next/home-hero-v1.webp" fetchpriority="high">
+<!-- Fonts (async; display=swap on Google CSS URL) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
 <!-- JSON-LD: Organization / AutoRepair / WebSite graph -->
@@ -1540,10 +1544,32 @@
       <h2 id="testimonials-heading">WHAT OUR CUSTOMERS SAY.</h2>
     </div>
 
-    <!-- Trustindex live Google reviews widget -->
-    <div class="trustindex-widget reveal" aria-label="Verified customer reviews from Google">
-      <script defer async src="https://cdn.trustindex.io/loader.js?4b0fb84780ce380f4576092cef2"></script>
+    <!-- Trustindex live Google reviews widget (lazy below-fold) -->
+    <div class="trustindex-widget reveal" id="ti-home-mount" aria-label="Verified customer reviews from Google" data-ti-lazy="1">
+      <p style="text-align:center;opacity:.7;margin:1rem 0;">Loading reviews…</p>
     </div>
+    <script>
+    (function(){
+      var mount=document.getElementById('ti-home-mount');
+      if(!mount) return;
+      var loaded=false;
+      function loadTI(){
+        if(loaded) return; loaded=true;
+        mount.innerHTML='';
+        var s=document.createElement('script');
+        s.src='https://cdn.trustindex.io/loader.js?4b0fb84780ce380f4576092cef2';
+        s.async=true; s.defer=true;
+        mount.appendChild(s);
+        try{ if(window.gtag) gtag('event','reviews_view',{placement:'home-lazy'}); }catch(e){}
+      }
+      if('IntersectionObserver' in window){
+        var io=new IntersectionObserver(function(entries){
+          entries.forEach(function(en){ if(en.isIntersecting){ loadTI(); io.disconnect(); } });
+        },{rootMargin:'200px 0px'});
+        io.observe(mount);
+      } else { setTimeout(loadTI, 3000); }
+    })();
+    </script>
 
     <div style="text-align: center; margin-top: var(--space-8);">
       <a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
@@ -1958,21 +1984,7 @@
   ];
 
   var vid       = document.getElementById('hero-vid');
-  // T28: attach initial hero source after first paint
-  (function deferHeroSrc(){
-    if (!vid) return;
-    var SRC = 'https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4';
-    function attach(){
-      if (vid.getAttribute('data-src-attached')) return;
-      vid.setAttribute('data-src-attached','1');
-      var src = document.createElement('source');
-      src.src = SRC; src.type = 'video/mp4';
-      vid.appendChild(src);
-      try { vid.load(); vid.play().catch(function(){}); } catch(e){}
-    }
-    if ('requestIdleCallback' in window) requestIdleCallback(attach, {timeout: 1800});
-    else setTimeout(attach, 600);
-  })();
+  // T28/speed: poster first; applyMedia() sets src once per slide (no idle <source> attach).
   var fb        = document.getElementById('hero-bg-fallback');
   var copy      = document.getElementById('hero-slide-copy');
   var eyebrowEl = document.getElementById('hero-eyebrow');
@@ -2119,12 +2131,33 @@
     if (muteBtn) muteBtn.hidden = !withVideo;
 
     if (withVideo) {
-      if (vid.getAttribute('src') !== s.video) {
-        vid.setAttribute('src', s.video);
-        vid.load();
+      // Drop any leftover <source> nodes so we never double-request the same URL.
+      while (vid.firstChild) vid.removeChild(vid.firstChild);
+      var want = s.video;
+      var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      var saveData = !!(conn && (conn.saveData || /2g/.test(conn.effectiveType || '')));
+      if (saveData) {
+        if (videoWrap) videoWrap.classList.add('is-hidden');
+        try { vid.pause(); } catch (e) { /* no-op */ }
+        vid.removeAttribute('src');
+        return;
       }
-      var played = vid.play();
-      if (played && played.catch) played.catch(function () { /* autoplay refused */ });
+      var startVideo = function () {
+        if (vid.getAttribute('src') !== want) {
+          vid.setAttribute('src', want);
+          vid.load();
+        }
+        var played = vid.play();
+        if (played && played.catch) played.catch(function () { /* autoplay refused */ });
+      };
+      // First video: defer so the poster can be LCP; later slides start immediately.
+      if (!vid.getAttribute('data-cu-video-warm')) {
+        vid.setAttribute('data-cu-video-warm', '1');
+        if ('requestIdleCallback' in window) requestIdleCallback(startVideo, { timeout: 2500 });
+        else setTimeout(startVideo, 1200);
+      } else {
+        startVideo();
+      }
       // A hotlinked video that never loads must not freeze the rotation.
       stallTimer = setTimeout(function () {
         if (!isFinite(vid.duration) || vid.duration <= 0) requestAdvance();
@@ -2147,16 +2180,10 @@
   // Current slide is already loading; warm only the one after it.
   function preloadNext() {
     var n = SERVICE_SLIDES[(idx + 1) % SERVICE_SLIDES.length];
-    if (!n) return;
-    if (usesVideo(n)) {
-      preloader = document.createElement('video');
-      preloader.preload = 'auto';
-      preloader.muted = true;
-      preloader.src = n.video;
-    } else if (n.poster) {
-      preloader = new Image();
-      preloader.src = n.poster;
-    }
+    if (!n || !n.poster) return;
+    // Speed: never preload MP4s (amp-powerstep alone is ~2MB). Poster images only.
+    preloader = new Image();
+    preloader.src = n.poster;
   }
 
   function show(target, instant) {
