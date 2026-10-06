@@ -682,8 +682,16 @@ class Seq(HTMLParser):
         # quote vehicle step) are design work, not SEO-copy drift; the body is
         # still covered by the JSON-LD, single-H1 and review-figure checks.
         if not self._head: return
-        self.seq.append(('S', tag, tuple(sorted((k, v) for k, v in a.items()
-                                                if k not in self.IGNORE_ATTRS and not k.startswith(self.REVIEW_ATTR)))))
+        # Canonical href + og:url are intentionally rewritten (T19); compare presence only.
+        attrs = []
+        for k, v in a.items():
+            if k in self.IGNORE_ATTRS or k.startswith(self.REVIEW_ATTR): continue
+            if tag == 'link' and a.get('rel') == 'canonical' and k == 'href':
+                v = '*canonical*'
+            if tag == 'meta' and a.get('property') == 'og:url' and k == 'content':
+                v = '*og:url*'
+            attrs.append((k, v))
+        self.seq.append(('S', tag, tuple(sorted(attrs))))
     def handle_startendtag(self, tag, attrs):
         self.handle_starttag(tag, attrs)
         if tag in ('script', 'style'): self._raw -= 1
