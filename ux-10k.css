@@ -1,0 +1,410 @@
+/* ============================================================
+   Capital Upfitters — $10k UX polish layer (SKOOL L102 / brand lock)
+   Load AFTER base.css + style.css + brand-tokens.css
+   Does not invent claims/prices; keeps lifetime/DOT/fade alone.
+   ============================================================ */
+
+:root {
+  --space-section: clamp(4.5rem, 8vw, 7rem);
+  --space-section-sm: clamp(3rem, 5vw, 4.5rem);
+  --type-display: clamp(2.35rem, 5.2vw, 3.75rem);
+  --type-h2: clamp(1.55rem, 3vw, 2.2rem);
+  --type-h3: clamp(1.1rem, 1.5vw, 1.3rem);
+  --type-body: 1.0625rem;
+  --type-muted: 0.9375rem;
+  --shadow-card: 0 8px 28px rgba(10, 10, 11, 0.08);
+  --shadow-card-hover: 0 14px 40px rgba(10, 10, 11, 0.14);
+  --shadow-soft: 0 2px 10px rgba(10, 10, 11, 0.05);
+  --radius-card: 1rem;
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --text-max: 38rem;
+}
+
+/* ── Type hierarchy ───────────────────────────────────────── */
+h1, .hero h1, #hero-h1, .page-hero h1, .geo-hero h1 {
+  font-family: var(--font-display, "Manrope", system-ui, sans-serif);
+  font-weight: 800;
+  font-size: var(--type-display);
+  letter-spacing: -0.022em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+h2, .section-title, .section-h2 {
+  font-family: var(--font-display, "Manrope", system-ui, sans-serif);
+  font-weight: 800;
+  font-size: var(--type-h2);
+  letter-spacing: -0.018em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+h3, .card-title, .service-card-title, .funnel-card-title {
+  font-family: var(--font-display, "Manrope", system-ui, sans-serif);
+  font-weight: 700;
+  font-size: var(--type-h3);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+body, p, li {
+  font-size: var(--type-body);
+  line-height: 1.65;
+}
+.lede, .section-lede, .hero-sub, .page-hero .lede {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--brand-muted, #6e6e73);
+  max-width: var(--text-max);
+}
+.section-label, .eyebrow, .hero-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-blue, #0066fc);
+}
+.accent-word {
+  color: var(--brand-yellow, #fcd800);
+  font-style: italic;
+}
+
+/* ── Section rhythm ───────────────────────────────────────── */
+section.section,
+.section-block,
+.home-section,
+.page-section,
+.services-grid-section,
+.trust-section,
+.cta-band,
+.funnel-section,
+.reviews-section,
+.related-links {
+  padding-block: var(--space-section);
+}
+.section-tight { padding-block: var(--space-section-sm); }
+
+.container, .contain {
+  width: min(1120px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+/* ── Cards / elevation ────────────────────────────────────── */
+.service-card,
+.funnel-card,
+.audience-card,
+.card,
+.location-card,
+.faq-item,
+.portal-info-box,
+.trust-chip-row .chip {
+  border-radius: var(--radius-card);
+  transition: transform 220ms var(--ease-premium), box-shadow 220ms var(--ease-premium), border-color 220ms ease;
+}
+.service-card,
+.funnel-card,
+.audience-card,
+.card,
+.location-card {
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  background: #fff;
+}
+.service-card:hover,
+.funnel-card:hover,
+.audience-card:hover,
+.location-card:hover,
+a.service-card:hover,
+a.funnel-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+}
+/* Dark image cards: keep imagery, improve overlay legibility */
+.service-card--dark,
+.funnel-card--dark,
+.audience-card[data-theme="dark"],
+.card-dark {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+.service-card .card-body,
+.funnel-card-desc,
+.service-card p {
+  color: #3a3a3c;
+}
+.funnel-card-desc,
+.service-card .card-desc {
+  font-size: var(--type-muted);
+  line-height: 1.55;
+}
+
+/* ── Buttons / CTA hierarchy ──────────────────────────────── */
+.btn, .nav-cta, .mab-quote, button.btn {
+  min-height: 48px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: background 180ms ease, transform 180ms var(--ease-premium), box-shadow 180ms ease;
+}
+.btn-primary, .nav-cta, .mab-quote {
+  box-shadow: 0 6px 18px rgba(252, 216, 0, 0.35);
+}
+.btn-primary:hover, .nav-cta:hover, .mab-quote:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(252, 216, 0, 0.42);
+}
+.btn-lg { min-height: 52px; padding-inline: 1.5rem; font-size: 1.05rem; }
+.btn-outline, .btn-ghost {
+  min-height: 48px;
+  border-width: 1.5px;
+}
+/* Sticky quote already yellow via brand-tokens */
+
+/* ── Trust strip ──────────────────────────────────────────── */
+.trust-strip,
+.hero-trust,
+.proof-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: center;
+}
+.trust-strip .chip,
+.proof-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: var(--brand-blue-soft, rgba(0, 102, 252, 0.12));
+  color: var(--brand-blue-deep, #0c3c84);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid rgba(0, 102, 252, 0.18);
+}
+
+/* ── Hero polish ──────────────────────────────────────────── */
+.hero-content, .page-hero .container, .geo-hero .container {
+  padding-block: clamp(3.5rem, 8vw, 5.5rem);
+}
+.hero-ctas, .hero-actions, .cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.hero-sub { opacity: 0.92; }
+
+/* ── Final CTA band: navy, not yellow fill ────────────────── */
+.cta-band, .final-cta, .cta-banner {
+  background: var(--brand-navy, #0a0a0b);
+  color: #fff;
+  border-radius: 0;
+}
+.cta-band .lede, .final-cta p { color: rgba(255, 255, 255, 0.72); }
+
+/* ── FAQ / forms ──────────────────────────────────────────── */
+.faq-item {
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  margin-bottom: 0.65rem;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+.faq-item[open], .faq-item:hover {
+  border-color: rgba(0, 102, 252, 0.28);
+  box-shadow: var(--shadow-card);
+}
+.faq-item summary {
+  font-family: var(--font-display, "Manrope", system-ui, sans-serif);
+  font-weight: 700;
+  font-size: 1.02rem;
+  padding: 1rem 0.25rem;
+}
+.field input, .field select, .field textarea,
+input[type="text"], input[type="tel"], input[type="email"], select, textarea {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.field input:focus, .field select:focus, .field textarea:focus,
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--brand-blue, #0066fc);
+  box-shadow: 0 0 0 3px var(--brand-blue-soft, rgba(0, 102, 252, 0.18));
+}
+
+/* ── Quote wizard polish ──────────────────────────────────── */
+#nextBtn, .quote-shell .btn {
+  min-height: 48px;
+}
+.tile[data-svc], .svc-tile {
+  border-radius: 0.9rem;
+  transition: transform 180ms var(--ease-premium), box-shadow 180ms ease, border-color 180ms ease;
+}
+.tile[data-svc]:hover, .tile[aria-checked="true"] {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+.site-footer, footer.site-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-block: 2.75rem 5.5rem; /* room for mobile sticky */
+}
+.site-footer a {
+  color: var(--brand-blue, #0066fc);
+  text-underline-offset: 2px;
+}
+.site-footer a:hover { color: var(--brand-blue-hover, #0052d6); }
+
+/* ── Related links / internal cluster ─────────────────────── */
+.related-links {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
+}
+.related-links h2 { margin-bottom: 0.75rem; }
+
+/* ── Grid consistency ─────────────────────────────────────── */
+.services-grid, .funnel-grid, .card-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+@media (min-width: 720px) {
+  .services-grid, .funnel-grid, .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .services-grid, .funnel-grid, .card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ── Motion restraint ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  .service-card:hover, .funnel-card:hover, .audience-card:hover {
+    transform: none;
+  }
+}
+
+/* ── Secondary text contrast bump ─────────────────────────── */
+.text-muted, .muted, .meta, .card-meta {
+  color: #5c5c61 !important;
+}
+
+
+/* —— FAQ page (was bare chrome) —— */
+.faq-hero {
+  background: linear-gradient(160deg, #0a0a0b 0%, #12141a 55%, #0d1520 100%);
+  color: #fff;
+  padding: clamp(3rem, 6vw, 5rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+}
+.faq-hero h1 { color: #fff; margin: 0 0 .75rem; }
+.faq-hero .section-label { color: var(--brand-blue, #0066fc) !important; }
+.faq-wrap {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3.5rem) 1.25rem clamp(4rem, 8vw, 6rem);
+}
+.faq-item {
+  border: 1px solid rgba(10,10,11,.08);
+  border-radius: var(--radius-lg, 14px);
+  background: #fff;
+  margin-bottom: .75rem;
+  box-shadow: 0 4px 16px rgba(10,10,11,.04);
+  overflow: hidden;
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+.faq-item:hover { border-color: rgba(0,102,252,.25); box-shadow: 0 8px 24px rgba(10,10,11,.08); }
+.faq-item summary {
+  font-family: var(--font-display, Manrope, system-ui, sans-serif);
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  list-style: none;
+  color: #0a0a0b;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item .faq-a {
+  padding: 0 1.25rem 1.15rem;
+  color: var(--brand-muted, #6e6e73);
+  line-height: 1.65;
+  max-width: 65ch;
+}
+.faq-item[open] summary { color: var(--brand-blue, #0066fc); }
+
+/* —— Service hub cards —— */
+.service-hub-card {
+  border-radius: var(--radius-xl, 16px) !important;
+  overflow: hidden;
+  transition: transform .22s ease, box-shadow .22s ease;
+  box-shadow: 0 8px 28px rgba(10,10,11,.1);
+}
+a.service-hub-card:hover,
+.service-hub-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(10,10,11,.16);
+}
+.service-hub-card-link {
+  color: var(--brand-yellow, #fcd800) !important;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+
+/* —— Page heroes: stronger subtext —— */
+.page-hero-sub, .hero-sub, #hero-sub {
+  color: rgba(255,255,255,.88) !important;
+  max-width: 36rem;
+  line-height: 1.6;
+  font-size: clamp(1.02rem, 1.5vw, 1.15rem);
+}
+
+/* —— Final CTA bands: navy, not yellow fill —— */
+.final-cta, .cta-banner, .section-cta {
+  background: linear-gradient(135deg, #0a0a0b 0%, #0d1b33 100%) !important;
+  color: #fff;
+}
+.final-cta .btn-primary,
+.cta-banner .btn-primary,
+.section-cta .btn-primary {
+  background: var(--brand-yellow, #fcd800) !important;
+  color: #0a0a0b !important;
+}
+
+/* —— Footer polish —— */
+.site-footer, footer.footer, .footer {
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.footer a:hover, .site-footer a:hover {
+  color: var(--brand-blue, #0066fc);
+}
+
+/* —— Contact / quote form fields —— */
+.lead-form input, .lead-form select, .lead-form textarea,
+.quote-form input, .quote-form select, .quote-form textarea,
+form.cu-lead input, form.cu-lead select, form.cu-lead textarea {
+  border-radius: 12px !important;
+  border: 1px solid rgba(10,10,11,.12) !important;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.lead-form input:focus, .lead-form select:focus, .lead-form textarea:focus,
+.quote-form input:focus, .quote-form select:focus, .quote-form textarea:focus,
+form.cu-lead input:focus, form.cu-lead select:focus, form.cu-lead textarea:focus {
+  border-color: var(--brand-blue, #0066fc) !important;
+  box-shadow: 0 0 0 3px rgba(0,102,252,.18) !important;
+  outline: none;
+}
+
+/* —— Sticky mobile bar already Call+Quote; polish —— */
+.mobile-action-bar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 -8px 28px rgba(10,10,11,.12);
+}
+
+.quote-main, .quote-shell { padding-block: clamp(1.5rem, 3vw, 2.5rem); }
