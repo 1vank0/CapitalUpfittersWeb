@@ -21,9 +21,9 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="shortcut icon" href="favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Capital Upfitters | Rockville MD | 301-304-1419</title>
+  <title>Visit Our Shop In Rockville MD | Capital Upfitters</title>
 <link rel="canonical" href="https://www.capitalupfitters.com/contact.html">
-  <meta name="description" content="Contact Capital Upfitters in Rockville, MD. Call (301) 304-1419, email, or visit us at 12019 Nebel Street. Mon–Fri 9:30am–4:30pm. By appointment.">
+  <meta name="description" content="Contact Capital Upfitters in Rockville, MD. Call (301) 304-1419, email, or visit us at 12019 Nebel St. Mon–Fri 9:30am–4:30pm. By appointment.">
   <link rel="stylesheet" href="./base.css">
   <link rel="stylesheet" href="./style.css">
 
@@ -79,14 +79,14 @@
       transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
     }
     .contact-card:hover {
-      border-color: var(--color-accent);
+      border-color: var(--color-brand);
       box-shadow: var(--shadow-md);
       transform: translateY(-3px);
     }
     .contact-card-icon {
       width: 64px;
       height: 64px;
-      background: var(--color-accent);
+      background: var(--color-brand);
       border-radius: var(--radius-xl);
       display: flex;
       align-items: center;
@@ -105,7 +105,7 @@
       font-weight: 700;
       letter-spacing: 0.03em;
       text-transform: uppercase;
-      color: var(--color-accent);
+      color: var(--color-brand-text);
       margin-bottom: var(--space-2);
     }
     .contact-card-value:hover { text-decoration: underline; }
@@ -167,7 +167,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.65);
       flex-shrink: 0;
     }
     .map-info-text strong {
@@ -182,11 +182,11 @@
     }
     .map-info-text span {
       font-size: var(--text-sm);
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.65);
       line-height: 1.6;
     }
     .map-info-text a {
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.65);
       transition: color var(--transition-fast);
     }
     .map-info-text a:hover { color: #fff; }
@@ -198,7 +198,7 @@
       padding: var(--space-2) 0;
     }
     .hours-day { color: rgba(255,255,255,0.65); }
-    .hours-time { color: rgba(255,255,255,0.45); font-size: var(--text-xs); }
+    .hours-time { color: rgba(255,255,255,0.65); font-size: var(--text-xs); }
     .hours-time.open { color: #4ade80; font-weight: 600; }
     .hours-status {
       display: inline-flex;
@@ -295,7 +295,13 @@
       display: flex;
       gap: var(--space-3);
       flex-wrap: wrap;
-      flex-shrink: 0;
+      max-width: 100%;
+    }
+    .portal-info-box-actions .btn {
+      flex: 1 1 12rem;
+      max-width: 100%;
+      box-sizing: border-box;
+      text-align: center;
     }
 
     /* Careers section */
@@ -316,8 +322,40 @@
     }
     .careers-card-text h4 { margin-bottom: var(--space-2); }
     .careers-card-text p { font-size: var(--text-sm); color: var(--color-text-muted); max-width: 540px; }
-    .careers-card-text a { color: var(--color-accent); font-weight: 600; }
-  </style>
+    .careers-card-text a { color: var(--color-brand-text); font-weight: 600; }
+  
+/* T30: Google Maps click-to-load facade */
+.map-facade {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  background: #e8eef5 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 24 24' fill='none' stroke='%230066fc' stroke-width='1.5'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z'/%3E%3Ccircle cx='12' cy='9' r='2.5'/%3E%3C/svg%3E") center 38% no-repeat;
+  background-size: auto, 64px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+.map-facade:focus-visible { outline: 3px solid #0066fc; outline-offset: 2px; }
+.map-facade-label {
+  margin: 0 0 1.25rem;
+  background: #fcd800;
+  color: #0a0a0b;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  pointer-events: none;
+}
+.map-embed.is-loaded .map-facade { display: none; }
+.map-embed iframe { display: none; width: 100%; height: 100%; border: 0; }
+.map-embed.is-loaded iframe { display: block; }
+
+</style>
 
 <script type="application/ld+json">
 {
@@ -341,19 +379,20 @@
 </script>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.capitalupfitters.com/contact.html">
-<meta property="og:title" content="Contact Capital Upfitters | Rockville MD | 301-304-1419">
-<meta property="og:description" content="Contact Capital Upfitters in Rockville, MD. Call (301) 304-1419, email, or visit us at 12019 Nebel Street. Mon–Fri 9:30am–4:30pm. By appointment.">
+<meta property="og:title" content="Visit Our Shop In Rockville MD | Capital Upfitters">
+<meta property="og:description" content="Contact Capital Upfitters in Rockville, MD. Call (301) 304-1419, email, or visit us at 12019 Nebel St. Mon–Fri 9:30am–4:30pm. By appointment.">
 <meta property="og:image" content="https://www.capitalupfitters.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting in Rockville, MD">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Contact Capital Upfitters | Rockville MD | 301-304-1419">
-<meta name="twitter:description" content="Contact Capital Upfitters in Rockville, MD. Call (301) 304-1419, email, or visit us at 12019 Nebel Street. Mon–Fri 9:30am–4:30pm. By appointment.">
+<meta name="twitter:title" content="Visit Our Shop In Rockville MD | Capital Upfitters">
+<meta name="twitter:description" content="Contact Capital Upfitters in Rockville, MD. Call (301) 304-1419, email, or visit us at 12019 Nebel St. Mon–Fri 9:30am–4:30pm. By appointment.">
 <meta name="twitter:image" content="https://www.capitalupfitters.com/og.png">
   <script src="/attribution.js" defer></script>
   <script src="/lead-form.js" defer></script>
 
+<script src="/analytics.js" defer></script>
 </head>
 <body>
 
@@ -468,7 +507,7 @@
           <a href="./dealer-government.html#government">DOT &amp; EMS Upfitting</a>
           <a href="./dealer-government.html#government">Protective Coatings / GSA</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account →</a>
+          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.65); font-size: 11px;">Apply for Account →</a>
         </div>
       </li>
       <li><a href="./gallery.html">Gallery</a></li>
@@ -511,7 +550,7 @@
         <a href="./services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="./services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -533,7 +572,7 @@
         <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="./services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -598,11 +637,11 @@
 
       <div class="contact-card reveal reveal-delay-1">
         <div class="contact-card-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
-        <h4>Email</h4>
-        <a href="mailto:CapitalUpfitters@gmail.com" class="contact-card-value" style="font-size: var(--text-base); letter-spacing: 0;">CapitalUpfitters@gmail.com</a>
-        <p>We respond within 24 hours. Usually same business day.</p>
+        <h4>Get a Quote</h4>
+        <a href="./quote.html" class="contact-card-value" style="font-size: var(--text-base); letter-spacing: 0;">Start the 2-minute form →</a>
+        <p>Tell us your vehicle and services. We reply within one business day.</p>
       </div>
 
       <div class="contact-card reveal reveal-delay-2">
@@ -610,7 +649,7 @@
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <h4>Address</h4>
-        <a href="https://maps.google.com/?q=12019+Nebel+St+Rockville+MD+20852" target="_blank" rel="noopener noreferrer" class="contact-card-value" style="font-size: var(--text-base);">12019 Nebel Street<br>Rockville MD 20852</a>
+        <a href="https://maps.google.com/?q=12019+Nebel+St+Rockville+MD+20852" target="_blank" rel="noopener noreferrer" class="contact-card-value" style="font-size: var(--text-base);">12019 Nebel St<br>Rockville MD 20852</a>
         <p>By appointment, Mon–Fri 9:30am–4:30pm.</p>
       </div>
 
@@ -626,8 +665,9 @@
         <p class="section-label">Our Location</p>
         <h2 class="reveal" style="margin-bottom: var(--space-8);">Find Our Shop</h2>
         <div class="map-embed reveal reveal-delay-1">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3099.2041!2d-77.1152!3d39.0537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7cd!2s12019+Nebel+St+Rockville+MD!5e0!3m2!1sen!2sus!4v1"
+          <button type="button" class="map-facade" aria-label="Load interactive Google Map"><span class="map-facade-label">Tap to load map</span></button>
+<iframe
+            data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3099.2041!2d-77.1152!3d39.0537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7cd!2s12019+Nebel+St+Rockville+MD!5e0!3m2!1sen!2sus!4v1" loading="lazy"
             width="100%"
             height="450"
             style="border:0;"
@@ -638,7 +678,7 @@
           </iframe>
         </div>
         <p style="font-size: var(--text-xs); color: var(--color-text-faint); margin-top: var(--space-3);">
-          <a href="https://maps.google.com/?q=12019+Nebel+St+Rockville+MD+20852" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent);">Open in Google Maps →</a>
+          <a href="https://maps.google.com/?q=12019+Nebel+St+Rockville+MD+20852" target="_blank" rel="noopener noreferrer" style="color: var(--color-brand-text);">Open in Google Maps →</a>
         </p>
       </div>
 
@@ -653,7 +693,7 @@
             </div>
             <div class="map-info-text">
               <strong>Address</strong>
-              <span>12019 Nebel Street<br>Rockville, MD 20852</span>
+              <span>12019 Nebel St<br>Rockville, MD 20852</span>
             </div>
           </div>
 
@@ -672,8 +712,8 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div class="map-info-text">
-              <strong>Email</strong>
-              <span><a href="mailto:CapitalUpfitters@gmail.com">CapitalUpfitters@gmail.com</a></span>
+              <strong>Quote</strong>
+              <span><a href="./quote.html">Request a quote online →</a></span>
             </div>
           </div>
 
@@ -711,96 +751,35 @@
   </div>
 </section>
 
-<!-- CALLBACK FORM -->
+<!-- QUOTE CTA (uniform intake) -->
 <section class="callback-section">
   <div class="container">
     <div class="callback-grid">
       <div>
-        <p class="section-label">Callback Request</p>
-        <h3 class="reveal">Rather We Call You?</h3>
-        <p class="reveal reveal-delay-1">Leave your name and number and we'll call you back within one business day — usually the same day if you request before 3pm.</p>
+        <p class="section-label">Request a Quote</p>
+        <h3 class="reveal">Tell us what you need</h3>
+        <p class="reveal reveal-delay-1">Every service request goes through our quote form so we get the vehicle, services, and timing we need to price it right — and so nothing falls through a side channel.</p>
         <div style="margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4);" class="reveal reveal-delay-2">
           <div style="display: flex; align-items: center; gap: var(--space-3);">
             <div style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0;"></div>
-            <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">We call back within one business day</span>
+            <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">Takes about 2 minutes</span>
           </div>
           <div style="display: flex; align-items: center; gap: var(--space-3);">
             <div style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0;"></div>
-            <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">No obligation, no pressure</span>
+            <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">We reply within one business day</span>
           </div>
           <div style="display: flex; align-items: center; gap: var(--space-3);">
             <div style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0;"></div>
-            <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">Same-day callbacks requested before 3pm</span>
+            <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">Prefer to talk? Call (301) 304-1419</span>
           </div>
         </div>
       </div>
       <div>
-        <div class="callback-form-card reveal">
-          <div id="callback-success" class="callback-success">
-            <div class="callback-success-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <h4>Callback Requested!</h4>
-            <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-2);">We'll give you a call within one business day.</p>
-          </div>
-          <div id="callback-form-body">
-            <h4>Request a Callback</h4>
-            <form data-cms-form="retail" id="callback-form" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="callback-form" novalidate data-success-body="callback-form-body" data-success-panel="callback-success">
-              <!-- Attribution (auto-filled by /attribution.js) -->
-              <input type="hidden" name="ip_address" data-cu-attr="1">
-              <input type="hidden" name="geo_city" data-cu-attr="1">
-              <input type="hidden" name="geo_region" data-cu-attr="1">
-              <input type="hidden" name="geo_country" data-cu-attr="1">
-              <input type="hidden" name="isp" data-cu-attr="1">
-              <input type="hidden" name="landing_page" data-cu-attr="1">
-              <input type="hidden" name="form_page" data-cu-attr="1">
-              <input type="hidden" name="referrer" data-cu-attr="1">
-              <input type="hidden" name="referrer_domain" data-cu-attr="1">
-              <input type="hidden" name="utm_source" data-cu-attr="1">
-              <input type="hidden" name="utm_medium" data-cu-attr="1">
-              <input type="hidden" name="utm_campaign" data-cu-attr="1">
-              <input type="hidden" name="utm_term" data-cu-attr="1">
-              <input type="hidden" name="utm_content" data-cu-attr="1">
-              <input type="hidden" name="gclid" data-cu-attr="1">
-              <input type="hidden" name="fbclid" data-cu-attr="1">
-              <input type="hidden" name="msclkid" data-cu-attr="1">
-              <input type="hidden" name="lead_source" data-cu-attr="1">
-              <input type="hidden" name="user_agent" data-cu-attr="1">
-
-              <div class="form-row">
-                <div class="form-field">
-                  <label class="form-label" for="cb-name">Your Name *</label>
-                  <input class="form-input" type="text" id="cb-name" name="Name" placeholder="John Smith" required>
-                </div>
-                <div class="form-field">
-                  <label class="form-label" for="cb-phone">Phone Number *</label>
-                  <input class="form-input" type="tel" id="cb-phone" name="Phone" placeholder="(301) 555-0100" pattern="[0-9\s+\(\)\.\-]{7,30}" minlength="7" maxlength="30" title="Enter a valid phone number using digits and + ( ) - ." required>
-                </div>
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="cb-email">Email (optional)</label>
-                <input class="form-input" type="email" id="cb-email" name="Email" placeholder="john@email.com">
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="cb-time">Best Time to Call</label>
-                <select class="form-select" id="cb-time" name="Best Time to Call">
-                  <option value="">Select preference…</option>
-                  <option>Morning (9:30am–12pm)</option>
-                  <option>Afternoon (12pm–4:30pm)</option>
-                  <option>Anytime during business hours</option>
-                </select>
-              </div>
-              <div class="form-field">
-                <label class="form-label" for="cb-msg">Message (optional)</label>
-                <textarea class="form-textarea" id="cb-msg" name="Message" placeholder="What would you like to discuss? Any specific service you're interested in?" style="min-height: 90px;"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Request Callback →</button>
-              <p class="form-privacy-note" style="margin-top:1rem;font-size:12px;line-height:1.5;color:#9ca3af;">
-                By submitting this form you acknowledge that we may capture technical data — including your IP address, referral source, browser, and approximate location — for fraud prevention, analytics, and lead attribution. See our <a href="/privacy.html" style="color:inherit;text-decoration:underline;">Privacy Policy</a>.
-              </p>
-
-            </form>
-          </div>
+        <div class="callback-form-card reveal" style="text-align:center;padding:var(--space-8) var(--space-6);">
+          <h4 style="margin:0 0 var(--space-3)">Get a quote</h4>
+          <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin:0 0 var(--space-6);">Vehicle, services, timing, and how to reach you — one form.</p>
+          <a href="./quote.html" class="btn btn-primary" style="width:100%;justify-content:center;min-height:48px;background:#fcd800;color:#0a0a0b;">Start the quote form →</a>
+          <p style="margin-top:var(--space-4);font-size:var(--text-sm);"><a href="tel:3013041419" style="color:var(--color-brand-text);font-weight:600;">Or call (301) 304-1419</a></p>
         </div>
       </div>
     </div>
@@ -847,11 +826,6 @@
 </div><div class="footer-bottom"><p class="footer-copyright">&copy; 2026 Capital Auto Upfitters & Protective Coatings. All rights reserved.</p><nav class="footer-legal"><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a></nav><p class="footer-pplx"><a href="https://IVANKODevelopment.com" target="_blank" rel="noopener noreferrer">Built by IVANKODev</a></p></div></div></footer>
 
 <!-- STICKY MOBILE CTA -->
-<div class="sticky-cta-bar" aria-hidden="true">
-  <a href="tel:3013041419" class="btn btn-outline">Call Now</a>
-  <a href="./quote.html" class="btn btn-primary">Get a Quote</a>
-</div>
-
 <script>
 (function(){const b=document.getElementById('hamburger'),m=document.getElementById('nav-mobile'),c=document.getElementById('nav-close');if(b&&m){b.addEventListener('click',()=>{m.classList.add('open');b.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'});if(c)c.addEventListener('click',()=>{m.classList.remove('open');b.setAttribute('aria-expanded','false');document.body.style.overflow=''})}})();
 (function(){const e=document.querySelectorAll('.reveal');if(!e.length)return;const i=new IntersectionObserver(v=>{v.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');i.unobserve(el.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});e.forEach(el=>i.observe(el))})();
@@ -920,5 +894,33 @@
     if(c&&m){c.addEventListener('click',function(){m.classList.remove('open');document.body.style.overflow='';});}
   })();
   </script>
+
+<!-- Mobile action bar (<=768px): Call / Text / Get a Quote -->
+<nav class="mobile-action-bar" aria-label="Quick actions">
+  <a href="tel:+13013041419" class="mab-btn mab-call"><svg class="mab-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a>
+  <a href="./quote.html" class="mab-btn mab-quote">Get a Quote</a>
+</nav>
+
+<script>
+(function(){
+  function activate(wrap){
+    if (!wrap || wrap.classList.contains('is-loaded')) return;
+    var iframe = wrap.querySelector('iframe[data-src]');
+    if (!iframe) return;
+    iframe.src = iframe.getAttribute('data-src');
+    iframe.removeAttribute('data-src');
+    wrap.classList.add('is-loaded');
+  }
+  document.querySelectorAll('.map-embed').forEach(function(wrap){
+    var facade = wrap.querySelector('.map-facade');
+    if (!facade) return;
+    facade.addEventListener('click', function(){ activate(wrap); });
+    facade.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(wrap); }
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

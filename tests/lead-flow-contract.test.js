@@ -79,7 +79,7 @@ function retailBody(overrides = {}) {
     'Vehicle Model': 'F-150',
     services: ['bedliner', 'Hitches & Towing'],
     idempotency_key: FIXED_KEY,
-    submission_started_at: new Date().toISOString(),
+    submission_started_at: new Date(Date.now() - 10_000).toISOString(),
     ...overrides
   };
 }
@@ -94,7 +94,7 @@ function callbackBody(overrides = {}) {
     'Best Time to Call': 'Morning (9:30am–12pm)',
     Message: 'Please call about a hitch.',
     idempotency_key: FIXED_KEY,
-    submission_started_at: new Date().toISOString(),
+    submission_started_at: new Date(Date.now() - 10_000).toISOString(),
     ...overrides
   };
 }
@@ -111,7 +111,7 @@ function applicationBody(overrides = {}) {
     'Monthly Volume': '10–24 vehicles/month',
     Message: 'Please set up a purchasing account.',
     idempotency_key: FIXED_KEY,
-    submission_started_at: new Date().toISOString(),
+    submission_started_at: new Date(Date.now() - 10_000).toISOString(),
     ...overrides
   };
 }
@@ -460,7 +460,7 @@ test('fleet business email is preserved in persistence and both notifications', 
       'Vehicle Count': '6–15',
       services: ['Pickup Upfitting'],
       idempotency_key: FIXED_KEY,
-      submission_started_at: new Date().toISOString()
+      submission_started_at: new Date(Date.now() - 10_000).toISOString()
     });
 
     assert.equal(result.status, 200);
@@ -1108,6 +1108,8 @@ test('one shared client controller owns every form submit and success state', ()
   assert.match(quoteHtml, /id="quote-retail"[^>]*data-success-body="retail-form-body"[^>]*data-success-panel="retail-form-success"/);
   assert.match(quoteHtml, /id="quote-fleet"[^>]*data-success-body="fleet-form-body"[^>]*data-success-panel="fleet-form-success"/);
   assert.match(quoteHtml, /id="quote-dealer"[^>]*data-success-body="dealer-form-body"[^>]*data-success-panel="dealer-form-success"/);
-  assert.match(contactHtml, /id="callback-form"[^>]*data-success-body="callback-form-body"[^>]*data-success-panel="callback-success"/);
+  // T11: contact quote/callback requests route to quote.html (no local lead form submit).
+  assert.doesNotMatch(contactHtml, /id="callback-form"/);
+  assert.match(contactHtml, /quote\.html/);
   assert.match(dealerHtml, /id="apply-form"[^>]*data-success-body="apply-form"[^>]*data-success-panel="apply-form-success"/);
 });

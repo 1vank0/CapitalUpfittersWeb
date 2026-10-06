@@ -337,6 +337,33 @@ function normalizeServices(value) {
   return [...new Set(values.map(normalizeServiceId).filter(Boolean))];
 }
 
+
+const DISPOSABLE_EMAIL_DOMAINS = new Set([
+  'mailinator.com','guerrillamail.com','guerrillamail.net','10minutemail.com',
+  'tempmail.com','trashmail.com','yopmail.com','sharklasers.com','getnada.com',
+  'discard.email','temp-mail.org'
+]);
+
+function softSpamReason(body) {
+  const started = Date.parse(String(body.submission_started_at || ''));
+  if (Number.isFinite(started)) {
+    const ageMs = Date.now() - started;
+    // Form opened less than 3s ago → almost certainly automated.
+    if (ageMs >= 0 && ageMs < 3000) return 'too-fast';
+    // Future timestamp or >24h old is already handled elsewhere; ignore here.
+  }
+  const message = pickFirst(body, ['Message', 'message']);
+  const urlHits = (message.match(/https?:\/\/|www\./gi) || []).length;
+  if (urlHits > 2) return 'message-urls';
+  const email = pickFirst(body, ['Email', 'Business Email', 'Work Email', 'email']).toLowerCase();
+  const at = email.lastIndexOf('@');
+  if (at > 0) {
+    const domain = email.slice(at + 1);
+    if (DISPOSABLE_EMAIL_DOMAINS.has(domain)) return 'disposable-email';
+  }
+  return '';
+}
+
 function validatePayload(body) {
   if (!body || typeof body !== 'object' || Array.isArray(body) ||
       Object.getPrototypeOf(body) !== Object.prototype) {
@@ -1153,6 +1180,19 @@ module.exports = async function handler(req, res) {
       customer_confirmation: false,
       delivery_mode: 'discarded'
     }); // silently accept and drop
+  }
+
+  // Soft spam traps (same silent-accept pattern as the honeypot).
+  const spamReason = softSpamReason(body);
+  if (spamReason) {
+    console.warn('[lead] soft-spam discard:', spamReason);
+    return send(res, 200, {
+      ok: true,
+      persisted: null,
+      delivered: true,
+      customer_confirmation: false,
+      delivery_mode: 'discarded'
+    });
   }
 
   const persistence = await persistLeadRequest(body, req);

@@ -4,28 +4,28 @@
 <!--
   Capital Upfitters — Current Rebates & Offers Page
   Built by IVANKODev (https://IVANKODevelopment.com)
-  Design system: Manrope + Inter, Apple-style Signal Blue (#0071e3), pill buttons. See DESIGN.md.
+  Design system: Manrope + Inter, locked brand: blue #0066fc identity, yellow #fcd800 actions (see base.css), pill buttons. See DESIGN.md.
 -->
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <link rel="shortcut icon" href="./favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Current Rebates &amp; Offers | Capital Upfitters Rockville MD</title>
+<title>Rebate Deals Rockville MD | Capital Upfitters</title>
 <meta name="description" content="Active manufacturer rebates and limited-time offers on bedliners, tonneau covers, hitches, ceramic coating, and more. Capital Upfitters, Rockville MD. Updated regularly.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.capitalupfitters.com/rebates/">
+<link rel="canonical" href="https://www.capitalupfitters.com/rebates.html">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.capitalupfitters.com/rebates/">
-<meta property="og:title" content="Current Rebates &amp; Offers | Capital Upfitters Rockville MD">
+<meta property="og:url" content="https://www.capitalupfitters.com/rebates.html">
+<meta property="og:title" content="Rebate Deals Rockville MD | Capital Upfitters">
 <meta property="og:description" content="Active manufacturer rebates and limited-time offers on bedliners, tonneau covers, hitches, ceramic coating, and more. Capital Upfitters, Rockville MD. Updated regularly.">
 <meta property="og:image" content="https://www.capitalupfitters.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting Rockville MD">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Current Rebates &amp; Offers | Capital Upfitters Rockville MD">
+<meta name="twitter:title" content="Rebate Deals Rockville MD | Capital Upfitters">
 <meta name="twitter:description" content="Active manufacturer rebates and limited-time offers on bedliners, tonneau covers, hitches, ceramic coating, and more. Capital Upfitters, Rockville MD. Updated regularly.">
 <meta name="twitter:image" content="https://www.capitalupfitters.com/og.png">
 
@@ -71,12 +71,6 @@
     "addressLocality": "Rockville",
     "addressRegion": "MD",
     "postalCode": "20852"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "110",
-    "bestRating": "5"
   },
   "areaServed": [
     {"@type": "City", "name": "Rockville", "sameAs": "https://en.wikipedia.org/wiki/Rockville,_Maryland"},
@@ -171,7 +165,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  background: var(--color-accent);
+  background: var(--color-brand);
   color: #fff;
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-pill);
@@ -187,19 +181,19 @@
 }
 .rebate-expiry.urgent {
   background: #fee2e2;
-  color: #dc2626;
+  color: #b91c1c;
 }
 .rebate-expiry.ongoing {
   background: #d1fae5;
-  color: #059669;
+  color: #047857;
 }
 .rebate-expiry.exclusive {
-  background: var(--color-accent-light);
-  color: var(--color-accent);
+  background: var(--color-brand-soft);
+  color: var(--color-brand-text);
 }
 .rebate-expiry.seasonal {
   background: #fef3c7;
-  color: #d97706;
+  color: var(--color-brand-deep);
 }
 .rebate-body {
   padding: var(--space-6);
@@ -246,7 +240,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--color-accent);
+  background: var(--color-brand);
   color: #fff;
   font-family: var(--font-display);
   font-size: var(--text-xl);
@@ -345,6 +339,7 @@
   <script src="/lead-form.js" defer></script>
 
 
+<script src="/analytics.js" defer></script>
 </head>
 <body>
 
@@ -462,7 +457,7 @@
           <a href="./dealer-government.html#government">DOT &amp; EMS Upfitting</a>
           <a href="./dealer-government.html#government">Protective Coatings / GSA</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account →</a>
+          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.65); font-size: 11px;">Apply for Account →</a>
         </div>
       </li>
       <li><a href="./gallery.html">Gallery</a></li>
@@ -506,7 +501,7 @@
         <a href="./services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="./services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -528,7 +523,7 @@
         <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="./services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -577,7 +572,7 @@
     <h1 id="hero-heading">CURRENT REBATES &amp; OFFERS.</h1>
     <p class="page-hero-sub">Manufacturer rebates, package deals, and seasonal specials. All applied at time of service &mdash; no waiting, no mailing checks. Updated regularly.</p>
     <div class="hero-ctas">
-      <a href="./quote.html" class="btn btn-primary btn-lg">Get a Free Quote</a>
+      <a href="./quote.html" class="btn btn-primary btn-lg">Get a Quote</a>
       <a href="tel:3013041419" class="btn btn-outline btn-lg">Call (301) 304-1419</a>
     </div>
     <div class="rebates-note-strip" aria-label="Last updated notice">
@@ -747,7 +742,7 @@
 <section class="section" aria-labelledby="cta-heading">
   <div class="container">
     <div class="rebates-cta-banner reveal">
-      <div class="section-label" style="justify-content:center; color: rgba(255,255,255,0.55);">Always Expanding</div>
+      <div class="section-label" style="justify-content:center; color: rgba(255,255,255,0.65);">Always Expanding</div>
       <h2 id="cta-heading">DON'T SEE YOUR SERVICE?</h2>
       <p>New deals are added regularly. Call us to ask about current pricing specials and fleet discounts.</p>
       <div class="rebates-cta-actions">
@@ -813,11 +808,6 @@
 </footer>
 
 <!-- STICKY MOBILE CTA -->
-<div class="sticky-cta-bar" aria-label="Quick actions">
-  <a href="tel:3013041419" class="btn btn-outline">Call Now</a>
-  <a href="./quote.html" class="btn btn-primary">Get Quote</a>
-</div>
-
 <script>
 (function(){const btn=document.getElementById('hamburger'),mob=document.getElementById('nav-mobile'),cls=document.getElementById('nav-close');if(btn&&mob){btn.addEventListener('click',()=>{mob.classList.add('open');btn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'});if(cls)cls.addEventListener('click',()=>{mob.classList.remove('open');btn.setAttribute('aria-expanded','false');document.body.style.overflow=''})}})();
 (function(){const els=document.querySelectorAll('.reveal');if(!els.length)return;const io=new IntersectionObserver((e)=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');io.unobserve(el.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});els.forEach(el=>io.observe(el))})();
@@ -850,5 +840,11 @@
     if(c&&m){c.addEventListener('click',function(){m.classList.remove('open');document.body.style.overflow='';});}
   })();
   </script>
+
+<!-- Mobile action bar (<=768px): Call / Text / Get a Quote -->
+<nav class="mobile-action-bar" aria-label="Quick actions">
+  <a href="tel:+13013041419" class="mab-btn mab-call"><svg class="mab-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a>
+  <a href="./quote.html" class="mab-btn mab-quote">Get a Quote</a>
+</nav>
 </body>
 </html>

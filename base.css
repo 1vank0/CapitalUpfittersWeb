@@ -4,6 +4,9 @@
    Palette + fonts mirror the Next.js CRM app (approved-design.css)
    so both properties feel like one brand. Do not change tokens here
    without updating the Next.js side too.
+   LOCKED BRAND (Sep 2026): Blue #0066fc = identity (logo, icons, links,
+   labels, chips, focus). Yellow #fcd800 = action only (filled primary
+   CTAs + one headline accent word). Text on yellow is #0a0a0b.
    ============================================================ */
 
 /* ── Google Fonts ─────────────────────────────────────────── */
@@ -21,18 +24,33 @@ a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
 table { border-collapse: collapse; }
 
-/* ── Color Tokens (Apple-inspired palette) ────────────────── */
+/* ── Color Tokens (locked yellow + blue brand system) ──────── */
 :root {
-  /* ── Brand primitives — Apple's calibrated neutrals + Signal Blue ── */
-  --brand-ink:             #1d1d1f;  /* Apple's near-black — text on light */
-  --brand-navy:            #000000;  /* Apple's true onyx — hero + header bg */
-  --brand-navy-mid:        #1d1d1f;  /* raised dark surface */
-  --brand-amber:           #0071e3;  /* Signal Blue — filled CTAs (was amber) */
-  --brand-amber-dark:      #0066cc;  /* Signal Blue link/hover */
+  /* ── Brand primitives ── */
+  --brand-ink:             #1d1d1f;  /* near-black — text on light */
+  --brand-navy:            #0a0a0b;  /* near-black — hero, header, dark sections */
+  --brand-navy-mid:        #16161a;  /* raised dark surface */
+
+  /* Blue = brand identity (logo mark, icons, text links, labels, chips, focus) */
+  --brand-blue:            #0066fc;
+  --brand-blue-hover:      #0052d6;
+  --brand-blue-deep:       #0c3c84;
+  --brand-blue-soft:       rgba(0, 102, 252, 0.10);
+  --brand-blue-on-dark:    #4d94ff;  /* AA tint of brand blue for small text on near-black (6.6:1) */
+
+  /* Yellow = action only (filled primary CTAs + one headline accent word) */
+  --brand-yellow:          #fcd800;
+  --brand-yellow-hover:    #e6c400;
+  --brand-yellow-soft:     rgba(252, 216, 0, 0.16);
+  --brand-on-yellow:       #0a0a0b;  /* text/icons on yellow — never white */
+
+  /* Legacy names — remapped intentionally (were Signal Blue #0071e3/#0066cc) */
+  --brand-amber:           var(--brand-yellow);
+  --brand-amber-dark:      var(--brand-yellow-hover);
   --brand-white:           #ffffff;  /* Paper */
   --brand-surface:         #f5f5f7;  /* Eggshell — Apple's signature section bg */
   --brand-body:            #1d1d1f;  /* body copy on light */
-  --brand-muted:           #6e6e73;  /* Apple's secondary text */
+  --brand-muted:           #636366;  /* Apple's secondary text */
   --brand-line:            transparent; /* Apple uses zero borders */
 
   /* ── Legacy aliases — kept so existing selectors don't break ── */
@@ -45,15 +63,28 @@ table { border-collapse: collapse; }
   --color-text:            var(--brand-ink);
   --color-text-secondary:  var(--brand-body);
   --color-text-muted:      var(--brand-muted);
-  --color-text-faint:      #8a8f97;
+  --color-text-faint:      #636366;  /* was #8a8f97 (3.3:1 on white, fails AA) */
   --color-text-inverse:    var(--brand-white);
   --color-text-inverse-muted: rgba(255, 255, 255, 0.72);
 
-  /* Warm amber replaces the old cool navy accent */
-  --color-accent:          var(--brand-amber);
-  --color-accent-hover:    var(--brand-amber-dark);
-  --color-accent-light:    rgba(249, 166, 7, 0.10);
+  /* Accent = ACTION yellow. Use only for filled primary CTAs. */
+  --color-accent:          var(--brand-yellow);
+  --color-accent-hover:    var(--brand-yellow-hover);
+  --color-accent-light:    var(--brand-yellow-soft);
   --color-accent-navy:     var(--brand-navy);
+  --color-action:          var(--brand-yellow);
+  --color-action-hover:    var(--brand-yellow-hover);
+  --color-on-action:       var(--brand-on-yellow);
+
+  /* Brand blue for every non-CTA accent */
+  --color-brand:           var(--brand-blue);        /* fills, icons, borders */
+  --color-brand-hover:     var(--brand-blue-hover);
+  --color-brand-text:      var(--brand-blue-hover);  /* small text/links on light (6.1:1 on #f5f5f7) */
+  --color-brand-deep:      var(--brand-blue-deep);
+  --color-brand-soft:      var(--brand-blue-soft);
+  --color-brand-on-dark:   var(--brand-blue-on-dark);
+  --color-focus:           var(--brand-blue);
+  --color-rating:          var(--brand-yellow);      /* review stars, per locked mock */
 
   --color-border:          var(--brand-line);
   --color-border-dark:     rgba(255, 255, 255, 0.16);
@@ -67,6 +98,7 @@ table { border-collapse: collapse; }
   --color-nav-text:        var(--brand-white);
   --color-footer-bg:       var(--brand-navy);
   --color-footer-text:     rgba(255, 255, 255, 0.72);
+  --color-footer-faint:    rgba(255, 255, 255, 0.6);   /* small legal text on near-black (7.7:1) */
 
   /* ── Typography ─────────────────────────────────────────── */
   /* Manrope — geometric with subtle warmth, our SF Pro Display stand-in */
@@ -144,7 +176,7 @@ table { border-collapse: collapse; }
   --color-text-faint:      #484f58;
   --color-border:          #30363d;
   --color-divider:         #21262d;
-  --color-accent-light:    rgba(249, 166, 7, 0.20);
+  --color-brand-soft:      rgba(0, 102, 252, 0.20);
 }
 
 /* ── Base typography ────────────────────────────────────── */
@@ -214,50 +246,83 @@ p + p { margin-top: var(--space-4); }
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-2);
   font-family: var(--font-body);
   font-size: var(--text-base);
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: -0.01em;
   text-transform: none;
   padding: 0.75rem 1.75rem;
   border-radius: var(--radius-pill);  /* Apple's signature pill button */
-  border: none;
+  border: 2px solid transparent;      /* same box size for filled + outline */
   cursor: pointer;
   transition: all var(--transition-base);
   white-space: nowrap;
   line-height: 1;
 }
 .btn-primary {
-  background: var(--color-accent);
-  color: var(--brand-white);          /* white text on Signal Blue */
+  background: var(--color-action);
+  border-color: var(--color-action);
+  color: var(--color-on-action);      /* near-black on yellow (14.1:1) */
 }
 .btn-primary:hover {
-  background: var(--color-accent-hover);
+  background: var(--color-action-hover);
+  border-color: var(--color-action-hover);
+  color: var(--color-on-action);
 }
+/* Secondary: transparent, dark border on light surfaces … */
 .btn-outline {
   background: transparent;
-  color: var(--color-accent);        /* Signal Blue text, no border */
-  border: none;
+  color: var(--brand-ink);
+  border-color: var(--brand-ink);
 }
 .btn-outline:hover {
-  color: var(--color-accent-hover);
-  text-decoration: underline;
+  background: var(--brand-ink);
+  color: var(--brand-white);
 }
+/* … yellow border + white label on dark surfaces */
+.section--dark .btn-outline,
+.cta-banner .btn-outline,
+.page-hero .btn-outline,
+.geo-hero .btn-outline,
+.hero .btn-outline,
+.sticky-cta-bar .btn-outline,
+.nav-mobile .btn-outline,
+.footer .btn-outline,
+.on-dark .btn-outline {
+  color: var(--brand-white);
+  border-color: var(--color-action);
+}
+.section--dark .btn-outline:hover,
+.cta-banner .btn-outline:hover,
+.page-hero .btn-outline:hover,
+.geo-hero .btn-outline:hover,
+.hero .btn-outline:hover,
+.sticky-cta-bar .btn-outline:hover,
+.nav-mobile .btn-outline:hover,
+.footer .btn-outline:hover,
+.on-dark .btn-outline:hover {
+  background: var(--brand-yellow-soft);
+  color: var(--brand-white);
+  border-color: var(--color-action);
+}
+/* Ghost = text link button (brand blue) */
 .btn-ghost {
   background: transparent;
-  color: var(--color-accent);
-  border: none;
+  color: var(--color-brand-text);
 }
 .btn-ghost:hover {
-  color: var(--color-accent-hover);
+  color: var(--brand-blue-deep);
+  text-decoration: underline;
 }
+.section--dark .btn-ghost { color: var(--color-brand-on-dark); }
 .btn-dark {
   background: var(--color-surface-dark);
   color: #fff;
 }
 .btn-dark:hover {
-  background: var(--color-accent);
+  background: var(--brand-navy-mid);
 }
 .btn-lg { padding: 1.1rem 2.75rem; font-size: var(--text-lg); }
 .btn-sm { padding: 0.6rem 1.5rem; font-size: var(--text-sm); }
@@ -272,7 +337,7 @@ p + p { margin-top: var(--space-4); }
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-brand-text);
   margin-bottom: var(--space-4);
 }
 .label::before {
@@ -280,7 +345,7 @@ p + p { margin-top: var(--space-4); }
   display: block;
   width: 20px;
   height: 2px;
-  background: var(--color-accent);
+  background: var(--color-brand);
 }
 .badge {
   display: inline-block;
@@ -291,7 +356,7 @@ p + p { margin-top: var(--space-4); }
   text-transform: uppercase;
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-pill);
-  background: var(--color-accent);
+  background: var(--color-brand);
   color: #fff;
 }
 
@@ -317,7 +382,7 @@ p + p { margin-top: var(--space-4); }
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-brand-text);
   margin-bottom: var(--space-4);
   display: flex;
   align-items: center;
@@ -327,9 +392,20 @@ p + p { margin-top: var(--space-4); }
   content: '';
   width: 24px;
   height: 2px;
-  background: var(--color-accent);
+  background: var(--color-brand);
   flex-shrink: 0;
 }
+.section--dark .label,
+.section--dark .section-label,
+.on-dark .section-label { color: var(--color-brand-on-dark); }
+
+/* ── Links, focus, accent word (locked brand) ──────────── */
+main p a:not([class]), .prose a:not([class]) { color: var(--color-brand-text); text-decoration: underline; text-underline-offset: 2px; }
+main p a:not([class]):hover, .prose a:not([class]):hover { color: var(--brand-blue-deep); }
+.section--dark p a:not([class]) { color: var(--color-brand-on-dark); }
+:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+.announce-bar :focus-visible, .stats-strip :focus-visible, .cta-banner :focus-visible { outline-color: #fff; }
+.accent-word { color: var(--brand-yellow); font-style: italic; }
 
 /* ── Divider ────────────────────────────────────────────── */
 .divider {

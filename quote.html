@@ -21,9 +21,9 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="shortcut icon" href="favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Get a Free Quote | Capital Upfitters Rockville MD</title>
+  <title>Quote Builder Rockville MD | Capital Upfitters</title>
 <link rel="canonical" href="https://www.capitalupfitters.com/quote.html">
-  <meta name="description" content="Request a free upfitting quote from Capital Upfitters. We respond same business day. Retail, fleet, and dealer quote forms available. Rockville, MD.">
+  <meta name="description" content="Request a detailed upfitting quote in Rockville, MD. We offer same-week availability on most services. Get a quote today. Call (301) 304-1419.">
   <link rel="stylesheet" href="./base.css">
   <link rel="stylesheet" href="./style.css">
 <style>
@@ -53,11 +53,11 @@
       position: relative;
     }
     .audience-tab:hover {
-      border-color: var(--color-accent);
+      border-color: var(--color-brand);
     }
     .audience-tab.active {
-      border-color: var(--color-accent);
-      background: var(--color-accent-light);
+      border-color: var(--color-brand);
+      background: var(--color-brand-soft);
     }
     .audience-tab.active::after {
       content: '';
@@ -69,7 +69,7 @@
       height: 0;
       border-left: 8px solid transparent;
       border-right: 8px solid transparent;
-      border-top: 8px solid var(--color-accent);
+      border-top: 8px solid var(--color-brand);
     }
     .audience-tab-icon {
       width: 40px;
@@ -84,7 +84,7 @@
       transition: all var(--transition-base);
     }
     .audience-tab.active .audience-tab-icon {
-      background: var(--color-accent);
+      background: var(--color-brand);
       color: #fff;
     }
     .audience-tab-title {
@@ -148,7 +148,7 @@
     .form-checkbox-item input[type="checkbox"] {
       width: 16px;
       height: 16px;
-      accent-color: var(--color-accent);
+      accent-color: var(--color-brand);
       flex-shrink: 0;
       cursor: pointer;
     }
@@ -178,14 +178,16 @@
     .vin-lookup-btn {
       display: flex; align-items: center; gap: 6px;
       padding: 0 var(--space-5);
-      background: var(--color-accent); color: #fff;
+      background: var(--color-action); color: var(--color-on-action);
       border: none; border-radius: var(--radius-lg);
       font-family: var(--font-display); font-size: var(--text-sm);
       font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
       cursor: pointer; white-space: nowrap; flex-shrink: 0;
       transition: background 140ms ease;
     }
-    .vin-lookup-btn:hover { background: #1a2742; }
+    .vin-lookup-btn:hover { background: var(--color-action-hover);
+  color: var(--color-on-action);
+}
     .vin-lookup-btn:disabled { opacity: 0.6; cursor: not-allowed; }
     .spin-icon { animation: vin-spin 0.8s linear infinite; transform-origin: center; }
     @keyframes vin-spin { to { transform: rotate(360deg); } }
@@ -211,10 +213,10 @@
       cursor: pointer; position: relative; background: var(--color-surface);
       transition: border-color 180ms, background 180ms;
     }
-    .photo-upload-zone:hover, .photo-upload-zone.drag-over { border-color: var(--color-accent); background: #f0f4ff; }
+    .photo-upload-zone:hover, .photo-upload-zone.drag-over { border-color: var(--color-brand); background: #f0f4ff; }
     .photo-upload-icon { color: var(--color-text-muted); margin-bottom: var(--space-3); }
     .photo-upload-text { font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-2); }
-    .photo-upload-link { color: var(--color-accent); font-weight: 600; text-decoration: underline; }
+    .photo-upload-link { color: var(--color-brand-text); font-weight: 600; text-decoration: underline; }
     .photo-upload-hint { font-size: var(--text-xs); color: var(--color-text-muted); }
     .photo-upload-input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
     .photo-preview-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-3); margin-top: var(--space-4); }
@@ -279,12 +281,12 @@
       align-items: flex-start;
       transition: border-color var(--transition-fast);
     }
-    .contact-alt-card:hover { border-color: var(--color-accent); }
+    .contact-alt-card:hover { border-color: var(--color-brand); }
     .contact-alt-card-icon {
       width: 44px;
       height: 44px;
       border-radius: var(--radius-md);
-      background: var(--color-accent);
+      background: var(--color-brand);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -305,7 +307,7 @@
       display: block;
       font-size: var(--text-sm);
       font-weight: 600;
-      color: var(--color-accent);
+      color: var(--color-brand-text);
       margin-bottom: var(--space-1);
     }
     .contact-alt-card a:hover { text-decoration: underline; }
@@ -344,7 +346,7 @@
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.65);
       margin-top: var(--space-2);
     }
 
@@ -387,7 +389,7 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--color-accent-navy);
-      background: var(--color-accent-light);
+      background: var(--color-brand-soft);
       padding: 0.4rem 0.85rem;
       border-radius: var(--radius-pill);
       margin-bottom: var(--space-6);
@@ -446,7 +448,7 @@
       text-transform: uppercase;
       color: var(--color-text-secondary);
     }
-    .form-trust-strip-item svg { flex-shrink: 0; color: var(--color-accent); }
+    .form-trust-strip-item svg { flex-shrink: 0; color: var(--color-brand-text); }
     @media (max-width: 480px) {
       .form-trust-strip { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
     }
@@ -490,19 +492,20 @@
 </script>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.capitalupfitters.com/quote.html">
-<meta property="og:title" content="Get a Free Quote | Capital Upfitters Rockville MD">
-<meta property="og:description" content="Request a free upfitting quote from Capital Upfitters. We respond same business day. Retail, fleet, and dealer quote forms available. Rockville, MD.">
+<meta property="og:title" content="Quote Builder Rockville MD | Capital Upfitters">
+<meta property="og:description" content="Request a detailed upfitting quote in Rockville, MD. We offer same-week availability on most services. Get a quote today. Call (301) 304-1419.">
 <meta property="og:image" content="https://www.capitalupfitters.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting in Rockville, MD">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Get a Free Quote | Capital Upfitters Rockville MD">
-<meta name="twitter:description" content="Request a free upfitting quote from Capital Upfitters. We respond same business day. Retail, fleet, and dealer quote forms available. Rockville, MD.">
+<meta name="twitter:title" content="Quote Builder Rockville MD | Capital Upfitters">
+<meta name="twitter:description" content="Request a detailed upfitting quote in Rockville, MD. We offer same-week availability on most services. Get a quote today. Call (301) 304-1419.">
 <meta name="twitter:image" content="https://www.capitalupfitters.com/og.png">
   <script src="/attribution.js" defer></script>
   <script src="/lead-form.js" defer></script>
 
+<script src="/analytics.js" defer></script>
 </head>
 <body>
 
@@ -617,7 +620,7 @@
           <a href="./dealer-government.html#government">DOT &amp; EMS Upfitting</a>
           <a href="./dealer-government.html#government">Protective Coatings / GSA</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account →</a>
+          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.65); font-size: 11px;">Apply for Account →</a>
         </div>
       </li>
       <li><a href="./gallery.html">Gallery</a></li>
@@ -660,7 +663,7 @@
         <a href="./services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="./services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -682,7 +685,7 @@
         <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="./services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -726,13 +729,13 @@
   --muted:#6B7280;
   --line:#E7E9EE;
   --line-2:#D7DBE3;
-  --blue:#1B6EF3;
-  --blue-dk:#0F4FBF;
+  --blue:var(--brand-blue);
+  --blue-dk:var(--brand-blue-hover);
   --blue-soft:#EAF1FE;
   --blue-soft-2:#DCE8FD;
-  --cream:#F5EEE1;
-  --amber:#B4741A;
-  --amber-soft:#FBF1E0;
+  --cream:#EEF4FF;
+  --amber:var(--brand-blue-deep);
+  --amber-soft:#E8EEF8;
   --ok:#0E9F6E;
   --r-lg:18px;
   --r-md:14px;
@@ -766,10 +769,10 @@
   border-radius:999px;
   padding:11px 26px;
   font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--blue);
+  color:var(--blue-dk);
 }
 .cu-p6 .eyebrow .dot {width:7px;height:7px;border-radius:50%;background:var(--blue);flex:none}
-.cu-p6 .eyebrow .sep {color:#B9AE99}
+.cu-p6 .eyebrow .sep {color:#5F6673}
 .cu-p6 .eyebrow .step-lbl {color:#1B1B1B}
 .cu-p6 h1.title {
   font-family:var(--fh);
@@ -842,13 +845,13 @@
 .cu-p6 .tile .t-name {display:block;font-size:17px;font-weight:700;letter-spacing:-.01em;line-height:1.25}
 .cu-p6 .tile .t-sub {display:block;margin-top:5px;font-size:12.5px;line-height:1.4;color:var(--muted)}
 .cu-p6 .tile .t-badge {
-  position:absolute;top:10px;right:10px;
-  background:var(--cream);color:var(--blue);
+position:absolute;top:10px;right:10px;
+  background:var(--cream);color:var(--blue-dk);
   font-size:10px;font-weight:800;letter-spacing:.09em;
   padding:4px 8px;border-radius:7px;
 }
 .cu-p6 .tile .t-chosen {
-  display:block;margin-top:5px;font-size:13.5px;font-weight:500;color:var(--blue);line-height:1.35;
+  display:block;margin-top:5px;font-size:13.5px;font-weight:500;color:var(--blue-dk);line-height:1.35;
 }
 .cu-p6 .tile .t-chosen .plus {color:var(--amber)}
 .cu-p6 .tile .t-check {
@@ -856,9 +859,9 @@
   width:26px;height:26px;border-radius:50%;
   background:var(--blue);color:#fff;
   display:none;align-items:center;justify-content:center;
-  box-shadow:0 3px 10px rgba(27,110,243,.4);
+  box-shadow:0 3px 10px rgba(0,102,252,.4);
 }
-.cu-p6 .tile.is-open {border-color:var(--blue);background:#FBFCFF;box-shadow:0 0 0 4px rgba(27,110,243,.09)}
+.cu-p6 .tile.is-open {border-color:var(--blue-dk);background:#FBFCFF;box-shadow:0 0 0 4px rgba(0,102,252,.09)}
 .cu-p6 .tile.is-open .t-icon {background:var(--blue);border-color:var(--blue);color:#fff}
 .cu-p6 .tile.is-open .t-check {display:flex}
 .cu-p6 .tile.is-capped {opacity:.42;cursor:not-allowed}
@@ -882,7 +885,7 @@
 }
 .cu-p6 .panel-head .req {
   font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--blue);background:var(--blue-soft);padding:5px 10px;border-radius:7px;
+  color:var(--blue-dk);background:var(--blue-soft);padding:5px 10px;border-radius:7px;
 }
 .cu-p6 .panel-sub {font-size:14.5px;color:var(--muted);margin:0 0 20px}
 .cu-p6 .panel .sect-label {
@@ -919,23 +922,23 @@
 .cu-p6 .opt .mark {
   position:absolute;left:-1px;top:-1px;width:0;height:0;
 }
-.cu-p6 .opt.sel {border-color:var(--blue);background:#F8FAFF;box-shadow:0 0 0 3px rgba(27,110,243,.1)}
-.cu-p6 .opt.sel .thumb {background:linear-gradient(160deg,#1B6EF3 0%,#2C7BFA 100%);color:#fff;border-color:#1B6EF3}
+.cu-p6 .opt.sel {border-color:var(--blue-dk);background:#F8FAFF;box-shadow:0 0 0 3px rgba(0,102,252,.1)}
+.cu-p6 .opt.sel .thumb {background:linear-gradient(160deg,var(--brand-blue) 0%,var(--brand-blue) 100%);color:#fff;border-color:var(--brand-blue)}
 .cu-p6 .opt .tick {
   position:absolute;bottom:13px;right:13px;width:21px;height:21px;border-radius:50%;
   border:1.5px solid var(--line-2);display:flex;align-items:center;justify-content:center;
   transition:.16s ease;background:#fff;
 }
 .cu-p6 .opt.addon .tick {border-radius:6px}
-.cu-p6 .opt.sel .tick {background:var(--blue);border-color:var(--blue);color:#fff}
+.cu-p6 .opt.sel .tick {background:var(--blue);border-color:var(--blue-dk);color:#fff}
 .cu-p6 .opt.sel.addon .tick {background:var(--amber);border-color:var(--amber)}
 .cu-p6 .opt .tick svg {width:12px;height:12px;opacity:0;transition:.16s}
 .cu-p6 .opt.sel .tick svg {opacity:1}
 
 /* add-on flavour */
-.cu-p6 .opt.addon .thumb {background:linear-gradient(160deg,#FDF6E9 0%,#F8EDD8 100%);color:var(--amber);border-color:#F1E3CA}
-.cu-p6 .opt.addon.sel {border-color:var(--amber);background:#FFFBF4;box-shadow:0 0 0 3px rgba(180,116,26,.11)}
-.cu-p6 .opt.addon.sel .thumb {background:linear-gradient(160deg,#B4741A 0%,#CE8A2A 100%);color:#fff;border-color:var(--amber)}
+.cu-p6 .opt.addon .thumb {background:linear-gradient(160deg,#F1F5FC 0%,#E6EDF8 100%);color:var(--amber);border-color:#C9D6EC}
+.cu-p6 .opt.addon.sel {border-color:var(--amber);background:#F4F7FD;box-shadow:0 0 0 3px rgba(12,60,132,.11)}
+.cu-p6 .opt.addon.sel .thumb {background:linear-gradient(160deg,var(--brand-blue-deep) 0%,var(--brand-blue-deep) 100%);color:#fff;border-color:var(--amber)}
 .cu-p6 .opt .combo {
   display:inline-flex;align-items:center;gap:5px;margin-top:8px;
   font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
@@ -945,7 +948,7 @@
 .cu-p6 .lock-note {
   display:none;align-items:center;gap:8px;margin:0 0 12px;
   font-size:13px;color:var(--amber);background:var(--amber-soft);
-  border:1px solid #F1E3CA;border-radius:9px;padding:9px 12px;
+  border:1px solid #C9D6EC;border-radius:9px;padding:9px 12px;
 }
 .cu-p6 .addons-wrap.locked .lock-note {display:flex}
 
@@ -1000,34 +1003,49 @@
   max-width:1240px;margin:0 auto;padding:16px 28px;
   display:flex;align-items:center;gap:20px;
 }
-.cu-p6-bar .counts {font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#8A909C;flex:none}
+.cu-p6-bar .counts {font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#5F6673;flex:none}
 .cu-p6-bar .counts b {color:#0E0F11;font-size:15px;letter-spacing:0;display:block;margin-top:3px;text-transform:none;font-weight:600}
 .cu-p6-bar .chips {display:flex;flex-wrap:wrap;gap:8px;flex:1;min-width:0;max-height:62px;overflow:auto}
 .cu-p6-bar .chip {
   display:inline-flex;align-items:center;gap:7px;
-  background:#EAF1FE;color:#0F4FBF;
+  background:#EAF1FE;color:var(--brand-blue-hover);
   border:1px solid #DCE8FD;
   border-radius:999px;padding:6px 8px 6px 12px;font-size:13px;font-weight:500;white-space:nowrap;
 }
-.cu-p6-bar .chip .x {width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(15,79,191,.12)}
-.cu-p6-bar .chip .x:hover {background:rgba(15,79,191,.25)}
-.cu-p6-bar .chip.warn {background:#FFF7EA;border-color:#F1E3CA;color:#B4741A}
-.cu-p6-bar .chip .cnt {background:rgba(15,79,191,.14);border-radius:999px;padding:1px 7px;font-size:11.5px;font-weight:700}
+.cu-p6-bar .chip .x {width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,82,214,.12)}
+.cu-p6-bar .chip .x:hover {background:rgba(0,82,214,.25)}
+.cu-p6-bar .chip.warn {background:#F4F7FD;border-color:#C9D6EC;color:var(--brand-blue-deep)}
+.cu-p6-bar .chip .cnt {background:rgba(0,82,214,.14);border-radius:999px;padding:1px 7px;font-size:11.5px;font-weight:700}
 .cu-p6-bar .empty {font-size:14px;color:#6B7280;flex:1}
 .cu-p6-bar .btn, .cu-p6 .btn {
-  flex:none;background:#1B6EF3;color:#fff;
-  border-radius:11px;padding:14px 26px;
-  font-size:15px;font-weight:600;letter-spacing:-.01em;
-  box-shadow:0 6px 18px rgba(27,110,243,.28);
+  flex:none;background:var(--color-action);color:var(--color-on-action);
+  border-radius:var(--radius-pill);padding:14px 26px;
+  font-size:15px;font-weight:700;letter-spacing:-.01em;
+  box-shadow:none;
   transition:.16s ease;display:inline-flex;align-items:center;gap:9px;
 }
-.cu-p6-bar .btn:hover, .cu-p6 .btn:hover {background:#1560DC;transform:translateY(-1px)}
-.cu-p6-bar .btn:disabled, .cu-p6 .btn:disabled {background:#C9CEDA;box-shadow:none;cursor:not-allowed;transform:none}
+.cu-p6-bar .btn:hover, .cu-p6 .btn:hover {background:var(--color-action-hover);transform:translateY(-1px)}
+.cu-p6-bar .btn:disabled, .cu-p6 .btn:disabled {background:#E4E6EB;box-shadow:none;cursor:not-allowed;transform:none
+  color: #5F6673;
+}
 .cu-p6-bar .btn.ghost, .cu-p6 .btn.ghost {background:#fff;color:#0E0F11;border:1.5px solid #D7DBE3;box-shadow:none}
 .cu-p6-bar .btn.ghost:hover, .cu-p6 .btn.ghost:hover {background:#F7F8FA;border-color:#BFC5D1}
 
 /* ---------- step 2 ---------- */
 .cu-p6 .step2 {display:none}
+/* ---------- step 1: vehicle ---------- */
+.cu-p6 .step1 {display:none}
+.cu-p6 h2.vtitle {font-family:var(--fh);font-weight:800;font-size:clamp(30px,5vw,58px);line-height:1.02;letter-spacing:-.02em;text-align:center;margin:0 0 18px;text-transform:uppercase}
+.cu-p6 .vcard {max-width:860px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;box-shadow:var(--shadow-1)}
+.cu-p6 .vgrid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.cu-p6 .vgrid .field select, .cu-p6 .vgrid .field input {font-size:16px;min-height:48px}
+.cu-p6 .vgrid .field select {appearance:auto}
+.cu-p6 .vgrid .field[hidden] {display:none !important}
+.cu-p6 .vskip {display:block;margin:18px auto 0;min-height:44px;padding:0 12px;font-size:14px;font-weight:600;color:var(--brand-blue-hover,#0052d6);text-decoration:underline;text-underline-offset:3px}
+.cu-p6 .rrow.rveh .rico {display:flex;align-items:center;justify-content:center}
+@media (max-width:820px){ .cu-p6 .vgrid {grid-template-columns:1fr} .cu-p6 .vcard {padding:20px 16px} }
+/* Mobile action bar is hidden while the retail build bar is on screen (no stacked bars) */
+@media (max-width:768px){ body.cu-quote-bar-on .mobile-action-bar {display:none} }
 .cu-p6 .review {
   background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
   padding:8px 26px;box-shadow:var(--shadow-1);margin-bottom:22px;
@@ -1043,7 +1061,7 @@
 .cu-p6 .rrow .rsvc {font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8A909C;margin-bottom:4px}
 .cu-p6 .rrow .rpick {font-size:16.5px;font-weight:600;letter-spacing:-.01em}
 .cu-p6 .rrow .radds {margin-top:7px;display:flex;flex-wrap:wrap;gap:7px}
-.cu-p6 .rrow .radd {font-size:12.5px;font-weight:600;color:var(--amber);background:var(--amber-soft);border:1px solid #F1E3CA;border-radius:7px;padding:4px 9px}
+.cu-p6 .rrow .radd {font-size:12.5px;font-weight:600;color:var(--amber);background:var(--amber-soft);border:1px solid #C9D6EC;border-radius:7px;padding:4px 9px}
 .cu-p6 .rrow .redit {flex:none;font-size:13.5px;font-weight:600;color:var(--blue)}
 .cu-p6 .rrow .redit:hover {text-decoration:underline}
 .cu-p6 .form {background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;box-shadow:var(--shadow-1)}
@@ -1057,7 +1075,7 @@
   border:1.5px solid var(--line);border-radius:10px;padding:12px 13px;font-size:15px;background:#fff;
   transition:.15s ease;font-family:var(--fb);
 }
-.cu-p6 .field input:focus, .cu-p6 .field select:focus, .cu-p6 .field textarea:focus {outline:0;border-color:var(--blue);box-shadow:0 0 0 3px rgba(27,110,243,.12)}
+.cu-p6 .field input:focus, .cu-p6 .field select:focus, .cu-p6 .field textarea:focus {outline:0;border-color:var(--blue-dk);box-shadow:0 0 0 3px rgba(0,102,252,.12)}
 .cu-p6 .done {
   display:none;text-align:center;background:#fff;border:1px solid var(--line);
   border-radius:var(--r-lg);padding:56px 26px;box-shadow:var(--shadow-1);
@@ -1157,7 +1175,7 @@
 .cu-p6 .done .cu-warning {
   display:none; margin:14px auto 0; max-width:440px;
   font-size:13.5px; color:var(--amber); background:var(--amber-soft);
-  border:1px solid #F1E3CA; border-radius:9px; padding:10px 14px;
+  border:1px solid #C9D6EC; border-radius:9px; padding:10px 14px;
 }
 .cu-p6 .done .cu-warning.show { display:block; }
 /* Body override — Patriot CSS set body{padding-bottom:132px} which we DON'T want globally.
@@ -1171,6 +1189,17 @@ body.cu-p6-active { padding-bottom: 132px !important; }
 /* Fleet & dealer titles use Patriot title style */
 .cu-p6-mode--fleet .title, .cu-p6-mode--dealer .title { text-align:center; }
 
+
+.cu-p6 .svc-details {margin-top:18px;display:none}
+.cu-p6 .svc-details.is-on {display:block}
+.cu-p6 .svc-details .sd-card {background:#fff;border:1px solid var(--line,#e5e7eb);border-radius:14px;padding:18px 16px;margin-bottom:12px}
+.cu-p6 .svc-details .sd-card h3 {margin:0 0 10px;font-size:15px;font-weight:700}
+.cu-p6 .svc-details .sd-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cu-p6 .svc-details .sd-grid .field.full {grid-column:1/-1}
+.cu-p6 .zip-note {display:none;margin-top:8px;padding:10px 12px;border-radius:10px;background:#fff8e1;border:1px solid #fcd800;font-size:13px;line-height:1.45;color:#3b3b3b}
+.cu-p6 .zip-note.is-on {display:block}
+@media (max-width:820px){ .cu-p6 .svc-details .sd-grid {grid-template-columns:1fr} }
+
 </style>
 
 <!-- ============ PHASE 6B: PATRIOT-FIDELITY QUOTE ============ -->
@@ -1178,9 +1207,9 @@ body.cu-p6-active { padding-bottom: 132px !important; }
   <div class="page-hero-bg" style="background: linear-gradient(135deg, #0d1117 0%, #1a2332 50%, #203055 100%);"></div>
   <div class="page-hero-overlay"></div>
   <div class="container page-hero-content" style="text-align:center;position:relative;z-index:2;">
-    <p style="color:#f59e0b;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:0 0 9px;">Free — same-business-day response</p>
-    <h1 style="color:#fff;font-family:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:800;font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.02em;margin:0 0 8px;">Build your quote.</h1>
-    <p style="color:rgba(255,255,255,.72);font-size:15px;line-height:1.5;max-width:640px;margin:0 auto;">Choose your services, select the options you want, and send us your vehicle details.</p>
+    <p style="color:var(--color-brand-on-dark);font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px;">Free — same-business-day response</p>
+    <h1 style="color:#fff;font-family:'Archivo','Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:800;font-size:clamp(32px,4.6vw,54px);line-height:1.05;letter-spacing:-.02em;margin:0 0 12px;">Build your quote.</h1>
+    <p style="color:rgba(255,255,255,.72);font-size:17px;line-height:1.5;max-width:640px;margin:0 auto;">Tell us what you want done and where to send the price. We&rsquo;ll get back the same business day.</p>
   </div>
 </section>
 
@@ -1198,16 +1227,49 @@ body.cu-p6-active { padding-bottom: 132px !important; }
   <section class="cu-p6-mode cu-p6-mode--retail is-active" data-mode-body="retail">
 <div class="wrap">
 
-  <!-- ============ STEP 1 ============ -->
+  <!-- ============ STEP 1: VEHICLE ============ -->
+  <section class="step0" id="step0">
+    <div class="eyebrow">
+      <span class="dot"></span>
+      <span class="step-lbl">Step 1 of 3</span>
+      <span class="sep">&middot;</span>
+      <span>Your Vehicle</span>
+    </div>
+
+    <h2 class="title vtitle">What are you driving?</h2>
+    <p class="lede">Year, make and model let us quote the right parts and fitment for your exact vehicle.</p>
+
+    <div class="vcard">
+      <div class="vgrid">
+        <div class="field" id="fw-year"><label for="f-year">Year *</label>
+          <select id="f-year" name="Vehicle Year" form="quote-retail" autocomplete="off"><option value="">Select year</option></select>
+          <span class="field-err">Pick a year.</span></div>
+        <div class="field" id="fw-make"><label for="f-make-sel">Make *</label>
+          <select id="f-make-sel" autocomplete="off"><option value="">Select make</option><option value="Ford">Ford</option><option value="Chevrolet">Chevrolet</option><option value="GMC">GMC</option><option value="Ram">Ram</option><option value="Toyota">Toyota</option><option value="Nissan">Nissan</option><option value="Jeep">Jeep</option><option value="Honda">Honda</option><option value="Mercedes-Benz">Mercedes-Benz (Sprinter)</option><option value="Other">Other</option></select>
+          <input type="hidden" id="f-make" name="Vehicle Make" form="quote-retail">
+          <span class="field-err">Pick a make.</span></div>
+        <div class="field" id="fw-make-other" hidden><label for="f-make-other">Which make? *</label>
+          <input id="f-make-other" placeholder="e.g. Dodge, Isuzu, Hino" autocomplete="off">
+          <span class="field-err">Tell us the make.</span></div>
+        <div class="field" id="fw-model"><label for="f-model">Model *</label>
+          <input id="f-model" name="Vehicle Model" form="quote-retail" list="f-model-list" placeholder="e.g. F-150 SuperCrew" autocomplete="off">
+          <datalist id="f-model-list"></datalist>
+          <span class="field-err">Tell us the model.</span></div>
+      </div>
+      <button type="button" class="vskip" id="vehSkip">Not sure of the vehicle? Continue with &ldquo;Not sure&rdquo;</button>
+    </div>
+  </section>
+
+  <!-- ============ STEP 2 ============ -->
   <section class="step1" id="step1">
     <div class="eyebrow">
       <span class="dot"></span>
-      <span class="step-lbl">Step 1 of 2</span>
+      <span class="step-lbl">Step 2 of 3</span>
       <span class="sep">&middot;</span>
       <span>Pick Services</span>
     </div>
 
-    <h1 class="title">Choose your services</h1>
+    <h2 class="title">Choose your services</h2>
 
     <p class="lede">
       Start with one or select several for a package quote. Each service opens its available options and a plain-English explanation.
@@ -1219,18 +1281,21 @@ body.cu-p6-active { padding-bottom: 132px !important; }
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" width="18" height="18"><path d="M12 8v5"/><path d="M12 16.5h.01"/><circle cx="12" cy="12" r="9"/></svg>
       <span id="notice-text"></span>
     </div>
+
+    <div class="svc-details" id="svc-details" aria-live="polite"></div>
+
   </section>
 
   <!-- ============ STEP 2 ============ -->
   <section class="step2" id="step2">
     <div class="eyebrow">
       <span class="dot"></span>
-      <span class="step-lbl">Step 2 of 2</span>
+      <span class="step-lbl">Step 3 of 3</span>
       <span class="sep">&middot;</span>
       <span>Review &amp; Send</span>
     </div>
 
-    <h1 class="title">Here&rsquo;s your build.</h1>
+    <h2 class="title">Here&rsquo;s your build.</h2>
     <p class="lede">Check it over, then tell us where to send the quote. Nothing is locked in &mdash; we&rsquo;ll confirm every line with you before any work starts.</p>
 
     <div class="review" id="review"></div>
@@ -1267,10 +1332,17 @@ body.cu-p6-active { padding-bottom: 132px !important; }
           <div class="field"><label for="f-lname">Last name *</label><input id="f-lname" name="Last Name" placeholder="Doe" autocomplete="family-name" required><span class="field-err">Required.</span></div>
           <div class="field"><label for="f-phone">Phone *</label><input id="f-phone" name="Phone" placeholder="(555) 123-4567" autocomplete="tel" inputmode="tel" required><span class="field-err">Required.</span></div>
           <div class="field"><label for="f-email">Email *</label><input id="f-email" name="Email" type="email" placeholder="you@company.com" autocomplete="email" required><span class="field-err">Valid email required.</span></div>
-          <div class="field"><label for="f-year">Vehicle year</label><input id="f-year" name="Vehicle Year" placeholder="2023" inputmode="numeric"></div>
-          <div class="field"><label for="f-make">Vehicle make</label><input id="f-make" name="Vehicle Make" placeholder="Ford"></div>
-          <div class="field"><label for="f-model">Vehicle model</label><input id="f-model" name="Vehicle Model" placeholder="F-150 SuperCrew"></div>
-          <div class="field"><label for="f-zip">ZIP code</label><input id="f-zip" name="ZIP" placeholder="20850" inputmode="numeric"></div>
+          <div class="field"><label for="f-zip">ZIP code</label><input id="f-zip" name="ZIP" placeholder="20852" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" autocomplete="postal-code">
+            <div class="zip-note" id="zip-note">You&rsquo;re a bit outside our usual DMV service area. We can still quote &mdash; travel or scheduling may differ.</div>
+          </div>
+          <div class="field"><label for="f-contact-pref">Preferred contact *</label>
+            <select id="f-contact-pref" name="Preferred Contact" required>
+              <option value="">Select…</option>
+              <option value="call">Call</option>
+              <option value="email">Email</option>
+            </select>
+            <span class="field-err">Required.</span>
+          </div>
           <div class="field full"><label for="f-when">Timing</label>
             <select id="f-when" name="Preferred Date">
               <option>As soon as possible</option>
@@ -1289,7 +1361,9 @@ body.cu-p6-active { padding-bottom: 132px !important; }
     <div class="done" id="done">
       <div class="big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="30" height="30"><path d="M4.5 12.5l5 5 10-11"/></svg></div>
       <h3>Quote request sent</h3>
-      <p>Your build is with the right specialist now. Expect a call or email the same business day &mdash; and a written breakdown line by line.</p>
+      <p>We reply within one business day &mdash; usually the same day. A specialist will send pricing and the next open slot.</p>
+      <p style="margin-top:10px;font-size:14px;color:var(--muted,#5F6673)">What happens next: we confirm fitment, send a written breakdown, and schedule when you&rsquo;re ready. No obligation.</p>
+      <p style="margin-top:10px;font-size:14px;color:var(--muted,#5F6673)">Have photos? Reply to the confirmation email with them so we can quote more accurately.</p>
       <div class="cu-ref" data-cu-ref-slot>Reference: pending</div>
       <div class="cu-warning" data-cu-warning-slot></div>
     </div>
@@ -1326,7 +1400,7 @@ body.cu-p6-active { padding-bottom: 132px !important; }
         <span class="sep">&middot;</span>
         <span>Request Quote</span>
       </div>
-      <h1 class="title">Upfit your fleet.</h1>
+      <h2 class="title">Upfit your fleet.</h2>
       <p class="lede">Tell us about your operation and volumes. We&rsquo;ll build a program &mdash; consistent specs across every unit, DOT-compliant, priced by tier.</p>
       <div class="cu-p6-standalone-form">
         <form class="form" id="quote-fleet" data-cms-form="fleet" data-success-body="fleet-form-body" data-success-panel="fleet-form-success" method="POST" novalidate>
@@ -1338,6 +1412,7 @@ body.cu-p6-active { padding-bottom: 132px !important; }
               <div class="field"><label for="fl-contact">Contact name *</label><input id="fl-contact" name="Contact Name" autocomplete="name" required><span class="field-err">Required.</span></div>
               <div class="field"><label for="fl-email">Business email *</label><input id="fl-email" name="Business Email" type="email" autocomplete="email" required><span class="field-err">Valid email required.</span></div>
               <div class="field"><label for="fl-phone">Phone *</label><input id="fl-phone" name="Phone" type="tel" autocomplete="tel" required><span class="field-err">Required.</span></div>
+              <div class="field"><label for="fl-zip">ZIP code</label><input id="fl-zip" name="ZIP" placeholder="20852" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" autocomplete="postal-code"></div>
               <div class="field"><label for="fl-count">Vehicle count *</label>
                 <select id="fl-count" name="Vehicle Count" required>
                   <option value="">Select…</option>
@@ -1347,6 +1422,9 @@ body.cu-p6-active { padding-bottom: 132px !important; }
                   <option>50+ vehicles</option>
                 </select>
                 <span class="field-err">Required.</span>
+              </div>
+              <div class="field full"><label for="fl-types">Vehicle types</label>
+                <input id="fl-types" name="Vehicle Types" placeholder="e.g. Ford Transit, F-150, Sprinter" maxlength="200">
               </div>
               <div class="field"><label for="fl-timeline">Timeline</label>
                 <select id="fl-timeline" name="Timeline">
@@ -1370,9 +1448,18 @@ body.cu-p6-active { padding-bottom: 132px !important; }
                 </div>
               </div>
               <div class="field full"><label for="fl-notes">Tell us about the fleet</label><textarea id="fl-notes" name="Message" rows="3" placeholder="Fleet composition, in-service constraints, brand standards&hellip;"></textarea></div>
+              <div class="field full" style="margin-top:8px">
+                <button type="submit" class="btn btn-primary" id="fl-submit" style="width:100%;min-height:48px;justify-content:center;font-size:16px;font-weight:700;background:#fcd800;color:#0a0a0b;border:0;border-radius:999px;cursor:pointer">Request fleet quote</button>
+                <p class="fs" style="margin-top:10px;text-align:center">We reply the same business day. No obligation.</p>
+              </div>
             </div>
           </div>
-          <div data-role="form-success" id="fleet-form-success" hidden></div>
+          <div data-role="form-success" id="fleet-form-success" hidden><div class="form-success-panel" style="text-align:center;padding:28px 16px">
+              <h3 style="margin:0 0 12px">Request received</h3>
+              <p>We reply within one business day &mdash; usually the same day.</p>
+              <p style="margin-top:10px;font-size:14px">What happens next: a specialist reviews your details and sends next steps. No obligation.</p>
+              <p style="margin-top:10px;font-size:14px">Have photos? Reply to the confirmation email with them.</p>
+            </div></div>
         </form>
       </div>
     </div>
@@ -1389,7 +1476,7 @@ body.cu-p6-active { padding-bottom: 132px !important; }
         <span class="sep">&middot;</span>
         <span>Wholesale Pricing</span>
       </div>
-      <h1 class="title">Wholesale pricing.</h1>
+      <h2 class="title">Wholesale pricing.</h2>
       <p class="lede">For franchised dealers, independents, government fleets and municipal accounts. Consistent turnaround, DOT-compliant specs, direct-billed accounts.</p>
       <div class="cu-p6-standalone-form">
         <form class="form" id="quote-dealer" data-cms-form="dealer" data-success-body="dealer-form-body" data-success-panel="dealer-form-success" method="POST" novalidate>
@@ -1413,6 +1500,7 @@ body.cu-p6-active { padding-bottom: 132px !important; }
               <div class="field"><label for="dl-title">Title</label><input id="dl-title" name="Contact Title" autocomplete="organization-title"></div>
               <div class="field"><label for="dl-email">Work email *</label><input id="dl-email" name="Work Email" type="email" autocomplete="email" required><span class="field-err">Valid email required.</span></div>
               <div class="field"><label for="dl-phone">Phone *</label><input id="dl-phone" name="Phone" type="tel" autocomplete="tel" required><span class="field-err">Required.</span></div>
+              <div class="field"><label for="dl-zip">ZIP code</label><input id="dl-zip" name="ZIP" placeholder="20852" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" autocomplete="postal-code"></div>
               <div class="field"><label for="dl-vol">Monthly volume *</label>
                 <select id="dl-vol" name="Monthly Volume" required>
                   <option value="">Select…</option>
@@ -1443,9 +1531,18 @@ body.cu-p6-active { padding-bottom: 132px !important; }
                 </div>
               </div>
               <div class="field full"><label for="dl-notes">Program notes</label><textarea id="dl-notes" name="Message" rows="3" placeholder="Preferred billing arrangement, DOT specs, brand standards&hellip;"></textarea></div>
+              <div class="field full" style="margin-top:8px">
+                <button type="submit" class="btn btn-primary" id="dl-submit" style="width:100%;min-height:48px;justify-content:center;font-size:16px;font-weight:700;background:#fcd800;color:#0a0a0b;border:0;border-radius:999px;cursor:pointer">Send inquiry</button>
+                <p class="fs" style="margin-top:10px;text-align:center">We reply the same business day. No obligation.</p>
+              </div>
             </div>
           </div>
-          <div data-role="form-success" id="dealer-form-success" hidden></div>
+          <div data-role="form-success" id="dealer-form-success" hidden><div class="form-success-panel" style="text-align:center;padding:28px 16px">
+              <h3 style="margin:0 0 12px">Request received</h3>
+              <p>We reply within one business day &mdash; usually the same day.</p>
+              <p style="margin-top:10px;font-size:14px">What happens next: a specialist reviews your details and sends next steps. No obligation.</p>
+              <p style="margin-top:10px;font-size:14px">Have photos? Reply to the confirmation email with them.</p>
+            </div></div>
         </form>
       </div>
     </div>
@@ -2124,6 +2221,7 @@ function refreshSummary(){
       '</button></span>';
   }).join('');
 
+  if(typeof screen !== 'undefined' && screen === 0){ refreshVehicle(); return; }
   const ready = n>0 && picked===n;
   $('#nextBtn').disabled = !ready;
   $('#nextLabel').textContent = n===0 ? 'Continue'
@@ -2266,10 +2364,17 @@ document.addEventListener('click', e=>{ if(tipOwner && !e.target.closest('.info'
 /* ============================================================
    10. Step 2 — review + contact
    ============================================================ */
-let screen = 1;
+let screen = 0;
 
+function vehicleText(){
+  return [$('#f-year').value, $('#f-make').value, $('#f-model').value.trim()].filter(Boolean).join(' ');
+}
 function renderReview(){
-  $('#review').innerHTML = state.open.map(id=>{
+  const v = vehicleText();
+  $('#review').innerHTML = (v ? '<div class="rrow rveh">'+
+      '<span class="rico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M3 13l2-5a2 2 0 0 1 1.9-1.4h10.2A2 2 0 0 1 19 8l2 5v4a1 1 0 0 1-1 1h-1a2 2 0 0 1-4 0H9a2 2 0 0 1-4 0H4a1 1 0 0 1-1-1z"/></svg></span>'+
+      '<span class="rbody"><span class="rsvc">Vehicle</span><div class="rpick">'+esc(v)+'</div></span>'+
+      '<button class="redit" type="button" data-edit-vehicle="1">Change</button></div>' : '') + state.open.map(id=>{
     const s = svc(id);
     const base = s.base.find(o=>o.id===state.pick[id]);
     const adds = state.adds[id] ? s.addons.filter(a=>state.adds[id].has(a.id)) : [];
@@ -2285,19 +2390,24 @@ function renderReview(){
   }).join('');
 }
 
-function goStep(n){
+function goStep(n, noScroll){
   screen = n;
-  $('#step1').style.display = n===1 ? '' : 'none';
+  $('#step0').style.display = n===0 ? 'block' : 'none';
+  $('#step1').style.display = n===1 ? 'block' : 'none';
   $('#step2').style.display = n===2 ? 'block' : 'none';
-  $('#backBtn').style.display = n===2 ? 'inline-flex' : 'none';
-  $('#chips').style.display  = n===2 ? 'none' : 'flex';
+  $('#backBtn').style.display = n>0 ? 'inline-flex' : 'none';
+  $('#chips').style.display  = n===1 ? 'flex' : 'none';
   $('#counts').style.display = n===2 ? 'none' : 'block';
   if(n===2){ renderReview(); updateHitchFulfillment(); $('#nextLabel').textContent='Request my quote'; $('#nextBtn').disabled=false; }
-  else refreshSummary();
-  window.scrollTo({top:0, behavior:'smooth'});
+  else if(n===1){ refreshSummary(); renderSvcDetails(); }
+  else refreshVehicle();
+  if(!noScroll) window.scrollTo({top:0, behavior:'smooth'});
+  // analytics.js listens for this (quote_step); noScroll calls are the initial render / URL prefill
+  document.dispatchEvent(new CustomEvent('cu:quote-step', {detail:{step:n+1, initial:!!noScroll}}));
 }
 
 $('#review').addEventListener('click', e=>{
+  if(e.target.closest('[data-edit-vehicle]')){ goStep(0); return; }
   const b = e.target.closest('[data-edit]');
   if(!b) return;
   goStep(1);
@@ -2307,24 +2417,39 @@ $('#review').addEventListener('click', e=>{
   }, 60);
 });
 
-$('#backBtn').addEventListener('click', ()=>goStep(1));
+$('#backBtn').addEventListener('click', ()=>goStep(Math.max(0, screen-1)));
 
 $('#nextBtn').addEventListener('click', ()=>{
+  if(screen===0){ if(validateVehicle(true)) goStep(1); return; }
   if(screen===1){ goStep(2); return; }
   // ---- CU submit: inject hidden services + delegate to lead-form.js via form.requestSubmit()
   var form = document.getElementById('quote-retail');
   var svcContainer = document.getElementById('retail-hidden-services');
   svcContainer.innerHTML = '';
+  var buildDetails = [];
   state.open.forEach(function(id){
     var s = svc(id);
     var pick = s.base.find(function(o){ return o.id === state.pick[id]; });
     var pickName = pick ? pick.name : '';
     var addonNames = (state.adds[id] ? s.addons.filter(function(a){ return state.adds[id].has(a.id); }).map(function(a){ return a.name; }) : []);
     // service label
+    // checked hidden checkbox (not type=hidden) so lead-form.js's
+    // "at least one service" check (input[name=services]:checked) passes
     var input = document.createElement('input');
-    input.type = 'hidden';
+    input.type = 'checkbox';
+    input.checked = true;
+    input.hidden = true;
+    input.tabIndex = -1;
     input.name = 'services';
-    input.value = s.name + ' — ' + pickName + (addonNames.length ? ' (+ ' + addonNames.join(', ') + ')' : '');
+    var fullLabel = s.name + ' — ' + pickName + (addonNames.length ? ' (+ ' + addonNames.join(', ') + ')' : '');
+    // /api/lead rejects any service value over 80 chars; keep the service
+    // entry short and carry the full build in the Message field instead.
+    if (fullLabel.length > 80) {
+      buildDetails.push(fullLabel);
+      fullLabel = (s.name + ' — ' + pickName).slice(0, 72) + (addonNames.length ? ' (+' + addonNames.length + ')' : '');
+      fullLabel = fullLabel.slice(0, 80);
+    }
+    input.value = fullLabel;
     svcContainer.appendChild(input);
   });
   // client-side validation
@@ -2344,7 +2469,23 @@ $('#nextBtn').addEventListener('click', ()=>{
     if(firstErr) firstErr.focus();
     return;
   }
-  // hand off to lead-form.js
+  // hand off to lead-form.js (it serializes synchronously inside the submit
+  // event, so the notes field can be restored right after)
+  var notesEl = document.getElementById('f-notes');
+  var notesOrig = notesEl ? notesEl.value : '';
+  if (notesEl) {
+    var yearEl=document.getElementById('f-year'), makeEl=document.getElementById('f-make'), modelEl=document.getElementById('f-model');
+    var zipEl=document.getElementById('f-zip'), whenEl=document.getElementById('f-when'), prefEl=document.getElementById('f-contact-pref');
+    notesEl.value = [
+      'Vehicle: '+[yearEl&&yearEl.value, makeEl&&makeEl.value, modelEl&&modelEl.value].filter(Boolean).join(' '),
+      collectSvcAnswers().join(' | '),
+      whenEl&&whenEl.value ? 'Timeframe: '+whenEl.value : '',
+      zipEl&&zipEl.value ? 'ZIP: '+zipEl.value : '',
+      prefEl&&prefEl.value ? 'Preferred contact: '+prefEl.value : '',
+      buildDetails.length ? 'Full build: '+buildDetails.join('; ') : '',
+      notesOrig ? 'Notes: '+notesOrig : ''
+    ].filter(Boolean).join('\n');
+  }
   if (typeof form.requestSubmit === 'function') {
     form.requestSubmit();
   } else {
@@ -2352,13 +2493,137 @@ $('#nextBtn').addEventListener('click', ()=>{
     var btn = document.createElement('button'); btn.type='submit'; btn.style.display='none';
     form.appendChild(btn); btn.click(); form.removeChild(btn);
   }
+  if (notesEl && buildDetails.length && notesEl.value !== '') notesEl.value = notesOrig;
 });
 
 /* ============================================================
    11. Go
    ============================================================ */
+/* ============================================================
+   Vehicle step (step 1 of 3)
+   ============================================================ */
+const MODELS = {
+  'Ford':['F-150','F-250 Super Duty','F-350 Super Duty','Ranger','Maverick','Transit','Transit Connect','E-Series','Bronco','Expedition','Explorer'],
+  'Chevrolet':['Silverado 1500','Silverado 2500HD','Silverado 3500HD','Colorado','Express','Tahoe','Suburban'],
+  'GMC':['Sierra 1500','Sierra 2500HD','Sierra 3500HD','Canyon','Savana','Yukon','Yukon XL'],
+  'Ram':['1500','2500','3500','ProMaster','ProMaster City'],
+  'Toyota':['Tacoma','Tundra','4Runner','Sequoia'],
+  'Nissan':['Frontier','Titan','NV Cargo','NV200'],
+  'Jeep':['Gladiator','Wrangler','Grand Cherokee'],
+  'Honda':['Ridgeline','Pilot','Passport'],
+  'Mercedes-Benz':['Sprinter Cargo','Sprinter Passenger','Sprinter Crew','Metris']
+};
+(function fillYears(){
+  const sel = $('#f-year'), top = new Date().getFullYear() + 1;
+  for(let y = top; y >= 1990; y--){ const o = document.createElement('option'); o.value = o.textContent = String(y); sel.appendChild(o); }
+})();
+function syncMake(){
+  const v = $('#f-make-sel').value, other = v === 'Other';
+  $('#fw-make-other').hidden = !other;
+  $('#f-make').value = other ? $('#f-make-other').value.trim() : v;
+  const list = MODELS[v] || [];
+  $('#f-model-list').innerHTML = list.map(m=>'<option value="'+esc(m)+'"></option>').join('');
+  if(v === 'Mercedes-Benz' && !$('#f-model').value) $('#f-model').placeholder = 'e.g. Sprinter Cargo 2500';
+  else $('#f-model').placeholder = list.length ? 'e.g. '+list[0] : 'e.g. F-150 SuperCrew';
+}
+function validateVehicle(show){
+  const checks = [
+    ['fw-year', !!$('#f-year').value],
+    ['fw-make', !!$('#f-make-sel').value],
+    ['fw-make-other', $('#f-make-sel').value !== 'Other' || !!$('#f-make-other').value.trim()],
+    ['fw-model', !!$('#f-model').value.trim()]
+  ];
+  let ok = true, first = null;
+  checks.forEach(([id, good])=>{
+    const w = document.getElementById(id);
+    if(show) w.classList.toggle('error', !good);
+    if(!good){ ok = false; if(!first) first = w.querySelector('select,input'); }
+  });
+  if(show && first) first.focus();
+  return ok;
+}
+function refreshVehicle(){
+  if(screen !== 0) return;
+  const v = vehicleText();
+  $('#countsText').textContent = v || 'Add your vehicle';
+  $('#nextBtn').disabled = false;
+  $('#nextLabel').textContent = 'Continue to services';
+}
+['#f-year','#f-make-sel','#f-make-other','#f-model'].forEach(sel=>{
+  const el = $(sel);
+  ['input','change'].forEach(ev=>el.addEventListener(ev, ()=>{
+    if(sel==='#f-make-sel' || sel==='#f-make-other') syncMake();
+    const w = el.closest('.field'); if(w) w.classList.remove('error');
+    refreshVehicle();
+  }));
+});
+$('#vehSkip').addEventListener('click', ()=>{
+  ['fw-year','fw-make','fw-make-other','fw-model'].forEach(id=>document.getElementById(id).classList.remove('error'));
+  var year=$('#f-year'); if(year && !year.value){ if(![...year.options].some(o=>o.value==='Not sure')){ var o=document.createElement('option'); o.value='Not sure'; o.textContent='Not sure'; year.appendChild(o);} year.value='Not sure'; }
+  var makeSel=$('#f-make-sel'); if(makeSel){ makeSel.value='Other'; syncMake(); }
+  var other=$('#f-make-other'); if(other) other.value='Not sure';
+  var model=$('#f-model'); if(model) model.value='Not sure';
+  var hidden=$('#f-make'); if(hidden) hidden.value='Not sure';
+  refreshVehicle();
+  goStep(1);
+});
+
+var SVC_QUESTIONS = {
+  bedliner: { title: 'Bedliner details', fields: [
+    {id:'sq-bed-length', name:'Bed Length', label:'Bed length', opts:['','5 ft','5.5 ft','6.5 ft','8 ft','Not sure']},
+    {id:'sq-cab', name:'Cab Style', label:'Cab style', opts:['','Regular','Extended / SuperCab','Crew / SuperCrew','Not sure']},
+    {id:'sq-existing-liner', name:'Existing Liner', label:'Existing liner', opts:['','None','Drop-in','Spray-on','Not sure']}
+  ]},
+  tonneau: { title: 'Tonneau details', fields: [
+    {id:'sq-tonneau-bed', name:'Tonneau Bed Length', label:'Bed length', opts:['','5 ft','5.5 ft','6.5 ft','8 ft','Not sure']}
+  ]},
+  tint: { title: 'Window tint details', fields: [
+    {id:'sq-tint-windows', name:'Tint Windows', label:'Which windows?', opts:['','Rear windshield only','Rear + quarters','Full vehicle (legal shades)','Front two only','Not sure']},
+    {id:'sq-tint-current', name:'Current Tint', label:'Current tint', opts:['','None / factory','Aftermarket (keep)','Aftermarket (remove)','Not sure']}
+  ]},
+  hitch: { title: 'Hitch / towing details', fields: [
+    {id:'sq-tow-need', name:'Towing Need', label:'What will you tow?', opts:['','Bike rack / cargo carrier only','Small trailer / boat','Travel trailer / equipment','Not sure']},
+    {id:'sq-wiring', name:'Wiring Needed', label:'Wiring needed?', opts:['','No','4-pin','7-pin','Not sure']}
+  ]},
+  ceramic: { title: 'Ceramic coating details', fields: [
+    {id:'sq-ceramic-coverage', name:'Ceramic Coverage', label:'Coverage', opts:['','Full vehicle','Front package','Specific panels','Not sure']},
+    {id:'sq-paint-condition', name:'Paint Condition', label:'Paint condition', opts:['','New / excellent','Good','Needs correction','Not sure']}
+  ]}
+};
+function selectedSvcIds(){ return [...document.querySelectorAll('.tile[data-svc][aria-checked="true"]')].map(t=>t.getAttribute('data-svc')); }
+function renderSvcDetails(){
+  var host=document.getElementById('svc-details'); if(!host) return;
+  var ids=selectedSvcIds().filter(id=>SVC_QUESTIONS[id]);
+  if(!ids.length){ host.classList.remove('is-on'); host.innerHTML=''; return; }
+  host.classList.add('is-on');
+  host.innerHTML=ids.map(function(id){
+    var q=SVC_QUESTIONS[id];
+    var fields=q.fields.map(function(f){
+      return '<div class="field"><label for="'+f.id+'">'+f.label+'</label><select id="'+f.id+'" data-sq-name="'+f.name+'">'+f.opts.map(function(o){return '<option value="'+o+'">'+(o||'Select…')+'</option>';}).join('')+'</select></div>';
+    }).join('');
+    return '<div class="sd-card"><h3>'+q.title+'</h3><div class="sd-grid">'+fields+'</div></div>';
+  }).join('');
+}
+function collectSvcAnswers(){
+  var lines=[]; document.querySelectorAll('#svc-details [data-sq-name]').forEach(function(el){ var v=(el.value||'').trim(); if(v) lines.push(el.getAttribute('data-sq-name')+': '+v); }); return lines;
+}
+function isDmvZip(zip){
+  if(!/^\d{5}$/.test(zip)) return null; var n=parseInt(zip,10);
+  if(n>=20001&&n<=20599) return true; if(n>=20601&&n<=21999) return true;
+  if((n>=20101&&n<=20199)||(n>=22001&&n<=22399)) return true; return false;
+}
+(function(){ var zip=document.getElementById('f-zip'), note=document.getElementById('zip-note'); if(!zip||!note) return;
+  function upd(){ var v=zip.value.trim(); note.classList.toggle('is-on', v.length===5 && isDmvZip(v)===false); }
+  zip.addEventListener('input', upd); zip.addEventListener('blur', upd);
+})();
+document.addEventListener('click', function(e){ if(e.target.closest&&e.target.closest('.tile[data-svc]')) setTimeout(renderSvcDetails,0); });
+
+
+window.CU_QUOTE = { goStep: goStep, syncMake: syncMake, step: ()=>screen };
+
 buildGrid();
 refreshAll();
+goStep(0, true);
 
 function updateHitchFulfillment(){
   var active = state.open.includes('hitch');
@@ -2394,6 +2659,7 @@ updateHitchFulfillment();
 (function(){
   'use strict';
   document.body.classList.add('cu-p6-active');
+  document.body.classList.add('cu-quote-bar-on');
   var container = document.querySelector('.cu-p6');
   var pills = document.querySelectorAll('.cu-p6-pill');
   var modes = document.querySelectorAll('.cu-p6-mode');
@@ -2410,6 +2676,7 @@ updateHitchFulfillment();
     // sticky bar only for retail
     var bar = document.getElementById('bar');
     if(bar){ bar.style.display = (target === 'retail') ? '' : 'none'; }
+    document.body.classList.toggle('cu-quote-bar-on', target === 'retail');
     // scroll to top of switcher on change
     var sw = document.querySelector('.cu-p6-switcher-outer');
     if(sw){ sw.scrollIntoView({behavior:'smooth', block:'start'}); }
@@ -2427,6 +2694,7 @@ updateHitchFulfillment();
       var formCard = document.getElementById('quote-retail'); if(formCard) formCard.style.display = 'none';
       var done = document.getElementById('done'); if(done){ done.style.display = 'block'; }
       var bar = document.getElementById('bar'); if(bar) bar.style.display = 'none';
+      document.body.classList.remove('cu-quote-bar-on');
       var refSlot = document.querySelector('[data-cu-ref-slot]');
       if(refSlot) refSlot.textContent = 'Reference: ' + (d.reference || 'pending');
       var warnSlot = document.querySelector('[data-cu-warning-slot]');
@@ -2474,9 +2742,29 @@ updateHitchFulfillment();
     const el = document.getElementById(id);
     if (el && val) el.value = val;
   }
-  setValue('f-year',  pYear);
-  setValue('f-make',  pMake);
+  if (pYear) {
+    const ys = document.getElementById('f-year');
+    if (ys && ![...ys.options].some(o => o.value === pYear) && /^(19|20)\d\d$/.test(pYear)) {
+      const o = document.createElement('option'); o.value = o.textContent = pYear; ys.appendChild(o);
+    }
+    setValue('f-year', pYear);
+  }
+  if (pMake) {
+    const ms = document.getElementById('f-make-sel');
+    const norm = s => s.toLowerCase().replace(/[^a-z]/g, '');
+    const hit = [...ms.options].find(o => o.value && o.value !== 'Other' &&
+      (norm(o.value) === norm(pMake) || (norm(pMake) === 'chevy' && o.value === 'Chevrolet') ||
+       (norm(pMake).startsWith('mercedes') && o.value === 'Mercedes-Benz')));
+    if (hit) ms.value = hit.value;
+    else { ms.value = 'Other'; setValue('f-make-other', pMake); }
+  }
   setValue('f-model', pModel);
+  if (window.CU_QUOTE) {
+    window.CU_QUOTE.syncMake();
+    // Vehicle already known (e.g. from the homepage fit finder): start at services
+    if (pYear && pMake && pModel) window.CU_QUOTE.goStep(1, true);
+    else window.CU_QUOTE.goStep(0, true);
+  }
 
   // Pre-select a service tile if ?service=<slug> matches a Patriot service id
   if (pSvc) {
@@ -2524,5 +2812,11 @@ updateHitchFulfillment();
     if(c&&m){c.addEventListener('click',function(){m.classList.remove('open');document.body.style.overflow='';});}
   })();
   </script>
+
+<!-- Mobile action bar (<=768px): Call / Text / Get a Quote -->
+<nav class="mobile-action-bar" aria-label="Quick actions">
+  <a href="tel:+13013041419" class="mab-btn mab-call"><svg class="mab-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a>
+  <a href="./quote.html" class="mab-btn mab-quote">Get a Quote</a>
+</nav>
 </body>
 </html>

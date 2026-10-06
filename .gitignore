@@ -1,15 +1,15 @@
-# OS files
-.DS_Store
-Thumbs.db
-
-# QA screenshots (not needed in repo)
-*.png
-qa-*.js
 
 # Editor
-.vscode/
-.idea/
-
 # Node (if build tools added later)
-node_modules/
+# OS files
+# QA screenshots (not needed in repo)
+*.png
+.DS_Store
+.idea/
 .vercel
+.vscode/
+Thumbs.db
+__pycache__/
+node_modules/
+qa-*.js
+tests/e2e/last-report.json

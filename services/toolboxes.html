@@ -4,29 +4,29 @@
 <!--
   Capital Upfitters — Truck Toolboxes & Bed Storage Service Page
   Built by IVANKODev (https://IVANKODevelopment.com)
-  Design system: Manrope + Inter, Apple-style Signal Blue (#0071e3), pill buttons. See DESIGN.md.
+  Design system: Manrope + Inter, locked brand: blue #0066fc identity, yellow #fcd800 actions (see base.css), pill buttons. See DESIGN.md.
 -->
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="shortcut icon" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Truck Toolboxes &amp; Bed Storage | CamLocker, DECKED, Dee Zee | Capital Upfitters Rockville MD</title>
-<meta name="description" content="Truck toolboxes and bed storage systems installed in Rockville MD. CamLocker, Dee Zee, DECKED drawer systems, and UWS crossover boxes. Serving the DMV.">
+<title>Truck Toolboxes Rockville MD | Capital Upfitters</title>
+<meta name="description" content="Truck toolboxes installed in Rockville, MD by a family-owned shop serving the DMV since 2015. Same-week service available. Request installed pricing today.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.capitalupfitters.com/services/toolboxes/">
+<link rel="canonical" href="https://www.capitalupfitters.com/services/toolboxes.html">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.capitalupfitters.com/services/toolboxes/">
-<meta property="og:title" content="Truck Toolboxes &amp; Bed Storage | CamLocker, DECKED, Dee Zee | Capital Upfitters Rockville MD">
-<meta property="og:description" content="Truck toolboxes and bed storage systems installed in Rockville MD. CamLocker, Dee Zee, DECKED drawer systems, and UWS crossover boxes. Serving the DMV.">
+<meta property="og:url" content="https://www.capitalupfitters.com/services/toolboxes.html">
+<meta property="og:title" content="Truck Toolboxes Rockville MD | Capital Upfitters">
+<meta property="og:description" content="Truck toolboxes installed in Rockville, MD by a family-owned shop serving the DMV since 2015. Same-week service available. Request installed pricing today.">
 <meta property="og:image" content="https://www.capitalupfitters.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting Rockville MD">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Truck Toolboxes &amp; Bed Storage | CamLocker, DECKED, Dee Zee | Capital Upfitters Rockville MD">
-<meta name="twitter:description" content="Truck toolboxes and bed storage systems installed in Rockville MD. CamLocker, Dee Zee, DECKED drawer systems, and UWS crossover boxes. Serving the DMV.">
+<meta name="twitter:title" content="Truck Toolboxes Rockville MD | Capital Upfitters">
+<meta name="twitter:description" content="Truck toolboxes installed in Rockville, MD by a family-owned shop serving the DMV since 2015. Same-week service available. Request installed pricing today.">
 <meta name="twitter:image" content="https://www.capitalupfitters.com/og.png">
 
 <!-- Fonts -->
@@ -63,12 +63,6 @@
           "addressLocality": "Rockville",
           "addressRegion": "MD",
           "postalCode": "20852"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "110",
-          "bestRating": "5"
         }
       },
       "areaServed": [
@@ -171,7 +165,7 @@
   transition: all var(--transition-base);
 }
 .benefit-card:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-brand);
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
@@ -179,8 +173,8 @@
   width: 56px;
   height: 56px;
   border-radius: var(--radius-lg);
-  background: var(--color-accent-light);
-  color: var(--color-accent);
+  background: var(--color-brand-soft);
+  color: var(--color-brand-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -217,7 +211,7 @@
   transition: all var(--transition-base);
 }
 .brand-card.featured {
-  border-color: var(--color-accent);
+  border-color: var(--color-brand);
   box-shadow: var(--shadow-lg);
 }
 .brand-card:hover {
@@ -234,7 +228,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #fff;
-  background: var(--color-accent);
+  background: var(--color-brand);
   padding: 0.25rem 0.875rem;
   border-radius: var(--radius-pill);
   margin-bottom: var(--space-5);
@@ -286,7 +280,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--color-accent);
+  background: var(--color-brand);
   margin-top: 6px;
   flex-shrink: 0;
 }
@@ -305,7 +299,7 @@
   font-size: var(--text-2xl);
   font-weight: 800;
   letter-spacing: -0.01em;
-  color: var(--color-accent);
+  color: var(--color-brand-text);
 }
 .brand-price-label {
   font-size: var(--text-xs);
@@ -340,7 +334,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--color-accent);
+  background: var(--color-brand);
   color: #fff;
   font-family: var(--font-display);
   font-size: var(--text-xl);
@@ -417,7 +411,7 @@
   color: var(--color-text-muted);
 }
 .faq-btn[aria-expanded="true"] .faq-icon {
-  background: var(--color-accent);
+  background: var(--color-brand);
   color: #fff;
   transform: rotate(45deg);
 }
@@ -448,7 +442,7 @@
   font-size: var(--text-5xl);
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--color-accent);
+  color: var(--color-brand-text);
   line-height: 1;
   margin-bottom: var(--space-2);
 }
@@ -480,7 +474,7 @@
 .testimonial-stars {
   display: flex;
   gap: 3px;
-  color: #f59e0b;
+  color: var(--color-rating);
 }
 .testimonial-quote {
   font-size: var(--text-base);
@@ -527,7 +521,7 @@
   transition: all var(--transition-base);
 }
 .related-card:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-brand);
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
@@ -568,7 +562,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-brand-text);
   transition: gap var(--transition-fast);
 }
 .related-card:hover .related-card-link { gap: var(--space-3); }
@@ -605,6 +599,7 @@
   <script src="/lead-form.js" defer></script>
 
 
+<script src="/analytics.js" defer></script>
 </head>
 <body>
 
@@ -722,7 +717,7 @@
           <a href="../dealer-government.html#government">DOT &amp; EMS Upfitting</a>
           <a href="../dealer-government.html#government">Protective Coatings / GSA</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="../dealer-government.html" style="color: rgba(255,255,255,0.5); font-size: 11px;">Apply for Account →</a>
+          <a href="../dealer-government.html" style="color: rgba(255,255,255,0.65); font-size: 11px;">Apply for Account →</a>
         </div>
       </li>
       <li><a href="../gallery.html">Gallery</a></li>
@@ -766,7 +761,7 @@
         <a href="../services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="../services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="../services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">View All Services &rarr;</a>
+        <a href="../services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -788,7 +783,7 @@
         <a href="../services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="../services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="../services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.4);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="../fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -1064,19 +1059,19 @@
       <div>
         <p style="font-size: var(--text-base); color: var(--color-text-secondary); line-height: 1.75; margin-bottom: var(--space-8);">Contractors, landscapers, electricians, and weekend warriors from Rockville, Gaithersburg, Bethesda, and Silver Spring bring their trucks to Capital Upfitters for toolbox installs. We're at 12019 Nebel St in Rockville — minutes from I-270 and Route 355.</p>
         <div style="display: flex; flex-wrap: wrap; gap: var(--space-3);">
-          <a href="../rockville.html" class="btn btn-outline btn-sm">Rockville MD</a>
-          <a href="../gaithersburg.html" class="btn btn-outline btn-sm">Gaithersburg MD</a>
-          <a href="../bethesda.html" class="btn btn-outline btn-sm">Bethesda MD</a>
-          <a href="../silver-spring.html" class="btn btn-outline btn-sm">Silver Spring MD</a>
-          <a href="../potomac.html" class="btn btn-outline btn-sm">Potomac MD</a>
-          <a href="../north-bethesda.html" class="btn btn-outline btn-sm">North Bethesda MD</a>
+          <a href="../locations/rockville-md.html" class="btn btn-outline btn-sm">Rockville MD</a>
+          <a href="../locations/gaithersburg-md.html" class="btn btn-outline btn-sm">Gaithersburg MD</a>
+          <a href="../locations/bethesda-md.html" class="btn btn-outline btn-sm">Bethesda MD</a>
+          <a href="../locations/silver-spring-md.html" class="btn btn-outline btn-sm">Silver Spring MD</a>
+          <a href="../locations/rockville-md.html" class="btn btn-outline btn-sm">Potomac MD</a>
+          <a href="../locations/bethesda-md.html" class="btn btn-outline btn-sm">North Bethesda MD</a>
         </div>
       </div>
       <!-- Trust panel -->
       <div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-8);">
         <div style="display: flex; flex-direction: column; gap: var(--space-5);">
           <div style="display:flex; align-items:center; gap: var(--space-4);">
-            <div style="width:44px; height:44px; border-radius:50%; background: var(--color-accent-light); color: var(--color-accent); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <div style="width:44px; height:44px; border-radius:50%; background: var(--color-brand-soft); color: var(--color-brand-text); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <div>
@@ -1085,7 +1080,7 @@
             </div>
           </div>
           <div style="display:flex; align-items:center; gap: var(--space-4);">
-            <div style="width:44px; height:44px; border-radius:50%; background: var(--color-accent-light); color: var(--color-accent); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <div style="width:44px; height:44px; border-radius:50%; background: var(--color-brand-soft); color: var(--color-brand-text); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </div>
             <div>
@@ -1094,11 +1089,11 @@
             </div>
           </div>
           <div style="display:flex; align-items:center; gap: var(--space-4);">
-            <div style="width:44px; height:44px; border-radius:50%; background: var(--color-accent-light); color: var(--color-accent); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <div style="width:44px; height:44px; border-radius:50%; background: var(--color-brand-soft); color: var(--color-brand-text); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             </div>
             <div>
-              <div style="font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm); letter-spacing: 0.06em; text-transform: uppercase;">4.9★ · 110 Google Reviews</div>
+              <div style="font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm); letter-spacing: 0.06em; text-transform: uppercase;" data-review-text="{rating}★ · {count} Google Reviews">Google Reviews</div>
               <div style="font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 2px;">Est. 2015</div>
             </div>
           </div>
@@ -1293,6 +1288,41 @@
 <!-- ═══════════════════════════════════════════════════════
      FOOTER
 ═══════════════════════════════════════════════════════ -->
+
+<!-- T37: Trustindex lazy-loaded below the fold -->
+<section class="ti-lazy-section contain" style="padding:var(--space-10,3rem) 0;" aria-label="Customer reviews">
+  <div id="ti-lazy-mount" class="trustindex-widget" data-ti-lazy="1">
+    <p style="text-align:center;opacity:.7;margin:0;">Loading reviews…</p>
+  </div>
+</section>
+<script>
+(function(){
+  var mount = document.getElementById('ti-lazy-mount');
+  if (!mount) return;
+  var loaded = false;
+  function loadTI(){
+    if (loaded) return; loaded = true;
+    mount.innerHTML = '';
+    var s = document.createElement('script');
+    s.src = 'https://cdn.trustindex.io/loader.js?4b0fb84780ce380f4576092cef2';
+    s.async = true; s.defer = true;
+    mount.appendChild(s);
+    try {
+      if (window.CU && CU.track) CU.track('reviews_view', { placement: 'lazy' });
+      else if (window.gtag) gtag('event', 'reviews_view', { placement: 'lazy' });
+    } catch (e) {}
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting) { loadTI(); io.disconnect(); } });
+    }, { rootMargin: '200px 0px' });
+    io.observe(mount);
+  } else {
+    setTimeout(loadTI, 2500);
+  }
+})();
+</script>
+
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
@@ -1344,12 +1374,12 @@
       <div class="footer-nav-group">
         <div class="footer-nav-label">Service Area</div>
         <ul class="footer-nav-links">
-          <li><a href="../rockville.html">Rockville MD</a></li>
-          <li><a href="../bethesda.html">Bethesda MD</a></li>
-          <li><a href="../silver-spring.html">Silver Spring MD</a></li>
-          <li><a href="../gaithersburg.html">Gaithersburg MD</a></li>
-          <li><a href="../potomac.html">Potomac MD</a></li>
-          <li><a href="../north-bethesda.html">North Bethesda MD</a></li>
+          <li><a href="../locations/rockville-md.html">Rockville MD</a></li>
+          <li><a href="../locations/bethesda-md.html">Bethesda MD</a></li>
+          <li><a href="../locations/silver-spring-md.html">Silver Spring MD</a></li>
+          <li><a href="../locations/gaithersburg-md.html">Gaithersburg MD</a></li>
+          <li><a href="../locations/rockville-md.html">Potomac MD</a></li>
+          <li><a href="../locations/bethesda-md.html">North Bethesda MD</a></li>
         </ul>
       </div>
     </div>
@@ -1447,5 +1477,12 @@ window.addEventListener('scroll', function() {
     if(c&&m){c.addEventListener('click',function(){m.classList.remove('open');document.body.style.overflow='';});}
   })();
   </script>
+<script src="../reviews.js" defer></script>
+
+<!-- Mobile action bar (<=768px): Call / Text / Get a Quote -->
+<nav class="mobile-action-bar" aria-label="Quick actions">
+  <a href="tel:+13013041419" class="mab-btn mab-call"><svg class="mab-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a>
+  <a href="../quote.html" class="mab-btn mab-quote">Get a Quote</a>
+</nav>
 </body>
 </html>
