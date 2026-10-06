@@ -1,0 +1,100 @@
+/* ============================================================
+   Capital Upfitters — LOCKED brand system (Sep 2026)
+   Yellow = action (primary CTAs only)
+   Blue   = brand (logo, links, icons, secondary accents)
+   Drop in after base.css OR replace the :root brand primitives.
+   Also update the Next.js CRM approved-design.css to match.
+   ============================================================ */
+
+:root {
+  /* ── Brand primitives ───────────────────────────────────── */
+  --brand-ink:             #1d1d1f;
+  --brand-navy:            #0a0a0b;   /* near-black surfaces */
+  --brand-navy-mid:        #16161a;
+  --brand-white:           #ffffff;
+  --brand-surface:         #f5f5f7;
+  --brand-body:            #1d1d1f;
+  --brand-muted:           #6e6e73;
+  --brand-line:            rgba(0, 0, 0, 0.08);
+
+  /* Blue = identity (logo wordmark, icons, text links, chips) */
+  --brand-blue:            #0066fc;   /* sampled from locked mock */
+  --brand-blue-hover:      #0052d6;
+  --brand-blue-deep:       #0c3c84;
+  --brand-blue-soft:       rgba(0, 102, 252, 0.12);
+
+  /* Yellow = action ONLY (filled primary buttons, H1 accent word) */
+  --brand-yellow:          #fcd800;   /* sampled from locked mock */
+  --brand-yellow-hover:    #e6c400;
+  --brand-yellow-deep:     #c9a800;
+  --brand-yellow-soft:     rgba(252, 216, 0, 0.16);
+  --brand-on-yellow:       #0a0a0b;   /* text/icons on yellow buttons */
+
+  /* Legacy names used across style.css — remapped intentionally */
+  --brand-amber:           var(--brand-yellow);       /* was Signal Blue */
+  --brand-amber-dark:      var(--brand-yellow-hover);
+
+  --color-accent:          var(--brand-yellow);
+  --color-accent-hover:    var(--brand-yellow-hover);
+  --color-accent-light:    var(--brand-yellow-soft);
+  --color-accent-navy:     var(--brand-navy);
+
+  /* Explicit brand blue for non-CTA uses */
+  --color-brand:           var(--brand-blue);
+  --color-brand-hover:     var(--brand-blue-hover);
+  --color-brand-soft:      var(--brand-blue-soft);
+}
+
+/* ── Primary CTA = yellow, dark label ─────────────────────── */
+.btn-primary,
+.nav-cta,
+a.btn.btn-primary,
+button.btn.btn-primary,
+.cta-banner .btn-primary,
+.nav-mega-footer-cta--primary {
+  background: var(--brand-yellow) !important;
+  border-color: var(--brand-yellow) !important;
+  color: var(--brand-on-yellow) !important;
+  font-weight: 700;
+}
+.btn-primary:hover,
+.nav-cta:hover,
+.nav-mega-footer-cta--primary:hover {
+  background: var(--brand-yellow-hover) !important;
+  border-color: var(--brand-yellow-hover) !important;
+  color: var(--brand-on-yellow) !important;
+}
+
+/* Outline / secondary stays light with yellow border on dark */
+.btn-outline,
+.btn-ghost {
+  border-color: var(--brand-yellow);
+  color: var(--brand-white);
+}
+.btn-outline:hover,
+.btn-ghost:hover {
+  background: var(--brand-yellow-soft);
+  border-color: var(--brand-yellow);
+  color: var(--brand-white);
+}
+
+/* Brand blue: logo mark, links, icon tiles — NOT filled CTAs */
+.nav-logo-mark,
+.footer-brand-name span,
+.section-label,
+a:not(.btn):not(.nav-cta):hover {
+  color: var(--brand-blue);
+}
+
+/* Announce bar can stay blue (brand urgency, not a form submit) */
+#announce-bar,
+.announce-bar {
+  background: var(--brand-blue) !important;
+  color: #fff !important;
+}
+
+/* H1 accent word helper — wrap the punch word */
+.accent-word {
+  color: var(--brand-yellow);
+  font-style: italic;
+}
