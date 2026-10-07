@@ -110,10 +110,11 @@
       display: flex;
       flex-direction: column;
     }
-    .fleet-service-card-body h4 {
+    .fleet-service-card-body h3 {
       font-size: var(--text-xl);
       margin-bottom: var(--space-2);
       color: var(--color-text);
+      font-weight: 600; letter-spacing: -0.015em;
     }
     .fleet-service-card-body p {
       font-size: var(--text-sm);
@@ -156,10 +157,11 @@
       margin: 0 auto var(--space-5);
       color: #fff;
     }
-    .benefit-col h4 {
+    .benefit-col h3 {
       font-size: var(--text-xl);
       color: #fff;
       margin-bottom: var(--space-3);
+      font-weight: 600; letter-spacing: -0.015em;
     }
     .benefit-col p {
       font-size: var(--text-sm);
@@ -659,7 +661,7 @@
       <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="nav-portal-link">Portal Login</a>
       <a href="./quote.html" class="nav-cta">Get a Quote</a>
     </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -669,7 +671,7 @@
   <button class="nav-mobile-close" id="nav-close" aria-label="Close menu">&times;</button>
   <nav class="nav-mobile-links">
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services">Services<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services" aria-controls="mob-services">Services<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="nav-mobile-section-body" id="mob-services">
         <div class="nav-mobile-group-label nav-mobile-group-label--gold">&#9733; Bundle: Bedliner + Tonneau + Running Boards</div>
         <a href="./services/bedliner.html" class="nav-mobile-sub-link">Spray-On Bedliners <span class="nav-mobile-sub-badge">Top Seller</span></a>
@@ -692,7 +694,7 @@
       </div>
     </div>
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet">Fleet &amp; Business<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet" aria-controls="mob-fleet">Fleet &amp; Business<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="nav-mobile-section-body" id="mob-fleet">
         <div class="nav-mobile-group-label nav-mobile-group-label--blue">Fleet &amp; Van Builds</div>
         <a href="./fleet.html#commercial" class="nav-mobile-sub-link">Commercial Fleet Solutions</a>
@@ -710,7 +712,7 @@
     </div>
     <a href="./services/industrial-coatings.html" class="nav-mobile-direct">Industrial</a>
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer">Dealer &amp; Gov<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer" aria-controls="mob-dealer">Dealer &amp; Gov<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="nav-mobile-section-body" id="mob-dealer">
         <div class="nav-mobile-group-label nav-mobile-group-label--blue">Dealerships</div>
         <a href="./dealer-government.html#dealer" class="nav-mobile-sub-link">Pre-Delivery Upfitting</a>
@@ -787,7 +789,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Pickup Truck Builds</h4>
+            <h3>Pickup Truck Builds</h3>
             <p>Bedliners, hitches, toolboxes, running boards, suspension lifts, and LED lighting for work truck fleets.</p>
           </div>
         </div>
@@ -799,7 +801,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Van Interior Packages</h4>
+            <h3>Van Interior Packages</h3>
             <p>Weatherguard &amp; Kargomaster shelving, partition walls, bin systems, flooring, and lighting for service vans. Transit, Sprinter, ProMaster, Express.</p>
           </div>
         </div>
@@ -811,7 +813,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Ladder Racks &amp; Cargo</h4>
+            <h3>Ladder Racks &amp; Cargo</h3>
             <p>Backrack headache racks, over-cab ladder racks, Rhino-Rack van roof systems, and cargo management for contractors.</p>
           </div>
         </div>
@@ -823,7 +825,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Toolboxes &amp; Bed Storage</h4>
+            <h3>Toolboxes &amp; Bed Storage</h3>
             <p>CamLocker, Dee Zee, UWS crossover boxes, DECKED drawer systems, and bed-mount storage for contractor trucks.</p>
           </div>
         </div>
@@ -835,7 +837,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Fleet Branding &amp; Wraps</h4>
+            <h3>Fleet Branding &amp; Wraps</h3>
             <p>Commercial vinyl wraps, lettering, logos, and fleet identity packages. 3M &amp; Avery Dennison. <span style="color:var(--color-brand-text);font-weight:600;">Learn more &rarr;</span></p>
           </div>
         </a>
@@ -847,7 +849,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Custom Fabrication</h4>
+            <h3>Custom Fabrication</h3>
             <p>One-off fabrication for unique operational requirements. Contact us to scope your project.</p>
           </div>
         </div>
@@ -868,7 +870,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Spray-On Bedliner &amp; Floor Coating</h4>
+            <h3>Spray-On Bedliner &amp; Floor Coating</h3>
             <p>Patriot Liner polyurea for truck beds, cargo van floors, trailer beds, and any commercial surface needing non-slip protection. Lifetime warranty.</p>
             <span class="fleet-service-card-coating">Lifetime Warranty</span>
           </div>
@@ -881,7 +883,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Industrial &amp; Protective Coatings</h4>
+            <h3>Industrial &amp; Protective Coatings</h3>
             <p>Mobile polyurea, epoxy, and protective coating application for commercial vehicles, van floors, trailer beds, equipment, and industrial surfaces. We come to you.</p>
             <span class="fleet-service-card-coating">Mobile Application Available</span>
           </div>
@@ -912,7 +914,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Pickup Truck Fleet Builds</h4>
+            <h3>Pickup Truck Fleet Builds</h3>
             <p>Standardized upfit packages across your entire truck fleet — bedliners, hitches, toolboxes, running boards. Consistent spec, bulk pricing.</p>
           </div>
         </div>
@@ -924,7 +926,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Service Van Upfitting</h4>
+            <h3>Service Van Upfitting</h3>
             <p>Complete van interior packages — Weatherguard shelving, Kargomaster bins, partition walls, flooring. Built to your crew's workflow.</p>
           </div>
         </div>
@@ -936,7 +938,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>DOT &amp; Safety Compliance</h4>
+            <h3>DOT &amp; Safety Compliance</h3>
             <p>Federal safety reflectors, lighting kits, mirrors, and compliance documentation. Required for commercial vehicles operating in MD, VA, and DC.</p>
           </div>
         </div>
@@ -948,7 +950,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>First Responder &amp; Municipal Fleet</h4>
+            <h3>First Responder &amp; Municipal Fleet</h3>
             <p>Police, EMS, utility, and emergency service vehicle upfitting. Specialized builds with proper documentation and compliance records.</p>
           </div>
         </div>
@@ -960,7 +962,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Fleet Branding &amp; Wraps</h4>
+            <h3>Fleet Branding &amp; Wraps</h3>
             <p>Unified fleet identity across all vehicles — wraps, lettering, logos. 3M &amp; Avery Dennison. Volume pricing for 3+ vehicles. <span style="color:var(--color-brand-text);font-weight:600;">Learn more &rarr;</span></p>
           </div>
         </a>
@@ -972,7 +974,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>LED Lighting &amp; Work Lights</h4>
+            <h3>LED Lighting &amp; Work Lights</h3>
             <p>RIGID Industries scene lights, cargo lights, and work lighting for service vehicles. Wired clean, fleet-standardized installations.</p>
           </div>
         </div>
@@ -993,7 +995,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Fleet Undercoating</h4>
+            <h3>Fleet Undercoating</h3>
             <p>Protect every vehicle in your fleet from Maryland road salt. Full undercarriage coating before the first winter. Fleet pricing available.</p>
             <span class="fleet-service-card-coating">Fleet Pricing</span>
           </div>
@@ -1006,7 +1008,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Spray-On Bedliners</h4>
+            <h3>Spray-On Bedliners</h3>
             <p>Patriot Liner on every truck in your fleet. Standardized application, lifetime warranty on each vehicle, bulk scheduling available.</p>
             <span class="fleet-service-card-coating">Lifetime Warranty</span>
           </div>
@@ -1019,7 +1021,7 @@
             </div>
           </div>
           <div class="fleet-service-card-body">
-            <h4>Fleet Window Tinting</h4>
+            <h3>Fleet Window Tinting</h3>
             <p>Carbon or ceramic tint across your entire fleet. Heat rejection, privacy, and UV protection. Maryland legal. Consistent results on every vehicle.</p>
             <span class="fleet-service-card-coating">Fleet pricing available</span>
           </div>
@@ -1174,28 +1176,28 @@ function showFleetPanel(id, btn) {
         <div class="benefit-col-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
-        <h4>Volume Pricing</h4>
+        <h3>Volume Pricing</h3>
         <p>Tiered rates that improve as your order volume grows. Significant savings starting at 3+ units per month.</p>
       </div>
       <div class="benefit-col reveal reveal-delay-1">
         <div class="benefit-col-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
-        <h4>Priority Scheduling</h4>
+        <h3>Priority Scheduling</h3>
         <p>Fleet accounts get first access to open slots. Batch drops scheduled around your operational timeline.</p>
       </div>
       <div class="benefit-col reveal reveal-delay-2">
         <div class="benefit-col-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-4"/><circle cx="7" cy="20" r="2"/><circle cx="17" cy="20" r="2"/></svg>
         </div>
-        <h4>Batch Drop-Off</h4>
+        <h3>Batch Drop-Off</h3>
         <p>Drop multiple vehicles at once. We coordinate intake, build sequencing, and return scheduling for your fleet.</p>
       </div>
       <div class="benefit-col reveal reveal-delay-3">
         <div class="benefit-col-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         </div>
-        <h4>Net-30 Terms</h4>
+        <h3>Net-30 Terms</h3>
         <p>Qualified fleet accounts receive Net-30 invoicing. Dedicated account statements and consolidated billing.</p>
       </div>
     </div>
