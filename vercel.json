@@ -1,12 +1,6 @@
 {
   "version": 2,
-  "redirects": [
-    {
-      "source": "/quote",
-      "destination": "/quote.html",
-      "permanent": true
-    }
-  ],
+  "cleanUrls": true,
   "headers": [
     {
       "source": "/(.*)",
@@ -27,7 +21,7 @@
       ]
     },
     {
-      "source": "/preview.html",
+      "source": "/preview(.html)?",
       "headers": [
         {
           "key": "X-Robots-Tag",
@@ -36,7 +30,7 @@
       ]
     },
     {
-      "source": "/products-section.html",
+      "source": "/products-section(.html)?",
       "headers": [
         {
           "key": "X-Robots-Tag",
