@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preload" as="image" href="./media/next/home-hero-v1.webp" fetchpriority="high">
+<link rel="preload" as="image" href="./media/next/bedliner-v1.webp" fetchpriority="high">
 <!-- Fonts (async; display=swap on Google CSS URL) -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
@@ -681,7 +681,7 @@
       <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="nav-portal-link">Portal Login</a>
       <a href="./quote.html" class="nav-cta">Get a Quote</a>
     </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -693,7 +693,7 @@
   <nav class="nav-mobile-links">
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services" aria-controls="mob-services">
         Services
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -720,7 +720,7 @@
     </div>
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet" aria-controls="mob-fleet">
         Fleet &amp; Business
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -744,7 +744,7 @@
     <a href="./services/industrial-coatings.html" class="nav-mobile-direct">Industrial</a>
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer" aria-controls="mob-dealer">
         Dealer &amp; Gov
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -800,7 +800,7 @@
 
   <!-- MP4 video background — src is driven by SERVICE_SLIDES once hydrated -->
   <div class="hero-video-wrap" aria-hidden="true">
-    <video id="hero-vid" autoplay muted playsinline preload="none" poster="./media/next/home-hero-v1.webp">
+    <video id="hero-vid" muted playsinline preload="none" poster="./media/next/home-hero-v1.webp">
       <!-- T28: source attached after first paint to avoid competing with LCP -->
     </video>
   </div>
@@ -835,6 +835,13 @@
     <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
     <svg class="icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
     <span class="hero-mute-label">Unmute</span>
+  </button>
+
+  <!-- WCAG 2.2.2 pause/stop for the auto-rotating background video + slides. -->
+  <button type="button" class="hero-pause-pill" id="hero-pause" aria-pressed="false" aria-label="Pause background video" hidden>
+    <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+    <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="7 4 20 12 7 20 7 4"/></svg>
+    <span class="hero-pause-label">Pause</span>
   </button>
 
   <!-- Slide indicator dots (populated on hydration) -->
@@ -2007,6 +2014,8 @@
   var videoWrap = document.querySelector('.hero-video-wrap');
   var dotsWrap  = document.getElementById('hero-dots');
   var muteBtn   = document.getElementById('hero-mute');
+  var pauseBtn  = document.getElementById('hero-pause');
+  var heroSec   = document.querySelector('.hero');
   var progress  = document.getElementById('hero-progress');
   var barFill   = document.getElementById('hero-progress-fill');
 
@@ -2034,6 +2043,8 @@
     idx = (saved + 1) % SERVICE_SLIDES.length;   // resume from the NEXT service
   }
 
+  var paused = reduce;      // reduced motion starts paused: poster only, no rotation
+  var pausedElapsed = 0;
   var advTimer = null, fadeTimer = null, stallTimer = null, rafId = null;
   var startTs = 0, curDur = 0, preloader = null;
   // A <video> whose src is swapped mid-flight still delivers the aborted
@@ -2158,6 +2169,7 @@
           vid.setAttribute('src', want);
           vid.load();
         }
+        if (paused) return;
         var played = vid.play();
         if (played && played.catch) played.catch(function () { /* autoplay refused */ });
       };
@@ -2170,7 +2182,7 @@
         startVideo();
       }
       // A hotlinked video that never loads must not freeze the rotation.
-      stallTimer = setTimeout(function () {
+      if (!paused) stallTimer = setTimeout(function () {
         if (!isFinite(vid.duration) || vid.duration <= 0) requestAdvance();
       }, STALL_MS);
     } else {
@@ -2213,8 +2225,13 @@
       advancing = false;
       startTs = Date.now();
       curDur = usesVideo(s) ? 0 : (reduce ? REDUCED_MS : durationFor(s));
-      if (curDur > 0) advTimer = setTimeout(next, curDur);
-      rafId = requestAnimationFrame(tick);
+      pausedElapsed = 0;
+      if (paused) {
+        if (posterEl) posterEl.classList.remove('is-drifting');
+      } else {
+        if (curDur > 0) advTimer = setTimeout(next, curDur);
+        rafId = requestAnimationFrame(tick);
+      }
       preloadNext();
     };
 
@@ -2290,6 +2307,54 @@
       document.addEventListener('pointerdown', restore, { once: true });
       document.addEventListener('keydown', restore, { once: true });
     }
+  }
+
+  function syncPause() {
+    if (!pauseBtn) return;
+    pauseBtn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    pauseBtn.setAttribute('aria-label', paused ? 'Play background video' : 'Pause background video');
+    var lbl = pauseBtn.querySelector('.hero-pause-label');
+    if (lbl) lbl.textContent = paused ? 'Play' : 'Pause';
+    pauseBtn.classList.toggle('is-paused', paused);
+    if (heroSec) heroSec.classList.toggle('is-motion-paused', paused);
+  }
+
+  function pauseHero() {
+    paused = true;
+    // A pending fade commit is left alone so the copy never sticks mid-transition.
+    if (advTimer)   { clearTimeout(advTimer);   advTimer = null; }
+    if (stallTimer) { clearTimeout(stallTimer); stallTimer = null; }
+    if (rafId)      { cancelAnimationFrame(rafId); rafId = null; }
+    pausedElapsed = Date.now() - startTs;
+    try { vid.pause(); } catch (e) { /* no-op */ }
+    syncPause();
+  }
+
+  function resumeHero() {
+    paused = false;
+    syncPause();
+    if (fadeTimer) return;   // commit() will schedule timers itself, now unpaused
+    var s = slide();
+    startTs = Date.now() - pausedElapsed;
+    if (usesVideo(s)) {
+      if (vid.getAttribute('src') !== s.video) { vid.setAttribute('src', s.video); vid.load(); }
+      var p = vid.play();
+      if (p && p.catch) p.catch(function () {});
+      stallTimer = setTimeout(function () {
+        if (!isFinite(vid.duration) || vid.duration <= 0) requestAdvance();
+      }, STALL_MS);
+    } else if (curDur > 0) {
+      advTimer = setTimeout(next, Math.max(0, curDur - pausedElapsed));
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  if (pauseBtn) {
+    pauseBtn.addEventListener('click', function () {
+      if (paused) resumeHero(); else pauseHero();
+    });
+    pauseBtn.hidden = false;
+    syncPause();
   }
 
   if (progress) progress.hidden = false;
