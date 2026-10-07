@@ -180,6 +180,12 @@ a.funnel-card:hover {
   font-weight: 600;
   border: 1px solid rgba(0, 102, 252, 0.18);
 }
+.hero-trust .chip {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--brand-white, #fff);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+a.chip:hover { border-color: currentColor; }
 
 /* ── Hero polish ──────────────────────────────────────────── */
 .hero-content, .page-hero .container, .geo-hero .container {
