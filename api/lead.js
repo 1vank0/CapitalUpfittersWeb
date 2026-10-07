@@ -142,7 +142,6 @@ function timeoutFromEnv(name, fallback) {
 async function fetchWithTimeout(url, options, timeoutMs, consume) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
-  if (typeof timer.unref === 'function') timer.unref();
   try {
     const response = await fetch(url, { ...options, signal: controller.signal });
     return consume ? await consume(response) : response;
