@@ -992,7 +992,7 @@ function buildCustomerConfirmation({ body, leadSource, receivedAt }) {
         </td></tr>
         <tr><td style="padding:28px 28px 16px;background:#ffffff;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;color:#111827;font-size:15px;line-height:1.6;">
           <p style="margin:0 0 14px;">Thanks for reaching out to Capital Upfitters. We received your ${esc(formLabel.toLowerCase())} and one of our team members will follow up <strong>within one business day</strong> &mdash; usually the same business day.</p>
-          <p style="margin:0 0 14px;">Need to talk sooner? Call us at <a href="tel:3013041419" style="color:#103b68;font-weight:600;">(301) 304-1419</a>, Mon&ndash;Fri 9:30am&ndash;4:30pm.</p>
+          <p style="margin:0 0 14px;">Need to talk sooner? Call us at <a href="tel:+13013041419" style="color:#103b68;font-weight:600;">(301) 304-1419</a>, Mon&ndash;Fri 9:30am&ndash;4:30pm.</p>
         </td></tr>
         <tr><td style="padding:0 28px 20px;background:#ffffff;border-left:1px solid #e5e7eb;border-right:1px solid #e5e7eb;">
           <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;">
@@ -1008,7 +1008,7 @@ function buildCustomerConfirmation({ body, leadSource, receivedAt }) {
           <p style="margin:14px 0 0;color:#6b7280;font-size:13px;line-height:1.6;">If you didn't submit this request, please ignore this message or reply and let us know.</p>
         </td></tr>
         <tr><td style="padding:14px 24px;text-align:center;">
-          <div style="color:#6b7280;font-size:12px;">Capital Upfitters &middot; Rockville, MD &middot; <a href="tel:3013041419" style="color:#6b7280;">(301) 304-1419</a></div>
+          <div style="color:#6b7280;font-size:12px;">Capital Upfitters &middot; Rockville, MD &middot; <a href="tel:+13013041419" style="color:#6b7280;">(301) 304-1419</a></div>
           <div style="color:#9ca3af;font-size:11px;margin-top:4px;"><a href="https://capitalupfitters.com" style="color:#9ca3af;">capitalupfitters.com</a> &middot; <a href="https://capitalupfitters.com/privacy.html" style="color:#9ca3af;">Privacy Policy</a></div>
         </td></tr>
       </table>

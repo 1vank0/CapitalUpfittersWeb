@@ -107,7 +107,7 @@ const newBody = `<section class="page-hero" aria-labelledby="hero-heading">
       <p>
         <strong>Capital Upfitters</strong><br>
         Rockville, MD<br>
-        Phone: <a href="tel:3013041419">(301) 304-1419</a><br>
+        Phone: <a href="tel:+13013041419">(301) 304-1419</a><br>
         Email: <a href="mailto:CapitalUpfitters@gmail.com">CapitalUpfitters@gmail.com</a>
       </p>
 
