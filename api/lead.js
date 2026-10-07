@@ -1076,7 +1076,7 @@ async function sendViaResend({ from, to, subject, html, text, replyTo, key, idem
   }
 }
 
-async function sendEmails({ internal, customer, idempotencyKey }) {
+async function sendEmails({ internal, customer, idempotencyKey, formType, reference }) {
   const key  = process.env.RESEND_API_KEY;
   const to   = process.env.LEAD_TO_EMAIL    || 'CapitalUpfitters@gmail.com';
   const fromInternal = process.env.LEAD_FROM_EMAIL ||
@@ -1089,10 +1089,11 @@ async function sendEmails({ internal, customer, idempotencyKey }) {
                        'Capital Upfitters <onboarding@resend.dev>';
 
   if (!key) {
-    console.warn('[lead] RESEND_API_KEY missing — lead NOT emailed.');
-    console.log('[lead] internal subject:', internal.subject);
-    console.log('[lead] internal text:\n', internal.text);
-    if (customer) console.log('[lead] customer confirmation -> ' + customer.to);
+    console.warn('[lead] email skipped', {
+      formType: formType || '',
+      reference: reference || idempotencyKey || '',
+      errorCode: 'RESEND_API_KEY_MISSING'
+    });
     return { internal: { ok: false, reason: 'RESEND_API_KEY not configured' },
              customer: customer ? { ok: false, reason: 'RESEND_API_KEY not configured' } : null };
   }
@@ -1240,7 +1241,9 @@ module.exports = async function handler(req, res) {
   const result = await sendEmails({
     internal,
     customer,
-    idempotencyKey: emailIdempotencyKey
+    idempotencyKey: emailIdempotencyKey,
+    formType: scalarString(body.form_type, 40),
+    reference: persistence.reference || ''
   });
   const internalDelivered = Boolean(result.internal && result.internal.ok);
   if (!internalDelivered) {

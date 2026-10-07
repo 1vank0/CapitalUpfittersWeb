@@ -654,7 +654,7 @@
       <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="nav-portal-link">Portal Login</a>
       <a href="../quote.html" class="nav-cta">Get a Quote</a>
     </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -664,7 +664,7 @@
   <button class="nav-mobile-close" id="nav-close" aria-label="Close menu">&times;</button>
   <nav class="nav-mobile-links">
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services">Services<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services" aria-controls="mob-services">Services<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="nav-mobile-section-body" id="mob-services">
         <div class="nav-mobile-group-label nav-mobile-group-label--gold">&#9733; Bundle: Bedliner + Tonneau + Running Boards</div>
         <a href="../services/bedliner.html" class="nav-mobile-sub-link">Spray-On Bedliners <span class="nav-mobile-sub-badge">Top Seller</span></a>
@@ -687,7 +687,7 @@
       </div>
     </div>
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet">Fleet &amp; Business<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet" aria-controls="mob-fleet">Fleet &amp; Business<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="nav-mobile-section-body" id="mob-fleet">
         <div class="nav-mobile-group-label nav-mobile-group-label--blue">Fleet &amp; Van Builds</div>
         <a href="../fleet.html#commercial" class="nav-mobile-sub-link">Commercial Fleet Solutions</a>
@@ -705,7 +705,7 @@
     </div>
     <a href="../services/industrial-coatings.html" class="nav-mobile-direct">Industrial</a>
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer">Dealer &amp; Gov<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer" aria-controls="mob-dealer">Dealer &amp; Gov<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="nav-mobile-section-body" id="mob-dealer">
         <div class="nav-mobile-group-label nav-mobile-group-label--blue">Dealerships</div>
         <a href="../dealer-government.html#dealer" class="nav-mobile-sub-link">Pre-Delivery Upfitting</a>
@@ -1014,10 +1014,14 @@
     // Update nearby areas / pill links
     if (geo.nearbyAreas && geo.nearbyAreas.length) {
       document.querySelectorAll('.nearby-areas, .pill-links').forEach(function(container) {
-        container.innerHTML = geo.nearbyAreas.map(function(area) {
+        container.textContent = '';
+        geo.nearbyAreas.forEach(function(area) {
           var text = typeof area === 'string' ? area : (area.name || area.label || String(area));
-          return '<span class="pill">' + text + '</span>';
-        }).join('');
+          var pill = document.createElement('span');
+          pill.className = 'pill';
+          pill.textContent = text;
+          container.appendChild(pill);
+        });
       });
     }
   }
