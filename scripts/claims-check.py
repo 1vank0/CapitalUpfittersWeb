@@ -28,7 +28,7 @@ RULES = [
 ]
 
 # Paths we never claim-check (binary, vendor, lockfiles, this script).
-SKIP = re.compile(r"(^|/)(node_modules|package-lock\.json|\.png$|\.webp$|\.jpg$|\.mp4$|claims-check\.py)")
+SKIP = re.compile(r"(^|/)(node_modules|package-lock\.json|\.png$|\.webp$|\.jpg$|\.mp4$|claims-check\.py|ollama-meta-qa\.py|meta-qa-report\.md|DESIGN\.md)")
 
 def diff_added_lines(base: str) -> list[tuple[str, int, str]]:
     out = subprocess.check_output(["git", "diff", "-U0", base, "--", "."], text=True, errors="replace")

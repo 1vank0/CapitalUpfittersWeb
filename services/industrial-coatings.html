@@ -640,10 +640,11 @@
 <script src="/analytics.js" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ANNOUNCE BAR -->
 <div class="announce-bar" id="announce-bar">
-  Mobile fleet coating available &mdash; we come to your site &mdash; <a href="tel:3013041419">(301) 304-1419</a>
+  Mobile fleet coating available &mdash; we come to your site &mdash; <a href="tel:+13013041419">(301) 304-1419</a>
   <button class="announce-close" onclick="document.getElementById('announce-bar').remove()" aria-label="Close">&times;</button>
 </div>
 
@@ -765,7 +766,7 @@
       <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="nav-portal-link">Portal Login</a>
       <a href="../quote.html" class="nav-cta">Get a Quote</a>
     </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -777,7 +778,7 @@
   <nav class="nav-mobile-links">
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services" aria-controls="mob-services">
         Services
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -804,7 +805,7 @@
     </div>
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet" aria-controls="mob-fleet">
         Fleet &amp; Business
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -828,7 +829,7 @@
     <a href="../services/industrial-coatings.html" class="nav-mobile-direct">Industrial</a>
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer" aria-controls="mob-dealer">
         Dealer &amp; Gov
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -857,6 +858,7 @@
 <!-- ═══════════════════════════════════════════════════════
      PAGE HERO
 ═══════════════════════════════════════════════════════ -->
+<main id="main">
 <section class="page-hero" aria-labelledby="hero-heading">
   <div class="ic-hero-bg"></div>
   <div class="page-hero-overlay"></div>
@@ -873,7 +875,7 @@
     <p class="page-hero-sub">Polyurea, epoxy, aliphatic, and aromatic protective coatings for commercial vehicles, government fleets, school buses, emergency equipment, civil infrastructure, industrial equipment, and facilities. Mobile application available &mdash; we come to your site.</p>
     <div class="hero-ctas">
       <a href="../quote.html?service=industrial-coatings" class="btn btn-primary btn-lg">Get a Quote</a>
-      <a href="tel:3013041419" class="btn btn-outline btn-lg">Call (301) 304-1419</a>
+      <a href="tel:+13013041419" class="btn btn-outline btn-lg">Call (301) 304-1419</a>
     </div>
   </div>
 </section>
@@ -1378,7 +1380,7 @@
     <p>Mobile application across the DMV. Commercial and government accounts welcome.<br>Mon–Fri 9:30am–4:30pm &middot; Rockville, MD.</p>
     <div class="cta-banner-actions">
       <a href="../quote.html?service=industrial-coatings" class="btn btn-primary btn-lg">Get a Quote</a>
-      <a href="tel:3013041419" class="btn btn-outline btn-lg">Call (301) 304-1419</a>
+      <a href="tel:+13013041419" class="btn btn-outline btn-lg">Call (301) 304-1419</a>
     </div>
   </div>
 </section>
@@ -1482,6 +1484,8 @@
 })();
 </script>
 
+</main>
+
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
@@ -1492,7 +1496,7 @@
         </a>
         <p class="footer-tagline">Family-owned vehicle upfitting and protective coating shop in Rockville, MD. Mobile industrial coating application across the DMV. Serving commercial &amp; government clients since 2015.</p>
         <div class="footer-contact">
-          <a href="tel:3013041419" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a>
+          <a href="tel:+13013041419" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a>
           <div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel St, Rockville MD 20852</div>
         </div>
       </div>

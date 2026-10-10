@@ -5,7 +5,7 @@ Previous documentation (README.md's "Design System" table, and per-page HTML
 comments reading "Barlow Condensed + Inter, onehourhitch.com color palette")
 described an earlier iteration that was superseded by an Apple-style redesign
 (see git history around `redesign/apple-palette`). Those older references are
-stale — trust this file and `base.css` instead.
+stale — trust this file and the stylesheets it names instead.
 
 If you are an AI agent picking up work on this repo: read this file before
 touching typography, color, spacing, or button styles. Guessing at the design
@@ -13,10 +13,18 @@ system from old comments is what caused prior redesign attempts to drift.
 
 ## Source of truth
 
-All tokens below are CSS custom properties defined once in `base.css`
-(`:root` block). Never hardcode a color, font, spacing, or radius value in a
-page — reference the token. If a token is missing for something you need, add
-it to `base.css` rather than inventing a one-off value inline.
+Stylesheets load in this order on every page, and later files win:
+
+1. `base.css` — reset, type scale, spacing, radii, base tokens.
+2. `style.css` — global components (nav, hero, footer, cards, forms).
+3. `brand-tokens.css` — the **locked brand system (Sep 2026)**. It redefines
+   the brand primitives below, so its values override `base.css`.
+4. `ux-10k.css` — SKOOL "$10k polish" layer: type hierarchy, section rhythm,
+   card elevation, CTA lock, focus rings, reduced-motion overrides.
+
+Never hardcode a color, font, spacing, or radius value in a page — reference
+the token. If a token is missing, add it to `brand-tokens.css` (brand colors)
+or `base.css` (everything else) rather than inventing a one-off value inline.
 
 ## Typography
 
@@ -25,41 +33,31 @@ it to `base.css` rather than inventing a one-off value inline.
 | `--font-display` | `'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif` | Headings, stat numbers, eyebrows, buttons |
 | `--font-body` | `'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif` | Body copy, paragraphs |
 
-Loaded once via `base.css`'s own `@import` of Manrope + Inter from Google
-Fonts — every page picks this up automatically through `<link
-rel="stylesheet" href="base.css">` (or `../base.css` for subpages). **Do not**
-add a separate Barlow Condensed `<link>`/`@import` to a page; a number of
-`services/*.html` files still do this as a leftover from the pre-redesign
-system, and it's a wasted network request since `--font-display` no longer
-points at Barlow Condensed. Cleaning those out is a good, zero-risk follow-up
-(see "Known cleanup" below).
+Loaded per page with a non-blocking `<link rel="preload" as="style">` to
+Google Fonts plus a `<noscript>` fallback. **Do not** add Barlow Condensed;
+it belongs to the pre-redesign system.
 
 Type scale (`--text-xs` through `--text-8xl`) runs from 12px to 96px in the
 usual Tailwind-like steps — see `base.css` for exact values.
 
 ## Color
 
+Values from `brand-tokens.css` (they override the older Signal Blue values
+still present in `base.css`).
+
 | Token | Value | Usage |
 |---|---|---|
 | `--brand-ink` | `#1d1d1f` | Primary text on light backgrounds |
-| `--brand-navy` | `#000000` | Hero / nav / footer background (true onyx) |
-| `--brand-navy-mid` | `#1d1d1f` | Raised dark surface |
-| `--brand-amber` (→ `--color-accent`) | `#0071e3` | **"Signal Blue"** — primary accent, filled CTAs, links |
-| `--brand-amber-dark` (→ `--color-accent-hover`) | `#0066cc` | Accent hover/active state |
-| `--brand-white` | `#ffffff` | Paper / light background |
-| `--brand-surface` | `#f5f5f7` | Section background ("Eggshell") |
-| `--brand-muted` | `#6e6e73` | Secondary/muted text |
-| `--brand-line` | `transparent` | Borders — this system uses zero visible borders by default (Apple-style) |
+| `--brand-navy` | `#0a0a0b` | Near-black hero / nav / footer surfaces |
+| `--brand-navy-mid` | `#16161a` | Raised dark surface |
+| `--brand-yellow` (→ `--color-accent`) | `#fcd800` | **Action only**: filled primary CTAs, H1 accent word. Text on it uses `--brand-on-yellow` |
+| `--brand-blue` | `#0066fc` | **Identity**: logo, icons, text links, chips |
+| `--brand-surface` | `#f5f5f7` | Section background |
+| `--brand-muted` | `#636366` | Secondary text (AA on white and on `--brand-surface`) |
+| `--brand-line` | `rgba(0,0,0,0.08)` | Hairline borders |
 
-The token names (`--brand-amber`, `--color-accent-light` using an amber rgba)
-are a holdover from an earlier amber-accented palette and are due for a
-rename to avoid confusing future contributors — the *value* is Signal Blue,
-the *name* still says amber. Don't let the name mislead you; the computed
-color is what matters until the rename happens.
-
-Full semantic color tokens (`--color-bg`, `--color-text-muted`,
-`--color-border`, etc.) are all derived from the brand tokens above — see
-`base.css` lines ~39–69.
+`--brand-amber` / `--brand-amber-dark` are legacy names kept because
+`style.css` uses them; they are remapped to the yellow action color.
 
 ## Buttons
 
@@ -92,18 +90,23 @@ Always use the token; don't hand-write `margin: 23px`.
 
 - `--nav-height`: 64px
 - `--container-max`: 1200px
-- Shadows are intentionally disabled sitewide (`--shadow-*: none`) — this is
-  an Apple-style flat design; don't add drop shadows to new components.
+- `base.css` disables generic shadows (`--shadow-*: none`). Card elevation
+  comes only from `ux-10k.css` (`--shadow-card`, `--shadow-card-hover`); reuse
+  those rather than adding new shadows.
 
-## Known cleanup (not yet done — flagged, not fixed, in this pass)
+## Accessibility baseline
 
-- Remove the redundant Barlow Condensed Google Fonts `<link>`/`@import` from
-  the ~15 `services/*.html` pages that still load it. It has zero visual
-  effect (nothing references it) and costs a render-blocking network
-  request.
-- Rename `--brand-amber` / `--brand-amber-dark` / `--color-accent-light` to
-  something Signal-Blue-accurate (`--brand-accent-blue`, etc.) — purely a
-  naming/maintainability fix, no visual change.
-- `README.md`'s "Design System" table still describes the pre-redesign
-  system (Barlow Condensed, `#203055` navy, `onehourhitch.com` palette).
-  Update or remove it in favor of pointing at this file.
+- Every page starts with `<a class="skip-link" href="#main">` and wraps its
+  content in a single `<main id="main">`, between the nav and the footer.
+- One `<h1>` per page; don't skip heading levels (restyle with CSS instead).
+- Click-to-call links always use `tel:+13013041419`.
+- Respect `prefers-reduced-motion` (see `ux-10k.css`); autoplaying hero
+  media needs a visible pause control.
+
+## Known cleanup
+
+- Rename the legacy `--brand-amber*` / `--color-accent-*` tokens to
+  action-accurate names (`--brand-action`, etc.). This is a naming fix only,
+  with no visual change, and it touches `style.css` broadly.
+- `base.css` still carries the superseded Signal Blue brand values under
+  `:root`; they are dead weight now that `brand-tokens.css` overrides them.

@@ -116,7 +116,7 @@
     var linkStyle = 'color:inherit;text-decoration:underline;text-underline-offset:2px;';
 
     messageNode.textContent = message + ' ';
-    callLink.href = 'tel:3013041419';
+    callLink.href = 'tel:+13013041419';
     callLink.textContent = 'Call (301) 304-1419';
     callLink.style.cssText = linkStyle;
     emailLink.href = 'mailto:CapitalUpfitters@gmail.com';

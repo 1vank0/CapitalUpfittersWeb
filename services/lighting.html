@@ -610,10 +610,11 @@
 <script src="/analytics.js" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ANNOUNCE BAR -->
 <div class="announce-bar" id="announce-bar">
-  Same-week appointments available &mdash; <a href="tel:3013041419">(301) 304-1419</a>
+  Same-week appointments available &mdash; <a href="tel:+13013041419">(301) 304-1419</a>
   <button class="announce-close" onclick="document.getElementById('announce-bar').remove()" aria-label="Close">&times;</button>
 </div>
 
@@ -735,7 +736,7 @@
       <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="nav-portal-link">Portal Login</a>
       <a href="../quote.html" class="nav-cta">Get a Quote</a>
     </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -747,7 +748,7 @@
   <nav class="nav-mobile-links">
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services" aria-controls="mob-services">
         Services
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -774,7 +775,7 @@
     </div>
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet" aria-controls="mob-fleet">
         Fleet &amp; Business
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -798,7 +799,7 @@
     <a href="../services/industrial-coatings.html" class="nav-mobile-direct">Industrial</a>
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer" aria-controls="mob-dealer">
         Dealer &amp; Gov
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -827,6 +828,7 @@
 <!-- ═══════════════════════════════════════════════════════
      PAGE HERO
 ═══════════════════════════════════════════════════════ -->
+<main id="main">
 <section class="page-hero" aria-labelledby="hero-heading">
   <div class="svc-hero-bg"></div>
   <div class="page-hero-overlay"></div>
@@ -843,7 +845,7 @@
     <p class="page-hero-sub">See further. Work safer. Stand out. RIGID Industries and premium LED lighting for trucks, fleets, and commercial vehicles — professionally installed with integrated wiring.</p>
     <div class="hero-ctas">
       <a href="../quote.html?service=lighting" class="btn btn-primary btn-lg">Get a Quote</a>
-      <a href="tel:3013041419" class="btn btn-outline btn-lg">Call (301) 304-1419</a>
+      <a href="tel:+13013041419" class="btn btn-outline btn-lg">Call (301) 304-1419</a>
     </div>
   </div>
 </section>
@@ -1248,7 +1250,7 @@
     <p style="color: rgba(255,255,255,0.7); font-size: var(--text-lg); line-height: 1.65; margin-bottom: var(--space-8);">Whether you need a single off-road bar or a standardized package across 20 fleet vehicles — we've got you covered. Call or click to get started.</p>
     <div style="display:flex; gap: var(--space-4); justify-content:center; flex-wrap:wrap;">
       <a href="../quote.html?service=lighting" class="btn btn-primary btn-lg">Get a Quote</a>
-      <a href="tel:3013041419" class="btn btn-outline btn-lg" style="border-color: rgba(255,255,255,0.4); color:#fff;">Call (301) 304-1419</a>
+      <a href="tel:+13013041419" class="btn btn-outline btn-lg" style="border-color: rgba(255,255,255,0.4); color:#fff;">Call (301) 304-1419</a>
     </div>
   </div>
 </section>
@@ -1350,6 +1352,8 @@
 })();
 </script>
 
+</main>
+
 <footer class="footer" role="contentinfo">
   <div class="container footer-inner">
     <div class="footer-brand">
@@ -1360,7 +1364,7 @@
       <p class="footer-tagline">Professional vehicle upfitting for trucks, fleets, and commercial vehicles. Serving the DMV since 2015.</p>
       <address class="footer-address">
         12019 Nebel St, Rockville MD 20852<br>
-        <a href="tel:3013041419">(301) 304-1419</a> &bull;
+        <a href="tel:+13013041419">(301) 304-1419</a> &bull;
         <a href="mailto:CapitalUpfitters@gmail.com">CapitalUpfitters@gmail.com</a>
       </address>
     </div>

@@ -603,9 +603,10 @@
 <script src="/analytics.js" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ANNOUNCE BAR -->
-<div class="announce-bar" id="announce-bar">Same-week appointments &mdash; <a href="tel:3013041419">(301) 304-1419</a><button class="announce-close" onclick="document.getElementById('announce-bar').remove()" aria-label="Close">&times;</button></div>
+<div class="announce-bar" id="announce-bar">Same-week appointments &mdash; <a href="tel:+13013041419">(301) 304-1419</a><button class="announce-close" onclick="document.getElementById('announce-bar').remove()" aria-label="Close">&times;</button></div>
 
 <!-- NAV -->
 <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
@@ -725,7 +726,7 @@
       <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="nav-portal-link">Portal Login</a>
       <a href="./quote.html" class="nav-cta">Get a Quote</a>
     </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -736,7 +737,7 @@
   <nav class="nav-mobile-links">
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services" aria-controls="mob-services">
         Services
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -763,7 +764,7 @@
     </div>
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet" aria-controls="mob-fleet">
         Fleet &amp; Business
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -787,7 +788,7 @@
     <a href="./services/industrial-coatings.html" class="nav-mobile-direct">Industrial</a>
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer" aria-controls="mob-dealer">
         Dealer &amp; Gov
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -813,6 +814,7 @@
   </div>
 </div>
 
+<main id="main">
 <section class="page-hero" style="min-height: 55vh; display: flex; align-items: center;">
   <div class="page-hero-bg" style="background: linear-gradient(135deg, #0d1117 0%, #1a2332 40%, #203055 100%);"></div>
   <div class="page-hero-overlay"></div>
@@ -826,7 +828,7 @@
     <p class="page-hero-sub reveal reveal-delay-1">Pre-delivery vehicle customization, state & federal contract support, GSA bid assistance, and dedicated dealer pricing through the Upfit Portal.</p>
     <div class="hero-ctas reveal reveal-delay-2">
       <a href="https://upfit-portal-58190af9.base44.app/DealerRegister" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Apply for Dealer Account</a>
-      <a href="tel:3013041419" class="btn btn-outline btn-lg">Call Us</a>
+      <a href="tel:+13013041419" class="btn btn-outline btn-lg">Call Us</a>
     </div>
   </div>
 </section>
@@ -1251,7 +1253,7 @@ function showDGPanel(id, btn) {
             <h4 style="margin-bottom: var(--space-3);">Application Received!</h4>
             <p>We'll reach out within one business day to set up your account.</p>
           </div>
-          <form data-cms-form="dealer" id="apply-form" action="mailto:CapitalUpfitters@gmail.com" method="POST" enctype="text/plain" class="form-grid" novalidate data-success-body="apply-form" data-success-panel="apply-form-success">
+          <form data-cms-form="dealer" id="apply-form" action="/api/lead" method="post" class="form-grid" novalidate data-success-body="apply-form" data-success-panel="apply-form-success">
               <!-- Attribution (auto-filled by /attribution.js) -->
               <input type="hidden" name="ip_address" data-cu-attr="1">
               <input type="hidden" name="geo_city" data-cu-attr="1">
@@ -1339,8 +1341,10 @@ function showDGPanel(id, btn) {
 </section>
 
 <!-- FOOTER -->
+</main>
+
 <footer class="footer" role="contentinfo"><div class="container"><div class="footer-grid">
-<div><a href="./index.html" class="footer-brand-logo"><div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div><div class="footer-brand-name">Capital<span>Upfitters</span></div></a><p class="footer-tagline">Family-owned vehicle upfitting in Rockville, MD. Authorized Patriot Liner dealer.</p><div class="footer-contact"><a href="tel:3013041419" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel St, Rockville MD 20852</div></div></div>
+<div><a href="./index.html" class="footer-brand-logo"><div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div><div class="footer-brand-name">Capital<span>Upfitters</span></div></a><p class="footer-tagline">Family-owned vehicle upfitting in Rockville, MD. Authorized Patriot Liner dealer.</p><div class="footer-contact"><a href="tel:+13013041419" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel St, Rockville MD 20852</div></div></div>
 <div><div class="footer-col-title">Services</div><ul class="footer-links"><li><a href="./services/bedliner.html">Spray-On Bedliners</a></li><li><a href="./services/hitches.html">Hitches & Towing</a></li><li><a href="./services/ceramic-coating.html">Ceramic Coating</a></li><li><a href="./services/undercoating.html">Undercoating</a></li><li><a href="./services/tonneau.html">Tonneau Covers</a></li><li><a href="./services/running-boards.html">Running Boards</a></li></ul></div>
 <div><div class="footer-col-title">Business</div><ul class="footer-links"><li><a href="./fleet.html">Fleet Upfitting</a></li><li><a href="./dealer-government.html">Dealer & Gov</a></li><li><a href="./gallery.html">Gallery</a></li><li><a href="./quote.html">Get a Quote</a></li><li><a href="https://upfit-portal-58190af9.base44.app" target="_blank" rel="noopener noreferrer">Upfit Portal</a></li></ul></div>
 <div><div class="footer-col-title">Locations</div><ul class="footer-links"><li><a href="./locations/rockville-md.html">Rockville, MD</a></li><li><a href="./locations/bethesda-md.html">Bethesda, MD</a></li><li><a href="./locations/silver-spring-md.html">Silver Spring, MD</a></li><li><a href="./locations/gaithersburg-md.html">Gaithersburg, MD</a></li></ul></div>

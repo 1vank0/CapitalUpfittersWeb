@@ -45,22 +45,8 @@ Built with [Perplexity Computer](https://www.perplexity.ai/computer).
 
 ## Design System
 
-| Token | Value |
-|---|---|
-| Nav / Footer background | `#111827` |
-| Brand accent (navy) | `#203055` |
-| Body background | `#ffffff` |
-| Surface | `#f9fafb` |
-| Primary text | `#111827` |
-| Muted text | `#6b7280` |
-| Footer text | `#B3B3B3` |
-| Display font | Barlow Condensed (≈ HCo Tungsten) |
-| Body font | Inter (≈ HCo Gotham SSm) |
-| Button style | Pill-shaped (`border-radius: 9999px`) |
-| Nav height | 64px |
-
-Colors sourced from [onehourhitch.com](https://www.onehourhitch.com).  
-Fonts approximate [patriotliner.site](https://patriotliner.site) (HCo Tungsten / HCo Gotham SSm).
+See [`DESIGN.md`](DESIGN.md), the single source of truth for tokens, stylesheet
+layering, and the accessibility baseline.
 
 ---
 

@@ -336,9 +336,10 @@
 <script src="/analytics.js" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ANNOUNCE BAR -->
-<div class="announce-bar" id="announce-bar">Same-week appointments &mdash; <a href="tel:3013041419">(301) 304-1419</a><button class="announce-close" onclick="document.getElementById('announce-bar').remove()" aria-label="Close">&times;</button></div>
+<div class="announce-bar" id="announce-bar">Same-week appointments &mdash; <a href="tel:+13013041419">(301) 304-1419</a><button class="announce-close" onclick="document.getElementById('announce-bar').remove()" aria-label="Close">&times;</button></div>
 
 <!-- NAV -->
 <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
@@ -458,7 +459,7 @@
       <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="nav-portal-link">Portal Login</a>
       <a href="./quote.html" class="nav-cta">Get a Quote</a>
     </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -469,7 +470,7 @@
   <nav class="nav-mobile-links">
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services" aria-controls="mob-services">
         Services
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -496,7 +497,7 @@
     </div>
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet" aria-controls="mob-fleet">
         Fleet &amp; Business
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -520,7 +521,7 @@
     <a href="./services/industrial-coatings.html" class="nav-mobile-direct">Industrial</a>
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer">
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer" aria-controls="mob-dealer">
         Dealer &amp; Gov
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
@@ -546,6 +547,7 @@
   </div>
 </div>
 
+<main id="main">
 <section class="page-hero" style="min-height: 40vh; display: flex; align-items: center;">
   <div class="page-hero-bg" style="background: linear-gradient(135deg, #0d1117 0%, #1a2332 50%, #203055 100%);"></div>
   <div class="page-hero-overlay"></div>
@@ -1002,7 +1004,7 @@
     <p class="reveal reveal-delay-1">Get a free, no-obligation quote. We respond the same business day.</p>
     <div class="cta-banner-actions reveal reveal-delay-2">
       <a href="./quote.html" class="btn btn-primary btn-lg">Get a Quote</a>
-      <a href="tel:3013041419" class="btn btn-outline btn-lg">Call Us</a>
+      <a href="tel:+13013041419" class="btn btn-outline btn-lg">Call Us</a>
     </div>
   </div>
 </section>
@@ -1024,8 +1026,10 @@
 </div>
 
 <!-- FOOTER -->
+</main>
+
 <footer class="footer" role="contentinfo"><div class="container"><div class="footer-grid">
-<div><a href="./index.html" class="footer-brand-logo"><div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div><div class="footer-brand-name">Capital<span>Upfitters</span></div></a><p class="footer-tagline">Family-owned vehicle upfitting in Rockville, MD. Authorized Patriot Liner dealer.</p><div class="footer-contact"><a href="tel:3013041419" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel St, Rockville MD 20852</div></div></div>
+<div><a href="./index.html" class="footer-brand-logo"><div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div><div class="footer-brand-name">Capital<span>Upfitters</span></div></a><p class="footer-tagline">Family-owned vehicle upfitting in Rockville, MD. Authorized Patriot Liner dealer.</p><div class="footer-contact"><a href="tel:+13013041419" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel St, Rockville MD 20852</div></div></div>
 <div><div class="footer-col-title">Services</div><ul class="footer-links"><li><a href="./services/bedliner.html">Spray-On Bedliners</a></li><li><a href="./services/hitches.html">Hitches & Towing</a></li><li><a href="./services/ceramic-coating.html">Ceramic Coating</a></li><li><a href="./services/undercoating.html">Undercoating</a></li><li><a href="./services/tonneau.html">Tonneau Covers</a></li><li><a href="./services/running-boards.html">Running Boards</a></li></ul></div>
 <div><div class="footer-col-title">Business</div><ul class="footer-links"><li><a href="./fleet.html">Fleet Upfitting</a></li><li><a href="./dealer-government.html">Dealer & Gov</a></li><li><a href="./gallery.html">Gallery</a></li><li><a href="./quote.html">Get a Quote</a></li><li><a href="https://upfit-portal-58190af9.base44.app" target="_blank" rel="noopener noreferrer">Upfit Portal</a></li></ul></div>
 <div><div class="footer-col-title">Locations</div><ul class="footer-links"><li><a href="./locations/rockville-md.html">Rockville, MD</a></li><li><a href="./locations/bethesda-md.html">Bethesda, MD</a></li><li><a href="./locations/silver-spring-md.html">Silver Spring, MD</a></li><li><a href="./locations/gaithersburg-md.html">Gaithersburg, MD</a></li></ul></div>
@@ -1162,13 +1166,25 @@ lightbox.addEventListener('touchend', e => {
     updateCount();
   }
 
+  function safeImageUrl(value) {
+    if (typeof value !== 'string') return '';
+    var url = value.trim();
+    if (!url || /^\/\//.test(url) || /^[a-z][a-z0-9+.-]*:/i.test(url) && !/^https?:/i.test(url)) return '';
+    try {
+      var parsed = new URL(url, document.baseURI);
+      return parsed.protocol === 'http:' || parsed.protocol === 'https:' ? url : '';
+    } catch (error) {
+      return '';
+    }
+  }
+
   fetch(CMS_BASE + '/api/public/gallery')
     .then(function(res) { return res.json(); })
     .then(function(data) {
       var images = data.docs || [];
       // Only replace if we have real images with actual url fields
       var realImages = images.filter(function(img) {
-        return img.url && img.url.startsWith('http');
+        return safeImageUrl(img.url);
       });
       if (realImages.length === 0) {
         // No real images — keep placeholders, just update count
@@ -1182,14 +1198,30 @@ lightbox.addEventListener('touchend', e => {
       // Replace gallery grid content
       var grid = document.querySelector('.gallery-grid');
       if (!grid) return;
-      grid.innerHTML = realImages.map(function(img) {
+      grid.textContent = '';
+      realImages.forEach(function(img) {
         var cat = img.category || img.cat || 'all';
         var alt = img.alt || img.altText || img.title || 'Capital Upfitters work';
-        return '<div class="gallery-item" data-cat="' + cat + '" role="listitem" tabindex="0">' +
-          '<img src="' + img.url + '" alt="' + alt + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;">' +
-          '<div class="gallery-item-overlay"><span class="gallery-item-label">' + alt + '</span></div>' +
-          '</div>';
-      }).join('');
+        var item = document.createElement('div');
+        var image = document.createElement('img');
+        var overlay = document.createElement('div');
+        var label = document.createElement('span');
+        item.className = 'gallery-item';
+        item.setAttribute('data-cat', cat);
+        item.setAttribute('role', 'listitem');
+        item.setAttribute('tabindex', '0');
+        image.setAttribute('src', safeImageUrl(img.url));
+        image.setAttribute('alt', alt);
+        image.setAttribute('loading', 'lazy');
+        image.setAttribute('style', 'width:100%;height:100%;object-fit:cover;');
+        overlay.className = 'gallery-item-overlay';
+        label.className = 'gallery-item-label';
+        label.textContent = alt;
+        overlay.appendChild(label);
+        item.appendChild(image);
+        item.appendChild(overlay);
+        grid.appendChild(item);
+      });
       // Update count badge
       var countEl = document.getElementById('gallery-count');
       if (countEl) countEl.textContent = 'Showing ' + realImages.length + ' of ' + realImages.length + ' projects';
