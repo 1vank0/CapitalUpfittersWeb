@@ -553,6 +553,36 @@
   <script src="/lead-form.js" defer></script>
 
 <script src="/analytics.js" defer></script>
+
+<!-- Design System v1 applied to homepage only: tokens only, no new sections, no full-screen stacking -->
+<style>
+/* Type assignments (Design System v1, Section 3) */
+.hero h1{font-size:var(--text-6xl);line-height:1.05;letter-spacing:-0.02em;color:#fff}
+.hero-sub{font-size:var(--text-base);line-height:1.6;color:rgba(255,255,255,0.9)}
+h2{font-size:var(--text-4xl);line-height:1.1}
+h3{font-size:var(--text-2xl);line-height:1.2}
+p{font-size:var(--text-base);line-height:1.6}
+@media (max-width:768px){
+  .hero h1{font-size:var(--text-5xl)}
+  h2{font-size:var(--text-3xl)}
+  h3{font-size:var(--text-xl)}
+}
+/* Hero: keep existing compact height, fix contrast for text on photo (Section 2) */
+.hero{min-height:clamp(520px,68vh,680px)}
+.hero-video-overlay{background:rgba(17,24,39,0.55)}
+.hero-overlay{background:linear-gradient(to right,rgba(17,24,39,0.70) 0%,rgba(17,24,39,0.50) 35%,rgba(17,24,39,0.20) 65%,rgba(17,24,39,0.10) 100%)}
+.hero-content{max-width:62%}
+/* Layout and spacing (Sections 4-5): container stays 1200px, sections 64-96px */
+.container{width:90%;max-width:var(--container-max);margin-inline:auto}
+.section{padding:var(--space-16) 0}
+/* Buttons and fields (Sections 6-7): locked sizes only */
+.btn{min-height:44px;padding:0.75rem 1.75rem;border-radius:var(--radius-pill)}
+.btn-lg{min-height:52px;padding:1rem 2rem}
+input,.form-select,.form-textarea{padding:0.875rem var(--space-4);font-size:var(--text-base);border-radius:var(--radius-md)}
+/* Motion (Section 9): keep existing reveal only, no new scale/fade */
+.reveal{transition:opacity 0.65s cubic-bezier(0.16,1,0.3,1)}
+@media (prefers-reduced-motion:reduce){.reveal{transition:none}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
