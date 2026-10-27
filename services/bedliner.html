@@ -39,6 +39,7 @@
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="../brand-tokens.css">
 <link rel="stylesheet" href="../ux-10k.css">
+<link rel="stylesheet" href="../cinematic.css">
 
 <!-- JSON-LD -->
 <script type="application/ld+json">
@@ -594,7 +595,7 @@
 
 <script src="/analytics.js" defer></script>
 </head>
-<body>
+<body class="cine cine-product">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ANNOUNCE BAR -->
@@ -815,8 +816,11 @@
 ═══════════════════════════════════════════════════════ -->
 <main id="main">
 <section class="page-hero" aria-labelledby="hero-heading">
-  <div class="svc-hero-bg"></div>
+  <div class="svc-hero-bg">
+    <img src="../media/next/bedliner-v1.webp" alt="" width="1440" height="960" fetchpriority="high" decoding="async">
+  </div>
   <div class="page-hero-overlay"></div>
+  <p class="asset-slot-label">Placeholder — real Patriot Liner install photo or spray film needed</p>
   <div class="container page-hero-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="../index.html">Home</a>
@@ -826,7 +830,7 @@
       <span aria-current="page">Spray-On Bedliner</span>
     </nav>
     <div class="badge" style="margin-bottom: var(--space-5); background: rgba(32,48,85,0.7); border: 1px solid rgba(255,255,255,0.15);">Authorized Patriot Liner Dealer</div>
-    <h1 id="hero-heading">The Last Bedliner <em>Your Truck Will Ever Need.</em></h1>
+    <h1 id="hero-heading">The last bedliner <em>your truck will ever need.</em></h1>
     <p class="page-hero-sub">Authorized Patriot Liner dealer. Premium polyurea formula — heated to 155°F, 2,000 PSI. Dry in under 10 seconds. Lifetime warranty.</p>
     <p class="page-hero-sub" style="margin-top: var(--space-2); font-size: var(--text-sm); opacity: 0.75; letter-spacing: 0.08em; text-transform: uppercase; font-family: var(--font-display); font-weight: 600;">Trucks, Trailers, Marine &amp; More</p>
     <div class="hero-ctas">
@@ -861,12 +865,16 @@
 <!-- ═══════════════════════════════════════════════════════
      BENEFITS
 ═══════════════════════════════════════════════════════ -->
-<section class="section section--surface" aria-labelledby="benefits-heading">
-  <div class="container">
-    <div class="reveal" style="text-align:center;">
-      <div class="section-label" style="justify-content:center;">Why Patriot Liner</div>
-      <h2 id="benefits-heading">BUILT TO TAKE A BEATING.</h2>
-      <p style="max-width: 520px; margin: var(--space-3) auto 0;">Not all spray liners are the same. The chemistry, application temperature, and pressure make all the difference. Here's why Patriot Liner leads the field.</p>
+<section class="section cine-pin" id="bundles" aria-labelledby="benefits-heading">
+  <figure class="cine-pin-media asset-slot">
+    <img src="../assets/img/services/bedliner-card.webp" alt="Matte black pickup truck bed coated in textured black spray-on bedliner" width="800" height="533" loading="lazy" decoding="async">
+    <figcaption class="asset-slot-label">Placeholder — close-up of a sprayed bed needed</figcaption>
+  </figure>
+  <div class="cine-pin-copy">
+    <div class="reveal">
+      <div class="section-label">Why Patriot Liner</div>
+      <h2 id="benefits-heading">Built to take a beating.</h2>
+      <p style="max-width: 36rem; margin: 0.85rem 0 0;">Not all spray liners are the same. The chemistry, application temperature, and pressure make all the difference. Here's why Patriot Liner leads the field.</p>
     </div>
     <div class="benefit-cards">
       <div class="benefit-card">
@@ -899,7 +907,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center; margin-bottom: var(--space-10);">
       <div class="section-label" style="justify-content:center;">More Than a Truck Bed</div>
-      <h2 id="beyond-heading">PATRIOT LINER GOES ANYWHERE.</h2>
+      <h2 id="beyond-heading">Patriot Liner goes anywhere.</h2>
       <p style="max-width:560px; margin: var(--space-3) auto 0; color: var(--color-text-secondary);">Polyurea spray coating bonds to almost any surface — metal, wood, concrete, fiberglass. If it needs protection, grip, or waterproofing, we can coat it.</p>
     </div>
     <div class="benefit-cards" style="grid-template-columns: repeat(3,1fr);">
@@ -966,11 +974,11 @@
 <!-- ═══════════════════════════════════════════════════════
      PRICING
 ═══════════════════════════════════════════════════════ -->
-<section class="section" aria-labelledby="pricing-heading">
+<section class="section" id="pricing" aria-labelledby="pricing-heading">
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">How Pricing Works</div>
-      <h2 id="pricing-heading">QUOTED BY BED SIZE.</h2>
+      <h2 id="pricing-heading">Quoted by bed size.</h2>
       <p style="max-width: 520px; margin: var(--space-3) auto 0;">No hidden fees. No surprises. Compact, standard, HD, and long 8ft beds are all quoted with full bed prep, professional application, and lifetime warranty registration included.</p>
     </div>
 
@@ -999,7 +1007,7 @@
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Our Process</div>
-      <h2 id="process-heading">FROM DROP-OFF TO PICKUP.</h2>
+      <h2 id="process-heading">From drop-off to pickup.</h2>
       <p style="max-width: 460px; margin: var(--space-3) auto 0;">A clean, professional process every time. Your truck is treated with care from the moment it arrives.</p>
     </div>
     <div class="process-steps">
@@ -1519,6 +1527,7 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
 </script>
 
 <script src="../animations.js" defer></script>
+<script src="../cinematic.js" defer></script>
 
 <!-- Floating quote CTA -->
 <div class="float-cta" aria-hidden="true">
