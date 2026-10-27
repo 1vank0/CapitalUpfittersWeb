@@ -661,18 +661,33 @@
     <p style="text-align:center;opacity:.7;margin:0;">Loading reviews…</p>
   </div>
 </section>
+<noscript><div style="text-align:center;margin:1rem 0;"><p style="margin:0 0 .5rem;">4.9 ★ Google Rating · 119 verified Google reviews</p><a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer">Read reviews on Google</a></div></noscript>
 <script>
 (function(){
   var mount = document.getElementById('ti-lazy-mount');
   if (!mount) return;
-  var loaded = false;
+  var loaded = false, fallbackShown = false;
+  function hasWidget(){
+    var kids = mount.children;
+    for (var i = 0; i < kids.length; i++) {
+      if (kids[i].tagName !== 'SCRIPT' && kids[i].textContent.trim().length > 0) return true;
+    }
+    return !!mount.querySelector('img');
+  }
+  function showFallback(){
+    if (fallbackShown || hasWidget()) return;
+    fallbackShown = true;
+    mount.innerHTML = '<div style="text-align:center;padding:1rem 0;"><p style="font-weight:600;margin:0 0 .5rem;">4.9 \u2605 Google Rating \u00b7 119 verified Google reviews</p><p style="opacity:.8;margin:0 0 1rem;">The live review feed did not load here, but the reviews are available on Google.</p><a href="https://share.google/k9ejYM294VHEEm6xq" target="_blank" rel="noopener noreferrer">Read reviews on Google</a></div>';
+  }
   function loadTI(){
     if (loaded) return; loaded = true;
     mount.innerHTML = '';
     var s = document.createElement('script');
     s.src = 'https://cdn.trustindex.io/loader.js?4b0fb84780ce380f4576092cef2';
     s.async = true; s.defer = true;
+    s.onerror = showFallback;
     mount.appendChild(s);
+    setTimeout(showFallback, 8000);
     try {
       if (window.CU && CU.track) CU.track('reviews_view', { placement: 'lazy' });
       else if (window.gtag) gtag('event', 'reviews_view', { placement: 'lazy' });
