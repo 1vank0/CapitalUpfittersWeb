@@ -553,6 +553,29 @@
   <script src="/lead-form.js" defer></script>
 
 <script src="/analytics.js" defer></script>
+
+<!-- Homepage pilot: Tesla/Apple-style product showcase (homepage only, index.html) -->
+<style>
+/* Full-screen hero, overriding the compact 68vh hero in style.css */
+.hero{min-height:100svh;padding:0;display:flex;align-items:center}
+.hero-content{padding-top:6rem;padding-bottom:6rem}
+.hero-slide-copy h1,.hero h1{font-size:clamp(2.75rem,8vw,5.5rem);line-height:1.02;letter-spacing:-0.02em}
+.hero-sub{font-size:clamp(1.05rem,2vw,1.35rem);max-width:34rem}
+/* Product showcase: one product per full screen */
+.pilot-showcase{margin:0}
+.pilot-panel{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:#0f1825;color:#fff}
+.pilot-panel-media{position:absolute;inset:0}
+.pilot-panel-media img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.07);transition:transform 1.4s cubic-bezier(0.16,1,0.3,1)}
+.pilot-panel::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.25) 45%,rgba(0,0,0,0.05) 100%);pointer-events:none}
+.pilot-panel-copy{position:relative;z-index:1;width:100%;max-width:72rem;margin:0 auto;padding:4rem 1.5rem;opacity:0;transform:translateY(28px);transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1),transform 0.9s cubic-bezier(0.16,1,0.3,1)}
+.pilot-panel.is-visible .pilot-panel-copy{opacity:1;transform:translateY(0)}
+.pilot-panel.is-visible .pilot-panel-media img{transform:scale(1)}
+.pilot-panel-copy h2{font-size:clamp(2rem,5.5vw,3.75rem);line-height:1.05;letter-spacing:-0.02em;margin:0 0 0.75rem}
+.pilot-panel-copy p{font-size:clamp(1rem,2vw,1.25rem);max-width:36rem;margin:0 0 1.5rem;opacity:0.9}
+@media (prefers-reduced-motion:reduce){
+  .pilot-panel-copy,.pilot-panel-media img{transition:none;transform:none;opacity:1}
+}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -945,6 +968,30 @@
   .audience-card-cta svg { transition: transform var(--transition-base); }
   .audience-card:hover .audience-card-cta svg { transform: translateX(3px); }
 </style>
+
+<!-- Homepage pilot showcase: one service per full screen, image first, one CTA -->
+<div class="pilot-showcase" aria-label="Featured services">
+  <section class="pilot-panel" aria-labelledby="pilot-bedliner">
+    <div class="pilot-panel-media"><img src="./assets/img/services/bedliner-card.webp" alt="Matte black pickup truck bed coated in textured black spray-on bedliner" loading="lazy" decoding="async"></div>
+    <div class="pilot-panel-copy"><h2 id="pilot-bedliner">Spray-On Bedliners</h2><p>Durable, textured spray liner permanently bonded to your truck bed. Lifetime warranty.</p><a href="./services/bedliner.html" class="btn btn-primary btn-lg">Learn More</a></div>
+  </section>
+  <section class="pilot-panel" aria-labelledby="pilot-ceramic">
+    <div class="pilot-panel-media"><img src="./assets/img/services/ceramic-coating-card.webp" alt="Glossy black SUV with a fresh ceramic coating under shop lights" loading="lazy" decoding="async"></div>
+    <div class="pilot-panel-copy"><h2 id="pilot-ceramic">Ceramic Coating &amp; PPF</h2><p>Professional-grade nano-ceramic protection. Locks in gloss, repels water, resists UV and chemical damage.</p><a href="./services/ceramic-coating.html" class="btn btn-primary btn-lg">Learn More</a></div>
+  </section>
+  <section class="pilot-panel" aria-labelledby="pilot-hitches">
+    <div class="pilot-panel-media"><img src="./assets/img/services/hitches-card.webp" alt="Rear of a dark heavy-duty pickup truck with a receiver hitch" loading="lazy" decoding="async"></div>
+    <div class="pilot-panel-copy"><h2 id="pilot-hitches">Hitches &amp; Towing</h2><p>Receiver hitches, fifth-wheel preps, gooseneck conversions, brake controllers, and wiring.</p><a href="./services/hitches.html" class="btn btn-primary btn-lg">Learn More</a></div>
+  </section>
+  <section class="pilot-panel" aria-labelledby="pilot-tonneau">
+    <div class="pilot-panel-media"><img src="./assets/img/services/tonneau-card.webp" alt="Dark pickup truck with a low-profile hard folding tonneau cover in a dim shop" loading="lazy" decoding="async"></div>
+    <div class="pilot-panel-copy"><h2 id="pilot-tonneau">Tonneau Covers</h2><p>Soft fold, hard fold, retractable, and roll-up covers for all popular truck models.</p><a href="./services/tonneau.html" class="btn btn-primary btn-lg">Learn More</a></div>
+  </section>
+  <section class="pilot-panel" aria-labelledby="pilot-boards">
+    <div class="pilot-panel-media"><img src="./assets/img/services/running-boards-card.webp" alt="Black running board step mounted below the doors of a dark pickup truck" loading="lazy" decoding="async"></div>
+    <div class="pilot-panel-copy"><h2 id="pilot-boards">Running Boards &amp; Steps</h2><p>Steel, aluminum, and AMP Research electric running boards for trucks and SUVs.</p><a href="./services/running-boards.html" class="btn btn-primary btn-lg">Learn More</a></div>
+  </section>
+</div>
 <section class="section audience-split" aria-labelledby="audience-split-heading">
   <div class="container">
     <div class="reveal">
@@ -2660,5 +2707,27 @@
   <a href="tel:+13013041419" class="mab-btn mab-call"><svg class="mab-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a>
   <a href="./quote.html" class="mab-btn mab-quote">Get a Quote</a>
 </nav>
+
+<!-- Homepage pilot transitions: fade/slide panels in on scroll, no motion if reduced motion is set -->
+<script>
+(function(){
+  var panels=document.querySelectorAll('.pilot-panel');
+  if(!panels.length) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    panels.forEach(function(p){p.classList.add('is-visible');});
+    return;
+  }
+  if(!('IntersectionObserver' in window)){
+    panels.forEach(function(p){p.classList.add('is-visible');});
+    return;
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('is-visible');io.unobserve(en.target);}
+    });
+  },{threshold:0.2});
+  panels.forEach(function(p){io.observe(p);});
+})();
+</script>
 </body>
 </html>
