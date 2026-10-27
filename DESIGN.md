@@ -88,7 +88,7 @@ Always use the token; don't hand-write `margin: 23px`.
 
 ## Layout
 
-- `--nav-height`: 64px
+- `--nav-height`: 52px on pages that load `cinematic.css` (64px in `base.css` before that file)
 - `--container-max`: 1200px
 - `base.css` disables generic shadows (`--shadow-*: none`). Card elevation
   comes only from `ux-10k.css` (`--shadow-card`, `--shadow-card-hover`); reuse
@@ -102,6 +102,37 @@ Always use the token; don't hand-write `margin: 23px`.
 - Click-to-call links always use `tel:+13013041419`.
 - Respect `prefers-reduced-motion` (see `ux-10k.css`); autoplaying hero
   media needs a visible pause control.
+
+## Cinematic layer (`cinematic.css` + `cinematic.js`)
+
+Loaded after `ux-10k.css` on every public page. It restyles the shared
+nav, announcement bar, and footer, and adds scroll-driven chapters:
+
+- `body.cine` — homepage (full-viewport hero, pinned story, horizontal
+  service rail, full-bleed audience panels).
+- `body.cine-product` — bedliner service template (full-bleed hero and a
+  sticky image / scrolling benefits column).
+
+Project rules in `.cursor/rules/` govern this layer:
+
+- `redesign-existing-projects.md` upgrades what is already here.
+- `landing-page-design.md` is the source for type, spacing, radius, dark
+  surfaces, and motion.
+- `capital-upfitters-design.mdc` records local exceptions. Those win:
+  yellow `#fcd800` primary CTAs, no invented proof, no stock photos,
+  44px targets, FAQ copy kept in sync with its schema.
+
+On pages that load `cinematic.css`, both `--font-display` and
+`--font-body` are Manrope. No italics. No weight above 700. Dark
+cinematic surfaces use `#000000`. Hero headlines use a text-only
+gradient from `#FFFFFF` to `#9B9B9B`. The homepage and Patriot Liner
+nav floats (16px inset, 16px radius) and moves with an
+IntersectionObserver, not a scroll listener.
+
+Yellow stays on primary actions. `prefers-reduced-motion` drops sticky
+pinning, word movement, and scroll-linked image motion. Blocks marked
+`.asset-slot` use existing art as stand-ins; the on-page label says
+what Ivan still needs to shoot. Do not invent replacement photography.
 
 ## Known cleanup
 
