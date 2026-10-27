@@ -332,7 +332,8 @@
      Adds .scrolled class to nav after 60px for shadow/border treatment.
   ──────────────────────────────────────────────────────────────────────────── */
   const nav = document.getElementById('nav');
-  if (nav) {
+  // Homepage and Patriot Liner use an IntersectionObserver in cinematic.js.
+  if (nav && !document.body.classList.contains('cine')) {
     function updateNav() {
       if (window.scrollY > 60) {
         nav.classList.add('scrolled');

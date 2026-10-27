@@ -1,0 +1,31 @@
+---
+description: Capital Upfitters visual system. Follow the redesign and landing-page skills, with the local constraints in this file when they conflict.
+alwaysApply: true
+---
+
+# Capital Upfitters design
+
+When changing UI, copy, motion, or layout, follow these project rules in order:
+
+1. `.cursor/rules/redesign-existing-projects.md` — primary. Diagnose, then upgrade the existing static HTML/CSS/JS in place. Do not migrate frameworks.
+2. `.cursor/rules/landing-page-design.md` — source of truth for type, spacing, radius, dark surfaces, hero text, motion, conversion copy, and page structure.
+
+## Local constraints (these win over the skills)
+
+- Do not invent facts, prices, testimonials, customer names, review counts, or photos. Do not use picsum or other stock placeholders. Stand-in imagery stays the existing files in `media/` and `assets/`, labeled as placeholders.
+- Yellow `#fcd800` is the only action accent, and only on primary CTAs. Identity blue `#0066fc` stays for logo and in-content links on light pages. Do not introduce a second accent.
+- One typeface: Manrope, via `--font-display` and `--font-body` (set in `cinematic.css`). No italics. No weight above 700.
+- Tap targets stay at least 44px. Keep the skip link, hero pause and mute controls, and FAQ visible text aligned with FAQ JSON-LD. Do not rewrite FAQ answers unless the schema text changes with them.
+- Preserve routes, forms, analytics, and the hero slider IDs (`hero-h1`, `hero-sub`, `hero-cta-primary`, `hero-cta-secondary`, `hero-vid`, and the rest of the slider contract).
+- `prefers-reduced-motion`: opacity only, no movement.
+
+## Values to use (do not invent others)
+
+- Type scale: 12/16, 14/20, 16/24, 18/28, 20/28, 24/32, 30/36, 36/40, 48/1, 60/1, 72/1, 96/1, 128/1. `text-wrap: balance` on headings, `pretty` on body. Sentence case. No hyphens or dashes in headings, labels, or new copy.
+- Spacing: 0, 2, 4, 8, 12, 16, 24, 32, 40, 48, 64, 80, 96. Main buttons 16px type, semibold, 8px vertical and 12px horizontal padding, with min-height 44px. Header buttons 14px semibold.
+- Dark surfaces: `#000000`, `#181818`, `#1F1F1F`, `#272727`, `#313131`, `#131209`. No background gradients. Hero headings use a left-to-right text gradient `#FFFFFF` → `#9B9B9B` only.
+- Radius from the Tailwind scale. Nested radius = outer − gap when the gap is under 32px and the result is over 2.
+- Motion: `cubic-bezier(0.22, 1, 0.36, 1)`. 500ms for transform, 300ms for color or opacity, never under 200ms. Animate only transform and opacity. Scroll reveals rise 32px and fade over 600–800ms, once, via IntersectionObserver. No unthrottled scroll listeners.
+- Cinematic nav (homepage and Patriot Liner) floats: 16px side inset, 16px radius, 48px from the top under the announce bar, 8px from the top once scrolled. CSS owns `top`. Do not set inline `style.top`.
+- Every marketing page gets one tagline reveal (two lines, not directly under the hero). Words start near 30% opacity and activate one at a time.
+- One primary CTA above the fold. A second action is a text link.

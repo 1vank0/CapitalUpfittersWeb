@@ -962,3 +962,563 @@ body.cine-product .process-num {
     width: max-content;
   }
 }
+
+/* ============================================================
+   Skill pass — values from .cursor/rules/landing-page-design.md
+   Later rules in this file win over the first cinematic pass.
+   ============================================================ */
+
+:root {
+  --font-body: "Manrope", system-ui, sans-serif;
+  --font-display: "Manrope", system-ui, sans-serif;
+  --cine-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cine-nav-sentinel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 64px;
+  pointer-events: none;
+}
+
+/* Shared chrome: one typeface, approved dark, scale type */
+#announce-bar,
+.announce-bar {
+  background: #000000 !important;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  padding: 8px 40px;
+}
+.nav {
+  background: rgba(0, 0, 0, 0.78);
+  font-family: var(--font-body);
+}
+.nav-logo-mark {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+}
+.nav-logo-text {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.nav-links > li > a,
+.nav-item > a,
+.nav-portal-link {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+.nav-cta {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  padding: 8px 12px;
+  min-height: 44px;
+  border-radius: 9999px;
+}
+.nav-links a.active {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.nav-dropdown {
+  background: #181818;
+  border-radius: 16px;
+}
+.nav-mobile {
+  background: rgba(0, 0, 0, 0.96);
+}
+.nav-mobile-links a,
+.nav-mobile-direct,
+.nav-mobile-section-trigger {
+  text-transform: none;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 36px;
+}
+.footer {
+  background: #000000;
+  padding: 80px 0 24px;
+}
+.footer-brand-name,
+.footer-col-title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+.footer-tagline,
+.footer-links a,
+.footer-contact-item {
+  font-size: 16px;
+  line-height: 24px;
+}
+.asset-slot-label {
+  left: 16px;
+  bottom: 16px;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+/* Hamburger draws itself into an X. Menu links rise 24px, 60ms apart. */
+.nav-hamburger span {
+  transition: transform 500ms var(--cine-ease), opacity 300ms var(--cine-ease);
+}
+.nav-hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger.is-open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+.nav-mobile-links > *,
+.nav-mobile-actions {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.nav-mobile.is-shown .nav-mobile-links > *,
+.nav-mobile.is-shown .nav-mobile-actions {
+  opacity: 1;
+  transform: none;
+  transition: opacity 500ms var(--cine-ease), transform 500ms var(--cine-ease);
+}
+.nav-mobile.is-shown .nav-mobile-links > *:nth-child(2) { transition-delay: 60ms; }
+.nav-mobile.is-shown .nav-mobile-links > *:nth-child(3) { transition-delay: 120ms; }
+.nav-mobile.is-shown .nav-mobile-links > *:nth-child(4) { transition-delay: 180ms; }
+.nav-mobile.is-shown .nav-mobile-links > *:nth-child(5) { transition-delay: 240ms; }
+.nav-mobile.is-shown .nav-mobile-links > *:nth-child(6) { transition-delay: 300ms; }
+.nav-mobile.is-shown .nav-mobile-links > *:nth-child(n + 7),
+.nav-mobile.is-shown .nav-mobile-actions { transition-delay: 360ms; }
+
+/* Floating nav on the homepage and Patriot Liner only */
+body.cine .nav,
+body.cine-product .nav {
+  position: absolute;
+  top: 48px;
+  left: 16px;
+  right: 16px;
+  width: auto;
+  height: auto;
+  padding-block: 4px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: saturate(140%) blur(18px);
+  -webkit-backdrop-filter: saturate(140%) blur(18px);
+}
+body.cine.announce-dismissed .nav:not(.is-scrolled),
+body.cine-product.announce-dismissed .nav:not(.is-scrolled) {
+  top: 16px;
+}
+body.cine .nav.is-scrolled,
+body.cine-product .nav.is-scrolled {
+  position: fixed;
+  top: 8px;
+  left: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.72);
+}
+body.cine .nav-inner,
+body.cine-product .nav-inner {
+  width: 100%;
+  max-width: none;
+  padding-inline: 16px;
+}
+
+body.cine,
+body.cine-product {
+  font-family: var(--font-body);
+}
+body.cine em,
+body.cine i,
+body.cine-product em,
+body.cine-product i,
+body.cine .accent-word,
+body.cine-product .accent-word {
+  font-style: normal;
+}
+body.cine #hero-h1,
+body.cine .cine-story-copy h2,
+body.cine .cine-tagline p,
+body.cine-product .page-hero h1,
+body.cine-product .cine-tagline p,
+body.cine .funnel-section h2,
+body.cine #why-heading,
+body.cine #home-faq-heading,
+body.cine #testimonials-heading,
+body.cine #locations-heading,
+body.cine #cta-heading,
+body.cine-product .cine-pin h2 {
+  text-wrap: balance;
+  font-weight: 600;
+}
+body.cine .cine-story-copy h2,
+body.cine .funnel-section h2,
+body.cine #why-heading,
+body.cine #home-faq-heading,
+body.cine #testimonials-heading,
+body.cine #locations-heading,
+body.cine #cta-heading,
+body.cine-product .cine-pin h2 {
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  max-width: 680px;
+}
+body.cine .cine-step h3,
+body.cine-product .cine-pin .benefit-title {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+}
+body.cine .cine-step p,
+body.cine-product .cine-pin .benefit-desc,
+body.cine .home-faq-answer-inner {
+  font-size: 16px;
+  line-height: 24px;
+  text-wrap: pretty;
+}
+
+/* Kill linear scroll-timeline injection on these templates.
+   That injected sheet sets opacity:0, so visible copy needs !important. */
+body.cine h1,
+body.cine h2,
+body.cine h3,
+body.cine .hero-sub,
+body.cine .hero-ctas,
+body.cine .hero-label,
+body.cine .hero-stats,
+body.cine .section-label,
+body.cine .service-card,
+body.cine .funnel-grid > *,
+body.cine .grid-3 > *,
+body.cine-product h1,
+body.cine-product h2,
+body.cine-product h3,
+body.cine-product .page-hero-sub,
+body.cine-product .benefit-card,
+body.cine-product .service-card,
+body.cine-product .section-label {
+  animation: none !important;
+  clip-path: none !important;
+  opacity: 1 !important;
+}
+body.cine .reveal:not(.visible),
+body.cine-product .reveal:not(.visible) {
+  animation: none !important;
+  opacity: 0 !important;
+  transform: translateY(32px);
+  transition: opacity 700ms var(--cine-ease), transform 700ms var(--cine-ease);
+}
+body.cine .reveal.visible,
+body.cine-product .reveal.visible {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none;
+  transition: opacity 700ms var(--cine-ease), transform 700ms var(--cine-ease);
+}
+body.cine .stats-strip::after,
+body.cine-product .stats-strip::after {
+  display: none !important;
+  background: none !important;
+}
+
+body.cine .hero,
+body.cine-product .page-hero {
+  min-height: 100dvh;
+  background: #000000;
+}
+body.cine .hero-overlay,
+body.cine-product .page-hero-overlay {
+  background: rgba(0, 0, 0, 0.42);
+}
+body.cine .hero-video-overlay { background: transparent; }
+body.cine .hero-content,
+body.cine .hero-content.container,
+body.cine-product .page-hero-content {
+  max-width: min(1120px, calc(100% - 32px));
+}
+body.cine #hero-h1,
+body.cine-product .page-hero h1 {
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  max-width: 680px;
+  margin-bottom: 24px;
+  text-wrap: wrap;
+  color: #fff;
+  background-image: linear-gradient(90deg, #ffffff 0%, #9b9b9b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body.cine #hero-sub,
+body.cine-product .page-hero-sub {
+  font-size: 18px !important;
+  line-height: 28px !important;
+  max-width: 680px;
+  margin-bottom: 24px;
+  color: rgba(255, 255, 255, 0.88) !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  font-weight: 400 !important;
+}
+body.cine .hero-label,
+body.cine-product .page-hero .badge {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+body.cine .btn,
+body.cine-product .btn {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  padding: 8px 12px;
+  min-height: 44px;
+  border-radius: 9999px;
+  transition: background-color 300ms var(--cine-ease), color 300ms var(--cine-ease), opacity 300ms var(--cine-ease), transform 500ms var(--cine-ease);
+}
+body.cine .btn:hover,
+body.cine-product .btn:hover {
+  transform: scale(1.02);
+}
+body.cine .btn:active,
+body.cine-product .btn:active {
+  transform: scale(0.98);
+}
+body.cine .btn:focus-visible,
+body.cine-product .btn:focus-visible,
+.nav-cta:focus-visible,
+.nav-hamburger:focus-visible {
+  outline: 2px solid #fcd800;
+  outline-offset: 2px;
+}
+body.cine #hero-cta-secondary,
+body.cine-product .page-hero .btn-outline {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  padding: 8px 4px;
+  border-radius: 8px;
+}
+body.cine #hero-cta-secondary:hover,
+body.cine-product .page-hero .btn-outline:hover {
+  background: transparent !important;
+  color: #fff !important;
+  opacity: 0.72;
+  transform: none;
+}
+body.cine .hero-ctas,
+body.cine-product .page-hero .hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+body.cine .hero,
+.cine-story,
+body.cine .funnel-section,
+body.cine .stats-strip,
+body.cine-product .stats-strip {
+  background: #000000;
+}
+body.cine .funnel-card-body {
+  background: rgba(0, 0, 0, 0.55);
+}
+body.cine .why-visual-placeholder {
+  background: #000000 url("./media/next/ceramic-coating-v1.webp") center/cover no-repeat;
+}
+body.cine .why-visual-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+}
+body.cine .why-visual-placeholder::after {
+  content: "Placeholder. Real coating photo needed";
+  z-index: 1;
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+body.cine .funnel-section h2,
+body.cine #why-heading,
+body.cine #home-faq-heading,
+body.cine #testimonials-heading,
+body.cine #locations-heading,
+body.cine #cta-heading {
+  font-size: 48px;
+  line-height: 1;
+  max-width: 680px;
+}
+body.cine .cine-story a,
+body.cine-product .cine-pin .section-label,
+body.cine .cine-kicker {
+  color: rgba(255, 255, 255, 0.86);
+}
+body.cine .cine-kicker {
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+.cine-story,
+.cine-story-media { background: #000000; }
+.cine-story-media { background: #181818; }
+html:not(.reduce-motion) .cine-story-media img,
+html:not(.reduce-motion) .cine-step,
+html:not(.reduce-motion) body.cine .funnel-card .card-media,
+html:not(.reduce-motion) body.cine-product .cine-pin-media img,
+html:not(.reduce-motion) body.cine-product .cine-pin .benefit-card {
+  animation: none !important;
+}
+body.cine .home-faq-item,
+body.cine .home-faq-item:first-child {
+  border: 0 !important;
+  background: transparent !important;
+}
+
+/* Tagline reveal — two lines, words wake up one at a time */
+.cine-tagline {
+  background: #000000;
+  color: #fff;
+  padding: 96px 24px;
+  min-height: 80dvh;
+  display: flex;
+  align-items: center;
+}
+.cine-tagline-inner { max-width: 680px; }
+.cine-tagline p {
+  margin: 0;
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  color: #fff;
+}
+.cine-tagline p + p { margin-top: 12px; }
+.cine-word {
+  display: inline-block;
+  margin-right: 0.28em;
+  color: rgba(255, 255, 255, 0.3);
+  transition: color 500ms var(--cine-ease);
+}
+.cine-word.is-on { color: #fff; }
+
+/* FAQ stays the same words, shown as a two column list */
+body.cine .home-faq-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 48px;
+  max-width: 1120px;
+}
+body.cine .home-faq-item {
+  border: 0;
+  background: transparent;
+}
+body.cine .home-faq-item .home-faq-answer {
+  max-height: none;
+  overflow: visible;
+}
+body.cine .home-faq-chevron { display: none; }
+body.cine .home-faq-question {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  padding: 0 0 8px;
+}
+body.cine .home-faq-answer-inner {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 0;
+}
+body.cine-product .cine-beyond-grid {
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px !important;
+}
+body.cine-product .stat-number,
+body.cine-product .kpi-number,
+body.cine .stat-number,
+body.cine .hero-stat-value {
+  font-weight: 600 !important;
+}
+
+@media (min-width: 900px) {
+  body.cine .cine-story-copy h2,
+  body.cine .funnel-section h2,
+  body.cine #why-heading,
+  body.cine #home-faq-heading,
+  body.cine #testimonials-heading,
+  body.cine #locations-heading,
+  body.cine #cta-heading,
+  body.cine-product .cine-pin h2 {
+    font-size: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  body.cine #hero-h1,
+  body.cine-product .page-hero h1 {
+    font-size: 30px;
+    line-height: 36px;
+  }
+  .cine-tagline { padding: 64px 16px; }
+  .cine-tagline p {
+    font-size: 36px;
+    line-height: 40px;
+  }
+  body.cine .home-faq-list,
+  body.cine-product .cine-beyond-grid {
+    grid-template-columns: 1fr !important;
+  }
+  body.cine .cine-story-copy h2,
+  body.cine .funnel-section h2,
+  body.cine #why-heading,
+  body.cine #home-faq-heading,
+  body.cine-product .page-hero h1,
+  body.cine-product .cine-pin h2 {
+    font-size: 36px;
+    line-height: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-mobile-links > *,
+  .nav-mobile-actions {
+    transform: none;
+    transition-duration: 300ms;
+    transition-delay: 0ms !important;
+  }
+  .nav-hamburger span { transition: none; }
+  body.cine .reveal:not(.visible),
+  body.cine-product .reveal:not(.visible),
+  body.cine .reveal.visible,
+  body.cine-product .reveal.visible {
+    transform: none;
+    transition: opacity 300ms var(--cine-ease);
+  }
+  .cine-word { transition-duration: 300ms; }
+}
