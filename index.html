@@ -262,7 +262,7 @@
 .hero-video-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(17,24,39,0.30);
+  background: rgba(17,24,39,0.55);
   pointer-events: none;
 }
 /* Fallback: dark industrial gradient shown until video loads (no external asset dependency) */
@@ -568,9 +568,7 @@
   <div class="nav-inner">
     <a href="./index.html" class="nav-logo" aria-label="Capital Upfitters home">
       <div class="nav-logo-mark">
-        <svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-          <path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/>
-        </svg>
+        <span class="cu-mark" aria-hidden="true">CU</span>
       </div>
       <div class="nav-logo-text">Capital<span>Upfitters</span></div>
     </a>
@@ -1672,7 +1670,7 @@
     <div class="footer-grid">
       <div>
         <a href="./index.html" class="footer-brand-logo" aria-label="Capital Upfitters">
-          <div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div>
+          <div class="nav-logo-mark"><span class="cu-mark" aria-hidden="true">CU</span></div>
           <div class="footer-brand-name">Capital<span>Upfitters</span></div>
         </a>
         <p class="footer-tagline">Family-owned vehicle upfitting shop in Rockville, MD. Serving the DMV region since 2015. Authorized Patriot Liner dealer.</p>
@@ -2660,5 +2658,25 @@
   <a href="tel:+13013041419" class="mab-btn mab-call"><svg class="mab-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a>
   <a href="./quote.html" class="mab-btn mab-quote">Get a Quote</a>
 </nav>
+
+<!-- PATH B CU MOCKUP OVERRIDES: Apple-basic site palette, CU mark. Homepage only, preview only. -->
+<style>
+  /* CU monogram: simple geometric letters in the existing logo-mark square. Wordmark beside it stays for recognition. */
+  .nav-logo-mark { font-family: Manrope, Inter, sans-serif; font-weight: 800; font-size: 14px; letter-spacing: 0.02em; color: #fff; line-height: 1; }
+  .cu-mark { display: inline-flex; align-items: center; justify-content: center; }
+  /* Path B action: black on white, white on black. Retires yellow as the site action colour. Logo mark keeps its blue square. */
+  .btn-primary, .nav-cta, a.btn.btn-primary, button.btn.btn-primary, .nav-mega-footer-cta--primary {
+    background: #1d1d1f !important; border-color: #1d1d1f !important; color: #fff !important;
+  }
+  .btn-primary:hover, .nav-cta:hover, .nav-mega-footer-cta--primary:hover {
+    background: #000 !important; border-color: #000 !important; color: #fff !important;
+  }
+  .cta-banner .btn-primary, .cta-banner .nav-mega-footer-cta--primary {
+    background: #fff !important; border-color: #fff !important; color: #1d1d1f !important;
+  }
+  .cta-banner .btn-primary:hover { background: #f5f5f7 !important; border-color: #f5f5f7 !important; color: #1d1d1f !important; }
+  /* No blue/yellow section decoration: secondary links in main content are ink, not brand blue. */
+  main a:not(.btn) { color: #1d1d1f; }
+</style>
 </body>
 </html>
