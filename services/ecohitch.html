@@ -5,28 +5,28 @@
   Capital Upfitters — EcoHitch brand page (services/ecohitch.html)
   Built by IVANKODev (https://IVANKODevelopment.com)
   Structure copied from services/bakflip.html (see its header for the clone checklist).
-  Every [PRICE] is a deliberate placeholder: grep data-placeholder before launch.
+  Prices: data-price-key cells are filled by /price-feed.js from the backend (capital-upfitters-next, src/data/prices.ts). Never hard-code a price here.
 -->
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="shortcut icon" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EcoHitch Installed in Rockville MD | Capital Upfitters</title>
-<meta name="description" content="EcoHitch hidden trailer hitches installed in Rockville, MD. Compare the Hidden, Stealth and Invisi designs, then request installed pricing for your vehicle.">
+<meta name="description" content="EcoHitch hidden trailer hitches installed in Rockville, MD. Compare the Hidden, Stealth and Invisi designs, then get installed pricing for your vehicle.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.capitalupfitters.com/services/ecohitch.html">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.capitalupfitters.com/services/ecohitch.html">
 <meta property="og:title" content="EcoHitch Installed in Rockville MD | Capital Upfitters">
-<meta property="og:description" content="EcoHitch hidden trailer hitches installed in Rockville, MD. Compare the Hidden, Stealth and Invisi designs, then request installed pricing for your vehicle.">
+<meta property="og:description" content="EcoHitch hidden trailer hitches installed in Rockville, MD. Compare the Hidden, Stealth and Invisi designs, then get installed pricing for your vehicle.">
 <meta property="og:image" content="https://www.capitalupfitters.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting Rockville MD">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="EcoHitch Installed in Rockville MD | Capital Upfitters">
-<meta name="twitter:description" content="EcoHitch hidden trailer hitches installed in Rockville, MD. Compare the Hidden, Stealth and Invisi designs, then request installed pricing for your vehicle.">
+<meta name="twitter:description" content="EcoHitch hidden trailer hitches installed in Rockville, MD. Compare the Hidden, Stealth and Invisi designs, then get installed pricing for your vehicle.">
 <meta name="twitter:image" content="https://www.capitalupfitters.com/og.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -689,7 +689,7 @@
           <tr><th scope="row">Best for</th><td>A clean look with the receiver always ready</td><td>Fully hidden when you are not towing</td><td>Keeping the hardware behind the plate</td></tr>
           <tr>
             <th scope="row">Installed price</th>
-            <td class="bf-price" data-placeholder="installed-price" data-model="hidden">[PRICE]</td><td class="bf-price" data-placeholder="installed-price" data-model="stealth">[PRICE]</td><td class="bf-price" data-placeholder="installed-price" data-model="invisi">[PRICE]</td>
+            <td class="bf-price" data-price-key="ecohitch-hidden"><a href="../quote.html?service=hitch">Get installed price</a></td><td class="bf-price" data-price-key="ecohitch-stealth"><a href="../quote.html?service=hitch">Get installed price</a></td><td class="bf-price" data-price-key="ecohitch-invisi"><a href="../quote.html?service=hitch">Get installed price</a></td>
           </tr>
         </tbody>
       </table>
@@ -922,6 +922,7 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
 </script>
 
 <script src="../animations.js" defer></script>
+<script src="/price-feed.js" data-price-group="ecohitch" defer></script>
 
 <!-- Floating quote CTA -->
 <div class="float-cta" aria-hidden="true">

@@ -5,7 +5,7 @@
   Capital Upfitters — Retrax brand page (services/retrax.html)
   Built by IVANKODev (https://IVANKODevelopment.com)
   Structure copied from services/bakflip.html (see its header for the clone checklist).
-  Every [PRICE] is a deliberate placeholder: grep data-placeholder before launch.
+  Prices: data-price-key cells are filled by /price-feed.js from the backend (capital-upfitters-next, src/data/prices.ts). Never hard-code a price here.
 -->
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -693,7 +693,7 @@
           <tr><th scope="row">Best for</th><td>A clean look and everyday security</td><td>Crossbars and lighter gear</td><td>A heavy-duty aluminum cover</td><td>Racks and heavier gear</td></tr>
           <tr>
             <th scope="row">Installed price</th>
-            <td class="bf-price" data-placeholder="installed-price" data-model="retraxone-mx">[PRICE]</td><td class="bf-price" data-placeholder="installed-price" data-model="retraxone-xr">[PRICE]</td><td class="bf-price" data-placeholder="installed-price" data-model="retraxpro-mx">[PRICE]</td><td class="bf-price" data-placeholder="installed-price" data-model="retraxpro-xr">[PRICE]</td>
+            <td class="bf-price" data-price-key="retrax-retraxone-mx"><a href="../quote.html?service=tonneau">Get installed price</a></td><td class="bf-price" data-price-key="retrax-retraxone-xr"><a href="../quote.html?service=tonneau">Get installed price</a></td><td class="bf-price" data-price-key="retrax-retraxpro-mx"><a href="../quote.html?service=tonneau">Get installed price</a></td><td class="bf-price" data-price-key="retrax-retraxpro-xr"><a href="../quote.html?service=tonneau">Get installed price</a></td>
           </tr>
         </tbody>
       </table>
@@ -926,6 +926,7 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
 </script>
 
 <script src="../animations.js" defer></script>
+<script src="/price-feed.js" data-price-group="retrax" defer></script>
 
 <!-- Floating quote CTA -->
 <div class="float-cta" aria-hidden="true">

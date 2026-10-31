@@ -5,7 +5,7 @@
   Capital Upfitters — TruXedo brand page (services/truxedo.html)
   Built by IVANKODev (https://IVANKODevelopment.com)
   Structure copied from services/bakflip.html (see its header for the clone checklist).
-  Every [PRICE] is a deliberate placeholder: grep data-placeholder before launch.
+  Prices: data-price-key cells are filled by /price-feed.js from the backend (capital-upfitters-next, src/data/prices.ts). Never hard-code a price here.
 -->
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -693,7 +693,7 @@
           <tr><th scope="row">Drilling to install</th><td>No</td><td>No</td><td>No</td><td>No</td></tr>
           <tr>
             <th scope="row">Installed price</th>
-            <td class="bf-price" data-placeholder="installed-price" data-model="pro-x15">[PRICE]</td><td class="bf-price" data-placeholder="installed-price" data-model="lo-pro">[PRICE]</td><td class="bf-price" data-placeholder="installed-price" data-model="deuce">[PRICE]</td><td class="bf-price" data-placeholder="installed-price" data-model="sentry">[PRICE]</td>
+            <td class="bf-price" data-price-key="truxedo-pro-x15"><a href="../quote.html?service=tonneau">Get installed price</a></td><td class="bf-price" data-price-key="truxedo-lo-pro"><a href="../quote.html?service=tonneau">Get installed price</a></td><td class="bf-price" data-price-key="truxedo-deuce"><a href="../quote.html?service=tonneau">Get installed price</a></td><td class="bf-price" data-price-key="truxedo-sentry"><a href="../quote.html?service=tonneau">Get installed price</a></td>
           </tr>
         </tbody>
       </table>
@@ -926,6 +926,7 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
 </script>
 
 <script src="../animations.js" defer></script>
+<script src="/price-feed.js" data-price-group="truxedo" defer></script>
 
 <!-- Floating quote CTA -->
 <div class="float-cta" aria-hidden="true">

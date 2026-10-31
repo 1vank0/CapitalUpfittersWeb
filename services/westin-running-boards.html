@@ -5,27 +5,27 @@
   Capital Upfitters — Westin running boards brand page (services/westin-running-boards.html)
   Built by IVANKODev (https://IVANKODevelopment.com)
   Structure copied from services/bakflip.html (see its header for the clone checklist).
-  Every [PRICE] is a deliberate placeholder: grep data-placeholder before launch.
+  Prices: data-price-key cells are filled by /price-feed.js from the backend (capital-upfitters-next, src/data/prices.ts). Never hard-code a price here.
 -->
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="shortcut icon" href="../favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Westin Running Boards Installed in Rockville MD | Capital Upfitters</title>
+<title>Westin Running Boards in Rockville MD | Capital Upfitters</title>
 <meta name="description" content="Westin running boards, step bars and drop steps installed in Rockville, MD. Compare E-Series, Pro Traxx, HDX and Sure-Grip, then request installed pricing.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.capitalupfitters.com/services/westin-running-boards.html">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.capitalupfitters.com/services/westin-running-boards.html">
-<meta property="og:title" content="Westin Running Boards Installed in Rockville MD | Capital Upfitters">
+<meta property="og:title" content="Westin Running Boards in Rockville MD | Capital Upfitters">
 <meta property="og:description" content="Westin running boards, step bars and drop steps installed in Rockville, MD. Compare E-Series, Pro Traxx, HDX and Sure-Grip, then request installed pricing.">
 <meta property="og:image" content="https://www.capitalupfitters.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting Rockville MD">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Westin Running Boards Installed in Rockville MD | Capital Upfitters">
+<meta name="twitter:title" content="Westin Running Boards in Rockville MD | Capital Upfitters">
 <meta name="twitter:description" content="Westin running boards, step bars and drop steps installed in Rockville, MD. Compare E-Series, Pro Traxx, HDX and Sure-Grip, then request installed pricing.">
 <meta name="twitter:image" content="https://www.capitalupfitters.com/og.png">
 
@@ -690,7 +690,7 @@
           <tr><th scope="row">Best for</th><td>A simple, entry-level step</td><td>A wider step with factory-style bends</td><td>Easier entry on taller vehicles</td><td>A full-length, slip-resistant board</td></tr>
           <tr>
             <th scope="row">Installed price</th>
-            <td class="bf-price" data-placeholder="installed-price" data-model="e-series">[PRICE]</td><td class="bf-price" data-placeholder="installed-price" data-model="pro-traxx">[PRICE]</td><td class="bf-price" data-placeholder="installed-price" data-model="hdx-drop-steps">[PRICE]</td><td class="bf-price" data-placeholder="installed-price" data-model="sure-grip">[PRICE]</td>
+            <td class="bf-price" data-price-key="westin-e-series"><a href="../quote.html?service=running-boards">Get installed price</a></td><td class="bf-price" data-price-key="westin-pro-traxx"><a href="../quote.html?service=running-boards">Get installed price</a></td><td class="bf-price" data-price-key="westin-hdx-drop-steps"><a href="../quote.html?service=running-boards">Get installed price</a></td><td class="bf-price" data-price-key="westin-sure-grip"><a href="../quote.html?service=running-boards">Get installed price</a></td>
           </tr>
         </tbody>
       </table>
@@ -923,6 +923,7 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
 </script>
 
 <script src="../animations.js" defer></script>
+<script src="/price-feed.js" data-price-group="westin" defer></script>
 
 <!-- Floating quote CTA -->
 <div class="float-cta" aria-hidden="true">
