@@ -27,8 +27,8 @@
   <!-- Fonts (async; display=swap on Google CSS URL) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="./base.css">
   <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="./brand-tokens.css">
@@ -110,9 +110,9 @@
       display: block;
       font-family: var(--font-display);
       font-size: var(--text-lg);
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
+      font-weight:600;
+      letter-spacing:0;
+      text-transform:none;
       color: var(--color-brand-text);
       margin-bottom: var(--space-2);
     }
@@ -182,9 +182,9 @@
       display: block;
       font-family: var(--font-display);
       font-size: var(--text-sm);
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-weight:600;
+      letter-spacing:0;
+      text-transform:none;
       color: #fff;
       margin-bottom: var(--space-1);
     }
@@ -207,17 +207,17 @@
     }
     .hours-day { color: rgba(255,255,255,0.65); }
     .hours-time { color: rgba(255,255,255,0.65); font-size: var(--text-xs); }
-    .hours-time.open { color: #4ade80; font-weight: 600; }
+    .hours-time.open { color: #7fc79a; font-weight: 600; }
     .hours-status {
       display: inline-flex;
       align-items: center;
       gap: var(--space-1);
       font-family: var(--font-display);
       font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #4ade80;
+      font-weight:600;
+      letter-spacing:0;
+      text-transform:none;
+      color: #7fc79a;
       margin-bottom: var(--space-4);
     }
     .hours-status::before {
@@ -225,7 +225,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #4ade80;
+      background: #7fc79a;
     }
     @media (max-width: 860px) {
       .map-grid { grid-template-columns: 1fr; }
@@ -274,7 +274,7 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto var(--space-4);
-      color: #22c55e;
+      color: #1e6b3a;
     }
     @media (max-width: 860px) {
       .callback-grid { grid-template-columns: 1fr; }
@@ -282,7 +282,7 @@
 
     /* Portal info box */
     .portal-info-box {
-      background: linear-gradient(135deg, #1a2332, #203055);
+      background: #1d1d1f;
       border-radius: var(--radius-2xl);
       padding: var(--space-10);
       display: flex;
@@ -340,7 +340,7 @@
   width: 100%;
   height: 100%;
   min-height: 280px;
-  background: #e8eef5 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 24 24' fill='none' stroke='%230066fc' stroke-width='1.5'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z'/%3E%3Ccircle cx='12' cy='9' r='2.5'/%3E%3C/svg%3E") center 38% no-repeat;
+  background: #f5f5f7 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 24 24' fill='none' stroke='%231d1d1f' stroke-width='1.5'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z'/%3E%3Ccircle cx='12' cy='9' r='2.5'/%3E%3C/svg%3E") center 38% no-repeat;
   background-size: auto, 64px;
   display: flex;
   align-items: flex-end;
@@ -349,12 +349,12 @@
   border: 0;
   padding: 0;
 }
-.map-facade:focus-visible { outline: 3px solid #0066fc; outline-offset: 2px; }
+.map-facade:focus-visible { outline: 3px solid #1d1d1f; outline-offset: 2px; }
 .map-facade-label {
   margin: 0 0 1.25rem;
-  background: #fcd800;
-  color: #0a0a0b;
-  font-weight: 700;
+  background: #1d1d1f;
+  color: #1d1d1f;
+  font-weight:600;
   font-size: 0.95rem;
   padding: 0.7rem 1.25rem;
   border-radius: 999px;
@@ -443,7 +443,7 @@
               <a href="./services/ceramic-coating.html">Ceramic Coating &amp; PPF</a>
               <a href="./services/undercoating.html">Undercoating &amp; Rust</a>
               <a href="./services/window-tinting.html">Window Tinting</a>
-              <a href="./services/stealth-hitches.html">Stealth Hitch — Luxury &amp; EV <span class="nav-mega-link-badge" style="background:rgba(30,100,180,0.2);color:#60a5fa;">Preferred</span></a>
+              <a href="./services/stealth-hitches.html">Stealth Hitch — Luxury &amp; EV <span class="nav-mega-link-badge">Preferred</span></a>
               <a href="./services/mobile-detailing.html">Mobile Detailing</a>
             </div>
             <!-- Col B: Truck Accessories -->
@@ -561,7 +561,7 @@
         <a href="./services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="./services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">View All Services &rarr;</a>
+        <a href="./services/index.html" class="nav-mobile-sub-link" style="margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -583,7 +583,7 @@
         <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="./services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="./fleet.html" class="nav-mobile-sub-link" style="margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -606,8 +606,8 @@
       </div>
     </div>
 
-    <a href="./gallery.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;">Gallery</a>
-    <a href="./contact.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;">Contact</a>
+    <a href="./gallery.html" class="nav-mobile-direct" style="font-size:1.4rem!important;">Gallery</a>
+    <a href="./contact.html" class="nav-mobile-direct" style="font-size:1.4rem!important;">Contact</a>
 
   </nav>
   <div class="nav-mobile-actions">
@@ -618,7 +618,7 @@
 
 <main id="main">
 <section class="page-hero" style="min-height: 40vh; display: flex; align-items: center;">
-  <div class="page-hero-bg" style="background: linear-gradient(135deg, #0d1117 0%, #1a2332 50%, #203055 100%);"></div>
+  <div class="page-hero-bg" style="background: #1d1d1f;"></div>
   <div class="page-hero-overlay"></div>
   <div class="container page-hero-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -773,15 +773,15 @@
         <p class="reveal reveal-delay-1">Every service request goes through our quote form so we get the vehicle, services, and timing we need to price it right — and so nothing falls through a side channel.</p>
         <div style="margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4);" class="reveal reveal-delay-2">
           <div style="display: flex; align-items: center; gap: var(--space-3);">
-            <div style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0;"></div>
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: #1e6b3a; flex-shrink: 0;"></div>
             <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">Takes about 2 minutes</span>
           </div>
           <div style="display: flex; align-items: center; gap: var(--space-3);">
-            <div style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0;"></div>
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: #1e6b3a; flex-shrink: 0;"></div>
             <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">We reply within one business day</span>
           </div>
           <div style="display: flex; align-items: center; gap: var(--space-3);">
-            <div style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0;"></div>
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: #1e6b3a; flex-shrink: 0;"></div>
             <span style="font-size: var(--text-sm); color: var(--color-text-secondary);">Prefer to talk? Call (301) 304-1419</span>
           </div>
         </div>
@@ -790,7 +790,7 @@
         <div class="callback-form-card reveal" style="text-align:center;padding:var(--space-8) var(--space-6);">
           <h3 style="margin:0 0 var(--space-3)">Get a quote</h3>
           <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin:0 0 var(--space-6);">Vehicle, services, timing, and how to reach you — one form.</p>
-          <a href="./quote.html" class="btn btn-primary" style="width:100%;justify-content:center;min-height:48px;background:#fcd800;color:#0a0a0b;">Start the quote form →</a>
+          <a href="./quote.html" class="btn btn-primary" style="width:100%;justify-content:center;min-height:48px;">Start the quote form →</a>
           <p style="margin-top:var(--space-4);font-size:var(--text-sm);"><a href="tel:+13013041419" style="color:var(--color-brand-text);font-weight:600;">Or call (301) 304-1419</a></p>
         </div>
       </div>

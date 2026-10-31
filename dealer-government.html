@@ -27,8 +27,8 @@
   <!-- Fonts (async; display=swap on Google CSS URL) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="./base.css">
   <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="./brand-tokens.css">
@@ -64,9 +64,9 @@
     .audience-card-eyebrow {
       font-family: var(--font-display);
       font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+      font-weight:600;
+      letter-spacing:0;
+      text-transform:none;
       color: rgba(255,255,255,0.65);
       margin-bottom: var(--space-3);
     }
@@ -135,9 +135,9 @@
       color: #fff;
       font-family: var(--font-display);
       font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-weight:600;
+      letter-spacing:0;
+      text-transform:none;
       padding: 0.2rem 1rem;
       border-radius: var(--radius-pill);
       white-space: nowrap;
@@ -145,9 +145,9 @@
     .tier-name {
       font-family: var(--font-display);
       font-size: var(--text-2xl);
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      font-weight:600;
+      text-transform:none;
+      letter-spacing:0;
       color: var(--color-text);
       margin-bottom: var(--space-1);
     }
@@ -159,7 +159,7 @@
     .tier-price {
       font-family: var(--font-display);
       font-size: var(--text-4xl);
-      font-weight: 800;
+      font-weight:600;
       color: var(--color-brand-text);
       line-height: 1;
       margin-bottom: var(--space-1);
@@ -167,8 +167,8 @@
     .tier-price-sub {
       font-size: var(--text-xs);
       color: var(--color-text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      text-transform:none;
+      letter-spacing:0;
       margin-bottom: var(--space-6);
     }
     .tier-features {
@@ -215,9 +215,9 @@
     .services-table thead th {
       font-family: var(--font-display);
       font-size: var(--text-xs);
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-weight:600;
+      letter-spacing:0;
+      text-transform:none;
       color: rgba(255,255,255,0.6);
       padding: var(--space-4) var(--space-5);
       text-align: left;
@@ -236,17 +236,17 @@
     }
     .services-table td:first-child {
       font-family: var(--font-display);
-      font-weight: 700;
+      font-weight:600;
       font-size: var(--text-base);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      letter-spacing:0;
+      text-transform:none;
       color: var(--color-text);
     }
     .table-profit {
       color: var(--color-brand-text);
       font-weight: 600;
     }
-    .table-check { color: #22c55e; font-size: 1.1rem; }
+    .table-check { color: #1e6b3a; font-size: 1.1rem; }
     .table-dash { color: var(--color-text-faint); }
 
     /* Portal steps */
@@ -279,7 +279,7 @@
       color: #fff;
       font-family: var(--font-display);
       font-size: var(--text-xl);
-      font-weight: 800;
+      font-weight:600;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -291,9 +291,9 @@
       display: block;
       font-family: var(--font-display);
       font-size: var(--text-base);
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-weight:600;
+      letter-spacing:0;
+      text-transform:none;
       color: #fff;
       margin-bottom: var(--space-2);
     }
@@ -337,7 +337,7 @@
       display: block;
       font-family: var(--font-display);
       font-size: var(--text-5xl);
-      font-weight: 800;
+      font-weight:600;
       color: #fff;
       line-height: 1;
     }
@@ -345,8 +345,8 @@
       display: block;
       font-family: var(--font-display);
       font-size: var(--text-xs);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      letter-spacing:0;
+      text-transform:none;
       color: #fff;
       margin-top: var(--space-1);
     }
@@ -388,9 +388,9 @@
     .form-card-title {
       font-family: var(--font-display);
       font-size: var(--text-2xl);
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      font-weight:600;
+      text-transform:none;
+      letter-spacing:0;
       color: var(--color-text);
       margin-bottom: var(--space-6);
     }
@@ -432,7 +432,7 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto var(--space-5);
-      color: #22c55e;
+      color: #1e6b3a;
     }
     @media (max-width: 860px) {
       .apply-grid { grid-template-columns: 1fr; }
@@ -444,9 +444,9 @@
   .dg-tab {
     font-family: var(--font-display);
     font-size: var(--text-sm);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-weight:600;
+    letter-spacing:0;
+    text-transform:none;
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-pill);
     border: 2px solid rgba(255,255,255,0.2);
@@ -473,9 +473,9 @@
   .dg-svc-label {
     font-family: var(--font-display);
     font-size: var(--text-xs);
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-weight:600;
+    letter-spacing:0;
+    text-transform:none;
     color: rgba(255,255,255,0.6);
     padding: 0.3rem 1rem;
     border: 1px solid rgba(255,255,255,0.12);
@@ -520,9 +520,9 @@
   .dg-svc-name {
     font-family: var(--font-display);
     font-size: var(--text-sm);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    font-weight:600;
+    letter-spacing:0;
+    text-transform:none;
     color: #fff;
     margin-bottom: 3px;
     line-height: 1.1;
@@ -641,7 +641,7 @@
               <a href="./services/ceramic-coating.html">Ceramic Coating &amp; PPF</a>
               <a href="./services/undercoating.html">Undercoating &amp; Rust</a>
               <a href="./services/window-tinting.html">Window Tinting</a>
-              <a href="./services/stealth-hitches.html">Stealth Hitch — Luxury &amp; EV <span class="nav-mega-link-badge" style="background:rgba(30,100,180,0.2);color:#60a5fa;">Preferred</span></a>
+              <a href="./services/stealth-hitches.html">Stealth Hitch — Luxury &amp; EV <span class="nav-mega-link-badge">Preferred</span></a>
               <a href="./services/mobile-detailing.html">Mobile Detailing</a>
             </div>
             <!-- Col B: Truck Accessories -->
@@ -759,7 +759,7 @@
         <a href="./services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="./services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">View All Services &rarr;</a>
+        <a href="./services/index.html" class="nav-mobile-sub-link" style="margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -781,7 +781,7 @@
         <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="./services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="./fleet.html" class="nav-mobile-sub-link" style="margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -804,8 +804,8 @@
       </div>
     </div>
 
-    <a href="./gallery.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;">Gallery</a>
-    <a href="./contact.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;">Contact</a>
+    <a href="./gallery.html" class="nav-mobile-direct" style="font-size:1.4rem!important;">Gallery</a>
+    <a href="./contact.html" class="nav-mobile-direct" style="font-size:1.4rem!important;">Contact</a>
 
   </nav>
   <div class="nav-mobile-actions">
@@ -816,7 +816,7 @@
 
 <main id="main">
 <section class="page-hero" style="min-height: 55vh; display: flex; align-items: center;">
-  <div class="page-hero-bg" style="background: linear-gradient(135deg, #0d1117 0%, #1a2332 40%, #203055 100%);"></div>
+  <div class="page-hero-bg" style="background: #1d1d1f;"></div>
   <div class="page-hero-overlay"></div>
   <div class="container page-hero-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
