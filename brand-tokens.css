@@ -243,7 +243,9 @@
 .nav-mega-footer-cta--ghost:hover { color: var(--brand-ink); border-color: var(--brand-ink); }
 .nav-mega-footer-rebate { color: var(--brand-muted); }
 .nav-mega-footer-rebate:hover { color: var(--brand-ink); }
-.nav-industrial-link::before { background: var(--brand-ink); }
+/* Premium brand: no accent bar before Industrial — it read as a stray "|" */
+.nav-industrial-link::before { display: none; }
+.nav-industrial-link { padding-left: 0 !important; }
 
 /* Mobile menu: a white sheet */
 .nav-mobile { background: var(--brand-white); }
