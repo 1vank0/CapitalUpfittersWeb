@@ -16,8 +16,8 @@
   │   4. Stats strip, cover-type cards, "why" cards, model table, process, FAQ      │
   │   5. Related cards + the quote link in the mobile action bar                    │
   │   6. Add the page to sitemap.xml, and link it from services/tonneau.html        │
-  │ Placeholders: every [PRICE] is intentional and must be replaced with a real     │
-  │ installed price before launch (search the file for data-placeholder).           │
+  │ Prices: cells with data-price-key are filled by /price-feed.js from the backend │
+  │ (capital-upfitters-next, src/data/prices.ts). Never hard-code a price here.     │
   │ Header: managed by scripts/sync-chrome.mjs between the cu:header markers —      │
   │ never edit between them; run `npm run sync-chrome` after copying.               │
   └────────────────────────────────────────────────────────────────────────────────┘
@@ -719,9 +719,9 @@
           <tr><th scope="row">T-slot rails</th><td>No</td><td>No</td><td>Yes</td></tr>
           <tr>
             <th scope="row">Installed price</th>
-            <td class="bf-price" data-placeholder="installed-price" data-model="mx4">[PRICE]</td>
-            <td class="bf-price" data-placeholder="installed-price" data-model="mx4-ez-lift">[PRICE]</td>
-            <td class="bf-price" data-placeholder="installed-price" data-model="mx4-ts">[PRICE]</td>
+            <td class="bf-price" data-price-key="bakflip-mx4"><a href="../quote.html?service=tonneau">Get installed price</a></td>
+            <td class="bf-price" data-price-key="bakflip-mx4-ez-lift"><a href="../quote.html?service=tonneau">Get installed price</a></td>
+            <td class="bf-price" data-price-key="bakflip-mx4-ts"><a href="../quote.html?service=tonneau">Get installed price</a></td>
           </tr>
         </tbody>
       </table>
@@ -958,6 +958,7 @@ document.querySelectorAll('.faq-btn').forEach(btn=>{
 </script>
 
 <script src="../animations.js" defer></script>
+<script src="/price-feed.js" data-price-group="bakflip" defer></script>
 
 <!-- Floating quote CTA -->
 <div class="float-cta" aria-hidden="true">
