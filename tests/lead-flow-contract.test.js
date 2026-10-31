@@ -1101,6 +1101,15 @@ test('one shared client controller owns every form submit and success state', ()
   assert.equal((lead.match(/addEventListener\(['"]submit['"]/g) || []).length, 1);
   assert.equal((lead.match(/fetch\(['"]\/api\/lead['"]/g) || []).length, 1);
   assert.doesNotMatch(quoteHtml, /capital-upfitters-next\.vercel\.app\/api\/leads/);
+  // quote.html's page logic lives in external scripts; guard those too.
+  const quoteScripts = [...quoteHtml.matchAll(/<script src="\.\/(quote[\w-]*\.js)"/g)].map((m) => m[1]);
+  assert.ok(quoteScripts.includes('quote.js'));
+  for (const file of quoteScripts) {
+    const source = fs.readFileSync(path.join(ROOT, file), 'utf8');
+    assert.doesNotMatch(source, /capital-upfitters-next\.vercel\.app\/api\/leads/);
+    assert.doesNotMatch(source, /fetch\(['"]\/api\/lead['"]/);
+    assert.doesNotMatch(source, /addEventListener\(['"]submit['"]/);
+  }
   assert.doesNotMatch(contactHtml, /callback-form['"]\)\.addEventListener\(['"]submit/);
   assert.doesNotMatch(dealerHtml, /apply-form['"]\)\.addEventListener\(['"]submit/);
   assert.match(api, /DEFAULT_PERSISTENCE_TIMEOUT_MS = 25000/);
