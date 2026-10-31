@@ -42,7 +42,10 @@
 
   // Pre-select a service tile if ?service=<slug> matches a Patriot service id
   if (pSvc) {
-    const slug = pSvc.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const raw = pSvc.toLowerCase().replace(/[^a-z0-9]/g, '');
+    // Site pages use descriptive slugs; map them to the quote tile ids.
+    const ALIASES = { runningboards: 'boards', powersteps: 'boards', hitches: 'hitch', stealthhitches: 'hitch', tonneaucovers: 'tonneau' };
+    const slug = ALIASES[raw] || raw;
     // Wait for the grid to render, then click the tile whose data-id matches
     const clickTile = () => {
       const tiles = document.querySelectorAll('.tile[data-svc]');
