@@ -1,100 +1,507 @@
 /* ============================================================
-   Capital Upfitters — LOCKED brand system (Sep 2026)
-   Yellow = action (primary CTAs only)
-   Blue   = brand (logo, links, icons, secondary accents)
-   Drop in after base.css OR replace the :root brand primitives.
+   Capital Upfitters — PREMIUM brand system (Oct 2026)
+   Quiet, precise, premium. White space, black type, soft greys.
+   Colour appears only in the logo mark.
+
+   Loads after base.css + style.css. This file is the single place that:
+     1. locks the palette primitives,
+     2. remaps the legacy blue/yellow token names to ink, and
+     3. skins the global components (logo, nav, buttons, bands, footer).
+   Page-level rhythm, type scale and card polish live in ux-10k.css.
+   Reference: DESIGN.md and the "0 · Brand system" board in the design canvas.
    Also update the Next.js CRM approved-design.css to match.
    ============================================================ */
 
 :root {
-  /* ── Brand primitives ───────────────────────────────────── */
-  --brand-ink:             #1d1d1f;
-  --brand-navy:            #0a0a0b;   /* near-black surfaces */
-  --brand-navy-mid:        #16161a;
-  --brand-white:           #ffffff;
-  --brand-surface:         #f5f5f7;
-  --brand-body:            #1d1d1f;
-  --brand-muted:           #636366;
-  --brand-line:            rgba(0, 0, 0, 0.08);
+  /* ── Palette primitives (locked) ────────────────────────── */
+  --brand-white:           #ffffff;   /* page */
+  --brand-surface:         #f5f5f7;   /* mist — alternate sections, tiles */
+  --brand-line:            #e5e5ea;   /* hairline borders */
+  --brand-line-strong:     #d2d2d7;   /* input borders */
+  --brand-ink:             #1d1d1f;   /* text, buttons, dark bands */
+  --brand-ink-hover:       #424245;   /* ink button hover */
+  --brand-body:            #424245;   /* paragraph text */
+  --brand-muted:           #6e6e73;   /* graphite — secondary text (AA on white and mist) */
+  --brand-muted-on-dark:   #a1a1a6;   /* secondary text on an ink band */
+  --brand-navy:            #1d1d1f;   /* legacy name: a dark band is ink */
+  --brand-navy-mid:        #2b2b2e;   /* raised surface on an ink band */
 
-  /* Blue = identity (logo wordmark, icons, text links, chips) */
-  --brand-blue:            #0066fc;   /* sampled from locked mock */
-  --brand-blue-hover:      #0052d6;
-  --brand-blue-deep:       #0c3c84;
-  --brand-blue-soft:       rgba(0, 102, 252, 0.12);
+  /* "Fits" green — fitment confirmations only */
+  --brand-fit:             #1e6b3a;
+  --brand-fit-text:        #1e5a32;
+  --brand-fit-soft:        #dceadf;
 
-  /* Yellow = action ONLY (filled primary buttons, H1 accent word) */
-  --brand-yellow:          #fcd800;   /* sampled from locked mock */
-  --brand-yellow-hover:    #e6c400;
-  --brand-yellow-deep:     #c9a800;
-  --brand-yellow-soft:     rgba(252, 216, 0, 0.16);
-  --brand-on-yellow:       #0a0a0b;   /* text/icons on yellow buttons */
+  /* Logo mark ONLY. Never use these for UI, text, icons or buttons. */
+  --logo-blue:             #0057b7;
+  --logo-yellow:           #ffd700;
 
-  /* Legacy names used across style.css — remapped intentionally */
-  --brand-amber:           var(--brand-yellow);       /* was Signal Blue */
-  --brand-amber-dark:      var(--brand-yellow-hover);
+  /* ── Legacy token names, remapped to ink ────────────────── */
+  /* These names pre-date the premium brand (they used to mean blue
+     "identity" and yellow "action"). They now resolve to ink/graphite so
+     existing selectors keep working. Do not point them at colour again. */
+  --brand-blue:            var(--brand-ink);
+  --brand-blue-hover:      var(--brand-ink-hover);
+  --brand-blue-deep:       var(--brand-ink);
+  --brand-blue-soft:       rgba(29, 29, 31, 0.08);
+  --brand-blue-on-dark:    var(--brand-muted-on-dark);
 
-  --color-accent:          var(--brand-yellow);
-  --color-accent-hover:    var(--brand-yellow-hover);
-  --color-accent-light:    var(--brand-yellow-soft);
-  --color-accent-navy:     var(--brand-navy);
+  --brand-yellow:          var(--brand-ink);
+  --brand-yellow-hover:    var(--brand-ink-hover);
+  --brand-yellow-deep:     var(--brand-ink);
+  --brand-yellow-soft:     rgba(255, 255, 255, 0.14);   /* hover wash on dark bands */
+  --brand-on-yellow:       var(--brand-white);
 
-  /* Explicit brand blue for non-CTA uses */
-  --color-brand:           var(--brand-blue);
-  --color-brand-hover:     var(--brand-blue-hover);
-  --color-brand-soft:      var(--brand-blue-soft);
+  --brand-amber:           var(--brand-ink);
+  --brand-amber-dark:      var(--brand-ink-hover);
+
+  --color-action:          var(--brand-ink);
+  --color-action-hover:    var(--brand-ink-hover);
+  --color-on-action:       var(--brand-white);
+  --color-accent:          var(--brand-ink);
+  --color-accent-hover:    var(--brand-ink-hover);
+  --color-accent-light:    rgba(29, 29, 31, 0.06);
+  --color-accent-navy:     var(--brand-ink);
+
+  --color-brand:           var(--brand-ink);
+  --color-brand-hover:     var(--brand-ink-hover);
+  --color-brand-text:      var(--brand-ink);
+  --color-brand-deep:      var(--brand-ink);
+  --color-brand-soft:      rgba(29, 29, 31, 0.08);
+  --color-brand-on-dark:   var(--brand-muted-on-dark);
+  --color-focus:           var(--brand-ink);
+  --color-rating:          var(--brand-ink);
+
+  --color-bg:              var(--brand-white);
+  --color-surface:         var(--brand-surface);
+  --color-surface-2:       #ebebed;
+  --color-surface-dark:    var(--brand-ink);
+  --color-surface-dark-2:  var(--brand-navy-mid);
+  --color-text:            var(--brand-ink);
+  --color-text-secondary:  var(--brand-body);
+  --color-text-muted:      var(--brand-muted);
+  --color-text-faint:      var(--brand-muted);
+  --color-text-inverse:    var(--brand-white);
+  --color-text-inverse-muted: var(--brand-muted-on-dark);
+  --color-border:          var(--brand-line);
+  --color-divider:         var(--brand-line);
+  --color-success:         var(--brand-fit);
+
+  --color-nav-bg:          rgba(255, 255, 255, 0.88);
+  --color-nav-text:        var(--brand-ink);
+  --color-footer-bg:       var(--brand-ink);
+  --color-footer-text:     rgba(255, 255, 255, 0.72);
+  --color-footer-faint:    rgba(255, 255, 255, 0.6);
+
+  /* ── Typography: Geist, one family ──────────────────────── */
+  --font-display:  'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-body:     'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+
+  /* ── Shape ──────────────────────────────────────────────── */
+  --radius-pill:   980px;     /* buttons, chips, filters */
+  --radius-card:   20px;      /* cards */
+  --radius-input:  12px;      /* inputs */
 }
 
-/* ── Primary CTA = yellow, dark label ─────────────────────── */
+/* ── Logo ─────────────────────────────────────────────────── */
+/* The mark is drawn in CSS so every page gets the same logo regardless of the
+   legacy inline SVG inside it: flag blue over flag yellow in a rounded square.
+   This is the only place blue and yellow appear. */
+.nav-logo-mark {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 27%;
+  background: linear-gradient(to bottom, var(--logo-blue) 50%, var(--logo-yellow) 50%);
+}
+.nav-logo-mark svg { display: none; }
+.nav-logo-text,
+.footer-brand-name {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--brand-ink);
+  line-height: 1;
+}
+.nav-logo-text span,
+.footer-brand-name span {
+  color: inherit;
+  margin-left: 0.28em;
+}
+.footer .nav-logo-text,
+.footer .footer-brand-name,
+.footer-logo,
+.footer-logo .nav-logo-text { color: var(--brand-white); }
+.footer-logo strong,
+.footer-logo span span { color: inherit; font-weight: 600; }
+
+/* ── Announce bar: an ink band, sentence case ─────────────── */
+#announce-bar,
+.announce-bar {
+  background: var(--brand-ink) !important;
+  color: var(--brand-white) !important;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.announce-bar a { color: var(--brand-white); }
+
+/* ── Navigation: white, hairline, ink type ────────────────── */
+.nav {
+  background: var(--color-nav-bg);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--brand-line);
+}
+.nav-links a {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--brand-ink);
+}
+.nav-links a::after { background: var(--brand-ink); }
+.nav-links a:hover { color: var(--brand-muted); }
+.nav-portal-link {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--brand-muted);
+}
+.nav-portal-link:hover { color: var(--brand-ink); }
+.nav-hamburger span { background: var(--brand-ink); }
+
+/* Dropdowns and the mega menu */
+.nav-dropdown {
+  background: var(--brand-white);
+  border: 1px solid var(--brand-line);
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+}
+.nav-dropdown-label,
+.nav-mega-col-header,
+.nav-mega-col-header--gold,
+.nav-mega-col-header--orange,
+.nav-mega-col-header--blue,
+.nav-mega-col-header--teal,
+.nav-mega-col-header--purple {
+  color: var(--brand-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.nav-dropdown a,
+.nav-mega-col a {
+  color: var(--brand-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.nav-dropdown a:hover,
+.nav-mega-col a:hover {
+  background: var(--brand-surface);
+  color: var(--brand-ink);
+}
+.nav-dropdown-divider { background: var(--brand-line); }
+.nav-mega-col + .nav-mega-col { border-left-color: var(--brand-line); }
+.nav-mega-col-header { border-bottom-color: var(--brand-line); }
+.nav-mega-link-price { opacity: 1; color: var(--brand-muted); }
+.nav-mega-link-badge,
+.nav-mega-link-badge--blue {
+  background: var(--brand-surface);
+  color: var(--brand-ink);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.nav-bundle-banner {
+  background: var(--brand-surface);
+  color: var(--brand-ink);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  border-bottom: 1px solid var(--brand-line);
+}
+.nav-bundle-banner:hover { background: #ebebed; color: var(--brand-ink) !important; }
+.nav-mega-footer { border-top-color: var(--brand-line); }
+.nav-mega-footer-cta {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.nav-mega-footer-cta--ghost {
+  color: var(--brand-ink);
+  border: 1px solid var(--brand-line-strong);
+}
+.nav-mega-footer-cta--ghost:hover { color: var(--brand-ink); border-color: var(--brand-ink); }
+.nav-mega-footer-rebate { color: var(--brand-muted); }
+.nav-mega-footer-rebate:hover { color: var(--brand-ink); }
+.nav-industrial-link::before { background: var(--brand-ink); }
+
+/* Mobile menu: a white sheet */
+.nav-mobile { background: var(--brand-white); }
+.nav-mobile-close { color: var(--brand-ink); }
+.nav-mobile-links a,
+.nav-mobile-section-trigger,
+.nav-mobile-direct {
+  color: var(--brand-ink) !important;
+  font-size: var(--text-2xl) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: none !important;
+  border-bottom-color: var(--brand-line) !important;
+}
+.nav-mobile-links a:hover,
+.nav-mobile-section-trigger:hover { color: var(--brand-muted) !important; }
+.nav-mobile-section { border-bottom-color: var(--brand-line); }
+.nav-mobile-chevron { color: var(--brand-muted); }
+.nav-mobile-group-label,
+.nav-mobile-group-label--gold,
+.nav-mobile-group-label--blue,
+.nav-mobile-group-label--orange {
+  color: var(--brand-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.nav-mobile-sub-link { color: var(--brand-body) !important; }
+.nav-mobile-sub-link:hover { color: var(--brand-ink) !important; }
+.nav-mobile-sub-badge {
+  background: var(--brand-surface);
+  color: var(--brand-ink);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.nav-mobile-direct::before { background: var(--brand-ink); }
+
+/* ── Buttons: ink pills; white pills on dark bands ────────── */
+.btn,
+.nav-cta,
+.mab-quote,
+button.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  border-radius: var(--radius-pill);
+}
 .btn-primary,
 .nav-cta,
 a.btn.btn-primary,
 button.btn.btn-primary,
-.cta-banner .btn-primary,
-.nav-mega-footer-cta--primary {
-  background: var(--brand-yellow) !important;
-  border-color: var(--brand-yellow) !important;
-  color: var(--brand-on-yellow) !important;
-  font-weight: 700;
+.nav-mega-footer-cta--primary,
+.float-cta-btn,
+.vs-btn {
+  background: var(--brand-ink) !important;
+  border-color: var(--brand-ink) !important;
+  color: var(--brand-white) !important;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
 }
 .btn-primary:hover,
 .nav-cta:hover,
-.nav-mega-footer-cta--primary:hover {
-  background: var(--brand-yellow-hover) !important;
-  border-color: var(--brand-yellow-hover) !important;
-  color: var(--brand-on-yellow) !important;
+.nav-mega-footer-cta--primary:hover,
+.float-cta-btn:hover,
+.vs-btn:hover {
+  background: var(--brand-ink-hover) !important;
+  border-color: var(--brand-ink-hover) !important;
+  color: var(--brand-white) !important;
 }
-
-/* Outline / secondary stays light with yellow border on dark */
+.vs-btn:disabled {
+  background: var(--brand-surface) !important;
+  border-color: var(--brand-surface) !important;
+  color: var(--brand-muted) !important;
+}
 .btn-outline,
+.btn-ghost,
+.btn-outline-light {
+  border-color: var(--brand-ink);
+  color: var(--brand-ink);
+}
+.btn-outline,
+.btn-outline-light { border-width: 1.5px; background: transparent; }
+.btn-outline:hover { background: var(--brand-ink); color: var(--brand-white); border-color: var(--brand-ink); }
 .btn-ghost {
-  border-color: var(--brand-yellow);
-  color: var(--brand-white);
+  border-color: transparent;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
-.btn-outline:hover,
-.btn-ghost:hover {
-  background: var(--brand-yellow-soft);
-  border-color: var(--brand-yellow);
-  color: var(--brand-white);
-}
+.btn-ghost:hover { color: var(--brand-muted); background: transparent; }
+.btn-dark { background: var(--brand-ink); color: var(--brand-white); }
+.btn-dark:hover { background: var(--brand-ink-hover); }
 
-/* Brand blue: logo mark, links, icon tiles — NOT filled CTAs */
-.nav-logo-mark,
-.footer-brand-name span,
+/* On an ink band (hero, CTA band, dark section, footer): flip to white */
+:is(.hero, .page-hero, .geo-hero, .cta-banner, .cta-band, .final-cta, .section-cta, .section--dark, .on-dark, .band-ink, .footer, .sticky-cta-bar) :is(.btn-primary, a.btn.btn-primary, button.btn.btn-primary) {
+  background: var(--brand-white) !important;
+  border-color: var(--brand-white) !important;
+  color: var(--brand-ink) !important;
+}
+:is(.hero, .page-hero, .geo-hero, .cta-banner, .cta-band, .final-cta, .section-cta, .section--dark, .on-dark, .band-ink, .footer, .sticky-cta-bar) :is(.btn-primary, a.btn.btn-primary, button.btn.btn-primary):hover {
+  background: var(--brand-line) !important;
+  border-color: var(--brand-line) !important;
+  color: var(--brand-ink) !important;
+}
+:is(.hero, .page-hero, .geo-hero, .cta-banner, .cta-band, .final-cta, .section-cta, .section--dark, .on-dark, .band-ink, .footer, .sticky-cta-bar) :is(.btn-outline, .btn-outline-light) {
+  background: transparent;
+  border-color: var(--brand-white);
+  color: var(--brand-white);
+}
+:is(.hero, .page-hero, .geo-hero, .cta-banner, .cta-band, .final-cta, .section-cta, .section--dark, .on-dark, .band-ink, .footer, .sticky-cta-bar) :is(.btn-outline, .btn-outline-light):hover {
+  background: var(--brand-white);
+  border-color: var(--brand-white);
+  color: var(--brand-ink);
+}
+:is(.hero, .page-hero, .geo-hero, .cta-banner, .cta-band, .final-cta, .section-cta, .section--dark, .on-dark, .band-ink, .footer) .btn-ghost {
+  color: var(--brand-white);
+}
+.hero-ctas .btn-outline,
+.hero-ctas .btn-ghost {
+  background: transparent;
+  border: 1.5px solid var(--brand-white);
+  color: var(--brand-white);
+  text-decoration: none;
+}
+.hero-ctas .btn-outline:hover,
+.hero-ctas .btn-ghost:hover {
+  background: var(--brand-white);
+  border-color: var(--brand-white);
+  color: var(--brand-ink);
+}
+.funnel-card-link,
+.service-hub-card-link {
+  color: var(--brand-white) !important;
+  border: 1.5px solid var(--brand-white);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.funnel-card-link:hover {
+  background: var(--brand-white);
+  border-color: var(--brand-white);
+  color: var(--brand-ink) !important;
+}
+.nav-mobile .btn-outline {
+  border-color: var(--brand-ink);
+  color: var(--brand-ink);
+}
+.nav-mobile .btn-outline:hover { background: var(--brand-ink); color: var(--brand-white); }
+.nav-mobile .btn-primary { background: var(--brand-ink) !important; color: var(--brand-white) !important; border-color: var(--brand-ink) !important; }
+
+/* ── Labels, chips, badges: sentence case, no colour ──────── */
 .section-label,
-a:not(.btn):not(.nav-cta):hover {
-  color: var(--brand-blue);
+.eyebrow,
+.hero-label,
+.vehicle-selector-label,
+.vs-results-label,
+.form-label {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--brand-muted);
 }
-
-/* Announce bar can stay blue (brand urgency, not a form submit) */
-#announce-bar,
-.announce-bar {
-  background: var(--brand-blue) !important;
-  color: #fff !important;
+.section-label::before { display: none; }
+.section--dark .section-label,
+.page-hero .section-label,
+.page-hero-inner .section-label,
+.on-dark .section-label,
+.band-ink .section-label,
+.hero-label { color: var(--brand-muted-on-dark) !important; }
+.hero-label::before { display: none; }
+.badge {
+  background: var(--brand-ink);
+  color: var(--brand-white);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
 }
-
-/* H1 accent word helper — wrap the punch word */
 .accent-word {
-  color: var(--brand-yellow);
-  font-style: italic;
+  color: inherit;
+  font-style: normal;
 }
+
+/* ── Proof strips: mist, not black or blue ────────────────── */
+.trust-bar {
+  background: var(--brand-surface);
+  border-top: 1px solid var(--brand-line);
+  border-bottom: 1px solid var(--brand-line);
+}
+.trust-item-icon {
+  background: var(--brand-white);
+  border: 1px solid var(--brand-line);
+  color: var(--brand-ink);
+}
+.trust-item-text strong {
+  color: var(--brand-ink);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.trust-item-text span { color: var(--brand-muted); }
+.stats-strip { background: var(--brand-surface); }
+.stat-number {
+  color: var(--brand-ink);
+  font-size: clamp(1.75rem, 2.9vw, 2.75rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-transform: none;
+}
+.stat-label {
+  color: var(--brand-muted);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* ── Footer: an ink band ──────────────────────────────────── */
+.footer { border-top: 0; }
+.footer-col-title,
+.footer-nav-heading,
+.footer-nav-label,
+.footer-links-title {
+  color: var(--brand-white);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.footer-contact-item svg { color: var(--brand-muted-on-dark); }
+.footer-social a:hover {
+  background: var(--brand-white);
+  border-color: var(--brand-white);
+  color: var(--brand-ink);
+}
+.site-footer a,
+.site-footer a:hover { color: inherit; }
+
+/* ── Links and focus ──────────────────────────────────────── */
+a:not(.btn):not(.nav-cta):hover { color: var(--brand-muted); }
+.footer a:not(.btn):hover,
+.band-ink a:not(.btn):hover,
+.section--dark a:not(.btn):hover,
+.page-hero a:not(.btn):hover,
+.hero a:not(.btn):hover,
+.cta-banner a:not(.btn):hover { color: var(--brand-white); }
+:focus-visible {
+  outline: 2px solid var(--brand-ink);
+  outline-offset: 3px;
+}
+.footer :focus-visible,
+.band-ink :focus-visible,
+.section--dark :focus-visible,
+.page-hero :focus-visible,
+.hero :focus-visible,
+.cta-banner :focus-visible { outline-color: var(--brand-white); }

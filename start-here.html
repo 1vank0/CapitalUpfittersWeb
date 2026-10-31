@@ -4,7 +4,7 @@
 <!--
   Capital Upfitters — Phase 1
   Built by IVANKODev (https://IVANKODevelopment.com)
-  Design system: Manrope + Inter, locked brand: blue #0066fc identity, yellow #fcd800 actions (see base.css), pill buttons. See DESIGN.md.
+  Design system: Geist, premium brand (white/mist, ink text and buttons, logo-only colour), pill buttons. See DESIGN.md.
 -->
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -34,8 +34,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <!-- Fonts (async; display=swap on Google CSS URL) -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="./brand-tokens.css">
@@ -48,7 +48,7 @@
 .start-hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #111827 0%, #1a2742 60%, #203055 100%);
+  background: #1d1d1f;
 }
 .start-hero-bg::after {
   content: '';
@@ -107,7 +107,7 @@
 .audience-card-number {
   font-family: var(--font-display);
   font-size: var(--text-7xl);
-  font-weight: 900;
+  font-weight:600;
   letter-spacing: -0.04em;
   color: var(--color-border);
   line-height: 1;
@@ -120,9 +120,9 @@
 .audience-card-title {
   font-family: var(--font-display);
   font-size: clamp(var(--text-2xl), 2.5vw, var(--text-4xl));
-  font-weight: 800;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+  font-weight:600;
+  letter-spacing:0;
+  text-transform:none;
   color: var(--color-text);
   line-height: 1.1;
   margin-top: calc(-1 * var(--space-4));
@@ -146,9 +146,9 @@
   gap: var(--space-3);
   font-family: var(--font-display);
   font-size: var(--text-base);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight:600;
+  letter-spacing:0;
+  text-transform:none;
   color: var(--color-on-action);
   padding: 0.9rem 1.5rem;
   min-height: 48px;
@@ -170,9 +170,9 @@
   gap: var(--space-2);
   font-family: var(--font-display);
   font-size: var(--text-sm);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight:600;
+  letter-spacing:0;
+  text-transform:none;
   color: var(--color-text);
   padding: 0.7rem 1.5rem;
   min-height: 44px;
@@ -212,8 +212,8 @@
   font-size: var(--text-3xl);
   color: var(--color-text);
   margin-bottom: var(--space-2);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  text-transform:none;
+  letter-spacing:0;
 }
 .not-sure-banner-text p {
   font-size: var(--text-base);
@@ -309,7 +309,7 @@
               <a href="./services/ceramic-coating.html">Ceramic Coating &amp; PPF</a>
               <a href="./services/undercoating.html">Undercoating &amp; Rust</a>
               <a href="./services/window-tinting.html">Window Tinting</a>
-              <a href="./services/stealth-hitches.html">Stealth Hitch — Luxury &amp; EV <span class="nav-mega-link-badge" style="background:rgba(30,100,180,0.2);color:#60a5fa;">Preferred</span></a>
+              <a href="./services/stealth-hitches.html">Stealth Hitch — Luxury &amp; EV <span class="nav-mega-link-badge">Preferred</span></a>
               <a href="./services/mobile-detailing.html">Mobile Detailing</a>
             </div>
             <!-- Col B: Truck Accessories -->
@@ -428,7 +428,7 @@
         <a href="./services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
         <a href="./services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
         <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">View All Services &rarr;</a>
+        <a href="./services/index.html" class="nav-mobile-sub-link" style="margin-top:4px;">View All Services &rarr;</a>
       </div>
     </div>
 
@@ -450,7 +450,7 @@
         <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
         <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
         <a href="./services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65);margin-top:4px;">Open Fleet Account &rarr;</a>
+        <a href="./fleet.html" class="nav-mobile-sub-link" style="margin-top:4px;">Open Fleet Account &rarr;</a>
       </div>
     </div>
 
@@ -473,8 +473,8 @@
       </div>
     </div>
 
-    <a href="./gallery.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;">Gallery</a>
-    <a href="./contact.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;">Contact</a>
+    <a href="./gallery.html" class="nav-mobile-direct" style="font-size:1.4rem!important;">Gallery</a>
+    <a href="./contact.html" class="nav-mobile-direct" style="font-size:1.4rem!important;">Contact</a>
 
   </nav>
   <div class="nav-mobile-actions">
