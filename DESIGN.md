@@ -13,6 +13,18 @@ file and the stylesheets it names.
 If you are an AI agent picking up work on this repo: read this file before
 touching typography, color, spacing, or button styles.
 
+## Shared header and footer
+
+The announce bar, nav, mobile menu and footer live once in `partials/header.html`
+and `partials/footer.html`. Pages opt in with `<!-- cu:header -->…<!-- /cu:header -->`
+and `<!-- cu:footer -->…<!-- /cu:footer -->` markers; never edit between them by hand.
+
+- `npm run sync-chrome` stamps the partials into every marked page (idempotent).
+- `npm run check-chrome` exits 1 if any marked page has drifted (use in CI).
+- `node scripts/sync-chrome.mjs --adopt` marks pages whose chrome already matches;
+  add `--all` to replace the chrome on every page.
+- Partials use `./` links; the script rewrites them to `../` for pages in subfolders.
+
 ## Source of truth
 
 Stylesheets load in this order on every page, and later files win:

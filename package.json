@@ -4,7 +4,9 @@
   "scripts": {
     "test": "node --test tests/*.test.js",
     "test:e2e": "node tests/e2e/run.js",
-    "serve": "python3 -m http.server 8765"
+    "serve": "python3 -m http.server 8765",
+    "sync-chrome": "node scripts/sync-chrome.mjs",
+    "check-chrome": "node scripts/sync-chrome.mjs --check"
   },
   "devDependencies": {
     "playwright-core": "^1.48.0"
