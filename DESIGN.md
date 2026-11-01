@@ -180,3 +180,61 @@ Always use the token; don't hand-write `margin: 23px`. Section padding uses
   inline styles; they only got the font and colour remap.
 - The hidden legacy shield SVGs inside `.nav-logo-mark` can be deleted from the
   markup now that the mark is drawn in CSS.
+
+## Web rules (check before calling any page done)
+
+Measurable rules adopted from the owner's web-design course notes. They sharpen
+this design system; they never override it. Check them on every new or
+changed page, at **390×844** and **1366×768**.
+
+**First screen (5-second test)**
+- Within the first screen a stranger can tell what we do, for whom, where
+  (Rockville / DMV), and what to do next.
+- Exactly one `<h1>`, **≤12 words**, naming the service and town on service and
+  location pages. Subline ≤20 words.
+- One primary CTA per view (filled yellow); secondary actions are outline or
+  text links. CTA labels are verb-first and ≤4 words ("Get my quote", "Call the shop").
+
+**Type, spacing, touch**
+- Two font families at most (currently one: Geist). Body ≥16px, line-height ≥1.5.
+- Form controls ≥16px font (iOS zoom), visible labels (never placeholder-only),
+  correct `type` / `autocomplete` / `inputmode`.
+- Stand-alone tap targets ≥44px with ≥8px between them. Links inside sentences are exempt.
+- Spacing from the 8-point scale only.
+
+**Colour and states**
+- Text contrast 4.5:1 (3:1 for large text, UI parts and focus rings).
+- Never colour alone for meaning: add an icon or text.
+- Yellow stays ≤10% of any screen.
+- Every interactive element has default, hover, focus-visible (≥2px ring),
+  active and disabled states. Design the empty, loading, error and success states too.
+- Motion 150–300ms, `transform`/`opacity` only, and `prefers-reduced-motion` honoured
+  (global rule in `brand-tokens.css`).
+
+**Performance**
+- LCP < 2.5s, CLS < 0.1, INP < 200ms.
+- Hero image ≤200KB WebP/AVIF with `width`/`height`, never lazy-loaded.
+  Everything below the fold lazy-loads.
+
+**SEO and local**
+- Title ≤60 characters (service + town first, brand last). Description ≤155 characters.
+- Open Graph image 1200×630.
+- Business structured data uses `AutoRepair` (a `LocalBusiness` subtype); name,
+  address and phone are identical everywhere. FAQ text on the page matches the
+  `FAQPage` schema word for word.
+- Location pages only with genuine local content (real jobs in that town).
+  Near-duplicate city pages are doorway pages.
+
+**Proof (non-negotiable)**
+- Never invent prices, ratings, review counts, testimonials, years,
+  certifications, warranties, customer names or job photos. Use a marked
+  placeholder instead.
+- Before/after photos are real Capital Upfitters jobs only. Use one crop ratio
+  and matched angles, with a caption naming the vehicle and the service.
+- Reviews are requested from every customer (no filtering for happy ones) and
+  never written on a customer's behalf.
+
+**Copy**
+- Specific beats clever: name the vehicle, service, town and turnaround.
+- Avoid filler words ("elevate", "transform", "world-class", "game-changer") unless
+  they're literally true; "seamless coating" describing a coating with no seams is fine.

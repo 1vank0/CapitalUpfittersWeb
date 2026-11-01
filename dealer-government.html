@@ -1284,21 +1284,21 @@ function showDGPanel(id, btn) {
             <div class="form-row">
               <div class="form-field">
                 <label class="form-label" for="biz-name">Business Name *</label>
-                <input class="form-input" type="text" id="biz-name" name="Business Name" placeholder="ABC Auto Group" required>
+                <input class="form-input" type="text" id="biz-name" autocomplete="organization" name="Business Name" placeholder="ABC Auto Group" required>
               </div>
               <div class="form-field">
                 <label class="form-label" for="contact-name">Contact Name *</label>
-                <input class="form-input" type="text" id="contact-name" name="Contact Name" placeholder="John Smith" required>
+                <input class="form-input" type="text" id="contact-name" autocomplete="name" name="Contact Name" placeholder="John Smith" required>
               </div>
             </div>
             <div class="form-row">
               <div class="form-field">
                 <label class="form-label" for="work-email">Work Email *</label>
-                <input class="form-input" type="email" id="work-email" name="Work Email" placeholder="john@dealership.com" required>
+                <input class="form-input" type="email" id="work-email" autocomplete="email" name="Work Email" placeholder="john@dealership.com" required>
               </div>
               <div class="form-field">
                 <label class="form-label" for="phone">Phone *</label>
-                <input class="form-input" type="tel" id="phone" name="Phone" placeholder="(301) 555-0100" pattern="[0-9\s+\(\)\.\-]{7,30}" minlength="7" maxlength="30" title="Enter a valid phone number using digits and + ( ) - ." required>
+                <input class="form-input" type="tel" id="phone" autocomplete="tel" name="Phone" placeholder="(301) 555-0100" pattern="[0-9\s+\(\)\.\-]{7,30}" minlength="7" maxlength="30" title="Enter a valid phone number using digits and + ( ) - ." required>
               </div>
             </div>
             <div class="form-field">

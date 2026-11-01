@@ -507,3 +507,28 @@ a:not(.btn):not(.nav-cta):hover { color: var(--brand-muted); }
 .page-hero :focus-visible,
 .hero :focus-visible,
 .cta-banner :focus-visible { outline-color: var(--brand-white); }
+
+/* ── Web rules pass (Oct 2026) ─────────────────────────────────────────
+   Measured against the course web rules; see DESIGN.md "Web rules".   */
+
+/* Anchor targets land below the sticky header, not under it. */
+[id] { scroll-margin-top: calc(var(--nav-height, 64px) + 16px); }
+
+/* iOS zooms into inputs under 16px; keep every form control at 16px+. */
+input, select, textarea { font-size: max(16px, 1em); }
+
+/* Tap targets ≥44px for stand-alone links (inline sentence links are exempt). */
+.bf-price a,
+.cover-card-link,
+.breadcrumb-item a,
+.breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* Honour reduced motion everywhere, not only on polished sections. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
