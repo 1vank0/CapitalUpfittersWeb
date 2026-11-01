@@ -180,3 +180,98 @@ Always use the token; don't hand-write `margin: 23px`. Section padding uses
   inline styles; they only got the font and colour remap.
 - The hidden legacy shield SVGs inside `.nav-logo-mark` can be deleted from the
   markup now that the mark is drawn in CSS.
+
+## Web rules (check before calling any page done)
+
+Measurable rules adopted from the owner's web-design course notes. They sharpen
+this design system; they never override it. Check them on every new or
+changed page, at **390×844** and **1366×768**.
+
+**First screen (5-second test)**
+- Within the first screen a stranger can tell what we do, for whom, where
+  (Rockville / DMV), and what to do next.
+- Exactly one `<h1>`, **≤12 words**, naming the service and town on service and
+  location pages. Subline ≤20 words.
+- One primary CTA per view (filled yellow); secondary actions are outline or
+  text links. CTA labels are verb-first and ≤4 words ("Get my quote", "Call the shop").
+
+**Type, spacing, touch**
+- Two font families at most (currently one: Geist). Body ≥16px, line-height ≥1.5.
+- Form controls ≥16px font (iOS zoom), visible labels (never placeholder-only),
+  correct `type` / `autocomplete` / `inputmode`.
+- Stand-alone tap targets ≥44px with ≥8px between them. Links inside sentences are exempt.
+- Spacing from the 8-point scale only.
+
+**Colour and states**
+- Text contrast 4.5:1 (3:1 for large text, UI parts and focus rings).
+- Never colour alone for meaning: add an icon or text.
+- Yellow stays ≤10% of any screen.
+- Every interactive element has default, hover, focus-visible (≥2px ring),
+  active and disabled states. Design the empty, loading, error and success states too.
+- Motion 150–300ms, `transform`/`opacity` only, and `prefers-reduced-motion` honoured
+  (global rule in `brand-tokens.css`).
+
+**Performance**
+- LCP < 2.5s, CLS < 0.1, INP < 200ms.
+- Hero image ≤200KB WebP/AVIF with `width`/`height`, never lazy-loaded.
+  Everything below the fold lazy-loads.
+
+**SEO and local**
+- Title ≤60 characters (service + town first, brand last). Description ≤155 characters.
+- Open Graph image 1200×630.
+- Business structured data uses `AutoRepair` (a `LocalBusiness` subtype); name,
+  address and phone are identical everywhere. FAQ text on the page matches the
+  `FAQPage` schema word for word.
+- Location pages only with genuine local content (real jobs in that town).
+  Near-duplicate city pages are doorway pages.
+
+**Proof (non-negotiable)**
+- Never invent prices, ratings, review counts, testimonials, years,
+  certifications, warranties, customer names or job photos. Use a marked
+  placeholder instead.
+- Before/after photos are real Capital Upfitters jobs only. Use one crop ratio
+  and matched angles, with a caption naming the vehicle and the service.
+- Reviews are requested from every customer (no filtering for happy ones) and
+  never written on a customer's behalf.
+
+**Copy**
+- Specific beats clever: name the vehicle, service, town and turnaround.
+- Avoid filler words ("elevate", "transform", "world-class", "game-changer") unless
+  they're literally true; "seamless coating" describing a coating with no seams is fine.
+
+## Look premium, not generated
+
+From studying Apple, Tesla and Airbnb (Oct 2026) and the frontend-design and
+make-interfaces-feel-better skills. These are the commonest reasons a page
+reads as AI-made; avoid them unless a page truly needs one.
+
+**One idea per screen**
+- About a dozen words and two actions per full-width block (Apple ~11 words
+  per 650px block). Let one real photo carry it.
+- Spend boldness in one place per page. Everything else stays quiet.
+- The vehicle is the search: Year / Make / Model is the first thing on the
+  home page, like Airbnb's Where / When / Who.
+
+**Remove template chrome**
+- No ALL-CAPS headlines or labels; sentence case everywhere.
+- No eyebrow label above every heading.
+- No badge/pill rows, stat strips or glass panels in heroes.
+- No strings joined with middle dots ("A · B · C"), no "→" on links or buttons.
+- No numbered markers (01 / 02 / 03) unless the content really is a sequence.
+- No identical rounded cards with the same grey shadow; use photos and space instead.
+- No accenting a single word in a headline with colour or italics.
+
+**Photography**
+- Real Capital Upfitters jobs, the bay and the team only. AI renders or stock
+  are never shown as our work.
+- One crop ratio per set, matched angles, consistent light. A subtle 1px
+  `rgba(0,0,0,0.06)` outline on photos.
+
+**Polish details**
+- `text-wrap: balance` on headings, `text-wrap: pretty` on body text.
+- `font-variant-numeric: tabular-nums` on prices and phone numbers.
+- Nested corners are concentric: outer radius = inner radius + padding.
+- Buttons press slightly on click (`transform: scale(0.97)`, 120ms).
+- Never `transition: all`; name the property. `will-change` only on transform or opacity.
+- Motion only on purpose: one orchestrated moment per page at most, never a
+  fade-up on every section.
