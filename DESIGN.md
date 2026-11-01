@@ -238,3 +238,40 @@ changed page, at **390×844** and **1366×768**.
 - Specific beats clever: name the vehicle, service, town and turnaround.
 - Avoid filler words ("elevate", "transform", "world-class", "game-changer") unless
   they're literally true; "seamless coating" describing a coating with no seams is fine.
+
+## Look premium, not generated
+
+From studying Apple, Tesla and Airbnb (Oct 2026) and the frontend-design and
+make-interfaces-feel-better skills. These are the commonest reasons a page
+reads as AI-made; avoid them unless a page truly needs one.
+
+**One idea per screen**
+- About a dozen words and two actions per full-width block (Apple ~11 words
+  per 650px block). Let one real photo carry it.
+- Spend boldness in one place per page. Everything else stays quiet.
+- The vehicle is the search: Year / Make / Model is the first thing on the
+  home page, like Airbnb's Where / When / Who.
+
+**Remove template chrome**
+- No ALL-CAPS headlines or labels; sentence case everywhere.
+- No eyebrow label above every heading.
+- No badge/pill rows, stat strips or glass panels in heroes.
+- No strings joined with middle dots ("A · B · C"), no "→" on links or buttons.
+- No numbered markers (01 / 02 / 03) unless the content really is a sequence.
+- No identical rounded cards with the same grey shadow; use photos and space instead.
+- No accenting a single word in a headline with colour or italics.
+
+**Photography**
+- Real Capital Upfitters jobs, the bay and the team only. AI renders or stock
+  are never shown as our work.
+- One crop ratio per set, matched angles, consistent light. A subtle 1px
+  `rgba(0,0,0,0.06)` outline on photos.
+
+**Polish details**
+- `text-wrap: balance` on headings, `text-wrap: pretty` on body text.
+- `font-variant-numeric: tabular-nums` on prices and phone numbers.
+- Nested corners are concentric: outer radius = inner radius + padding.
+- Buttons press slightly on click (`transform: scale(0.97)`, 120ms).
+- Never `transition: all`; name the property. `will-change` only on transform or opacity.
+- Motion only on purpose: one orchestrated moment per page at most, never a
+  fade-up on every section.
