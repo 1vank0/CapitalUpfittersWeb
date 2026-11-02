@@ -828,7 +828,7 @@ try {
     qa.className = 'vs-chip';
     qa.href = qUrl;
     qa.style.cssText = 'background:var(--color-action); border-color:var(--color-action); color:var(--color-on-action); font-weight:700;';
-    qa.innerHTML = '<span aria-hidden="true">✉️</span> Get a Quote for This Vehicle';
+    qa.textContent = 'Get my installed price for this vehicle';
     chips.appendChild(qa);
 
     results.classList.add('visible');

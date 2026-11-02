@@ -455,11 +455,15 @@
     cursor: pointer;
     transition: all 160ms ease;
   }
-  .dg-tab.active, .dg-tab:hover {
-    background: var(--color-brand);
-    border-color: var(--color-brand);
-    color: #fff;
+  .dg-tab:hover { border-color: rgba(255,255,255,0.45); color: #fff; }
+  /* Selected tab reads as selected on the dark band: the brand colour is
+     reserved for the logo, so the active state is a solid white pill. */
+  .dg-tab.active {
+    background: #fff;
+    border-color: #fff;
+    color: #1d1d1f;
   }
+  .dg-tab:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
   .dg-panel { display: none; }
   .dg-panel.active { display: block; }
 
