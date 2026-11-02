@@ -498,3 +498,7 @@ form.cu-lead input:focus, form.cu-lead select:focus, form.cu-lead textarea:focus
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* Anchor targets inside tab panels: zero-height marks so a #hash lands on the
+   panel, not on the tab button that used to carry the id. */
+.cu-anchor { display: block; height: 0; overflow: hidden; }
