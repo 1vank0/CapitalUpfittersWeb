@@ -275,3 +275,34 @@ reads as AI-made; avoid them unless a page truly needs one.
 - Never `transition: all`; name the property. `will-change` only on transform or opacity.
 - Motion only on purpose: one orchestrated moment per page at most, never a
   fade-up on every section.
+
+## Structure: three doors (2026-11-02)
+
+The site serves three customers, and the navigation says so. One dropdown
+per door, one column each, no badges, stars or emoji:
+
+| Door | Lands on | Covers |
+|---|---|---|
+| Trucks & SUVs | `services/` | bedliners, covers, boards, hidden hitches, protection |
+| Dealers & Fleets | `fleet.html` | pre-sale add-ons, van upfits, branding, account pricing |
+| Government & Field | `dealer-government.html#government` | protective coatings, agency fleets, DOT and EMS |
+
+Rules that follow from it:
+
+- A service appears in exactly one door. Repeating bedliners under three
+  headings is what made the old nav unreadable.
+- The home page asks the audience question once. Hero, vehicle picker,
+  three doors, what we install, proof. No second funnel row.
+- Every dropdown link points at a page that exists. No link invents an
+  anchor; `#dealer` and `#government` open their own tab panel.
+- The shop phone number sits in the nav above 1180px and in the phone
+  menu. Below that, the sitewide `.mobile-action-bar` is the only sticky
+  bar — do not add a second one.
+
+### Never dim the offer
+
+The hero carried an idle script that faded the headline and subtitle to
+2% opacity after 1.8s without mouse, touch or key input. A phone sends no
+mouse movement, so the pitch disappeared about two seconds after landing.
+Removed 2026-11-02. Hero copy stays legible; if the video needs more
+presence, change the overlay, never the text.
