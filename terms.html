@@ -311,7 +311,8 @@
   <button class="announce-close" onclick="document.getElementById('announce-bar').remove()" aria-label="Close">&times;</button>
 </div>
 
-<!-- NAV -->
+<!-- NAV — three doors: trucks & SUVs, dealers & fleets, government & field.
+     One column per door, no badges, every link goes to a page that exists. -->
 <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
     <a href="./index.html" class="nav-logo" aria-label="Capital Upfitters home">
@@ -323,109 +324,69 @@
       <div class="nav-logo-text">Capital<span>Upfitters</span></div>
     </a>
     <ul class="nav-links">
-      <!-- SERVICES mega-dropdown -->
+      <!-- DOOR 1: truck and SUV owners -->
       <li class="nav-item">
-        <a href="./services/">Services
+        <a href="./services/">Trucks &amp; SUVs
           <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
         </a>
-        <div class="nav-dropdown nav-mega" role="menu">
-          <!-- Bundle banner -->
-          <a href="./services/" class="nav-bundle-banner">
-            <span class="nav-bundle-star">★</span>
-            Most Popular Bundle — Bedliner + Tonneau Cover + Running Boards
-            <span class="nav-bundle-arrow">→</span>
-          </a>
-          <div class="nav-mega-cols">
-            <!-- Col A: Protection & Bedliners -->
-            <div class="nav-mega-col">
-              <div class="nav-mega-col-header nav-mega-col-header--gold">Protection &amp; Bedliners</div>
-              <a href="./services/bedliner.html">Spray-On Bedliners <span class="nav-mega-link-badge">★ Top Seller</span></a>
-              <a href="./services/bedliner.html#uv-plus">Patriot Liner UV+ Upgrade <span class="nav-mega-link-badge">Premium</span></a>
-              <a href="./services/ceramic-coating.html">Ceramic Coating &amp; PPF</a>
-              <a href="./services/undercoating.html">Undercoating &amp; Rust</a>
-              <a href="./services/window-tinting.html">Window Tinting</a>
-              <a href="./services/stealth-hitches.html">Stealth Hitch — Luxury &amp; EV <span class="nav-mega-link-badge">Preferred</span></a>
-              <a href="./services/mobile-detailing.html">Mobile Detailing</a>
-            </div>
-            <!-- Col B: Truck Accessories -->
-            <div class="nav-mega-col">
-              <div class="nav-mega-col-header nav-mega-col-header--orange">Truck Accessories</div>
-              <a href="./services/tonneau.html">Tonneau / Bed Covers <span class="nav-mega-link-badge">★ Bundle</span></a>
-              <a href="./services/running-boards.html">Running Boards &amp; Steps <span class="nav-mega-link-badge">★ Bundle</span></a>
-              <a href="./services/camper-shells.html">Camper Shells &amp; Caps</a>
-              <a href="./services/hitches.html">Hitches &amp; Towing</a>
-              <a href="./services/toolboxes.html">Toolboxes &amp; Storage</a>
-              <a href="./services/suspension.html">Suspension, Lifts &amp; Wheels</a>
-              <a href="./services/exterior.html">Exterior Accessories</a>
-              <a href="./services/lighting.html">LED Lighting</a>
-            </div>
-          </div>
-          <div class="nav-mega-footer">
-            <a href="./services/" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">View All Services</a>
-            <a href="./rebates.html" class="nav-mega-footer-rebate">🏷 Rebates &amp; Offers</a>
-          </div>
+        <div class="nav-dropdown" role="menu">
+          <span class="nav-dropdown-label">Most installed</span>
+          <a href="./services/bedliner.html">Spray-on bedliners</a>
+          <a href="./services/tonneau.html">Tonneau covers</a>
+          <a href="./services/running-boards.html">Running boards and steps</a>
+          <a href="./services/stealth-hitches.html">Hidden hitches for SUVs and EVs</a>
+          <div class="nav-dropdown-divider"></div>
+          <span class="nav-dropdown-label">Protection</span>
+          <a href="./services/undercoating.html">Undercoating and rust</a>
+          <a href="./services/ceramic-coating.html">Ceramic coating and PPF</a>
+          <a href="./services/window-tinting.html">Window tinting</a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="./services/">All services</a>
         </div>
       </li>
-      <!-- FLEET & BUSINESS mega-dropdown -->
+      <!-- DOOR 2: dealerships, fleets, vans -->
       <li class="nav-item">
-        <a href="./fleet.html">Fleet &amp; Business
+        <a href="./fleet.html">Dealers &amp; Fleets
           <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
         </a>
-        <div class="nav-dropdown nav-mega nav-mega-wide" role="menu">
-          <div class="nav-mega-cols">
-            <!-- Col A: Fleet Upfitting -->
-            <div class="nav-mega-col">
-              <div class="nav-mega-col-header nav-mega-col-header--blue">Fleet &amp; Van Builds</div>
-              <a href="./fleet.html#commercial">Commercial Fleet Solutions <span class="nav-mega-link-badge nav-mega-link-badge--blue">Accounts</span></a>
-              <a href="./fleet.html#commercial">Service Van Upfitting</a>
-              <a href="./fleet.html#commercial">Pickup Truck Fleet Builds</a>
-              <a href="./fleet.html#commercial">Ladder Racks &amp; Cargo</a>
-              <a href="./fleet.html#fleet">DOT &amp; Safety Compliance</a>
-              <a href="./fleet.html#fleet">First Responder &amp; EMS</a>
-              <a href="./services/commercial-wraps.html">Fleet Branding &amp; Wraps</a>
-            </div>
-            <!-- Col B: Fleet Protection -->
-            <div class="nav-mega-col">
-              <div class="nav-mega-col-header nav-mega-col-header--orange">Fleet Protection</div>
-              <a href="./services/bedliner.html">Fleet Bedliners</a>
-              <a href="./services/undercoating.html">Fleet Undercoating</a>
-              <a href="./services/window-tinting.html">Fleet Window Tinting</a>
-              <a href="./services/industrial-coatings.html">Industrial &amp; Protective Coatings <span class="nav-mega-link-badge">Mobile App</span></a>
-            </div>
-          </div>
-          <div class="nav-mega-footer">
-            <a href="./fleet.html" class="nav-mega-footer-cta nav-mega-footer-cta--primary">Open Fleet Account</a>
-            <a href="./quote.html?service=fleet" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">Get Fleet Quote</a>
-          </div>
+        <div class="nav-dropdown" role="menu">
+          <span class="nav-dropdown-label">Dealerships</span>
+          <a href="./dealer-government.html#dealer">Pre-sale add-ons</a>
+          <a href="./dealer-government.html#dealer">Open a dealer account</a>
+          <div class="nav-dropdown-divider"></div>
+          <span class="nav-dropdown-label">Fleets and vans</span>
+          <a href="./fleet.html#commercial">Van upfits: partitions, shelving, racks</a>
+          <a href="./fleet.html#commercial">Work truck builds</a>
+          <a href="./services/commercial-wraps.html">Fleet branding and wraps</a>
+          <a href="./services/undercoating.html">Fleet protection</a>
+          <div class="nav-dropdown-divider"></div>
+          <a href="./quote.html?service=fleet">Ask for fleet pricing</a>
         </div>
       </li>
-      <!-- INDUSTRIAL — direct link, no dropdown -->
-      <li>
-        <a href="./services/industrial-coatings.html" class="nav-industrial-link">Industrial</a>
-      </li>
-      <!-- DEALER & GOV — small dropdown -->
+      <!-- DOOR 3: government, municipal and field coating projects -->
       <li class="nav-item">
-        <a href="./dealer-government.html">Dealer &amp; Gov
+        <a href="./dealer-government.html#government">Government &amp; Field
           <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
         </a>
-        <div class="nav-dropdown" role="menu" style="left: auto; right: 0; transform: translateX(0) translateY(-6px);">
-          <span class="nav-dropdown-label">For Dealerships</span>
-          <a href="./dealer-government.html#dealer">Pre-Delivery Upfitting</a>
-          <a href="./dealer-government.html#dealer">Dealer Ceramic &amp; PPF</a>
-          <a href="./dealer-government.html#dealer">Dealer Account Setup</a>
+        <div class="nav-dropdown nav-dropdown--end" role="menu">
+          <span class="nav-dropdown-label">Projects</span>
+          <a href="./services/industrial-coatings.html">Protective and industrial coatings</a>
+          <a href="./services/industrial-coatings.html">Coatings applied at your site</a>
           <div class="nav-dropdown-divider"></div>
-          <span class="nav-dropdown-label">For Government &amp; Municipal</span>
-          <a href="./dealer-government.html#government">Government Fleet Solutions</a>
-          <a href="./dealer-government.html#government">DOT &amp; EMS Upfitting</a>
-          <a href="./dealer-government.html#government">Protective Coatings / GSA</a>
+          <span class="nav-dropdown-label">Vehicles</span>
+          <a href="./dealer-government.html#government">Government fleet upfits</a>
+          <a href="./fleet.html#fleet">DOT, EMS and first responder</a>
           <div class="nav-dropdown-divider"></div>
-          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.65); font-size: 11px;">Apply for Account →</a>
+          <a href="./dealer-government.html#government">Start a project brief</a>
         </div>
       </li>
       <li><a href="./gallery.html">Gallery</a></li>
-      <li><a href="./contact.html">Contact</a></li>
     </ul>
     <div class="nav-actions">
+      <a href="tel:+13013041419" class="nav-phone" aria-label="Call Capital Upfitters at (301) 304-1419">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.5-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2z"/></svg>
+        (301) 304-1419
+      </a>
       <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="nav-portal-link">Portal Login</a>
       <a href="./quote.html" class="nav-cta">Get a Quote</a>
     </div>
@@ -435,76 +396,61 @@
   </div>
 </nav>
 
-<!-- MOBILE NAV -->
+<!-- MOBILE NAV — same three doors, same order -->
 <div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Mobile menu">
   <button class="nav-mobile-close" id="nav-close" aria-label="Close menu">&times;</button>
   <nav class="nav-mobile-links">
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services" aria-controls="mob-services">
-        Services
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-owner" aria-controls="mob-owner">
+        Trucks &amp; SUVs
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
-      <div class="nav-mobile-section-body" id="mob-services">
-        <div class="nav-mobile-group-label nav-mobile-group-label--gold">&#9733; Bundle: Bedliner + Tonneau + Running Boards</div>
-        <a href="./services/bedliner.html" class="nav-mobile-sub-link">Spray-On Bedliners <span class="nav-mobile-sub-badge">Top Seller</span></a>
-        <a href="./services/tonneau.html" class="nav-mobile-sub-link">Tonneau / Bed Covers <span class="nav-mobile-sub-badge">Bundle</span></a>
-        <a href="./services/running-boards.html" class="nav-mobile-sub-link">Running Boards &amp; Steps <span class="nav-mobile-sub-badge">Bundle</span></a>
+      <div class="nav-mobile-section-body" id="mob-owner">
+        <div class="nav-mobile-group-label">Most installed</div>
+        <a href="./services/bedliner.html" class="nav-mobile-sub-link">Spray-on bedliners</a>
+        <a href="./services/tonneau.html" class="nav-mobile-sub-link">Tonneau covers</a>
+        <a href="./services/running-boards.html" class="nav-mobile-sub-link">Running boards and steps</a>
+        <a href="./services/stealth-hitches.html" class="nav-mobile-sub-link">Hidden hitches for SUVs and EVs</a>
         <div class="nav-mobile-group-label">Protection</div>
-        <a href="./services/ceramic-coating.html" class="nav-mobile-sub-link">Ceramic Coating &amp; PPF</a>
-        <a href="./services/undercoating.html" class="nav-mobile-sub-link">Undercoating &amp; Rust</a>
-        <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Window Tinting</a>
-        <a href="./services/mobile-detailing.html" class="nav-mobile-sub-link">Mobile Detailing</a>
-        <div class="nav-mobile-group-label">Accessories &amp; Builds</div>
-        <a href="./services/hitches.html" class="nav-mobile-sub-link">Hitches &amp; Towing</a>
-        <a href="./services/toolboxes.html" class="nav-mobile-sub-link">Toolboxes &amp; Storage</a>
-        <a href="./services/suspension.html" class="nav-mobile-sub-link">Suspension, Lifts &amp; Wheels</a>
-        <a href="./services/camper-shells.html" class="nav-mobile-sub-link">Camper Shells &amp; Caps</a>
-        <a href="./services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
-        <a href="./services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
-        <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="./services/index.html" class="nav-mobile-sub-link" style="margin-top:4px;">View All Services &rarr;</a>
+        <a href="./services/undercoating.html" class="nav-mobile-sub-link">Undercoating and rust</a>
+        <a href="./services/ceramic-coating.html" class="nav-mobile-sub-link">Ceramic coating and PPF</a>
+        <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Window tinting</a>
+        <a href="./services/" class="nav-mobile-sub-link" style="margin-top:4px;">All services</a>
       </div>
     </div>
 
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet" aria-controls="mob-fleet">
-        Fleet &amp; Business
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-business" aria-controls="mob-business">
+        Dealers &amp; Fleets
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
-      <div class="nav-mobile-section-body" id="mob-fleet">
-        <div class="nav-mobile-group-label nav-mobile-group-label--blue">Fleet &amp; Van Builds</div>
-        <a href="./fleet.html#commercial" class="nav-mobile-sub-link">Commercial Fleet Solutions</a>
-        <a href="./fleet.html#commercial" class="nav-mobile-sub-link">Service Van Upfitting</a>
-        <a href="./fleet.html#commercial" class="nav-mobile-sub-link">Ladder Racks &amp; Cargo</a>
-        <a href="./fleet.html#fleet" class="nav-mobile-sub-link">DOT &amp; Safety Compliance</a>
-        <a href="./fleet.html#fleet" class="nav-mobile-sub-link">First Responder / EMS</a>
-        <div class="nav-mobile-group-label nav-mobile-group-label--orange">Fleet Protection</div>
-        <a href="./services/bedliner.html" class="nav-mobile-sub-link">Fleet Bedliners</a>
-        <a href="./services/undercoating.html" class="nav-mobile-sub-link">Fleet Undercoating</a>
-        <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
-        <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial &amp; Protective Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
-        <a href="./services/stealth-hitches.html" class="nav-mobile-sub-link">Stealth Hitch — Luxury &amp; EV</a>
-        <a href="./fleet.html" class="nav-mobile-sub-link" style="margin-top:4px;">Open Fleet Account &rarr;</a>
+      <div class="nav-mobile-section-body" id="mob-business">
+        <div class="nav-mobile-group-label">Dealerships</div>
+        <a href="./dealer-government.html#dealer" class="nav-mobile-sub-link">Pre-sale add-ons</a>
+        <a href="./dealer-government.html#dealer" class="nav-mobile-sub-link">Open a dealer account</a>
+        <div class="nav-mobile-group-label">Fleets and vans</div>
+        <a href="./fleet.html#commercial" class="nav-mobile-sub-link">Van upfits: partitions, shelving, racks</a>
+        <a href="./fleet.html#commercial" class="nav-mobile-sub-link">Work truck builds</a>
+        <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Fleet branding and wraps</a>
+        <a href="./services/undercoating.html" class="nav-mobile-sub-link">Fleet protection</a>
+        <a href="./quote.html?service=fleet" class="nav-mobile-sub-link" style="margin-top:4px;">Ask for fleet pricing</a>
       </div>
     </div>
 
-    <a href="./services/industrial-coatings.html" class="nav-mobile-direct">Industrial</a>
-
     <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer" aria-controls="mob-dealer">
-        Dealer &amp; Gov
+      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-gov" aria-controls="mob-gov">
+        Government &amp; Field
         <svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
       </button>
-      <div class="nav-mobile-section-body" id="mob-dealer">
-        <div class="nav-mobile-group-label nav-mobile-group-label--blue">Dealerships</div>
-        <a href="./dealer-government.html#dealer" class="nav-mobile-sub-link">Pre-Delivery Upfitting</a>
-        <a href="./dealer-government.html#dealer" class="nav-mobile-sub-link">Dealer Ceramic &amp; PPF</a>
-        <a href="./dealer-government.html#dealer" class="nav-mobile-sub-link">Dealer Account Setup</a>
-        <div class="nav-mobile-group-label">Government &amp; Municipal</div>
-        <a href="./dealer-government.html#government" class="nav-mobile-sub-link">Government Fleet Solutions</a>
-        <a href="./dealer-government.html#government" class="nav-mobile-sub-link">DOT &amp; EMS Upfitting</a>
-        <a href="./dealer-government.html#government" class="nav-mobile-sub-link">Protective Coatings / GSA</a>
+      <div class="nav-mobile-section-body" id="mob-gov">
+        <div class="nav-mobile-group-label">Projects</div>
+        <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Protective and industrial coatings</a>
+        <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Coatings applied at your site</a>
+        <div class="nav-mobile-group-label">Vehicles</div>
+        <a href="./dealer-government.html#government" class="nav-mobile-sub-link">Government fleet upfits</a>
+        <a href="./fleet.html#fleet" class="nav-mobile-sub-link">DOT, EMS and first responder</a>
+        <a href="./dealer-government.html#government" class="nav-mobile-sub-link" style="margin-top:4px;">Start a project brief</a>
       </div>
     </div>
 
@@ -514,7 +460,7 @@
   </nav>
   <div class="nav-mobile-actions">
     <a href="./quote.html" class="btn btn-primary">Get a Quote</a>
-    <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Portal Login</a>
+    <a href="tel:+13013041419" class="btn btn-outline">Call (301) 304-1419</a>
   </div>
 </div>
 <!-- /cu:header -->
@@ -699,6 +645,27 @@
     </div>
   </div>
 </footer>
+
+<!-- STICKY ACTION BAR (phones only) — the two things a visitor on a phone
+     wants: call the shop, or start a quote. Hidden on the quote pages, where
+     the form itself is the action. -->
+<div class="cu-actionbar" id="cu-actionbar" hidden>
+  <a class="cu-actionbar-call" href="tel:+13013041419">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.5-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2z"/></svg>
+    Call the shop
+  </a>
+  <a class="cu-actionbar-quote" href="/quote.html">Get a quote</a>
+</div>
+<script>
+(function(){
+  var bar = document.getElementById('cu-actionbar');
+  if (!bar) return;
+  var p = location.pathname.replace(/\/+$/, '');
+  if (/quote/.test(p)) return;              // the form is already the action
+  bar.hidden = false;
+  document.documentElement.classList.add('cu-has-actionbar');
+})();
+</script>
 <!-- /cu:footer -->
 
 <!-- STICKY MOBILE CTA -->

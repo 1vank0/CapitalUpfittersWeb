@@ -483,3 +483,18 @@ form.cu-lead input:focus, form.cu-lead select:focus, form.cu-lead textarea:focus
     bottom: calc(var(--space-6) + 34px);
   }
 }
+
+/* One plain line of proof under the hero CTAs, in place of three pills. */
+.hero-trust-line {
+  max-width: 46ch;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: var(--font-body, system-ui);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+.hero .hero-trust-line a:not([class]) {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

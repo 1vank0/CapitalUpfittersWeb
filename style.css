@@ -2531,3 +2531,46 @@ a[href*="wikipedia.org/wiki/"][style*="radius-pill"] { min-height: 44px; }
 .portal-info-box-actions .btn { max-width:100%; box-sizing:border-box; }
 .page-hero-bg { max-width:100%; }
 .mobile-action-bar, .mab-btn { max-width:100%; box-sizing:border-box; }
+
+/* ─────────────────────────────────────────────────────────────
+   STRUCTURE PASS — three audience doors
+   The nav now carries one dropdown per audience instead of two
+   mega panels. Links read as sentences, so the panel is wider and
+   the last door's panel is pinned to its right edge.
+   ───────────────────────────────────────────────────────────── */
+.nav-dropdown { min-width: 272px; }
+.nav-dropdown a { white-space: normal; }
+
+.nav-dropdown--end {
+  left: auto !important;
+  right: 0;
+  transform: translateX(0) translateY(-6px) !important;
+}
+.nav-item:hover .nav-dropdown--end,
+.nav-item:focus-within .nav-dropdown--end {
+  transform: translateX(0) translateY(0) !important;
+}
+
+/* The phone number stays reachable after the announce bar is closed. */
+.nav-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 4px;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-nav-text, #1D1D1F);
+  letter-spacing: 0;
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.nav-phone:hover { color: var(--brand-muted, #6E6E73); }
+.nav-phone::after { display: none !important; }
+@media (max-width: 1180px) {
+  /* The sitewide tel: tap-target rule is a long :is()/:not() chain, so this
+     needs a higher class count to win the cascade. */
+  .nav .nav-inner .nav-actions a.nav-phone { display: none; }
+}

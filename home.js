@@ -142,91 +142,11 @@ try {
 })();
 } catch (e) { setTimeout(function () { throw e; }); }
 
-try {
-(function() {
-  var IDLE_MS   = 1800;   // trigger after 1.8s idle
-  var FADE_DUR  = '1.2s'; // text/overlay fade out
-  var RECOV_DUR = '1.2s'; // snap back
-
-  // Label, headline, subtitle only — buttons + stats stay full
-  var TEXT_SELS = ['.hero-label', '.hero-content h1', '.hero-sub'];
-  // Both overlays (global dim + left gradient)
-  var OVL_SELS  = ['.hero-video-overlay', '.hero-overlay'];
-
-  var hero = document.querySelector('.hero');
-  if (!hero) return;
-
-  var idleTimer = null;
-  var watching  = false;
-
-  function getEls(sels) {
-    return sels.map(function(s) { return hero.querySelector(s); }).filter(Boolean);
-  }
-
-  // Ensure text is visually restored (call this on reveal + restore)
-  function ensureVisible() {
-    getEls(TEXT_SELS).forEach(function(el) {
-      el.style.animation  = 'none';          // keep animation off
-      el.style.transition = 'opacity ' + RECOV_DUR + ' ease';
-      el.style.opacity    = '1';
-    });
-    getEls(OVL_SELS).forEach(function(el) {
-      el.style.transition = 'opacity ' + RECOV_DUR + ' ease';
-      el.style.opacity    = '';              // back to stylesheet value
-    });
-  }
-
-  function applyFade() {
-    if (watching) return;
-    watching = true;
-    // Text → 98% invisible
-    getEls(TEXT_SELS).forEach(function(el) {
-      el.style.animation  = 'none';
-      el.style.transition = 'opacity ' + FADE_DUR + ' ease';
-      el.style.opacity    = '0.02';
-    });
-    // Overlays → 2% (video at 98% brightness)
-    getEls(OVL_SELS).forEach(function(el) {
-      el.style.transition = 'opacity ' + FADE_DUR + ' ease';
-      el.style.opacity    = '0.02';
-    });
-  }
-
-  function applyRestore() {
-    clearTimeout(idleTimer);
-    if (watching) {
-      watching = false;
-      ensureVisible();
-    }
-    idleTimer = setTimeout(applyFade, IDLE_MS);
-  }
-
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        // Hero back in view: ensure text visible, start idle timer
-        watching = false;
-        ensureVisible();
-        clearTimeout(idleTimer);
-        idleTimer = setTimeout(applyFade, IDLE_MS);
-        document.addEventListener('mousemove',  applyRestore);
-        document.addEventListener('touchstart', applyRestore);
-        document.addEventListener('keydown',    applyRestore);
-      } else {
-        // Hero out of view: cancel everything, clean up
-        clearTimeout(idleTimer);
-        watching = false;
-        ensureVisible();
-        document.removeEventListener('mousemove',  applyRestore);
-        document.removeEventListener('touchstart', applyRestore);
-        document.removeEventListener('keydown',    applyRestore);
-      }
-    });
-  }, { threshold: 0.3 });   // lower threshold so scroll-back triggers earlier
-
-  observer.observe(hero);
-})();
-} catch (e) { setTimeout(function () { throw e; }); }
+/* HERO IDLE DIM — removed 2026-11-02.
+   It faded the hero label, headline and subtitle to 2% opacity after 1.8s of
+   no mouse, touch or key input, to show the video through. On a phone there
+   is no mouse movement, so the offer disappeared about two seconds after
+   landing and most visitors never read it. The hero copy now stays legible. */
 
 try {
 (function () {
@@ -251,68 +171,68 @@ try {
   var SERVICE_SLIDES = [
     {
       key: 'bedliner',
-      eyebrow: 'Spray-On Protection',
-      h1: 'BUILT FOR REAL WORK.',
-      h1_accent: 'WORK',
+      eyebrow: 'Spray-on protection',
+      h1: 'Built for real work.',
+      h1_accent: 'work',
       sub: 'Patriot Liner spray-on protection with a lifetime warranty — installed same-week in Rockville, MD.',
       video: 'https://www.patriotliner.site/commonfiles/patriotliner/videos/hero-home.mp4',
       poster: './media/next/bedliner-v1.webp',
-      cta_primary:   { label: 'Request Installed Pricing', href: './quote.html?service=bedliner' },
-      cta_secondary: { label: 'See Bedliner Bundles', href: './services/bedliner.html#bundles' }
+      cta_primary:   { label: 'Get my installed price', href: './quote.html?service=bedliner' },
+      cta_secondary: { label: 'See bedliner options', href: './services/bedliner.html#bundles' }
     },
     {
       key: 'running-boards',
-      eyebrow: 'Step In With Confidence',
-      h1: 'RUNNING BOARDS THAT DEPLOY ON DEMAND.',
+      eyebrow: 'Step in with confidence',
+      h1: 'Running boards that deploy on demand.',
       sub: 'AMP Research PowerStep and premium fixed boards — pro installation for trucks and SUVs across the DMV.',
       video: './assets/amp-powerstep.mp4',
       poster: './media/next/running-boards-v1.webp',
-      cta_primary:   { label: 'Get a Quote',          href: './quote.html?service=running-boards' },
-      cta_secondary: { label: 'Compare Boards',       href: './services/running-boards.html' }
+      cta_primary:   { label: 'Get my installed price',          href: './quote.html?service=running-boards' },
+      cta_secondary: { label: 'Compare boards',       href: './services/running-boards.html' }
     },
     {
       key: 'hitches',
-      eyebrow: 'Tow Anything, Anywhere',
-      h1: 'HITCHES WIRED, TESTED, ROAD-READY.',
+      eyebrow: 'Tow anything, anywhere',
+      h1: 'Hitches wired, tested, road-ready.',
       sub: 'Class II–V receiver hitches, gooseneck, and stealth hitches — wired, tested, and road-ready.',
       video: null,
       duration_ms: 6500,
       poster: './media/next/hitches-v1.webp',
-      cta_primary:   { label: 'Get a Quote',     href: './quote.html?service=hitches' },
-      cta_secondary: { label: 'Explore Hitches', href: './services/hitches.html' }
+      cta_primary:   { label: 'Get my installed price',     href: './quote.html?service=hitches' },
+      cta_secondary: { label: 'See hitch options', href: './services/hitches.html' }
     },
     {
       key: 'ceramic-coating',
-      eyebrow: 'Show-Room Gloss, Daily Driver',
-      h1: 'CERAMIC COATING THAT HOLDS ITS SHINE.',
+      eyebrow: 'Show-room gloss, daily driver',
+      h1: 'Ceramic coating that holds its shine.',
       sub: 'Multi-year hydrophobic protection with UV and swirl resistance — for trucks, fleets, and enthusiast rides.',
       video: null,
       duration_ms: 6500,
       poster: './media/next/ceramic-coating-v1.webp',
-      cta_primary:   { label: 'Get a Quote',           href: './quote.html?service=ceramic-coating' },
-      cta_secondary: { label: 'See Coating Packages',  href: './services/ceramic-coating.html' }
+      cta_primary:   { label: 'Get my installed price',           href: './quote.html?service=ceramic-coating' },
+      cta_secondary: { label: 'See coating options',  href: './services/ceramic-coating.html' }
     },
     {
       key: 'commercial-coatings',
-      eyebrow: 'DOT + Municipal Grade',
-      h1: 'INDUSTRIAL COATINGS, APPLIED ON SITE.',
+      eyebrow: 'DOT and municipal grade',
+      h1: 'Industrial coatings, applied on site.',
       sub: 'Chemical, chip, and corrosion-resistant coatings for DOT, utility, and municipal fleet specifications.',
       video: null,
       duration_ms: 6500,
       poster: './media/next/industrial-coatings-v1.webp',
-      cta_primary:   { label: 'Get a Quote',         href: './quote.html?service=commercial-coatings' },
-      cta_secondary: { label: 'Explore Industrial Coatings', href: './services/industrial-coatings.html' }
+      cta_primary:   { label: 'Get my installed price',         href: './quote.html?service=commercial-coatings' },
+      cta_secondary: { label: 'See industrial coatings', href: './services/industrial-coatings.html' }
     },
     {
       key: 'window-tinting',
-      eyebrow: 'Heat, Glare, UV — Blocked',
-      h1: 'WINDOW TINT THAT WON\'T PURPLE.',
+      eyebrow: 'Heat, glare and UV, blocked',
+      h1: 'Window tint that will not purple.',
       sub: 'Premium ceramic tint — legal DMV shades installed in a single visit.',
       video: null,
       duration_ms: 6500,
       poster: './media/next/window-tinting-v1.webp',
-      cta_primary:   { label: 'Get a Quote',       href: './quote.html?service=window-tinting' },
-      cta_secondary: { label: 'See Tint Shade Guide', href: './services/window-tinting.html' }
+      cta_primary:   { label: 'Get my installed price',       href: './quote.html?service=window-tinting' },
+      cta_secondary: { label: 'See tint shades', href: './services/window-tinting.html' }
     }
   ];
 
