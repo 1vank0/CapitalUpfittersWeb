@@ -23,8 +23,10 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'node:fs';
 import { join, relative, dirname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const uiVersion = file => createHash('sha256').update(readFileSync(join(ROOT, file))).digest('hex').slice(0, 10);
 const SOURCE_PAGE = 'index.html';
 const SKIP_DIRS = new Set(['node_modules', '.git', '.vercel']);
 const LINK_ATTR = /\b(href|src|action|poster|srcset|data-[\w-]+)="\.\//g;
@@ -112,6 +114,15 @@ for (const file of listPages()) {
   const depth = depthOf(file);
   const before = readFileSync(file, 'utf8');
   let html = before;
+  if (html.includes('<!-- cu:header -->')) {
+    const prefix = depth === 0 ? './' : '../'.repeat(depth);
+    const assets = `<!-- cu:ui -->\n<link rel="stylesheet" href="${prefix}ui-system.css?v=${uiVersion('ui-system.css')}">\n<script src="${prefix}site-nav.js?v=${uiVersion('site-nav.js')}" defer></script>\n<!-- /cu:ui -->`;
+    if (/<!-- cu:ui -->[\s\S]*?<!-- \/cu:ui -->/.test(html)) {
+      html = html.replace(/<!-- cu:ui -->[\s\S]*?<!-- \/cu:ui -->/, assets);
+    } else {
+      html = html.replace('</head>', assets + '\n</head>');
+    }
+  }
 
   for (const name of Object.keys(BLOCKS)) {
     const re = markerRe(name);
