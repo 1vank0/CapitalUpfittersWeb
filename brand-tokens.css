@@ -532,3 +532,20 @@ input, select, textarea { font-size: max(16px, 1em); }
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Visual polish (Nov 2026) ─────────────────────────────────────── */
+
+/* Blog post dates were inline opacity .7 on dark headers: unreadable. */
+.post-date { opacity: 1 !important; color: #A1A1A6; }
+
+/* Breadcrumbs wrap between items, never inside a label ("Running / Boards"). */
+.breadcrumb, .breadcrumb-list { flex-wrap: wrap; row-gap: 0; }
+.breadcrumb a, .breadcrumb span, .breadcrumb-item { white-space: nowrap; }
+
+/* Phone: hero video controls move to the top-right corner so they no longer
+   sit on top of the trust badges at the bottom of the hero. */
+@media (max-width: 640px) {
+  .hero-mute-pill,
+  .hero-pause-pill { top: var(--space-4) !important; bottom: auto !important; left: auto !important; right: var(--space-4) !important; height: auto !important; transform: none !important; }
+  .hero-pause-pill { top: calc(var(--space-4) + 44px + var(--space-2)) !important; }
+}
