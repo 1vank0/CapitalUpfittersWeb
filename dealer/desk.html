@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Dealer desk | Capital Upfitters</title>
+    <link rel="icon" href="/favicon.svg" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    />
+    <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/brand-tokens.css" />
+    <link rel="stylesheet" href="/ux-10k.css" />
+    <link rel="stylesheet" href="/dealer/desk.css" />
+    <script defer src="/dealer/fitment.js"></script>
+    <script defer src="/dealer/service-info.js"></script>
+    <script defer src="/dealer/desk.js"></script>
+  </head>
+  <body>
+    <header class="desk-header">
+      <div class="desk-brand">
+        <a href="/" class="nav-logo" aria-label="Capital Upfitters home"
+          ><span class="nav-logo-mark"
+            ><svg width="20" height="20" viewBox="0 0 36 36" aria-hidden="true">
+              <path
+                d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z"
+                fill="white"
+              /></svg></span
+          ><span class="nav-logo-text">Capital<span>Upfitters</span></span></a
+        >
+        <p>Dealer quoting, scheduling and referral tracking</p>
+        <small>12019 Nebel Street · Rockville, Maryland 20852</small>
+      </div>
+      <div class="desk-actions">
+        <a class="header-action primary" href="tel:3013041419">Call</a>
+        <a class="header-action" href="sms:3013041419">Text</a>
+        <button hidden id="logout">Sign out</button>
+      </div>
+    </header>
+    <main>
+      <section id="login">
+        <p class="eyebrow">Partner services · Rockville, MD</p>
+        <h1>Dealer desk</h1>
+        <p>
+          Build a quote, book a drop-off, and track the jobs your team brings
+          in.
+        </p>
+        <form id="loginForm">
+          <label
+            >Dealership access key<input
+              type="password"
+              name="key"
+              autocomplete="current-password"
+              required /></label
+          ><button class="primary">Open dealer desk</button>
+        </form>
+      </section>
+      <p id="message" role="status" aria-live="polite"></p>
+      <div id="desk" hidden>
+        <header>
+          <p class="eyebrow" id="office"></p>
+          <h1 id="title"></h1>
+        </header>
+        <nav id="tabs" aria-label="Desk sections"></nav>
+        <section id="panel"></section>
+      </div>
+    </main>
+    <article id="ticket"></article>
+  </body>
+</html>
