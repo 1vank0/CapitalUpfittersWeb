@@ -20,7 +20,6 @@ const vehicles = {
 let state,
   tab = "Build quote",
   draftId,
-  quoteType = "",
   activeId = "",
   busy = false;
 function message(s) {
@@ -117,17 +116,7 @@ function render() {
       );
       return;
     }
-    draftId = crypto.randomUUID();
-    quoteType = "";
-    panel.innerHTML =
-      card(
-        "Choose a vehicle type",
-        '<div class="grid">' +
-          Object.entries(vehicles)
-            .map(([k, v]) => button("type", v, k))
-            .join("") +
-          "</div>",
-      ) + '<div id="builder"></div>';
+    startVehicle();
   } else if (tab === "Dealer cards") {
     panel.innerHTML =
       card(
@@ -234,38 +223,215 @@ function render() {
     renderList("");
   }
 }
-function build(type) {
-  quoteType = type;
+let currentCar = null,
+  decodedCar = null;
+function startVehicle() {
+  currentCar = decodedCar = null;
+  el("panel").innerHTML =
+    card(
+      "Identify the vehicle",
+      '<form id="vinForm"><label>Vehicle identification number (VIN)<input name="vin" maxlength="17" minlength="17" autocapitalize="characters" autocomplete="off" spellcheck="false" required placeholder="Enter the full 17-character VIN"></label><div class="flex"><button class="primary">Decode VIN</button>' +
+        button("manual", "Enter vehicle manually") +
+        '</div><p class="meta">Use the VIN on the window sticker or driver-side dashboard.</p></form>',
+    ) + '<div id="vehicleFields"></div><div id="builder"></div>';
+}
+function selectField(label, name, choices, value, required = true) {
+  return (
+    "<label>" +
+    label +
+    '<select name="' +
+    name +
+    '" ' +
+    (required ? "required" : "") +
+    ">" +
+    choices
+      .map(
+        ([key, text]) =>
+          '<option value="' +
+          escapeHtml(key) +
+          '" ' +
+          (String(key) === String(value) ? "selected" : "") +
+          ">" +
+          escapeHtml(text) +
+          "</option>",
+      )
+      .join("") +
+    "</select></label>"
+  );
+}
+function vehicleFields(v = {}, decoded = false) {
+  decodedCar = decoded ? v : null;
+  el("vinForm").closest(".card").hidden = true;
+  el("builder").innerHTML = "";
+  el("vehicleFields").innerHTML = card(
+    decoded ? "Confirm decoded vehicle" : "Enter vehicle details",
+    '<form id="vehicleForm">' +
+      (decoded ? "<p>" + escapeHtml(v.vin) + " · NHTSA VIN lookup</p>" : "") +
+      grid(
+        input("Year", "year", "number", true, v.year) +
+          input("Make", "make", "text", true, v.make) +
+          input("Model", "model", "text", true, v.model) +
+          selectField(
+            "Vehicle type",
+            "type",
+            [["", "Select type"], ...Object.entries(vehicles)],
+            v.type || "",
+          ) +
+          (!decoded
+            ? input("VIN or last eight (optional)", "vin", "text", false, v.vin)
+            : "") +
+          input("Stock number (optional)", "stock", "text", false, v.stock),
+      ) +
+      '<div id="pickupFields">' +
+      selectField(
+        "Cab style",
+        "cab",
+        [
+          ["", "Not specified"],
+          ["regular", "Regular cab"],
+          ["extended", "Extended / SuperCab"],
+          ["crew", "Crew cab"],
+        ],
+        v.cab || "",
+        false,
+      ) +
+      '<div id="bedFields"></div></div>' +
+      input(
+        "Configuration notes (optional)",
+        "details",
+        "text",
+        false,
+        v.details,
+      ) +
+      '<div class="flex"><button class="primary">Continue to services</button>' +
+      button("restart", "Start with another VIN") +
+      "</div></form>",
+  );
+  const f = el("vehicleForm");
+  if (decoded)
+    for (const k of ["year", "make", "model"]) f.elements[k].readOnly = true;
+  syncFitment(v.bedFeet, v.duty);
+  f.querySelector("input").focus();
+}
+function syncFitment(savedBed, savedDuty) {
+  const f = el("vehicleForm");
+  const v = Object.fromEntries(new FormData(f));
+  const rule = DealerFitment.profile(v);
+  if (rule.beds.length) f.elements.type.value = "pickup";
+  el("pickupFields").hidden = f.elements.type.value !== "pickup";
+  if (el("pickupFields").hidden) {
+    el("bedFields").innerHTML = "";
+    return;
+  }
+  const cabChoiceMatters =
+    DealerFitment.profile({ ...v, cab: "" }).beds.length !== 1;
+  f.elements.cab.closest("label").hidden = !cabChoiceMatters;
+  const measured = decodedCar?.reportedBedFeet;
+  let selected = savedBed ?? "";
+  if (rule.beds.length === 1) selected = rule.beds[0];
+  else if (!selected && measured) {
+    const matches = rule.beds.filter((n) => Math.abs(n - measured) <= 0.2);
+    selected = rule.beds.length
+      ? matches.length === 1
+        ? matches[0]
+        : ""
+      : measured;
+  }
+  const fixed = (label, name, value, text) =>
+    "<label>" +
+    label +
+    "<strong>" +
+    escapeHtml(text) +
+    '</strong><input type="hidden" name="' +
+    name +
+    '" value="' +
+    escapeHtml(value) +
+    '"></label>';
+  const bed =
+    rule.beds.length === 1
+      ? fixed("Bed length", "bedFeet", rule.beds[0], rule.beds[0] + " ft")
+      : rule.beds.length
+        ? selectField(
+            "Bed length",
+            "bedFeet",
+            [
+              ...(rule.beds.length > 1 ? [["", "Confirm length"]] : []),
+              ...rule.beds.map((n) => [String(n), n + " ft"]),
+            ],
+            selected,
+          )
+        : '<label>Measured bed length (feet)<input type="number" name="bedFeet" min="3" max="10" step="0.01" placeholder="e.g. 6.5" value="' +
+          escapeHtml(selected) +
+          '"><small>Leave blank to quote services that do not depend on bed size.</small></label>';
+  const duties = rule.duty ? [rule.duty] : ["", "light", "heavy"];
+  el("bedFields").innerHTML = grid(
+    bed +
+      (rule.duty
+        ? fixed(
+            "Truck class",
+            "duty",
+            rule.duty,
+            rule.duty === "light" ? "Light duty" : "Heavy duty",
+          )
+        : selectField(
+            "Truck class",
+            "duty",
+            duties.map((x) => [
+              x,
+              { light: "Light duty", heavy: "Heavy duty", "": "Select class" }[
+                x
+              ],
+            ]),
+            savedDuty || "",
+          )),
+  );
+}
+function serviceCard(i) {
+  const [info, link] = dealerServiceInfo[i.id] ||
+    dealerServiceInfo[i.category] || [
+      "Contact the shop to confirm details and vehicle fit.",
+      "/services/",
+    ];
+  const label = escapeHtml(i.label);
+  return (
+    '<div class="service-option"><label class="choice"><input type="checkbox" name="service" value="' +
+    i.id +
+    '" data-category="' +
+    escapeHtml(i.category) +
+    '"><span>' +
+    label +
+    '<br><small data-price="' +
+    i.id +
+    '"></small></span></label>' +
+    '<details class="service-info"><summary aria-label="Information about ' +
+    label +
+    '"><span aria-hidden="true">i</span></summary><div><p>' +
+    escapeHtml(info) +
+    '</p><a target="_blank" rel="noopener noreferrer" href="' +
+    link +
+    '">View service details ↗</a></div></details></div>'
+  );
+}
+function carSummary(v) {
+  return (
+    [v.year, v.make, v.model].join(" ") +
+    (v.bedFeet ? " · " + v.bedFeet + " ft bed" : "")
+  );
+}
+function build(v) {
+  currentCar = v;
   draftId = crypto.randomUUID();
-  document
-    .querySelectorAll('[data-action="type"]')
-    .forEach((b) =>
-      b.setAttribute("aria-pressed", String(b.dataset.id === type)),
-    );
-  const items = state.items.filter((i) => i.vehicle === type);
+  el("vehicleFields").innerHTML = card(
+    escapeHtml(carSummary(v)),
+    "<p>" +
+      escapeHtml([v.vin, v.details].filter(Boolean).join(" · ")) +
+      "</p>" +
+      button("editVehicle", "Change vehicle"),
+  );
+  const items = state.items.filter((i) => DealerFitment.permits(v, i));
   const groups = [...new Set(items.map((i) => i.category))];
   el("builder").innerHTML =
     '<form id="quoteForm">' +
-    card(
-      vehicles[type],
-      grid(
-        input("Year", "year", "number") +
-          input("Make", "make") +
-          input("Model", "model") +
-          input(
-            type === "pickup"
-              ? "Bed length and cab"
-              : type === "van"
-                ? "Wheelbase and roof height"
-                : "Trim or configuration",
-            "details",
-            "text",
-            false,
-          ) +
-          input("VIN or last eight", "vin", "text", false) +
-          input("Stock number", "stock", "text", false),
-      ),
-    ) +
     card(
       "Select services",
       groups
@@ -277,18 +443,7 @@ function build(type) {
             grid(
               items
                 .filter((i) => i.category === g)
-                .map(
-                  (i) =>
-                    '<label class="choice"><input type="checkbox" name="service" value="' +
-                    i.id +
-                    '" data-category="' +
-                    escapeHtml(g) +
-                    '"><span>' +
-                    escapeHtml(i.label) +
-                    '<br><small data-price="' +
-                    i.id +
-                    '"></small></span></label>',
-                )
+                .map(serviceCard)
                 .join(""),
             ),
         )
@@ -338,7 +493,7 @@ function updateEstimate() {
   let total = 0,
     unknown = false;
   state.items
-    .filter((i) => i.vehicle === quoteType)
+    .filter((i) => DealerFitment.permits(currentCar, i))
     .forEach((i) => {
       const bundled =
         i.category === "Bed cover" && bundle && i.bundle_price != null;
@@ -500,9 +655,7 @@ function printQuote(q, mode) {
     escapeHtml(s.rep.name + " · " + s.rep.email) +
     "</p><p>" +
     escapeHtml(
-      [s.vehicle.year, s.vehicle.make, s.vehicle.model, s.vehicle.details]
-        .filter(Boolean)
-        .join(" "),
+      [carSummary(s.vehicle), s.vehicle.details].filter(Boolean).join(" "),
     ) +
     "</p><p>" +
     escapeHtml(
@@ -539,6 +692,30 @@ async function readDocument(f) {
   });
 }
 async function submit(f) {
+  if (f.id === "vinForm") {
+    const vin = field(f, "vin").toUpperCase();
+    if (!/^[A-HJ-NPR-Z0-9]{17}$/.test(vin))
+      throw Error(
+        "Enter a 17-character VIN without I, O or Q, or choose manual entry.",
+      );
+    message("Looking up VIN…");
+    const v = await api("decodeVIN", { vin });
+    message("");
+    vehicleFields(v, true);
+    return;
+  }
+  if (f.id === "vehicleForm") {
+    const v = Object.fromEntries(new FormData(f));
+    v.year = Number(v.year);
+    v.vin = (decodedCar?.vin || v.vin || "").toUpperCase().trim();
+    if (v.year < 1900 || v.year > new Date().getFullYear() + 2)
+      throw Error("Check vehicle year.");
+    if (v.vin && !/^(?:[A-HJ-NPR-Z0-9]{17}|[A-HJ-NPR-Z0-9]{8})$/.test(v.vin))
+      throw Error("Enter the full VIN or its last eight characters.");
+    v.bedFeet = v.type === "pickup" && v.bedFeet ? Number(v.bedFeet) : null;
+    build(v);
+    return;
+  }
   if (f.id === "loginForm") {
     await api("login", { key: field(f, "key") });
     f.reset();
@@ -547,9 +724,7 @@ async function submit(f) {
   }
   let result;
   if (f.id === "quoteForm") {
-    const vehicle = { type: quoteType };
-    for (const k of ["year", "make", "model", "details", "vin", "stock"])
-      vehicle[k] = field(f, k);
+    const vehicle = currentCar;
     result = await api("quote", {
       id: draftId,
       dealerId: state.dealer.id,
@@ -619,8 +794,24 @@ async function act(b) {
     a.click();
     return;
   }
-  if (a === "type") {
-    build(id);
+  if (a === "manual") {
+    const vin = field(el("vinForm"), "vin");
+    vehicleFields({ vin });
+    return;
+  }
+  if (a === "restart") {
+    startVehicle();
+    return;
+  }
+  if (a === "editVehicle") {
+    if (
+      !confirm(
+        "Change vehicle and clear this quote’s service selections and paperwork?",
+      )
+    )
+      return;
+    const original = decodedCar;
+    vehicleFields({ ...original, ...currentCar }, Boolean(original));
     return;
   }
   if (a === "rep") {
@@ -682,6 +873,11 @@ document.addEventListener("input", (e) => {
   if (e.target.name === "repName") repMatches(e.target.form);
 });
 document.addEventListener("change", (e) => {
+  if (
+    e.target.form?.id === "vehicleForm" &&
+    ["make", "model", "year", "type", "cab"].includes(e.target.name)
+  )
+    syncFitment();
   if (e.target.name === "service") {
     if (e.target.checked) {
       for (const b of e.target.form.querySelectorAll('[name="service"]'))

@@ -184,3 +184,47 @@ button[aria-pressed="true"] {
   background: var(--brand-ink);
   color: var(--brand-white);
 }
+.service-option {
+  position: relative;
+  align-self: start;
+}
+.service-option .choice {
+  min-height: 4.4rem;
+  padding-right: 3rem;
+  margin: 0;
+}
+.service-info summary {
+  position: absolute;
+  right: 0.25rem;
+  top: 0.25rem;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  cursor: pointer;
+  list-style: none;
+}
+.service-info summary::-webkit-details-marker {
+  display: none;
+}
+.service-info summary span {
+  display: grid;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  width: 1.35rem;
+  height: 1.35rem;
+  font-family: Georgia, serif;
+  font-weight: bold;
+}
+.service-info[open] summary span {
+  background: var(--brand-ink);
+  color: var(--brand-white);
+}
+.service-info div {
+  padding: var(--space-3);
+  color: var(--brand-body);
+}
+.service-info a {
+  text-decoration: underline;
+}

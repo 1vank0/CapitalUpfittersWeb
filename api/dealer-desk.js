@@ -1,3 +1,4 @@
+const { decodeVIN } = require("../lib/dealer/vin");
 const { Pool, types } = require("pg");
 const { timingSafeEqual } = require("node:crypto");
 const {
@@ -213,11 +214,7 @@ async function saveQuote(s, d) {
       [s.dealer_id],
       db,
     );
-    const items = lines(
-      await rows("SELECT * FROM item", [], db),
-      car.type,
-      d.ids,
-    );
+    const items = lines(await rows("SELECT * FROM item", [], db), car, d.ids);
     if (!dealer) throw new Fault("Unknown dealer.");
     if (
       !Array.isArray(d.prices) ||
@@ -413,7 +410,8 @@ module.exports = async (req, res) => {
         [hash(secret)],
       );
       if (!s) throw new Fault("Enter your access key.", 401);
-      if (d.action === "state") result = await state(s);
+      if (d.action === "decodeVIN") result = await decodeVIN(d.vin);
+      else if (d.action === "state") result = await state(s);
       else if (d.action === "older") result = await history(s, uuid(d.before));
       else if (d.action === "document") {
         const q = await one(
