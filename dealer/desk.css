@@ -170,9 +170,13 @@ p { color: var(--desk-muted); }
 #login h1 { font-size: clamp(2.5rem, 7vw, 4.5rem); }
 #login form { margin-top: 1.75rem; }
 #panel { counter-reset: desk-step; }
-#panel .card { counter-increment: desk-step; }
+#panel > .card,
+#vehicleFields > .card,
+#builder > form > .card { counter-increment: desk-step; }
 
-#panel .card > h2::before {
+#panel > .card > h2::before,
+#vehicleFields > .card > h2::before,
+#builder > form > .card > h2::before {
   content: "Step " counter(desk-step);
   display: block;
   margin-bottom: 0.75rem;
@@ -420,6 +424,51 @@ label strong {
 .row { padding: 1rem 0; border-top: 1px solid var(--desk-line-soft); }
 .row:first-child { border-top: 0; }
 .row p { margin-top: 0.35rem; }
+
+#list .row > .card {
+  margin-top: 1rem;
+  background: var(--desk-paper);
+  color: var(--desk-paper-ink);
+  border: 0;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.22);
+}
+
+#list .row > .card::before {
+  width: 12px;
+  height: 12px;
+  left: -6px;
+  top: 45%;
+  background: var(--desk-panel);
+}
+
+#list .row > .card p,
+#list .row > .card small,
+#list .row > .card .meta {
+  color: #6d665d;
+}
+
+#list .row > .card .row {
+  border-top: 1px dashed #b9b0a2;
+}
+
+#list .row > .card button:not(.primary) {
+  color: var(--desk-paper-ink);
+  border-color: #b9b0a2;
+}
+
+#list .row > .card button:not(.primary):hover {
+  color: #087da8;
+  border-color: var(--desk-accent);
+  background: rgba(41, 182, 232, 0.08);
+}
+
+#list .row > .card input,
+#list .row > .card select {
+  color: var(--desk-paper-ink);
+  background: #f5f0e6;
+  border-color: #b9b0a2;
+  color-scheme: light;
+}
 
 .meta {
   font-family: var(--desk-mono);
