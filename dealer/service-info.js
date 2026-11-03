@@ -1,5 +1,9 @@
 "use strict";
 const dealerServiceInfo = {
+  "Service body coating": [
+    "Protect the working surfaces of the installed utility body. We confirm body dimensions, compartment doors and coverage before pricing.",
+    "/services/bedliner",
+  ],
   Bedliner: [
     "A spray-in Patriot Liner protects the bed floor and sides. This option is priced for the confirmed bed size.",
     "/services/bedliner",

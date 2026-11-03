@@ -168,7 +168,11 @@ function render() {
               '"><h3>' +
               escapeHtml(item.label) +
               "</h3><small>" +
-              vehicles[item.vehicle] +
+              (item.vehicle === "service-body"
+                ? "Service body"
+                : item.vehicle === "pickup-review"
+                  ? "Pickup truck"
+                  : vehicles[item.vehicle]) +
               "</small>" +
               grid(
                 amount("MSRP", "msrp") +
@@ -283,17 +287,16 @@ function vehicleFields(v = {}, decoded = false) {
           input("Stock number (optional)", "stock", "text", false, v.stock),
       ) +
       '<div id="pickupFields">' +
+      '<p id="autoCab" class="meta"></p>' +
       selectField(
-        "Cab style",
-        "cab",
+        "Installed body",
+        "bodyStyle",
         [
-          ["", "Not specified"],
-          ["regular", "Regular cab"],
-          ["extended", "Extended / SuperCab"],
-          ["crew", "Crew cab"],
+          ...(v.chassisCab ? [["", "Confirm installed body"]] : []),
+          ["factory", "Factory pickup bed"],
+          ["service", "Service body"],
         ],
-        v.cab || "",
-        false,
+        v.bodyStyle ?? (v.chassisCab ? "" : "factory"),
       ) +
       '<div id="bedFields"></div></div>' +
       input(
@@ -310,22 +313,52 @@ function vehicleFields(v = {}, decoded = false) {
   const f = el("vehicleForm");
   if (decoded)
     for (const k of ["year", "make", "model"]) f.elements[k].readOnly = true;
-  syncFitment(v.bedFeet, v.duty);
+  syncFitment(v.bedFeet, v.bodyLengthFeet);
   f.querySelector("input").focus();
 }
-function syncFitment(savedBed, savedDuty) {
+function syncFitment(savedBed, savedBodyLength) {
   const f = el("vehicleForm");
   const v = Object.fromEntries(new FormData(f));
+  v.cab = DealerFitment.cabFor({
+    ...v,
+    vin: decodedCar?.vin || v.vin,
+    cab: decodedCar?.cab,
+  });
+  v.vin = decodedCar?.vin || v.vin;
   const rule = DealerFitment.profile(v);
-  if (rule.beds.length) f.elements.type.value = "pickup";
-  el("pickupFields").hidden = f.elements.type.value !== "pickup";
-  if (el("pickupFields").hidden) {
+  if (rule.beds.length || decodedCar?.chassisCab)
+    f.elements.type.value = "pickup";
+  const pickup = f.elements.type.value === "pickup";
+  el("pickupFields").hidden = !pickup;
+  f.elements.bodyStyle.disabled = !pickup;
+  v.bodyStyle = pickup ? f.elements.bodyStyle.value : "";
+  el("autoCab").textContent =
+    "Cab · " + (DealerFitment.cabLabel(v) || "Not identified");
+  if (!pickup || !v.bodyStyle) {
     el("bedFields").innerHTML = "";
     return;
   }
-  const cabChoiceMatters =
-    DealerFitment.profile({ ...v, cab: "" }).beds.length !== 1;
-  f.elements.cab.closest("label").hidden = !cabChoiceMatters;
+  if (v.bodyStyle === "service") {
+    const sizes = DealerFitment.serviceLengths;
+    const isCustom =
+      savedBodyLength != null && !sizes.includes(savedBodyLength);
+    el("bedFields").innerHTML =
+      selectField(
+        "Service body length",
+        "serviceLength",
+        [
+          ["", "Choose length"],
+          ...sizes.map((n) => [String(n), n + " ft"]),
+          ["other", "Other length"],
+        ],
+        isCustom ? "other" : savedBodyLength,
+      ) +
+      '<label id="customLength">Measured service body length (feet)<input name="customLength" type="number" min="1" max="40" step="0.01" value="' +
+      escapeHtml(isCustom ? savedBodyLength : "") +
+      '"></label>';
+    syncCustomLength();
+    return;
+  }
   const measured = decodedCar?.reportedBedFeet;
   let selected = savedBed ?? "";
   if (rule.beds.length === 1) selected = rule.beds[0];
@@ -363,28 +396,14 @@ function syncFitment(savedBed, savedDuty) {
         : '<label>Measured bed length (feet)<input type="number" name="bedFeet" min="3" max="10" step="0.01" placeholder="e.g. 6.5" value="' +
           escapeHtml(selected) +
           '"><small>Leave blank to quote services that do not depend on bed size.</small></label>';
-  const duties = rule.duty ? [rule.duty] : ["", "light", "heavy"];
-  el("bedFields").innerHTML = grid(
-    bed +
-      (rule.duty
-        ? fixed(
-            "Truck class",
-            "duty",
-            rule.duty,
-            rule.duty === "light" ? "Light duty" : "Heavy duty",
-          )
-        : selectField(
-            "Truck class",
-            "duty",
-            duties.map((x) => [
-              x,
-              { light: "Light duty", heavy: "Heavy duty", "": "Select class" }[
-                x
-              ],
-            ]),
-            savedDuty || "",
-          )),
-  );
+  el("bedFields").innerHTML = bed;
+}
+function syncCustomLength() {
+  const f = el("vehicleForm"),
+    custom = f.elements.serviceLength.value === "other";
+  el("customLength").hidden = !custom;
+  f.elements.customLength.disabled = !custom;
+  f.elements.customLength.required = custom;
 }
 function serviceCard(i) {
   const [info, link] = dealerServiceInfo[i.id] ||
@@ -413,10 +432,19 @@ function serviceCard(i) {
   );
 }
 function carSummary(v) {
-  return (
-    [v.year, v.make, v.model].join(" ") +
-    (v.bedFeet ? " · " + v.bedFeet + " ft bed" : "")
-  );
+  const configuration =
+    v.bodyStyle === "service"
+      ? v.bodyLengthFeet + " ft service body"
+      : v.bedFeet
+        ? v.bedFeet + " ft bed"
+        : "";
+  return [
+    [v.year, v.make, v.model].join(" "),
+    DealerFitment.cabLabel(v),
+    configuration,
+  ]
+    .filter(Boolean)
+    .join(" · ");
 }
 function build(v) {
   currentCar = v;
@@ -573,6 +601,8 @@ function detail(q) {
     '<div class="card"><p>Quote ' +
     q.id +
     "</p><p>" +
+    escapeHtml(carSummary(s.vehicle)) +
+    "</p><p>" +
     escapeHtml(s.rep.email) +
     " · " +
     escapeHtml(s.vehicle.stock || "No stock number") +
@@ -712,7 +742,20 @@ async function submit(f) {
       throw Error("Check vehicle year.");
     if (v.vin && !/^(?:[A-HJ-NPR-Z0-9]{17}|[A-HJ-NPR-Z0-9]{8})$/.test(v.vin))
       throw Error("Enter the full VIN or its last eight characters.");
-    v.bedFeet = v.type === "pickup" && v.bedFeet ? Number(v.bedFeet) : null;
+    v.cab =
+      v.type === "pickup"
+        ? DealerFitment.cabFor({ ...v, cab: decodedCar?.cab })
+        : "";
+    v.duty = v.type === "pickup" ? DealerFitment.profile(v).duty : "";
+    v.bodyStyle = v.type === "pickup" ? v.bodyStyle : null;
+    v.bodyLengthFeet =
+      v.bodyStyle === "service"
+        ? Number(v.serviceLength === "other" ? v.customLength : v.serviceLength)
+        : null;
+    delete v.customLength;
+    delete v.serviceLength;
+    v.bedFeet =
+      v.bodyStyle === "factory" && v.bedFeet ? Number(v.bedFeet) : null;
     build(v);
     return;
   }
@@ -875,9 +918,12 @@ document.addEventListener("input", (e) => {
 document.addEventListener("change", (e) => {
   if (
     e.target.form?.id === "vehicleForm" &&
-    ["make", "model", "year", "type", "cab"].includes(e.target.name)
+    ["make", "model", "year", "type", "bodyStyle", "vin"].includes(
+      e.target.name,
+    )
   )
     syncFitment();
+  if (e.target.name === "serviceLength") syncCustomLength();
   if (e.target.name === "service") {
     if (e.target.checked) {
       for (const b of e.target.form.querySelectorAll('[name="service"]'))

@@ -8,3 +8,10 @@ Set RESEND_API_KEY, LEAD_FROM_EMAIL (verified sender) and LEAD_TO_EMAIL (Grok Bo
 
 ## Operating rules
 Bed covers use MSRP. Selecting a Patriot Liner unlocks a configured cover bundle price. Unknown prices stay blank and require shop review. Each saved quote keeps a price and attribution snapshot, and supports dealer, MSRP and price-free printouts. Gross subtotals exclude tax. The job receives one rebate record when booked. Rescheduling preserves credit. Staff review completed jobs for eligibility, approve the amount captured on the quote, and record payment after payout. No funds move automatically. Seeded rebate rates are blank pending shop setup.
+
+## Pickup configuration
+Use the VIN decoder for cab style. The form displays the cab when the VIN or a single-cab model rule identifies it. Where the cab is unknown, the form offers the model’s verified box lengths. Unsupported models can use a measured length.
+
+Factory box rules for recent U.S. F-150 and Super Duty pickups follow [Ford F-150 technical specifications](https://www.fromtheroad.ford.com/content/dam/fordmediasite/us/en/library/2026/specs/2026_Ford_F150_Specs.pdf), [Super Duty technical specifications](https://www.fromtheroad.ford.com/content/dam/fordmediasite/us/en/library/2026/specs/2026_Super_Duty_Pickups_Technical_Specifications_FINAL.pdf) and [Ford's 2026 VIN guide](https://vpic.nhtsa.dot.gov/mid/home/displayfile/36bc8391-095b-4e79-b076-b0b8f130dc6e).
+
+Choose Service body for an installed utility body. The length describes that body and travels on the quote, printout and shop notification. Each preset length has its own editable coating price. Custom lengths share a shop-review item. To upgrade an existing database, apply service-body-catalog.sql once. A fresh database receives the same catalog from schema.sql.
