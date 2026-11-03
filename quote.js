@@ -575,6 +575,9 @@ function panelHTML(s){
       '<span class="req">Choose one</span>'+
     '</div>'+
     '<p class="panel-sub">'+esc(s.sub)+'</p>'+
+    (s.id==='bedliner' ? '<details class="option-guide"><summary>Help me choose</summary>'+
+      '<div><p>Choose one option below to continue. Standard and Premium Patriot Liner are truck-bed treatments. Under Wheel Wells covers the wheel arches.</p>'+
+      '<p>Use the information button on each option to compare the details. Not sure which fits your project? <a href="tel:+13013041419">Call (301) 304-1419</a> for help before choosing.</p></div></details>' : '')+
     '<div class="opt-grid">'+ s.base.map(o=>optionCard(s.id,o,'base')).join('') +'</div>'+
     (hasAdds ?
       '<div class="addons-wrap'+(locked?' locked':'')+'">'+
@@ -639,8 +642,8 @@ function refreshTiles(){
       label.innerHTML = esc(base.name) + (n? ' <span class="plus">+'+n+' add-on'+(n>1?'s':'')+'</span>':'');
       label.hidden = false;
     } else {
-      label.hidden = true;
-      label.textContent = '';
+      label.hidden = !on;
+      label.textContent = on ? 'Choose an option below to continue' : '';
     }
   });
 }
@@ -671,7 +674,7 @@ function refreshSummary(){
   const ready = n>0 && picked===n;
   $('#nextBtn').disabled = !ready;
   $('#nextLabel').textContent = n===0 ? 'Continue'
-    : ready ? 'Continue to Step 2'
+    : ready ? 'Review & contact'
     : 'Pick an option for '+(n-picked)+' service'+((n-picked)>1?'s':'');
 }
 
