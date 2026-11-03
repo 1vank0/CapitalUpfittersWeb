@@ -70,7 +70,7 @@
   ],
   "git": {
     "deploymentEnabled": {
-      "redesign/ui-ux-polish-2026-11-02": false
+      "redesign/ui-ux-polish-2026-11-02": true
     }
   }
 }
