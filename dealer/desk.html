@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.svg" />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
     />
     <link rel="stylesheet" href="/base.css" />
     <link rel="stylesheet" href="/style.css" />
@@ -21,16 +21,24 @@
   </head>
   <body>
     <header class="desk-header">
-      <a href="/" class="nav-logo" aria-label="Capital Upfitters home"
-        ><span class="nav-logo-mark"
-          ><svg width="20" height="20" viewBox="0 0 36 36" aria-hidden="true">
-            <path
-              d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z"
-              fill="white"
-            /></svg></span
-        ><span class="nav-logo-text">Capital<span>Upfitters</span></span></a
-      ><a href="tel:3013041419">(301) 304-1419</a
-      ><button hidden id="logout">Sign out</button>
+      <div class="desk-brand">
+        <a href="/" class="nav-logo" aria-label="Capital Upfitters home"
+          ><span class="nav-logo-mark"
+            ><svg width="20" height="20" viewBox="0 0 36 36" aria-hidden="true">
+              <path
+                d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z"
+                fill="white"
+              /></svg></span
+          ><span class="nav-logo-text">Capital<span>Upfitters</span></span></a
+        >
+        <p>Dealer quoting, scheduling and referral tracking</p>
+        <small>12019 Nebel Street · Rockville, Maryland 20852</small>
+      </div>
+      <div class="desk-actions">
+        <a class="header-action primary" href="tel:3013041419">Call</a>
+        <a class="header-action" href="sms:3013041419">Text</a>
+        <button hidden id="logout">Sign out</button>
+      </div>
     </header>
     <main>
       <section id="login">

@@ -91,8 +91,13 @@ function input(label, name, type = "text", required = true, value = "") {
     "></label>"
   );
 }
-const card = (title, body) =>
-  '<section class="card"><h2>' + title + "</h2>" + body + "</section>";
+const card = (title, body, subtitle = "") =>
+  '<section class="card"><h2>' +
+  title +
+  "</h2>" +
+  (subtitle ? '<p class="section-sub">' + subtitle + "</p>" : "") +
+  body +
+  "</section>";
 const grid = (body) => '<div class="grid">' + body + "</div>";
 const button = (action, label, id = "") =>
   '<button type="button" data-action="' +
@@ -103,6 +108,84 @@ const button = (action, label, id = "") =>
   label +
   "</button>";
 const field = (form, name) => form.elements.namedItem(name).value.trim();
+function liveTicketShell() {
+  return (
+    '<aside class="quote-ticket-wrap" aria-label="Live quote preview">' +
+    '<section class="quote-ticket">' +
+    '<header class="quote-ticket-head"><div class="ticket-brand">' +
+    '<span class="ticket-logo-mark" aria-hidden="true"></span>' +
+    '<div><strong>Capital Upfitters</strong><span>Dealer work-order quote</span></div></div>' +
+    '<div class="ticket-number"><span id="ticketNumber">Draft</span><span id="ticketDate"></span></div></header>' +
+    '<div class="quote-ticket-body"><p class="ticket-vehicle" id="ticketVehicle">Vehicle · <strong>Not selected</strong></p>' +
+    '<div class="ticket-columns"><span>Service</span><span>Dealer</span><span>MSRP</span></div>' +
+    '<div id="ticketLines"><p class="ticket-empty">Choose a vehicle and services to build the quote.</p></div></div>' +
+    '<div class="quote-ticket-totals"><div><span>Dealer subtotal</span><strong id="ticketDealerTotal">$0.00</strong></div>' +
+    '<div><span>Retail subtotal</span><strong id="ticketRetailTotal">$0.00</strong></div></div>' +
+    '<div class="ticket-perf" aria-hidden="true"></div>' +
+    '<footer class="quote-ticket-footer"><p id="ticketPrepared">Prepared for dealer partner · Quote valid 30 days</p>' +
+    '<div><button type="button" data-action="restart">Reset</button>' +
+    '<button type="button" class="primary" data-action="printDraft" id="printDraft" disabled>Print / Save PDF</button></div></footer>' +
+    "</section></aside>"
+  );
+}
+function selectedDraftItems() {
+  const form = el("quoteForm");
+  if (!form) return [];
+  return [...form.querySelectorAll('[name="service"]:checked')].map((box) => {
+    const item = state.items.find((i) => i.id === box.value);
+    const stored = form.querySelector('[data-price="' + box.value + '"]')?.dataset
+      .cents;
+    return {
+      ...item,
+      price: stored === "" || stored == null ? null : Number(stored),
+    };
+  });
+}
+function renderLiveTicket() {
+  if (!el("ticketLines")) return;
+  const items = selectedDraftItems();
+  const dealerKnown = items.length && items.every((i) => i.price != null);
+  const retailKnown = items.length && items.every((i) => i.msrp != null);
+  const dealerTotal = dealerKnown
+    ? items.reduce((sum, i) => sum + i.price, 0)
+    : null;
+  const retailTotal = retailKnown
+    ? items.reduce((sum, i) => sum + i.msrp, 0)
+    : null;
+  el("ticketNumber").textContent = draftId
+    ? "Draft " + draftId.slice(0, 8).toUpperCase()
+    : "Draft";
+  el("ticketDate").textContent = new Date().toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+  el("ticketVehicle").innerHTML = currentCar
+    ? "Vehicle · <strong>" + escapeHtml(carSummary(currentCar)) + "</strong>"
+    : "Vehicle · <strong>Not selected</strong>";
+  el("ticketLines").innerHTML = items.length
+    ? items
+        .map(
+          (i) =>
+            '<div class="ticket-line"><span>' +
+            escapeHtml(i.label) +
+            "</span><span>" +
+            cash(i.price) +
+            "</span><span>" +
+            cash(i.msrp) +
+            "</span></div>",
+        )
+        .join("")
+    : '<p class="ticket-empty">Choose services to add them to this quote.</p>';
+  el("ticketDealerTotal").textContent = items.length ? cash(dealerTotal) : "$0.00";
+  el("ticketRetailTotal").textContent = items.length ? cash(retailTotal) : "$0.00";
+  const form = el("quoteForm");
+  const rep = form?.elements.repName?.value.trim();
+  el("ticketPrepared").textContent = rep
+    ? "Prepared by " + rep + " · Quote valid 30 days"
+    : "Prepared for " + (state?.dealer?.name || "dealer partner") + " · Quote valid 30 days";
+  el("printDraft").disabled = !currentCar || !items.length;
+}
 function render() {
   const panel = el("panel");
   if (tab === "Build quote") {
@@ -231,13 +314,21 @@ let currentCar = null,
   decodedCar = null;
 function startVehicle() {
   currentCar = decodedCar = null;
+  draftId = null;
   el("panel").innerHTML =
+    '<div class="quote-layout"><div class="quote-flow">' +
+    '<div id="vinStep">' +
     card(
       "Identify the vehicle",
       '<form id="vinForm"><label>Vehicle identification number (VIN)<input name="vin" maxlength="17" minlength="17" autocapitalize="characters" autocomplete="off" spellcheck="false" required placeholder="Enter the full 17-character VIN"></label><div class="flex"><button class="primary">Decode VIN</button>' +
         button("manual", "Enter vehicle manually") +
-        '</div><p class="meta">Use the VIN on the window sticker or driver-side dashboard.</p></form>',
-    ) + '<div id="vehicleFields"></div><div id="builder"></div>';
+        '</div><p class="meta">Start with the VIN. The desk will identify the vehicle, cab and compatible bed or body lengths.</p></form>',
+      "Decode the VIN first, then confirm only the information the manufacturer does not provide.",
+    ) +
+    '</div><div id="vehicleFields"></div><div id="builder"></div></div>' +
+    liveTicketShell() +
+    "</div>";
+  renderLiveTicket();
 }
 function selectField(label, name, choices, value, required = true) {
   return (
@@ -455,28 +546,29 @@ function build(v) {
       escapeHtml([v.vin, v.details].filter(Boolean).join(" · ")) +
       "</p>" +
       button("editVehicle", "Change vehicle"),
+    "Decoded vehicle and manufacturer-specific configuration.",
   );
   const items = state.items.filter((i) => DealerFitment.permits(v, i));
   const groups = [...new Set(items.map((i) => i.category))];
   el("builder").innerHTML =
     '<form id="quoteForm">' +
-    card(
-      "Select services",
-      groups
-        .map(
-          (g) =>
-            "<h3>" +
-            escapeHtml(g) +
-            "</h3>" +
-            grid(
-              items
-                .filter((i) => i.category === g)
-                .map(serviceCard)
-                .join(""),
-            ),
-        )
-        .join("") + '<p id="estimate" aria-live="polite"></p>',
-    ) +
+    groups
+      .map((g, index) =>
+        card(
+          escapeHtml(g),
+          grid(
+            items
+              .filter((i) => i.category === g)
+              .map(serviceCard)
+              .join(""),
+          ) +
+            (index === groups.length - 1
+              ? '<p id="estimate" aria-live="polite"></p>'
+              : ""),
+          "Choose one option in this service category. Pricing updates on the work-order ticket.",
+        ),
+      )
+      .join("") +
     card(
       "Who gets referral credit?",
       "<p>" +
@@ -498,6 +590,7 @@ function build(v) {
             input("Salesperson email", "repEmail", "email"),
         ) +
         '<div id="matches"></div>',
+      "Select the dealership salesperson who referred this vehicle.",
     ) +
     card(
       "Dealer paperwork",
@@ -506,8 +599,16 @@ function build(v) {
           '<label>Document type<select name="kind"><option>PO</option><option>We Owe</option></select></label>',
       ) +
         '<label>Attach document · PDF, JPG or PNG, up to 2 MB<input type="file" name="doc" accept=".pdf,.jpg,.jpeg,.png"></label><label>Job notes<textarea name="notes" maxlength="1600"></textarea></label>',
+      "Attach the PO or We Owe now so the shop receives everything together.",
     ) +
-    '<button class="primary">Submit quote to Capital Upfitters</button></form>';
+    card(
+      "Accept, submit and schedule",
+      '<label class="confirm-row"><input type="checkbox" name="confirmQuote" required><span>I confirm this dealer quote is ready to send to Capital Upfitters.</span></label>' +
+        '<button class="primary submit-quote">Submit quote &amp; continue to scheduling</button>' +
+        '<p class="meta">The quote is saved first. The next screen lets you select an available drop-off day and print dealer, MSRP or no-price versions.</p>',
+      "Send the completed quote to the shop and continue directly to booking.",
+    ) +
+    "</form>";
   updateEstimate();
 }
 function updateEstimate() {
@@ -545,6 +646,7 @@ function updateEstimate() {
       cash(total) +
       (unknown ? " + items awaiting shop pricing" : "")
     : "Choose the services to include.";
+  renderLiveTicket();
 }
 function repMatches(f) {
   const matches = state.reps.filter(
@@ -709,6 +811,28 @@ function printQuote(q, mode) {
     (q.day ? "<p>Drop-off · " + q.day + "</p>" : "");
   window.print();
 }
+function printDraftQuote() {
+  const form = el("quoteForm");
+  const items = selectedDraftItems();
+  if (!form || !currentCar || !items.length) return;
+  printQuote(
+    {
+      id: "DRAFT-" + (draftId || "QUOTE").slice(0, 8).toUpperCase(),
+      created: new Date().toISOString(),
+      snapshot: {
+        dealer: state.dealer,
+        rep: {
+          name: field(form, "repName") || "Dealer salesperson",
+          email: field(form, "repEmail") || "",
+        },
+        vehicle: currentCar,
+        po: field(form, "po"),
+        items,
+      },
+    },
+    "Dealer price",
+  );
+}
 async function readDocument(f) {
   const file = f.elements.doc.files[0];
   if (!file) return null;
@@ -861,6 +985,11 @@ async function act(b) {
     el("quoteForm").elements.repEmail.value = state.reps.find(
       (r) => r.id === id,
     ).email;
+    renderLiveTicket();
+    return;
+  }
+  if (a === "printDraft") {
+    printDraftQuote();
     return;
   }
   if (a === "open") {
@@ -914,6 +1043,7 @@ document.addEventListener("click", (e) => {
 document.addEventListener("input", (e) => {
   if (e.target.name === "filter") renderList(e.target.value);
   if (e.target.name === "repName") repMatches(e.target.form);
+  if (e.target.form?.id === "quoteForm") renderLiveTicket();
 });
 document.addEventListener("change", (e) => {
   if (
