@@ -493,3 +493,36 @@ body .btn:active { transform: scale(.97) !important; box-shadow: none !important
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+
+/* Quiet interaction details in the established white / mist / ink system. */
+.site-nav { transition: box-shadow 220ms ease; }
+.site-menu-link { transition: background-color 180ms ease; }
+.site-menu-link > .ui-icon { transition: translate 220ms ease; }
+.customer-roadmap li { position: relative; padding-top: var(--ui-space-6); border-top: 1px solid var(--ui-line); }
+.customer-roadmap li > .ui-icon { padding: 10px; width: 44px; height: 44px; box-sizing: border-box; background: var(--ui-mist); border-radius: 50%; }
+.service-offering .service-quote-link { text-underline-offset: 5px; }
+.btn > .ui-icon, .service-card-arrow > .ui-icon { transition: translate 220ms cubic-bezier(.2,.7,.2,1); }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .btn:not(:disabled):not([aria-disabled="true"]):hover > .ui-icon:last-child,
+  .service-card:hover .service-card-arrow > .ui-icon { translate: 3px 0; }
+  .site-menu-link:hover > .ui-icon { translate: 2px 0; }
+  .service-offering .service-media { transition: box-shadow 280ms ease; }
+  .service-offering:hover .service-media { box-shadow: 0 8px 24px rgb(29 29 31 / .08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-card:hover .service-media img, .service-hub-card:hover .service-media img { transform: none; }
+  .btn > .ui-icon, .service-card-arrow > .ui-icon, .site-menu-link > .ui-icon { translate: none; }
+}
+
+/* Keep the first quote fields within reach on phones without changing steps. */
+@media (max-width: 767px) {
+  .quote-page .quote-intro { padding-block: var(--ui-space-6) var(--ui-space-4); }
+  .quote-page .quote-intro h1 { font-size: 32px; }
+  .quote-page .quote-intro p { margin-top: var(--ui-space-2); }
+  .quote-page .cu-p6-switcher-outer { padding-bottom: var(--ui-space-4); }
+  .quote-page .cu-p6-pill { min-height: 48px; padding-block: var(--ui-space-2); }
+  .quote-page .cu-p6 .wrap { padding-top: var(--ui-space-4); }
+  .quote-page .cu-p6-mode--retail > .wrap { gap: var(--ui-space-4); }
+  .quote-page .cu-p6 .lede { margin-bottom: var(--ui-space-4); }
+}

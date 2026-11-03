@@ -7,6 +7,47 @@
 (function () {
   'use strict';
 
+  // The shared UI owns its motion. Never apply the legacy blanket heading,
+  // counter or parallax animations to forms or redesigned marketing pages.
+  if (document.querySelector('.site-nav')) {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const active = new Set();
+    let observer;
+    const stop = () => {
+      observer?.disconnect();
+      active.forEach(animation => animation.cancel());
+      active.clear();
+    };
+    if (!preference.matches && 'IntersectionObserver' in window) {
+      const targets = document.querySelectorAll(
+        '.home-page .service-offering, .home-page .audience-card, ' +
+        '.customer-roadmap li, .service-page .related-card, ' +
+        '.services-directory .service-offering'
+      );
+      observer = new IntersectionObserver(entries => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (!isIntersecting) return;
+          observer.unobserve(target);
+          // The page stays visible if JS/animation APIs fail. Do not delay or
+          // animate a link/card while a keyboard user is interacting with it.
+          if (preference.matches || target.contains(document.activeElement) || !target.animate) return;
+          const index = Array.from(target.parentElement.children).indexOf(target);
+          const animation = target.animate([
+            { opacity: .65, translate: '0 12px' },
+            { opacity: 1, translate: '0 0' }
+          ], { duration: 460, delay: Math.min(index * 45, 135), easing: 'cubic-bezier(.2,.7,.2,1)' });
+          active.add(animation);
+          animation.finished.catch(() => {}).finally(() => active.delete(animation));
+          target.addEventListener('focusin', () => animation.cancel(), { once: true });
+        });
+      }, { threshold: .08, rootMargin: '0px 0px -16px 0px' });
+      targets.forEach(target => observer.observe(target));
+    }
+    preference.addEventListener('change', stop);
+    window.addEventListener('pagehide', stop, { once: true });
+    return;
+  }
+
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ─── 1. CSS SCROLL-DRIVEN ANIMATION INJECTION ─────────────────────────────

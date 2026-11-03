@@ -79,3 +79,7 @@ Generated automotive artwork is illustration, not evidence of completed work. Th
 Service cards offer a service-detail link and a distinct direct quote action carrying an exact supported service ID. The vehicle step confirms an existing service selection. The homepage explains the quote-to-install sequence without promising a booking or price before fitment review. All existing required fields and submission controllers remain intact.
 
 Images resolve through named backend slots at `/api/media`; never hardcode generated file paths in page markup. `/admin/media` provides upload, crop focus, alt text, illustration/photo classification, explicit preview/publish, history and restore. Icons remain versioned SVG. Read docs/MEDIA-MANAGEMENT.md for release configuration and validation limits.
+
+## Shared motion refinement
+
+Pages using `.site-nav` bypass the legacy animation injector. Scroll entry is a short, one-shot reveal on service offerings, audience paths, related cards and roadmap steps only. Content is visible before JavaScript and remains readable if an animation API is unavailable. Headings, counters, forms and wizard steps are not animated. Keyboard focus cancels a card's reveal; changing the operating-system motion preference cancels active reveals. Fine-pointer arrow cues and media elevation use the same ink/mist tokens; reduced motion disables image zoom. No copy, image slot or lead-controller contract changes.
