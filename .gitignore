@@ -11,5 +11,7 @@
 Thumbs.db
 __pycache__/
 node_modules/
+.env*
+.data/
 qa-*.js
 tests/e2e/last-report.json

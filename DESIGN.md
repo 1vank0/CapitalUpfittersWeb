@@ -49,7 +49,7 @@ The quote page's existing builder CSS is still loaded in its original position. 
 - Sizes: small ≥44px, default 48px, large 52px. Text never becomes unreadably small to make a row fit.
 - Hover changes color/surface; press uses a small 120ms scale; disabled controls retain a distinct visible state.
 - Focus: 2px ink outline with 4px offset and a white separating ring. Reverse on dark bands. Never remove keyboard focus styling.
-- Shared decorative icons use `assets/ui-icons.svg`, 24px viewBox, 1.75px stroke, round caps/joins and `currentColor`. Controls carry accessible text names; icons themselves are hidden from assistive technology.
+- Shared decorative icons use `assets/ui-icons-v2.svg`, 24px viewBox, 1.75px stroke, round caps/joins and `currentColor`. Controls carry accessible text names; icons themselves are hidden from assistive technology.
 - Use the existing technical option illustrations inside the quote builder. They explain real configuration choices.
 
 ## Page rhythm
@@ -63,7 +63,7 @@ The quote page's existing builder CSS is still loaded in its original position. 
 
 ## Photography
 
-Unverified generated automotive artwork is not evidence of our work. Use explicit labeled placeholders until authentic photos are supplied. `docs/IMAGE-NEEDS.md` maps every new placeholder to its crop, subject and illustrative generation prompt. Preserve real gallery-feed photos and their provenance. Generated concepts may be used only as clearly labeled illustration, never as customers or completed shop work.
+Generated automotive artwork is illustration, not evidence of completed work. The initial coordinated set lives in the media backend and carries an illustrative label until an actual photo is published through the image manager. `docs/IMAGE-NEEDS.md` maps every new placeholder to its crop, subject and illustrative generation prompt. Preserve real gallery-feed photos and their provenance. Generated concepts may be used only as clearly labeled illustration, never as customers or completed shop work.
 
 ## Compatibility and checks
 
@@ -73,3 +73,9 @@ Unverified generated automotive artwork is not evidence of our work. Use explici
 - Browser screenshots use the exact staging source as the before reference and the review branch as after. Phone screenshots are responsive iframe viewports, not physical-device testing. Test scripts and capture fixtures stay outside committed source.
 - Existing server-side unit tests cover real persistence/email contracts. Browser submissions during UI QA use a local mock and never create shop leads.
 - Review branch `redesign/ui-ux-polish-2026-11-02` has automatic Vercel deployment disabled. Do not deploy as part of this task.
+
+## Customer experience and media editing
+
+Service cards offer a service-detail link and a distinct direct quote action carrying an exact supported service ID. The vehicle step confirms an existing service selection. The homepage explains the quote-to-install sequence without promising a booking or price before fitment review. All existing required fields and submission controllers remain intact.
+
+Images resolve through named backend slots at `/api/media`; never hardcode generated file paths in page markup. `/admin/media` provides upload, crop focus, alt text, illustration/photo classification, explicit preview/publish, history and restore. Icons remain versioned SVG. Read docs/MEDIA-MANAGEMENT.md for release configuration and validation limits.

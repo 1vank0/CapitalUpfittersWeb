@@ -5,7 +5,7 @@
   const filters = document.querySelector('.services-directory .svc-filter-tabs');
   const status = document.getElementById('service-results');
   if (!grid || !filters || !status) return;
-  const cards = [...grid.querySelectorAll('.service-hub-card')];
+  const cards = [...grid.querySelectorAll('.service-offering[data-category]')];
   const buttons = [...filters.querySelectorAll('[data-filter]')];
   function select(button) {
     const category = button.dataset.filter;

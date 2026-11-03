@@ -7,10 +7,14 @@
     "serve": "python3 -m http.server 8765",
     "sync-chrome": "node scripts/sync-chrome.mjs",
     "check-chrome": "node scripts/sync-chrome.mjs --check",
-    "dev": "sh -c 'python3 -m http.server 4173 --bind 0.0.0.0' --",
-    "check": "npm test && npm run check-chrome && node --check site-nav.js && node --check services-directory.js && node scripts/check-ui.mjs"
+    "dev": "node --env-file-if-exists=.env.media.local scripts/dev-server.cjs",
+    "check": "npm test && npm run check-chrome && node --check site-nav.js && node --check services-directory.js && node --check media-client.js && node --check quote-assist.js && node --check admin/media-admin.js && node scripts/check-ui.mjs"
   },
   "devDependencies": {
     "playwright-core": "^1.48.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.1161.0",
+    "sharp": "0.35.5"
   }
 }

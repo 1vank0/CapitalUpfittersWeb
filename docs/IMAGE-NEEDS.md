@@ -1,6 +1,6 @@
 # Image needs
 
-The redesigned UI uses explicit placeholders where an authentic Capital Upfitters job photo is not verified. Replace each slot through its `data-image-need` ID. Never present generated pictures as our shop, team, customers or completed jobs. Existing real gallery feed integration is preserved.
+The homepage, 15 service types, service headers and related service cards now use backend-managed image slots. The initial set contains 16 generated illustrative images. Replace images through `/admin/media`, not by editing HTML or filenames. A service slot is shared by its cards and headers. `data-image-need` remains an editorial inventory reference; `data-media-slot` is the runtime backend key. Generated images carry an illustrative label, which the frontend removes when an actual photo is published. Existing gallery-feed integration is preserved. See MEDIA-MANAGEMENT.md for operation and release status.
 
 ## Capture and delivery
 

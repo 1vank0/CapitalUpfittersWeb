@@ -116,7 +116,7 @@ for (const file of listPages()) {
   let html = before;
   if (html.includes('<!-- cu:header -->')) {
     const prefix = depth === 0 ? './' : '../'.repeat(depth);
-    const assets = `<!-- cu:ui -->\n<link rel="stylesheet" href="${prefix}ui-system.css?v=${uiVersion('ui-system.css')}">\n<script src="${prefix}site-nav.js?v=${uiVersion('site-nav.js')}" defer></script>\n<!-- /cu:ui -->`;
+    const assets = `<!-- cu:ui -->\n<link rel="stylesheet" href="${prefix}ui-system.css?v=${uiVersion('ui-system.css')}">\n<script src="${prefix}site-nav.js?v=${uiVersion('site-nav.js')}" defer></script>\n<script src="${prefix}media-client.js?v=${uiVersion('media-client.js')}" defer></script>\n<!-- /cu:ui -->`;
     if (/<!-- cu:ui -->[\s\S]*?<!-- \/cu:ui -->/.test(html)) {
       html = html.replace(/<!-- cu:ui -->[\s\S]*?<!-- \/cu:ui -->/, assets);
     } else {
