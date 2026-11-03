@@ -24,6 +24,34 @@ const dealerServiceInfo = {
     "A soft roll-up cover that mounts above the bed rails. We check bed dimensions before ordering.",
     "/services/truxedo",
   ],
+  "westin-hard-trifold": [
+    "A practical hard tri-fold cover for customers who want rigid panels and simple folding access. Exact Westin model depends on truck fitment.",
+    "/services/tonneau",
+  ],
+  "retraxpro-mx": [
+    "A premium aluminum retractable cover that locks along the rail. We confirm canister clearance and the correct bed-specific part.",
+    "/services/retrax",
+  ],
+  "cover-upgrade-tailgate-seal": [
+    "Adds sealing around the tailgate area to help reduce water and dust intrusion. Results vary by bed and tailgate design.",
+    "/services/tonneau",
+  ],
+  "cover-upgrade-bed-mat": [
+    "Adds a removable bed mat below the cover for cargo protection and grip. Material and fit are confirmed for the truck.",
+    "/services/tonneau",
+  ],
+  "cover-upgrade-bed-lighting": [
+    "Adds convenient bed lighting for loading and unloading after dark. Final layout depends on the bed and cover.",
+    "/services/lighting",
+  ],
+  "cover-upgrade-bakbox2": [
+    "Adds the folding BAKBox2 toolbox option for a compatible BAKFlip installation. Fitment is confirmed before ordering.",
+    "/services/bakflip",
+  ],
+  "cover-upgrade-xr-rails": [
+    "Upgrades a compatible Retrax system to XR rails with T-slot accessory capability. Rack and accessory fitment is quoted separately.",
+    "/services/retrax",
+  ],
   step: [
     "Fixed steps give passengers a steady foothold. Cab style and mounting points determine the right board.",
     "/services/running-boards",

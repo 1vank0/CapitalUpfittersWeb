@@ -315,6 +315,103 @@ label strong {
 
 #quoteForm .grid:has(.service-option) { grid-template-columns: 1fr; gap: 0.65rem; }
 
+.service-group + .service-group {
+  margin-top: 1.25rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--desk-line);
+}
+
+.service-group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.65rem;
+}
+
+.service-group-head h3 {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.service-group-head p {
+  margin: 0;
+  color: var(--desk-muted);
+  font-size: 0.72rem;
+}
+
+.tonneau-group .grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.tonneau-group .cover-option:last-child {
+  grid-column: 1 / -1;
+}
+
+.cover-choice {
+  min-height: 6.4rem;
+  align-items: flex-start;
+}
+
+.cover-copy {
+  min-width: 0;
+  display: grid;
+  gap: 0.28rem;
+}
+
+.cover-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cover-heading strong { font-size: 0.88rem; }
+
+.cover-tier {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.35rem;
+  padding: 0.2rem 0.45rem;
+  border: 1px solid var(--desk-line-strong);
+  border-radius: 999px;
+  background: var(--desk-white);
+  color: var(--desk-muted);
+  font-family: var(--desk-mono);
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.cover-type {
+  color: var(--desk-muted);
+  font-size: 0.7rem;
+  line-height: 1.45;
+}
+
+.cover-price {
+  color: var(--desk-ink) !important;
+  font-family: var(--desk-mono);
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+}
+
+.cover-upgrades {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px dashed var(--desk-line-strong);
+  border-radius: var(--desk-control-radius);
+  background: var(--desk-surface);
+}
+
+.cover-upgrades .grid { grid-template-columns: 1fr !important; }
+
+.cover-upgrades .choice {
+  min-height: 3.75rem;
+  background: var(--desk-white);
+}
+
 .choice {
   min-height: 4.35rem;
   margin: 0;
@@ -626,6 +723,9 @@ button[aria-pressed="true"] {
   .card { padding: 1.15rem; }
   .flex > button, #tabs button { flex: 1 1 auto; }
   .grid { grid-template-columns: 1fr; }
+  .tonneau-group .grid { grid-template-columns: 1fr !important; }
+  .tonneau-group .cover-option:last-child { grid-column: auto; }
+  .service-group-head { display: grid; gap: 0.2rem; }
   .service-info summary { right: 3.2rem; }
   .ticket-columns, .ticket-line { grid-template-columns: minmax(0, 1fr) 4.8rem 4.8rem; }
 }

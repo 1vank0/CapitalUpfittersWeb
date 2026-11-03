@@ -141,7 +141,11 @@ const DealerFitment = (() => {
       return false;
     if (v.type !== "pickup") return true;
     if (item.category === "Bedliner") return item.id === liner(v);
-    if (item.category === "Bed cover" || item.id === "uv")
+    if (
+      item.category === "Bed cover" ||
+      item.category.startsWith("Cover upgrade") ||
+      item.id === "uv"
+    )
       return Boolean(v.bedFeet);
     if (item.id === "rust-hd") return v.duty === "heavy";
     if (item.id === "rust") return v.duty === "light";

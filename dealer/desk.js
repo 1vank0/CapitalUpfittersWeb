@@ -17,6 +17,56 @@ const vehicles = {
   van: "Cargo van",
   other: "Car, SUV or other",
 };
+const coverPlan = [
+  {
+    id: "truxport",
+    tier: "Budget",
+    type: "Soft roll-up",
+    note: "Best-value everyday bed coverage.",
+  },
+  {
+    id: "x15",
+    tier: "Better",
+    type: "Low-profile soft roll-up",
+    note: "Cleaner profile and premium fabric finish.",
+  },
+  {
+    id: "westin-hard-trifold",
+    tier: "Good",
+    type: "Hard tri-fold",
+    note: "Simple hard-panel security at a practical price.",
+  },
+  {
+    id: "mx4",
+    tier: "Better",
+    type: "Premium hard folding",
+    note: "Low-profile aluminum panels with full-bed access.",
+  },
+  {
+    id: "retraxpro-mx",
+    tier: "Premium",
+    type: "Retractable aluminum",
+    note: "Premium locking retractable cover with a clean canister design.",
+  },
+];
+const coverUpgradePlan = {
+  truxport: ["cover-upgrade-tailgate-seal", "cover-upgrade-bed-mat", "cover-upgrade-bed-lighting"],
+  x15: ["cover-upgrade-tailgate-seal", "cover-upgrade-bed-mat", "cover-upgrade-bed-lighting"],
+  "westin-hard-trifold": ["cover-upgrade-tailgate-seal", "cover-upgrade-bed-mat", "cover-upgrade-bed-lighting"],
+  mx4: ["cover-upgrade-tailgate-seal", "cover-upgrade-bed-mat", "cover-upgrade-bed-lighting", "cover-upgrade-bakbox2"],
+  "retraxpro-mx": ["cover-upgrade-tailgate-seal", "cover-upgrade-bed-mat", "cover-upgrade-bed-lighting", "cover-upgrade-xr-rails"],
+};
+const coverUpgradeIds = new Set(Object.values(coverUpgradePlan).flat());
+const catalogOrder = [
+  "liner-short", "liner-standard", "liner-hd", "liner-long", "liner-review", "uv",
+  ...coverPlan.map((c) => c.id),
+  ...coverUpgradeIds,
+  "step", "power-step", "rust", "rust-hd", "rust-review",
+];
+const catalogRank = (item) => {
+  const n = catalogOrder.indexOf(item.id);
+  return n < 0 ? 1000 : n;
+};
 let state,
   tab = "Build quote",
   draftId,
@@ -235,7 +285,13 @@ function render() {
     panel.innerHTML = card(
       "Service pricing",
       "<p>Enter dollar amounts. Leave unknown prices blank. A cover uses MSRP unless a bedliner is selected and a bundle price is set. Changes apply to future quotes.</p>" +
-        state.items
+        [...state.items]
+          .sort(
+            (a, b) =>
+              catalogRank(a) - catalogRank(b) ||
+              a.vehicle.localeCompare(b.vehicle) ||
+              a.label.localeCompare(b.label),
+          )
           .map((item) => {
             const amount = (label, key) =>
               "<label>" +
@@ -522,6 +578,125 @@ function serviceCard(i) {
     '">View service details ↗</a></div></details></div>'
   );
 }
+function coverCard(i) {
+  const plan = coverPlan.find((c) => c.id === i.id);
+  if (!plan) return serviceCard(i);
+  const [info, link] = dealerServiceInfo[i.id] || [
+    "The shop confirms the exact cover and fitment for the selected truck bed.",
+    "/services/tonneau",
+  ];
+  const label = escapeHtml(i.label);
+  return (
+    '<div class="service-option cover-option" data-cover="' +
+    i.id +
+    '"><label class="choice cover-choice"><input type="checkbox" name="service" value="' +
+    i.id +
+    '" data-category="Bed cover"><span class="cover-copy"><span class="cover-heading"><b class="cover-tier">' +
+    escapeHtml(plan.tier) +
+    "</b><strong>" +
+    label +
+    '</strong></span><small class="cover-type">' +
+    escapeHtml(plan.type) +
+    " · " +
+    escapeHtml(plan.note) +
+    '</small><small class="cover-price" data-price="' +
+    i.id +
+    '"></small></span></label><details class="service-info"><summary aria-label="Information about ' +
+    label +
+    '"><span aria-hidden="true">i</span></summary><div><p>' +
+    escapeHtml(info) +
+    '</p><a target="_blank" rel="noopener noreferrer" href="' +
+    link +
+    '">View cover details ↗</a></div></details></div>'
+  );
+}
+function serviceGroup(title, items, renderer = serviceCard, className = "") {
+  if (!items.length) return "";
+  return (
+    '<section class="service-group ' +
+    className +
+    '"><div class="service-group-head"><h3>' +
+    escapeHtml(title) +
+    "</h3></div>" +
+    grid(items.map(renderer).join("")) +
+    "</section>"
+  );
+}
+function pickupServiceCards(items, v) {
+  const linerCategories = new Set(["Bedliner", "Topcoat", "Service body coating"]);
+  const linerItems = items.filter((i) => linerCategories.has(i.category));
+  const covers = coverPlan
+    .map((plan) => items.find((i) => i.id === plan.id))
+    .filter(Boolean);
+  const upgrades = items.filter((i) => coverUpgradeIds.has(i.id));
+  const accessories = items.filter(
+    (i) =>
+      !linerCategories.has(i.category) &&
+      i.category !== "Bed cover" &&
+      !coverUpgradeIds.has(i.id),
+  );
+  const accessoryOrder = ["Running boards", "Undercoating"];
+  const accessoryGroups = [...new Set(accessories.map((i) => i.category))].sort(
+    (a, b) => {
+      const ar = accessoryOrder.indexOf(a),
+        br = accessoryOrder.indexOf(b);
+      return (ar < 0 ? 100 : ar) - (br < 0 ? 100 : br) || a.localeCompare(b);
+    },
+  );
+  let linerBody = serviceGroup(
+    v.bodyStyle === "service" ? "Service-body protection" : "Spray-in bedliner",
+    linerItems,
+  );
+  let accessoryBody = covers.length
+    ? serviceGroup("Tonneau cover", covers, coverCard, "tonneau-group") +
+      '<section class="cover-upgrades" id="coverUpgrades" hidden><div class="service-group-head"><h3 id="coverUpgradeTitle">Popular cover upgrades</h3><p>Only upgrades compatible with the selected cover are shown.</p></div>' +
+      grid(upgrades.map(serviceCard).join("")) +
+      "</section>"
+    : "";
+  accessoryBody += accessoryGroups
+    .map((category) =>
+      serviceGroup(
+        category,
+        accessories.filter((i) => i.category === category),
+      ),
+    )
+    .join("");
+  const estimate = '<p id="estimate" aria-live="polite"></p>';
+  if (!accessoryBody) linerBody += estimate;
+  else accessoryBody += estimate;
+  return (
+    card(
+      "Patriot Liner",
+      linerBody,
+      "The correct bed or service-body liner is already filtered for this vehicle.",
+    ) +
+    (accessoryBody
+      ? card(
+          "Add-on accessories",
+          accessoryBody,
+          "Compare covers quickly, then add only the upgrades and accessories the customer wants.",
+        )
+      : "")
+  );
+}
+function syncCoverUpgrades() {
+  const form = el("quoteForm"),
+    section = el("coverUpgrades");
+  if (!form || !section) return;
+  const cover = form.querySelector('[data-category="Bed cover"]:checked');
+  const allowed = new Set(cover ? coverUpgradePlan[cover.value] || [] : []);
+  for (const box of section.querySelectorAll('[name="service"]')) {
+    const option = box.closest(".service-option");
+    const visible = allowed.has(box.value);
+    option.hidden = !visible;
+    if (!visible) box.checked = false;
+  }
+  section.hidden = !cover;
+  if (cover) {
+    const item = state.items.find((i) => i.id === cover.value);
+    el("coverUpgradeTitle").textContent = "Upgrades for " + item.label;
+  }
+}
 function carSummary(v) {
   const configuration =
     v.bodyStyle === "service"
@@ -550,25 +725,29 @@ function build(v) {
   );
   const items = state.items.filter((i) => DealerFitment.permits(v, i));
   const groups = [...new Set(items.map((i) => i.category))];
+  const serviceCards =
+    v.type === "pickup"
+      ? pickupServiceCards(items, v)
+      : groups
+          .map((g, index) =>
+            card(
+              escapeHtml(g),
+              grid(
+                items
+                  .filter((i) => i.category === g)
+                  .map(serviceCard)
+                  .join(""),
+              ) +
+                (index === groups.length - 1
+                  ? '<p id="estimate" aria-live="polite"></p>'
+                  : ""),
+              "Choose one option in this service category. Pricing updates on the work-order ticket.",
+            ),
+          )
+          .join("");
   el("builder").innerHTML =
     '<form id="quoteForm">' +
-    groups
-      .map((g, index) =>
-        card(
-          escapeHtml(g),
-          grid(
-            items
-              .filter((i) => i.category === g)
-              .map(serviceCard)
-              .join(""),
-          ) +
-            (index === groups.length - 1
-              ? '<p id="estimate" aria-live="polite"></p>'
-              : ""),
-          "Choose one option in this service category. Pricing updates on the work-order ticket.",
-        ),
-      )
-      .join("") +
+    serviceCards +
     card(
       "Who gets referral credit?",
       "<p>" +
@@ -609,6 +788,7 @@ function build(v) {
       "Send the completed quote to the shop and continue directly to booking.",
     ) +
     "</form>";
+  syncCoverUpgrades();
   updateEstimate();
 }
 function updateEstimate() {
@@ -1060,6 +1240,7 @@ document.addEventListener("change", (e) => {
         if (b !== e.target && b.dataset.category === e.target.dataset.category)
           b.checked = false;
     }
+    syncCoverUpgrades();
     updateEstimate();
   }
 });
