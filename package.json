@@ -8,7 +8,7 @@
     "sync-chrome": "node scripts/sync-chrome.mjs",
     "check-chrome": "node scripts/sync-chrome.mjs --check",
     "dev": "sh -c 'python3 -m http.server 4173 --bind 0.0.0.0' --",
-    "check": "npm test && npm run check-chrome && node --check site-nav.js && node scripts/check-ui.mjs"
+    "check": "npm test && npm run check-chrome && node --check site-nav.js && node --check services-directory.js && node scripts/check-ui.mjs"
   },
   "devDependencies": {
     "playwright-core": "^1.48.0"

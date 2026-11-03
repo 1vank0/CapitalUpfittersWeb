@@ -57,6 +57,7 @@ The quote page's existing builder CSS is still loaded in its original position. 
 - Home: stable split offer, vehicle finder, customer paths, services, industrial work, retained proof/FAQ/location content and final CTA. No rotating headline or competing floating quote button.
 - Service pages: breadcrumb, concise heading, short summary and two actions beside a properly sized media slot. Keep each route's existing detail, quote links, FAQs, pricing behavior and gallery feed.
 - Service cards: image above the title and description. Copy is readable without hovering. No text over dark artwork.
+- Services directory: compact white introduction, five native toggle-button filters, announced result count and captioned image cards. Filtering removes hidden cards from keyboard and assistive-technology navigation. Without JavaScript, every service remains visible and inactive filters stay hidden.
 - Quote: concise intro, audience tabs, visible progress rail, existing vehicle/services/contact steps, and one bottom wizard action rail. Desktop help stays secondary; phones keep the form first.
 - Do not hide states, required fields, validation messages, success/reference panels or conditional hitch acknowledgments with presentation rules.
 

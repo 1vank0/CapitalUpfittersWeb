@@ -37,6 +37,7 @@
     const button = trigger(item);
     button.addEventListener('click', () => openItem === item ? close(item) : open(item));
     item.addEventListener('pointerenter', () => {
+      clearTimeout(hoverTimer);
       clearTimeout(leaveTimer);
       if (hover.matches) hoverTimer = setTimeout(() => open(item), 100);
     });
@@ -96,7 +97,11 @@
       toggle.setAttribute('aria-expanded', 'false');
       if (returnFocus?.isConnected) returnFocus.focus();
     });
-    dialog.addEventListener('click', event => { if (event.target === dialog) closeMobile(); });
+    dialog.addEventListener('click', event => {
+      if (event.target !== dialog) return;
+      const bounds = dialog.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeMobile();
+    });
     dialog.addEventListener('keydown', event => {
       if (event.key !== 'Tab') return;
       const targets = [...dialog.querySelectorAll('a[href], button:not([disabled]), summary, [tabindex="0"]')]
@@ -121,10 +126,11 @@
   }
   desktop.addEventListener('change', () => { close(); if (desktop.matches) closeMobile(); });
 
-  const currentPath = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
-  nav.querySelectorAll('.site-menu-panel a[href]').forEach(link => {
+  const pagePath = path => path.replace(/\/index\.html$/, '/').replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  const currentPath = pagePath(location.pathname);
+  document.querySelectorAll('.site-menu-panel a[href], .site-mobile a[href]').forEach(link => {
     const url = new URL(link.href, location.href);
-    if (url.origin === location.origin && !url.hash && url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') === currentPath) {
+    if (url.origin === location.origin && !url.hash && pagePath(url.pathname) === currentPath) {
       link.setAttribute('aria-current', 'page');
     }
   });

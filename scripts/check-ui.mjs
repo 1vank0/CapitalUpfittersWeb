@@ -19,6 +19,21 @@ assert.ok(header.includes('<dialog'), 'Mobile navigation must use native modal f
 assert.ok(!header.includes('role="menu"'), 'Site links use disclosure navigation, not application menu roles');
 assert.ok(header.includes('href="tel:+13013041419"'), 'The shop call action must remain available');
 
+const directory = read('services/index.html');
+const imageNeeds = read('docs/IMAGE-NEEDS.md');
+const cards = [...directory.matchAll(/<a href="(\.\/[^\"]+)" class="service-hub-card" data-category="([^"]+)"/g)];
+assert.equal(cards.length, 15, 'All existing directory service destinations must remain available');
+for (const [, href, categories] of cards) {
+  assert.ok(existsSync(resolve(root, 'services', href)), `Service card ${href} must have a destination`);
+  assert.ok(categories.split(/\s+/).includes('all'), `Service card ${href} must be visible in All services`);
+}
+for (const [, slot] of directory.matchAll(/data-image-need="([^"]+)"/g)) {
+  assert.ok(imageNeeds.includes('`' + slot + '`'), `Directory image ${slot} needs a documented brief`);
+}
+assert.ok(directory.includes('id="service-results" role="status"'), 'Service filtering must announce its result count');
+assert.ok(!directory.includes('role="tablist"'), 'Service filters are toggle buttons, not tabs');
+assert.ok(directory.includes('aria-label="Filter services by category" hidden'), 'Inactive filters stay hidden without JavaScript');
+
 let managed = 0;
 const skip = new Set(['.git', '.openai', 'node_modules', 'ui-before']);
 function visit(dir) {
