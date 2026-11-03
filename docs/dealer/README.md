@@ -1,0 +1,10 @@
+# Dealer desk
+Open /dealer/desk. Each dealership has its own generated access key and saved rep directory. Staff use the same sign-in with DEALER_ADMIN_KEY. Staff can create cards, rotate keys (revokes current sessions), enter a quote for a dealership, set prices and rebate amounts in dollars, and open drop-off dates.
+
+## Environment
+Use a separate Postgres database or schema for each environment. Create the cu_desk schema, apply schema.sql once as its owner, and give the runtime role usage on cu_desk and SELECT, INSERT, UPDATE, DELETE on its tables. Set its search_path to cu_desk, pg_catalog. Set DEALER_DATABASE_URL to the TLS Postgres connection and DEALER_ADMIN_KEY to a unique secret at least 24 characters long. Keep these server-side.
+
+Set RESEND_API_KEY, LEAD_FROM_EMAIL (verified sender) and LEAD_TO_EMAIL (Grok Bot's monitored inbox) on the same deployment. Redeploy after changing environment settings. The staff desk shows unsent notifications and offers a retry. Every message contains the quote ID, dealership, referring salesperson, vehicle, line items, booking and rebate status. A submitted PO or We Owe travels with the email. Use the quote ID to link Shopmonkey follow-up to the dealer record. Drop-off availability is owned by this desk and does not automatically sync to Shopmonkey.
+
+## Operating rules
+Bed covers use MSRP. Selecting a Patriot Liner unlocks a configured cover bundle price. Unknown prices stay blank and require shop review. Each saved quote keeps a price and attribution snapshot, and supports dealer, MSRP and price-free printouts. Gross subtotals exclude tax. The job receives one rebate record when booked. Rescheduling preserves credit. Staff review completed jobs for eligibility, approve the amount captured on the quote, and record payment after payout. No funds move automatically. Seeded rebate rates are blank pending shop setup.
