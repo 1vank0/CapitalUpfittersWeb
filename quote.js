@@ -935,14 +935,20 @@ $('#nextBtn').addEventListener('click', ()=>{
       notesOrig ? 'Notes: '+notesOrig : ''
     ].filter(Boolean).join('\n');
   }
-  if (typeof form.requestSubmit === 'function') {
-    form.requestSubmit();
-  } else {
-    // fallback for very old browsers
-    var btn = document.createElement('button'); btn.type='submit'; btn.style.display='none';
-    form.appendChild(btn); btn.click(); form.removeChild(btn);
+  try {
+    if (typeof form.requestSubmit === 'function') {
+      form.requestSubmit();
+    } else {
+      // fallback for very old browsers
+      var btn = document.createElement('button'); btn.type='submit'; btn.style.display='none';
+      form.appendChild(btn);
+      try { btn.click(); } finally { form.removeChild(btn); }
+    }
+  } finally {
+    // The bridge serializes synchronously. Always restore the user's own notes,
+    // including validation errors and retries without a long build description.
+    if (notesEl) notesEl.value = notesOrig;
   }
-  if (notesEl && buildDetails.length && notesEl.value !== '') notesEl.value = notesOrig;
 });
 
 /* ============================================================
@@ -1040,21 +1046,57 @@ var SVC_QUESTIONS = {
   ]}
 };
 function selectedSvcIds(){ return [...document.querySelectorAll('.tile[data-svc][aria-checked="true"]')].map(t=>t.getAttribute('data-svc')); }
+// Keep answers across service toggles and Back/Continue. Shared vehicle facts
+// have one value even when more than one selected service needs them.
+var serviceAnswers = Object.create(null);
+function serviceAnswerKey(id){
+  return id === 'sq-tonneau-bed' ? 'sq-bed-length' : id;
+}
+function rememberSvcAnswers(){
+  document.querySelectorAll('#svc-details [data-sq-name]').forEach(function(el){
+    serviceAnswers[serviceAnswerKey(el.id)] = el.value || '';
+  });
+}
+function selectedHitchWiring(){
+  var adds = state.adds.hitch;
+  return adds ? ['4pin','7pin'].filter(function(id){ return adds.has(id); }).map(function(id){ return id === '4pin' ? '4-pin' : '7-pin'; }) : [];
+}
 function renderSvcDetails(){
   var host=document.getElementById('svc-details'); if(!host) return;
+  rememberSvcAnswers();
   var ids=selectedSvcIds().filter(id=>SVC_QUESTIONS[id]);
   if(!ids.length){ host.classList.remove('is-on'); host.innerHTML=''; return; }
   host.classList.add('is-on');
   host.innerHTML=ids.map(function(id){
     var q=SVC_QUESTIONS[id];
-    var fields=q.fields.map(function(f){
-      return '<div class="field"><label for="'+f.id+'">'+f.label+'</label><select id="'+f.id+'" data-sq-name="'+f.name+'">'+f.opts.map(function(o){return '<option value="'+o+'">'+(o||'Select…')+'</option>';}).join('')+'</select></div>';
+    var fields=q.fields.filter(function(f){
+      // Ask bed length once for a combined bedliner + cover quote.
+      if(f.id === 'sq-tonneau-bed' && ids.includes('bedliner')) return false;
+      // Wiring selected above is already part of the build, not another question.
+      if(f.id === 'sq-wiring' && selectedHitchWiring().length) return false;
+      return true;
+    }).map(function(f){
+      var value=serviceAnswers[serviceAnswerKey(f.id)] || '';
+      return '<div class="field"><label for="'+f.id+'">'+f.label+'</label><select id="'+f.id+'" data-sq-name="'+f.name+'">'+f.opts.map(function(o){return '<option value="'+esc(o)+'"'+(o === value ? ' selected' : '')+'>'+esc(o||'Select…')+'</option>';}).join('')+'</select></div>';
     }).join('');
+    if(!fields) return '';
     return '<div class="sd-card"><h3>'+q.title+'</h3><div class="sd-grid">'+fields+'</div></div>';
   }).join('');
 }
 function collectSvcAnswers(){
-  var lines=[]; document.querySelectorAll('#svc-details [data-sq-name]').forEach(function(el){ var v=(el.value||'').trim(); if(v) lines.push(el.getAttribute('data-sq-name')+': '+v); }); return lines;
+  rememberSvcAnswers();
+  var lines=[], seen=new Set();
+  selectedSvcIds().filter(function(id){ return SVC_QUESTIONS[id]; }).forEach(function(id){
+    SVC_QUESTIONS[id].fields.forEach(function(f){
+      var key=serviceAnswerKey(f.id);
+      if(seen.has(key)) return;
+      seen.add(key);
+      var wiring=f.id === 'sq-wiring' ? selectedHitchWiring() : [];
+      var value=wiring.length ? wiring.join(' + ') : (serviceAnswers[key] || '').trim();
+      if(value) lines.push((key === 'sq-bed-length' ? 'Bed Length' : f.name)+': '+value);
+    });
+  });
+  return lines;
 }
 function isDmvZip(zip){
   if(!/^\d{5}$/.test(zip)) return null; var n=parseInt(zip,10);
@@ -1065,7 +1107,7 @@ function isDmvZip(zip){
   function upd(){ var v=zip.value.trim(); note.classList.toggle('is-on', v.length===5 && isDmvZip(v)===false); }
   zip.addEventListener('input', upd); zip.addEventListener('blur', upd);
 })();
-document.addEventListener('click', function(e){ if(e.target.closest&&e.target.closest('.tile[data-svc]')) setTimeout(renderSvcDetails,0); });
+document.addEventListener('click', function(e){ if(e.target.closest&&e.target.closest('.tile[data-svc], .opt[data-svc]')) setTimeout(renderSvcDetails,0); });
 
 
 window.CU_QUOTE = { goStep: goStep, syncMake: syncMake, step: ()=>screen };

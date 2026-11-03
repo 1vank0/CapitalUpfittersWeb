@@ -40,11 +40,26 @@
     else window.CU_QUOTE.goStep(0, true);
   }
 
+  // Carry product intent in the existing notes contract, not a new API field.
+  // Values remain plain text, are bounded, and never replace restored customer input.
+  const notes = document.getElementById('f-notes');
+  const contextFields = [
+    ['product', 'Product requested', 80],
+    ['purchase_status', 'Parts status', 100],
+    ['intended_use', 'Intended use', 140],
+    ['part_details', 'Part / fitment details', 180]
+  ];
+  const context = contextFields.map(([key, label, max]) => {
+    const value = (params.get(key) || '').replace(/[\u0000-\u001f\u007f]/g, ' ').trim().slice(0, max);
+    return value ? label + ': ' + value : '';
+  }).filter(Boolean).join('\n');
+  if (notes && context && !notes.value.trim()) notes.value = context;
+
   // Pre-select a service tile if ?service=<slug> matches a Patriot service id
   if (pSvc) {
     const raw = pSvc.toLowerCase().replace(/[^a-z0-9]/g, '');
     // Site pages use descriptive slugs; map them to the quote tile ids.
-    const ALIASES = { runningboards: 'boards', powersteps: 'boards', hitches: 'hitch', stealthhitches: 'hitch', tonneaucovers: 'tonneau' };
+    const ALIASES = { runningboards: 'boards', powersteps: 'boards', amppowerstep: 'boards', ampresearch: 'boards', hitches: 'hitch', stealthhitch: 'hitch', stealthhitches: 'hitch', stealthhitchrack: 'hitch', stealthhitchcombo: 'hitch', ecohitch: 'hitch', tonneaucovers: 'tonneau', bakflip: 'tonneau', retrax: 'tonneau' };
     const slug = ALIASES[raw] || raw;
     // Wait for the grid to render, then click the tile whose data-id matches
     const clickTile = () => {

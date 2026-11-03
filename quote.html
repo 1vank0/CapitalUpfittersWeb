@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="./brand-tokens.css">
 <link rel="stylesheet" href="./ux-10k.css">
-<link rel="stylesheet" href="./quote.css">
+
 
 <script type="application/ld+json">
 {
@@ -72,7 +72,7 @@
 
 <script src="/analytics.js" defer></script>
 <!-- cu:ui -->
-<link rel="stylesheet" href="./ui-system.css?v=f6bbc2831a">
+<link rel="stylesheet" href="./ui-system.css?v=32e3a50545">
 <script src="./site-nav.js?v=545170a9ed" defer></script>
 <script src="./media-client.js?v=f6f4bc752d" defer></script>
 <!-- /cu:ui -->
@@ -667,10 +667,16 @@
 
 <!-- ============ PHASE 6B QUOTE SCRIPT (Patriot-fidelity graft) ============ -->
 <link rel="stylesheet" href="./quote-builder.css">
+<link rel="stylesheet" href="./quote.css">
 
 <!-- ============ PHASE 6B: PATRIOT-FIDELITY QUOTE ============ -->
-<main id="main">
-<section class="quote-intro" aria-labelledby="quote-heading"><div class="container"><h1 id="quote-heading">Build your quote.</h1><p>Tell us what you need. We’ll confirm fitment and send your installed price. No payment to request a quote.</p></div></section>
+<main id="main" class="quote-studio">
+<section class="quote-intro" aria-labelledby="quote-heading"><div class="quote-intro-inner">
+<a href="./services/" class="quote-return"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6M8 12h12"/></svg>Explore services</a>
+<h1 id="quote-heading">Build your quote.</h1><p>Tell us what you need. No payment to request a quote.</p>
+<aside class="quote-assurance" aria-label="About your quote"><div><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#clipboard"></use></svg><h2>What happens next</h2></div><ul><li><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#check"></use></svg>We check your fitment</li><li><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#check"></use></svg>You get an installed price</li><li><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#check"></use></svg>You choose when to book</li></ul><div class="quote-help-contact"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#phone"></use></svg><p>Prefer to talk?<br><a href="tel:+13013041419">301-304-1419</a></p></div></aside></div></section>
+<div class="quote-workspace">
+
 
 <div class="cu-p6-switcher-outer">
   <div class="cu-p6-switcher" role="tablist" aria-label="Quote type">
@@ -720,7 +726,7 @@
     </div>
   </section>
 
-<aside class="quote-help" aria-label="About your quote"><div><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#clipboard"></use></svg><h3>A clear quote.<br>No guesswork.</h3></div><ul><li><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#check"></use></svg>We check your fitment</li><li><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#check"></use></svg>You get an installed price</li><li><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#check"></use></svg>You choose when to book</li></ul><div class="quote-help-contact"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#phone"></use></svg><p>Prefer to talk?<br><a href="tel:+13013041419">301-304-1419</a></p></div></aside>
+
   <!-- ============ STEP 2 ============ -->
   <section class="step1" id="step1">
     <div class="eyebrow">
@@ -787,11 +793,11 @@
           </div>
         </div>
         <h3>Where should we send it?</h3>
-        <p class="fs">We’ll confirm fitment and send a written installed quote. No obligation to book.</p>
+        <p class="fs">Your contact details are used to follow up on this build.</p>
         <div class="fgrid">
           <div class="field"><label for="f-fname">First name *</label><input id="f-fname" name="First Name" placeholder="Jane" autocomplete="given-name" required><span class="field-err">Required.</span></div>
           <div class="field"><label for="f-lname">Last name *</label><input id="f-lname" name="Last Name" placeholder="Doe" autocomplete="family-name" required><span class="field-err">Required.</span></div>
-          <div class="field"><label for="f-phone">Phone *</label><input id="f-phone" name="Phone" placeholder="(555) 123-4567" autocomplete="tel" inputmode="tel" required><span class="field-err">Required.</span></div>
+          <div class="field"><label for="f-phone">Phone *</label><input id="f-phone" type="tel" name="Phone" placeholder="(555) 123-4567" autocomplete="tel" inputmode="tel" required><span class="field-err">Required.</span></div>
           <div class="field"><label for="f-email">Email *</label><input id="f-email" name="Email" type="email" placeholder="you@company.com" autocomplete="email" required><span class="field-err">Valid email required.</span></div>
           <div class="field"><label for="f-zip">ZIP code</label><input id="f-zip" name="ZIP" placeholder="20852" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" autocomplete="postal-code">
             <div class="zip-note" id="zip-note">You&rsquo;re a bit outside our usual DMV service area. We can still quote &mdash; travel or scheduling may differ.</div>
@@ -812,7 +818,7 @@
               <option>Just pricing for now</option>
             </select>
           </div>
-          <div class="field full"><label for="f-notes">Anything else? (optional)</label><input id="f-notes" name="Message" placeholder="Fleet of 6 trucks, need them done in pairs&hellip;"></div>
+          <div class="field full"><label for="f-notes">Anything else? (optional)</label><textarea id="f-notes" name="Message" rows="3" placeholder="Access needs, installation constraints or questions&hellip;"></textarea></div>
         </div>
         <ul class="cu-assure" aria-label="What happens after you send this">
           <li>We reply within one business day, usually the same day.</li>
@@ -872,8 +878,7 @@
       <div class="cu-p6-standalone-form">
         <form class="form" id="quote-fleet" data-cms-form="fleet" data-success-body="fleet-form-body" data-success-panel="fleet-form-success" method="POST" novalidate>
           <div data-role="form-body" id="fleet-form-body">
-            <h3>Fleet quote request</h3>
-            <p class="fs">Priority scheduling for 3+ vehicle programs. We&rsquo;ll respond same business day.</p>
+            <h3>Your business &amp; vehicles</h3>
             <div class="fgrid">
               <div class="field"><label for="fl-biz">Business name *</label><input id="fl-biz" name="Business Name" required><span class="field-err">Required.</span></div>
               <div class="field"><label for="fl-contact">Contact name *</label><input id="fl-contact" name="Contact Name" autocomplete="name" required><span class="field-err">Required.</span></div>
@@ -914,7 +919,7 @@
                   <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:400;color:var(--ink-2)"><input type="checkbox" name="services" value="Suspension & Lift"> Suspension &amp; Lift</label>
                 </div>
               </div>
-              <div class="field full"><label for="fl-notes">Tell us about the fleet</label><textarea id="fl-notes" name="Message" rows="3" placeholder="Fleet composition, in-service constraints, brand standards&hellip;"></textarea></div>
+              <div class="field full"><label for="fl-notes">Scheduling constraints or other requirements (optional)</label><textarea id="fl-notes" name="Message" rows="3" placeholder="In-service constraints, brand standards or questions&hellip;"></textarea></div>
               <div class="field full" style="margin-top:8px">
                 <button type="submit" class="btn btn-primary" id="fl-submit" style="width:100%;min-height:48px;justify-content:center;font-size:16px;font-weight:600;border:0;border-radius:999px;cursor:pointer">Request fleet quote</button>
                 <p class="fs" style="margin-top:10px;text-align:center">We reply the same business day. No obligation.</p>
@@ -950,8 +955,7 @@
       <div class="cu-p6-standalone-form">
         <form class="form" id="quote-dealer" data-cms-form="dealer" data-success-body="dealer-form-body" data-success-panel="dealer-form-success" method="POST" novalidate>
           <div data-role="form-body" id="dealer-form-body">
-            <h3>Dealer / government inquiry</h3>
-            <p class="fs">Same-day response. Volume programs available for franchised dealers, government fleets, and municipal accounts.</p>
+            <h3>Your organization</h3>
             <div class="fgrid">
               <div class="field"><label for="dl-org">Organization *</label><input id="dl-org" name="Organization Name" required><span class="field-err">Required.</span></div>
               <div class="field"><label for="dl-orgtype">Organization type *</label>
@@ -1022,6 +1026,8 @@
 
 </div>
 
+
+</div><!-- /quote-workspace -->
 
 <script src="./quote.js"></script>
 

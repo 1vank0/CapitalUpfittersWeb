@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preload" as="image" href="./media/next/bedliner-v1.webp" fetchpriority="high">
+<link rel="preload" as="image" href="/api/media?slot=home-hero&amp;width=1200" fetchpriority="high">
 <!-- Fonts (async; display=swap on Google CSS URL) -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap"></noscript>
@@ -556,7 +556,7 @@
 
 <script src="/analytics.js" defer></script>
 <!-- cu:ui -->
-<link rel="stylesheet" href="./ui-system.css?v=f6bbc2831a">
+<link rel="stylesheet" href="./ui-system.css?v=32e3a50545">
 <script src="./site-nav.js?v=545170a9ed" defer></script>
 <script src="./media-client.js?v=f6f4bc752d" defer></script>
 <!-- /cu:ui -->
@@ -1159,7 +1159,9 @@
      HERO
 ═══════════════════════════════════════════════════════ -->
 <main id="main">
-<section class="home-hero" aria-labelledby="hero-h1"><div class="container home-hero-grid"><div class="home-hero-copy"><h1 id="hero-h1">Built for<br>real work.</h1><p>Truck, van and fleet upfitting in Rockville, MD.</p><div class="hero-ctas"><a href="./quote.html" class="btn btn-primary btn-lg">Get my quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a><a href="./services/" class="btn btn-secondary btn-lg">Explore services</a></div></div><figure class="service-media service-media--hero" data-image-need="home-hero" data-media-slot="home-hero"><img src="/api/media?slot=home-hero&amp;width=1200" srcset="/api/media?slot=home-hero&amp;width=768 768w, /api/media?slot=home-hero&amp;width=1200 1200w" sizes="(min-width: 1100px) 560px, (min-width: 768px) 44vw, 100vw" width="1200" height="800" loading="eager" fetchpriority="high" decoding="async" alt="Pickup truck and commercial cargo van"><figcaption>Illustrative image</figcaption></figure></div></section>
+<section class="home-hero" aria-labelledby="hero-h1"><div class="container home-hero-grid"><div class="home-hero-copy"><h1 id="hero-h1">Built for<br>real work.</h1><p>Truck, van and fleet upfitting in Rockville, MD.</p><div class="hero-ctas"><a href="./quote.html" class="btn btn-primary btn-lg">Get my quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a><a href="./services/" class="btn btn-secondary btn-lg">Explore services</a></div></div><figure class="service-media service-media--hero" data-image-need="home-hero" data-media-slot="home-hero"><img src="/api/media?slot=home-hero&amp;width=1200" srcset="/api/media?slot=home-hero&amp;width=768 768w, /api/media?slot=home-hero&amp;width=1200 1200w" sizes="(min-width: 768px) 54vw, 100vw" width="1200" height="800" loading="eager" fetchpriority="high" decoding="async" alt="Pickup truck and commercial cargo van"><figcaption>Illustrative image</figcaption></figure></div></section>
+<div class="home-local-strip" aria-label="Visit Capital Upfitters"><div class="container"><a href="./contact.html"><strong>Rockville, Maryland</strong><span>12019 Nebel St · Directions</span></a><p><strong>Monday–Friday</strong><span>9:30am–4:30pm</span></p><a href="tel:+13013041419"><strong>Talk to the shop</strong><span>301-304-1419</span></a></div></div>
+
 
 <!-- ═══════════════════════════════════════════════════════
      AUDIENCE SPLIT (scoped styles below — do not remove
@@ -1168,20 +1170,66 @@
 <!-- ═══════════════════════════════════════════════════════
      VEHICLE SELECTOR
 ═══════════════════════════════════════════════════════ -->
+
+
+<section class="section audience-split" aria-labelledby="audience-split-heading">
+  <div class="container">
+    <div class="reveal">
+      <h2 id="audience-split-heading">Built around your needs</h2>
+      <p class="section-intro">One vehicle or a whole fleet. Start here.</p>
+    </div>
+
+    <div class="audience-grid audience-grid--four">
+      <!-- Door 1: truck and SUV owners -->
+      <article class="audience-card reveal reveal-delay-1">
+
+        <h3 class="audience-card-eyebrow">Your truck or SUV</h3>
+        <div class="audience-card-title">Bedliners, covers, hitches and protection</div>
+        <p class="audience-card-desc">Installed in Rockville, usually the same week. Tell us the vehicle and we come back with the installed price.</p>
+        <a href="./quote.html" class="audience-card-cta">Get my quote</a>
+      </article>
+
+      <!-- Door 2: dealerships, fleets and vans -->
+      <article class="audience-card reveal reveal-delay-2">
+
+        <h3 class="audience-card-eyebrow">Dealers and fleets</h3>
+        <div class="audience-card-title">Pre-sale add-ons and van upfits</div>
+        <p class="audience-card-desc">Repeatable specs, partitions, shelving, racks and branding, scheduled around your delivery dates. Account pricing is not published.</p>
+        <a href="./fleet.html" class="audience-card-cta">Explore fleet solutions</a>
+      </article>
+
+      <!-- Door 3: government, municipal and field coating projects -->
+      <article class="audience-card reveal reveal-delay-3">
+
+        <h3 class="audience-card-eyebrow">Government and field</h3>
+        <div class="audience-card-title">Protective coatings and agency fleets</div>
+        <p class="audience-card-desc">Corrosion, anti-skid and protective coatings applied in our shop or at your site, with the documentation procurement asks for.</p>
+        <a href="./dealer-government.html#government" class="audience-card-cta">Explore government programs</a>
+      </article>
+      <article class="audience-card">
+        <h3 class="audience-card-eyebrow">Industrial coatings</h3>
+        <div class="audience-card-title">Protection beyond the truck</div>
+        <p class="audience-card-desc">Equipment, facilities and infrastructure. Coating projects in our shop or at your site.</p>
+        <a href="./services/industrial-coatings.html" class="audience-card-cta">Explore industrial</a>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="vehicle-selector-section" aria-labelledby="vs-heading">
   <div class="container">
     <div class="vehicle-selector-inner">
       <div class="vehicle-selector-label" id="vs-heading">Start with your vehicle</div>
       <div class="vehicle-selector-fields">
-        <select class="vs-select" id="vs-year" aria-label="Select year">
+        <label class="vehicle-field" for="vs-year"><span>Year</span><select class="vs-select" id="vs-year" aria-label="Select year">
           <option value="">Year</option>
-        </select>
-        <select class="vs-select" id="vs-make" aria-label="Select make" disabled>
+        </select></label>
+        <label class="vehicle-field" for="vs-make"><span>Make</span><select class="vs-select" id="vs-make" aria-label="Select make" disabled>
           <option value="">Make</option>
-        </select>
-        <select class="vs-select" id="vs-model" aria-label="Select model" disabled>
+        </select></label>
+        <label class="vehicle-field" for="vs-model"><span>Model</span><select class="vs-select" id="vs-model" aria-label="Select model" disabled>
           <option value="">Model</option>
-        </select>
+        </select></label>
       </div>
       <button class="vs-btn" id="vs-btn" disabled aria-label="See what fits this vehicle">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -1195,44 +1243,6 @@
     <div class="vs-results" id="vs-results" aria-live="polite">
       <div class="vs-results-label" id="vs-results-label">What fits your vehicle</div>
       <div class="vs-service-chips" id="vs-chips"></div>
-    </div>
-  </div>
-</section>
-
-<section class="section audience-split" aria-labelledby="audience-split-heading">
-  <div class="container">
-    <div class="reveal">
-      <h2 id="audience-split-heading">Built around your needs</h2>
-      <p class="section-intro">One vehicle or a whole fleet. Start here.</p>
-    </div>
-
-    <div class="audience-grid audience-grid--three">
-      <!-- Door 1: truck and SUV owners -->
-      <article class="audience-card reveal reveal-delay-1">
-        <div class="audience-card-icon" aria-hidden="true"><svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#truck"></use></svg></div>
-        <div class="audience-card-eyebrow">Your truck or SUV</div>
-        <div class="audience-card-title">Bedliners, covers, hitches and protection</div>
-        <p class="audience-card-desc">Installed in Rockville, usually the same week. Tell us the vehicle and we come back with the installed price.</p>
-        <a href="./quote.html" class="audience-card-cta">Get my quote</a>
-      </article>
-
-      <!-- Door 2: dealerships, fleets and vans -->
-      <article class="audience-card reveal reveal-delay-2">
-        <div class="audience-card-icon" aria-hidden="true"><svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#van"></use></svg></div>
-        <div class="audience-card-eyebrow">Dealers and fleets</div>
-        <div class="audience-card-title">Pre-sale add-ons and van upfits</div>
-        <p class="audience-card-desc">Repeatable specs, partitions, shelving, racks and branding, scheduled around your delivery dates. Account pricing is not published.</p>
-        <a href="./fleet.html" class="audience-card-cta">Explore fleet solutions</a>
-      </article>
-
-      <!-- Door 3: government, municipal and field coating projects -->
-      <article class="audience-card reveal reveal-delay-3">
-        <div class="audience-card-icon" aria-hidden="true"><svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#building"></use></svg></div>
-        <div class="audience-card-eyebrow">Government and field</div>
-        <div class="audience-card-title">Protective coatings and agency fleets</div>
-        <p class="audience-card-desc">Corrosion, anti-skid and protective coatings applied in our shop or at your site, with the documentation procurement asks for.</p>
-        <a href="./dealer-government.html#government" class="audience-card-cta">Explore government programs</a>
-      </article>
     </div>
   </div>
 </section>
@@ -1296,7 +1306,7 @@
       <p style="max-width: 520px; margin-top: var(--space-4);">Protection, access and storage. Supplied and installed by one shop.</p>
     </div>
 
-    <div class="grid-3" style="margin-top: var(--space-12);">
+    <div class="home-services-grid" style="margin-top: var(--space-12);">
 
       <!-- Bedliners -->
       <article class="service-offering"><a href="./services/bedliner.html" class="service-card reveal reveal-delay-1" aria-label="Spray-On Bedliners">

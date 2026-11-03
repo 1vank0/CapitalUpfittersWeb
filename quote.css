@@ -470,3 +470,100 @@
   background: currentColor;
   opacity: 0.35;
 }
+
+/* Quote studio: a focused working surface, with a persistent guidance rail.
+   Loaded after legacy and shared styles; all controller IDs remain unchanged. */
+.quote-page { --quote-ink: #171b20; --quote-paper: #fff; --quote-ground: #f3f4f5; --quote-line: #d8dce0; --quote-muted: #505963; }
+.quote-page .quote-studio { display: grid; grid-template-columns: minmax(260px, 30%) minmax(0, 1fr); background: var(--quote-ground); min-height: calc(100vh - var(--nav-height)); }
+.quote-page .quote-intro { background: var(--quote-ink); color: var(--quote-paper); padding: 48px clamp(24px, 4vw, 64px) 96px; }
+.quote-page .quote-intro-inner { position: sticky; top: calc(var(--nav-height) + 40px); }
+.quote-page .quote-return { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-bottom: 40px; font-size: 14px; color: #c6cbd1; }
+.quote-page .quote-return:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
+.quote-page .quote-return .ui-icon { width: 20px; height: 20px; }
+.quote-page .quote-intro h1 { color: #fff; max-width: 8ch; font-size: clamp(40px, 4.4vw, 64px); line-height: 1; letter-spacing: -.055em; }
+.quote-page .quote-intro p { color: #c6cbd1; font-size: 16px; line-height: 1.6; margin-top: 24px; }
+.quote-page .quote-assurance { margin-top: 48px; padding-top: 32px; border-top: 1px solid #4b525b; }
+.quote-page .quote-assurance > div:first-child { display: flex; gap: 12px; align-items: center; }
+.quote-page .quote-assurance h2 { color: #fff; font-size: 18px; letter-spacing: -.02em; }
+.quote-page .quote-assurance ul { display: grid; gap: 20px; margin: 24px 0 40px; padding: 0; list-style: none; }
+.quote-page .quote-assurance li { color: #c6cbd1; display: flex; align-items: center; gap: 12px; font-size: 14px; line-height: 1.5; }
+.quote-page .quote-assurance li .ui-icon { width: 18px; height: 18px; }
+.quote-page .quote-assurance .quote-help-contact { border-top: 1px solid #4b525b; padding-top: 24px; }
+.quote-page .quote-assurance .quote-help-contact p { margin: 0; font-size: 14px; }
+.quote-page .quote-assurance a { color: #fff; font-size: 18px; text-decoration: none; }
+.quote-page .quote-intro :is(a,button):focus-visible { outline-color: #fff !important; box-shadow: 0 0 0 2px #171b20; }
+.quote-page .quote-workspace { min-width: 0; padding: 32px clamp(24px, 4vw, 64px) 96px; }
+.quote-page .cu-p6-switcher-outer { width: 100%; background: transparent; padding: 0; margin: 0; }
+.quote-page .cu-p6-switcher { gap: 0; border-bottom: 1px solid var(--quote-line); }
+.quote-page .cu-p6-pill { display: flex; align-items: center; justify-content: center; min-height: 64px; border: 0; border-bottom: 3px solid transparent; border-radius: 0; color: var(--quote-muted); background: transparent; padding: 16px 8px; font-size: 14px; }
+.quote-page .cu-p6-pill.is-active { border-color: var(--quote-ink); background: transparent; color: var(--quote-ink); font-weight: 700; }
+.quote-page .cu-p6-pill:hover { background: #e9ecef; }
+.quote-page .cu-p6 { background: transparent; --ink: var(--quote-ink); --bg: var(--quote-ground); --r-lg: 6px; --r-md: 6px; --r-sm: 6px; }
+.quote-page .cu-p6 .wrap { width: 100%; max-width: none; padding: 32px 0; }
+.quote-page .cu-p6-mode--retail > .wrap { display: block; }
+.quote-page .quote-progress { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 0 0 48px; padding: 0; }
+.quote-page .quote-progress li { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--quote-muted); border-top: 2px solid var(--quote-line); padding-top: 16px; }
+.quote-page .quote-progress li:not(:last-child)::after { display: none; }
+.quote-page .quote-progress li > span { border-radius: 4px; width: 32px; height: 32px; border: 1px solid var(--quote-line); background: #fff; font-size: 14px; }
+.quote-page .quote-progress li[aria-current="step"] { border-top-color: var(--quote-ink); color: var(--quote-ink); }
+.quote-page .quote-progress [aria-current="step"] > span { background: var(--quote-ink); color: #fff; border-color: var(--quote-ink); }
+.quote-page .cu-p6 .title { font-size: clamp(28px, 3vw, 40px); letter-spacing: -.045em; line-height: 1.12; margin-bottom: 16px; }
+.quote-page .cu-p6 .lede { color: var(--quote-muted); margin-bottom: 32px; font-size: 16px; }
+.quote-page .cu-p6 .vcard { padding: 32px; border: 1px solid var(--quote-line); border-radius: 6px; background: #fff; }
+.quote-page .cu-p6 .vgrid { grid-template-columns: 1fr 1fr; gap: 24px; }
+.quote-page .cu-p6 #fw-model { grid-column: 1 / -1; }
+.quote-page .cu-p6 .field :is(input,select,textarea) { border-radius: 6px !important; border-color: #b8bec5; min-height: 52px; background-color: #fff; font-size: 16px; }
+.quote-page .cu-p6 .field input[type="checkbox"] { min-height: 20px; width: 20px; height: 20px; padding: 0; flex: 0 0 20px; accent-color: var(--quote-ink); }
+.quote-page .cu-p6 .vskip { margin-top: 24px; font-size: 14px; }
+.quote-page .cu-p6 .form { padding: 32px; border: 1px solid var(--quote-line); border-radius: 6px; background: #fff; }
+.quote-page .cu-p6 .fgrid { gap: 24px; }
+.quote-page .cu-p6 .form h3 { font-size: 22px; margin-bottom: 16px; }
+.quote-page .cu-p6 .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.quote-page .cu-p6 .tile { padding: 20px 16px; border-radius: 6px; min-height: 116px; }
+.quote-page .cu-p6 .tile[aria-checked="true"] { background: #fff; border-color: var(--quote-ink); box-shadow: inset 0 0 0 1px var(--quote-ink); }
+.quote-page .cu-p6 .t-icon { border-radius: 4px; }
+.quote-page .cu-p6 .panel, .quote-page .cu-p6 .opt { border-radius: 6px; }
+.quote-page .cu-p6 .opt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.quote-page .cu-p6 .btn { border-radius: 6px !important; }
+.quote-page .cu-p6-bar { left: 30%; padding: 16px clamp(24px, 4vw, 64px); box-shadow: 0 -8px 24px rgb(23 27 32 / 4%); }
+.quote-page .cu-p6-bar-in { width: 100%; gap: 16px; }
+.quote-page .cu-p6-bar .chips { display: none; }
+.quote-page .cu-p6 .cu-p6-bar .counts { flex: 1; min-width: 0; }
+.quote-page .cu-p6 .cu-p6-bar .counts b { max-width: 26ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.quote-page .cu-p6 .cu-p6-bar .btn { flex: 0 0 auto; min-height: 52px; border-radius: 6px; }
+@media (min-width: 1600px) {
+  .quote-page .quote-studio { grid-template-columns: minmax(360px, 34%) minmax(0, 1fr); }
+  .quote-page .quote-workspace { padding-right: max(64px, calc((100vw - 1440px) / 2)); }
+  .quote-page .cu-p6-bar { left: 34%; padding-right: max(64px, calc((100vw - 1440px) / 2)); }
+}
+@media (max-width: 1000px) {
+  .quote-page .quote-studio { display: block; }
+  .quote-page .quote-intro { padding: 32px var(--ui-gutter); }
+  .quote-page .quote-intro-inner { position: static; max-width: 840px; margin: auto; }
+  .quote-page .quote-return, .quote-page .quote-assurance { display: none; }
+  .quote-page .quote-intro h1 { max-width: none; font-size: 40px; }
+  .quote-page .quote-intro p { margin-top: 12px; max-width: 48ch; }
+  .quote-page .quote-workspace { padding: 8px var(--ui-gutter) 80px; max-width: 900px; margin: auto; }
+  .quote-page .cu-p6-bar { left: 0; padding: 16px var(--ui-gutter); }
+  .quote-page .cu-p6-bar-in { max-width: 840px; }
+}
+@media (max-width: 600px) {
+  .quote-page .quote-intro { padding: 24px var(--ui-gutter); }
+  .quote-page .quote-intro h1 { font-size: 32px; }
+  .quote-page .quote-intro p { font-size: 14px; margin-top: 8px; }
+  .quote-page .cu-p6-switcher-outer { padding: 0; }
+  .quote-page .cu-p6-pill { min-height: 64px; font-size: 12px; padding: 12px 4px; }
+  .quote-page .cu-p6 .wrap { padding-top: 24px; }
+  .quote-page .quote-progress { gap: 8px; margin-bottom: 32px; }
+  .quote-page .quote-progress li { font-size: 12px; gap: 8px; padding-top: 12px; }
+  .quote-page .quote-progress li > span { width: 26px; height: 26px; font-size: 12px; }
+  .quote-page .cu-p6 .title { font-size: 28px; margin-bottom: 12px; }
+  .quote-page .cu-p6 .lede { margin-bottom: 24px; }
+  .quote-page .cu-p6 :is(.vcard,.form) { padding: 20px 16px; }
+  .quote-page .cu-p6 :is(.vgrid,.fgrid,.opt-grid) { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .quote-page .cu-p6 .service-grid { grid-template-columns: minmax(0, 1fr); }
+  .quote-page .cu-p6 .tile { min-height: 88px; }
+  .quote-page .cu-p6-bar-in { gap: 8px; flex-wrap: nowrap; }
+  .quote-page .cu-p6 .cu-p6-bar .btn { min-height: 48px; padding: 12px; font-size: 14px; }
+  .quote-page .cu-p6 .cu-p6-bar .counts b { max-width: 12ch; }
+}
