@@ -176,6 +176,10 @@
       border-radius: var(--radius-xl);
       overflow: hidden;
     }
+    .lightbox-photos { display: flex; gap: .5rem; align-items: center; }
+    .lightbox-photo { flex: 1; min-width: 0; margin: 0; text-align: center; }
+    .lightbox-photo img { display: block; width: 100%; max-height: 60vh; object-fit: contain; }
+    .lightbox-photo figcaption { color: #fff; padding: .5rem; }
     .lightbox-placeholder {
       width: 100%;
       height: 500px;
@@ -1536,13 +1540,36 @@ function openLightbox(idx) {
   currentIdx = idx;
   const item = visible[idx];
   const ph = item.querySelector('.gallery-placeholder');
-  const label = item.dataset.label || 'Capital Upfitters';
-  const style = ph ? ph.getAttribute('style') || '' : '';
-  const bgClass = ph ? Array.from(ph.classList).filter(c => c.startsWith('bg-')).join(' ') : '';
-  const heightClass = ph ? (ph.classList.contains('tall') ? 'tall' : ph.classList.contains('short') ? 'short' : 'med') : 'med';
-  const heights = { tall: '460px', med: '380px', short: '340px' };
-  const h = heights[heightClass] || '380px';
-  lbDisplay.innerHTML = `<div class="lightbox-placeholder ${bgClass}" style="height:${h}; ${style}"><div style="display:flex;align-items:center;justify-content:center;height:100%;"><span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:600;letter-spacing:0;text-transform:none;color:rgba(255,255,255,0.65);">${label}</span></div></div>`;
+  const overlayLabel = item.querySelector('.gallery-item-label');
+  const label = item.dataset.label || (overlayLabel && overlayLabel.textContent) || 'Capital Upfitters';
+  const photos = item.querySelectorAll('img');
+  lbDisplay.replaceChildren();
+  if (photos.length) {
+    const group = document.createElement('div');
+    group.className = 'lightbox-photos';
+    photos.forEach(photo => {
+      const figure = document.createElement('figure');
+      figure.className = 'lightbox-photo';
+      const image = photo.cloneNode(false);
+      image.loading = 'eager';
+      figure.appendChild(image);
+      const tag = photo.parentElement.querySelector('.gfeed-tag');
+      if (tag) {
+        const caption = document.createElement('figcaption');
+        caption.textContent = tag.textContent;
+        figure.appendChild(caption);
+      }
+      group.appendChild(figure);
+    });
+    lbDisplay.appendChild(group);
+  } else {
+    const style = ph ? ph.getAttribute('style') || '' : '';
+    const bgClass = ph ? Array.from(ph.classList).filter(c => c.startsWith('bg-')).join(' ') : '';
+    const heightClass = ph ? (ph.classList.contains('tall') ? 'tall' : ph.classList.contains('short') ? 'short' : 'med') : 'med';
+    const heights = { tall: '460px', med: '380px', short: '340px' };
+    const h = heights[heightClass] || '380px';
+    lbDisplay.innerHTML = `<div class="lightbox-placeholder ${bgClass}" style="height:${h}; ${style}"><div style="display:flex;align-items:center;justify-content:center;height:100%;"><span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:600;letter-spacing:0;text-transform:none;color:rgba(255,255,255,0.65);">${label}</span></div></div>`;
+  }
   lbCaption.textContent = label;
   lbCounter.textContent = (idx + 1) + ' / ' + visible.length;
   lightbox.classList.add('open');
@@ -1554,16 +1581,20 @@ function closeLightbox() {
   document.body.style.overflow = '';
 }
 
-items.forEach((item, _) => {
-  item.addEventListener('click', () => {
-    const visible = getVisibleItems();
-    const idx = visible.indexOf(item);
-    if (idx > -1) openLightbox(idx);
-  });
-  item.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); item.click(); }
-  });
-});
+// Delegate from the grid so asynchronously appended feed cards work too.
+const galleryGrid = document.querySelector('.gallery-grid');
+function activateGalleryItem(event) {
+  const item = event.target.closest('.gallery-item');
+  if (!item || !galleryGrid.contains(item)) return;
+  if (event.type === 'keydown') {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+  }
+  const idx = getVisibleItems().indexOf(item);
+  if (idx > -1) openLightbox(idx);
+}
+galleryGrid.addEventListener('click', activateGalleryItem);
+galleryGrid.addEventListener('keydown', activateGalleryItem);
 
 lbClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
