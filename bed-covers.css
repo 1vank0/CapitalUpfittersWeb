@@ -1,0 +1,59 @@
+/* Bed covers: the same graphite, copper and editorial system as the hitch pages. */
+.bed-cover-page{--bc-mist:#f5f6f7}
+.bed-cover-page .bc-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding-bottom:42px}
+.bed-cover-page h1{font-size:clamp(44px,4.7vw,70px)}
+.bed-cover-page .bc-hero-note{font-size:13px;color:#cbd0d6;margin-top:18px;line-height:1.6}
+.bed-cover-page .bc-hero-media{margin:0;border:0;border-radius:3px;overflow:hidden;background:#252b32;align-self:stretch;display:flex;flex-direction:column;min-width:0}
+.bed-cover-page .bc-hero-media img{width:100%;height:100%;min-height:340px;object-fit:cover;flex:1;display:block;aspect-ratio:4/3;filter:none;transform:none}
+.bed-cover-page .bc-hero-media figcaption{position:static;padding:10px 14px;font-size:12px;background:#252b32;color:#d9dde1;line-height:1.4}
+.bc-index{border-bottom:1px solid var(--sp-line);background:#fff}
+.bc-index .sp-wrap{display:flex;gap:36px;flex-wrap:wrap;padding-block:12px}
+.bc-index a{display:inline-flex;align-items:center;min-height:44px;color:var(--sp-ink);font-size:14px;font-weight:500;text-decoration:none}
+.bc-index a:hover{text-decoration:underline}
+.bc-guide{padding:72px 0;background:var(--bc-mist)}
+.bc-section-intro{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;margin-bottom:36px}
+.bc-section-intro>p{max-width:510px;color:var(--sp-muted);font-size:17px}
+.bc-style-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px}
+.bc-style-grid article{border-top:1px solid #b9bfc5;padding-top:20px}
+.bc-style-grid article>span{font-size:13px;color:var(--sp-accent);font-weight:600}
+.bc-style-grid h3{margin-top:26px}
+.bc-style-grid p{color:var(--sp-muted);font-size:16px;margin-top:12px}
+.bed-cover-page .bc-builder{padding:72px 0}
+.bc-family{margin-top:28px}
+.bc-family>h3{padding-bottom:14px;border-bottom:2px solid var(--sp-ink);font-size:18px}
+.bc-cover{display:grid;grid-template-columns:22px minmax(180px,.8fr) minmax(0,1.6fr) 85px;gap:22px;align-items:start;padding:28px 20px;border:1px solid var(--sp-line);border-top:0;cursor:pointer;transition:background .15s}
+.bc-cover:hover{background:var(--bc-mist)}
+.bc-cover:has(input:checked){background:#fff6f0;box-shadow:inset 4px 0 var(--sp-accent)}
+.bc-cover input,.bc-help input{width:21px;height:21px;accent-color:var(--sp-accent);margin:4px 0 0;flex-shrink:0;cursor:pointer}
+.bc-cover-name{display:flex;flex-direction:column;gap:9px}
+.bc-cover-name small{font-size:13px;color:var(--sp-accent);font-weight:600}
+.bc-cover-name strong{font-size:24px;line-height:1.15;font-weight:600;letter-spacing:-.035em}
+.bc-cover-name>span{font-size:14px;color:var(--sp-muted);line-height:1.5}
+.bc-cover-detail{display:grid;gap:14px;line-height:1.55;font-size:15px;color:var(--sp-muted)}
+.bc-cover-detail b{display:block;font-size:12px;color:var(--sp-ink);font-weight:600;margin-bottom:3px}
+.bc-cover-detail>span:first-child{color:var(--sp-ink);font-size:16px}
+.bc-select-label{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;margin-top:4px}
+.bc-select-label svg{width:18px;height:18px}
+.bc-help{display:flex;gap:16px;align-items:flex-start;margin-top:24px;cursor:pointer;padding:22px 20px;background:var(--bc-mist);border:1px solid var(--sp-line)}
+.bc-help:has(input:checked){box-shadow:inset 4px 0 var(--sp-accent);background:#fff6f0}
+.bc-help>span{display:flex;flex-direction:column;gap:6px;line-height:1.5}
+.bc-help strong{font-size:17px;font-weight:500}.bc-help span span{font-size:14px;color:var(--sp-muted)}
+.bc-quote-rail{display:flex;justify-content:space-between;align-items:center;gap:28px;padding:28px 0;border-bottom:1px solid var(--sp-line)}
+.bc-quote-rail>div>span{font-size:12px;color:var(--sp-muted)}
+.bc-quote-rail p{font-size:19px;font-weight:500;margin-top:5px;overflow-wrap:anywhere}
+.bc-quote-rail small{display:block;color:var(--sp-muted);font-size:13px;line-height:1.6;margin-top:8px}
+.bc-quote-rail .sp-button{flex-shrink:0}
+.bed-cover-page .bc-fitment-note{font-size:13px;color:var(--sp-muted);margin-top:20px;max-width:900px}
+.bed-cover-page .bc-muted{margin-top:22px;color:var(--sp-muted);font-size:16px}
+.bc-local-links{display:flex;flex-wrap:wrap;gap:4px 26px;margin-top:20px}
+.bc-local-links a{min-height:44px;margin:0;align-items:center}
+.bed-cover-page .sp-faq summary{min-height:44px}
+.bc-related{padding:56px 0 20px}
+.bed-cover-page .bc-related h2{font-size:30px}
+.bc-related-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 36px;margin-top:24px}
+.bc-related-links a{display:flex;gap:20px;justify-content:space-between;align-items:center;color:var(--sp-ink);border-top:1px solid var(--sp-line);min-height:72px;font-size:15px;text-decoration:none;padding-block:16px}
+.bc-related-links a:hover{text-decoration:underline}
+.bed-cover-page [id]{scroll-margin-top:110px}
+@media(max-width:1000px){.bed-cover-page .bc-hero-grid{gap:32px}.bc-cover{grid-template-columns:22px minmax(150px,.8fr) minmax(0,1.3fr);gap:18px}.bc-select-label{display:none}.bc-section-intro{gap:32px}.bc-style-grid{gap:24px}.bc-quote-rail .sp-button{font-size:14px;padding-inline:18px}}
+@media(max-width:700px){.bed-cover-page .bc-hero-grid{grid-template-columns:1fr;gap:28px;padding-bottom:28px}.bed-cover-page h1{font-size:46px}.bed-cover-page .bc-hero-media img{min-height:0;max-height:320px;aspect-ratio:3/2}.bed-cover-page .bc-hero-note{font-size:12px}.bc-index .sp-wrap{gap:0 22px;padding-block:8px}.bc-index a{font-size:13px}.bc-guide,.bed-cover-page .bc-builder{padding:40px 0}.bc-section-intro{grid-template-columns:1fr;gap:18px;margin-bottom:28px}.bc-section-intro>p{font-size:16px}.bc-style-grid{grid-template-columns:1fr;gap:26px}.bc-style-grid h3{margin-top:12px}.bc-style-grid p{font-size:15px}.bc-cover{grid-template-columns:22px minmax(0,1fr);gap:12px;padding:22px 16px}.bc-cover-detail{grid-column:2;gap:12px;font-size:14px;margin-top:4px}.bc-cover-detail>span:first-child{font-size:15px}.bc-cover-name strong{font-size:23px}.bc-help{padding:20px 16px;gap:12px}.bc-quote-rail{display:block;padding-block:24px}.bc-quote-rail .sp-button{margin-top:20px;font-size:15px}.bc-related{padding:36px 0 16px}.bc-related-links{grid-template-columns:1fr}.bed-cover-page .sp-source{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.bed-cover-page *{scroll-behavior:auto;transition:none}}

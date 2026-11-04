@@ -1,0 +1,80 @@
+/* Vehicle branding: fleet-first editorial layout, scoped to the existing service. */
+.vehicle-branding-page { --vb-ink:#1d1d1f; --vb-muted:#626269; --vb-line:#dedee2; }
+.vehicle-branding-page .vb-hero { background:var(--vb-ink); color:#fff; padding:32px 0 0; }
+.vb-breadcrumb { display:flex; flex-wrap:wrap; gap:12px; color:#d2d2d7; font-size:14px; margin-bottom:48px; }
+.vb-breadcrumb a { color:inherit; }
+.vb-hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; padding-bottom:56px; }
+.vehicle-branding-page .vb-hero h1 { color:#fff; font-size:clamp(44px,5.5vw,76px); line-height:1.02; letter-spacing:-.055em; margin:18px 0 24px; }
+.vb-eyebrow { font-size:12px; font-weight:600; letter-spacing:.11em; text-transform:uppercase; margin:0 0 20px; }
+.vb-lede { color:#d2d2d7; font-size:18px; line-height:1.65; max-width:48ch; }
+.vb-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; }
+.vehicle-branding-page .vb-hero .btn-primary { background:#fff; color:var(--vb-ink); border-color:#fff; }
+.vehicle-branding-page .vb-hero .btn-outline { color:#fff; border-color:#8a8a90; background:transparent; }
+.vehicle-branding-page .vb-hero .btn:hover { background:#e6e6e9; color:var(--vb-ink); }
+.vb-hero-note { font-size:13px; color:#b8b8be; margin-top:24px; }
+.vehicle-branding-page .vb-hero-media { width:100%; aspect-ratio:auto; margin:0; border:1px solid #55555b; background:#2b2b2f; border-radius:3px; overflow:hidden; }
+.vehicle-branding-page .vb-hero-media img { width:100%; aspect-ratio:4/3; height:auto; object-fit:cover; }
+.vehicle-branding-page .vb-hero-media figcaption { background:#2b2b2f; color:#d2d2d7; font-size:12px; padding:12px 16px; }
+.vb-hero-footer { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; padding:24px 0; border-top:1px solid #55555b; color:#d2d2d7; font-size:14px; }
+.vb-section-nav { border-bottom:1px solid var(--vb-line); background:#fff; }
+.vb-section-nav .container { display:flex; flex-wrap:wrap; gap:12px 32px; padding-top:12px; padding-bottom:12px; }
+.vb-section-nav a { font-size:14px; padding:10px 0; color:var(--vb-ink); text-decoration:none; }
+.vb-section-nav a:hover { text-decoration:underline; text-underline-offset:5px; }
+.vb-partner { background:#f5f5f7; padding:72px 0; }
+.vb-partner-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+.vehicle-branding-page .vb-partner h2, .vehicle-branding-page .vb-brief h2 { font-size:clamp(32px,3.6vw,48px); line-height:1.08; letter-spacing:-.045em; margin:0 0 24px; }
+.vb-partner-name { font-size:22px; font-weight:600; color:var(--vb-ink); margin:0 0 16px; }
+.vb-partner p:not(.vb-partner-name):not(.vb-eyebrow) { color:#515158; max-width:56ch; }
+.vb-text-link { display:inline-flex; gap:14px; align-items:center; min-height:44px; font-weight:600; font-size:15px; text-underline-offset:5px; color:inherit; }
+.vb-small { font-size:13px; line-height:1.6; margin-top:18px; color:var(--vb-muted); }
+.vehicle-branding-page #coverage .wrap-types-grid { gap:20px; }
+.vehicle-branding-page .wrap-type-card { border:1px solid var(--vb-line); border-radius:4px; padding:32px; box-shadow:none; display:flex; flex-direction:column; }
+.vehicle-branding-page .wrap-type-card:hover { transform:none; box-shadow:none; border-color:#98989f; }
+.vehicle-branding-page .wrap-type-desc { flex-grow:1; }
+.vehicle-branding-page .wrap-type-badge { align-self:flex-start; border-radius:2px; background:#f0f0f3; color:var(--vb-ink); }
+.vehicle-branding-page .wrap-type-visual { display:none; }
+.vb-coverage-link { margin-top:20px; }
+.vehicle-branding-page .vb-brief { background:#f5f5f7; }
+.vb-brief-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:64px; align-items:start; }
+.vb-brief-intro { max-width:44ch; }
+.vb-brief-intro > p { color:#515158; }
+.vb-checklist { padding:0 0 0 20px; margin:28px 0; }
+.vb-checklist li { padding:10px 0 10px 8px; border-bottom:1px solid var(--vb-line); }
+.vb-form-card { padding:32px; background:#fff; border:1px solid var(--vb-line); border-radius:4px; min-width:0; }
+.vb-form-card .vb-small:first-child { margin-top:0; }
+.vb-form-card fieldset { border:0; padding:0; margin:32px 0; min-width:0; }
+.vb-form-card legend { font-size:20px; font-weight:600; margin-bottom:24px; padding:0; }
+.vb-form-card legend span { color:#76767c; font-size:13px; display:inline-block; margin-right:12px; }
+.vb-fields { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.vb-fields > div { min-width:0; }
+.vb-fields label { display:block; font-size:14px; font-weight:500; margin-bottom:8px; color:var(--vb-ink); }
+.vb-fields input,.vb-fields select,.vb-fields textarea { width:100%; max-width:100%; min-height:48px; padding:12px; background:#fff; border:1px solid #a9a9b0; border-radius:4px; color:var(--vb-ink); font:inherit; font-size:16px; box-sizing:border-box; }
+.vb-fields textarea { resize:vertical; }
+.vb-fields small { display:block; margin-top:6px; font-size:12px; line-height:1.5; color:var(--vb-muted); }
+.vb-wide { grid-column:1/-1; }
+.vb-form-card button[type="submit"] { width:100%; white-space:normal; min-height:52px; }
+.vehicle-branding-page :is(#coverage,#fleet-partner,#fleet-brief,#faq-heading) { scroll-margin-top:110px; }
+.vehicle-branding-page .vb-hero :focus-visible { outline:2px solid #fff; outline-offset:5px; }
+.vehicle-branding-page .vb-fields :focus-visible { outline:2px solid var(--vb-ink); outline-offset:3px; }
+.vehicle-branding-page .process-steps { text-align:left; }
+@media (max-width:960px) {
+ .vb-hero-grid,.vb-partner-grid,.vb-brief-grid { grid-template-columns:1fr; gap:32px; }
+ .vb-hero-grid { padding-bottom:32px; }
+ .vb-brief-intro { max-width:64ch; }
+ .vb-breadcrumb { margin-bottom:32px; }
+ .vb-partner { padding:48px 0; }
+ .vehicle-branding-page .vb-hero-media { max-width:720px; }
+}
+@media (max-width:540px) {
+ .vb-hero-footer { grid-template-columns:1fr; gap:10px; }
+ .vb-actions { flex-direction:column; align-items:stretch; }
+ .vb-actions a { white-space:normal; text-align:center; }
+ .vb-fields { grid-template-columns:1fr; }
+ .vb-form-card { padding:24px 18px; }
+ .vb-section-nav .container { gap:0 24px; }
+ .vehicle-branding-page .wrap-type-card { padding:24px; }
+}
+@media (prefers-reduced-motion:reduce) { .vehicle-branding-page * { scroll-behavior:auto; } }
+
+.vehicle-branding-page .wrap-type-card.featured { grid-column:span 1; display:flex; background:#1d1d1f; }
+.vehicle-branding-page .wrap-type-card.featured .vb-text-link { color:#fff; }

@@ -69,6 +69,19 @@
         const tid = (t.dataset.svc || '').toLowerCase().replace(/[^a-z0-9]/g, '');
         if (!clicked && (tid === slug || tid.startsWith(slug) || slug.startsWith(tid))) {
           t.click();
+          // A known bed-cover model supplies the existing option choice, still editable.
+          // Do not infer fitment, pricing, or a cover type from arbitrary URL text.
+          const coverTypes = {
+            'TruXedo TruXport': 'soft', 'TruXedo Pro X15': 'soft',
+            'Westin Hard Tri-Fold': 'trifold', 'BAKFlip MX4': 'trifold',
+            'RetraxPRO MX': 'retrax'
+          };
+          const product = params.get('product');
+          const coverType = Object.prototype.hasOwnProperty.call(coverTypes, product) ? coverTypes[product] : null;
+          if (tid === 'tonneau' && coverType) {
+            const option = document.querySelector('.opt[data-svc="tonneau"][data-kind="base"][data-opt="' + coverType + '"]');
+            if (option && option.getAttribute('aria-checked') !== 'true') option.click();
+          }
           clicked = true;
         }
       });
