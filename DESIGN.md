@@ -1,112 +1,93 @@
-# Capital Upfitters — Design System
+# Capital Upfitters UI system
 
-This is the **single authoritative source** for the site's design system.
-Previous documentation (README.md's "Design System" table, and per-page HTML
-comments reading "Barlow Condensed + Inter, onehourhitch.com color palette")
-described an earlier iteration that was superseded by an Apple-style redesign
-(see git history around `redesign/apple-palette`). Those older references are
-stale — trust this file and the stylesheets it names instead.
+Authoritative presentation rules for the November 2026 UI overhaul. The owner's current brief supersedes the previous three-door navigation. This is a visual and interaction layer over the existing static pages and lead controllers.
 
-If you are an AI agent picking up work on this repo: read this file before
-touching typography, color, spacing, or button styles. Guessing at the design
-system from old comments is what caused prior redesign attempts to drift.
+## Foundation
 
-## Source of truth
+- White `#ffffff`, mist `#f5f5f7`, ink `#1d1d1f`, body `#424245`, muted `#646469`.
+- Blue and yellow belong to the existing logo mark only. Do not invent a new logo.
+- One font: Geist, with system sans-serif fallbacks. Body and inputs start at 16px, line-height 1.6.
+- Display: responsive 48–80px on home; service H1 40–64px; H2 30–44px; H3 20–24px. Phone headings reduce deliberately.
+- Sentence case, negative heading tracking, balanced headings, readable paragraphs around 60 characters per line.
+- Use `ui-system.css` tokens: 4/8/12/16/24/32/40/48/64/96px spacing. Section padding scales from 56 to 96px. Container max 1200px.
+- Photo slots use 4:3 for heroes and 3:2 for service cards. Related content uses the same crop within a set.
 
-Stylesheets load in this order on every page, and later files win:
+## Assets and source order
 
-1. `base.css` — reset, type scale, spacing, radii, base tokens.
-2. `style.css` — global components (nav, hero, footer, cards, forms).
-3. `brand-tokens.css` — the **locked brand system (Sep 2026)**. It redefines
-   the brand primitives below, so its values override `base.css`.
-4. `ux-10k.css` — SKOOL "$10k polish" layer: type hierarchy, section rhythm,
-   card elevation, CTA lock, focus rings, reduced-motion overrides.
+1. `base.css`: reset and legacy tokens.
+2. `style.css`: existing global components.
+3. `brand-tokens.css`: established brand and legacy aliases.
+4. `ux-10k.css`: retained page compatibility styles.
+5. Page-specific CSS, where applicable.
+6. `ui-system.css`: the new shared UI and scoped page treatments.
 
-Never hardcode a color, font, spacing, or radius value in a page — reference
-the token. If a token is missing, add it to `brand-tokens.css` (brand colors)
-or `base.css` (everything else) rather than inventing a one-off value inline.
+The quote page's existing builder CSS is still loaded in its original position. New quote rules are scoped under `.quote-page` so they win intentionally without changing the builder's state or validation logic. Do not add broad `!important` rules that make hidden wizard steps visible.
 
-## Typography
+`partials/header.html` is the sole source for desktop and mobile navigation. `npm run sync-chrome` stamps shared chrome and the stylesheet/controller includes into marked pages. Do not edit stamped header/footer markup by hand. `npm run check-chrome` detects drift. The focused One Hour Hitch form retains its sub-brand header and gets the same action styling.
 
-| Token | Value | Usage |
+## Navigation
+
+| Group | Purpose | Existing destinations |
 |---|---|---|
-| `--font-display` | `'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif` | Headings, stat numbers, eyebrows, buttons |
-| `--font-body` | `'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif` | Body copy, paragraphs |
+| Services | Consumer services and vehicle protection | Bedliners, tonneau covers, steps, towing, undercoating, ceramic/PPF, tint, detailing, all services |
+| Work Vehicles | Vans, work trucks and fleets | Fleet pages, toolboxes, wraps, first responder work |
+| Industrial | Equipment, facilities, field work | Industrial coatings and government projects |
+| Programs | Business relationships and partner access | Dealers, fleet accounts, government, rebates, partner portal |
 
-Loaded per page with a non-blocking `<link rel="preload" as="style">` to
-Google Fonts plus a `<noscript>` fallback. **Do not** add Barlow Condensed;
-it belongs to the pre-redesign system.
+- Sticky white header. Call and Get a quote are visible at every breakpoint. On phones Call uses a labeled phone icon button.
+- Desktop navigation uses disclosure buttons with `aria-expanded`, `aria-controls` and hidden panels. These are website links, not ARIA application menus.
+- Open on pointer entry after 100ms; close after 180ms on exit. The panel has a pointer bridge across the visual gap.
+- Enter/Space toggle; Down/Up enter and cycle links; Home/End move to the first/last link; Left/Right change groups; Escape closes and restores trigger focus. Tab retains native document order.
+- Below 1100px use a native modal `dialog` and native `details` groups. Modal background inertness, explicit Tab/Shift+Tab wrapping, Escape and scroll restoration are handled without form dependencies.
+- Old per-page hamburger handlers target retired IDs/classes, so they no longer attach to these controls. `site-nav.js` is the only active shared navigation controller.
+- Every navigation destination must already exist. Gallery, contact and the partner portal remain accessible.
 
-Type scale (`--text-xs` through `--text-8xl`) runs from 12px to 96px in the
-usual Tailwind-like steps — see `base.css` for exact values.
+## Buttons and icons
 
-## Color
+- Primary: ink fill, white text. Secondary: transparent/white with ink border. Ghost: text/underline with a quiet hover surface.
+- In ink bands, primary becomes white/ink and secondary white-outline.
+- Sizes: small ≥44px, default 48px, large 52px. Text never becomes unreadably small to make a row fit.
+- Hover changes color/surface; press uses a small 120ms scale; disabled controls retain a distinct visible state.
+- Focus: 2px ink outline with 4px offset and a white separating ring. Reverse on dark bands. Never remove keyboard focus styling.
+- Shared decorative icons use `assets/ui-icons-v2.svg`, 24px viewBox, 1.75px stroke, round caps/joins and `currentColor`. Controls carry accessible text names; icons themselves are hidden from assistive technology.
+- Use the existing technical option illustrations inside the quote builder. They explain real configuration choices.
 
-Values from `brand-tokens.css` (they override the older Signal Blue values
-still present in `base.css`).
+## Page rhythm
 
-| Token | Value | Usage |
-|---|---|---|
-| `--brand-ink` | `#1d1d1f` | Primary text on light backgrounds |
-| `--brand-navy` | `#0a0a0b` | Near-black hero / nav / footer surfaces |
-| `--brand-navy-mid` | `#16161a` | Raised dark surface |
-| `--brand-yellow` (→ `--color-accent`) | `#fcd800` | **Action only**: filled primary CTAs, H1 accent word. Text on it uses `--brand-on-yellow` |
-| `--brand-blue` | `#0066fc` | **Identity**: logo, icons, text links, chips |
-| `--brand-surface` | `#f5f5f7` | Section background |
-| `--brand-muted` | `#636366` | Secondary text (AA on white and on `--brand-surface`) |
-| `--brand-line` | `rgba(0,0,0,0.08)` | Hairline borders |
+- Home: stable split offer, vehicle finder, customer paths, services, industrial work, retained proof/FAQ/location content and final CTA. No rotating headline or competing floating quote button.
+- Service pages: breadcrumb, concise heading, short summary and two actions beside a properly sized media slot. Keep each route's existing detail, quote links, FAQs, pricing behavior and gallery feed.
+- Service cards: image above the title and description. Copy is readable without hovering. No text over dark artwork.
+- Services directory: compact white introduction, five native toggle-button filters, announced result count and captioned image cards. Filtering removes hidden cards from keyboard and assistive-technology navigation. Without JavaScript, every service remains visible and inactive filters stay hidden.
+- Quote: concise intro, audience tabs, visible progress rail, existing vehicle/services/contact steps, and one bottom wizard action rail. Desktop help stays secondary; phones keep the form first.
+- Do not hide states, required fields, validation messages, success/reference panels or conditional hitch acknowledgments with presentation rules.
 
-`--brand-amber` / `--brand-amber-dark` are legacy names kept because
-`style.css` uses them; they are remapped to the yellow action color.
+## Photography
 
-## Buttons
+Generated automotive artwork is illustration, not evidence of completed work. The initial coordinated set lives in the media backend and carries an illustrative label until an actual photo is published through the image manager. `docs/IMAGE-NEEDS.md` maps every new placeholder to its crop, subject and illustrative generation prompt. Preserve real gallery-feed photos and their provenance. Generated concepts may be used only as clearly labeled illustration, never as customers or completed shop work.
 
-- Shape: **pill** (`border-radius: var(--radius-pill)` = `9999px`) — this is
-  the signature interactive-element shape sitewide, used for `.btn`,
-  `.funnel-card-link`, and other CTAs.
-- Padding: `0.75rem 1.75rem` for the base `.btn`.
-- Font: `--font-body` (Inter), weight 500, no uppercase transform on the
-  primary button; some secondary chip/label elements use `--font-display`
-  with uppercase + letter-spacing for a distinct "label" voice — check
-  existing usage nearby before introducing a third convention.
+## Compatibility and checks
 
-## Spacing
+- Keep page paths, canonical links, form IDs/names, API handlers, attribution, security checks, idempotency, rate limiting and spam guards intact.
+- `npm run check`: all existing Node tests, shared chrome, navigation controller syntax, UI contracts and WCAG AA text-token contrast.
+- Browser review: home, bedliner and quote at 320/375/390/414/768/1024/1280 CSS pixels; desktop disclosure keyboard flow; mobile modal/disclosure/Escape; quote tabs; validation; configured service; mocked request and success reference.
+- Browser screenshots use the exact staging source as the before reference and the review branch as after. Phone screenshots are responsive iframe viewports, not physical-device testing. Test scripts and capture fixtures stay outside committed source.
+- Existing server-side unit tests cover real persistence/email contracts. Browser submissions during UI QA use a local mock and never create shop leads.
+- Review branch `redesign/ui-ux-polish-2026-11-02` has automatic Vercel deployment disabled. Do not deploy as part of this task.
 
-8px-based scale, `--space-1` (0.25rem/4px) through `--space-32` (8rem/128px).
-Always use the token; don't hand-write `margin: 23px`.
+## Customer experience and media editing
 
-## Radii
+Service cards offer a service-detail link and a distinct direct quote action carrying an exact supported service ID. The vehicle step confirms an existing service selection. The homepage explains the quote-to-install sequence without promising a booking or price before fitment review. All existing required fields and submission controllers remain intact.
 
-| Token | Value |
-|---|---|
-| `--radius-sm` | 0.375rem |
-| `--radius-md` | 0.5rem |
-| `--radius-lg` | 0.75rem |
-| `--radius-xl` | 1rem |
-| `--radius-2xl` | 1.25rem |
-| `--radius-pill` | 9999px (buttons, pills) |
+Images resolve through named backend slots at `/api/media`; never hardcode generated file paths in page markup. `/admin/media` provides upload, crop focus, alt text, illustration/photo classification, explicit preview/publish, history and restore. Icons remain versioned SVG. Read docs/MEDIA-MANAGEMENT.md for release configuration and validation limits.
 
-## Layout
+## Shared motion refinement
 
-- `--nav-height`: 64px
-- `--container-max`: 1200px
-- `base.css` disables generic shadows (`--shadow-*: none`). Card elevation
-  comes only from `ux-10k.css` (`--shadow-card`, `--shadow-card-hover`); reuse
-  those rather than adding new shadows.
+Pages using `.site-nav` bypass the legacy animation injector. Scroll entry is a short, one-shot reveal on service offerings, audience paths, related cards and roadmap steps only. Content is visible before JavaScript and remains readable if an animation API is unavailable. Headings, counters, forms and wizard steps are not animated. Keyboard focus cancels a card's reveal; changing the operating-system motion preference cancels active reveals. Fine-pointer arrow cues and media elevation use the same ink/mist tokens; reduced motion disables image zoom. No copy, image slot or lead-controller contract changes.
 
-## Accessibility baseline
+## November 3 research-led editorial pass
 
-- Every page starts with `<a class="skip-link" href="#main">` and wraps its
-  content in a single `<main id="main">`, between the nav and the footer.
-- One `<h1>` per page; don't skip heading levels (restyle with CSS instead).
-- Click-to-call links always use `tel:+13013041419`.
-- Respect `prefers-reduced-motion` (see `ux-10k.css`); autoplaying hero
-  media needs a visible pause control.
+The current preview moves from the earlier white gallery layout to a stronger neutral industrial composition. The palette remains white/mist/ink with the existing colored mark, and the font remains Geist. A graphite full-width split hero puts readable copy beside unobscured managed imagery. Four open, numbered customer paths precede optional vehicle entry. Existing address, hours and phone appear immediately below the hero. The service catalog uses larger two-column imagery, service headers share the split treatment and link to existing section anchors, and the quote workspace uses a graphite guidance rail beside the active form. Controls use 6px corners rather than pills.
 
-## Known cleanup
+Evidence informing the hierarchy: DiamondBack Covers' agency-reported hero and compatibility tests (Conversion Rate Experts), 50Floor's staged form case study (Intrepid), and live inspections of Christian Brothers Automotive Firestone, OC Mounts and Sabre Equipment. Those results do not predict Capital's conversion rate. Capital's mixed consumer/fleet/custom audience is why customer paths remain before optional fitment entry. Real shop facts and existing service content are retained; no new ratings, warranties, prices or compatibility claims are introduced.
 
-- Rename the legacy `--brand-amber*` / `--color-accent-*` tokens to
-  action-accurate names (`--brand-action`, etc.). This is a naming fix only,
-  with no visual change, and it touches `style.css` broadly.
-- `base.css` still carries the superseded Signal Blue brand values under
-  `:root`; they are dead weight now that `brand-tokens.css` overrides them.
+The generated concept is an internal composition reference, not shipped imagery or proof of shop work. Existing backend slots and illustration labels remain. Media-origin availability and authenticated hosted browser verification are release gates; static checks alone are not visual sign-off. Original URLs, cleanUrls behavior, canonicals, schema, IDs, attribution and submit handlers remain in place.

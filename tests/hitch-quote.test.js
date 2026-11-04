@@ -42,8 +42,16 @@ test('the general quote form exposes the same hitch choices', () => {
   assert.match(html, /all mobile services must be paid in full/i);
 });
 
-test('the general quote service chooser is grouped and explains each service', () => {
+// quote.html plus the page scripts it links (its logic lives in quote*.js).
+function quotePageSource() {
   const html = fs.readFileSync(path.join(ROOT, 'quote.html'), 'utf8');
+  const scripts = [...html.matchAll(/<script src="\.\/(quote[\w-]*\.js)"/g)]
+    .map((m) => fs.readFileSync(path.join(ROOT, m[1]), 'utf8'));
+  return [html, ...scripts].join('\n');
+}
+
+test('the general quote service chooser is grouped and explains each service', () => {
+  const html = quotePageSource();
   assert.match(html, /Protection & Appearance/);
   assert.match(html, /Truck Bed & Access/);
   assert.match(html, /Towing & Performance/);
@@ -54,7 +62,7 @@ test('the general quote service chooser is grouped and explains each service', (
 });
 
 test('each service appears in exactly one chooser group', () => {
-  const html = fs.readFileSync(path.join(ROOT, 'quote.html'), 'utf8');
+  const html = quotePageSource();
   const servicesBlock = html.match(/const SERVICES = \[([\s\S]*?)\n\];\nconst MAX_SERVICES/);
   const groupsBlock = html.match(/const SERVICE_GROUPS = \[([\s\S]*?)\n\];\n\n\/\* =+/);
   assert.ok(servicesBlock && groupsBlock);

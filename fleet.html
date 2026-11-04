@@ -27,8 +27,8 @@
   <!-- Fonts (async; display=swap on Google CSS URL) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap"></noscript>
 <link rel="stylesheet" href="./base.css">
   <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="./brand-tokens.css">
@@ -41,7 +41,7 @@
     "name": "Fleet & Commercial Upfitting",
     "description": "Commercial vehicle upfitting services for DMV businesses including pickup truck packages, van interiors, DOT compliance, fleet branding, and custom fabrication.",
     "provider": {
-      "@type": "LocalBusiness",
+      "@type": "AutoRepair",
       "name": "Capital Upfitters",
       "address": {
         "@type": "PostalAddress",
@@ -218,9 +218,9 @@
       display: block;
       font-family: var(--font-display);
       font-size: var(--text-sm);
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-weight:600;
+      letter-spacing:0;
+      text-transform:none;
       color: var(--color-text);
       margin-bottom: var(--space-1);
     }
@@ -230,7 +230,7 @@
       line-height: 1.6;
     }
     .portal-visual {
-      background: linear-gradient(135deg, #1a2332, #203055);
+      background: #1d1d1f;
       border-radius: var(--radius-2xl);
       padding: var(--space-10);
       min-height: 360px;
@@ -267,8 +267,8 @@
     .portal-visual-row span {
       font-family: var(--font-display);
       font-size: var(--text-xs);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing:0;
+      text-transform:none;
     }
     .portal-status {
       display: inline-block;
@@ -276,12 +276,12 @@
       border-radius: var(--radius-pill);
       font-size: 10px;
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      text-transform:none;
+      letter-spacing:0;
     }
-    .status-complete { background: rgba(34,197,94,0.15); color: #4ade80; }
-    .status-progress { background: rgba(234,179,8,0.15); color: #facc15; }
-    .status-scheduled { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+    .status-complete { background: rgba(255,255,255,0.18); color: #ffffff; }
+    .status-progress { background: rgba(255,255,255,0.12); color: #d2d2d7; }
+    .status-scheduled { background: rgba(255,255,255,0.08); color: #a1a1a6; }
     @media (max-width: 860px) {
       .portal-grid { grid-template-columns: 1fr; }
       .portal-visual { min-height: 280px; }
@@ -289,7 +289,7 @@
 
     /* Stats strip */
     .fleet-stats-strip {
-      background: var(--color-surface-dark-2, #1a2332);
+      background: var(--color-surface-dark-2, #1d1d1f);
       padding: var(--space-16) 0;
       border-top: 1px solid rgba(255,255,255,0.06);
       border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -309,7 +309,7 @@
       display: block;
       font-family: var(--font-display);
       font-size: clamp(var(--text-4xl), 4vw, var(--text-6xl));
-      font-weight: 800;
+      font-weight:600;
       color: #fff;
       letter-spacing: -0.02em;
       line-height: 1;
@@ -319,8 +319,8 @@
       font-family: var(--font-display);
       font-size: var(--text-xs);
       font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      letter-spacing:0;
+      text-transform:none;
       color: rgba(255,255,255,0.65);
       margin-top: var(--space-2);
     }
@@ -357,9 +357,9 @@
     .faq-question span {
       font-family: var(--font-display);
       font-size: var(--text-xl);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
+      font-weight:600;
+      letter-spacing:0;
+      text-transform:none;
       color: var(--color-text);
     }
     .faq-chevron {
@@ -403,9 +403,9 @@
   .fleet-tab {
     font-family: var(--font-display);
     font-size: var(--text-sm);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-weight:600;
+    letter-spacing:0;
+    text-transform:none;
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-pill);
     border: 2px solid var(--color-border);
@@ -432,9 +432,9 @@
   .svc-type-label {
     font-family: var(--font-display);
     font-size: var(--text-xs);
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-weight:600;
+    letter-spacing:0;
+    text-transform:none;
     color: var(--color-text-muted);
     padding: 0.3rem 1rem;
     border: 1px solid var(--color-border);
@@ -449,9 +449,9 @@
     display: inline-block;
     font-family: var(--font-display);
     font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-weight:600;
+    letter-spacing:0;
+    text-transform:none;
     padding: 2px 8px;
     border-radius: var(--radius-pill);
     background: var(--color-brand-soft);
@@ -536,206 +536,602 @@
   <script src="/lead-form.js" defer></script>
 
 <script src="/analytics.js" defer></script>
+<!-- cu:ui -->
+<link rel="stylesheet" href="./ui-system.css?v=32e3a50545">
+<script src="./site-nav.js?v=545170a9ed" defer></script>
+<script src="./media-client.js?v=f6f4bc752d" defer></script>
+<!-- /cu:ui -->
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- ANNOUNCE BAR -->
-<div class="announce-bar" id="announce-bar">Same-week appointments &mdash; <a href="tel:+13013041419">(301) 304-1419</a><button class="announce-close" onclick="document.getElementById('announce-bar').remove()" aria-label="Close">&times;</button></div>
-
-<!-- NAV -->
-<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a href="./index.html" class="nav-logo" aria-label="Capital Upfitters home">
-      <div class="nav-logo-mark">
-        <svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-          <path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/>
-        </svg>
-      </div>
-      <div class="nav-logo-text">Capital<span>Upfitters</span></div>
-    </a>
-    <ul class="nav-links">
-      <!-- SERVICES mega-dropdown -->
-      <li class="nav-item">
-        <a href="./services/">Services
-          <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
-        </a>
-        <div class="nav-dropdown nav-mega" role="menu">
-          <!-- Bundle banner -->
-          <a href="./services/" class="nav-bundle-banner">
-            <span class="nav-bundle-star">★</span>
-            Most Popular Bundle — Bedliner + Tonneau Cover + Running Boards
-            <span class="nav-bundle-arrow">→</span>
-          </a>
-          <div class="nav-mega-cols">
-            <!-- Col A: Protection & Bedliners -->
-            <div class="nav-mega-col">
-              <div class="nav-mega-col-header nav-mega-col-header--gold">Protection &amp; Bedliners</div>
-              <a href="./services/bedliner.html">Spray-On Bedliners <span class="nav-mega-link-badge">★ Top Seller</span></a>
-              <a href="./services/bedliner.html#uv-plus">Patriot Liner UV+ Upgrade <span class="nav-mega-link-badge">Premium</span></a>
-              <a href="./services/ceramic-coating.html">Ceramic Coating &amp; PPF</a>
-              <a href="./services/undercoating.html">Undercoating &amp; Rust</a>
-              <a href="./services/window-tinting.html">Window Tinting</a>
-              <a href="./services/stealth-hitches.html">Stealth Hitch — Luxury &amp; EV <span class="nav-mega-link-badge" style="background:rgba(30,100,180,0.2);color:#60a5fa;">Preferred</span></a>
-              <a href="./services/mobile-detailing.html">Mobile Detailing</a>
-            </div>
-            <!-- Col B: Truck Accessories -->
-            <div class="nav-mega-col">
-              <div class="nav-mega-col-header nav-mega-col-header--orange">Truck Accessories</div>
-              <a href="./services/tonneau.html">Tonneau / Bed Covers <span class="nav-mega-link-badge">★ Bundle</span></a>
-              <a href="./services/running-boards.html">Running Boards &amp; Steps <span class="nav-mega-link-badge">★ Bundle</span></a>
-              <a href="./services/camper-shells.html">Camper Shells &amp; Caps</a>
-              <a href="./services/hitches.html">Hitches &amp; Towing</a>
-              <a href="./services/toolboxes.html">Toolboxes &amp; Storage</a>
-              <a href="./services/suspension.html">Suspension, Lifts &amp; Wheels</a>
-              <a href="./services/exterior.html">Exterior Accessories</a>
-              <a href="./services/lighting.html">LED Lighting</a>
-            </div>
-          </div>
-          <div class="nav-mega-footer">
-            <a href="./services/" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">View All Services</a>
-            <a href="./rebates.html" class="nav-mega-footer-rebate">🏷 Rebates &amp; Offers</a>
-          </div>
-        </div>
-      </li>
-      <!-- FLEET & BUSINESS mega-dropdown -->
-      <li class="nav-item">
-        <a href="./fleet.html">Fleet &amp; Business
-          <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
-        </a>
-        <div class="nav-dropdown nav-mega nav-mega-wide" role="menu">
-          <div class="nav-mega-cols">
-            <!-- Col A: Fleet Upfitting -->
-            <div class="nav-mega-col">
-              <div class="nav-mega-col-header nav-mega-col-header--blue">Fleet &amp; Van Builds</div>
-              <a href="./fleet.html#commercial">Commercial Fleet Solutions <span class="nav-mega-link-badge nav-mega-link-badge--blue">Accounts</span></a>
-              <a href="./fleet.html#commercial">Service Van Upfitting</a>
-              <a href="./fleet.html#commercial">Pickup Truck Fleet Builds</a>
-              <a href="./fleet.html#commercial">Ladder Racks &amp; Cargo</a>
-              <a href="./fleet.html#fleet">DOT &amp; Safety Compliance</a>
-              <a href="./fleet.html#fleet">First Responder &amp; EMS</a>
-              <a href="./services/commercial-wraps.html">Fleet Branding &amp; Wraps</a>
-            </div>
-            <!-- Col B: Fleet Protection -->
-            <div class="nav-mega-col">
-              <div class="nav-mega-col-header nav-mega-col-header--orange">Fleet Protection</div>
-              <a href="./services/bedliner.html">Fleet Bedliners</a>
-              <a href="./services/undercoating.html">Fleet Undercoating</a>
-              <a href="./services/window-tinting.html">Fleet Window Tinting</a>
-              <a href="./services/industrial-coatings.html">Industrial &amp; Protective Coatings <span class="nav-mega-link-badge">Mobile App</span></a>
-            </div>
-          </div>
-          <div class="nav-mega-footer">
-            <a href="./fleet.html" class="nav-mega-footer-cta nav-mega-footer-cta--primary">Open Fleet Account</a>
-            <a href="./quote.html?service=fleet" class="nav-mega-footer-cta nav-mega-footer-cta--ghost">Get Fleet Quote</a>
-          </div>
-        </div>
-      </li>
-      <!-- INDUSTRIAL — direct link, no dropdown -->
-      <li>
-        <a href="./services/industrial-coatings.html" class="nav-industrial-link">Industrial</a>
-      </li>
-      <!-- DEALER & GOV — small dropdown -->
-      <li class="nav-item">
-        <a href="./dealer-government.html">Dealer &amp; Gov
-          <svg class="nav-chevron" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
-        </a>
-        <div class="nav-dropdown" role="menu" style="left: auto; right: 0; transform: translateX(0) translateY(-6px);">
-          <span class="nav-dropdown-label">For Dealerships</span>
-          <a href="./dealer-government.html#dealer">Pre-Delivery Upfitting</a>
-          <a href="./dealer-government.html#dealer">Dealer Ceramic &amp; PPF</a>
-          <a href="./dealer-government.html#dealer">Dealer Account Setup</a>
-          <div class="nav-dropdown-divider"></div>
-          <span class="nav-dropdown-label">For Government &amp; Municipal</span>
-          <a href="./dealer-government.html#government">Government Fleet Solutions</a>
-          <a href="./dealer-government.html#government">DOT &amp; EMS Upfitting</a>
-          <a href="./dealer-government.html#government">Protective Coatings / GSA</a>
-          <div class="nav-dropdown-divider"></div>
-          <a href="./dealer-government.html" style="color: rgba(255,255,255,0.65); font-size: 11px;">Apply for Account →</a>
-        </div>
-      </li>
-      <li><a href="./gallery.html">Gallery</a></li>
-      <li><a href="./contact.html">Contact</a></li>
-    </ul>
-    <div class="nav-actions">
-      <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="nav-portal-link">Portal Login</a>
-      <a href="./quote.html" class="nav-cta">Get a Quote</a>
-    </div>
-    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-<!-- MOBILE NAV -->
-<div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Mobile menu">
-  <button class="nav-mobile-close" id="nav-close" aria-label="Close menu">&times;</button>
-  <nav class="nav-mobile-links">
-    <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-services" aria-controls="mob-services">Services<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-      <div class="nav-mobile-section-body" id="mob-services">
-        <div class="nav-mobile-group-label nav-mobile-group-label--gold">&#9733; Bundle: Bedliner + Tonneau + Running Boards</div>
-        <a href="./services/bedliner.html" class="nav-mobile-sub-link">Spray-On Bedliners <span class="nav-mobile-sub-badge">Top Seller</span></a>
-        <a href="./services/tonneau.html" class="nav-mobile-sub-link">Tonneau / Bed Covers <span class="nav-mobile-sub-badge">Bundle</span></a>
-        <a href="./services/running-boards.html" class="nav-mobile-sub-link">Running Boards &amp; Steps <span class="nav-mobile-sub-badge">Bundle</span></a>
-        <div class="nav-mobile-group-label">Protection</div>
-        <a href="./services/ceramic-coating.html" class="nav-mobile-sub-link">Ceramic Coating &amp; PPF</a>
-        <a href="./services/undercoating.html" class="nav-mobile-sub-link">Undercoating &amp; Rust</a>
-        <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Window Tinting</a>
-        <a href="./services/mobile-detailing.html" class="nav-mobile-sub-link">Mobile Detailing</a>
-        <div class="nav-mobile-group-label">Accessories &amp; Builds</div>
-        <a href="./services/hitches.html" class="nav-mobile-sub-link">Hitches &amp; Towing</a>
-        <a href="./services/toolboxes.html" class="nav-mobile-sub-link">Toolboxes &amp; Storage</a>
-        <a href="./services/suspension.html" class="nav-mobile-sub-link">Suspension, Lifts &amp; Wheels</a>
-        <a href="./services/camper-shells.html" class="nav-mobile-sub-link">Camper Shells &amp; Caps</a>
-        <a href="./services/exterior.html" class="nav-mobile-sub-link">Exterior Accessories</a>
-        <a href="./services/lighting.html" class="nav-mobile-sub-link">LED Lighting</a>
-        <a href="./services/commercial-wraps.html" class="nav-mobile-sub-link">Commercial Wraps</a>
-        <a href="./services/index.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65)">View All Services &rarr;</a>
-      </div>
-    </div>
-    <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-fleet" aria-controls="mob-fleet">Fleet &amp; Business<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-      <div class="nav-mobile-section-body" id="mob-fleet">
-        <div class="nav-mobile-group-label nav-mobile-group-label--blue">Fleet &amp; Van Builds</div>
-        <a href="./fleet.html#commercial" class="nav-mobile-sub-link">Commercial Fleet Solutions</a>
-        <a href="./fleet.html#commercial" class="nav-mobile-sub-link">Service Van Upfitting</a>
-        <a href="./fleet.html#commercial" class="nav-mobile-sub-link">Ladder Racks &amp; Cargo</a>
-        <a href="./fleet.html#fleet" class="nav-mobile-sub-link">DOT &amp; Safety Compliance</a>
-        <a href="./fleet.html#fleet" class="nav-mobile-sub-link">First Responder / EMS</a>
-        <div class="nav-mobile-group-label nav-mobile-group-label--orange">Fleet Protection</div>
-        <a href="./services/bedliner.html" class="nav-mobile-sub-link">Fleet Bedliners</a>
-        <a href="./services/undercoating.html" class="nav-mobile-sub-link">Fleet Undercoating</a>
-        <a href="./services/window-tinting.html" class="nav-mobile-sub-link">Fleet Window Tinting</a>
-        <a href="./services/industrial-coatings.html" class="nav-mobile-sub-link">Industrial Coatings <span class="nav-mobile-sub-badge">Mobile</span></a>
-        <a href="./fleet.html" class="nav-mobile-sub-link" style="color:rgba(255,255,255,0.65)">Open Fleet Account &rarr;</a>
-      </div>
-    </div>
-    <a href="./services/industrial-coatings.html" class="nav-mobile-direct">Industrial</a>
-    <div class="nav-mobile-section">
-      <button class="nav-mobile-section-trigger" aria-expanded="false" data-target="mob-dealer" aria-controls="mob-dealer">Dealer &amp; Gov<svg class="nav-mobile-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-      <div class="nav-mobile-section-body" id="mob-dealer">
-        <div class="nav-mobile-group-label nav-mobile-group-label--blue">Dealerships</div>
-        <a href="./dealer-government.html#dealer" class="nav-mobile-sub-link">Pre-Delivery Upfitting</a>
-        <a href="./dealer-government.html#dealer" class="nav-mobile-sub-link">Dealer Ceramic &amp; PPF</a>
-        <a href="./dealer-government.html#dealer" class="nav-mobile-sub-link">Dealer Account Setup</a>
-        <div class="nav-mobile-group-label">Government &amp; Municipal</div>
-        <a href="./dealer-government.html#government" class="nav-mobile-sub-link">Government Fleet Solutions</a>
-        <a href="./dealer-government.html#government" class="nav-mobile-sub-link">DOT &amp; EMS Upfitting</a>
-        <a href="./dealer-government.html#government" class="nav-mobile-sub-link">Protective Coatings / GSA</a>
-      </div>
-    </div>
-    <a href="./gallery.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;">Gallery</a>
-    <a href="./contact.html" class="nav-mobile-direct" style="color:rgba(255,255,255,0.85)!important;font-size:1.4rem!important;">Contact</a>
-  </nav>
-  <div class="nav-mobile-actions">
-    <a href="./quote.html" class="btn btn-primary">Get a Quote</a>
-    <a href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Portal Login</a>
-  </div>
+<!-- cu:header -->
+<!-- Shared UI: authored here and stamped by npm run sync-chrome. -->
+<nav class="nav site-nav" id="nav" aria-label="Main navigation" data-site-nav>
+ <div class="nav-inner site-nav-inner">
+<a href="./index.html" class="nav-logo site-brand" aria-label="Capital Upfitters home">
+<span class="nav-logo-mark" aria-hidden="true">
+</span>
+<span class="site-brand-text">Capital <span>Upfitters</span>
+</span>
+</a>
+<ul class="site-nav-links">
+<li class="site-nav-item" data-nav-item>
+<button class="site-nav-trigger" id="nav-trigger-services" type="button" data-nav-trigger aria-expanded="false" aria-controls="nav-panel-services">Services<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</button>
+<div class="site-menu-panel site-menu-panel--services" id="nav-panel-services" aria-labelledby="nav-trigger-services" hidden>
+<p class="site-menu-label">Truck essentials</p>
+<a class="site-menu-link" href="./services/bedliner.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#bedliner">
+</use>
+</svg>
+<span>
+<strong>Spray-on bedliners</strong>
+<small>Patriot Liner protection</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/tonneau.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#cover">
+</use>
+</svg>
+<span>
+<strong>Tonneau covers</strong>
+<small>Hard, soft and retractable</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/running-boards.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#step">
+</use>
+</svg>
+<span>
+<strong>Running boards</strong>
+<small>Fixed steps and power steps</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/hitches.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#hitch">
+</use>
+</svg>
+<span>
+<strong>Hitches and towing</strong>
+<small>Receivers, wiring and hidden hitches</small>
+</span>
+</a>
+<p class="site-menu-label">Vehicle protection</p>
+<a class="site-menu-link" href="./services/undercoating.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#shield">
+</use>
+</svg>
+<span>
+<strong>Undercoating</strong>
+<small>Rust protection for your underbody</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/ceramic-coating.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#sparkle">
+</use>
+</svg>
+<span>
+<strong>Ceramic coating and PPF</strong>
+<small>Paint protection and gloss</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/window-tinting.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#tint">
+</use>
+</svg>
+<span>
+<strong>Window tinting</strong>
+<small>Heat, glare and UV control</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/mobile-detailing.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#droplets">
+</use>
+</svg>
+<span>
+<strong>Mobile detailing</strong>
+<small>At your home or workplace</small>
+</span>
+</a>
+<a class="site-menu-all" href="./services/">Explore all services<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#arrow">
+</use>
+</svg>
+</a>
 </div>
+</li>
+<li class="site-nav-item" data-nav-item>
+<button class="site-nav-trigger" id="nav-trigger-work" type="button" data-nav-trigger aria-expanded="false" aria-controls="nav-panel-work">Work Vehicles<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</button>
+<div class="site-menu-panel site-menu-panel--work" id="nav-panel-work" aria-labelledby="nav-trigger-work" hidden>
+<p class="site-menu-label">Built around your work</p>
+<a class="site-menu-link" href="./fleet.html#commercial">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#van">
+</use>
+</svg>
+<span>
+<strong>Vans and commercial fleets</strong>
+<small>Partitions, shelving and ladder racks</small>
+</span>
+</a>
+<a class="site-menu-link" href="./fleet.html#commercial">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#truck">
+</use>
+</svg>
+<span>
+<strong>Work truck builds</strong>
+<small>Storage, access and accessories</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/toolboxes.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#toolbox">
+</use>
+</svg>
+<span>
+<strong>Toolboxes and storage</strong>
+<small>Keep equipment organized</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/commercial-wraps.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#wrap">
+</use>
+</svg>
+<span>
+<strong>Fleet graphics and wraps</strong>
+<small>Put your business on the road</small>
+</span>
+</a>
+<a class="site-menu-link" href="./fleet.html#fleet">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#shield">
+</use>
+</svg>
+<span>
+<strong>First responder vehicles</strong>
+<small>Safety equipment and fleet upfits</small>
+</span>
+</a>
+</div>
+</li>
+<li class="site-nav-item" data-nav-item>
+<button class="site-nav-trigger" id="nav-trigger-industrial" type="button" data-nav-trigger aria-expanded="false" aria-controls="nav-panel-industrial">Industrial<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</button>
+<div class="site-menu-panel site-menu-panel--industrial" id="nav-panel-industrial" aria-labelledby="nav-trigger-industrial" hidden>
+<p class="site-menu-label">Protection at a larger scale</p>
+<a class="site-menu-link" href="./services/industrial-coatings.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#shield">
+</use>
+</svg>
+<span>
+<strong>Protective coatings</strong>
+<small>Equipment, facilities and infrastructure</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/industrial-coatings.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#building">
+</use>
+</svg>
+<span>
+<strong>On-site applications</strong>
+<small>Coating projects at your facility</small>
+</span>
+</a>
+<a class="site-menu-link" href="./dealer-government.html#government">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#clipboard">
+</use>
+</svg>
+<span>
+<strong>Government projects</strong>
+<small>Agency fleets and field work</small>
+</span>
+</a>
+</div>
+</li>
+<li class="site-nav-item" data-nav-item>
+<button class="site-nav-trigger" id="nav-trigger-programs" type="button" data-nav-trigger aria-expanded="false" aria-controls="nav-panel-programs">Programs<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</button>
+<div class="site-menu-panel site-menu-panel--programs" id="nav-panel-programs" aria-labelledby="nav-trigger-programs" hidden>
+<p class="site-menu-label">A simpler way to work together</p>
+<a class="site-menu-link" href="./dealer-government.html#dealer">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#truck">
+</use>
+</svg>
+<span>
+<strong>Dealer program</strong>
+<small>Pre-sale add-ons and account setup</small>
+</span>
+</a>
+<a class="site-menu-link" href="./fleet.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#van">
+</use>
+</svg>
+<span>
+<strong>Fleet accounts</strong>
+<small>Consistent specs and scheduling</small>
+</span>
+</a>
+<a class="site-menu-link" href="./dealer-government.html#government">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#building">
+</use>
+</svg>
+<span>
+<strong>Government and municipal</strong>
+<small>Procurement and project inquiries</small>
+</span>
+</a>
+<a class="site-menu-link" href="./rebates.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#clipboard">
+</use>
+</svg>
+<span>
+<strong>Rebates and offers</strong>
+<small>Current manufacturer programs</small>
+</span>
+</a>
+<a class="site-menu-link" href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#clipboard">
+</use>
+</svg>
+<span>
+<strong>Partner portal</strong>
+<small>Access your existing account</small>
+</span>
+</a>
+</div>
+</li>
+</ul>
+<div class="site-nav-actions">
+<a class="btn btn-secondary btn-sm site-call" href="tel:+13013041419" aria-label="Call Capital Upfitters at 301-304-1419">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#phone">
+</use>
+</svg>
+<span>Call</span>
+</a>
+<a class="btn btn-primary btn-sm site-quote" href="./quote.html">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+<button class="site-menu-toggle" id="site-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-mobile-panel">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#menu">
+</use>
+</svg>
+</button>
+</div>
+</div>
+</nav>
+<dialog class="site-mobile" id="site-mobile-panel" aria-labelledby="site-mobile-title" aria-modal="true">
+<div class="site-mobile-top">
+<h2 id="site-mobile-title">Explore</h2>
+<a class="btn btn-secondary btn-sm" href="tel:+13013041419">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#phone">
+</use>
+</svg>Call</a>
+<a class="btn btn-primary btn-sm" href="./quote.html">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+<button class="site-menu-toggle" id="site-menu-close" type="button" aria-label="Close menu">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#close">
+</use>
+</svg>
+</button>
+</div>
+<nav class="site-mobile-links" aria-label="Mobile navigation">
+<details class="site-mobile-group">
+<summary>Services<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</summary>
+<div class="site-mobile-group-body">
+<p class="site-menu-label">Truck essentials</p>
+<a class="site-menu-link" href="./services/bedliner.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#bedliner">
+</use>
+</svg>
+<span>
+<strong>Spray-on bedliners</strong>
+<small>Patriot Liner protection</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/tonneau.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#cover">
+</use>
+</svg>
+<span>
+<strong>Tonneau covers</strong>
+<small>Hard, soft and retractable</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/running-boards.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#step">
+</use>
+</svg>
+<span>
+<strong>Running boards</strong>
+<small>Fixed steps and power steps</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/hitches.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#hitch">
+</use>
+</svg>
+<span>
+<strong>Hitches and towing</strong>
+<small>Receivers, wiring and hidden hitches</small>
+</span>
+</a>
+<p class="site-menu-label">Vehicle protection</p>
+<a class="site-menu-link" href="./services/undercoating.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#shield">
+</use>
+</svg>
+<span>
+<strong>Undercoating</strong>
+<small>Rust protection for your underbody</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/ceramic-coating.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#sparkle">
+</use>
+</svg>
+<span>
+<strong>Ceramic coating and PPF</strong>
+<small>Paint protection and gloss</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/window-tinting.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#tint">
+</use>
+</svg>
+<span>
+<strong>Window tinting</strong>
+<small>Heat, glare and UV control</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/mobile-detailing.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#droplets">
+</use>
+</svg>
+<span>
+<strong>Mobile detailing</strong>
+<small>At your home or workplace</small>
+</span>
+</a>
+<a class="site-menu-all" href="./services/">Explore all services<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#arrow">
+</use>
+</svg>
+</a>
+</div>
+</details>
+<details class="site-mobile-group">
+<summary>Work Vehicles<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</summary>
+<div class="site-mobile-group-body">
+<p class="site-menu-label">Built around your work</p>
+<a class="site-menu-link" href="./fleet.html#commercial">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#van">
+</use>
+</svg>
+<span>
+<strong>Vans and commercial fleets</strong>
+<small>Partitions, shelving and ladder racks</small>
+</span>
+</a>
+<a class="site-menu-link" href="./fleet.html#commercial">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#truck">
+</use>
+</svg>
+<span>
+<strong>Work truck builds</strong>
+<small>Storage, access and accessories</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/toolboxes.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#toolbox">
+</use>
+</svg>
+<span>
+<strong>Toolboxes and storage</strong>
+<small>Keep equipment organized</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/commercial-wraps.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#wrap">
+</use>
+</svg>
+<span>
+<strong>Fleet graphics and wraps</strong>
+<small>Put your business on the road</small>
+</span>
+</a>
+<a class="site-menu-link" href="./fleet.html#fleet">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#shield">
+</use>
+</svg>
+<span>
+<strong>First responder vehicles</strong>
+<small>Safety equipment and fleet upfits</small>
+</span>
+</a>
+</div>
+</details>
+<details class="site-mobile-group">
+<summary>Industrial<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</summary>
+<div class="site-mobile-group-body">
+<p class="site-menu-label">Protection at a larger scale</p>
+<a class="site-menu-link" href="./services/industrial-coatings.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#shield">
+</use>
+</svg>
+<span>
+<strong>Protective coatings</strong>
+<small>Equipment, facilities and infrastructure</small>
+</span>
+</a>
+<a class="site-menu-link" href="./services/industrial-coatings.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#building">
+</use>
+</svg>
+<span>
+<strong>On-site applications</strong>
+<small>Coating projects at your facility</small>
+</span>
+</a>
+<a class="site-menu-link" href="./dealer-government.html#government">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#clipboard">
+</use>
+</svg>
+<span>
+<strong>Government projects</strong>
+<small>Agency fleets and field work</small>
+</span>
+</a>
+</div>
+</details>
+<details class="site-mobile-group">
+<summary>Programs<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</summary>
+<div class="site-mobile-group-body">
+<p class="site-menu-label">A simpler way to work together</p>
+<a class="site-menu-link" href="./dealer-government.html#dealer">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#truck">
+</use>
+</svg>
+<span>
+<strong>Dealer program</strong>
+<small>Pre-sale add-ons and account setup</small>
+</span>
+</a>
+<a class="site-menu-link" href="./fleet.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#van">
+</use>
+</svg>
+<span>
+<strong>Fleet accounts</strong>
+<small>Consistent specs and scheduling</small>
+</span>
+</a>
+<a class="site-menu-link" href="./dealer-government.html#government">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#building">
+</use>
+</svg>
+<span>
+<strong>Government and municipal</strong>
+<small>Procurement and project inquiries</small>
+</span>
+</a>
+<a class="site-menu-link" href="./rebates.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#clipboard">
+</use>
+</svg>
+<span>
+<strong>Rebates and offers</strong>
+<small>Current manufacturer programs</small>
+</span>
+</a>
+<a class="site-menu-link" href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#clipboard">
+</use>
+</svg>
+<span>
+<strong>Partner portal</strong>
+<small>Access your existing account</small>
+</span>
+</a>
+</div>
+</details>
+<div class="site-mobile-utility">
+<a href="./gallery.html">Our work<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#arrow">
+</use>
+</svg>
+</a>
+<a href="./contact.html">Contact and directions<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#arrow">
+</use>
+</svg>
+</a>
+<a href="tel:+13013041419">301-304-1419</a>
+</div>
+</nav>
+</dialog>
+<noscript>
+<nav class="site-nav-fallback" aria-label="Site sections">
+<a href="./services/">Services</a>
+<a href="./fleet.html">Work vehicles</a>
+<a href="./services/industrial-coatings.html">Industrial</a>
+<a href="./dealer-government.html">Programs</a>
+</nav>
+</noscript>
+<!-- /cu:header -->
 
 <main id="main">
 <section class="page-hero page-hero--full">
-  <div class="page-hero-bg" style="background: linear-gradient(135deg, #0d1117 0%, #1a2332 40%, #203055 100%);"></div>
+  <div class="page-hero-bg" style="background: #1d1d1f;"></div>
   <div class="page-hero-overlay" style="background: linear-gradient(135deg, rgba(13,17,23,0.8) 0%, rgba(32,48,85,0.55) 100%);"></div>
   <div class="container page-hero-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -747,8 +1143,8 @@
     <h1 class="reveal">Fleet Upfitting <em>That Keeps Your Business Moving.</em></h1>
     <p class="page-hero-sub reveal reveal-delay-1">Pickup truck upfitting, van packages, DOT compliance, fleet branding, and bulk scheduling — one dedicated account for everything.</p>
     <div class="hero-ctas reveal reveal-delay-2">
-      <a href="./quote.html?audience=fleet" class="btn btn-primary btn-lg">Get a Quote</a>
-      <a href="tel:+13013041419" class="btn btn-outline btn-lg">Call for Volume Pricing</a>
+      <a href="./quote.html?audience=fleet" class="btn btn-primary btn-lg">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+      <a href="tel:+13013041419" class="btn btn-outline btn-lg">Call for Volume Pricing<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
     </div>
   </div>
 </section>
@@ -783,7 +1179,7 @@
       <div class="fleet-services-grid">
 
         <div class="fleet-service-card">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1a1a2e, #203055);">
+          <div class="fleet-service-card-img" style="background: #1d1d1f;">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="11" width="22" height="9" rx="1"/><path d="M1 11l3-7h12l3 7"/><circle cx="7" cy="20" r="2"/><circle cx="17" cy="20" r="2"/></svg>
             </div>
@@ -795,7 +1191,7 @@
         </div>
 
         <div class="fleet-service-card">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #162240, #2d4a80);">
+          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1d1d1f, #2b2b2e);">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="8" width="22" height="12" rx="2"/><path d="M1 12h22"/><circle cx="7" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
             </div>
@@ -807,7 +1203,7 @@
         </div>
 
         <div class="fleet-service-card">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1a2530, #2d4060);">
+          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1d1d1f, #2b2b2e);">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
             </div>
@@ -819,7 +1215,7 @@
         </div>
 
         <div class="fleet-service-card">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #201a10, #3d3010);">
+          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1d1d1f, #2b2b2e);">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
             </div>
@@ -831,7 +1227,7 @@
         </div>
 
         <a href="./services/commercial-wraps.html" class="fleet-service-card" style="text-decoration:none;">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1a1a2e, #203055);">
+          <div class="fleet-service-card-img" style="background: #1d1d1f;">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </div>
@@ -843,7 +1239,7 @@
         </a>
 
         <div class="fleet-service-card">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1a1a1a, #363636);">
+          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1d1d1f, #363636);">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
             </div>
@@ -864,7 +1260,7 @@
       <div class="fleet-services-grid" style="grid-template-columns: repeat(2,1fr);">
 
         <a href="./services/bedliner.html" class="fleet-service-card" style="text-decoration:none;">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #0d1a0d, #1a3020);">
+          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1d1d1f, #1d1d1f);">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="8" width="22" height="10" rx="1"/><path d="M5 8V5h14v3"/></svg>
             </div>
@@ -877,7 +1273,7 @@
         </a>
 
         <a href="./services/industrial-coatings.html" class="fleet-service-card" style="text-decoration:none;">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #0d1a10, #1a3018);">
+          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1d1d1f, #1a3018);">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
@@ -892,8 +1288,8 @@
       </div>
 
       <div style="text-align:center; margin-top: var(--space-8);">
-        <a href="./quote.html?type=commercial" class="btn btn-primary">Get a Commercial Fleet Quote</a>
-        <a href="./quote.html?type=commercial" class="btn btn-outline" style="margin-left: var(--space-4);">Call (301) 304-1419</a>
+        <a href="./quote.html?type=commercial" class="btn btn-primary">Get a Commercial Fleet Quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+        <a href="tel:+13013041419" class="btn btn-outline" style="margin-left: var(--space-4);">Call (301) 304-1419</a>
       </div>
     </div><!-- /panel-commercial -->
 
@@ -908,7 +1304,7 @@
       <div class="fleet-services-grid">
 
         <div class="fleet-service-card">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1a1a2e, #203055);">
+          <div class="fleet-service-card-img" style="background: #1d1d1f;">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="11" width="22" height="9" rx="1"/><path d="M1 11l3-7h12l3 7"/><circle cx="7" cy="20" r="2"/><circle cx="17" cy="20" r="2"/></svg>
             </div>
@@ -920,7 +1316,7 @@
         </div>
 
         <div class="fleet-service-card">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #162240, #2d4a80);">
+          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1d1d1f, #2b2b2e);">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="8" width="22" height="12" rx="2"/><path d="M1 12h22"/><circle cx="7" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
             </div>
@@ -956,7 +1352,7 @@
         </div>
 
         <a href="./services/commercial-wraps.html" class="fleet-service-card" style="text-decoration:none;">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1a1a2e, #203055);">
+          <div class="fleet-service-card-img" style="background: #1d1d1f;">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </div>
@@ -968,7 +1364,7 @@
         </a>
 
         <div class="fleet-service-card">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1a2535, #2d4060);">
+          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1a2535, #2b2b2e);">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
             </div>
@@ -1002,7 +1398,7 @@
         </a>
 
         <a href="./services/bedliner.html" class="fleet-service-card" style="text-decoration:none;">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #0d1a0d, #1a3020);">
+          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1d1d1f, #1d1d1f);">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="8" width="22" height="10" rx="1"/><path d="M5 8V5h14v3"/></svg>
             </div>
@@ -1015,7 +1411,7 @@
         </a>
 
         <a href="./services/window-tinting.html" class="fleet-service-card" style="text-decoration:none;">
-          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #0d1520, #162035);">
+          <div class="fleet-service-card-img" style="background: linear-gradient(135deg, #1d1d1f, #162035);">
             <div class="fleet-service-card-icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg>
             </div>
@@ -1030,7 +1426,7 @@
       </div>
 
       <div style="text-align:center; margin-top: var(--space-8);">
-        <a href="./quote.html?type=fleet" class="btn btn-primary">Get a Fleet Account Quote</a>
+        <a href="./quote.html?type=fleet" class="btn btn-primary">Get a Fleet Account Quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
         <a href="tel:+13013041419" class="btn btn-outline" style="margin-left: var(--space-4);">Call (301) 304-1419</a>
       </div>
     </div><!-- /panel-fleet -->
@@ -1065,7 +1461,7 @@ function showFleetPanel(id, btn) {
         </div>
         <div class="benefit-title">Truck Bed Racks</div>
         <p class="benefit-desc">Over-the-cab ladder racks for full-size pickups. Steel and aluminum options. Backrack headache racks protect your cab and add mounting points for lights and tools.</p>
-        <div style="margin-top: var(--space-4); font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color: var(--color-brand-text);">Brands: Backrack · Dee Zee · N-FAB</div>
+        <div style="margin-top: var(--space-4); font-family: var(--font-display); font-size: var(--text-xs); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-brand-text);">Brands: Backrack · Dee Zee · N-FAB</div>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon">
@@ -1073,7 +1469,7 @@ function showFleetPanel(id, btn) {
         </div>
         <div class="benefit-title">Van Roof Racks</div>
         <p class="benefit-desc">Transit, Sprinter, ProMaster, Express. Fold-down van racks, fixed roof racks, and side-access systems for HVAC, plumbing, electrical, and construction crews.</p>
-        <div style="margin-top: var(--space-4); font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color: var(--color-brand-text);">Brands: Rhino-Rack · Dee Zee · Kargomaster</div>
+        <div style="margin-top: var(--space-4); font-family: var(--font-display); font-size: var(--text-xs); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-brand-text);">Brands: Rhino-Rack · Dee Zee · Kargomaster</div>
       </div>
       <div class="benefit-card">
         <div class="benefit-icon">
@@ -1081,11 +1477,11 @@ function showFleetPanel(id, btn) {
         </div>
         <div class="benefit-title">Headache Racks & Guards</div>
         <p class="benefit-desc">Protect your cab glass from shifting cargo. Steel headache racks with optional tool mounts, light bars, and wiring pass-throughs. Available for most full-size pickups.</p>
-        <div style="margin-top: var(--space-4); font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color: var(--color-brand-text);">Brands: Backrack · Ranch Hand · Go Rhino</div>
+        <div style="margin-top: var(--space-4); font-family: var(--font-display); font-size: var(--text-xs); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-brand-text);">Brands: Backrack · Ranch Hand · Go Rhino</div>
       </div>
     </div>
     <div style="text-align:center; margin-top: var(--space-8);">
-      <a href="./quote.html?service=ladder-rack" class="btn btn-primary">Get a Rack Quote</a>
+      <a href="./quote.html?service=ladder-rack" class="btn btn-primary">Get a Rack Quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
     </div>
   </div>
 </section>
@@ -1102,8 +1498,8 @@ function showFleetPanel(id, btn) {
     <!-- Brand feature: Weatherguard -->
     <div style="display:grid; grid-template-columns:1fr 1fr; gap: var(--space-8); align-items:center; margin-bottom: var(--space-12); padding: var(--space-8); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-2xl);">
       <div>
-        <div style="font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color: var(--color-brand-text); margin-bottom: var(--space-2);">Authorized Installer</div>
-        <h3 style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color: var(--color-text); margin-bottom: var(--space-4);">WEATHERGUARD</h3>
+        <div style="font-family: var(--font-display); font-size: var(--text-xs); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-brand-text); margin-bottom: var(--space-2);">Authorized Installer</div>
+        <h3 style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-text); margin-bottom: var(--space-4);">WEATHERGUARD</h3>
         <p style="color: var(--color-text-secondary); line-height:1.7; margin-bottom: var(--space-6);">The industry standard for commercial vehicle organization. Weatherguard steel and aluminum shelving systems are built for daily punishment — the same systems used by utilities, municipalities, and national service fleets.</p>
         <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap: var(--space-3);">
           <li style="display:flex; align-items:center; gap: var(--space-3); font-size: var(--text-sm); color: var(--color-text-secondary);"><span style="width:6px; height:6px; border-radius:50%; background: var(--color-brand); flex-shrink:0;"></span>Steel + aluminum modular shelving units</li>
@@ -1113,37 +1509,37 @@ function showFleetPanel(id, btn) {
           <li style="display:flex; align-items:center; gap: var(--space-3); font-size: var(--text-sm); color: var(--color-text-secondary);"><span style="width:6px; height:6px; border-radius:50%; background: var(--color-brand); flex-shrink:0;"></span>Custom upfit plans for any van or truck</li>
         </ul>
       </div>
-      <div style="background: var(--color-surface-dark, #111827); border-radius: var(--radius-xl); padding: var(--space-8); display:flex; flex-direction:column; gap: var(--space-4);">
-        <div style="font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom: var(--space-2);">Common Van Builds</div>
+      <div class="band-ink" style="background: var(--color-surface-dark, #1d1d1f); border-radius: var(--radius-xl); padding: var(--space-8); display:flex; flex-direction:column; gap: var(--space-4);">
+        <div style="font-family: var(--font-display); font-size: var(--text-xs); font-weight:600; letter-spacing:0; text-transform:none; color:rgba(255,255,255,0.6); margin-bottom: var(--space-2);">Common Van Builds</div>
         <div style="display:flex; align-items:center; gap: var(--space-4); padding: var(--space-4); background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg);">
-          <div style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight:800; color:#fff;">HVAC</div>
+          <div style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight:600; color:#fff;">HVAC</div>
           <div style="font-size: var(--text-sm); color:rgba(255,255,255,0.6);">Shelving + pipe racks + parts bins + bulkhead</div>
         </div>
         <div style="display:flex; align-items:center; gap: var(--space-4); padding: var(--space-4); background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg);">
-          <div style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight:800; color:#fff;">ELEC</div>
+          <div style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight:600; color:#fff;">ELEC</div>
           <div style="font-size: var(--text-sm); color:rgba(255,255,255,0.6);">Wire spool rack + cabinet drawers + ladder rack</div>
         </div>
         <div style="display:flex; align-items:center; gap: var(--space-4); padding: var(--space-4); background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg);">
-          <div style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight:800; color:#fff;">PLMB</div>
+          <div style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight:600; color:#fff;">PLMB</div>
           <div style="font-size: var(--text-sm); color:rgba(255,255,255,0.6);">Tool drawers + parts shelves + floor liner</div>
         </div>
-        <a href="./quote.html?service=van-shelving" class="btn btn-primary" style="margin-top: var(--space-2); text-align:center;">Get a Van Upfit Quote</a>
+        <a href="./quote.html?service=van-shelving" class="btn btn-primary" style="margin-top: var(--space-2); text-align:center;">Get a Van Upfit Quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
       </div>
     </div>
 
     <!-- Brand feature: Kargomaster -->
     <div style="display:grid; grid-template-columns:1fr 1fr; gap: var(--space-8); align-items:center; padding: var(--space-8); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-2xl);">
-      <div style="background: var(--color-surface-dark, #111827); border-radius: var(--radius-xl); padding: var(--space-8);">
-        <div style="font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom: var(--space-4);">Entry Package</div>
-        <div style="font-family: var(--font-display); font-size: var(--text-5xl); font-weight:800; color:#fff; line-height:1; margin-bottom: var(--space-2);">Van Shelving</div>
+      <div class="band-ink" style="background: var(--color-surface-dark, #1d1d1f); border-radius: var(--radius-xl); padding: var(--space-8);">
+        <div style="font-family: var(--font-display); font-size: var(--text-xs); font-weight:600; letter-spacing:0; text-transform:none; color:rgba(255,255,255,0.6); margin-bottom: var(--space-4);">Entry Package</div>
+        <div style="font-family: var(--font-display); font-size: var(--text-5xl); font-weight:600; color:#fff; line-height:1; margin-bottom: var(--space-2);">Van Shelving</div>
         <div style="font-size: var(--text-sm); color:rgba(255,255,255,0.65); margin-bottom: var(--space-6);">Shelf units and mounting hardware · installed</div>
-        <div style="font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom: var(--space-4);">Full Upfit Packages</div>
-        <div style="font-family: var(--font-display); font-size: var(--text-5xl); font-weight:800; color:#fff; line-height:1; margin-bottom: var(--space-2);">Complete Build</div>
+        <div style="font-family: var(--font-display); font-size: var(--text-xs); font-weight:600; letter-spacing:0; text-transform:none; color:rgba(255,255,255,0.6); margin-bottom: var(--space-4);">Full Upfit Packages</div>
+        <div style="font-family: var(--font-display); font-size: var(--text-5xl); font-weight:600; color:#fff; line-height:1; margin-bottom: var(--space-2);">Complete Build</div>
         <div style="font-size: var(--text-sm); color:rgba(255,255,255,0.65);">Shelving + bulkhead + ladder rack + floor liner</div>
       </div>
       <div>
-        <div style="font-family: var(--font-display); font-size: var(--text-xs); font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color: var(--color-brand-text); margin-bottom: var(--space-2);">Authorized Installer</div>
-        <h3 style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight:800; letter-spacing:0.04em; text-transform:uppercase; color: var(--color-text); margin-bottom: var(--space-4);">KARGOMASTER</h3>
+        <div style="font-family: var(--font-display); font-size: var(--text-xs); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-brand-text); margin-bottom: var(--space-2);">Authorized Installer</div>
+        <h3 style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-text); margin-bottom: var(--space-4);">KARGOMASTER</h3>
         <p style="color: var(--color-text-secondary); line-height:1.7; margin-bottom: var(--space-6);">Kargomaster aluminum shelving systems are lighter than steel and engineered specifically for van bodies. Modular design means we can configure any layout — from simple shelf units to full cargo management with integrated lighting and power.</p>
         <ul style="list-style:none; padding:0; display:flex; flex-direction:column; gap: var(--space-3);">
           <li style="display:flex; align-items:center; gap: var(--space-3); font-size: var(--text-sm); color: var(--color-text-secondary);"><span style="width:6px; height:6px; border-radius:50%; background: var(--color-brand); flex-shrink:0;"></span>Lightweight aluminum — won't rust, won't corrode</li>
@@ -1253,8 +1649,8 @@ function showFleetPanel(id, btn) {
             <div class="portal-visual-top">
               <div class="portal-visual-dot" style="background: #ef4444;"></div>
               <div class="portal-visual-dot" style="background: #eab308;"></div>
-              <div class="portal-visual-dot" style="background: #22c55e;"></div>
-              <span style="font-family: var(--font-display); font-size: var(--text-xs); color: rgba(255,255,255,0.6); letter-spacing: 0.1em; text-transform: uppercase; margin-left: var(--space-3);">Upfit Portal — Fleet Dashboard</span>
+              <div class="portal-visual-dot" style="background: #1e6b3a;"></div>
+              <span style="font-family: var(--font-display); font-size: var(--text-xs); color: rgba(255,255,255,0.6); letter-spacing:0; text-transform:none; margin-left: var(--space-3);">Upfit Portal — Fleet Dashboard</span>
             </div>
             <div class="portal-visual-screen">
               <div class="portal-visual-row">
@@ -1281,16 +1677,16 @@ function showFleetPanel(id, btn) {
           </div>
           <div style="display: flex; align-items: center; justify-content: space-between; margin-top: var(--space-5); padding-top: var(--space-5); border-top: 1px solid rgba(255,255,255,0.08);">
             <div>
-              <span style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; color: #fff; display: block;">Tracked</span>
-              <span style="font-size: var(--text-xs); color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em;">Rebate Balance</span>
+              <span style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight:600; color: #fff; display: block;">Tracked</span>
+              <span style="font-size: var(--text-xs); color: rgba(255,255,255,0.6); text-transform:none; letter-spacing:0;">Rebate Balance</span>
             </div>
             <div>
-              <span style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; color: #4ade80; display: block;">12</span>
-              <span style="font-size: var(--text-xs); color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em;">Active Jobs</span>
+              <span style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight:600; color: #7fc79a; display: block;">12</span>
+              <span style="font-size: var(--text-xs); color: rgba(255,255,255,0.6); text-transform:none; letter-spacing:0;">Active Jobs</span>
             </div>
             <div>
-              <span style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; color: #a5b4fc; display: block;">3</span>
-              <span style="font-size: var(--text-xs); color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em;">Pending</span>
+              <span style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight:600; color: #a1a1a6; display: block;">3</span>
+              <span style="font-size: var(--text-xs); color: rgba(255,255,255,0.6); text-transform:none; letter-spacing:0;">Pending</span>
             </div>
           </div>
         </div>
@@ -1388,8 +1784,8 @@ function showFleetPanel(id, btn) {
     <h2 class="reveal">Ready to build your fleet account?</h2>
     <p class="reveal reveal-delay-1">Open a fleet account today and get volume pricing, priority scheduling, and a dedicated account manager for all your upfitting needs.</p>
     <div class="cta-banner-actions reveal reveal-delay-2">
-      <a href="./quote.html?audience=fleet" class="btn btn-primary btn-lg">Get Fleet Quote</a>
-      <a href="tel:+13013041419" class="btn btn-outline btn-lg">Call for Pricing</a>
+      <a href="./quote.html?audience=fleet" class="btn btn-primary btn-lg">Get Fleet Quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+      <a href="tel:+13013041419" class="btn btn-outline btn-lg">Call for Pricing<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
     </div>
   </div>
 </section>
@@ -1397,12 +1793,86 @@ function showFleetPanel(id, btn) {
 <!-- FOOTER -->
 </main>
 
-<footer class="footer" role="contentinfo"><div class="container"><div class="footer-grid">
-<div><a href="./index.html" class="footer-brand-logo"><div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div><div class="footer-brand-name">Capital<span>Upfitters</span></div></a><p class="footer-tagline">Family-owned vehicle upfitting in Rockville, MD. Authorized Patriot Liner dealer.</p><div class="footer-contact"><a href="tel:+13013041419" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a><div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel St, Rockville MD 20852</div></div></div>
-<div><div class="footer-col-title">Services</div><ul class="footer-links"><li><a href="./services/bedliner.html">Spray-On Bedliners</a></li><li><a href="./services/hitches.html">Hitches & Towing</a></li><li><a href="./services/ceramic-coating.html">Ceramic Coating</a></li><li><a href="./services/undercoating.html">Undercoating</a></li><li><a href="./services/tonneau.html">Tonneau Covers</a></li><li><a href="./services/running-boards.html">Running Boards</a></li></ul></div>
-<div><div class="footer-col-title">Business</div><ul class="footer-links"><li><a href="./fleet.html">Fleet Upfitting</a></li><li><a href="./dealer-government.html">Dealer & Gov</a></li><li><a href="./gallery.html">Gallery</a></li><li><a href="./quote.html">Get a Quote</a></li><li><a href="https://upfit-portal-58190af9.base44.app" target="_blank" rel="noopener noreferrer">Upfit Portal</a></li></ul></div>
-<div><div class="footer-col-title">Locations</div><ul class="footer-links"><li><a href="./locations/rockville-md.html">Rockville, MD</a></li><li><a href="./locations/bethesda-md.html">Bethesda, MD</a></li><li><a href="./locations/silver-spring-md.html">Silver Spring, MD</a></li><li><a href="./locations/gaithersburg-md.html">Gaithersburg, MD</a></li></ul></div>
-</div><div class="footer-bottom"><p class="footer-copyright">&copy; 2026 Capital Auto Upfitters & Protective Coatings. All rights reserved.</p><nav class="footer-legal"><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a></nav><p class="footer-pplx"><a href="https://IVANKODevelopment.com" target="_blank" rel="noopener noreferrer">Built by IVANKODev</a></p></div></div></footer>
+<!-- cu:footer -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="./index.html" class="footer-brand-logo" aria-label="Capital Upfitters">
+          <div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div>
+          <div class="footer-brand-name">Capital<span>Upfitters</span></div>
+        </a>
+        <p class="footer-tagline">Family-owned vehicle upfitting shop in Rockville, MD. Serving the DMV region since 2015. Authorized Patriot Liner dealer.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/capitalupfitters" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/CapitalUpfitters" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://youtube.com/@capitalupfitters" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+          </a>
+        </div>
+        <div class="footer-contact">
+          <a href="tel:+13013041419" class="footer-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            (301) 304-1419
+          </a>
+          <a href="mailto:CapitalUpfitters@gmail.com" class="footer-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            CapitalUpfitters@gmail.com
+          </a>
+          <div class="footer-contact-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            12019 Nebel St, Rockville MD 20852
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="./services/bedliner.html">Spray-On Bedliners</a></li>
+          <li><a href="./services/hitches.html">Hitches & Towing</a></li>
+          <li><a href="./services/ceramic-coating.html">Ceramic Coating</a></li>
+          <li><a href="./services/undercoating.html">Undercoating</a></li>
+          <li><a href="./services/tonneau.html">Tonneau Covers</a></li>
+          <li><a href="./services/running-boards.html">Running Boards</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Business</div>
+        <ul class="footer-links">
+          <li><a href="./fleet.html">Fleet Upfitting</a></li>
+          <li><a href="./dealer-government.html">Dealer Program</a></li>
+          <li><a href="./dealer-government.html#government">Government</a></li>
+          <li><a href="./gallery.html">Gallery</a></li>
+          <li><a href="./quote.html">Get a quote</a></li>
+          <li><a href="https://upfit-portal-58190af9.base44.app" target="_blank" rel="noopener noreferrer">Upfit Portal</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Locations</div>
+        <ul class="footer-links">
+          <li><a href="./locations/rockville-md.html">Rockville, MD</a></li>
+          <li><a href="./locations/bethesda-md.html">Bethesda, MD</a></li>
+          <li><a href="./locations/silver-spring-md.html">Silver Spring, MD</a></li>
+          <li><a href="./locations/gaithersburg-md.html">Gaithersburg, MD</a></li>
+          <li><a href="./contact.html">Hours & Directions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2026 Capital Auto Upfitters & Protective Coatings. All rights reserved.</p>
+      <nav class="footer-legal" aria-label="Legal links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+      </nav>
+      <p class="footer-pplx"><a href="https://IVANKODevelopment.com" target="_blank" rel="noopener noreferrer">Built by IVANKODev</a></p>
+    </div>
+  </div>
+</footer>
+<!-- /cu:footer -->
 
 <!-- STICKY MOBILE CTA -->
 <script>
@@ -1485,7 +1955,7 @@ document.querySelectorAll('.faq-question').forEach(btn => {
 <!-- Mobile action bar (<=768px): Call / Text / Get a Quote -->
 <nav class="mobile-action-bar" aria-label="Quick actions">
   <a href="tel:+13013041419" class="mab-btn mab-call"><svg class="mab-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a>
-  <a href="./quote.html?audience=fleet" class="mab-btn mab-quote">Get a Quote</a>
+  <a href="./quote.html?audience=fleet" class="mab-btn mab-quote">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
 </nav>
 </body>
 </html>

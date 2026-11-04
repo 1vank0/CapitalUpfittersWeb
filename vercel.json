@@ -57,6 +57,20 @@
           "value": "noindex, nofollow"
         }
       ]
+    },
+    {
+      "source": "/partials/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
-  ]
+  ],
+  "git": {
+    "deploymentEnabled": {
+      "redesign/ui-ux-polish-2026-11-02": true
+    }
+  }
 }

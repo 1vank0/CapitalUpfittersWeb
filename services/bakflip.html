@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  Capital Upfitters — BAKFlip MX4 brand/model page (services/bakflip.html)
+  Built by IVANKODev (https://IVANKODevelopment.com)
+
+  ┌─ TEMPLATE FOR THE OTHER BRAND PAGES ──────────────────────────────────────────┐
+  │ To make a Retrax / TruXedo / Extang page: copy this file, then change only the │
+  │ items marked [CLONE]. Everything else (head, chrome, class names, section      │
+  │ order, JS) stays as is.                                                         │
+  │   1. <title>, meta description, canonical, og:/twitter: tags   (head)           │
+  │   2. JSON-LD: breadcrumb item 4, Service name/description, FAQPage questions    │
+  │      → the FAQ in the page and in the schema MUST match word for word           │
+  │   3. Hero: breadcrumb, badge, h1, sub, quote link (?service=…)                  │
+  │   4. Stats strip, cover-type cards, "why" cards, model table, process, FAQ      │
+  │   5. Related cards + the quote link in the mobile action bar                    │
+  │   6. Add the page to sitemap.xml, and link it from services/tonneau.html        │
+  │ Prices: cells with data-price-key are filled by /price-feed.js from the backend │
+  │ (capital-upfitters-next, src/data/prices.ts). Never hard-code a price here.     │
+  │ Header: managed by scripts/sync-chrome.mjs between the cu:header markers —      │
+  │ never edit between them; run `npm run sync-chrome` after copying.               │
+  └────────────────────────────────────────────────────────────────────────────────┘
+-->
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="shortcut icon" href="../favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- [CLONE] title / description / canonical / social tags -->
+<title>BAKFlip MX4 Installed in Rockville MD | Capital Upfitters</title>
+<meta name="description" content="BAKFlip MX4 hard folding tonneau covers installed in Rockville, MD. Compare the MX4, EZ-Lift and TS, then request installed pricing for your truck.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.capitalupfitters.com/services/bakflip.html">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.capitalupfitters.com/services/bakflip.html">
+<meta property="og:title" content="BAKFlip MX4 Installed in Rockville MD | Capital Upfitters">
+<meta property="og:description" content="BAKFlip MX4 hard folding tonneau covers installed in Rockville, MD. Compare the MX4, EZ-Lift and TS, then request installed pricing for your truck.">
+<meta property="og:image" content="https://www.capitalupfitters.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Capital Upfitters — Vehicle Upfitting Rockville MD">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BAKFlip MX4 Installed in Rockville MD | Capital Upfitters">
+<meta name="twitter:description" content="BAKFlip MX4 hard folding tonneau covers installed in Rockville, MD. Compare the MX4, EZ-Lift and TS, then request installed pricing for your truck.">
+<meta name="twitter:image" content="https://www.capitalupfitters.com/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fonts (async; display=swap on Google CSS URL) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap"></noscript>
+<!-- Global cascade: base → style → brand-tokens → ux-10k (later wins). See DESIGN.md. -->
+<link rel="stylesheet" href="../base.css">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../brand-tokens.css">
+<link rel="stylesheet" href="../ux-10k.css">
+
+<!-- STRUCTURED DATA — one @graph: BreadcrumbList + Service + FAQPage. [CLONE] all three.
+     No Offer/price in the Service until real installed prices exist. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.capitalupfitters.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.capitalupfitters.com/services/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Tonneau Covers",
+          "item": "https://www.capitalupfitters.com/services/tonneau.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "BAKFlip MX4",
+          "item": "https://www.capitalupfitters.com/services/bakflip.html"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "BAKFlip MX4 Installation",
+      "description": "Professional installation of BAKFlip MX4, MX4 EZ-Lift and MX4 TS hard folding tonneau covers in Rockville, MD.",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Capital Upfitters",
+        "telephone": "+13013041419",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "12019 Nebel St",
+          "addressLocality": "Rockville",
+          "addressRegion": "MD",
+          "postalCode": "20852"
+        }
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Rockville",
+          "sameAs": "https://en.wikipedia.org/wiki/Rockville,_Maryland"
+        },
+        {
+          "@type": "City",
+          "name": "Bethesda",
+          "sameAs": "https://en.wikipedia.org/wiki/Bethesda,_Maryland"
+        },
+        {
+          "@type": "City",
+          "name": "Silver Spring",
+          "sameAs": "https://en.wikipedia.org/wiki/Silver_Spring,_Maryland"
+        },
+        {
+          "@type": "City",
+          "name": "Gaithersburg",
+          "sameAs": "https://en.wikipedia.org/wiki/Gaithersburg,_Maryland"
+        },
+        {
+          "@type": "City",
+          "name": "Potomac",
+          "sameAs": "https://en.wikipedia.org/wiki/Potomac,_Maryland"
+        },
+        {
+          "@type": "City",
+          "name": "North Bethesda",
+          "sameAs": "https://en.wikipedia.org/wiki/North_Bethesda,_Maryland"
+        }
+      ],
+      "creator": {
+        "@type": "Organization",
+        "name": "IVANKODev",
+        "url": "https://IVANKODevelopment.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which BAKFlip MX4 model should I choose?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The standard MX4 suits everyday security. Pick the EZ-Lift if you open the cover often and want easier lifting. Pick the TS if you want to mount racks and gear on its T-slot rails."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will a BAKFlip MX4 fit my truck?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "BAKFlip covers are made for the popular trucks, including the F-150, Silverado, Ram, Tundra, Tacoma, Colorado and Ranger. We confirm your bed size, cab configuration and any toolbox or rails before we order, so the cover fits the first time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does installation involve drilling?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not on most trucks. The cover mounts with clamps or stake-hole hardware, so no drilling is needed. We confirm this for your truck when we check the fit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does installation take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most tonneau cover installations take 1–2 hours, and we can usually finish in a single visit at our Rockville shop."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I still use the full bed with the cover on?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Folding covers can be pushed fully forward for full bed access, then closed again when you are done."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What warranty does the BAKFlip MX4 have?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Warranty terms depend on the exact MX4 version and part number. We confirm the applicable manufacturer coverage with your quote."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- PAGE STYLES. The first block is shared with the other service pages (copied from
+     tonneau.html). The "BRAND PAGE ADDITIONS" block at the end is new: model table,
+     current-card highlight, four-up "why" grid. Keep it when cloning. -->
+<style>
+.svc-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: #1d1d1f;
+}
+.svc-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.benefit-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-6); margin-top: var(--space-12); }
+.benefit-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: var(--space-8) var(--space-6); text-align: center; transition: all var(--transition-base); }
+.benefit-card:hover { border-color: var(--color-brand); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.benefit-icon { width: 56px; height: 56px; border-radius: var(--radius-lg); background: var(--color-brand-soft); color: var(--color-brand-text); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-5); }
+.benefit-title { font-family: var(--font-display); font-size: var(--text-lg); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-text); margin-bottom: var(--space-3); }
+.benefit-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
+
+/* Cover brand cards */
+.cover-types { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); margin-top: var(--space-10); }
+.cover-card { border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow: hidden; transition: all var(--transition-base); background: var(--color-bg); position: relative; }
+.cover-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--color-brand); }
+.cover-card-header { padding: var(--space-6); background: var(--color-surface); display: flex; align-items: center; gap: var(--space-4); border-bottom: 1px solid var(--color-border); }
+.cover-card-icon { width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-brand-soft); color: var(--color-brand-text); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cover-card-brand { font-family: var(--font-display); font-size: var(--text-xs); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-text-muted); margin-bottom: 2px; }
+.cover-card-name { font-family: var(--font-display); font-size: var(--text-lg); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-text); line-height: 1.1; }
+.cover-card-price { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 600; color: var(--color-brand-text); text-transform:none; letter-spacing:0; margin-top: 4px; }
+.cover-card-body { padding: var(--space-6); }
+.cover-card-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; margin-bottom: var(--space-4); }
+.cover-card-specs { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--color-border); }
+.cover-spec { display: flex; align-items: center; gap: var(--space-3); font-size: var(--text-xs); color: var(--color-text-secondary); }
+.cover-spec-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--color-brand); flex-shrink: 0; }
+.cover-card-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.cover-tag { font-family: var(--font-display); font-size: var(--text-xs); font-weight: 600; letter-spacing:0; text-transform:none; padding: 0.2rem 0.6rem; border-radius: var(--radius-pill); background: var(--color-surface-2); color: var(--color-text-muted); }
+.cover-tag.accent { background: var(--color-brand-soft); color: var(--color-brand-text); }
+@media (max-width: 680px) { .cover-types { grid-template-columns: 1fr; } }
+
+/* Process */
+.process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--space-5); margin-top: var(--space-10); position: relative; }
+.process-steps::before { content: ''; position: absolute; top: 28px; left: calc(12.5% + 28px); right: calc(12.5% + 28px); height: 1px; background: var(--color-border); }
+.process-step { text-align: center; }
+.process-num { width: 56px; height: 56px; border-radius: 50%; background: var(--color-brand); color: #fff; font-family: var(--font-display); font-size: var(--text-xl); font-weight:600; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-5); position: relative; z-index: 1; }
+.process-title { font-family: var(--font-display); font-size: var(--text-base); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-text); margin-bottom: var(--space-2); }
+.process-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; }
+
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow: hidden; margin-top: var(--space-10); }
+.faq-item { border-bottom: 1px solid var(--color-border); }
+.faq-item:last-child { border-bottom: none; }
+.faq-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-6) var(--space-8); background: none; border: none; cursor: pointer; text-align: left; transition: background var(--transition-fast); }
+.faq-btn:hover { background: var(--color-surface); }
+.faq-question { font-family: var(--font-display); font-size: var(--text-lg); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-text); line-height: 1.3; }
+.faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--color-surface-2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--transition-base); color: var(--color-text-muted); }
+.faq-btn[aria-expanded="true"] .faq-icon { background: var(--color-brand); color: #fff; transform: rotate(45deg); }
+.faq-answer { display: none; padding: 0 var(--space-8) var(--space-6); }
+.faq-answer.open { display: block; }
+.faq-answer p { font-size: var(--text-base); color: var(--color-text-secondary); line-height: 1.7; }
+
+/* Related */
+.related-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-5); margin-top: var(--space-10); }
+.related-card { display: flex; flex-direction: column; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow: hidden; text-decoration: none; transition: all var(--transition-base); }
+.related-card:hover { border-color: var(--color-brand); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.related-card-bg { height: 140px; display: flex; align-items: center; justify-content: center; }
+.related-card-body { padding: var(--space-5) var(--space-6); flex: 1; display: flex; flex-direction: column; }
+.related-card-title { font-family: var(--font-display); font-size: var(--text-lg); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-text); margin-bottom: var(--space-2); }
+.related-card-desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.5; flex: 1; margin-bottom: var(--space-4); }
+.related-card-link { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-display); font-size: var(--text-xs); font-weight:600; letter-spacing:0; text-transform:none; color: var(--color-brand-text); transition: gap var(--transition-fast); }
+.related-card:hover .related-card-link { gap: var(--space-3); }
+
+@media (max-width: 900px) {
+  .benefit-cards, .cover-types, .related-grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+  .process-steps { grid-template-columns: repeat(2,1fr); }
+  .process-steps::before { display: none; }
+}
+@media (max-width: 560px) {
+  .process-steps { grid-template-columns: 1fr; }
+  .faq-btn { padding: var(--space-5); }
+  .faq-answer { padding: 0 var(--space-5) var(--space-5); }
+}
+
+/* ── BRAND PAGE ADDITIONS ─────────────────────────────────────────────────── */
+/* Cover-type comparison: the card for the type this page covers */
+.cover-card.is-current { border-color: var(--brand-ink); }
+.cover-card-here { font-family: var(--font-display); font-size: var(--text-xs); font-weight: 600; color: var(--color-text-muted); margin-top: var(--space-1); }
+.cover-card-link { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); font-weight: 600; color: var(--brand-ink); margin-top: var(--space-4); text-decoration: underline; text-underline-offset: 3px; }
+
+/* "Why owners pick it": four cards instead of tonneau's three */
+.benefit-cards.bf-four { grid-template-columns: repeat(4, 1fr); }
+
+/* Model comparison table. Wrapper scrolls sideways on narrow screens. */
+.bf-table-wrap { overflow-x: auto; margin-top: var(--space-10); border: 1px solid var(--color-border); border-radius: var(--radius-xl); background: var(--color-bg); }
+.bf-table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: var(--text-sm); text-align: left; }
+.bf-table th, .bf-table td { padding: var(--space-4) var(--space-5); vertical-align: top; }
+.bf-table thead th { background: var(--color-surface); font-family: var(--font-display); font-weight: 600; color: var(--color-text); }
+.bf-table tbody th { font-weight: 500; color: var(--color-text-muted); width: 22%; }
+.bf-table tbody tr { border-top: 1px solid var(--color-border); }
+.bf-price { font-family: var(--font-display); font-weight: 600; font-variant-numeric: tabular-nums; color: var(--color-text); }
+.bf-note { max-width: 640px; margin: var(--space-6) auto 0; text-align: center; font-size: var(--text-sm); color: var(--color-text-muted); }
+@media (max-width: 1100px) { .benefit-cards.bf-four { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px)  { .benefit-cards.bf-four { grid-template-columns: 1fr; } }
+</style>
+
+<script src="/attribution.js" defer></script>
+<script src="/lead-form.js" defer></script>
+<script src="/analytics.js" defer></script>
+<!-- cu:ui -->
+<link rel="stylesheet" href="../ui-system.css?v=32e3a50545">
+<script src="../site-nav.js?v=545170a9ed" defer></script>
+<script src="../media-client.js?v=f6f4bc752d" defer></script>
+<!-- /cu:ui -->
+<link rel="stylesheet" href="../partner-landing.css">
+<script src="../partner-landing.js" defer></script>
+</head>
+<body class="service-page">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- HEADER (announce bar + nav + mobile menu). Stamped from partials/header.html by
+     scripts/sync-chrome.mjs. Do not edit between the markers. -->
+<!-- cu:header -->
+<!-- Shared UI: authored here and stamped by npm run sync-chrome. -->
+<nav class="nav site-nav" id="nav" aria-label="Main navigation" data-site-nav>
+ <div class="nav-inner site-nav-inner">
+<a href="../index.html" class="nav-logo site-brand" aria-label="Capital Upfitters home">
+<span class="nav-logo-mark" aria-hidden="true">
+</span>
+<span class="site-brand-text">Capital <span>Upfitters</span>
+</span>
+</a>
+<ul class="site-nav-links">
+<li class="site-nav-item" data-nav-item>
+<button class="site-nav-trigger" id="nav-trigger-services" type="button" data-nav-trigger aria-expanded="false" aria-controls="nav-panel-services">Services<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</button>
+<div class="site-menu-panel site-menu-panel--services" id="nav-panel-services" aria-labelledby="nav-trigger-services" hidden>
+<p class="site-menu-label">Truck essentials</p>
+<a class="site-menu-link" href="../services/bedliner.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#bedliner">
+</use>
+</svg>
+<span>
+<strong>Spray-on bedliners</strong>
+<small>Patriot Liner protection</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/tonneau.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#cover">
+</use>
+</svg>
+<span>
+<strong>Tonneau covers</strong>
+<small>Hard, soft and retractable</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/running-boards.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#step">
+</use>
+</svg>
+<span>
+<strong>Running boards</strong>
+<small>Fixed steps and power steps</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/hitches.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#hitch">
+</use>
+</svg>
+<span>
+<strong>Hitches and towing</strong>
+<small>Receivers, wiring and hidden hitches</small>
+</span>
+</a>
+<p class="site-menu-label">Vehicle protection</p>
+<a class="site-menu-link" href="../services/undercoating.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#shield">
+</use>
+</svg>
+<span>
+<strong>Undercoating</strong>
+<small>Rust protection for your underbody</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/ceramic-coating.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#sparkle">
+</use>
+</svg>
+<span>
+<strong>Ceramic coating and PPF</strong>
+<small>Paint protection and gloss</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/window-tinting.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#tint">
+</use>
+</svg>
+<span>
+<strong>Window tinting</strong>
+<small>Heat, glare and UV control</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/mobile-detailing.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#droplets">
+</use>
+</svg>
+<span>
+<strong>Mobile detailing</strong>
+<small>At your home or workplace</small>
+</span>
+</a>
+<a class="site-menu-all" href="../services/">Explore all services<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#arrow">
+</use>
+</svg>
+</a>
+</div>
+</li>
+<li class="site-nav-item" data-nav-item>
+<button class="site-nav-trigger" id="nav-trigger-work" type="button" data-nav-trigger aria-expanded="false" aria-controls="nav-panel-work">Work Vehicles<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</button>
+<div class="site-menu-panel site-menu-panel--work" id="nav-panel-work" aria-labelledby="nav-trigger-work" hidden>
+<p class="site-menu-label">Built around your work</p>
+<a class="site-menu-link" href="../fleet.html#commercial">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#van">
+</use>
+</svg>
+<span>
+<strong>Vans and commercial fleets</strong>
+<small>Partitions, shelving and ladder racks</small>
+</span>
+</a>
+<a class="site-menu-link" href="../fleet.html#commercial">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#truck">
+</use>
+</svg>
+<span>
+<strong>Work truck builds</strong>
+<small>Storage, access and accessories</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/toolboxes.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#toolbox">
+</use>
+</svg>
+<span>
+<strong>Toolboxes and storage</strong>
+<small>Keep equipment organized</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/commercial-wraps.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#wrap">
+</use>
+</svg>
+<span>
+<strong>Fleet graphics and wraps</strong>
+<small>Put your business on the road</small>
+</span>
+</a>
+<a class="site-menu-link" href="../fleet.html#fleet">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#shield">
+</use>
+</svg>
+<span>
+<strong>First responder vehicles</strong>
+<small>Safety equipment and fleet upfits</small>
+</span>
+</a>
+</div>
+</li>
+<li class="site-nav-item" data-nav-item>
+<button class="site-nav-trigger" id="nav-trigger-industrial" type="button" data-nav-trigger aria-expanded="false" aria-controls="nav-panel-industrial">Industrial<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</button>
+<div class="site-menu-panel site-menu-panel--industrial" id="nav-panel-industrial" aria-labelledby="nav-trigger-industrial" hidden>
+<p class="site-menu-label">Protection at a larger scale</p>
+<a class="site-menu-link" href="../services/industrial-coatings.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#shield">
+</use>
+</svg>
+<span>
+<strong>Protective coatings</strong>
+<small>Equipment, facilities and infrastructure</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/industrial-coatings.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#building">
+</use>
+</svg>
+<span>
+<strong>On-site applications</strong>
+<small>Coating projects at your facility</small>
+</span>
+</a>
+<a class="site-menu-link" href="../dealer-government.html#government">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#clipboard">
+</use>
+</svg>
+<span>
+<strong>Government projects</strong>
+<small>Agency fleets and field work</small>
+</span>
+</a>
+</div>
+</li>
+<li class="site-nav-item" data-nav-item>
+<button class="site-nav-trigger" id="nav-trigger-programs" type="button" data-nav-trigger aria-expanded="false" aria-controls="nav-panel-programs">Programs<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</button>
+<div class="site-menu-panel site-menu-panel--programs" id="nav-panel-programs" aria-labelledby="nav-trigger-programs" hidden>
+<p class="site-menu-label">A simpler way to work together</p>
+<a class="site-menu-link" href="../dealer-government.html#dealer">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#truck">
+</use>
+</svg>
+<span>
+<strong>Dealer program</strong>
+<small>Pre-sale add-ons and account setup</small>
+</span>
+</a>
+<a class="site-menu-link" href="../fleet.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#van">
+</use>
+</svg>
+<span>
+<strong>Fleet accounts</strong>
+<small>Consistent specs and scheduling</small>
+</span>
+</a>
+<a class="site-menu-link" href="../dealer-government.html#government">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#building">
+</use>
+</svg>
+<span>
+<strong>Government and municipal</strong>
+<small>Procurement and project inquiries</small>
+</span>
+</a>
+<a class="site-menu-link" href="../rebates.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#clipboard">
+</use>
+</svg>
+<span>
+<strong>Rebates and offers</strong>
+<small>Current manufacturer programs</small>
+</span>
+</a>
+<a class="site-menu-link" href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#clipboard">
+</use>
+</svg>
+<span>
+<strong>Partner portal</strong>
+<small>Access your existing account</small>
+</span>
+</a>
+</div>
+</li>
+</ul>
+<div class="site-nav-actions">
+<a class="btn btn-secondary btn-sm site-call" href="tel:+13013041419" aria-label="Call Capital Upfitters at 301-304-1419">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#phone">
+</use>
+</svg>
+<span>Call</span>
+</a>
+<a class="btn btn-primary btn-sm site-quote" href="../quote.html">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+<button class="site-menu-toggle" id="site-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-mobile-panel">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#menu">
+</use>
+</svg>
+</button>
+</div>
+</div>
+</nav>
+<dialog class="site-mobile" id="site-mobile-panel" aria-labelledby="site-mobile-title" aria-modal="true">
+<div class="site-mobile-top">
+<h2 id="site-mobile-title">Explore</h2>
+<a class="btn btn-secondary btn-sm" href="tel:+13013041419">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#phone">
+</use>
+</svg>Call</a>
+<a class="btn btn-primary btn-sm" href="../quote.html">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+<button class="site-menu-toggle" id="site-menu-close" type="button" aria-label="Close menu">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#close">
+</use>
+</svg>
+</button>
+</div>
+<nav class="site-mobile-links" aria-label="Mobile navigation">
+<details class="site-mobile-group">
+<summary>Services<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</summary>
+<div class="site-mobile-group-body">
+<p class="site-menu-label">Truck essentials</p>
+<a class="site-menu-link" href="../services/bedliner.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#bedliner">
+</use>
+</svg>
+<span>
+<strong>Spray-on bedliners</strong>
+<small>Patriot Liner protection</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/tonneau.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#cover">
+</use>
+</svg>
+<span>
+<strong>Tonneau covers</strong>
+<small>Hard, soft and retractable</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/running-boards.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#step">
+</use>
+</svg>
+<span>
+<strong>Running boards</strong>
+<small>Fixed steps and power steps</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/hitches.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#hitch">
+</use>
+</svg>
+<span>
+<strong>Hitches and towing</strong>
+<small>Receivers, wiring and hidden hitches</small>
+</span>
+</a>
+<p class="site-menu-label">Vehicle protection</p>
+<a class="site-menu-link" href="../services/undercoating.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#shield">
+</use>
+</svg>
+<span>
+<strong>Undercoating</strong>
+<small>Rust protection for your underbody</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/ceramic-coating.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#sparkle">
+</use>
+</svg>
+<span>
+<strong>Ceramic coating and PPF</strong>
+<small>Paint protection and gloss</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/window-tinting.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#tint">
+</use>
+</svg>
+<span>
+<strong>Window tinting</strong>
+<small>Heat, glare and UV control</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/mobile-detailing.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#droplets">
+</use>
+</svg>
+<span>
+<strong>Mobile detailing</strong>
+<small>At your home or workplace</small>
+</span>
+</a>
+<a class="site-menu-all" href="../services/">Explore all services<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#arrow">
+</use>
+</svg>
+</a>
+</div>
+</details>
+<details class="site-mobile-group">
+<summary>Work Vehicles<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</summary>
+<div class="site-mobile-group-body">
+<p class="site-menu-label">Built around your work</p>
+<a class="site-menu-link" href="../fleet.html#commercial">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#van">
+</use>
+</svg>
+<span>
+<strong>Vans and commercial fleets</strong>
+<small>Partitions, shelving and ladder racks</small>
+</span>
+</a>
+<a class="site-menu-link" href="../fleet.html#commercial">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#truck">
+</use>
+</svg>
+<span>
+<strong>Work truck builds</strong>
+<small>Storage, access and accessories</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/toolboxes.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#toolbox">
+</use>
+</svg>
+<span>
+<strong>Toolboxes and storage</strong>
+<small>Keep equipment organized</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/commercial-wraps.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#wrap">
+</use>
+</svg>
+<span>
+<strong>Fleet graphics and wraps</strong>
+<small>Put your business on the road</small>
+</span>
+</a>
+<a class="site-menu-link" href="../fleet.html#fleet">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#shield">
+</use>
+</svg>
+<span>
+<strong>First responder vehicles</strong>
+<small>Safety equipment and fleet upfits</small>
+</span>
+</a>
+</div>
+</details>
+<details class="site-mobile-group">
+<summary>Industrial<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</summary>
+<div class="site-mobile-group-body">
+<p class="site-menu-label">Protection at a larger scale</p>
+<a class="site-menu-link" href="../services/industrial-coatings.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#shield">
+</use>
+</svg>
+<span>
+<strong>Protective coatings</strong>
+<small>Equipment, facilities and infrastructure</small>
+</span>
+</a>
+<a class="site-menu-link" href="../services/industrial-coatings.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#building">
+</use>
+</svg>
+<span>
+<strong>On-site applications</strong>
+<small>Coating projects at your facility</small>
+</span>
+</a>
+<a class="site-menu-link" href="../dealer-government.html#government">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#clipboard">
+</use>
+</svg>
+<span>
+<strong>Government projects</strong>
+<small>Agency fleets and field work</small>
+</span>
+</a>
+</div>
+</details>
+<details class="site-mobile-group">
+<summary>Programs<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#chevron">
+</use>
+</svg>
+</summary>
+<div class="site-mobile-group-body">
+<p class="site-menu-label">A simpler way to work together</p>
+<a class="site-menu-link" href="../dealer-government.html#dealer">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#truck">
+</use>
+</svg>
+<span>
+<strong>Dealer program</strong>
+<small>Pre-sale add-ons and account setup</small>
+</span>
+</a>
+<a class="site-menu-link" href="../fleet.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#van">
+</use>
+</svg>
+<span>
+<strong>Fleet accounts</strong>
+<small>Consistent specs and scheduling</small>
+</span>
+</a>
+<a class="site-menu-link" href="../dealer-government.html#government">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#building">
+</use>
+</svg>
+<span>
+<strong>Government and municipal</strong>
+<small>Procurement and project inquiries</small>
+</span>
+</a>
+<a class="site-menu-link" href="../rebates.html">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#clipboard">
+</use>
+</svg>
+<span>
+<strong>Rebates and offers</strong>
+<small>Current manufacturer programs</small>
+</span>
+</a>
+<a class="site-menu-link" href="https://upfit-portal-58190af9.base44.app/PortalChoice" target="_blank" rel="noopener noreferrer">
+<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#clipboard">
+</use>
+</svg>
+<span>
+<strong>Partner portal</strong>
+<small>Access your existing account</small>
+</span>
+</a>
+</div>
+</details>
+<div class="site-mobile-utility">
+<a href="../gallery.html">Our work<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#arrow">
+</use>
+</svg>
+</a>
+<a href="../contact.html">Contact and directions<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<use href="/assets/ui-icons-v2.svg#arrow">
+</use>
+</svg>
+</a>
+<a href="tel:+13013041419">301-304-1419</a>
+</div>
+</nav>
+</dialog>
+<noscript>
+<nav class="site-nav-fallback" aria-label="Site sections">
+<a href="../services/">Services</a>
+<a href="../fleet.html">Work vehicles</a>
+<a href="../services/industrial-coatings.html">Industrial</a>
+<a href="../dealer-government.html">Programs</a>
+</nav>
+</noscript>
+<!-- /cu:header -->
+
+<main id="main">
+
+<!-- ═══ 1. HERO ═══ [CLONE] breadcrumb leaf, badge, h1, sub, quote link
+     Breadcrumb mirrors the BreadcrumbList schema: Home / Services / Tonneau covers / this page. -->
+<section class="page-hero" aria-labelledby="hero-heading">
+  <div class="svc-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container page-hero-content"><div class="service-hero-copy">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-sep" aria-hidden="true">/</span>
+      <a href="./index.html">Services</a>
+      <span class="breadcrumb-sep" aria-hidden="true">/</span>
+      <a href="./tonneau.html">Tonneau covers</a>
+      <span class="breadcrumb-sep" aria-hidden="true">/</span>
+      <span aria-current="page">BAKFlip MX4</span>
+    </nav>
+    <div class="badge" style="margin-bottom: var(--space-5);">Hard folding cover · installed in Rockville</div>
+    <h1 id="hero-heading">BAKFlip MX4 installed in Rockville MD.</h1>
+    <p class="page-hero-sub">The best-selling hard folding cover in the US, fitted, sealed and adjusted on your truck at our Rockville shop. Choose the MX4, EZ-Lift or TS.</p>
+    <div class="hero-ctas">
+      <a href="../quote.html?service=tonneau&amp;product=BAKFlip%20MX4" class="btn btn-primary btn-lg">Get installed pricing<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+      <a href="tel:+13013041419" class="btn btn-outline btn-lg">Call (301) 304-1419</a>
+    </div>
+    <p class="service-assurance"><svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#check"></use></svg>Fitment checked. Written installed quote. No payment to inquire.</p>
+  </div><figure class="service-media service-media--hero" data-image-need="service-bakflip" data-media-slot="tonneau"><img src="/api/media?slot=tonneau&amp;width=1200" srcset="/api/media?slot=tonneau&amp;width=768 768w, /api/media?slot=tonneau&amp;width=1200 1200w" sizes="(min-width: 1100px) 560px, (min-width: 768px) 44vw, 100vw" width="1200" height="800" loading="eager" fetchpriority="high" decoding="async" alt="Tonneau cover"><figcaption>Illustrative image</figcaption></figure></div>
+</section>
+<nav class="service-page-index" aria-label="On this page"><div class="container"><a href="#process-heading">Installation</a><a href="#faq-heading">Questions</a></div></nav>
+
+
+<!-- ═══ 2. KEY FACTS STRIP ═══ [CLONE] three facts, each one must be true for the brand.
+     Source for BAKFlip: the MX4 card on tonneau.html and its FAQ. -->
+<section class="stats-strip" aria-label="Key facts">
+  <div class="container">
+    <div class="stats-grid" style="grid-template-columns: repeat(3,1fr);">
+      <div style="text-align:center;">
+        <span class="stat-number kpi-number">400 lbs</span>
+        <span class="stat-label">Load capacity, evenly distributed</span>
+      </div>
+      <div style="text-align:center;">
+        <span class="stat-number kpi-number">Model-specific</span>
+        <span class="stat-label">Manufacturer warranty</span>
+      </div>
+      <div style="text-align:center;">
+        <span class="stat-number kpi-number">1–2 hrs</span>
+        <span class="stat-label">Typical install time</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3. COVER-TYPE COMPARISON ═══
+     Places this brand's cover type next to the other two types, and sends people to
+     tonneau.html for the rest. [CLONE] move "is-current" and the "You are here" line
+     to the card for the new brand's cover type. -->
+<section class="section section--surface" aria-labelledby="types-heading">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label" style="justify-content:center;">Cover types</div>
+      <h2 id="types-heading">Which type of cover fits how you use your truck?</h2>
+      <p style="max-width:560px; margin: var(--space-3) auto 0;">There are three main designs. The BAKFlip MX4 is a hard folding cover.</p>
+    </div>
+    <div class="cover-types">
+
+      <div class="cover-card is-current">
+        <div class="cover-card-header">
+          <div class="cover-card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="8" rx="1"/><path d="M3 8h18M7 8V4h10v4"/></svg></div>
+          <div>
+            <div class="cover-card-brand">Hard folding</div>
+            <div class="cover-card-name">BAKFlip MX4</div>
+            <div class="cover-card-here">This page</div>
+          </div>
+        </div>
+        <div class="cover-card-body">
+          <p class="cover-card-desc">Rigid panels that fold toward the cab.</p>
+          <div class="cover-card-specs">
+            <div class="cover-spec"><span class="cover-spec-dot"></span>Folds to the cab to load tall cargo</div>
+            <div class="cover-spec"><span class="cover-spec-dot"></span>Patented auto-latch on every panel</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-card">
+        <div class="cover-card-header">
+          <div class="cover-card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="8" rx="1"/><path d="M3 8h18M7 8V4h10v4"/></svg></div>
+          <div>
+            <div class="cover-card-brand">Retractable</div>
+            <div class="cover-card-name">Retrax</div>
+          </div>
+        </div>
+        <div class="cover-card-body">
+          <p class="cover-card-desc">Retractable covers lock in any position.</p>
+          <div class="cover-card-specs">
+            <div class="cover-spec"><span class="cover-spec-dot"></span>Locks in any position</div>
+            <div class="cover-spec"><span class="cover-spec-dot"></span>Premium aluminum options</div>
+          </div>
+          <a href="./retrax.html" class="cover-card-link">See Retrax covers <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+      <div class="cover-card">
+        <div class="cover-card-header">
+          <div class="cover-card-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="8" rx="1"/><path d="M3 8h18M7 8V4h10v4"/></svg></div>
+          <div>
+            <div class="cover-card-brand">Roll-up</div>
+            <div class="cover-card-name">TruXedo</div>
+          </div>
+        </div>
+        <div class="cover-card-body">
+          <p class="cover-card-desc">Rolls up toward the cab, with full-bed use when rolled up.</p>
+          <div class="cover-card-specs">
+            <div class="cover-spec"><span class="cover-spec-dot"></span>Full-bed access when rolled</div>
+            <div class="cover-spec"><span class="cover-spec-dot"></span>Entry-level to premium options</div>
+          </div>
+          <a href="./truxedo.html" class="cover-card-link">See TruXedo covers <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 4. WHY OWNERS PICK IT ═══ [CLONE] four reasons, same card pattern. Keep claims to
+     what the manufacturer and our install actually deliver. -->
+<section class="section" aria-labelledby="why-heading">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label" style="justify-content:center;">Why the MX4</div>
+      <h2 id="why-heading">Why owners pick it.</h2>
+    </div>
+    <div class="benefit-cards bf-four">
+      <div class="benefit-card">
+        <div class="benefit-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="8" rx="1"/><path d="M3 8h18M7 8V4h10v4"/></svg></div>
+        <div class="benefit-title">Folds to the cab</div>
+        <p class="benefit-desc">Load tall cargo without taking the cover off, then fold it back down when you are done.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="benefit-title">Reinforced aluminum</div>
+        <p class="benefit-desc">Polymer-reinforced aluminum panels with improved perimeter seals, tested from −40°F to 180°F.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="benefit-title">Auto-latch locking</div>
+        <p class="benefit-desc">A patented auto-latch on every panel secures the bed when the cover is closed.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.2-.6-.6-2.2z"/></svg></div>
+        <div class="benefit-title">Installed and adjusted</div>
+        <p class="benefit-desc">We fit, seal and adjust it on your truck, so it closes square from day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 5. MODEL COMPARISON + INSTALLED PRICES ═══
+     [CLONE] columns, rows and values for the brand's models. Every price cell is a
+     placeholder until the shop confirms installed prices. Keep the data-placeholder
+     attribute on each one so they can be found with a single search before launch.
+     Spec source: BAKFlip MX4 values match the MX4 card on tonneau.html. EZ-Lift and TS
+     values come from the design canvas and still need checking against BAKFlip's sheets
+     (marked VERIFY). -->
+<section class="section section--surface" aria-labelledby="models-heading">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label" style="justify-content:center;">Models and pricing</div>
+      <h2 id="models-heading">Compare the MX4 models.</h2>
+      <p style="max-width:560px; margin: var(--space-3) auto 0;">Compare available MX4 configurations. Features and availability depend on your truck and the exact part number. Racks and accessories are sold separately. Ask for an itemized installed quote.</p>
+    </div>
+    <div class="bf-table-wrap">
+      <table class="bf-table">
+        <caption class="sr-only">BAKFlip MX4, MX4 EZ-Lift and MX4 TS compared</caption>
+        <thead>
+          <tr>
+            <th scope="col"><span class="sr-only">Feature</span></th>
+            <th scope="col">MX4</th>
+            <th scope="col"><a href="https://realtruck.com/p/bakflip-mx4-ez-lift-tonneau-cover/">MX4 EZ-Lift</a></th>
+            <th scope="col"><a href="https://realtruck.com/bakflip-mx4-lineup/">MX4 TS (GEN 3)</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Best for</th><td>Everyday security</td><td>Easy one-hand opening</td><td>Mounting racks and gear</td></tr>
+          <tr><th scope="row">Opening effort</th><td>Standard</td><td>10.5 lb (manufacturer specification)</td><td>Standard</td></tr>
+          <tr><th scope="row">Auto-latch</th><td>Yes</td><td>Yes</td><td>Ask us</td></tr>
+          <tr><th scope="row">T-slot rails</th><td>No</td><td>No</td><td>Yes</td></tr>
+          <tr>
+            <th scope="row">Installed price</th>
+            <td class="bf-price" data-price-key="bakflip-mx4"><a href="../quote.html?service=tonneau&amp;product=BAKFlip%20MX4">Get installed price</a></td>
+            <td class="bf-price" data-price-key="bakflip-mx4-ez-lift"><a href="../quote.html?service=tonneau&amp;product=BAKFlip%20MX4">Get installed price</a></td>
+            <td class="bf-price" data-price-key="bakflip-mx4-ts"><a href="../quote.html?service=tonneau&amp;product=BAKFlip%20MX4">Get installed price</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="bf-note">Want it sprayed first? Add a <a href="./bedliner.html">Patriot Liner bedliner</a> in the same visit and we price the two together.</p>
+    <div style="text-align:center; margin-top: var(--space-8);">
+      <a href="../quote.html?service=tonneau&amp;product=BAKFlip%20MX4" class="btn btn-primary btn-lg">Get installed pricing for your truck<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 6. PROCESS ═══ Same four steps on every service page. [CLONE] only if the install differs. -->
+<section class="section" aria-labelledby="process-heading">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label" style="justify-content:center;">Our process</div>
+      <h2 id="process-heading">Clean fit, no damage.</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-num">1</div>
+        <div class="process-title">Confirm the fit</div>
+        <p class="process-desc">We check your bed size, cab configuration and any toolbox or rails that affect the cover.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">2</div>
+        <div class="process-title">Choose your model</div>
+        <p class="process-desc">MX4, EZ-Lift or TS: we match the model to how you use your truck.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">3</div>
+        <div class="process-title">Install and seal</div>
+        <p class="process-desc">Mounted with clamps or stake-hole hardware, no drilling on most trucks. We adjust the seals for a tight, even fit.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">4</div>
+        <div class="process-title">Demo and pickup</div>
+        <p class="process-desc">We walk you through opening, latching and adjusting it. Most installs take 1–2 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 7. FAQ ═══ Questions and answers here are generated from the same list as the
+     FAQPage schema in <head>. [CLONE] edit both together; they must match word for word.
+     The accordion behaviour is the small script at the bottom of the page. -->
+<section class="section section--surface" aria-labelledby="faq-heading">
+  <div class="container container--narrow">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label" style="justify-content:center;">FAQ</div>
+      <h2 id="faq-heading">Common questions.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq-1">
+          <span class="faq-question">Which BAKFlip MX4 model should I choose?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer" id="faq-1">
+          <p>The standard MX4 suits everyday security. Pick the EZ-Lift if you open the cover often and want easier lifting. Pick the TS if you want to mount racks and gear on its T-slot rails.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq-2">
+          <span class="faq-question">Will a BAKFlip MX4 fit my truck?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer" id="faq-2">
+          <p>BAKFlip covers are made for the popular trucks, including the F-150, Silverado, Ram, Tundra, Tacoma, Colorado and Ranger. We confirm your bed size, cab configuration and any toolbox or rails before we order, so the cover fits the first time.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq-3">
+          <span class="faq-question">Does installation involve drilling?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer" id="faq-3">
+          <p>Not on most trucks. The cover mounts with clamps or stake-hole hardware, so no drilling is needed. We confirm this for your truck when we check the fit.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq-4">
+          <span class="faq-question">How long does installation take?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer" id="faq-4">
+          <p>Most tonneau cover installations take 1–2 hours, and we can usually finish in a single visit at our Rockville shop.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq-5">
+          <span class="faq-question">Can I still use the full bed with the cover on?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer" id="faq-5">
+          <p>Yes. Folding covers can be pushed fully forward for full bed access, then closed again when you are done.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq-6">
+          <span class="faq-question">What warranty does the BAKFlip MX4 have?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer" id="faq-6">
+          <p>Warranty terms depend on the exact MX4 version and part number. We confirm the applicable manufacturer coverage with your quote.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 8. CTA BANNER ═══ [CLONE] quote link slug if the brand has its own -->
+<section class="cta-banner" aria-labelledby="cta-heading">
+  <div class="cta-banner-content reveal">
+    <h2 id="cta-heading">Ready for your MX4?</h2>
+    <p>Get a quote online or call to check availability for your truck.<br>Mon–Fri 9:30am–4:30pm · Ask about appointment availability.</p>
+    <div class="cta-banner-actions">
+      <a href="../quote.html?service=tonneau&amp;product=BAKFlip%20MX4" class="btn btn-primary btn-lg">Get a free quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+      <a href="tel:+13013041419" class="btn btn-outline btn-lg">Call (301) 304-1419</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 9. RELATED / INTERNAL LINKS ═══ First card links back up to tonneau.html (the
+     parent page); tonneau.html links down to this page from its BAKFlip MX4 card.
+     [CLONE] keep the tonneau card first, then two related services. -->
+<section class="section" aria-labelledby="related-heading">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label" style="justify-content:center;">More services</div>
+      <h2 id="related-heading">Complete your truck.</h2>
+    </div>
+    <div class="related-grid">
+      <a href="./tonneau.html" class="related-card reveal reveal-delay-1">
+        <figure class="service-media" data-media-slot="tonneau"><img src="/api/media?slot=tonneau&amp;width=768" width="768" height="512" loading="lazy" decoding="async" alt="Tonneau covers"><figcaption>Illustrative image</figcaption></figure>
+        <div class="related-card-body">
+          <div class="related-card-title">All tonneau covers</div>
+          <p class="related-card-desc">Hard folding, retractable and roll-up covers from the brands we install.</p>
+          <span class="related-card-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <a href="./bedliner.html" class="related-card reveal reveal-delay-2">
+        <figure class="service-media" data-media-slot="bedliner"><img src="/api/media?slot=bedliner&amp;width=768" width="768" height="512" loading="lazy" decoding="async" alt="Spray-on bedliners"><figcaption>Illustrative image</figcaption></figure>
+        <div class="related-card-body">
+          <div class="related-card-title">Spray-on bedliner</div>
+          <p class="related-card-desc">Authorized Patriot Liner dealer. Pairs with a bed cover in one visit.</p>
+          <span class="related-card-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <a href="./running-boards.html" class="related-card reveal reveal-delay-3">
+        <figure class="service-media" data-media-slot="running-boards"><img src="/api/media?slot=running-boards&amp;width=768" width="768" height="512" loading="lazy" decoding="async" alt="Running boards and steps"><figcaption>Illustrative image</figcaption></figure>
+        <div class="related-card-body">
+          <div class="related-card-title">Running boards</div>
+          <p class="related-card-desc">Step bars and power steps, fitted to your truck.</p>
+          <span class="related-card-link">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="partner-section"><div class="container"><p class="partner-eyebrow">Considering BAKFlip MX4?</p><h2>Get a quote for the complete setup.</h2><p>Capital Upfitters is listed as a BAK Preferred Dealer in the <a href="https://realtruck.com/dealer-locator/">RealTruck dealer locator</a>. Product fitment and any promotional warranty eligibility are confirmed for the exact order.</p><p>A hard-folding cover is only the start. Your bed length, tailgate, factory rails and existing accessories determine the correct MX4 part. Include those details so the quote is for your truck, not a generic cover.</p><p>Already ordered? Choose “I already have the part” and include its number. We will confirm whether we can install your exact kit before arranging an appointment.</p><p><a href="https://realtruck.com/p/bakflip-mx4-tonneau-cover/">Review official BAKFlip MX4 product information</a>.</p></div></section><section class="partner-fitment" id="installed-quote" aria-labelledby="partner-quote-title"><div class="container"><div class="partner-fitment-intro"><p class="partner-eyebrow">Your vehicle. Your plan.</p><h2 id="partner-quote-title">Start your BAKFlip MX4 installation quote.</h2><p>Tell us what you drive and what you need. Continue to the existing quote form to add your contact details. Fitment, parts, labor and appointment timing are confirmed by the shop.</p><p class="partner-note">This is a quote request, not a purchase or a reserved appointment. No payment is collected here.</p></div><form class="partner-fitment-form" action="../quote.html" method="get"><input type="hidden" name="service" value="tonneau"><input type="hidden" name="product" value="BAKFlip MX4"><div class="partner-fields"><label>Vehicle year<input name="year" inputmode="numeric" pattern="(19|20)[0-9]{2}" maxlength="4" placeholder="e.g. 2024" required autocomplete="off"></label><label>Make<input name="make" maxlength="60" placeholder="e.g. Ford" required autocomplete="off"></label><label>Model and trim<input name="model" maxlength="100" placeholder="e.g. F-150 Lariat" required autocomplete="off"></label><label>Parts status<select name="purchase_status"><option value="Need parts and installation">I need parts + installation</option><option value="Already own the part; installation requested">I already have the part</option><option value="Comparing options before purchase">I am comparing options</option></select></label><label class="partner-field-wide">What do you need?<select name="intended_use"><option>Hard-folding cover for everyday bed access</option><option>Cover with compatible rack or accessories</option><option>Help me choose the correct MX4 version</option></select></label><label class="partner-field-wide">Part number or fitment details <span>(optional)</span><input name="part_details" maxlength="180" placeholder="Part number, bed length, trim, or product name" autocomplete="off"></label></div><button class="btn btn-primary btn-lg" type="submit">Continue to my quote →</button><p class="partner-note">Already have a quote? <a href="tel:+13013041419">Call (301) 304-1419</a>.</p></form></div></section>
+</main>
+
+<!-- FOOTER: same markup as the other service pages (tonneau.html). -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="../index.html" class="footer-brand-logo">
+          <div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div>
+          <div class="footer-brand-name">Capital<span>Upfitters</span></div>
+        </a>
+        <p class="footer-tagline">Family-owned vehicle upfitting shop in Rockville, MD. Authorized Patriot Liner dealer. Serving the DMV since 2015.</p>
+        <div class="footer-contact">
+          <a href="tel:+13013041419" class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(301) 304-1419</a>
+          <div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>12019 Nebel St, Rockville MD 20852</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="./bedliner.html">Spray-On Bedliners</a></li>
+          <li><a href="./hitches.html">Hitches & Towing</a></li>
+          <li><a href="./ceramic-coating.html">Ceramic Coating</a></li>
+          <li><a href="./undercoating.html">Undercoating</a></li>
+          <li><a href="./tonneau.html">Tonneau Covers</a></li>
+          <li><a href="./running-boards.html">Running Boards</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Business</div>
+        <ul class="footer-links">
+          <li><a href="../fleet.html">Fleet Upfitting</a></li>
+          <li><a href="../dealer-government.html">Dealer Program</a></li>
+          <li><a href="../gallery.html">Gallery</a></li>
+          <li><a href="../quote.html">Get a quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Locations</div>
+        <ul class="footer-links">
+          <li><a href="../locations/rockville-md.html">Rockville, MD</a></li>
+          <li><a href="../locations/bethesda-md.html">Bethesda, MD</a></li>
+          <li><a href="../locations/silver-spring-md.html">Silver Spring, MD</a></li>
+          <li><a href="../locations/gaithersburg-md.html">Gaithersburg, MD</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2026 Capital Auto Upfitters & Protective Coatings. All rights reserved.</p>
+      <nav class="footer-legal"><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a></nav>
+      <p class="footer-pplx"><a href="https://IVANKODevelopment.com" target="_blank" rel="noopener noreferrer">Built by IVANKODev</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- PAGE SCRIPTS: hamburger, reveal-on-scroll, FAQ accordion. Same on every service page. -->
+<script>
+(function(){const btn=document.getElementById('hamburger'),mob=document.getElementById('nav-mobile'),cls=document.getElementById('nav-close');if(btn&&mob){btn.addEventListener('click',()=>{mob.classList.add('open');btn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'});if(cls)cls.addEventListener('click',()=>{mob.classList.remove('open');btn.setAttribute('aria-expanded','false');document.body.style.overflow=''})}})();
+(function(){const els=document.querySelectorAll('.reveal');if(!els.length)return;const io=new IntersectionObserver((e)=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');io.unobserve(el.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});els.forEach(el=>io.observe(el))})();
+document.querySelectorAll('.faq-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const expanded=btn.getAttribute('aria-expanded')==='true';
+    document.querySelectorAll('.faq-btn').forEach(b=>{b.setAttribute('aria-expanded','false');document.getElementById(b.getAttribute('aria-controls')).classList.remove('open')});
+    if(!expanded){btn.setAttribute('aria-expanded','true');document.getElementById(btn.getAttribute('aria-controls')).classList.add('open');}
+  });
+});
+</script>
+
+<script src="../animations.js" defer></script>
+<script src="/price-feed.js" data-price-group="bakflip" defer></script>
+
+<!-- Floating quote CTA -->
+<div class="float-cta" aria-hidden="true">
+  <a href="../quote.html" class="float-cta-btn">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    Get a Quote
+  </a>
+</div>
+
+  <!-- Mobile nav accordion v3 -->
+  <script>
+  (function(){
+    document.querySelectorAll('.nav-mobile-section-trigger').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var id=btn.getAttribute('data-target'),body=document.getElementById(id),open=body&&body.classList.contains('open');
+        document.querySelectorAll('.nav-mobile-section-body').forEach(function(b){b.classList.remove('open');});
+        document.querySelectorAll('.nav-mobile-section-trigger').forEach(function(b){b.classList.remove('open');b.setAttribute('aria-expanded','false');});
+        if(!open&&body){body.classList.add('open');btn.classList.add('open');btn.setAttribute('aria-expanded','true');}
+      });
+    });
+    var h=document.getElementById('hamburger'),m=document.getElementById('nav-mobile'),c=document.getElementById('nav-close');
+    if(h&&m){h.addEventListener('click',function(){m.classList.add('open');document.body.style.overflow='hidden';});}
+    if(c&&m){c.addEventListener('click',function(){m.classList.remove('open');document.body.style.overflow='';});}
+  })();
+  </script>
+
+<!-- Mobile action bar (<=768px): Call / Text / Get a Quote -->
+<nav class="mobile-action-bar" aria-label="Quick actions">
+  <a href="tel:+13013041419" class="mab-btn mab-call"><svg class="mab-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a>
+  <a href="../quote.html?service=tonneau&amp;product=BAKFlip%20MX4" class="mab-btn mab-quote">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+</nav>
+</body>
+</html>

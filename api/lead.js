@@ -567,7 +567,10 @@ function buildPersistencePayload(body) {
     pickFirst(body, ['Organization Type', 'Business Type']),
     200
   ) || '';
-  const business = optionalString(pickFirst(body, ['Business Name', 'business']), 200);
+  const business = optionalString(pickFirst(body, ['Business Name', 'business', 'Organization Name']), 200);
+  const vehicleTypes = audience === 'fleet'
+    ? optionalString(pickFirst(body, ['Vehicle Types']), 200)
+    : undefined;
   const quantityRaw = audience === 'dealer' || isApplication
     ? pickFirst(body, ['Monthly Volume'])
     : pickFirst(body, ['Vehicle Count']);
@@ -593,7 +596,7 @@ function buildPersistencePayload(body) {
     assets: {
       description: isApplication
         ? `${orgType || 'Business'} account application`.slice(0, 1000)
-        : (orgType || business ||
+        : (vehicleTypes || orgType || business ||
           (audience === 'dealer' ? 'Dealer / government inquiry' : 'Fleet upfit inquiry'))
           .slice(0, 1000),
       quantity: !isApplication && Number.isInteger(quantity) && quantity > 0 && quantity <= 10000

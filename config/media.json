@@ -1,0 +1,23 @@
+{
+  "endpoint": "https://br-old-unit-bcj4um3z.storage.c-16.us-east-1.aws.neon.tech",
+  "region": "us-east-1",
+  "bucket": "capital-site-media",
+  "slots": {
+    "home-hero": "Homepage hero",
+    "bedliner": "Spray-on bedliners",
+    "tonneau": "Tonneau covers",
+    "running-boards": "Running boards and steps",
+    "industrial-coatings": "Industrial coatings",
+    "commercial-wraps": "Commercial wraps",
+    "ceramic-coating": "Ceramic coating and PPF",
+    "undercoating": "Undercoating",
+    "window-tinting": "Window tinting",
+    "mobile-detailing": "Mobile detailing",
+    "hitches": "Hitches and towing",
+    "toolboxes": "Toolboxes and bed storage",
+    "lighting": "LED lighting",
+    "suspension": "Suspension, lifts and wheels",
+    "camper-shells": "Camper shells and caps",
+    "exterior": "Exterior accessories"
+  }
+}
