@@ -541,8 +541,9 @@
 <script src="./site-nav.js?v=545170a9ed" defer></script>
 <script src="./media-client.js?v=f6f4bc752d" defer></script>
 <!-- /cu:ui -->
+<link rel="stylesheet" href="./sitewide-rollout.css">
 </head>
-<body>
+<body class="sitewide-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- cu:header -->
@@ -1141,13 +1142,15 @@
     </nav>
     <span class="badge" style="margin-bottom: var(--space-5);">Commercial Upfitting</span>
     <h1 class="reveal">Fleet Upfitting <em>That Keeps Your Business Moving.</em></h1>
-    <p class="page-hero-sub reveal reveal-delay-1">Pickup truck upfitting, van packages, DOT compliance, fleet branding, and bulk scheduling — one dedicated account for everything.</p>
+    <p class="page-hero-sub reveal reveal-delay-1">Truck and van equipment, protective coatings and vehicle branding. Build a consistent specification around your team, tools and delivery schedule.</p>
     <div class="hero-ctas reveal reveal-delay-2">
       <a href="./quote.html?audience=fleet" class="btn btn-primary btn-lg">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
       <a href="tel:+13013041419" class="btn btn-outline btn-lg">Call for Volume Pricing<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
     </div>
   </div>
 </section>
+<section class="decision-brief" aria-label="Planning your request"><div class="container"><p class="decision-kicker">For work vehicles</p><h2>A better-equipped fleet starts with the job.</h2><div class="decision-grid"><article><h3>Choose the working setup</h3><p>Shelving, partitions, racks, covers and graphics should work together. Start with what each crew carries and how it uses the vehicle.</p><a href="#fleet-services-heading">Explore fleet options</a></article><article><h3>Make the quote useful</h3><p>Share vehicle models, quantities, equipment requirements and target dates. We review one vehicle or a repeatable specification for several.</p><a href="./quote.html?audience=fleet">Request a fleet quote</a></article><article><h3>Coordinate the next step</h3><p>Availability, installation sequence and scheduling are confirmed in the written proposal. Contact us about your delivery constraints.</p><a href="tel:+13013041419">Talk to the shop</a></article></div></div></section>
+
 
 <!-- ═══════════════════════════════════════════════════════
      COMMERCIAL & FLEET SERVICE SECTIONS
@@ -1426,7 +1429,7 @@
       </div>
 
       <div style="text-align:center; margin-top: var(--space-8);">
-        <a href="./quote.html?type=fleet" class="btn btn-primary">Get a Fleet Account Quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+        <a href="./quote.html?audience=fleet" class="btn btn-primary">Get a Fleet Account Quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
         <a href="tel:+13013041419" class="btn btn-outline" style="margin-left: var(--space-4);">Call (301) 304-1419</a>
       </div>
     </div><!-- /panel-fleet -->
@@ -1481,7 +1484,7 @@ function showFleetPanel(id, btn) {
       </div>
     </div>
     <div style="text-align:center; margin-top: var(--space-8);">
-      <a href="./quote.html?service=ladder-rack" class="btn btn-primary">Get a Rack Quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+      <a href="./quote.html?audience=fleet&amp;service=ladder-rack" class="btn btn-primary">Get a Rack Quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
     </div>
   </div>
 </section>
@@ -1523,7 +1526,7 @@ function showFleetPanel(id, btn) {
           <div style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight:600; color:#fff;">PLMB</div>
           <div style="font-size: var(--text-sm); color:rgba(255,255,255,0.6);">Tool drawers + parts shelves + floor liner</div>
         </div>
-        <a href="./quote.html?service=van-shelving" class="btn btn-primary" style="margin-top: var(--space-2); text-align:center;">Get a Van Upfit Quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+        <a href="./quote.html?audience=fleet&amp;service=van-shelving" class="btn btn-primary" style="margin-top: var(--space-2); text-align:center;">Get a Van Upfit Quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
       </div>
     </div>
 
@@ -1553,7 +1556,7 @@ function showFleetPanel(id, btn) {
     <div style="text-align:center; margin-top: var(--space-10);">
       <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin-bottom: var(--space-5);">Every van upfit starts with a consultation. We measure your vehicle, understand your workflow, and recommend the right system. Call or submit a quote request.</p>
       <div style="display:flex; gap: var(--space-4); justify-content:center; flex-wrap:wrap;">
-        <a href="./quote.html?service=van-shelving" class="btn btn-primary">Request Van Upfit Consultation</a>
+        <a href="./quote.html?audience=fleet&amp;service=van-shelving" class="btn btn-primary">Request Van Upfit Consultation</a>
         <a href="tel:+13013041419" class="btn btn-outline">Call (301) 304-1419</a>
       </div>
     </div>
