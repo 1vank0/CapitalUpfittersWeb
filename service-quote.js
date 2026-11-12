@@ -19,8 +19,8 @@
     if(product)lines.push('Product requested: '+product);
     if(bed)lines.push('Bed length: '+bed);
     if(bundle && bundle.checked) lines.push('Bundle requested: Patriot Liner + bed cover. $50 cover saving applies to Westin Hard Tri-Fold or BAKFlip MX4; bedliner priced separately. Final written quote required.');
-    if(form.dataset.serviceQuote==='tonneau' && product==='Westin Hard Tri-Fold')lines.push('Advertised cover offer: $1,000 installed'+(bundle&&bundle.checked?' / $950 cover with Patriot Liner':'')+'. Confirm fitment, taxes and any additional work.');
-    if(form.dataset.serviceQuote==='tonneau' && product==='BAKFlip MX4')lines.push('Advertised cover offer: $1,300 installed'+(bundle&&bundle.checked?' / $1,250 cover with Patriot Liner':'')+'. Confirm fitment, taxes and any additional work.');
+    if(form.dataset.serviceQuote==='tonneau' && product==='Westin Hard Tri-Fold')lines.push('Advertised cover offer: $1,050 installed'+(bundle&&bundle.checked?' / $1,000 cover with Patriot Liner':'')+'. Confirm fitment, taxes and any additional work.');
+    if(form.dataset.serviceQuote==='tonneau' && product==='BAKFlip MX4')lines.push('Advertised cover offer: $1,350 installed'+(bundle&&bundle.checked?' / $1,300 cover with Patriot Liner':'')+'. Confirm fitment, taxes and any additional work.');
     if(notes)lines.push('Customer notes: '+notes);
     if(fields.Message)fields.Message.value=lines.join('\n').slice(0,4000);
    },true);

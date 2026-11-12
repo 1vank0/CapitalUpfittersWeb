@@ -19,11 +19,11 @@ function quote(search, checked=false, notes='') {
  vm.runInNewContext(read('quote-deeplink.js'),{URLSearchParams,setTimeout:fn=>fn(),window:{location:{search},CU_QUOTE:{syncMake(){},goStep(){}}},document});
  return {fields,choices,tileClicks};
 }
-test('bed cover inline quote offers five models and a help choice with one set of truck/contact fields',()=>{
+test('bed cover inline quote offers nine verified models and a help choice with one set of truck/contact fields',()=>{
  const html=read('services/tonneau.html');
  const form=html.match(/<form class="partner-fitment-form"[\s\S]*?<\/form>/)[0];
  assert.match(form,/data-cms-form="retail"/);assert.match(form,/action="\/api\/lead" method="post"/);
- assert.equal((form.match(/type="radio" name="product"/g)||[]).length,6);
+ assert.equal((form.match(/type="radio" name="product"/g)||[]).length,10);
  for(const name of names)assert.ok(form.includes('value="'+name+'" required'));
  for(const field of ['Vehicle Year','Vehicle Make','Vehicle Model','Name','Email','Phone'])assert.equal(form.split('name="'+field+'"').length-1,1);
  assert.match(form,/name="services" value="tonneau"/);assert.match(form,/type="submit" disabled/);
@@ -66,4 +66,11 @@ test('bed cover layout is scoped, adapts to phones, and exposes keyboard and red
  const html=read('services/tonneau.html');assert.match(html,/id="bc-selection" role="status" aria-live="polite"/);
  assert.equal((html.match(/<h1\b/g)||[]).length,1);
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size);
+});
+
+test('expanded verified models are selectable and preserve exact product notes',()=>{
+ for(const [name,type] of [['BAKFlip MX4 EZ-Lift','trifold'],['BAKFlip MX4 TS','trifold'],['RetraxPRO XR','retrax'],['RetraxPRO EZ-OFF FRC-4000','retrax']]){
+  assert.ok(read('services/tonneau.html').includes('value="'+name+'" required'));
+  const q=quote('?service=tonneau&product='+encodeURIComponent(name));assert.equal(q.fields['f-notes'].value,'Product requested: '+name);assert.ok(q.choices[0].includes('data-opt="'+type+'"'));
+ }
 });

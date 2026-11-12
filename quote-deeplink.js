@@ -74,7 +74,8 @@
           const coverTypes = {
             'TruXedo TruXport': 'soft', 'TruXedo Pro X15': 'soft',
             'Westin Hard Tri-Fold': 'trifold', 'BAKFlip MX4': 'trifold',
-            'RetraxPRO MX': 'retrax'
+            'RetraxPRO MX': 'retrax', 'RetraxPRO XR': 'retrax', 'RetraxPRO EZ-OFF FRC-4000': 'retrax',
+            'BAKFlip MX4 EZ-Lift': 'trifold', 'BAKFlip MX4 TS': 'trifold'
           };
           const product = params.get('product');
           const coverType = Object.prototype.hasOwnProperty.call(coverTypes, product) ? coverTypes[product] : null;
