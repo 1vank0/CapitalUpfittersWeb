@@ -1154,11 +1154,12 @@ updateHitchFulfillment();
   var container = document.querySelector('.cu-p6');
   var pills = document.querySelectorAll('.cu-p6-pill');
   var modes = document.querySelectorAll('.cu-p6-mode');
-  function setMode(target){
+  function setMode(target, shouldScroll){
     pills.forEach(function(p){
       var on = p.dataset.mode === target;
       p.classList.toggle('is-active', on);
       p.setAttribute('aria-selected', on ? 'true' : 'false');
+      p.tabIndex = on ? 0 : -1;
     });
     modes.forEach(function(s){
       s.classList.toggle('is-active', s.dataset.modeBody === target);
@@ -1170,11 +1171,31 @@ updateHitchFulfillment();
     document.body.classList.toggle('cu-quote-bar-on', target === 'retail');
     // scroll to top of switcher on change
     var sw = document.querySelector('.cu-p6-switcher-outer');
-    if(sw){ sw.scrollIntoView({behavior:'smooth', block:'start'}); }
+    if(sw && shouldScroll !== false){ sw.scrollIntoView({behavior:'smooth', block:'start'}); }
+  }
+  function modeFromUrl(){
+    var params = new URLSearchParams(window.location.search);
+    var aliases = { retail: 'retail', personal: 'retail', fleet: 'fleet', commercial: 'fleet', dealer: 'dealer', government: 'project', project: 'project', industrial: 'project' };
+    // Explicit audience wins; keep old inbound type=commercial links working.
+    var audience = (params.get('audience') || '').toLowerCase();
+    var legacyType = (params.get('type') || '').toLowerCase();
+    return Object.prototype.hasOwnProperty.call(aliases, audience) ? aliases[audience]
+      : Object.prototype.hasOwnProperty.call(aliases, legacyType) ? aliases[legacyType]
+      : /^(industrial|industrial-coatings)$/.test(params.get('service') || '') ? 'project' : 'retail';
   }
   pills.forEach(function(p){
-    p.addEventListener('click', function(){ setMode(p.dataset.mode); });
+    p.addEventListener('click', function(){
+      var url = new URL(window.location.href);
+      url.searchParams.set('audience', p.dataset.mode);
+      url.searchParams.delete('type');
+      window.history.pushState(null, '', url);
+      setMode(p.dataset.mode);
+    });
   });
+  var projectType = document.getElementById('pr-type');
+  if(projectType && new URLSearchParams(window.location.search).get('audience') === 'government') projectType.value = 'government';
+  setMode(modeFromUrl(), false);
+  window.addEventListener('popstate', function(){ setMode(modeFromUrl(), false); });
 
   // Listen for lead-form.js success and swap Patriot .done state into view
   document.addEventListener('cu:lead-success', function(ev){

@@ -313,7 +313,7 @@
       return false;
     }
 
-    if (/^quote-(retail|fleet|dealer)$/.test(form.id || '')) {
+    if (/^quote-(retail|fleet|dealer|project)$/.test(form.id || '')) {
       var serviceCount = Array.from(form.querySelectorAll('input[name="services"]'))
         .filter(function (input) {
           return input.value && (input.type !== 'checkbox' && input.type !== 'radio' || input.checked);

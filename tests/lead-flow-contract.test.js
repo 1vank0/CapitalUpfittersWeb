@@ -1122,3 +1122,106 @@ test('one shared client controller owns every form submit and success state', ()
   assert.match(contactHtml, /quote\.html/);
   assert.match(dealerHtml, /id="apply-form"[^>]*data-success-body="apply-form"[^>]*data-success-panel="apply-form-success"/);
 });
+
+function projectBody(overrides = {}) {
+  return {
+    form_id: 'quote-project', form_type: 'project', 'Project Type': 'industrial',
+    'Contact Name': 'Project Tester', 'Work Email': 'project@example.com',
+    'Business Name': 'Example Facilities', 'Project Assets': 'Steel loading ramp, 10 by 20 feet',
+    'Project Location': 'Rockville, MD', Message: 'Anti-skid coating, light surface rust.',
+    Timeline: 'December', Procurement: 'Site access appointment required',
+    services: ['project_consultation'], idempotency_key: FIXED_KEY,
+    submission_started_at: new Date(Date.now() - 10000).toISOString(), ...overrides
+  };
+}
+test('project intake preserves nonvehicle scope in the existing commercial contract and shop email', async () => {
+  await withRuntime(async () => {
+    const mails = [];
+    global.fetch = async (url, options) => {
+      if (url === 'https://persistence.test/api/leads/') {
+        const p = JSON.parse(options.body);
+        assert.equal(p.schemaVersion, '2026-07-15');
+        assert.equal(p.kind, 'commercial');
+        assert.equal(p.requestType, 'industrial');
+        assert.equal(p.vehicle, undefined);
+        assert.equal(p.assets.description, projectBody()['Project Assets']);
+        assert.equal(p.assets.quantity, undefined);
+        assert.equal(p.scope.notes, projectBody().Message);
+        assert.equal(p.logistics.location, 'Rockville, MD');
+        assert.equal(p.logistics.procurement, projectBody().Procurement);
+        assert.equal(p.logistics.timing, 'December');
+        assert.equal(p.organization.name, 'Example Facilities');
+        assert.equal(p.attribution.source, 'industrial-page');
+        return jsonResponse({ ok: true, persisted: true, reference: 'CU-PROJECT-1' }, 201);
+      }
+      assert.equal(url, 'https://api.resend.com/emails');
+      mails.push(JSON.parse(options.body)); return jsonResponse({ id: 'email-id' });
+    };
+    const result = await invoke(projectBody({ utm_source: 'industrial-page' }));
+    assert.equal(result.status, 200);
+    assert.equal(result.body.persisted, true);
+    assert.equal(result.body.customer_confirmation, true);
+    assert.equal(mails.length, 2);
+    assert.match(mails[0].text, /Project Assets: Steel loading ramp/);
+    assert.match(mails[0].text, /Project Location: Rockville, MD/);
+    assert.match(mails[0].html, /Site access appointment required/);
+    assert.doesNotMatch(mails[0].text, /Vehicle: Unknown/);
+  });
+});
+test('government project uses government contract without monthly volume', async () => {
+  await withRuntime(async () => {
+    global.fetch = async (url, options) => {
+      if (url === 'https://persistence.test/api/leads/') {
+        const p = JSON.parse(options.body);
+        assert.equal(p.requestType, 'government');
+        assert.equal(p.assets.quantity, undefined);
+        return jsonResponse({ ok: true, persisted: true, reference: 'CU-PROJECT-2' }, 201);
+      }
+      return jsonResponse({ id: 'email-id' });
+    };
+    assert.equal((await invoke(projectBody({ 'Project Type': 'government' }))).status, 200);
+  });
+});
+test('project intake rejects missing fields, unsupported types and oversized details before network', async () => {
+  await withRuntime(async () => {
+    global.fetch = async () => { throw Error('Network must not be called'); };
+    for (const overrides of [
+      { 'Project Assets': '' }, { 'Project Location': '' }, { Message: '' },
+      { 'Contact Name': '' }, { 'Work Email': '' }, { 'Project Type': 'retail' },
+      { services: ['bedliner'] }, { 'Project Assets': 'x'.repeat(1001) },
+      { Procurement: 'x'.repeat(1001) }, { 'Project Location': 'x'.repeat(301) }
+    ]) {
+      const r = await invoke(projectBody(overrides));
+      assert.equal(r.status, 400, JSON.stringify(overrides).slice(0,100));
+      assert.equal(r.body.ok, false);
+    }
+  });
+});
+test('project storage and mail failures do not produce misleading success', async () => {
+  await withRuntime(async () => {
+    let mails = 0;
+    global.fetch = async url => {
+      if (url === 'https://persistence.test/api/leads/') return jsonResponse({ ok: false, error: { code: 'VALIDATION_ERROR' } }, 400);
+      mails++; return jsonResponse({ id: 'email-id' });
+    };
+    const rejected = await invoke(projectBody());
+    assert.equal(rejected.body.ok, false);
+    assert.equal(mails, 0);
+    global.fetch = async url => url === 'https://persistence.test/api/leads/'
+      ? jsonResponse({ ok: true, persisted: true, reference: 'CU-PROJECT-3' }, 201)
+      : jsonResponse({ message: 'Mail unavailable' }, 500);
+    const saved = await invoke(projectBody());
+    assert.equal(saved.body.persisted, true);
+    assert.equal(saved.body.delivery_mode, 'persisted_only');
+    assert.equal(saved.body.customer_confirmation, false);
+  });
+});
+test('project form is nonvehicle and uses the existing receipt and submission controller', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'quote.html'), 'utf8');
+  const form = html.match(/<form[^>]*id="quote-project"[\s\S]*?<\/form>/)[0];
+  assert.match(form, /data-cms-form="project"/);
+  assert.match(form, /data-success-panel="project-form-success"/);
+  assert.doesNotMatch(form, /Vehicle Year|Vehicle Make|Vehicle Model|Monthly Volume|type="file"/);
+  assert.match(form, /name="Project Assets"[^>]*maxlength="1000"/);
+  assert.match(form, /name="services" value="project_consultation"/);
+});
