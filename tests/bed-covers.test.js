@@ -57,7 +57,8 @@ test('tonneau SEO route, FAQ schema and safe product claims agree with rendered 
  const main=html.match(/<main[\s\S]*?<\/main>/)[0];
  assert.doesNotMatch(main,/150\+|2–5%|zero drilling|no drilling|Same-day|waterproof seals/i);
  assert.ok(main.includes('data-media-slot="tonneau"'));assert.ok(main.includes('data-gallery-feed-list'));
- assert.doesNotMatch(main,/<img[^>]+src="(?:https?:|\.\.\/assets)/);
+ assert.equal((main.match(/class="cover-maker-image"/g)||[]).length,3);
+ for(const img of main.matchAll(/<img[^>]+src="(https?:[^"]+)"/g))assert.ok(img[1].startsWith("https://realtruck.com/production/"));
  for(const id of ['benefits-heading','pricing-heading','process-heading','geo-heading-tonneau','faq-heading','related-heading'])assert.ok(main.includes('id="'+id+'"'));
 });
 test('bed cover layout is scoped, adapts to phones, and exposes keyboard and reduced-motion safeguards',()=>{

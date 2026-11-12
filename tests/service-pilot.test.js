@@ -41,3 +41,7 @@ test('bedliner current owner prices and condition caveats agree with FAQ schema'
 test('UV+ upgrade presents owner-supplied protection and color without changing price',()=>{
  const html=read('services/bedliner.html');assert.ok(html.includes('stronger protection against harsh chemicals and UV rays, with a pure-black finish'));assert.ok(html.includes('+$200 <small>plus tax</small>'));
 });
+
+test('cover warranty separates workmanship, model eligibility and manufacturer extension',()=>{
+ const html=read('services/tonneau.html');assert.ok(html.includes('6-month installation warranty'));assert.ok(html.includes('5 → 10 years'));assert.ok(html.includes('does not automatically apply to every cover'));assert.ok(html.includes('Installation labor is not doubled.'));assert.ok(html.includes('DoubleWarranty_ShowroomFlyer_Dec23.pdf'));assert.ok(html.includes('id="cover-warranty"'));
+});
