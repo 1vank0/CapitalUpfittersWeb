@@ -37,3 +37,7 @@ test('bedliner current owner prices and condition caveats agree with FAQ schema'
  const schema=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
  for(const q of schema['@graph'].find(x=>x['@type']==='FAQPage').mainEntity)assert.ok(html.includes('<p>'+q.acceptedAnswer.text+'</p>'));
 });
+
+test('UV+ upgrade presents owner-supplied protection and color without changing price',()=>{
+ const html=read('services/bedliner.html');assert.ok(html.includes('stronger protection against harsh chemicals and UV rays, with a pure-black finish'));assert.ok(html.includes('+$200 <small>plus tax</small>'));
+});
