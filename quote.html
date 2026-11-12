@@ -76,6 +76,10 @@
 <script src="./site-nav.js?v=545170a9ed" defer></script>
 <script src="./media-client.js?v=f6f4bc752d" defer></script>
 <!-- /cu:ui -->
+<style>
+.quote-page .cu-p6-switcher { grid-template-columns: repeat(4,minmax(0,1fr)); }
+@media (max-width: 640px) { .quote-page .cu-p6-switcher { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+</style>
 </head>
 <body class="quote-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -674,7 +678,7 @@
 <section class="quote-intro" aria-labelledby="quote-heading"><div class="quote-intro-inner">
 <a href="./services/" class="quote-return"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6M8 12h12"/></svg>Explore services</a>
 <h1 id="quote-heading">Build your quote.</h1><p>Tell us what you need. No payment to request a quote.</p>
-<aside class="quote-assurance" aria-label="About your quote"><div><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#clipboard"></use></svg><h2>What happens next</h2></div><ul><li><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#check"></use></svg>We check your fitment</li><li><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#check"></use></svg>You get an installed price</li><li><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#check"></use></svg>You choose when to book</li></ul><div class="quote-help-contact"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#phone"></use></svg><p>Prefer to talk?<br><a href="tel:+13013041419">301-304-1419</a></p></div></aside></div></section>
+<aside class="quote-assurance" aria-label="About your quote"><div><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#clipboard"></use></svg><h2>What happens next</h2></div><ul><li><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#check"></use></svg>We review your request</li><li><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#check"></use></svg>You get a written quote</li><li><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#check"></use></svg>You choose when to book</li></ul><div class="quote-help-contact"><svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#phone"></use></svg><p>Prefer to talk?<br><a href="tel:+13013041419">301-304-1419</a></p></div></aside></div></section>
 <div class="quote-workspace">
 
 
@@ -682,7 +686,8 @@
   <div class="cu-p6-switcher" role="tablist" aria-label="Quote type">
     <button type="button" class="cu-p6-pill is-active" data-mode="retail" role="tab" aria-selected="true">Personal vehicle</button>
     <button type="button" class="cu-p6-pill" data-mode="fleet" role="tab" aria-selected="false">Fleet &amp; commercial</button>
-    <button type="button" class="cu-p6-pill" data-mode="dealer" role="tab" aria-selected="false">Dealer &amp; government</button>
+    <button type="button" class="cu-p6-pill" data-mode="dealer" role="tab" aria-selected="false">Dealer programs</button>
+    <button type="button" class="cu-p6-pill" data-mode="project" role="tab" aria-selected="false">Industrial &amp; field projects</button>
   </div>
 </div>
 
@@ -1018,6 +1023,42 @@
               <p data-cu-ref-slot role="status"></p>
               <p data-cu-warning-slot role="status" hidden></p>
             </div></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="cu-p6-mode cu-p6-mode--project" data-mode-body="project">
+    <div class="wrap">
+      <div class="eyebrow">Industrial &amp; government projects</div>
+      <h2 class="title">Tell us about the project.</h2>
+      <p class="lede">Facilities, equipment, surfaces or agency work. No vehicle details or monthly volume required.</p>
+      <div class="cu-p6-standalone-form">
+        <form class="form" id="quote-project" data-cms-form="project" data-success-body="project-form-body" data-success-panel="project-form-success" method="POST" novalidate>
+          <input type="hidden" name="services" value="project_consultation">
+          <div data-role="form-body" id="project-form-body">
+            <h3>Project brief</h3>
+            <div class="fgrid">
+              <div class="field"><label for="pr-type">Project type *</label><select id="pr-type" name="Project Type" required><option value="industrial">Industrial / facility / equipment</option><option value="government">Government / municipal / field project</option></select></div>
+              <div class="field"><label for="pr-business">Business or agency (optional)</label><input id="pr-business" name="Business Name" autocomplete="organization" maxlength="200"></div>
+              <div class="field full"><label for="pr-assets">What needs work? *</label><textarea id="pr-assets" name="Project Assets" rows="3" maxlength="1000" required placeholder="Surface or equipment, material, approximate dimensions or quantity…"></textarea></div>
+              <div class="field full"><label for="pr-scope">What do you need done? *</label><textarea id="pr-scope" name="Message" rows="3" maxlength="4000" required placeholder="Coating or protection needed, current condition, and the outcome you want…"></textarea></div>
+              <div class="field"><label for="pr-location">Project location *</label><input id="pr-location" name="Project Location" maxlength="300" required placeholder="City / state or job-site address"></div>
+              <div class="field"><label for="pr-timing">Timeline (optional)</label><input id="pr-timing" name="Timeline" maxlength="120" placeholder="Target date or planning stage"></div>
+              <div class="field full"><label for="pr-procurement">Access or procurement requirements (optional)</label><textarea id="pr-procurement" name="Procurement" rows="2" maxlength="1000" placeholder="Site access, required documentation, bid deadline…"></textarea></div>
+              <div class="field"><label for="pr-name">Contact name *</label><input id="pr-name" name="Contact Name" autocomplete="name" maxlength="120" required></div>
+              <div class="field"><label for="pr-email">Email *</label><input id="pr-email" name="Work Email" type="email" autocomplete="email" maxlength="254" required></div>
+              <div class="field"><label for="pr-phone">Phone (optional)</label><input id="pr-phone" name="Phone" type="tel" autocomplete="tel" maxlength="30"></div>
+              <div class="field full"><p>Have photos or specifications? Email them after submitting and include your request reference. Please do not include sensitive documents in this form.</p></div>
+              <div class="field full"><button type="submit" class="btn btn-primary">Request project review</button><p class="fs">We review the scope before quoting. No payment or booking commitment.</p></div>
+            </div>
+          </div>
+          <div data-role="form-success" id="project-form-success" hidden><div class="form-success-panel" style="text-align:center;padding:28px 16px">
+            <h3>Project request received</h3><p>We will review your scope and contact you about the next step.</p>
+            <p data-cu-confirmation-copy>Have photos? Email CapitalUpfitters@gmail.com and include your reference.</p>
+            <p data-cu-ref-slot role="status"></p><p data-cu-warning-slot role="status" hidden></p>
+          </div></div>
         </form>
       </div>
     </div>

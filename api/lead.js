@@ -54,6 +54,7 @@ const SUPPORTED_FORMS = new Map([
   ['quote-retail', 'retail'],
   ['quote-fleet', 'fleet'],
   ['quote-dealer', 'dealer'],
+  ['quote-project', 'project'],
   ['callback-form', 'retail'],
   ['apply-form', 'dealer']
 ]);
@@ -68,6 +69,7 @@ const FORM_LABEL = {
   'quote-retail': 'Retail Quote',
   'quote-fleet': 'Fleet / Business Quote',
   'quote-dealer': 'Dealer / Government Inquiry',
+  'quote-project': 'Industrial / Field Project Review',
   'callback-form': 'Callback Request',
   'apply-form': 'Dealer / Government Application'
 };
@@ -393,6 +395,20 @@ function validatePayload(body) {
     return 'Form identity does not match the requested form.';
   }
 
+  if (formId === 'quote-project') {
+    const fields = [['Contact Name', 120, true], ['Work Email', 254, true],
+      ['Project Assets', 1000, true], ['Message', 4000, true],
+      ['Project Location', 300, true], ['Business Name', 200, false],
+      ['Timeline', 120, false], ['Procurement', 1000, false]];
+    for (const [field, limit, required] of fields) {
+      const value = pickFirst(body, [field]);
+      if (required && !value) return `Please enter ${field.toLowerCase()}.`;
+      if (value.length > limit) return `Please keep ${field.toLowerCase()} under ${limit} characters.`;
+    }
+    if (!['industrial', 'government'].includes(body['Project Type'])) return 'Please select a valid project type.';
+    if (asJoinedString(body.services) !== 'project_consultation') return 'Please use the project review service.';
+  }
+
   if (formId === 'callback-form') {
     const name = pickFirst(body, ['Name']);
     const callbackPhone = pickFirst(body, ['Phone']);
@@ -485,7 +501,7 @@ function buildPersistenceContact(body, preferenceOverride) {
 
 function buildPersistencePayload(body) {
   const formId = String(body.form_id || '');
-  const quoteMatch = /^quote-(retail|fleet|dealer)$/.exec(formId);
+  const quoteMatch = /^quote-(retail|fleet|dealer|project)$/.exec(formId);
   const audience = quoteMatch
     ? quoteMatch[1]
     : formId === 'callback-form'
@@ -559,6 +575,18 @@ function buildPersistencePayload(body) {
           isCallback ? 'Best Time to Call' : 'Preferred Date'
         ]), 120)
       }
+    };
+  }
+
+  // Reuse the existing commercial schema; project requests have no fabricated vehicle.
+  if (audience === 'project') {
+    return {
+      ...envelope, kind: 'commercial', requestType: body['Project Type'],
+      scope: { services, notes: optionalString(body.Message, 4000) },
+      assets: { description: scalarString(body['Project Assets'], 1000) },
+      logistics: { location: optionalString(body['Project Location'], 300),
+        timing: optionalString(body.Timeline, 120), procurement: optionalString(body.Procurement, 1000) },
+      organization: { name: optionalString(body['Business Name'], 200) }
     };
   }
 
@@ -743,6 +771,8 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
   const prefDate = pickFirst(body, ['Preferred Date']);
   const callTime = pickFirst(body, ['Best Time to Call']);
   const message  = pickFirst(body, ['Message', 'message']);
+  const projectFields = body.form_id === 'quote-project'
+    ? ['Project Type', 'Project Assets', 'Project Location', 'Timeline', 'Procurement'].map(label => [label, pickFirst(body, [label])]) : [];
   const monthlyVol = pickFirst(body, ['Monthly Volume']);
   const partsSupply = pickFirst(body, ['Parts Supply']);
   const hitchUse = pickFirst(body, ['Hitch Use']);
@@ -865,6 +895,7 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
     row('Preferred Date', prefDate) + row('Best Time to Call', callTime));
 
   const jobHtml = section('Job Details',
+    projectFields.map(([label, value]) => row(label, value)).join('') +
     row('Pricing', friendly(partsSupply, {
       'parts-labor': 'Parts + installation',
       csp: 'Labor only — customer supplies parts'
@@ -942,6 +973,7 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
     vin && `VIN: ${vin}`,
     '',
     services && `Services: ${services}`,
+    ...projectFields.filter(([, value]) => value).map(([label, value]) => `${label}: ${value}`),
     partsSupply && `Quote Type: ${partsSupply}`,
     hitchUse && `Hitch Use: ${hitchUse}`,
     hitchStyle && `Hitch Style: ${hitchStyle}`,

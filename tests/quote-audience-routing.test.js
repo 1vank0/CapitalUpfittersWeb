@@ -7,7 +7,7 @@ const start = source.indexOf("  var container = document.querySelector('.cu-p6')
 const end = source.indexOf('  // Listen for lead-form.js success', start);
 function fixture(query) {
   const handlers = {}, state = { mode: null, scrolls: 0 };
-  const pills = ['retail', 'fleet', 'dealer'].map(mode => ({
+  const pills = ['retail', 'fleet', 'dealer', 'project'].map(mode => ({
     dataset: { mode }, classList: { toggle() {} }, attrs: {},
     setAttribute(k, v) { this.attrs[k] = v; },
     addEventListener(k, fn) { this[k] = fn; }
@@ -29,7 +29,7 @@ test('direct audience and legacy links select the intended form without scrollin
   for (const [query, expected] of [
     ['', 'retail'], ['?audience=fleet', 'fleet'], ['?type=commercial', 'fleet'],
     ['?audience=commercial', 'fleet'], ['?audience=dealer', 'dealer'],
-    ['?audience=government', 'dealer'], ['?audience=retail&type=commercial', 'retail'],
+    ['?audience=government', 'project'], ['?audience=project', 'project'], ['?service=industrial', 'project'], ['?service=industrial-coatings', 'project'], ['?audience=retail&type=commercial', 'retail'],
     ['?audience=__proto__', 'retail'], ['?audience=unknown&type=commercial', 'fleet'],
     ['?service=bedliner', 'retail']
   ]) {

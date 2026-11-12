@@ -1175,12 +1175,13 @@ updateHitchFulfillment();
   }
   function modeFromUrl(){
     var params = new URLSearchParams(window.location.search);
-    var aliases = { retail: 'retail', personal: 'retail', fleet: 'fleet', commercial: 'fleet', dealer: 'dealer', government: 'dealer' };
+    var aliases = { retail: 'retail', personal: 'retail', fleet: 'fleet', commercial: 'fleet', dealer: 'dealer', government: 'project', project: 'project', industrial: 'project' };
     // Explicit audience wins; keep old inbound type=commercial links working.
     var audience = (params.get('audience') || '').toLowerCase();
     var legacyType = (params.get('type') || '').toLowerCase();
     return Object.prototype.hasOwnProperty.call(aliases, audience) ? aliases[audience]
-      : Object.prototype.hasOwnProperty.call(aliases, legacyType) ? aliases[legacyType] : 'retail';
+      : Object.prototype.hasOwnProperty.call(aliases, legacyType) ? aliases[legacyType]
+      : /^(industrial|industrial-coatings)$/.test(params.get('service') || '') ? 'project' : 'retail';
   }
   pills.forEach(function(p){
     p.addEventListener('click', function(){
@@ -1191,6 +1192,8 @@ updateHitchFulfillment();
       setMode(p.dataset.mode);
     });
   });
+  var projectType = document.getElementById('pr-type');
+  if(projectType && new URLSearchParams(window.location.search).get('audience') === 'government') projectType.value = 'government';
   setMode(modeFromUrl(), false);
   window.addEventListener('popstate', function(){ setMode(modeFromUrl(), false); });
 
