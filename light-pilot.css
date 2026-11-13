@@ -71,7 +71,7 @@ body.light-pilot{--font-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Seg
 .light-pilot :is(.evidence-review figcaption,.evidence-source){color:#626267;font-size:13px}
 .light-pilot .evidence-source a{color:#1d1d1f;text-decoration:underline}
 .light-pilot .evidence-reviews{grid-template-columns:1fr;max-width:800px;margin:32px 0}
-.light-pilot .evidence-job-photo figcaption{color:#bdbdc2;font-size:13px}
+.light-pilot .evidence-job-photo figcaption{color:#626267;font-size:13px}
 .light-pilot .cover-confidence>.sp-wrap{grid-template-columns:1fr;gap:32px}
 .light-pilot .cover-confidence-grid article{border-color:#dedee2;padding-top:24px}
 .light-pilot .cover-confidence-grid article>span{color:#626267;font-size:14px}
