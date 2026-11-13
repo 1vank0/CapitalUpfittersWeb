@@ -610,8 +610,9 @@
 <script src="./site-nav.js?v=545170a9ed" defer></script>
 <script src="./media-client.js?v=f6f4bc752d" defer></script>
 <!-- /cu:ui -->
+<link rel="stylesheet" href="./sitewide-rollout.css">
 </head>
-<body>
+<body class="sitewide-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- cu:header -->
@@ -1216,6 +1217,8 @@
     </div>
   </div>
 </section>
+<section class="decision-brief" aria-label="Planning your request"><div class="container"><p class="decision-kicker">A direct route to your quote</p><h2>Choose the right business request.</h2><div class="decision-grid"><article><h3>Dealer installations</h3><p>Send the vehicle and requested equipment for pre-delivery work. Dealer pricing is confirmed for the specific request.</p><a href="./quote.html?audience=dealer">Get dealer pricing</a></article><article><h3>Fleet vehicles</h3><p>Build a consistent equipment list across your work vehicles. Include vehicle count and delivery priorities.</p><a href="./quote.html?audience=fleet">Plan a fleet upfit</a></article><article><h3>Government & field projects</h3><p>Describe the assets, location, scope and procurement requirements. No vehicle details are required for a nonvehicle project.</p><a href="./quote.html?audience=government">Send a project brief</a></article></div></div></section>
+
 
 <!-- AUDIENCE SPLIT — REDESIGNED -->
 <section class="section section--dark" aria-labelledby="audience-heading">
@@ -1327,7 +1330,7 @@
 
       <div style="text-align:center; margin-top: var(--space-8);">
         <a href="#apply" class="btn btn-primary">Open Dealer Account</a>
-        <a href="./quote.html?type=dealer" class="btn btn-outline" style="margin-left: var(--space-4); border-color:rgba(255,255,255,0.3); color:#fff;">Get Dealer Pricing<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+        <a href="./quote.html?audience=dealer" class="btn btn-outline" style="margin-left: var(--space-4); border-color:rgba(255,255,255,0.3); color:#fff;">Get Dealer Pricing<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
       </div>
 
     </div><!-- /panel-dealer -->
@@ -1417,7 +1420,7 @@
 
       <div style="text-align:center; margin-top: var(--space-8);">
         <a href="#apply" class="btn btn-primary">Submit RFP Inquiry<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
-        <a href="./quote.html?type=government" class="btn btn-outline" style="margin-left: var(--space-4); border-color:rgba(255,255,255,0.3); color:#fff;">Get Fleet Pricing<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+        <a href="./quote.html?audience=government" class="btn btn-outline" style="margin-left: var(--space-4); border-color:rgba(255,255,255,0.3); color:#fff;">Get Fleet Pricing<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
       </div>
 
     </div><!-- /panel-government -->
