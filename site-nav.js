@@ -4,7 +4,7 @@
   const nav = document.querySelector('[data-site-nav]');
   if (!nav) return;
   const items = [...nav.querySelectorAll('[data-nav-item]')];
-  const desktop = window.matchMedia('(min-width: 1100px)');
+  const desktop = window.matchMedia('(min-width: 1280px)');
   const hover = window.matchMedia('(hover: hover)');
   let openItem = null;
   let hoverTimer;

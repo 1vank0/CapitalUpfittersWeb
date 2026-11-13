@@ -379,7 +379,7 @@ body .btn:active { transform: scale(.97) !important; box-shadow: none !important
 .hq-btn { min-height: 48px; border-radius: var(--ui-pill); font-family: var(--font-body); font-size: var(--ui-text-base); transition: background-color var(--ui-duration), transform 120ms; }
 .hq-btn:active { transform: scale(.97); }
 
-@media (max-width: 1099px) {
+@media (max-width: 1279px) {
   :root { --nav-height: 72px; }
   .site-nav .site-nav-inner { gap: var(--ui-space-3); }
   .site-nav-links { display: none; }
@@ -757,3 +757,10 @@ body .btn, body .vs-btn, .site-nav-trigger, .site-menu-toggle { border-radius: 6
 .home-project-card h3 { color:#1d1d1f; font-size:24px; margin:8px 0 16px; }
 .home-project-card span { text-decoration:underline; text-underline-offset:4px; }
 @media(max-width:767px) { .home-projects-heading { display:block; } .home-projects-heading > a { margin-top:20px; } .home-projects-grid { grid-template-columns:1fr; } }
+
+/* Keep the full navigation inside the content rail. Compact navigation also
+   covers laptop widths and browser zoom; its menu retains Gallery & Projects. */
+@media (min-width: 1280px) {
+  .site-nav .site-nav-inner { gap: 12px; }
+  .site-nav .site-nav-trigger { padding-inline: 8px; }
+}
