@@ -1,139 +1,70 @@
-/* Capital Upfitters — attribution tracking
- *
- * Captures and persists first-touch attribution data for every visitor:
- *   - First landing page (URL + path) on first visit, never overwritten
- *   - First referrer + referrer domain on first visit
- *   - UTM parameters + click IDs from the current URL (refreshed each visit)
- *   - Detected lead source (e.g. "Google Organic", "Google Ads", "Direct")
- *
- * Stored in localStorage under key `cu_attr_v1`.
- * The page-form bridge (lead-form.js) reads from window.CUAttribution.get().
+/* Minimized first-party lead attribution. No analytics vendor requests or visitor IDs.
+ * The same sanitizer is used by the browser and /api/lead. Only known public
+ * routes, fixed campaign tags and known referrer origins survive. Unknown tags
+ * are deliberately dropped rather than copying possible personal data.
  */
-(function () {
+(function (root, factory) {
+  var api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  if (!root || !root.document) return;
+  var key = 'cu_attr_v2_session';
+  function capture() {
+    var stored = {};
+    try { stored = JSON.parse(root.sessionStorage.getItem(key) || '{}'); } catch (_) {}
+    var query = new URLSearchParams(root.location.search);
+    var input = { landing_page: stored.landing_page || root.location.pathname,
+      form_page: root.location.pathname, referrer: stored.referrer || root.document.referrer };
+    ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (name) { input[name] = query.get(name) || stored[name] || ''; });
+    var value = api.sanitize(input);
+    // This only holds coarse source data for a browser tab; it is not a visitor ID.
+    try { root.sessionStorage.setItem(key, JSON.stringify(value)); } catch (_) {}
+    return value;
+  }
+  root.CUAttribution = { get: capture, sanitize: api.sanitize };
+  try { root.localStorage.removeItem('cu_attr_v1'); } catch (_) {}
+  capture();
+})(typeof window === 'undefined' ? null : window, function () {
   'use strict';
-
-  var STORAGE_KEY = 'cu_attr_v1';
-
-  function safeGet() {
+  var routes = ["/", "/404", "/blog", "/blog/best-tonneau-covers-maryland", "/blog/leveling-vs-lift-kit", "/blog/patriot-liner-vs-drop-in", "/blog/undercoating-maryland-winter", "/blog/weatherguard-vs-kargomaster", "/contact", "/dealer-government", "/faq", "/fleet", "/gallery", "/hitch-quote", "/index", "/locations/bethesda-md", "/locations/gaithersburg-md", "/locations/rockville-md", "/locations/silver-spring-md", "/preview", "/privacy", "/products-section", "/quote", "/rebates", "/services", "/services/bedliner", "/services/camper-shells", "/services/ceramic-coating", "/services/commercial-wraps", "/services/exterior", "/services/hitches", "/services/industrial-coatings", "/services/lighting", "/services/mobile-detailing", "/services/running-boards", "/services/stealth-hitches", "/services/suspension", "/services/tonneau", "/services/toolboxes", "/services/undercoating", "/services/window-tinting", "/start-here", "/terms"];
+  var allowed = {
+    utm_source: ['gbp', 'chatgpt.com', 'chatgpt', 'openai', 'perplexity.ai', 'claude.ai', 'gemini.google.com', 'copilot.microsoft.com', 'facebook', 'instagram', 'nextdoor', 'yard-sign', 'referral', 'google', 'bing', 'youtube', 'yelp', 'stealthhitches', 'etrailer', 'realtruck'],
+    utm_medium: ['organic', 'profile', 'social', 'print', 'qr', 'referral', 'email', 'cpc', 'paid'],
+    utm_campaign: ['winter-undercoating', 'work-truck-season', 'hero-price', 'mobile-hitch']
+  };
+  var origins = ['google.com','bing.com','duckduckgo.com','search.yahoo.com','facebook.com','instagram.com','nextdoor.com','yelp.com','youtube.com','linkedin.com','reddit.com','t.co','x.com','chatgpt.com','chat.openai.com','perplexity.ai','claude.ai','gemini.google.com','copilot.microsoft.com','search.brave.com','stealthhitches.com','etrailer.com','realtruck.com','capitalupfitters.com'];
+  function route(value) {
     try {
-      var raw = window.localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : {};
-    } catch (_) { return {}; }
+      var u = new URL(String(value || ''), 'https://capitalupfitters.com');
+      if (!/^https?:$/.test(u.protocol)) return '';
+      var path = u.pathname.replace(/\.html$/, '').replace(/\/index$/, '/').replace(/\/$/, '') || '/';
+      return routes.indexOf(path) >= 0 ? path : '';
+    } catch (_) { return ''; }
   }
-
-  function safeSet(obj) {
-    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); } catch (_) {}
-  }
-
-  function getDomain(url) {
-    if (!url) return '';
-    try { return new URL(url).hostname.replace(/^www\./i, ''); }
-    catch (_) { return ''; }
-  }
-
-  function parseQuery() {
-    var out = {};
+  function origin(value) {
     try {
-      var sp = new URLSearchParams(window.location.search);
-      sp.forEach(function (v, k) { out[k.toLowerCase()] = v; });
-    } catch (_) {}
+      var u = new URL(String(value || ''));
+      var host = u.hostname.replace(/^www\./, '');
+      return /^https?:$/.test(u.protocol) && origins.indexOf(host) >= 0 ? 'https://' + host : '';
+    } catch (_) { return ''; }
+  }
+  function sanitize(input) {
+    input = input || {};
+    var out = { landing_page: route(input.landing_page), form_page: route(input.form_page), referrer: origin(input.referrer) };
+    out.referrer_domain = out.referrer.replace('https://', '');
+    Object.keys(allowed).forEach(function (key) {
+      var value = typeof input[key] === 'string' ? input[key].toLowerCase() : '';
+      out[key] = allowed[key].indexOf(value) >= 0 ? value : '';
+    });
+    // Do not collect free-text tags, ad click identifiers, geolocation or user agents.
+    ['utm_term', 'utm_content', 'gclid', 'fbclid', 'msclkid', 'ip_address', 'geo_city', 'geo_region', 'geo_country', 'isp', 'user_agent'].forEach(function (k) { out[k] = ''; });
+    var source = out.utm_source || out.referrer_domain;
+    out.lead_source = /^(chatgpt(\.com)?|openai|chat\.openai\.com|perplexity\.ai|claude\.ai|gemini\.google\.com|copilot\.microsoft\.com)$/.test(source) ? 'AI Referral' :
+      source === 'search.brave.com' ? 'Brave Search' :
+      /^(google|google\.com)$/.test(source) ? (out.utm_medium === 'cpc' ? 'Google Ads' : 'Google Organic') :
+      source === 'gbp' ? 'Google Business Profile' :
+      /^(facebook|instagram)(\.com)?$/.test(source) ? 'Meta Social' :
+      source ? 'Referral' : 'Direct';
     return out;
   }
-
-  // Lead-source detection. Precedence:
-  //   1. Paid click IDs (gclid > fbclid > msclkid)
-  //   2. UTM source (if utm_source is set)
-  //   3. Referrer pattern match (organic search / social / AI)
-  //   4. Fallback: Direct
-  function detectLeadSource(ctx) {
-    var ref = (ctx.referrer || '').toLowerCase();
-    var refDomain = (ctx.referrer_domain || '').toLowerCase();
-    var utmSource = (ctx.utm_source || '').toLowerCase();
-
-    if (ctx.gclid)   return 'Google Ads';
-    if (ctx.fbclid)  return 'Facebook / Instagram Ads';
-    if (ctx.msclkid) return 'Microsoft Ads';
-
-    if (utmSource) {
-      if (/google/.test(utmSource))    return /cpc|ads|paid/.test((ctx.utm_medium||'').toLowerCase()) ? 'Google Ads' : 'Google';
-      if (/bing|microsoft/.test(utmSource)) return 'Microsoft Ads';
-      if (/facebook|meta|instagram/.test(utmSource)) return 'Facebook / Instagram Ads';
-      if (/youtube/.test(utmSource))   return 'YouTube';
-      if (/yelp/.test(utmSource))      return 'Yelp';
-      if (/chatgpt|openai|perplexity|claude|gemini/.test(utmSource)) return 'ChatGPT / AI Referral';
-      return ctx.utm_source; // honor whatever the marketer tagged
-    }
-
-    if (ref || refDomain) {
-      var src = ref + ' ' + refDomain;
-      if (/google\./.test(src))      return 'Google Organic';
-      if (/bing\./.test(src))        return 'Bing Organic';
-      if (/duckduckgo\./.test(src))  return 'DuckDuckGo Organic';
-      if (/yahoo\./.test(src))       return 'Yahoo Organic';
-      if (/yelp\./.test(src))        return 'Yelp';
-      if (/youtube\./.test(src))     return 'YouTube';
-      if (/facebook\.|fb\.com|instagram\./.test(src)) return 'Meta Social';
-      if (/linkedin\./.test(src))    return 'LinkedIn';
-      if (/twitter\.|x\.com|t\.co/.test(src)) return 'X / Twitter';
-      if (/tiktok\./.test(src))      return 'TikTok';
-      if (/reddit\./.test(src))      return 'Reddit';
-      if (/chatgpt\.|openai\.|chat\.openai\.|perplexity\.|claude\.|gemini\.google\.|copilot\.microsoft\./.test(src))
-        return 'ChatGPT / AI Referral';
-      return 'Referral';
-    }
-
-    return 'Direct';
-  }
-
-  function buildContext() {
-    var stored = safeGet();
-    var query = parseQuery();
-    var docReferrer = document.referrer || '';
-    var currentHref = window.location.href;
-
-    var ctx = {
-      landing_page:      stored.landing_page      || currentHref,
-      referrer:          stored.referrer          || docReferrer,
-      referrer_domain:   stored.referrer_domain   || getDomain(docReferrer),
-      first_seen_at:     stored.first_seen_at     || new Date().toISOString(),
-
-      // Refreshed each visit (last-touch UTMs are useful too, but the form
-      // captures whatever was on the URL the user submitted from — which is
-      // what marketers typically want for paid attribution).
-      utm_source:   query.utm_source   || stored.utm_source   || '',
-      utm_medium:   query.utm_medium   || stored.utm_medium   || '',
-      utm_campaign: query.utm_campaign || stored.utm_campaign || '',
-      utm_term:     query.utm_term     || stored.utm_term     || '',
-      utm_content:  query.utm_content  || stored.utm_content  || '',
-      gclid:        query.gclid        || stored.gclid        || '',
-      fbclid:       query.fbclid       || stored.fbclid       || '',
-      msclkid:      query.msclkid      || stored.msclkid      || ''
-    };
-
-    ctx.lead_source = detectLeadSource(ctx);
-
-    // Persist on first visit and whenever new UTM/click-IDs appear so the
-    // stored snapshot always reflects the strongest signal we've seen.
-    var next = Object.assign({}, stored, ctx);
-    if (!stored.landing_page || JSON.stringify(stored) !== JSON.stringify(next)) {
-      safeSet(next);
-    }
-
-    return ctx;
-  }
-
-  // Public API: window.CUAttribution.get() returns a snapshot for a form submit.
-  window.CUAttribution = {
-    get: function () {
-      var ctx = buildContext();
-      return Object.assign({}, ctx, {
-        form_page:  window.location.href,
-        user_agent: navigator.userAgent || ''
-      });
-    }
-  };
-
-  // Run once on load so we capture landing-page state even if the visitor
-  // never opens a form.
-  try { buildContext(); } catch (_) {}
-})();
+  return { sanitize: sanitize, route: route, origin: origin };
+});

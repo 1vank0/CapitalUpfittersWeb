@@ -24,8 +24,7 @@
       return window.CUAttribution.get();
     }
     return {
-      landing_page: window.location.href, form_page: window.location.href,
-      user_agent: navigator.userAgent || '', lead_source: 'Direct'
+      landing_page: '', form_page: '', lead_source: 'Direct'
     };
   }
 
@@ -392,6 +391,13 @@
           detail: {
             formId: form.id || '',
             reference: result.reference || '',
+            leadId: /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(result.lead_id || '') ? result.lead_id : '',
+            audience: payload.form_type || '',
+            source: payload.lead_source || 'Direct',
+            landingPage: payload.landing_page || '',
+            formPage: payload.form_page || '',
+            persisted: result.persisted === true,
+            delivered: result.delivered === true,
             customerConfirmation: result.customer_confirmation === true,
             deliveryMode: result.delivery_mode || '',
             warning: result.warning || '',
