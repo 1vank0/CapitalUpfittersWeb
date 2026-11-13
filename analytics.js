@@ -15,6 +15,7 @@
     product: ['westin','bakflip-mx4','mx4-ez-lift','mx4-ts','retrax-pro','retrax-pro-xr','frc-4000','truxport','pro-x15','other'],
     section: ['services','fleet','company','resources','mobile','other'],
     guide_name: ['price-guide','winter-checklist'],
+    shop_status: ['open','closed','unknown'],
     design_variant: ['baseline','light-pilot']
   };
   var publicRoutes = ["/", "/404", "/blog", "/blog/best-tonneau-covers-maryland", "/blog/leveling-vs-lift-kit", "/blog/patriot-liner-vs-drop-in", "/blog/undercoating-maryland-winter", "/blog/weatherguard-vs-kargomaster", "/contact", "/dealer-government", "/faq", "/fleet", "/gallery", "/hitch-quote", "/index", "/locations/bethesda-md", "/locations/gaithersburg-md", "/locations/rockville-md", "/locations/silver-spring-md", "/preview", "/privacy", "/products-section", "/quote", "/rebates", "/services", "/services/bedliner", "/services/camper-shells", "/services/ceramic-coating", "/services/commercial-wraps", "/services/exterior", "/services/hitches", "/services/industrial-coatings", "/services/lighting", "/services/mobile-detailing", "/services/running-boards", "/services/stealth-hitches", "/services/suspension", "/services/tonneau", "/services/toolboxes", "/services/undercoating", "/services/window-tinting", "/start-here", "/terms"];
@@ -46,6 +47,7 @@
   function track(name, params) {
     if (names.indexOf(name) < 0) return;
     var data = sanitize(params);
+    if (name === 'call_click' || name === 'form_submit') data.shop_status = w.CUShopStatus ? w.CUShopStatus.get() : 'unknown';
     api.events.push({name:name,params:data});
     if (api.events.length > 100) api.events.shift();
     if (api.ga4Enabled) w.gtag('event', name, data);

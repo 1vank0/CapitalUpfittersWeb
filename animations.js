@@ -547,3 +547,10 @@
   window.addEventListener('scroll', toggle, { passive: true });
   toggle();
 })();
+
+// Shared nontracking utilities. This loader does not configure analytics.
+(function(){
+  if(document.querySelector('script[data-cu-utilities]'))return;
+  var css=document.createElement('link');css.rel='stylesheet';css.href='/site-utilities.css';document.head.appendChild(css);
+  var script=document.createElement('script');script.src='/site-utilities.js';script.defer=true;script.setAttribute('data-cu-utilities','true');document.head.appendChild(script);
+})();

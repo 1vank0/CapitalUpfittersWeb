@@ -1,0 +1,7 @@
+.cu-back-top{position:fixed;right:24px;bottom:24px;z-index:90;width:44px;height:44px;border:1px solid #d1d1d6;border-radius:50%;background:#fff;color:#1d1d1f;box-shadow:0 4px 16px #0002;display:grid;place-items:center;cursor:pointer;transition:opacity .2s,transform .2s}
+.cu-back-top[hidden]{display:none!important}.cu-back-top:focus-visible{outline:3px solid #1769c2;outline-offset:4px}.cu-back-top svg{width:24px;height:24px}
+.cu-shop-status{font:500 13px/1.4 system-ui,sans-serif;display:inline-flex;align-items:center;gap:7px;color:inherit;max-width:100%}.cu-shop-status::before{content:'';width:8px;height:8px;border-radius:50%;background:#888;flex:none}.cu-shop-status[data-state=open]::before{background:#1d7a3e}.cu-shop-status[data-state=closed]::before{background:#c1352b}.cu-shop-status[data-placement=desktop]{margin-right:12px}
+@media(max-width:1100px){.cu-shop-status[data-placement=desktop]{display:none}.cu-shop-status[data-placement=mobile]{margin:16px;display:flex}.cu-back-top{bottom:calc(80px + env(safe-area-inset-bottom,0px));right:16px}}
+@media(min-width:1101px){.cu-shop-status[data-placement=mobile]{display:none}}
+@media(prefers-reduced-motion:reduce){.cu-back-top{transition:none}}
+.float-cta[hidden]{display:none!important}
