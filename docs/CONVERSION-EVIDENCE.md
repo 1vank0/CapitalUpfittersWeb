@@ -1,0 +1,7 @@
+# Conversion evidence check — November 13, 2026
+
+- Cover offer record is `content/installed-offers.json`. Owner’s November 12 +$50 direction supersedes the November 10 sales sheet. MX4 standalone $1,350; $1,300 is the cover-only bundled amount. Westin standalone $1,050; bundled $1,000. Website pages and quote message tests agree. External sales sheet and Shopmonkey estimates are not accessible for edits/verification here.
+- Undercoating published starting prices: $695 light duty / $795 heavy duty. Source https://bulletlinerofrockville.com/company/pricing.aspx, checked November 13. Do not reuse old $650/$750. Written vehicle quote, preparation and tax clarification control.
+- Reviews are verbatim attributed excerpts from the current Trustindex Google feed, not fabricated testimonials. Aggregate 5.0/123 was verified November 13; live script updates it where available. No aggregate rating schema added.
+- No evidence supports a typical appointment lead-time number. Availability CTA asks visitors for preferred dates without promising slots or turnaround.
+- Genuine business-published images were recovered and visually inspected from official Instagram sources. Homepage/F-150 exterior, bedliner exterior plus compact real liner detail, and MCS fleet covers/branding replace illustrative slots through the named media API. Source URLs and precise captions live in config/editorial-media.json. Admin-published photos take precedence; other hero slots remain illustrations. No external object store was mutated and no photo is labeled as a specific MX4 install.

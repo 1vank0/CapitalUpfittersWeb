@@ -1,0 +1,32 @@
+{
+  "home-hero": {
+    "asset": "/assets/real-work/f150-shop.webp",
+    "alt": "Ford F-150 outside the Capital Upfitters shop in Rockville",
+    "caption": "Real shop project \u00b7 Ford F-150 at Capital Upfitters. Exterior view, not a liner detail.",
+    "source": "https://www.instagram.com/p/DE-RHDDROZv/"
+  },
+  "tonneau": {
+    "asset": "/assets/real-work/mcs-fleet-covers.webp",
+    "alt": "MCS Ford Maverick fleet with installed bed covers and vehicle graphics",
+    "caption": "Real fleet project \u00b7 MCS Mavericks with covers and graphics. Not an MX4 product demonstration.",
+    "source": "https://www.instagram.com/p/DaOCAgoifV9/"
+  },
+  "commercial-wraps": {
+    "asset": "/assets/real-work/mcs-fleet-covers.webp",
+    "alt": "MCS branded Ford Maverick fleet completed by Capital Upfitters",
+    "caption": "Real fleet project \u00b7 MCS vehicle branding and bed covers.",
+    "source": "https://www.instagram.com/p/DaOCAgoifV9/"
+  },
+  "bedliner": {
+    "asset": "/assets/real-work/f150-shop.webp",
+    "alt": "Ford F-150 outside the Capital Upfitters shop in Rockville",
+    "caption": "Real shop project \u00b7 Ford F-150 at Capital Upfitters. Exterior view, not a liner detail.",
+    "source": "https://www.instagram.com/p/DE-RHDDROZv/"
+  },
+  "bedliner-detail": {
+    "asset": "/assets/real-work/f150-bed-detail.jpg",
+    "alt": "Finished spray-on liner in a Ford F-150 bed and tailgate at Capital Upfitters",
+    "caption": "Actual F-150 liner project \u00b7 detail from our published installation video.",
+    "source": "https://www.instagram.com/p/DE-RHDDROZv/"
+  }
+}

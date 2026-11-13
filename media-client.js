@@ -24,8 +24,8 @@
         const caption = figure.querySelector('figcaption');
         if (image) image.alt = record.alt;
         if (caption && !figure.classList.contains('media-unavailable')) {
-          caption.hidden = record.kind === 'photo';
-          caption.textContent = record.kind === 'illustration' ? 'Illustrative image' : '';
+          caption.hidden = record.kind === 'photo' && !record.caption;
+          caption.textContent = record.kind === 'illustration' ? 'Illustrative image' : (record.caption || '');
         }
       });
     }).catch(() => { /* Stable image endpoints still work when labels cannot refresh. */ });
