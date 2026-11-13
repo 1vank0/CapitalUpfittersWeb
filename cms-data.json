@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-05T20:27:05.116Z",
+  "generatedAt": "2026-11-13T00:00:00.000Z",
   "services": [
     {
       "title": "The Last Bedliner Your Truck Will Ever Need",
@@ -7,7 +7,7 @@
       "category": "bedliners",
       "summary": "Authorized Patriot Liner dealer. Premium polyurea formula — heated to 155°F, 2,000 PSI. Dry in under 10 seconds. Lifetime warranty.",
       "icon": "truck",
-      "priceFrom": 575,
+      "priceFrom": 595,
       "sortOrder": 1,
       "active": true,
       "hero": {
@@ -21,19 +21,14 @@
       },
       "pricing": [
         {
-          "label": "Compact Truck",
-          "price": "$575",
-          "note": "Up to 5ft bed • + tax"
-        },
-        {
-          "label": "Standard Truck",
+          "label": "Compact & Standard Beds",
           "price": "$595",
-          "note": "Up to 6.5ft bed • + tax"
+          "note": "Up to 6.5 ft • plus tax • clean bed without accessories; condition affects price"
         },
         {
-          "label": "HD & Long Bed",
-          "price": "$635+",
-          "note": "HD: $635 • Long 8ft: $675 • + tax"
+          "label": "Long Bed",
+          "price": "$795",
+          "note": "Up to 8 ft • tax confirmed in written quote • clean bed without accessories; condition affects price"
         }
       ],
       "kpis": [
@@ -46,8 +41,8 @@
           "label": "Manufacturer Warranty"
         },
         {
-          "value": "2–3 hrs",
-          "label": "Typical Install Time"
+          "value": "Confirmed",
+          "label": "Timing with your quote"
         }
       ],
       "process": [
@@ -65,13 +60,13 @@
         },
         {
           "title": "Cure & Pickup",
-          "description": "Your truck is ready in 2–3 hours. We do a final inspection before you pick it up, warranty registered."
+          "description": "We confirm drop-off and pickup timing based on bed condition and selected work. Ask about cure and loading instructions."
         }
       ],
       "faqs": [
         {
           "question": "How long does the install take?",
-          "answer": "Most installs take 2–3 hours from drop-off to pickup. We recommend scheduling a morning appointment so your truck is ready by early afternoon. Same-day service is typically available."
+          "answer": "Installation timing is confirmed after reviewing bed condition and the work selected. Ask about cure and loading instructions before using the bed."
         },
         {
           "question": "What sets Patriot Liner apart?",
@@ -79,7 +74,7 @@
         },
         {
           "question": "How much does it cost?",
-          "answer": "Pricing starts at $575 for compact trucks (up to 5ft bed), $595 for standard (up to 6.5ft), $635 for HD trucks, and $675 for long 8ft beds. Add +$200 for the Premium UV+ formula upgrade. All prices plus tax. Get an instant quote online or call us at (301) 304-1419."
+          "answer": "Patriot Liner starts at $595 plus tax for compact and standard beds up to 6.5 ft. Long beds start at $795, with tax confirmed in the written quote. Pricing assumes a clean bed without accessories and may differ based on bed condition. UV+ is an optional $200 upgrade."
         },
         {
           "question": "Do you do custom colors?",
@@ -91,7 +86,7 @@
         }
       ],
       "seoTitle": "Patriot Liner Bedliner Rockville MD | Capital Upfitters",
-      "seoDescription": "Patriot Liner spray-on bedliners installed in Rockville, MD by the corridor's only authorized dealer. Same-week service available. Call (301) 304-1419.",
+      "seoDescription": "Patriot Liner spray-on bedliners installed in Rockville, MD by the corridor's only authorized dealer. scheduled installation available. Call (301) 304-1419.",
       "benefits": {
         "heading": "BUILT TO TAKE A BEATING.",
         "intro": "Not all spray liners are the same. The chemistry, application temperature, and pressure make all the difference. Here's why Patriot Liner leads the field.",
@@ -153,7 +148,6 @@
       "category": "truck-accessories",
       "summary": "Folding, roll-up, retractable, and hard panel covers. 150+ brands. Professional installation — no drilling, factory fit. Starting from $300.",
       "icon": "box",
-      "priceFrom": 300,
       "sortOrder": 2,
       "active": true,
       "hero": {
@@ -216,7 +210,7 @@
         }
       ],
       "seoTitle": "Tonneau Covers Rockville MD | Capital Upfitters",
-      "seoDescription": "Tonneau covers installed in Rockville, MD with same-week availability. Rugged fit, zero drilling, and factory-style install. Request installed pricing today.",
+      "seoDescription": "Tonneau covers installed in Rockville, MD with appointment availability confirmed with your quote. Rugged fit, zero drilling, and factory-style install. Request installed pricing today.",
       "benefits": {
         "heading": "SECURE, SLEEK, AND SMARTER.",
         "intro": "A tonneau cover isn't just cosmetic. It secures your gear, protects your cargo from weather, and actually improves your truck's fuel economy at highway speeds.",
@@ -246,7 +240,19 @@
         "testimonials": "REAL CUSTOMERS. REAL RESULTS."
       },
       "body": "Folding, roll-up, retractable, and hard panel covers. 150+ brands. Professional installation — no drilling, factory fit. Starting from $300.\n\n## SECURE, SLEEK, AND SMARTER.\n\nA tonneau cover isn't just cosmetic. It secures your gear, protects your cargo from weather, and actually improves your truck's fuel economy at highway speeds.\n\nBAKFlip, Retrax, TruXedo, Extang, Roll-N-Lock, Access, Lund — we carry the brands that hold up. We'll match you to the right cover for how you use your truck.\n\nEvery cover we install uses the factory stake holes or bed rail clamps — zero drilling, no damage to your truck. Clean install, clean look, and no impact on resale value.\n\nAn open truck bed creates significant drag at highway speeds. A tonneau cover reduces that drag and has been shown to improve fuel economy by 2–5% in real-world conditions.\n\n## THE COVERS WE CARRY.\n\nWe carry the top brands — from entry-level soft roll-up to premium aluminum retractable. Every cover professionally installed, factory fit, no drilling on most trucks.\n\nOur most popular combo: the Patriot BC-1 hard aluminum tonneau paired with a Patriot Liner spray-on bedliner. Same appointment, same-day completion. Full bed protection — top and bottom — from one shop with one warranty.\n\nOur in-house brand. Ultra-thick aluminum panels — up to 4× thicker than standard covers. DiamondSHIELD matte finish resists scratches and corrosion. EPDM seals stop water before it enters. Supports 400 lbs. Flips up for 100% bed access.\n\nThe best-selling hard folding cover in the US. Gen 3 MX4 features polymer-reinforced aluminum panels 22% stronger than the original, auto-latch locking on every panel, and improved perimeter seals. Assembled in Missouri. 5-year warranty.\n\n## NO DRILLING. PERFECT FIT.\n\nWe confirm your bed size, cab configuration, and any accessories (toolboxes, rails) that affect cover selection.\n\nWe match you to the right cover for your use case and budget from our inventory of 150+ brands.\n\nMounted using stake holes or clamp hardware — no drilling. Weather seals are adjusted for a tight, factory-style fit.\n\nWe walk you through operation and adjustment. Most installs done in 1–2 hours. Ready same day.\n\n## TONNEAU COVER INSTALLATION ACROSS THE DMV.\n\nTruck owners across Rockville, Gaithersburg, Bethesda, and Silver Spring come to Capital Upfitters to find the right tonneau for their specific bed. We carry soft fold, hard fold, retractable, and roll-up covers and stock the most popular sizes for F-150, Silverado, Sierra, Ram 1500, Tacoma, and Tundra. Located at 12019 Nebel St in Rockville — minutes from I-270.",
-      "_file": "tonneau.md"
+      "_file": "tonneau.md",
+      "pricing": [
+        {
+          "label": "Westin Hard Tri-Fold",
+          "price": "$1,050 installed",
+          "note": "Exact fitment, tax and additional work confirmed in written quote"
+        },
+        {
+          "label": "BAKFlip MX4",
+          "price": "$1,350 installed",
+          "note": "Save $50 on either cover when bundled with Patriot Liner; liner charged separately"
+        }
+      ]
     },
     {
       "title": "Running Boards & Steps For Trucks And Suvs",
@@ -321,7 +327,7 @@
         }
       ],
       "seoTitle": "Running Boards & Steps Rockville MD | Capital Upfitters",
-      "seoDescription": "Running boards and steps installed in Rockville, MD with same-week availability. Family-owned shop serving the DMV since 2015. Request installed pricing.",
+      "seoDescription": "Running boards and steps installed in Rockville, MD with appointment availability confirmed with your quote. Family-owned shop serving the DMV since 2015. Request installed pricing.",
       "benefits": {
         "heading": "THE RIGHT STEP FOR YOUR VEHICLE.",
         "intro": "Running boards aren't universal. The right fit depends on your specific cab, bed, and rocker configuration. We stock 150+ brands and know which ones work for your truck.",
@@ -472,15 +478,15 @@
       "title": "Stop Rust Before It Starts",
       "slug": "undercoating",
       "category": "protection",
-      "summary": "Professional undercoating for all vehicles. Maryland road salt destroys unprotected metal. Rubberized and oil-based options. Prices from $650.",
+      "summary": "Professional undercoating for all vehicles. Maryland road salt destroys unprotected metal. Rubberized and oil-based options. Prices from $695.",
       "icon": "shield",
-      "priceFrom": 650,
+      "priceFrom": 695,
       "sortOrder": 5,
       "active": true,
       "hero": {
         "badge": "Rust-Proofing Specialists",
         "headline": "STOP RUST BEFORE IT STARTS.",
-        "subheadline": "Professional undercoating for all vehicles. Maryland road salt destroys unprotected metal. Rubberized and oil-based options. Prices from $650.",
+        "subheadline": "Professional undercoating for all vehicles. Maryland road salt destroys unprotected metal. Rubberized and oil-based options. Prices from $695.",
         "primaryCtaLabel": "Get a Quote",
         "primaryCtaUrl": "../quote.html?service=undercoating",
         "secondaryCtaLabel": "Call (301) 304-1419",
@@ -489,13 +495,13 @@
       "pricing": [
         {
           "label": "Cars, SUVs & 1/2-Ton Trucks",
-          "price": "$650",
-          "note": "Full undercarriage application • + tax"
+          "price": "From $695",
+          "note": "Clean/newer vehicle; inspection, prep and final tax confirmed in written quote"
         },
         {
           "label": "3/4-Ton & 1-Ton Trucks",
-          "price": "$750",
-          "note": "Full undercarriage application • + tax"
+          "price": "From $795",
+          "note": "Clean/newer vehicle; inspection, prep and final tax confirmed in written quote"
         }
       ],
       "kpis": [
@@ -504,7 +510,7 @@
           "label": "Heavy Road Salt Every Season"
         },
         {
-          "value": "$650",
+          "value": "$695",
           "label": "Cars, SUVs & Half-Tons"
         },
         {
@@ -527,7 +533,7 @@
         },
         {
           "title": "Cure & Pickup",
-          "description": "The coating sets quickly. Most vehicles are ready same-day. We do a final inspection before you take it home."
+          "description": "The coating sets quickly. We confirm timing after inspection. We do a final inspection before you take it home."
         }
       ],
       "faqs": [
@@ -549,7 +555,7 @@
         }
       ],
       "seoTitle": "Undercoating Rockville MD | Capital Upfitters",
-      "seoDescription": "Rugged undercoating protects your Rockville, MD vehicle from DMV road-salt corrosion. Same-week availability on most services. Request installed pricing.",
+      "seoDescription": "Rugged undercoating protects your Rockville, MD vehicle from DMV road-salt corrosion. appointment availability confirmed with your quote on most services. Request installed pricing.",
       "benefits": {
         "heading": "MARYLAND ROADS EAT METAL.",
         "intro": "The DMV gets heavy salt treatment every winter. That salt works into every seam, every crevice, every surface your vehicle touches the road with. Undercoating is the only reliable defense.",
@@ -578,7 +584,7 @@
         "faqs": "COMMON QUESTIONS.",
         "testimonials": "REAL CUSTOMERS. REAL RESULTS."
       },
-      "body": "Professional undercoating for all vehicles. Maryland road salt destroys unprotected metal. Rubberized and oil-based options. Prices from $650.\n\n## MARYLAND ROADS EAT METAL.\n\nThe DMV gets heavy salt treatment every winter. That salt works into every seam, every crevice, every surface your vehicle touches the road with. Undercoating is the only reliable defense.\n\nRoad salt accelerates corrosion dramatically. Our undercoating creates a sealed barrier between your vehicle's metal and the caustic salt and moisture that come with every winter.\n\nRubberized undercoating bonds to metal and cures into a thick, flexible shield that doesn't crack, peel, or wash away. Applied right, it lasts the life of the vehicle.\n\nA welcome side effect: rubberized undercoating acts as a sound damper. Many customers notice a noticeably quieter ride after undercoating — especially on highway surfaces.\n\n## STRAIGHTFORWARD PRICING.\n\nPriced by vehicle class. New vehicles quoted below. Used vehicles may require additional prep work — we'll let you know before starting.\n\n## THOROUGH EVERY TIME.\n\nWe put the vehicle on a lift and inspect for existing rust, damage, and any areas needing special attention before treatment.\n\nThe undercarriage is cleaned and dried. Rust neutralizer is applied where needed. Exhaust and moving parts are masked off.\n\nRubberized or oil-based undercoat is applied with professional equipment for full, even coverage — including frame rails and body seams.\n\nThe coating sets quickly. Most vehicles are ready same-day. We do a final inspection before you take it home.\n\n## PROTECTING DMV VEHICLES FROM MARYLAND SALT.\n\nMaryland roads are salted heavily every winter — and that salt works into every seam, every frame rail, every exposed metal surface on your vehicle. Drivers from Rockville, Silver Spring, Gaithersburg, and Bethesda bring their trucks, SUVs, and cars to us before the first freeze for full undercarriage protection. We're at 12019 Nebel St in Rockville, minutes from I-270.",
+      "body": "Professional undercoating for all vehicles. Maryland road salt destroys unprotected metal. Rubberized and oil-based options. Prices from $695.\n\n## MARYLAND ROADS EAT METAL.\n\nThe DMV gets heavy salt treatment every winter. That salt works into every seam, every crevice, every surface your vehicle touches the road with. Undercoating is the only reliable defense.\n\nRoad salt accelerates corrosion dramatically. Our undercoating creates a sealed barrier between your vehicle's metal and the caustic salt and moisture that come with every winter.\n\nRubberized undercoating bonds to metal and cures into a thick, flexible shield that doesn't crack, peel, or wash away. Applied right, it lasts the life of the vehicle.\n\nA welcome side effect: rubberized undercoating acts as a sound damper. Many customers notice a noticeably quieter ride after undercoating — especially on highway surfaces.\n\n## STRAIGHTFORWARD PRICING.\n\nPriced by vehicle class. New vehicles quoted below. Used vehicles may require additional prep work — we'll let you know before starting.\n\n## THOROUGH EVERY TIME.\n\nWe put the vehicle on a lift and inspect for existing rust, damage, and any areas needing special attention before treatment.\n\nThe undercarriage is cleaned and dried. Rust neutralizer is applied where needed. Exhaust and moving parts are masked off.\n\nRubberized or oil-based undercoat is applied with professional equipment for full, even coverage — including frame rails and body seams.\n\nThe coating sets quickly. We confirm timing after inspection. We do a final inspection before you take it home.\n\n## PROTECTING DMV VEHICLES FROM MARYLAND SALT.\n\nMaryland roads are salted heavily every winter — and that salt works into every seam, every frame rail, every exposed metal surface on your vehicle. Drivers from Rockville, Silver Spring, Gaithersburg, and Bethesda bring their trucks, SUVs, and cars to us before the first freeze for full undercarriage protection. We're at 12019 Nebel St in Rockville, minutes from I-270.",
       "_file": "undercoating.md"
     },
     {
@@ -657,7 +663,7 @@
         }
       ],
       "seoTitle": "Window Tinting Rockville MD | Capital Upfitters",
-      "seoDescription": "Window tinting in Rockville, MD with same-week availability. Ceramic, carbon or dyed film cuts heat and blocks UV for any vehicle. Call (301) 304-1419.",
+      "seoDescription": "Window tinting in Rockville, MD with appointment availability confirmed with your quote. Ceramic, carbon or dyed film cuts heat and blocks UV for any vehicle. Call (301) 304-1419.",
       "benefits": {
         "heading": "WHY TINT YOUR WINDOWS?",
         "intro": "The right film does far more than darken glass. Here's what quality window tinting delivers for Maryland drivers.",
@@ -685,7 +691,7 @@
         "process": "HOW IT WORKS.",
         "testimonials": "REAL CUSTOMERS. REAL RESULTS."
       },
-      "body": "Heat rejection, UV protection, and privacy — installed with precision-cut film and zero bubbles. We tint cars, trucks, SUVs, and vans at our Rockville MD shop.\n\n## MARYLAND TINT LAW.\n\nMaryland has specific VLT requirements for each window position. We check every install before you leave.\n\nReflectivity rule: No more than 35% reflective on any window. We do not install high-reflective metallic films. | VLT explained: VLT = Visible Light Transmission. 35% VLT means the window lets in 35% of visible light — darker film, lower number. 70% VLT is nearly clear.\n\n## WHY TINT YOUR WINDOWS?\n\nThe right film does far more than darken glass. Here's what quality window tinting delivers for Maryland drivers.\n\nQuality tint film blocks up to 60% of solar heat in Maryland summers. Your AC works less, your interior stays cooler, and leather seats don't burn you.\n\nUV rays damage dashboards, fade upholstery, and accelerate leather cracking. Ceramic film blocks 99% of UV — protecting both your interior and passengers.\n\nTinted windows deter smash-and-grab theft by obscuring interior contents. Privacy matters whether you're parked at a Rockville parking garage or a Bethesda trail head.\n\n## CHOOSE YOUR FILM.\n\nFour levels of protection — from budget-friendly dyed film to maximum-performance ceramic. All Maryland legal.\n\nDyed polyester film — reduces glare and provides privacy. Good for budget-conscious owners who want basic protection. Does not reject significant heat. May fade slightly over time.\n\nCarbon film has a matte finish that doesn't fade or turn purple over time. Superior heat rejection vs. dyed film, no signal interference with electronics. A significant step up in both performance and appearance.\n\nCeramic film uses nano-ceramic particles instead of dye or carbon — giving you maximum heat rejection without any signal interference. The clearest-looking tint available, virtually color-neutral. The only film that blocks 99% UV and up to 60% heat simultaneously.\n\n## MAXIMUM PROTECTION.\n\nPair ceramic window tint with ceramic paint coating for the ultimate interior and exterior protection combo.\n\nThe ultimate exterior protection combo. Ceramic window tint (99% UV rejection, 60% heat rejection) paired with an IGL or System X ceramic coating on the paint. Scheduled same week — both installs done at our Rockville shop.",
+      "body": "Heat rejection, UV protection, and privacy — installed with precision-cut film and zero bubbles. We tint cars, trucks, SUVs, and vans at our Rockville MD shop.\n\n## MARYLAND TINT LAW.\n\nMaryland has specific VLT requirements for each window position. We check every install before you leave.\n\nReflectivity rule: No more than 35% reflective on any window. We do not install high-reflective metallic films. | VLT explained: VLT = Visible Light Transmission. 35% VLT means the window lets in 35% of visible light — darker film, lower number. 70% VLT is nearly clear.\n\n## WHY TINT YOUR WINDOWS?\n\nThe right film does far more than darken glass. Here's what quality window tinting delivers for Maryland drivers.\n\nQuality tint film blocks up to 60% of solar heat in Maryland summers. Your AC works less, your interior stays cooler, and leather seats don't burn you.\n\nUV rays damage dashboards, fade upholstery, and accelerate leather cracking. Ceramic film blocks 99% of UV — protecting both your interior and passengers.\n\nTinted windows deter smash-and-grab theft by obscuring interior contents. Privacy matters whether you're parked at a Rockville parking garage or a Bethesda trail head.\n\n## CHOOSE YOUR FILM.\n\nFour levels of protection — from budget-friendly dyed film to maximum-performance ceramic. All Maryland legal.\n\nDyed polyester film — reduces glare and provides privacy. Good for budget-conscious owners who want basic protection. Does not reject significant heat. May fade slightly over time.\n\nCarbon film has a matte finish that doesn't fade or turn purple over time. Superior heat rejection vs. dyed film, no signal interference with electronics. A significant step up in both performance and appearance.\n\nCeramic film uses nano-ceramic particles instead of dye or carbon — giving you maximum heat rejection without any signal interference. The clearest-looking tint available, virtually color-neutral. The only film that blocks 99% UV and up to 60% heat simultaneously.\n\n## MAXIMUM PROTECTION.\n\nPair ceramic window tint with ceramic paint coating for the ultimate interior and exterior protection combo.\n\nThe ultimate exterior protection combo. Ceramic window tint (99% UV rejection, 60% heat rejection) paired with an IGL or System X ceramic coating on the paint. Timing confirmed with your quote — both installs done at our Rockville shop.",
       "_file": "window-tinting.md"
     },
     {
@@ -760,7 +766,7 @@
         }
       ],
       "seoTitle": "Mobile Vehicle Detailing Rockville MD | Capital Upfitters",
-      "seoDescription": "Mobile vehicle detailing comes to you in Rockville, MD. We serve fleet accounts with Net-30 terms and same-week availability. Call (301) 304-1419.",
+      "seoDescription": "Mobile vehicle detailing comes to you in Rockville, MD. We serve fleet accounts with Net-30 terms and appointment availability confirmed with your quote. Call (301) 304-1419.",
       "geoCallout": {
         "heading": "MOBILE DETAILING ACROSS THE DMV.",
         "body": "Our mobile detailing crew serves residential customers, businesses, and government facilities across Rockville, Bethesda, Gaithersburg, and Silver Spring. We bring the equipment to you — no drop-off required. Fleet and government accounts served at your facility throughout Montgomery County and the broader DMV region."
@@ -844,7 +850,7 @@
         }
       ],
       "seoTitle": "Hitch Installation Rockville MD | Capital Upfitters",
-      "seoDescription": "Professional hitch installation in Rockville MD with same-week availability. Our technicians torque to spec for safe towing. Request installed pricing today.",
+      "seoDescription": "Professional hitch installation in Rockville MD with appointment availability confirmed with your quote. Our technicians torque to spec for safe towing. Request installed pricing today.",
       "benefits": {
         "heading": "THE RIGHT HITCH, INSTALLED RIGHT.",
         "intro": "Not every shop stocks 150+ hitch brands or has a Stealth Hitch specialist on staff. We do. Every install is done by experienced technicians who torque to spec.",
@@ -988,7 +994,7 @@
         }
       ],
       "seoTitle": "Camper Shells Rockville MD | Capital Upfitters",
-      "seoDescription": "Rugged fiberglass camper shells installed in Rockville, MD with same-week availability. Lockable, weatherproof, factory-color matched. Call (301) 304-1419.",
+      "seoDescription": "Rugged fiberglass camper shells installed in Rockville, MD with appointment availability confirmed with your quote. Lockable, weatherproof, factory-color matched. Call (301) 304-1419.",
       "benefits": {
         "heading": "WHY A RANCH CAMPER SHELL?",
         "intro": "Not all caps are created equal. Ranch fiberglass shells are engineered to fit your specific truck — not just bolted on and hoped for the best.",
@@ -1016,7 +1022,7 @@
         "faqs": "FREQUENTLY ASKED QUESTIONS.",
         "testimonials": "REAL REVIEWS. REAL TRUCK OWNERS."
       },
-      "body": "Fiberglass toppers that look factory installed. Lockable, weatherproof, and built to last. Available for most trucks in stock or by order.\n\n## WHY A RANCH CAMPER SHELL?\n\nNot all caps are created equal. Ranch fiberglass shells are engineered to fit your specific truck — not just bolted on and hoped for the best.\n\nFully lockable fiberglass shell with weatherproof seals. Keeps your cargo dry, secure, and out of sight. Far more secure than a tonneau cover.\n\nRanch shells are painted to match your truck's factory color codes. Seamless fit means it looks like it came from the dealer.\n\nPerfect for contractors, campers, dog owners, and anyone who needs a dry, secure cargo area. Add a bed liner and van shelving for a complete mobile workspace.\n\n## 7 MODELS. ONE FOR EVERY DRIVER.\n\nRanch fiberglass shells range from the streamlined Echo to the XD heavy-duty commercial cap. All are factory-color matched. Pricing varies by truck make/model and configuration — call for exact quote.\n\nEntry-level. Clean, aerodynamic profile. Ideal for daily drivers who want clean looks and basic weather protection. Most affordable Ranch model.\n\nMid-range. Standard height with sliding side windows. Popular choice for homeowners, dog owners, and weekend adventurers.\n\nSierra with extra headroom. A few inches taller than the standard Sierra — better for taller cargo and sleeping setups.\n\n## HOW IT WORKS.\n\nFrom selection to install, most customers drive away the same week.\n\nBrowse the 7 Ranch models. We'll show you what's in stock and what can be ordered.\n\nWe match your truck's factory color code for a seamless factory look.\n\nBolted and sealed to your bed rails. Weatherstrip fitted. Typically same-day or next-day.\n\n## CAMPER SHELLS FOR DMV TRUCK OWNERS.\n\nRanch fiberglass camper shells are a perfect fit for the DMV region — whether you're a contractor in Gaithersburg, a weekend camper in Bethesda, or a dog owner in Silver Spring who needs a secure cargo area. We're at 12019 Nebel St in Rockville, minutes from I-270.",
+      "body": "Fiberglass toppers that look factory installed. Lockable, weatherproof, and built to last. Available for most trucks in stock or by order.\n\n## WHY A RANCH CAMPER SHELL?\n\nNot all caps are created equal. Ranch fiberglass shells are engineered to fit your specific truck — not just bolted on and hoped for the best.\n\nFully lockable fiberglass shell with weatherproof seals. Keeps your cargo dry, secure, and out of sight. Far more secure than a tonneau cover.\n\nRanch shells are painted to match your truck's factory color codes. Seamless fit means it looks like it came from the dealer.\n\nPerfect for contractors, campers, dog owners, and anyone who needs a dry, secure cargo area. Add a bed liner and van shelving for a complete mobile workspace.\n\n## 7 MODELS. ONE FOR EVERY DRIVER.\n\nRanch fiberglass shells range from the streamlined Echo to the XD heavy-duty commercial cap. All are factory-color matched. Pricing varies by truck make/model and configuration — call for exact quote.\n\nEntry-level. Clean, aerodynamic profile. Ideal for daily drivers who want clean looks and basic weather protection. Most affordable Ranch model.\n\nMid-range. Standard height with sliding side windows. Popular choice for homeowners, dog owners, and weekend adventurers.\n\nSierra with extra headroom. A few inches taller than the standard Sierra — better for taller cargo and sleeping setups.\n\n## HOW IT WORKS.\n\nWe confirm parts availability and installation timing with your quote.\n\nBrowse the 7 Ranch models. We'll show you what's in stock and what can be ordered.\n\nWe match your truck's factory color code for a seamless factory look.\n\nBolted and sealed to your bed rails. Weatherstrip fitted. Typically same-day or next-day.\n\n## CAMPER SHELLS FOR DMV TRUCK OWNERS.\n\nRanch fiberglass camper shells are a perfect fit for the DMV region — whether you're a contractor in Gaithersburg, a weekend camper in Bethesda, or a dog owner in Silver Spring who needs a secure cargo area. We're at 12019 Nebel St in Rockville, minutes from I-270.",
       "_file": "camper-shells.md"
     },
     {
@@ -1115,7 +1121,7 @@
         }
       ],
       "seoTitle": "Truck Toolboxes Rockville MD | Capital Upfitters",
-      "seoDescription": "Truck toolboxes installed in Rockville, MD by a family-owned shop serving the DMV since 2015. Same-week service available. Request installed pricing today.",
+      "seoDescription": "Truck toolboxes installed in Rockville, MD by a family-owned shop serving the DMV since 2015. scheduled installation available. Request installed pricing today.",
       "benefits": {
         "heading": "WHY UPGRADE YOUR BED STORAGE?",
         "intro": "A proper storage system pays for itself in time saved, tools protected, and jobs done faster. Here's why it matters.",
@@ -1227,7 +1233,7 @@
         }
       ],
       "seoTitle": "Lift & Leveling Kits Rockville MD | Capital Upfitters",
-      "seoDescription": "Lift and leveling kits installed in Rockville, MD with same-week availability. Raise stance, fit larger tires. Family-owned since 2015. Call (301) 304-1419.",
+      "seoDescription": "Lift and leveling kits installed in Rockville, MD with appointment availability confirmed with your quote. Raise stance, fit larger tires. Family-owned since 2015. Call (301) 304-1419.",
       "benefits": {
         "heading": "WHY LIFT YOUR TRUCK OR SUV?",
         "intro": "A leveling kit or lift kit does more than change how your truck looks. Here's what you actually gain.",
@@ -1325,7 +1331,7 @@
         }
       ],
       "seoTitle": "Exterior Armor Rockville MD | Capital Upfitters",
-      "seoDescription": "Exterior accessories in Rockville, MD with same-week service. Fender flares, mud flaps, guards and bumpers shield your truck. Request installed pricing.",
+      "seoDescription": "Exterior accessories in Rockville, MD with scheduled installation. Fender flares, mud flaps, guards and bumpers shield your truck. Request installed pricing.",
       "benefits": {
         "heading": "ARMOR YOUR EXTERIOR.",
         "intro": "The right exterior accessories protect your investment and finish your truck's look. Here's what they actually do.",
@@ -1424,7 +1430,7 @@
         }
       ],
       "seoTitle": "LED Light Bars Rockville MD | Capital Upfitters",
-      "seoDescription": "LED light bars and work lights installed in Rockville, MD with same-week availability. Family-owned shop serving the DMV since 2015. Call (301) 304-1419.",
+      "seoDescription": "LED light bars and work lights installed in Rockville, MD with appointment availability confirmed with your quote. Family-owned shop serving the DMV since 2015. Call (301) 304-1419.",
       "benefits": {
         "heading": "WHY UPGRADE TO LED LIGHTING?",
         "intro": "Factory lighting wasn't built for job sites, off-road trails, or long rural drives after dark. Here's what a quality LED upgrade changes.",
@@ -1609,7 +1615,7 @@
         }
       ],
       "seoTitle": "Industrial Coatings Rockville MD | Capital Upfitters",
-      "seoDescription": "Industrial coating experts serve Rockville, MD and the DMV with mobile application to your site. Same-week service and rugged protection. Call (301) 304-1419.",
+      "seoDescription": "Industrial coating experts serve Rockville, MD and the DMV with mobile application to your site. scheduled installation and rugged protection. Call (301) 304-1419.",
       "geoCallout": {
         "heading": "INDUSTRIAL COATING SOLUTIONS ACROSS THE DMV.",
         "body": "Capital Upfitters serves commercial operators, government agencies, and industrial facilities across Rockville, Bethesda, Gaithersburg, and Silver Spring — and throughout the DMV region for mobile on-site applications. Our shop is at 12019 Nebel St in Rockville, MD, with mobile capability across Montgomery County, DC, and Northern Virginia."
@@ -1659,7 +1665,7 @@
       "directionsTitle": "15 MINUTES AWAY",
       "directionsBody": "12019 Nebel Street, Rockville MD 20852\n\nFrom Bethesda: Head north on Rockville Pike (MD-355) through Chevy Chase and into Rockville. Continue past the White Flint area.\n\nTurn right on Montrose Road or Edmonston Drive, then right on Nebel St. We're in the commercial district on your left.\n\nAlternatively, take I-495 W to I-270 N, exit at Democracy Blvd, then south on Nebel St. About 20 minutes from downtown Bethesda.",
       "seoTitle": "Truck Upfitting Bethesda MD | Capital Upfitters",
-      "seoDescription": "Truck upfitting for Bethesda, MD from the corridor's only authorized Patriot Liner dealer. Lifetime warranty and same-week service. Call (301) 304-1419.",
+      "seoDescription": "Truck upfitting for Bethesda, MD from the corridor's only authorized Patriot Liner dealer. Lifetime warranty and scheduled installation. Call (301) 304-1419.",
       "body": "Located 15 minutes from Bethesda on Nebel Street in Rockville. Same-week appointments, no wait list.\n\n## BETHESDA'S CLOSEST PRO UPFITTER\n\nBethesda residents and businesses have been coming to Capital Upfitters for bedliners, hitches, and ceramic coatings for years. We're your closest professional upfit shop — just a quick drive up Rockville Pike.\n\nFrom luxury SUV ceramic coatings to work truck bedliners and towing hitches, we handle every vehicle type and every budget. Walk-ins welcome, same-week appointments available.\n\n## 15 MINUTES AWAY\n\n12019 Nebel Street, Rockville MD 20852\n\nFrom Bethesda: Head north on Rockville Pike (MD-355) through Chevy Chase and into Rockville. Continue past the White Flint area.\n\nTurn right on Montrose Road or Edmonston Drive, then right on Nebel St. We're in the commercial district on your left.\n\nAlternatively, take I-495 W to I-270 N, exit at Democracy Blvd, then south on Nebel St. About 20 minutes from downtown Bethesda.",
       "_file": "bethesda-md.md"
     },
@@ -1699,7 +1705,7 @@
       "directionsTitle": "UNDER 10 MINUTES AWAY",
       "directionsBody": "12019 Nebel Street, Rockville MD 20852\n\nVia I-270 South: Head south on I-270 from Gaithersburg toward Rockville. Take Exit 4 (Democracy Blvd). Turn east on Democracy Blvd, then south on Nebel St.\n\nVia Rockville Pike (MD-355): Head south on Rockville Pike through North Bethesda. Turn left on Edmonston Dr or Montrose Rd, then right on Nebel St.\n\nWalk-ins welcome Mon–Fri 9:30am–4:30pm. Only 5–8 miles from most Gaithersburg locations.",
       "seoTitle": "Truck Upfitting Gaithersburg MD | Capital Upfitters",
-      "seoDescription": "Truck upfitting for Gaithersburg, MD delivered from our Rockville shop. Authorized Patriot Liner dealer. Same-week service. Call (301) 304-1419.",
+      "seoDescription": "Truck upfitting for Gaithersburg, MD delivered from our Rockville shop. Authorized Patriot Liner dealer. scheduled installation. Call (301) 304-1419.",
       "body": "Serving Gaithersburg and Montgomery County from our Rockville shop — less than 10 minutes away.\n\n## MONTGOMERY COUNTY'S UPFIT SHOP\n\nGaithersburg's commercial corridors, tech campuses, and residential neighborhoods generate some of the highest demand for professional vehicle upfitting in the DMV. Capital Upfitters handles everything from personal truck accessories to full commercial fleet programs.\n\nWhether you're a Gaithersburg contractor, a Crown Farm business managing a service fleet, or a resident who just picked up a new truck — we're less than 10 minutes away and ready to help.\n\n## UNDER 10 MINUTES AWAY\n\n12019 Nebel Street, Rockville MD 20852\n\nVia I-270 South: Head south on I-270 from Gaithersburg toward Rockville. Take Exit 4 (Democracy Blvd). Turn east on Democracy Blvd, then south on Nebel St.\n\nVia Rockville Pike (MD-355): Head south on Rockville Pike through North Bethesda. Turn left on Edmonston Dr or Montrose Rd, then right on Nebel St.\n\nWalk-ins welcome Mon–Fri 9:30am–4:30pm. Only 5–8 miles from most Gaithersburg locations.",
       "_file": "gaithersburg-md.md"
     },
@@ -1737,7 +1743,7 @@
         "secondaryCtaUrl": "tel:3013041419"
       },
       "seoTitle": "Vehicle Upfit Solutions Rockville MD | Capital Upfitters",
-      "seoDescription": "Rugged vehicle upfitting in Rockville, MD at 12019 Nebel St, family-owned since 2015. Same-week service on most jobs. Request installed pricing.",
+      "seoDescription": "Rugged vehicle upfitting in Rockville, MD at 12019 Nebel St, family-owned since 2015. scheduled installation on most jobs. Request installed pricing.",
       "body": "Capital Upfitters is your local shop — right here in Rockville at 12019 Nebel Street. Walk-ins welcome Mon–Fri 9:30am–4:30pm.\n\n## YOUR NEIGHBORHOOD UPFITTER SINCE 2015\n\nAs Rockville's neighborhood upfitter since 2015, we've upfitted thousands of personal trucks, commercial vans, and government fleets across Montgomery County. From Rockville Pike to the I-270 corridor, our work is on the road every day.\n\nWhether you're a local contractor, a Rockville business managing a service fleet, or a resident who just bought a new truck — we're two minutes away and ready to help.",
       "_file": "rockville-md.md"
     },
@@ -1748,7 +1754,7 @@
       "state": "MD",
       "hero": {
         "headline": "VEHICLE UPFITTING FOR SILVER SPRING, MD.",
-        "subheadline": "Serving Silver Spring from our Rockville shop — 20 minutes on I-495 or Georgia Ave. Same-week availability.",
+        "subheadline": "Serving Silver Spring from our Rockville shop — 20 minutes on I-495 or Georgia Ave. appointment availability confirmed with your quote.",
         "primaryCtaLabel": "Get a Quote",
         "primaryCtaUrl": "../quote.html",
         "secondaryCtaLabel": "Call (301) 304-1419",
@@ -1757,8 +1763,8 @@
       "directionsTitle": "20 MINUTES AWAY",
       "directionsBody": "12019 Nebel Street, Rockville MD 20852\n\nVia I-495 W: Take I-495 West to I-270 North. Exit at Democracy Blvd (Exit 4), then head east on Democracy Blvd, turn south on Nebel St. About 20 minutes.\n\nVia Georgia Ave (MD-97): Head north on Georgia Ave through Wheaton, then turn left on Veirs Mill Rd toward Rockville Pike, then right on Nebel St. Roughly 25 minutes.\n\nWalk-ins welcome Mon–Fri 9:30am–4:30pm. Call ahead for same-day appointment availability.",
       "seoTitle": "Vehicle Upfitting Silver Spring MD | Capital Upfitters",
-      "seoDescription": "Vehicle upfitting for Silver Spring, MD delivered from our Rockville shop. Same-week availability on most services. Call (301) 304-1419 today.",
-      "body": "Serving Silver Spring from our Rockville shop — 20 minutes on I-495 or Georgia Ave. Same-week availability.\n\n## SILVER SPRING'S FLEET & TRUCK UPFITTER\n\nSilver Spring's growing contractor and service fleet community trusts Capital Upfitters for professional van packages, bedliners, and hitches. Our shop handles everything from individual truck upgrades to full fleet upfitting programs.\n\nFrom East Silver Spring to White Oak and Wheaton, we serve every corner of the Silver Spring area. One call gets you on our schedule — same week, every time.\n\n## 20 MINUTES AWAY\n\n12019 Nebel Street, Rockville MD 20852\n\nVia I-495 W: Take I-495 West to I-270 North. Exit at Democracy Blvd (Exit 4), then head east on Democracy Blvd, turn south on Nebel St. About 20 minutes.\n\nVia Georgia Ave (MD-97): Head north on Georgia Ave through Wheaton, then turn left on Veirs Mill Rd toward Rockville Pike, then right on Nebel St. Roughly 25 minutes.\n\nWalk-ins welcome Mon–Fri 9:30am–4:30pm. Call ahead for same-day appointment availability.",
+      "seoDescription": "Vehicle upfitting for Silver Spring, MD delivered from our Rockville shop. appointment availability confirmed with your quote on most services. Call (301) 304-1419 today.",
+      "body": "Serving Silver Spring from our Rockville shop — 20 minutes on I-495 or Georgia Ave. appointment availability confirmed with your quote.\n\n## SILVER SPRING'S FLEET & TRUCK UPFITTER\n\nSilver Spring's growing contractor and service fleet community trusts Capital Upfitters for professional van packages, bedliners, and hitches. Our shop handles everything from individual truck upgrades to full fleet upfitting programs.\n\nFrom East Silver Spring to White Oak and Wheaton, we serve every corner of the Silver Spring area. Call to discuss your project and current appointment availability.\n\n## 20 MINUTES AWAY\n\n12019 Nebel Street, Rockville MD 20852\n\nVia I-495 W: Take I-495 West to I-270 North. Exit at Democracy Blvd (Exit 4), then head east on Democracy Blvd, turn south on Nebel St. About 20 minutes.\n\nVia Georgia Ave (MD-97): Head north on Georgia Ave through Wheaton, then turn left on Veirs Mill Rd toward Rockville Pike, then right on Nebel St. Roughly 25 minutes.\n\nWalk-ins welcome Mon–Fri 9:30am–4:30pm. Call ahead for same-day appointment availability.",
       "_file": "silver-spring-md.md"
     },
     {
@@ -1994,7 +2000,7 @@
     {
       "question": "How long does the install take?",
       "sortOrder": 1,
-      "body": "Most installs take 2–3 hours from drop-off to pickup. We recommend scheduling a morning appointment so your truck is ready by early afternoon. Same-day service is typically available.",
+      "body": "Installation timing is confirmed after reviewing bed condition and the work selected. Ask about cure and loading instructions before using the bed.",
       "_file": "how-long-does-the-install-take.md"
     },
     {
@@ -2006,7 +2012,7 @@
     {
       "question": "How much does it cost?",
       "sortOrder": 3,
-      "body": "Pricing starts at $575 for compact trucks (up to 5ft bed), $595 for standard (up to 6.5ft), $635 for HD trucks, and $675 for long 8ft beds. Add +$200 for the Premium UV+ formula upgrade. All prices plus tax. Get an instant quote online or call us at (301) 304-1419.",
+      "body": "Patriot Liner starts at $595 plus tax for compact and standard beds up to 6.5 ft. Long beds start at $795, with tax confirmed in the written quote. Pricing assumes a clean bed without accessories and may differ based on bed condition. UV+ is an optional $200 upgrade.",
       "_file": "how-much-does-it-cost.md"
     },
     {
@@ -2383,7 +2389,7 @@
       "slug": "home-hero",
       "title": "Homepage Hero",
       "type": "hero",
-      "body": "# Bedliners, Hitches & Ceramic Coatings. Fleet Upfitting — Rockville, MD.\n\nDMV's authorized Patriot Liner shop. Same-week installs. Free quote in one business day.",
+      "body": "# Bedliners, Hitches & Ceramic Coatings. Fleet Upfitting — Rockville, MD.\n\nDMV's authorized Patriot Liner shop. scheduled installation. Free quote in one business day.",
       "_file": "home-hero.md"
     },
     {
@@ -2436,7 +2442,7 @@
         "secondaryCtaUrl": "tel:3013041419"
       },
       "seoTitle": "Fleet Upfitting Rockville MD | Capital Upfitters",
-      "seoDescription": "Fleet upfitting for businesses in Rockville, MD with Net-30 terms and same-week service. Rugged builds, DOT-ready. Call (301) 304-1419 today.",
+      "seoDescription": "Fleet upfitting for businesses in Rockville, MD with Net-30 terms and scheduled installation. Rugged builds, DOT-ready. Call (301) 304-1419 today.",
       "body": "Pickup truck upfitting, van packages, DOT compliance, fleet branding, and bulk scheduling — one dedicated account for everything.",
       "_file": "fleet.md"
     },
@@ -2457,7 +2463,7 @@
       "slug": "home",
       "hero": {
         "headline": "BUILT FOR REAL WORK.",
-        "subheadline": "DMV's authorized Patriot Liner shop. Same-week installs. Free quote in one business day.",
+        "subheadline": "DMV's authorized Patriot Liner shop. scheduled installation. Free quote in one business day.",
         "primaryCtaLabel": "Get Instant Quote",
         "primaryCtaUrl": "./quote.html",
         "secondaryCtaLabel": "See Bedliner Bundles",
@@ -2465,7 +2471,7 @@
       },
       "seoTitle": "Truck Upfitting Rockville MD | Capital Upfitters",
       "seoDescription": "Truck upfitting in Rockville, MD by a family-owned shop since 2015. Builds for work and play. Bedliners, hitches, ceramic coating. Request installed pricing.",
-      "body": "DMV's authorized Patriot Liner shop. Same-week installs. Free quote in one business day.",
+      "body": "DMV's authorized Patriot Liner shop. scheduled installation. Free quote in one business day.",
       "_file": "home.md"
     },
     {
@@ -2476,7 +2482,7 @@
         "subheadline": "We respond to every quote request within 24 hours — usually the same business day. No commitment required."
       },
       "seoTitle": "Quote Builder Rockville MD | Capital Upfitters",
-      "seoDescription": "Request a detailed upfitting quote in Rockville, MD. We offer same-week availability on most services. Get a quote today. Call (301) 304-1419.",
+      "seoDescription": "Request a detailed upfitting quote in Rockville, MD. We offer appointment availability confirmed with your quote on most services. Get a quote today. Call (301) 304-1419.",
       "body": "We respond to every quote request within 24 hours — usually the same business day. No commitment required.",
       "_file": "quote.md"
     },
@@ -2541,7 +2547,7 @@
     },
     {
       "key": "same-week-availability",
-      "name": "Same-Week Availability",
+      "name": "appointment availability confirmed with your quote",
       "tagline": "Mon–Fri 9:30am–4:30pm",
       "sortOrder": 50,
       "_file": "same-week-availability.json"

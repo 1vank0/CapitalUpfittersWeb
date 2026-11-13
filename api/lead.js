@@ -28,6 +28,7 @@
 
 const { createHmac, randomUUID } = require('node:crypto');
 const { isIP } = require('node:net');
+const { sanitize: sanitizeAttribution } = require('../attribution.js');
 
 const MAX_JSON_BYTES = 128 * 1024;
 const LEAD_SCHEMA_VERSION = '2026-07-15';
@@ -469,7 +470,7 @@ function buildPersistenceAttribution(body) {
     term: optionalString(body.utm_term, 200),
     content: optionalString(body.utm_content, 200),
     referrer: optionalString(body.referrer, 2048),
-    landingPage: optionalString(body.landing_page, 2048)
+    landingPage: body.landing_page ? `https://capitalupfitters.com${body.landing_page}` : undefined
   };
   Object.keys(attribution).forEach((key) => {
     if (attribution[key] === undefined) delete attribution[key];
@@ -924,6 +925,7 @@ function buildEmail({ body, ip, geo, leadSource, receivedAt }) {
     row('Vehicle Color', vColor) + row('Customer Notes', message, { emphasis: true }));
 
   const sourceParts = [
+    UUID_V4_RE.test(String(body.idempotency_key || '')) ? `Lead ID: ${body.idempotency_key}` : '',
     leadSource,
     body.utm_source ? `UTM source: ${scalarString(body.utm_source, 160)}` : '',
     body.utm_medium ? `Medium: ${scalarString(body.utm_medium, 160)}` : '',
@@ -1201,6 +1203,10 @@ module.exports = async function handler(req, res) {
     return send(res, 400, { ok: false, delivered: false, error: 'invalid JSON body' });
   }
 
+  // Browser attribution is untrusted. Minimize again before persistence or email.
+  if (body && typeof body === 'object' && !Array.isArray(body)) {
+    Object.assign(body, sanitizeAttribution(body));
+  }
   const validationError = validatePayload(body);
   if (validationError) {
     return send(res, 400, { ok: false, delivered: false, error: validationError });
@@ -1230,6 +1236,11 @@ module.exports = async function handler(req, res) {
     });
   }
 
+  // One stable UUID links retries, durable storage and reporting. Never use
+  // contact information, a customer-facing reference, or a browser visitor ID.
+  const candidate = scalarString(body.idempotency_key || body.idempotencyKey, 80);
+  body.idempotency_key = UUID_V4_RE.test(candidate) ? candidate.toLowerCase() : randomUUID();
+  const measurementLeadId = body.idempotency_key;
   const persistence = await persistLeadRequest(body, req);
   const persistenceRejected = persistence.required && !persistence.ok &&
     !persistence.allowEmailFallback;
@@ -1293,6 +1304,7 @@ module.exports = async function handler(req, res) {
       return send(res, 200, {
         ok: true,
         persisted: true,
+        lead_id: measurementLeadId,
         reference: persistence.reference || '',
         delivered: false,
         customer_confirmation: Boolean(result.customer && result.customer.ok),
@@ -1324,6 +1336,7 @@ module.exports = async function handler(req, res) {
 
   return send(res, 200, {
     ok: true,
+    lead_id: measurementLeadId,
     persisted: persistence.required ? persistence.ok === true : null,
     reference: persistence.reference || '',
     delivered: true,

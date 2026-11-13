@@ -83,6 +83,17 @@
             const option = document.querySelector('.opt[data-svc="tonneau"][data-kind="base"][data-opt="' + coverType + '"]');
             if (option && option.getAttribute('aria-checked') !== 'true') option.click();
           }
+          // Keep the actual supply selector aligned with explicit partner intent.
+          if (tid === 'hitch') {
+            const supply = document.getElementById('f-hitch-supply');
+            const own = /^(Already own|I already have)/i.test(params.get('purchase_status') || '');
+            if (supply && own) {
+              supply.value = 'csp';
+              const parts = document.getElementById('f-csp-parts');
+              if (parts && !parts.value) parts.value = (params.get('part_details') || '').slice(0, 500);
+              supply.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          }
           clicked = true;
         }
       });

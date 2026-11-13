@@ -1,210 +1,126 @@
-/* analytics.js — GA4 + Vercel Web Analytics / Speed Insights + site events.
- *
- * Loaded once per page from <head>:  <script src="/analytics.js" defer></script>
- *
- * ┌─────────────────────────────────────────────────────────────────────┐
- * │ GA4 CONFIG — the ONLY place the measurement ID lives.               │
- * │ Replace the placeholder with the real ID (Admin → Data streams →    │
- * │ Web → Measurement ID, looks like G-ABC123XYZ9). While it is the     │
- * │ placeholder, GA4 is a no-op: nothing is requested from Google.      │
- * └─────────────────────────────────────────────────────────────────────┘
+/* Measurement-only baseline. No tags until public env IDs are configured.
+ * Runtime config is same-origin; no Vercel analytics or ad pixels are loaded.
+ * Local event queue is ephemeral, bounded, and never reads contact fields.
  */
 (function () {
   'use strict';
-
-  var GA4_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // TODO(Ivan): set the real GA4 ID here
-  // GA4 only runs on the production domain so previews/local QA don't pollute reports.
-  var GA4_HOSTS = /(^|\.)capitalupfitters\.com$/i;
-
   var w = window, d = document, loc = w.location;
-  var dbg = /[?&]cu_analytics=debug\b/.test(loc.search);
-  var isLocal = /^(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\])$/.test(loc.hostname) || loc.protocol === 'file:';
-
-  // Public test hook: every event is also recorded here (no network effect).
-  var api = w.CU_ANALYTICS = w.CU_ANALYTICS || { events: [] };
-  api.ga4Enabled = false;
-
-  function addScript(src) {
-    var s = d.createElement('script');
-    s.src = src; s.defer = true; s.async = true;
-    (d.head || d.documentElement).appendChild(s);
-    return s;
+  var api = w.CU_ANALYTICS = { events: [], ga4Enabled: false, clarityEnabled: false };
+  var names = ['call_click','form_start','form_submit','vehicle_select','cover_select','quote_step','hero_video','outbound_gbp','guide_download','nav_use','shop_status'];
+  var enums = {
+    shop_status: ['open','closed','unknown'],
+    location: ['header','hero','sticky_bar','footer','content'],
+    form_name: ['inline','fleet','dealer','project','quote','callback','application'],
+    audience: ['retail','fleet','dealer','project','callback','application'],
+    source: ['direct','google','bing','gbp','facebook','instagram','nextdoor','yard-sign','referral','chatgpt','perplexity','claude','gemini','copilot','brave_search','stealthhitches','etrailer','realtruck','other'],
+    product: ['westin','bakflip-mx4','mx4-ez-lift','mx4-ts','retrax-pro','retrax-pro-xr','frc-4000','truxport','pro-x15','other'],
+    section: ['services','fleet','company','resources','mobile','other'],
+    guide_name: ['price-guide','winter-checklist'],
+    design_variant: ['baseline','light-pilot']
+  };
+  var publicRoutes = ["/", "/404", "/blog", "/blog/best-tonneau-covers-maryland", "/blog/leveling-vs-lift-kit", "/blog/patriot-liner-vs-drop-in", "/blog/undercoating-maryland-winter", "/blog/weatherguard-vs-kargomaster", "/contact", "/dealer-government", "/faq", "/fleet", "/gallery", "/gallery/f150-patriot-liner", "/gallery/mcs-maverick-fleet", "/services/amp-research", "/services/bakflip", "/services/retrax", "/blog/bakflip-vs-retrax-maryland-winters", "/hitch-quote", "/index", "/locations/bethesda-md", "/locations/gaithersburg-md", "/locations/rockville-md", "/locations/silver-spring-md", "/preview", "/privacy", "/products-section", "/quote", "/rebates", "/services", "/services/bedliner", "/services/camper-shells", "/services/ceramic-coating", "/services/commercial-wraps", "/services/exterior", "/services/hitches", "/services/industrial-coatings", "/services/lighting", "/services/mobile-detailing", "/services/running-boards", "/services/stealth-hitches", "/services/ecohitch", "/services/etrailer-installation", "/services/wheels-tires", "/services/power-steps", "/services/van-upfitting", "/services/suspension", "/services/tonneau", "/services/toolboxes", "/services/undercoating", "/services/window-tinting", "/start-here", "/terms"];
+  function path(value) {
+    try { var p = new URL(value, loc.origin).pathname; return publicRoutes.indexOf(p.replace(/\.html$/, '').replace(/\/$/, '') || '/') >= 0 ? p.replace(/\.html$/, '').replace(/\/$/, '') || '/' : '/other'; } catch (_) { return '/other'; }
   }
-
-  /* ---------- Vercel Web Analytics + Speed Insights ---------- */
-  // Same queue shims @vercel/analytics and @vercel/speed-insights install.
-  w.va = w.va || function () { (w.vaq = w.vaq || []).push(arguments); };
-  w.si = w.si || function () { (w.siq = w.siq || []).push(arguments); };
-  if (!isLocal || dbg) {
-    addScript('/_vercel/insights/script.js');
-    addScript('/_vercel/speed-insights/script.js');
+  function source() {
+    var s = '';
+    try { var ctx = w.CUAttribution && w.CUAttribution.get ? w.CUAttribution.get() : null; s = ctx ? ctx.utm_source || ctx.referrer_domain || '' : new URLSearchParams(loc.search).get('utm_source') || new URL(d.referrer).hostname; } catch (_) {}
+    s = s.toLowerCase().replace(/^www\./, '');
+    var map = {'chatgpt.com':'chatgpt','chat.openai.com':'chatgpt','perplexity.ai':'perplexity','claude.ai':'claude','gemini.google.com':'gemini','copilot.microsoft.com':'copilot','search.brave.com':'brave_search','google.com':'google','bing.com':'bing','stealthhitches.com':'stealthhitches','etrailer.com':'etrailer','realtruck.com':'realtruck','facebook.com':'facebook','instagram.com':'instagram','nextdoor.com':'nextdoor'};
+    return enums.source.indexOf(s) >= 0 ? s : map[s] || (s ? 'other' : 'direct');
   }
-
-  /* ---------- GA4 (no-op until a real ID is set) ---------- */
-  var gaReady = /^G-[A-Z0-9]{4,}$/.test(GA4_MEASUREMENT_ID) &&
-                GA4_MEASUREMENT_ID !== 'G-XXXXXXXXXX' &&
-                (GA4_HOSTS.test(loc.hostname) || dbg);
-  if (gaReady) {
-    w.dataLayer = w.dataLayer || [];
-    w.gtag = w.gtag || function () { w.dataLayer.push(arguments); };
-    w.gtag('js', new Date());
-    w.gtag('config', GA4_MEASUREMENT_ID, {
-      anonymize_ip: true,                      // GA4 never stores full IPs; explicit anyway
-      allow_google_signals: false,             // no cross-device / ads signals
-      allow_ad_personalization_signals: false,
-      page_location: loc.origin + pagePath(),
-      page_referrer: safeReferrer()
+  // Only these two complete visual pilots differ from the current design.
+  function variant() {
+    return ['/services/bedliner','/services/tonneau'].indexOf(path(loc.href)) >= 0 ? 'light-pilot' : 'baseline';
+  }
+  function sanitize(params) {
+    var out = {};
+    Object.keys(params || {}).forEach(function (key) {
+      var value = params[key];
+      if (enums[key] && enums[key].indexOf(value) >= 0) out[key] = value;
+      else if (key === 'lead_id' && /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value || '')) out[key] = value;
+      else if (key === 'landing_page' || key === 'page_path') out[key] = path(value);
+      else if (key === 'step' && Number.isInteger(value) && value >= 0 && value <= 10) out[key] = value;
+      else if (key === 'percent' && [25,50,75].indexOf(value) >= 0) out[key] = value;
+      else if (key === 'year' && /^20\d{2}$/.test(value)) out[key] = value;
+      // No free-text make/model, VIN, UTM, customer or query-string parameters.
     });
-    addScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA4_MEASUREMENT_ID));
-    api.ga4Enabled = true;
+    out.page_path = path(loc.href); out.design_variant = variant();
+    return out;
   }
-
-  /* ---------- event helper (no PII: only enums, ids, short labels) ---------- */
-  function clip(v, n) { return String(v == null ? '' : v).replace(/\s+/g, ' ').trim().slice(0, n || 100); }
-  // Only coarse, fixed categories are sent. Never include query strings, VINs,
-  // contact fields, free-text scopes or arbitrary UTM values in analytics.
-  function safeReferrer() {
-    try { return new URL(d.referrer).origin; } catch (_) { return ''; }
-  }
-  function aiSource() {
-    var source = '';
-    try { source = new URLSearchParams(loc.search).get('utm_source') || new URL(d.referrer).hostname; } catch (_) {}
-    source = source.toLowerCase().replace(/^www\./, '');
-    if (/^(chatgpt(\.com)?|chat\.openai\.com|openai(\.com)?)$/.test(source)) return 'chatgpt';
-    if (/^(perplexity(\.ai)?|claude(\.ai)?|gemini(\.google\.com)?|copilot(\.microsoft\.com)?)$/.test(source)) return source.split('.')[0];
-    if (/^(brave|search\.brave\.com)$/.test(source)) return 'brave_search';
-    return 'other_or_direct';
-  }
-  var PARAMS = ['link_location', 'page_path', 'cta_text', 'cta_location', 'link_url', 'widget', 'form_type', 'step', 'service', 'service_count', 'vehicle_type'];
   function track(name, params) {
-    var data = {};
-    Object.keys(params || {}).forEach(function (k) {
-      if (PARAMS.indexOf(k) === -1) return;
-      var v = params[k];
-      if (v === undefined || v === null || v === '') return;
-      data[k] = typeof v === 'number' || typeof v === 'boolean' ? v : clip(v);
-    });
-    data.ai_source = aiSource();
-    api.events.push({ name: name, params: data });
-    try { w.va('event', { name: name, data: data }); } catch (e) {}
-    if (api.ga4Enabled) { try { w.gtag('event', name, data); } catch (e) {} }
-    if (dbg && w.console) console.info('[cu-analytics]', name, data);
+    if (names.indexOf(name) < 0) return;
+    var data = sanitize(params);
+    api.events.push({name:name,params:data});
+    if (api.events.length > 100) api.events.shift();
+    if (api.ga4Enabled) w.gtag('event', name, data);
   }
-  api.track = track;
-
-  // Where on the page a link sits (first match wins).
-  var LOCATIONS = [
-    ['.mobile-action-bar', 'sticky_bar'],
-    ['.float-cta', 'float_button'],
-    ['#announce-bar, .announce-bar', 'announce_bar'],
-    ['#nav-mobile', 'mobile_menu'],
-    ['#nav, header, .nav', 'header'],
-    ['footer, .footer', 'footer'],
-    ['.hero, .page-hero, .geo-hero, .sh-hero', 'hero'],
-    ['.cta-banner, .sh-cta-section', 'cta_banner'],
-    ['.sidebar-cta, aside', 'sidebar'],
-    ['.contact-card, .map-info-card', 'contact_card']
-  ];
-  function locationOf(el) {
-    for (var i = 0; i < LOCATIONS.length; i++) {
-      if (el.closest(LOCATIONS[i][0])) return LOCATIONS[i][1];
+  api.track = track; api.eventNames = names.slice();
+  function script(src) { var el = d.createElement('script'); el.src = src; el.async = true; d.head.appendChild(el); }
+  function enable(config) {
+    if (/^G-[A-Z0-9]{4,20}$/.test(config.ga4Id || '') && config.ga4Id !== 'G-XXXXXXXXXX') {
+      w.dataLayer = w.dataLayer || [];
+      w.gtag = function () { w.dataLayer.push(arguments); };
+      w.gtag('js', new Date());
+      w.gtag('config', config.ga4Id, {send_page_view:false, allow_google_signals:false, allow_ad_personalization_signals:false,
+        page_location:loc.origin + path(loc.href),page_referrer:'',ignore_referrer:true});
+      api.ga4Enabled = true;
+      api.events.forEach(function(e){w.gtag('event',e.name,e.params);});
+      // Explicit sanitized denominator. Enhanced measurement must stay OFF in GA admin.
+      w.gtag('event','page_view',{page_location:loc.origin + path(loc.href),page_referrer:'',design_variant:variant()});
+      script('https://www.googletagmanager.com/gtag/js?id=' + config.ga4Id);
     }
-    return 'content';
+    // Clarity can capture the browser URL; skip URLs with query/fragment data.
+    // Mask all page content before loading, including form values and confirmations.
+    if (/^[a-z0-9]{5,20}$/.test(config.clarityId || '') && !loc.search && !loc.hash) {
+      d.documentElement.setAttribute('data-clarity-mask', 'true');
+      w.clarity = w.clarity || function () { (w.clarity.q = w.clarity.q || []).push(arguments); };
+      script('https://www.clarity.ms/tag/' + config.clarityId);
+      api.clarityEnabled = true;
+    }
   }
-  function pagePath() { return loc.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/'; }
-
-  /* ---------- phone_click + cta_click (delegated) ---------- */
-  var CTA_SEL = '.btn-primary, .nav-cta, .mab-quote, .float-cta-btn, .nav-mega-footer-cta--primary, ' +
-                '.sh-btn-primary, .announce-bar-cta, .audience-card-cta, .pricing-cta, .package-cta, .callout-cta';
-  d.addEventListener('click', function (e) {
-    var t = e.target;
-    if (!t || !t.closest) return;
-    var a = t.closest('a[href], button');
-    if (!a) return;
-    var href = a.getAttribute('href') || '';
-    if (/^tel:/i.test(href)) {
-      track('phone_click', { link_location: locationOf(a), page_path: pagePath() });
-      return; // a yellow "Call" button counts as a phone click, not a CTA click
-    }
-    if (a.closest(CTA_SEL) && !a.closest('#quote-retail, #quote-fleet, #quote-dealer, #bar')) {
-      var url = '';
-      if (href && !/^(mailto:|javascript:|#)/i.test(href)) {
-        try { var u = new URL(href, loc.href); url = u.pathname; } catch (x) { url = ''; }
-      }
-      track('cta_click', {
-        cta_text: clip(a.textContent, 60),
-        cta_location: locationOf(a),
-        link_url: url,
-        page_path: pagePath()
-      });
-    }
-  }, true);
-
-  /* ---------- reviews_view (Trustindex widget enters the viewport) ---------- */
-  function watchReviews() {
-    var el = d.querySelector('.trustindex-widget');
-    if (!el || !('IntersectionObserver' in w)) return;
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          track('reviews_view', { widget: 'trustindex', page_path: pagePath() });
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.25 });
-    io.observe(el);
+  // A failed/malformed config fetch fails closed. Never accept IDs from query/storage.
+  if (typeof w.fetch === 'function') w.fetch('/api/measurement-config', {credentials:'same-origin',cache:'no-store'})
+    .then(function(r){return r.ok ? r.json() : {};}).then(enable).catch(function(){});
+  d.addEventListener('cu:shop-status',function(e){var value=e.detail && e.detail.status;if(enums.shop_status.indexOf(value)>=0)track('shop_status',{shop_status:value});});
+  var started = {}, pending = {}, submitted = {};
+  function context(form) {
+    if (!form) return null;
+    var a = form.getAttribute('data-cms-form');
+    if (enums.audience.indexOf(a) < 0) return null;
+    return {audience:a,form_name:loc.pathname.indexOf('/services/') === 0 ? 'inline' : a === 'retail' ? 'quote' : a,source:source(),landing_page:path(loc.href)};
   }
-
-  /* ---------- quote funnel: quote_start / quote_step / quote_submit ---------- */
-  function quoteFunnel() {
-    var pending = {}, started = {};
-    function typeOf(form) {
-      var type = form && form.getAttribute('data-cms-form');
-      return /^(retail|fleet|dealer|project)$/.test(type || '') ? type : null;
-    }
-    function start(form) {
-      var type = typeOf(form);
-      if (!type || started[form.id]) return;
-      started[form.id] = true;
-      track('quote_start', { form_type: type, page_path: pagePath() });
-    }
-    ['pointerdown', 'focusin', 'change', 'keydown'].forEach(function (ev) {
-      d.addEventListener(ev, function (e) {
-        var t = e.target;
-        if (!t || !t.closest) return;
-        var form = t.closest('form[data-cms-form]');
-        // The retail wizard has interaction controls outside its final form.
-        if (!form && t.closest('#step0, #step1, #step2, #bar')) form = d.getElementById('quote-retail');
-        if (form) start(form);
-      }, true);
-    });
-    d.addEventListener('cu:quote-step', function (e) {
-      var det = e.detail || {};
-      if (det.initial) return;
-      start(d.getElementById('quote-retail'));
-      track('quote_step', { step: Number(det.step) || 0, form_type: 'retail', page_path: pagePath() });
-    });
-    d.addEventListener('submit', function (e) {
-      var form = e.target, type = typeOf(form);
-      if (!type || !form.id) return;
-      start(form);
-      pending[form.id] = { form_type: type, page_path: pagePath() };
-    }, true);
-    // This event is emitted only after the lead endpoint returns ok:true.
-    // A click/submit attempt, validation error or rejected request is not a lead.
-    d.addEventListener('cu:lead-success', function (e) {
-      var id = (e.detail && e.detail.formId) || '', context = pending[id];
-      if (!context) return;
-      delete pending[id];
-      track('quote_submit', context);
-      if (api.ga4Enabled) {
-        try { w.gtag('event', 'generate_lead', Object.assign({ ai_source: aiSource() }, context)); } catch (_) {}
-      }
-      delete started[id];
-    });
-  }
-
-  function init() { watchReviews(); quoteFunnel(); }
-  if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', init);
-  else init();
+  function closest(t, selector) {return t && t.closest ? t.closest(selector) : null;}
+  function place(el) {return closest(el,'header, nav') ? 'header' : closest(el,'footer') ? 'footer' : closest(el,'.mobile-action-bar') ? 'sticky_bar' : closest(el,'.hero, .page-hero') ? 'hero' : 'content';}
+  d.addEventListener('focusin',function(e){var f=closest(e.target,'form[data-cms-form]'), c=context(f);if(c&&!started[f.id]){started[f.id]=true;track('form_start',c);}},true);
+  d.addEventListener('submit',function(e){var c=context(e.target);if(c) pending[e.target.id]=c;},true);
+  d.addEventListener('cu:lead-success',function(e){
+    var x=e.detail||{}, c=pending[x.formId]; delete pending[x.formId];
+    if(!c || x.deliveryMode==='discarded' || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(x.leadId||'') || submitted[x.leadId]) return;
+    submitted[x.leadId]=true; c.lead_id=x.leadId; c.landing_page=x.landingPage||c.landing_page; track('form_submit',c); delete started[x.formId];
+  });
+  d.addEventListener('cu:quote-step',function(e){var x=e.detail||{};if(!x.initial)track('quote_step',{step:Number(x.step),audience:'retail'});});
+  d.addEventListener('click',function(e){
+    var a=closest(e.target,'a[href],button');if(!a)return;
+    var href=a.getAttribute('href')||'';
+    if(/^tel:/i.test(href)) track('call_click',{location:place(a)});
+    try {var u=new URL(href,loc.href);if(['maps.google.com','g.page','search.google.com'].indexOf(u.hostname)>=0)track('outbound_gbp',{});}catch(_){}
+    var guide=a.getAttribute('data-guide');if(enums.guide_name.indexOf(guide)>=0)track('guide_download',{guide_name:guide});
+    if(a.getAttribute('aria-expanded')==='true' && closest(a,'nav,header'))track('nav_use',{section:a.getAttribute('data-nav-section')||'other'});
+  },true);
+  ['mouseover','focusin'].forEach(function(eventName){d.addEventListener(eventName,function(e){
+    var item=closest(e.target,'.nav-item');if(!item||item.cuNavOpen)return;
+    item.cuNavOpen=true;var anchor=item.querySelector('a'), href=anchor?anchor.getAttribute('href')||'':'';
+    var section=/services/.test(href)?'services':/fleet/.test(href)?'fleet':/about|company/.test(href)?'company':'other';
+    track('nav_use',{section:section});
+  });});
+  d.addEventListener('mouseout',function(e){var item=closest(e.target,'.nav-item');if(item&&(!e.relatedTarget||!item.contains(e.relatedTarget)))item.cuNavOpen=false;});
+  d.addEventListener('change',function(e){
+    var t=e.target;
+    var products={'Westin Hard Tri-Fold':'westin','BAKFlip MX4':'bakflip-mx4','BAKFlip MX4 EZ-Lift':'mx4-ez-lift','BAKFlip MX4 TS':'mx4-ts','RetraxPRO MX':'retrax-pro','RetraxPRO XR':'retrax-pro-xr','RetraxPRO EZ-OFF FRC-4000':'frc-4000','TruXedo TruXport':'truxport','TruXedo Pro X15':'pro-x15'};
+    if(t && /^(cover|cover_product|product)$/.test(t.name||''))track('cover_select',{product:products[t.value] || (enums.product.indexOf(t.value)>=0?t.value:'other')});
+    if(t && t.id==='f-model' && t.value){var y=d.getElementById('f-year');track('vehicle_select',{year:y?y.value:''});}
+  },true);
+  // Explicit future components use the same allowlisted event API; no fake guide/video events.
+  d.addEventListener('timeupdate',function(e){var v=e.target;if(!closest(v,'.hero,.page-hero')||!Number.isFinite(v.duration)||!v.duration)return;v.cuMilestones=v.cuMilestones||{};[25,50,75].forEach(function(p){if(v.currentTime/v.duration*100>=p&&!v.cuMilestones[p]){v.cuMilestones[p]=true;track('hero_video',{percent:p});}});},true);
 })();

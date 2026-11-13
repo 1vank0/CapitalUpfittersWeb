@@ -32,9 +32,13 @@ test('service sections start hidden so empty feeds change nothing', () => {
   }
 });
 
-test('gallery page keeps its static items and has no stale CMS block', () => {
+test('gallery page contains only documented projects with genuine image assets', () => {
   const html = read('gallery.html');
-  assert.strictEqual((html.match(/class="gallery-item"/g) || []).length, 24);
+  assert.strictEqual((html.match(/class="gallery-item"/g) || []).length, 2);
+  assert.ok(html.includes('/gallery/f150-patriot-liner'));
+  assert.ok(html.includes('/gallery/mcs-maverick-fleet'));
+  assert.ok(!html.includes('gallery-placeholder'));
+  assert.ok(!html.includes('coming soon'));
   assert.ok(!html.includes('CMS: Gallery Wire'));
 });
 

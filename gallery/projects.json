@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "f150-patriot-liner",
+    "title": "Ford F-150. Ready for real work.",
+    "vehicle": "Ford F-150",
+    "category": "bedliner",
+    "service": "Patriot Liner",
+    "link": "/services/bedliner",
+    "image": "/assets/real-work/f150-shop.webp",
+    "alt": "Ford F-150 outside Capital Upfitters in Rockville",
+    "source": "https://www.instagram.com/p/DE-RHDDROZv/",
+    "summary": "A Patriot Liner installation documented by our Rockville shop. See the truck and a close-up of the finished bed.",
+    "scope": [
+      "Patriot Liner spray-on bedliner"
+    ],
+    "photos": [
+      [
+        "/assets/real-work/f150-shop.webp",
+        "Ford F-150 outside the Rockville shop. Exterior view."
+      ],
+      [
+        "/assets/real-work/f150-bed-detail.jpg",
+        "Finished F-150 bed and tailgate, captured from our published installation video."
+      ]
+    ]
+  },
+  {
+    "slug": "mcs-maverick-fleet",
+    "title": "One fleet. A consistent finish.",
+    "vehicle": "Ford Maverick fleet",
+    "category": "fleet",
+    "service": "Fleet upfitting",
+    "link": "/fleet",
+    "image": "/assets/real-work/mcs-fleet-covers.webp",
+    "alt": "MCS Ford Maverick fleet with installed covers and branded graphics",
+    "source": "https://www.instagram.com/p/DaOCAgoifV9/",
+    "summary": "MCS Mavericks with Patriot Liner, Patriot bed covers and customer-requested vehicle branding, as documented in our published project.",
+    "scope": [
+      "Patriot Liner",
+      "Patriot bed covers",
+      "Vehicle branding"
+    ],
+    "photos": [
+      [
+        "/assets/real-work/mcs-fleet-covers.webp",
+        "Completed MCS Maverick fleet with bed covers and customer branding. This is not an MX4 product demonstration."
+      ]
+    ]
+  }
+]

@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.data/
+media/
+.env*
+!.env.example
+*.tsbuildinfo
+exports/

@@ -154,7 +154,7 @@ function wheelsBody(service = 'Wheels and tires') {
   return retailBody({Name:'Wheel Tester', 'First Name':'', 'Last Name':'', Email:'wheels@example.com',
     services:service, 'Vehicle Trim':'XLT 4WD', 'Parts Supply':'I already own parts; please review installation',
     Message:'Current 275/65R18. Stock suspension. Please review my preferred wheel offset.',
-    utm_source:'customer-campaign',utm_campaign:'fall',landing_page:'https://example.test/start'});
+    utm_source:'realtruck',utm_campaign:'winter-undercoating',landing_page:'https://capitalupfitters.com/services/wheels-tires'});
 }
 test('wheel page retains supported lead identity, exact fields and honest receipt slots', () => {
   assert.match(html, /id="quote-retail" data-cms-form="retail" data-success-body="wt-form-body" data-success-panel="done"/);
@@ -177,7 +177,7 @@ for(const [service, normalized] of [['Wheels and tires','wheels_and_tires'],['Wh
   global.fetch=async(url,options)=>{if(url==='https://persistence.test/api/leads/'){stored=JSON.parse(options.body);return jsonResponse({ok:true,persisted:true,reference:'CU-WHEELS'},201);}return jsonResponse({id:'email-id'});};
   const result=await invoke(wheelsBody(service));assert.equal(result.status,200);assert.equal(result.body.reference,'CU-WHEELS');assert.equal(result.body.customer_confirmation,true);
   assert.deepEqual(stored.services,[normalized]);assert.deepEqual(stored.vehicle,{year:2025,make:'Ford',model:'F-150',trim:'XLT 4WD'});
-  assert.equal(stored.contact.fullName,'Wheel Tester');assert.equal(stored.attribution.source,'customer-campaign');assert.match(stored.preferences.notes,/Quote type: I already own parts/);assert.match(stored.preferences.notes,/275\/65R18/);
+  assert.equal(stored.contact.fullName,'Wheel Tester');assert.equal(stored.attribution.source,'realtruck');assert.match(stored.preferences.notes,/Quote type: I already own parts/);assert.match(stored.preferences.notes,/275\/65R18/);
  }));
 }
 test('wheel request reports saved-only delivery honestly',async()=>withRuntime(async()=>{
@@ -187,4 +187,10 @@ test('wheel request reports saved-only delivery honestly',async()=>withRuntime(a
 test('wheel request storage failure does not claim success or send email',async()=>withRuntime(async()=>{
  global.fetch=async(url)=>{assert.equal(url,'https://persistence.test/api/leads/');return jsonResponse({ok:false,error:'unavailable'},503);};
  const result=await invoke(wheelsBody());assert.notEqual(result.status,200);assert.notEqual(result.body.ok,true);
+}));
+
+test('wheel attribution drops arbitrary campaign identity but preserves the actual vehicle',async()=>withRuntime(async()=>{
+ let stored;global.fetch=async(url,options)=>{if(url==='https://persistence.test/api/leads/'){stored=JSON.parse(options.body);return jsonResponse({ok:true,persisted:true,reference:'CU-WHEELS-SAFE'},201);}return jsonResponse({id:'email-id'});};
+ const input={...wheelsBody(),utm_source:'customer-private',utm_campaign:'customer-private',landing_page:'https://example.test/private'};
+ const result=await invoke(input);assert.equal(result.status,200);assert.equal(stored.vehicle.make,'Ford');assert.ok(!JSON.stringify(stored).includes('customer-private'));assert.equal(stored.attribution,undefined);
 }));

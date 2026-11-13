@@ -51,7 +51,7 @@ async function setup(data) {
   const add = (tag, cls, parent=document.body) => { const n=parent.appendChild(new Element(tag)); n.className=cls; return n; };
   const grid=add('div','gallery-grid'); grid.setAttribute('data-gallery-feed','grid');
   const staticItem=add('div','gallery-item',grid); staticItem.dataset={cat:'bedliner',label:'Static bedliner'};
-  add('div','gallery-placeholder tall bg-bedliner',staticItem);
+  const staticImg=add('img','',staticItem); staticImg.src='/assets/real-work/f150-shop.webp'; staticImg.alt='Real Ford F150';
   for(const cat of ['all','bedliner','hitch']) { const b=add('button','gallery-filter-btn'+(cat==='all'?' active':'')); b.setAttribute('data-filter',cat); }
   const ids={}; for(const id of ['gallery-count','lightbox','lightbox-display','lightbox-caption','lightbox-counter','lightbox-close','lightbox-prev','lightbox-next']) { ids[id]=add('div',''); ids[id].id=id; }
   let resolve;
@@ -91,11 +91,11 @@ test('late before/after pair opens with Enter and Space and preserves ordered la
 
 test('next/previous and arrow keys traverse static, pair and single, wrapping and replacing content',async()=>{
   const {staticItem,ids,document}=await setup(feed); staticItem.click();
-  assert.match(ids['lightbox-display'].innerHTML,/Static bedliner/);
+  assert.equal(ids['lightbox-display'].querySelector('img').alt,'Real Ford F150');
   ids['lightbox-next'].click(); assert.equal(ids['lightbox-display'].querySelectorAll('img').length,2);
   document.dispatch('keydown',{key:'ArrowRight'}); assert.equal(ids['lightbox-display'].querySelectorAll('img').length,1);
-  ids['lightbox-next'].click(); assert.equal(ids['lightbox-display'].querySelectorAll('img').length,0);
-  assert.match(ids['lightbox-display'].innerHTML,/Static bedliner/);
+  ids['lightbox-next'].click(); assert.equal(ids['lightbox-display'].querySelectorAll('img').length,1);
+  assert.equal(ids['lightbox-display'].querySelector('img').alt,'Real Ford F150');
   ids['lightbox-prev'].click(); assert.equal(ids['lightbox-counter'].textContent,'3 / 3');
   document.dispatch('keydown',{key:'ArrowLeft'}); assert.equal(ids['lightbox-counter'].textContent,'2 / 3');
   document.dispatch('keydown',{key:'Escape'}); assert.equal(ids.lightbox.classList.contains('open'),false);

@@ -1,0 +1,4 @@
+# Payload is a separate application; never serve its source or data from static site.
+cms/
+.git/
+node_modules/

@@ -181,6 +181,7 @@ test('quote requests persist once with a durable reference and timeout signals',
       ok: true,
       persisted: true,
       reference: 'CU-QA-1',
+      lead_id: FIXED_KEY,
       delivered: true,
       customer_confirmation: true,
       delivery_mode: 'persisted_and_emailed',
@@ -1224,4 +1225,38 @@ test('project form is nonvehicle and uses the existing receipt and submission co
   assert.doesNotMatch(form, /Vehicle Year|Vehicle Make|Vehicle Model|Monthly Volume|type="file"/);
   assert.match(form, /name="Project Assets"[^>]*maxlength="1000"/);
   assert.match(form, /name="services" value="project_consultation"/);
+});
+test('measurement ID and minimized attribution stitch durable record and internal email', async () => {
+  await withRuntime(async () => {
+    let stored; const emails = [];
+    global.fetch = async (url, options) => {
+      const payload = JSON.parse(options.body);
+      if (url === 'https://persistence.test/api/leads/') {
+        stored = payload;
+        return jsonResponse({ ok: true, persisted: true, reference: 'CU-JOIN-1' }, 201);
+      }
+      emails.push(payload);
+      return jsonResponse({ id: 'email-id' });
+    };
+    const result = await invoke(retailBody({ landing_page: 'https://capitalupfitters.com/services/tonneau?secret=LEAKED', form_page: '/quote?secret=LEAKED', referrer: 'https://chatgpt.com/c/LEAKED', utm_source: 'chatgpt.com', utm_campaign: 'winter-undercoating', utm_content: 'LEAKED', utm_term: 'LEAKED', lead_source: 'LEAKED' }));
+    assert.equal(result.body.lead_id, FIXED_KEY);
+    assert.equal(result.body.reference, 'CU-JOIN-1');
+    assert.equal(stored.idempotencyKey, result.body.lead_id);
+    assert.equal(stored.attribution.landingPage, 'https://capitalupfitters.com/services/tonneau');
+    assert.equal(stored.attribution.referrer, 'https://chatgpt.com');
+    assert.ok(!JSON.stringify(stored).includes('LEAKED'));
+    assert.ok(!JSON.stringify(emails).includes('LEAKED'));
+    assert.ok(emails[0].html.includes(FIXED_KEY));
+    assert.ok(emails[0].text.includes(FIXED_KEY));
+    assert.ok(!('lead_id' in stored), 'strict upstream schema retains idempotencyKey, no new fields');
+  });
+});
+
+test('discarded spam never yields measurement join ID', async () => {
+  await withRuntime(async () => {
+    global.fetch = async () => { throw Error('spam must not be delivered'); };
+    const result = await invoke(retailBody({ website: 'bot' }));
+    assert.equal(result.body.delivery_mode, 'discarded');
+    assert.equal(result.body.lead_id, undefined);
+  });
 });

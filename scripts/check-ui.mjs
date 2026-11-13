@@ -42,7 +42,7 @@ assert.ok(!directory.includes('role="tablist"'), 'Service filters are toggle but
 assert.ok(directory.includes('aria-label="Filter services by category" hidden'), 'Inactive filters stay hidden without JavaScript');
 
 let managed = 0;
-const skip = new Set(['.git', '.openai', 'node_modules', 'ui-before']);
+const skip = new Set(['.git', '.openai', 'node_modules', 'ui-before', 'cms']);
 function visit(dir) {
   for (const item of readdirSync(dir, { withFileTypes: true })) {
     if (skip.has(item.name)) continue;

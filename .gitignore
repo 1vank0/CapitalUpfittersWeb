@@ -15,3 +15,5 @@ node_modules/
 .data/
 qa-*.js
 tests/e2e/last-report.json
+
+node_modules

@@ -28,7 +28,7 @@ import { createHash } from 'node:crypto';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const uiVersion = file => createHash('sha256').update(readFileSync(join(ROOT, file))).digest('hex').slice(0, 10);
 const SOURCE_PAGE = 'index.html';
-const SKIP_DIRS = new Set(['node_modules', '.git', '.vercel']);
+const SKIP_DIRS = new Set(['node_modules', '.git', '.vercel', 'cms']);
 const LINK_ATTR = /\b(href|src|action|poster|srcset|data-[\w-]+)="\.\//g;
 
 // Where each chrome block lives in a page that has not been adopted yet.

@@ -919,23 +919,16 @@
       <h2>Information You Provide</h2>
       <p>When you submit a quote, callback, or dealer/government inquiry, we collect the contact, vehicle, and service-request details you enter — for example name, email, phone, ZIP code, business name, vehicle year/make/model, VIN, license plate, color, the services you’re interested in, your preferred appointment date, and any message you include. This information is used to respond to your request, prepare an estimate, and follow up about your project.</p>
 
-      <h2>Technical and Attribution Data We Collect Automatically</h2>
-      <p>To prevent fraud, secure the site, understand which marketing channels work, and improve your experience, our forms also capture technical data when you submit. Specifically:</p>
-      <ul>
-        <li><strong>IP address</strong> and approximate geolocation derived from it (city, region, country, and ISP/organization).</li>
-        <li><strong>Browser and device information</strong> (user-agent string).</li>
-        <li><strong>Referral source</strong> — the website that linked you to us, if any.</li>
-        <li><strong>Landing page and form page</strong> URLs.</li>
-        <li><strong>Campaign tracking parameters</strong> when present in the URL (UTM source, medium, campaign, term, and content; Google <em>gclid</em>, Microsoft <em>msclkid</em>, and Meta <em>fbclid</em> click identifiers).</li>
-        <li>A derived <strong>lead source</strong> label (for example: Google Organic, Google Ads, Bing Organic, DuckDuckGo Organic, Meta Social, Yelp, YouTube, Direct, ChatGPT/AI Referral, or generic referral).</li>
-      </ul>
-      <p>By submitting one of our forms, you acknowledge that submissions may collect technical data such as IP address, referral source, browser, and approximate location for fraud prevention, analytics, and lead-attribution purposes.</p>
+      <h2>Technical and Attribution Data</h2>
+      <p>Our hosting and form systems process technical request information, including IP addresses, to deliver the site and limit spam. Form attribution is minimized to known public page paths, recognized referring website origins, and approved campaign source, medium and campaign tags. Query strings, personal referral paths, advertising click identifiers and free-text campaign tags are excluded from this attribution record.</p>
+      <p>Each accepted submission has an opaque reference for connecting the inquiry to its estimate and booking. Contact and vehicle details belong in the private lead record, not analytics events.</p>
 
-      <h2>Cookies and Local Storage</h2>
-      <p>We use first-party browser storage (localStorage) to remember the first page you landed on and the first referrer that brought you to our site, so that our quote follow-up reflects how you originally found us. We do not use third-party advertising cookies on this site.</p>
+      <h2>Browser Storage</h2>
+      <p>We use session storage to retain coarse source information while a browser tab is open. You can clear it through your browser settings. This is not a cross-site visitor identifier.</p>
 
       <h2>Site Analytics</h2>
-      <p>We use Google Analytics and Vercel Analytics to understand site usage.</p>
+      <p>Google Analytics and Microsoft Clarity are disabled in this preview. Enabling either requires account configuration and a review of applicable privacy, consent and vendor requirements. They are third-party services, not first-party-only analytics. No advertising pixels or enhanced conversions are enabled by this preview.</p>
+      <p>The prepared analytics events exclude names, contact details, VINs and free-text form content. Any later session-recording configuration requires separate review of masking and consent before activation.</p>
 
       <h2>How We Use Your Information</h2>
       <ul>
@@ -956,7 +949,7 @@
       <ul>
         <li><strong>Access, correction, or deletion:</strong> email us and we will respond within 30 days.</li>
         <li><strong>Do-not-contact:</strong> reply STOP to any SMS or email and we will stop further marketing follow-up.</li>
-        <li><strong>Browser controls:</strong> you can clear localStorage in your browser settings at any time to remove the first-landing/first-referrer record we keep.</li>
+        <li><strong>Browser controls:</strong> you can clear session storage in your browser settings to remove the temporary attribution record.</li>
       </ul>
 
       <h2>Security</h2>

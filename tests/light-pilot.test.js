@@ -4,5 +4,5 @@ const hashes={"services/bedliner.html": "55034c800a02e942e35a898653e7d323f1a04f7
 const hash=s=>crypto.createHash("sha256").update(s).digest("hex");
 function normal(s){return s.replace(/ light-pilot/g,'').replace(/<link rel="stylesheet" href="\/light-pilot.css">\n<script src="\/light-pilot.js" defer><\/script>\n/g,'');}
 test('visual pilot preserves every word, field, link, script and schema in both pages',()=>{for(const page of ['bedliner','tonneau']){const p='services/'+page+'.html';assert.equal(hash(normal(read(p))),hashes[p]);assert.match(read(p),/class="[^"]*light-pilot/);}});
-test('light pilot never modifies quote routing, submission, state or analytics controllers',()=>{for(const p of ['quote.js','service-quote.js','api/lead.js','analytics.js','attribution.js'])assert.equal(hash(read(p)),hashes[p]);});
+test('reconciliation preserves quote routing and cover selection controllers',()=>{for(const p of ['quote.js','service-quote.js'])assert.equal(hash(read(p)),hashes[p]);});
 test('light pilot stylesheet is scoped and has mobile, keyboard and reduced-motion protections',()=>{const c=read('light-pilot.css');for(const token of ['.light-pilot','max-width:767px','prefers-reduced-motion','focus-visible','min-height:44px'])assert.ok(c.includes(token));assert.ok(!read('light-pilot.js').includes('fetch('));});

@@ -8,10 +8,10 @@ function deepLink(search, restoredNotes = '') {
   const elements = {
     'f-year': {value:'',options:[],appendChild(o){this.options.push(o);}},
     'f-make-sel': {value:'',options:[{value:'Ford'},{value:'Other'}]},
-    'f-make-other': {value:''}, 'f-model': {value:''}, 'f-notes': {value:restoredNotes}
+    'f-hitch-supply': {value:'shop',dispatchEvent(e){this.event=e.type;}}, 'f-csp-parts':{value:''}, 'f-make-other': {value:''}, 'f-model': {value:''}, 'f-notes': {value:restoredNotes}
   };
   const clicks = [];
-  const context = {URLSearchParams,setTimeout:fn=>fn(),window:{location:{search},CU_QUOTE:{syncMake(){},goStep(){}}},document:{getElementById:id=>elements[id],createElement:()=>({}),querySelectorAll:()=>['hitch','tonneau','boards'].map(id=>({dataset:{svc:id},click(){clicks.push(id);}}))}};
+  const context = {Event:class {constructor(type){this.type=type;}},URLSearchParams,setTimeout:fn=>fn(),window:{location:{search},CU_QUOTE:{syncMake(){},goStep(){}}},document:{getElementById:id=>elements[id],createElement:()=>({}),querySelectorAll:()=>['hitch','tonneau','boards'].map(id=>({dataset:{svc:id},click(){clicks.push(id);}}))}};
   vm.runInNewContext(read('quote-deeplink.js'),context);
   return {elements, clicks};
 }
@@ -55,3 +55,5 @@ test('landing script passes actual campaign context without manufacturing referr
   vm.runInNewContext(read('partner-landing.js'),{URLSearchParams,window:{location:{search:'?utm_source=StealthHitches&utm_medium=referral'}},document:{querySelectorAll:()=>[{elements:{namedItem:()=>null},appendChild:x=>appended.push(x)}],createElement:()=>({})}});
   assert.deepEqual(appended.map(x=>[x.name,x.value]),[['utm_source','StealthHitches'],['utm_medium','referral']]);
 });
+
+test('owned partner part synchronizes CSP selector and details',()=>{const f=deepLink('?service=hitch&purchase_status=Already+own+the+part&part_details=C13236'); assert.equal(f.elements['f-hitch-supply'].value,'csp');assert.equal(f.elements['f-csp-parts'].value,'C13236');assert.equal(f.elements['f-hitch-supply'].event,'change');});
