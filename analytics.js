@@ -11,7 +11,7 @@
     location: ['header','hero','sticky_bar','footer','content'],
     form_name: ['inline','fleet','dealer','project','quote','callback','application'],
     audience: ['retail','fleet','dealer','project','callback','application'],
-    source: ['direct','google','bing','gbp','facebook','instagram','nextdoor','yard-sign','referral','chatgpt','perplexity','claude','gemini','copilot','brave_search','other'],
+    source: ['direct','google','bing','gbp','facebook','instagram','nextdoor','yard-sign','referral','chatgpt','perplexity','claude','gemini','copilot','brave_search','stealthhitches','etrailer','realtruck','other'],
     product: ['westin','bakflip-mx4','mx4-ez-lift','mx4-ts','retrax-pro','retrax-pro-xr','frc-4000','truxport','pro-x15','other'],
     section: ['services','fleet','company','resources','mobile','other'],
     guide_name: ['price-guide','winter-checklist'],
@@ -23,9 +23,9 @@
   }
   function source() {
     var s = '';
-    try { s = new URLSearchParams(loc.search).get('utm_source') || new URL(d.referrer).hostname; } catch (_) {}
+    try { var ctx = w.CUAttribution && w.CUAttribution.get ? w.CUAttribution.get() : null; s = ctx ? ctx.utm_source || ctx.referrer_domain || '' : new URLSearchParams(loc.search).get('utm_source') || new URL(d.referrer).hostname; } catch (_) {}
     s = s.toLowerCase().replace(/^www\./, '');
-    var map = {'chatgpt.com':'chatgpt','chat.openai.com':'chatgpt','perplexity.ai':'perplexity','claude.ai':'claude','gemini.google.com':'gemini','copilot.microsoft.com':'copilot','search.brave.com':'brave_search','google.com':'google','bing.com':'bing'};
+    var map = {'chatgpt.com':'chatgpt','chat.openai.com':'chatgpt','perplexity.ai':'perplexity','claude.ai':'claude','gemini.google.com':'gemini','copilot.microsoft.com':'copilot','search.brave.com':'brave_search','google.com':'google','bing.com':'bing','stealthhitches.com':'stealthhitches','etrailer.com':'etrailer','realtruck.com':'realtruck','facebook.com':'facebook','instagram.com':'instagram','nextdoor.com':'nextdoor'};
     return enums.source.indexOf(s) >= 0 ? s : map[s] || (s ? 'other' : 'direct');
   }
   function sanitize(params) {

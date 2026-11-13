@@ -41,3 +41,9 @@ test('public config returns only validated IDs, empty default and no-store',()=>
  process.env.NEXT_PUBLIC_GA4_ID='G-TEST1234';process.env.NEXT_PUBLIC_CLARITY_ID='abc12345';handler({}, {setHeader:()=>{},end:x=>body=JSON.parse(x)});assert.deepEqual(body,{ga4Id:'G-TEST1234',clarityId:'abc12345'});
  }finally{for(const [key,value] of [['NEXT_PUBLIC_GA4_ID',saved.ga],['NEXT_PUBLIC_CLARITY_ID',saved.cl]])if(value===undefined)delete process.env[key];else process.env[key]=value;}
 });
+
+test('form source uses sanitized original session attribution after navigation',()=>{
+ const f=fixture();f.window.CUAttribution={get:()=>({utm_source:'realtruck',referrer_domain:''})};
+ const form={id:'quote-retail',getAttribute:()=> 'retail'};f.fire('focusin',{target:{closest:s=>s==='form[data-cms-form]'?form:null}});
+ assert.equal(f.window.CU_ANALYTICS.events[0].params.source,'realtruck');
+});
