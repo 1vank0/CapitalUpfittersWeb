@@ -51,7 +51,9 @@
     w.gtag('config', GA4_MEASUREMENT_ID, {
       anonymize_ip: true,                      // GA4 never stores full IPs; explicit anyway
       allow_google_signals: false,             // no cross-device / ads signals
-      allow_ad_personalization_signals: false
+      allow_ad_personalization_signals: false,
+      page_location: loc.origin + pagePath(),
+      page_referrer: safeReferrer()
     });
     addScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA4_MEASUREMENT_ID));
     api.ga4Enabled = true;
@@ -59,13 +61,30 @@
 
   /* ---------- event helper (no PII: only enums, ids, short labels) ---------- */
   function clip(v, n) { return String(v == null ? '' : v).replace(/\s+/g, ' ').trim().slice(0, n || 100); }
+  // Only coarse, fixed categories are sent. Never include query strings, VINs,
+  // contact fields, free-text scopes or arbitrary UTM values in analytics.
+  function safeReferrer() {
+    try { return new URL(d.referrer).origin; } catch (_) { return ''; }
+  }
+  function aiSource() {
+    var source = '';
+    try { source = new URLSearchParams(loc.search).get('utm_source') || new URL(d.referrer).hostname; } catch (_) {}
+    source = source.toLowerCase().replace(/^www\./, '');
+    if (/^(chatgpt(\.com)?|chat\.openai\.com|openai(\.com)?)$/.test(source)) return 'chatgpt';
+    if (/^(perplexity(\.ai)?|claude(\.ai)?|gemini(\.google\.com)?|copilot(\.microsoft\.com)?)$/.test(source)) return source.split('.')[0];
+    if (/^(brave|search\.brave\.com)$/.test(source)) return 'brave_search';
+    return 'other_or_direct';
+  }
+  var PARAMS = ['link_location', 'page_path', 'cta_text', 'cta_location', 'link_url', 'widget', 'form_type', 'step', 'service', 'service_count', 'vehicle_type'];
   function track(name, params) {
     var data = {};
     Object.keys(params || {}).forEach(function (k) {
+      if (PARAMS.indexOf(k) === -1) return;
       var v = params[k];
       if (v === undefined || v === null || v === '') return;
       data[k] = typeof v === 'number' || typeof v === 'boolean' ? v : clip(v);
     });
+    data.ai_source = aiSource();
     api.events.push({ name: name, params: data });
     try { w.va('event', { name: name, data: data }); } catch (e) {}
     if (api.ga4Enabled) { try { w.gtag('event', name, data); } catch (e) {} }
@@ -110,7 +129,7 @@
     if (a.closest(CTA_SEL) && !a.closest('#quote-retail, #quote-fleet, #quote-dealer, #bar')) {
       var url = '';
       if (href && !/^(mailto:|javascript:|#)/i.test(href)) {
-        try { var u = new URL(href, loc.href); url = u.pathname + u.search; } catch (x) { url = ''; }
+        try { var u = new URL(href, loc.href); url = u.pathname; } catch (x) { url = ''; }
       }
       track('cta_click', {
         cta_text: clip(a.textContent, 60),
@@ -138,57 +157,50 @@
 
   /* ---------- quote funnel: quote_start / quote_step / quote_submit ---------- */
   function quoteFunnel() {
-    var root = d.querySelector('.cu-p6');
-    if (!root || !d.getElementById('quote-retail')) return;
-    function mode() { return root.getAttribute('data-mode') || 'retail'; }
-
-    var started = false;
-    function start() {
-      if (started) return;
-      started = true;
-      track('quote_start', { form_type: mode() });
+    var pending = {}, started = {};
+    function typeOf(form) {
+      var type = form && form.getAttribute('data-cms-form');
+      return /^(retail|fleet|dealer|project)$/.test(type || '') ? type : null;
+    }
+    function start(form) {
+      var type = typeOf(form);
+      if (!type || started[form.id]) return;
+      started[form.id] = true;
+      track('quote_start', { form_type: type, page_path: pagePath() });
     }
     ['pointerdown', 'focusin', 'change', 'keydown'].forEach(function (ev) {
       d.addEventListener(ev, function (e) {
-        // Only real form interaction counts (switching the Personal/Fleet/Dealer pill alone doesn't).
         var t = e.target;
-        if (t && t.closest && t.closest('.cu-p6 form, #step0, #step1, #step2, #bar, .cu-p6 [data-mode-body]')) start();
+        if (!t || !t.closest) return;
+        var form = t.closest('form[data-cms-form]');
+        // The retail wizard has interaction controls outside its final form.
+        if (!form && t.closest('#step0, #step1, #step2, #bar')) form = d.getElementById('quote-retail');
+        if (form) start(form);
       }, true);
     });
-
-    // quote.html dispatches cu:quote-step from goStep(); initial render is not a step.
     d.addEventListener('cu:quote-step', function (e) {
       var det = e.detail || {};
       if (det.initial) return;
-      start();
-      track('quote_step', { step: Number(det.step) || 0, form_type: 'retail' });
+      start(d.getElementById('quote-retail'));
+      track('quote_step', { step: Number(det.step) || 0, form_type: 'retail', page_path: pagePath() });
     });
-
-    // Snapshot non-personal context at submit time (lead-form.js resets the
-    // form before announcing success), send quote_submit only on cu:lead-success,
-    // which lead-form.js fires after the server answered ok:true.
-    var pending = {};
     d.addEventListener('submit', function (e) {
-      var f = e.target;
-      if (!f || !/^quote-(retail|fleet|dealer)$/.test(f.id || '')) return;
-      var type = f.id.replace('quote-', '');
-      var services = [], vehicle = '';
-      if (type === 'retail') {
-        d.querySelectorAll('.tile[data-svc][aria-checked="true"]').forEach(function (t) { services.push(t.getAttribute('data-svc')); });
-        var mk = d.getElementById('f-make-sel');
-        vehicle = mk && mk.value ? mk.value : 'not_provided';   // dropdown enum only, never free text
-      } else {
-        f.querySelectorAll('input[name="services"]:checked').forEach(function (c) { services.push(c.value); });
-        vehicle = type === 'fleet' ? 'fleet' : 'dealer_government';
-      }
-      pending[f.id] = { form_type: type, service: services.join(',') || 'none', service_count: services.length, vehicle_type: vehicle };
+      var form = e.target, type = typeOf(form);
+      if (!type || !form.id) return;
+      start(form);
+      pending[form.id] = { form_type: type, page_path: pagePath() };
     }, true);
+    // This event is emitted only after the lead endpoint returns ok:true.
+    // A click/submit attempt, validation error or rejected request is not a lead.
     d.addEventListener('cu:lead-success', function (e) {
-      var id = (e.detail && e.detail.formId) || '';
-      var p = pending[id];
-      if (!p) return;
+      var id = (e.detail && e.detail.formId) || '', context = pending[id];
+      if (!context) return;
       delete pending[id];
-      track('quote_submit', p);
+      track('quote_submit', context);
+      if (api.ga4Enabled) {
+        try { w.gtag('event', 'generate_lead', Object.assign({ ai_source: aiSource() }, context)); } catch (_) {}
+      }
+      delete started[id];
     });
   }
 

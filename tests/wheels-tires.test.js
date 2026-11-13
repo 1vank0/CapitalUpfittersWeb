@@ -169,7 +169,7 @@ test('FAQ schema and visible answers match, and only one canonical exists', () =
   const schema=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
   for(const q of schema['@graph'].find(x=>x['@type']==='FAQPage').mainEntity){assert.ok(html.includes('<summary>'+q.name+'</summary>'));assert.ok(html.includes('<p>'+q.acceptedAnswer.text+'</p>'));}
   assert.equal((html.match(/rel="canonical"/g)||[]).length,1);
-  assert.match(html,/capitalupfitters.com\/services\/wheels-tires.html/);
+  assert.match(html,/capitalupfitters.com\/services\/wheels-tires/);
 });
 for(const [service, normalized] of [['Wheels and tires','wheels_and_tires'],['Wheels','Wheels'],['Tires','Tires'],['Wheel and tire fitment advice','wheel_and_tire_fitment_advice']]) {
  test(`wheel request ${service} reaches durable storage with real vehicle and attribution`, async()=>withRuntime(async()=>{

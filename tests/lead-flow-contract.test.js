@@ -1119,7 +1119,7 @@ test('one shared client controller owns every form submit and success state', ()
   assert.match(quoteHtml, /id="quote-dealer"[^>]*data-success-body="dealer-form-body"[^>]*data-success-panel="dealer-form-success"/);
   // T11: contact quote/callback requests route to quote.html (no local lead form submit).
   assert.doesNotMatch(contactHtml, /id="callback-form"/);
-  assert.match(contactHtml, /quote\.html/);
+  assert.match(contactHtml, /href="[^"]*quote(?:[?"])/);
   assert.match(dealerHtml, /id="apply-form"[^>]*data-success-body="apply-form"[^>]*data-success-panel="apply-form-success"/);
 });
 

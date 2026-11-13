@@ -37,8 +37,7 @@
 <link rel="stylesheet" href="./brand-tokens.css">
 <link rel="stylesheet" href="./ux-10k.css">
 <!-- JSON-LD: Organization / AutoRepair / WebSite graph -->
-<script type="application/ld+json">
-{
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -57,72 +56,38 @@
     },
     {
       "@type": "AutoRepair",
-      "@id": "https://www.capitalupfitters.com/#localbusiness",
-      "name": "Capital Auto Upfitters & Protective Coatings",
-      "alternateName": "Capital Upfitters",
+      "@id": "https://www.capitalupfitters.com/#business",
+      "name": "Capital Upfitters",
       "url": "https://www.capitalupfitters.com/",
       "telephone": "+13013041419",
-      "email": "CapitalUpfitters@gmail.com",
-      "parentOrganization": {"@id": "https://www.capitalupfitters.com/#organization"},
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "12019 Nebel St",
+        "streetAddress": "12019 Nebel Street",
         "addressLocality": "Rockville",
         "addressRegion": "MD",
         "postalCode": "20852",
         "addressCountry": "US"
-      },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-          "opens": "09:30",
-          "closes": "16:30"
-        }
-      ],
-      "sameAs": [
-        "https://share.google/k9ejYM294VHEEm6xq",
-        "https://www.facebook.com/CapitalUpfitters",
-        "https://www.instagram.com/capitalupfitters",
-        "https://youtube.com/@capitalupfitters"
-      ],
-      "description": "Family-owned vehicle upfitting shop in Rockville, MD. Authorized Patriot Liner dealer. Serving the DMV region since 2015.",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Vehicle Upfitting Services",
-        "itemListElement": [
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Spray-On Bedliners", "url": "https://www.capitalupfitters.com/services/bedliner.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Hitches & Towing", "url": "https://www.capitalupfitters.com/services/hitches.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Stealth Hitches", "url": "https://www.capitalupfitters.com/services/stealth-hitches.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Ceramic Coating", "url": "https://www.capitalupfitters.com/services/ceramic-coating.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Undercoating & Rust Protection", "url": "https://www.capitalupfitters.com/services/undercoating.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tonneau Covers", "url": "https://www.capitalupfitters.com/services/tonneau.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Running Boards & Steps", "url": "https://www.capitalupfitters.com/services/running-boards.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Commercial Vehicle Wraps", "url": "https://www.capitalupfitters.com/services/commercial-wraps.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Camper Shells", "url": "https://www.capitalupfitters.com/services/camper-shells.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Toolboxes & Bed Storage", "url": "https://www.capitalupfitters.com/services/toolboxes.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Suspension Lift & Leveling Kits", "url": "https://www.capitalupfitters.com/services/suspension.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Exterior Accessories", "url": "https://www.capitalupfitters.com/services/exterior.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LED Lighting", "url": "https://www.capitalupfitters.com/services/lighting.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Industrial & Protective Coatings", "url": "https://www.capitalupfitters.com/services/industrial-coatings.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mobile Detailing", "url": "https://www.capitalupfitters.com/services/mobile-detailing.html"}},
-          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Window Tinting", "url": "https://www.capitalupfitters.com/services/window-tinting.html"}}
-        ]
-      },
-      "creator": {"@type": "Organization", "name": "IVANKODev", "url": "https://IVANKODevelopment.com"}
+      }
     },
     {
       "@type": "WebSite",
       "@id": "https://www.capitalupfitters.com/#website",
       "url": "https://www.capitalupfitters.com/",
       "name": "Capital Upfitters",
-      "publisher": {"@id": "https://www.capitalupfitters.com/#organization"}
+      "publisher": {
+        "@id": "https://www.capitalupfitters.com/#organization"
+      }
     },
     {
       "@type": "BreadcrumbList",
       "@id": "https://www.capitalupfitters.com/#breadcrumb",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.capitalupfitters.com/"}
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.capitalupfitters.com/"
+        }
       ]
     },
     {
@@ -130,111 +95,122 @@
       "@id": "https://www.capitalupfitters.com/#service-bedliner",
       "name": "Spray-On Bedliners",
       "serviceType": "Spray-on truck bedliner installation",
-      "provider": {"@id": "https://www.capitalupfitters.com/#localbusiness"},
+      "provider": {
+        "@id": "https://www.capitalupfitters.com/#business"
+      },
       "areaServed": "DMV",
-      "url": "https://www.capitalupfitters.com/services/bedliner.html"
+      "url": "https://www.capitalupfitters.com/services/bedliner"
     },
     {
       "@type": "Service",
       "@id": "https://www.capitalupfitters.com/#service-running-boards",
       "name": "Running Boards & Steps",
       "serviceType": "Running board and power step installation",
-      "provider": {"@id": "https://www.capitalupfitters.com/#localbusiness"},
+      "provider": {
+        "@id": "https://www.capitalupfitters.com/#business"
+      },
       "areaServed": "DMV",
-      "url": "https://www.capitalupfitters.com/services/running-boards.html"
+      "url": "https://www.capitalupfitters.com/services/running-boards"
     },
     {
       "@type": "Service",
       "@id": "https://www.capitalupfitters.com/#service-hitches",
       "name": "Hitches & Towing",
       "serviceType": "Trailer hitch and towing package installation",
-      "provider": {"@id": "https://www.capitalupfitters.com/#localbusiness"},
+      "provider": {
+        "@id": "https://www.capitalupfitters.com/#business"
+      },
       "areaServed": "DMV",
-      "url": "https://www.capitalupfitters.com/services/hitches.html"
+      "url": "https://www.capitalupfitters.com/services/hitches"
     },
     {
       "@type": "Service",
       "@id": "https://www.capitalupfitters.com/#service-ceramic-coating",
       "name": "Ceramic Coating",
       "serviceType": "Ceramic coating and paint protection",
-      "provider": {"@id": "https://www.capitalupfitters.com/#localbusiness"},
+      "provider": {
+        "@id": "https://www.capitalupfitters.com/#business"
+      },
       "areaServed": "DMV",
-      "url": "https://www.capitalupfitters.com/services/ceramic-coating.html"
+      "url": "https://www.capitalupfitters.com/services/ceramic-coating"
     },
     {
       "@type": "Service",
       "@id": "https://www.capitalupfitters.com/#service-commercial-coatings",
       "name": "Industrial & Protective Coatings",
       "serviceType": "Industrial and protective fleet coatings",
-      "provider": {"@id": "https://www.capitalupfitters.com/#localbusiness"},
+      "provider": {
+        "@id": "https://www.capitalupfitters.com/#business"
+      },
       "areaServed": "DMV",
-      "url": "https://www.capitalupfitters.com/services/industrial-coatings.html"
+      "url": "https://www.capitalupfitters.com/services/industrial-coatings"
     },
     {
       "@type": "Service",
       "@id": "https://www.capitalupfitters.com/#service-window-tinting",
       "name": "Window Tinting",
       "serviceType": "Automotive ceramic window tint installation",
-      "provider": {"@id": "https://www.capitalupfitters.com/#localbusiness"},
+      "provider": {
+        "@id": "https://www.capitalupfitters.com/#business"
+      },
       "areaServed": "DMV",
-      "url": "https://www.capitalupfitters.com/services/window-tinting.html"
+      "url": "https://www.capitalupfitters.com/services/window-tinting"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How quickly can you upfit my vehicle?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Appointment timing depends on parts availability, job scope and the shop schedule. We confirm the installation date with your quote. Call (301) 304-1419 or request a quote to discuss availability."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What areas do you serve?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Our shop is in Rockville, MD (12019 Nebel St) and we serve the entire DMV — Bethesda, Silver Spring, Gaithersburg, and surrounding Montgomery County, plus Northern Virginia and DC."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you offer a warranty on your work?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Capital Upfitters provides a six-month installation warranty. Parts are covered by the applicable manufacturer's warranty, including Patriot Liner's limited lifetime warranty. Coverage, conditions and exclusions depend on the product and are confirmed with your quote."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are you an authorized Patriot Liner dealer?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. We are the only authorized Patriot Liner dealer in the Rockville–Bethesda corridor. That means genuine Patriot Liner product, factory-trained installation technique, and access to the manufacturer's rebate programs."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you handle commercial fleets and government contracts?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. We work with commercial fleets (3+ units earn volume pricing, Net-30 terms, consolidated invoicing), dealer partners, municipal and county agencies, and federal entities."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What payment options are available?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ask about payment options when you request your quote. We confirm the available options and any applicable terms before you approve the work."
-      }
-    }
+        {
+          "@type": "Question",
+          "name": "How quickly can you upfit my vehicle?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Appointment timing depends on parts availability, job scope and the shop schedule. We confirm the installation date with your quote. Call (301) 304-1419 or request a quote to discuss availability."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What areas do you serve?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our shop is in Rockville, MD (12019 Nebel St) and we serve the entire DMV — Bethesda, Silver Spring, Gaithersburg, and surrounding Montgomery County, plus Northern Virginia and DC."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer a warranty on your work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Capital Upfitters provides a six-month installation warranty. Parts are covered by the applicable manufacturer's warranty, including Patriot Liner's limited lifetime warranty. Coverage, conditions and exclusions depend on the product and are confirmed with your quote."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are you an authorized Patriot Liner dealer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We are the only authorized Patriot Liner dealer in the Rockville–Bethesda corridor. That means genuine Patriot Liner product, factory-trained installation technique, and access to the manufacturer's rebate programs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you handle commercial fleets and government contracts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. We work with commercial fleets (3+ units earn volume pricing, Net-30 terms, consolidated invoicing), dealer partners, municipal and county agencies, and federal entities."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What payment options are available?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ask about payment options when you request your quote. We confirm the available options and any applicable terms before you approve the work."
+          }
+        }
       ]
     }
   ]
-}
-</script>
+}</script>
 
 <style>
 /* ── INDEX-SPECIFIC ─────────────────────────────────────── */
@@ -569,7 +545,7 @@
 <!-- Shared UI: authored here and stamped by npm run sync-chrome. -->
 <nav class="nav site-nav" id="nav" aria-label="Main navigation" data-site-nav>
  <div class="nav-inner site-nav-inner">
-<a href="./index.html" class="nav-logo site-brand" aria-label="Capital Upfitters home">
+<a href="./" class="nav-logo site-brand" aria-label="Capital Upfitters home">
 <span class="nav-logo-mark" aria-hidden="true">
 </span>
 <span class="site-brand-text">Capital <span>Upfitters</span>
@@ -584,7 +560,7 @@
 </button>
 <div class="site-menu-panel site-menu-panel--services" id="nav-panel-services" aria-labelledby="nav-trigger-services" hidden>
 <p class="site-menu-label">Truck essentials</p>
-<a class="site-menu-link" href="./services/bedliner.html">
+<a class="site-menu-link" href="./services/bedliner">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#bedliner">
 </use>
@@ -594,7 +570,7 @@
 <small>Patriot Liner protection</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/tonneau.html">
+<a class="site-menu-link" href="./services/tonneau">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#cover">
 </use>
@@ -604,7 +580,7 @@
 <small>Hard, soft and retractable</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/running-boards.html">
+<a class="site-menu-link" href="./services/running-boards">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#step">
 </use>
@@ -614,7 +590,7 @@
 <small>Fixed steps and power steps</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/hitches.html">
+<a class="site-menu-link" href="./services/hitches">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#hitch">
 </use>
@@ -625,7 +601,7 @@
 </span>
 </a>
 <p class="site-menu-label">Vehicle protection</p>
-<a class="site-menu-link" href="./services/undercoating.html">
+<a class="site-menu-link" href="./services/undercoating">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#shield">
 </use>
@@ -635,7 +611,7 @@
 <small>Rust protection for your underbody</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/ceramic-coating.html">
+<a class="site-menu-link" href="./services/ceramic-coating">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#sparkle">
 </use>
@@ -645,7 +621,7 @@
 <small>Paint protection and gloss</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/window-tinting.html">
+<a class="site-menu-link" href="./services/window-tinting">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#tint">
 </use>
@@ -655,7 +631,7 @@
 <small>Heat, glare and UV control</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/mobile-detailing.html">
+<a class="site-menu-link" href="./services/mobile-detailing">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#droplets">
 </use>
@@ -680,7 +656,7 @@
 </button>
 <div class="site-menu-panel site-menu-panel--work" id="nav-panel-work" aria-labelledby="nav-trigger-work" hidden>
 <p class="site-menu-label">Built around your work</p>
-<a class="site-menu-link" href="./fleet.html#commercial">
+<a class="site-menu-link" href="./fleet#commercial">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#van">
 </use>
@@ -690,7 +666,7 @@
 <small>Partitions, shelving and ladder racks</small>
 </span>
 </a>
-<a class="site-menu-link" href="./fleet.html#commercial">
+<a class="site-menu-link" href="./fleet#commercial">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#truck">
 </use>
@@ -700,7 +676,7 @@
 <small>Storage, access and accessories</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/toolboxes.html">
+<a class="site-menu-link" href="./services/toolboxes">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#toolbox">
 </use>
@@ -710,7 +686,7 @@
 <small>Keep equipment organized</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/commercial-wraps.html">
+<a class="site-menu-link" href="./services/commercial-wraps">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#wrap">
 </use>
@@ -720,7 +696,7 @@
 <small>Put your business on the road</small>
 </span>
 </a>
-<a class="site-menu-link" href="./fleet.html#fleet">
+<a class="site-menu-link" href="./fleet#fleet">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#shield">
 </use>
@@ -740,7 +716,7 @@
 </button>
 <div class="site-menu-panel site-menu-panel--industrial" id="nav-panel-industrial" aria-labelledby="nav-trigger-industrial" hidden>
 <p class="site-menu-label">Protection at a larger scale</p>
-<a class="site-menu-link" href="./services/industrial-coatings.html">
+<a class="site-menu-link" href="./services/industrial-coatings">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#shield">
 </use>
@@ -750,7 +726,7 @@
 <small>Equipment, facilities and infrastructure</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/industrial-coatings.html">
+<a class="site-menu-link" href="./services/industrial-coatings">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#building">
 </use>
@@ -760,7 +736,7 @@
 <small>Coating projects at your facility</small>
 </span>
 </a>
-<a class="site-menu-link" href="./dealer-government.html#government">
+<a class="site-menu-link" href="./dealer-government#government">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#clipboard">
 </use>
@@ -780,7 +756,7 @@
 </button>
 <div class="site-menu-panel site-menu-panel--programs" id="nav-panel-programs" aria-labelledby="nav-trigger-programs" hidden>
 <p class="site-menu-label">A simpler way to work together</p>
-<a class="site-menu-link" href="./dealer-government.html#dealer">
+<a class="site-menu-link" href="./dealer-government#dealer">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#truck">
 </use>
@@ -790,7 +766,7 @@
 <small>Pre-sale add-ons and account setup</small>
 </span>
 </a>
-<a class="site-menu-link" href="./fleet.html">
+<a class="site-menu-link" href="./fleet">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#van">
 </use>
@@ -800,7 +776,7 @@
 <small>Consistent specs and scheduling</small>
 </span>
 </a>
-<a class="site-menu-link" href="./dealer-government.html#government">
+<a class="site-menu-link" href="./dealer-government#government">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#building">
 </use>
@@ -810,7 +786,7 @@
 <small>Procurement and project inquiries</small>
 </span>
 </a>
-<a class="site-menu-link" href="./rebates.html">
+<a class="site-menu-link" href="./rebates">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#clipboard">
 </use>
@@ -841,7 +817,7 @@
 </svg>
 <span>Call</span>
 </a>
-<a class="btn btn-primary btn-sm site-quote" href="./quote.html">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+<a class="btn btn-primary btn-sm site-quote" href="./quote">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
 <button class="site-menu-toggle" id="site-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-mobile-panel">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#menu">
@@ -859,7 +835,7 @@
 <use href="/assets/ui-icons-v2.svg#phone">
 </use>
 </svg>Call</a>
-<a class="btn btn-primary btn-sm" href="./quote.html">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+<a class="btn btn-primary btn-sm" href="./quote">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
 <button class="site-menu-toggle" id="site-menu-close" type="button" aria-label="Close menu">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#close">
@@ -876,7 +852,7 @@
 </summary>
 <div class="site-mobile-group-body">
 <p class="site-menu-label">Truck essentials</p>
-<a class="site-menu-link" href="./services/bedliner.html">
+<a class="site-menu-link" href="./services/bedliner">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#bedliner">
 </use>
@@ -886,7 +862,7 @@
 <small>Patriot Liner protection</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/tonneau.html">
+<a class="site-menu-link" href="./services/tonneau">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#cover">
 </use>
@@ -896,7 +872,7 @@
 <small>Hard, soft and retractable</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/running-boards.html">
+<a class="site-menu-link" href="./services/running-boards">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#step">
 </use>
@@ -906,7 +882,7 @@
 <small>Fixed steps and power steps</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/hitches.html">
+<a class="site-menu-link" href="./services/hitches">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#hitch">
 </use>
@@ -917,7 +893,7 @@
 </span>
 </a>
 <p class="site-menu-label">Vehicle protection</p>
-<a class="site-menu-link" href="./services/undercoating.html">
+<a class="site-menu-link" href="./services/undercoating">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#shield">
 </use>
@@ -927,7 +903,7 @@
 <small>Rust protection for your underbody</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/ceramic-coating.html">
+<a class="site-menu-link" href="./services/ceramic-coating">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#sparkle">
 </use>
@@ -937,7 +913,7 @@
 <small>Paint protection and gloss</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/window-tinting.html">
+<a class="site-menu-link" href="./services/window-tinting">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#tint">
 </use>
@@ -947,7 +923,7 @@
 <small>Heat, glare and UV control</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/mobile-detailing.html">
+<a class="site-menu-link" href="./services/mobile-detailing">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#droplets">
 </use>
@@ -972,7 +948,7 @@
 </summary>
 <div class="site-mobile-group-body">
 <p class="site-menu-label">Built around your work</p>
-<a class="site-menu-link" href="./fleet.html#commercial">
+<a class="site-menu-link" href="./fleet#commercial">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#van">
 </use>
@@ -982,7 +958,7 @@
 <small>Partitions, shelving and ladder racks</small>
 </span>
 </a>
-<a class="site-menu-link" href="./fleet.html#commercial">
+<a class="site-menu-link" href="./fleet#commercial">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#truck">
 </use>
@@ -992,7 +968,7 @@
 <small>Storage, access and accessories</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/toolboxes.html">
+<a class="site-menu-link" href="./services/toolboxes">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#toolbox">
 </use>
@@ -1002,7 +978,7 @@
 <small>Keep equipment organized</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/commercial-wraps.html">
+<a class="site-menu-link" href="./services/commercial-wraps">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#wrap">
 </use>
@@ -1012,7 +988,7 @@
 <small>Put your business on the road</small>
 </span>
 </a>
-<a class="site-menu-link" href="./fleet.html#fleet">
+<a class="site-menu-link" href="./fleet#fleet">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#shield">
 </use>
@@ -1032,7 +1008,7 @@
 </summary>
 <div class="site-mobile-group-body">
 <p class="site-menu-label">Protection at a larger scale</p>
-<a class="site-menu-link" href="./services/industrial-coatings.html">
+<a class="site-menu-link" href="./services/industrial-coatings">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#shield">
 </use>
@@ -1042,7 +1018,7 @@
 <small>Equipment, facilities and infrastructure</small>
 </span>
 </a>
-<a class="site-menu-link" href="./services/industrial-coatings.html">
+<a class="site-menu-link" href="./services/industrial-coatings">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#building">
 </use>
@@ -1052,7 +1028,7 @@
 <small>Coating projects at your facility</small>
 </span>
 </a>
-<a class="site-menu-link" href="./dealer-government.html#government">
+<a class="site-menu-link" href="./dealer-government#government">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#clipboard">
 </use>
@@ -1072,7 +1048,7 @@
 </summary>
 <div class="site-mobile-group-body">
 <p class="site-menu-label">A simpler way to work together</p>
-<a class="site-menu-link" href="./dealer-government.html#dealer">
+<a class="site-menu-link" href="./dealer-government#dealer">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#truck">
 </use>
@@ -1082,7 +1058,7 @@
 <small>Pre-sale add-ons and account setup</small>
 </span>
 </a>
-<a class="site-menu-link" href="./fleet.html">
+<a class="site-menu-link" href="./fleet">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#van">
 </use>
@@ -1092,7 +1068,7 @@
 <small>Consistent specs and scheduling</small>
 </span>
 </a>
-<a class="site-menu-link" href="./dealer-government.html#government">
+<a class="site-menu-link" href="./dealer-government#government">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#building">
 </use>
@@ -1102,7 +1078,7 @@
 <small>Procurement and project inquiries</small>
 </span>
 </a>
-<a class="site-menu-link" href="./rebates.html">
+<a class="site-menu-link" href="./rebates">
 <svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#clipboard">
 </use>
@@ -1125,12 +1101,12 @@
 </div>
 </details>
 <div class="site-mobile-utility">
-<a href="./gallery.html">Our work<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<a href="./gallery">Our work<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#arrow">
 </use>
 </svg>
 </a>
-<a href="./contact.html">Contact and directions<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<a href="./contact">Contact and directions<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 <use href="/assets/ui-icons-v2.svg#arrow">
 </use>
 </svg>
@@ -1142,9 +1118,9 @@
 <noscript>
 <nav class="site-nav-fallback" aria-label="Site sections">
 <a href="./services/">Services</a>
-<a href="./fleet.html">Work vehicles</a>
-<a href="./services/industrial-coatings.html">Industrial</a>
-<a href="./dealer-government.html">Programs</a>
+<a href="./fleet">Work vehicles</a>
+<a href="./services/industrial-coatings">Industrial</a>
+<a href="./dealer-government">Programs</a>
 </nav>
 </noscript>
 <!-- /cu:header -->
@@ -1160,10 +1136,10 @@
      HERO
 ═══════════════════════════════════════════════════════ -->
 <main id="main">
-<section class="home-hero" aria-labelledby="hero-h1"><div class="container home-hero-grid"><div class="home-hero-copy"><h1 id="hero-h1">Your vehicle.<br>Ready for more.</h1><p>Truck, van and fleet upfitting in Rockville, MD. Compare the right equipment, get a clear installed quote and put your vehicle to work.</p><div class="hero-ctas"><a href="./quote.html" class="btn btn-primary btn-lg">Get my quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a><a href="./services/" class="btn btn-secondary btn-lg">Explore services</a></div></div><figure class="service-media service-media--hero" data-image-need="home-hero" data-media-slot="home-hero"><img src="/api/media?slot=home-hero&amp;width=1200" srcset="/api/media?slot=home-hero&amp;width=768 768w, /api/media?slot=home-hero&amp;width=1200 1200w" sizes="(min-width: 768px) 54vw, 100vw" width="1200" height="800" loading="eager" fetchpriority="high" decoding="async" alt="Pickup truck and commercial cargo van"><figcaption>Illustrative image</figcaption></figure></div></section>
-<section class="decision-brief" aria-label="Planning your request"><div class="container"><p class="decision-kicker">Choose your next upgrade</p><h2>Start with what your truck needs.</h2><div class="decision-grid"><article><h3>Patriot Liner from $595 + tax</h3><p>Protect the bed with a spray-on liner. Pricing assumes a clean, accessory-free bed; condition and preparation can change the quote.</p><a href="./services/bedliner.html">Explore bedliners</a></article><article><h3>Bed covers from $1,050 installed</h3><p>Compare Westin, BAK, Retrax and TruXedo. The $1,050 offer is for Westin Hard Tri-Fold; exact fitment and taxes confirmed in your quote.</p><a href="./services/tonneau.html">Compare bed covers</a></article><article><h3>A complete installed package</h3><p>Hitches, wheels, steps, storage or fleet equipment. We help match the product and installation to your vehicle and its job.</p><a href="./services/">Find your service</a></article></div></div></section>
+<section class="home-hero" aria-labelledby="hero-h1"><div class="container home-hero-grid"><div class="home-hero-copy"><h1 id="hero-h1">Your vehicle.<br>Ready for more.</h1><p>Truck, van and fleet upfitting in Rockville, MD. Compare the right equipment, get a clear installed quote and put your vehicle to work.</p><div class="hero-ctas"><a href="./quote" class="btn btn-primary btn-lg">Get my quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a><a href="./services/" class="btn btn-secondary btn-lg">Explore services</a></div></div><figure class="service-media service-media--hero" data-image-need="home-hero" data-media-slot="home-hero"><img src="/api/media?slot=home-hero&amp;width=1200" srcset="/api/media?slot=home-hero&amp;width=768 768w, /api/media?slot=home-hero&amp;width=1200 1200w" sizes="(min-width: 768px) 54vw, 100vw" width="1200" height="800" loading="eager" fetchpriority="high" decoding="async" alt="Pickup truck and commercial cargo van"><figcaption>Illustrative image</figcaption></figure></div></section>
+<section class="decision-brief" aria-label="Planning your request"><div class="container"><p class="decision-kicker">Choose your next upgrade</p><h2>Start with what your truck needs.</h2><div class="decision-grid"><article><h3>Patriot Liner from $595 + tax</h3><p>Protect the bed with a spray-on liner. Pricing assumes a clean, accessory-free bed; condition and preparation can change the quote.</p><a href="./services/bedliner">Explore bedliners</a></article><article><h3>Bed covers from $1,050 installed</h3><p>Compare Westin, BAK, Retrax and TruXedo. The $1,050 offer is for Westin Hard Tri-Fold; exact fitment and taxes confirmed in your quote.</p><a href="./services/tonneau">Compare bed covers</a></article><article><h3>A complete installed package</h3><p>Hitches, wheels, steps, storage or fleet equipment. We help match the product and installation to your vehicle and its job.</p><a href="./services/">Find your service</a></article></div></div></section>
 
-<div class="home-local-strip" aria-label="Visit Capital Upfitters"><div class="container"><a href="./contact.html"><strong>Rockville, Maryland</strong><span>12019 Nebel St · Directions</span></a><p><strong>Monday–Friday</strong><span>9:30am–4:30pm</span></p><a href="tel:+13013041419"><strong>Talk to the shop</strong><span>301-304-1419</span></a></div></div>
+<div class="home-local-strip" aria-label="Visit Capital Upfitters"><div class="container"><a href="./contact"><strong>Rockville, Maryland</strong><span>12019 Nebel St · Directions</span></a><p><strong>Monday–Friday</strong><span>9:30am–4:30pm</span></p><a href="tel:+13013041419"><strong>Talk to the shop</strong><span>301-304-1419</span></a></div></div>
 
 
 <!-- ═══════════════════════════════════════════════════════
@@ -1189,7 +1165,7 @@
         <h3 class="audience-card-eyebrow">Your truck or SUV</h3>
         <div class="audience-card-title">Bedliners, covers, hitches and protection</div>
         <p class="audience-card-desc">Installed in Rockville. Tell us your vehicle and what you carry, tow or protect. We confirm the fit, price and appointment with you.</p>
-        <a href="./quote.html" class="audience-card-cta">Get my quote</a>
+        <a href="./quote" class="audience-card-cta">Get my quote</a>
       </article>
 
       <!-- Door 2: dealerships, fleets and vans -->
@@ -1198,7 +1174,7 @@
         <h3 class="audience-card-eyebrow">Dealers and fleets</h3>
         <div class="audience-card-title">Pre-sale add-ons and van upfits</div>
         <p class="audience-card-desc">Repeatable specs, partitions, shelving, racks and branding, scheduled around your delivery dates. Account pricing is not published.</p>
-        <a href="./fleet.html" class="audience-card-cta">Explore fleet solutions</a>
+        <a href="./fleet" class="audience-card-cta">Explore fleet solutions</a>
       </article>
 
       <!-- Door 3: government, municipal and field coating projects -->
@@ -1207,13 +1183,13 @@
         <h3 class="audience-card-eyebrow">Government and field</h3>
         <div class="audience-card-title">Protective coatings and agency fleets</div>
         <p class="audience-card-desc">Corrosion, anti-skid and protective coatings applied in our shop or at your site, with the documentation procurement asks for.</p>
-        <a href="./dealer-government.html#government" class="audience-card-cta">Explore government programs</a>
+        <a href="./dealer-government#government" class="audience-card-cta">Explore government programs</a>
       </article>
       <article class="audience-card">
         <h3 class="audience-card-eyebrow">Industrial coatings</h3>
         <div class="audience-card-title">Protection beyond the truck</div>
         <p class="audience-card-desc">Equipment, facilities and infrastructure. Coating projects in our shop or at your site.</p>
-        <a href="./services/industrial-coatings.html" class="audience-card-cta">Explore industrial</a>
+        <a href="./services/industrial-coatings" class="audience-card-cta">Explore industrial</a>
       </article>
     </div>
   </div>
@@ -1312,7 +1288,7 @@
     <div class="home-services-grid" style="margin-top: var(--space-12);">
 
       <!-- Bedliners -->
-      <article class="service-offering"><a href="./services/bedliner.html" class="service-card reveal reveal-delay-1" aria-label="Spray-On Bedliners">
+      <article class="service-offering"><a href="./services/bedliner" class="service-card reveal reveal-delay-1" aria-label="Spray-On Bedliners">
         <figure class="service-media" data-image-need="card-bedliner" data-media-slot="bedliner"><img src="/api/media?slot=bedliner&amp;width=1200" srcset="/api/media?slot=bedliner&amp;width=768 768w, /api/media?slot=bedliner&amp;width=1200 1200w" sizes="(min-width: 1024px) 380px, (min-width: 768px) 46vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Spray-on bedliner"><figcaption>Illustrative image</figcaption></figure>
 
         <div class="service-card-body">
@@ -1321,9 +1297,9 @@
           <p class="service-card-desc">Durable, textured spray liner permanently bonded to your truck bed. Lifetime warranty. Available in any color.</p>
           <span class="service-card-arrow">Explore service<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></span>
         </div>
-      </a><a href="./quote.html?service=bedliner" class="btn btn-secondary btn-sm service-direct-quote callout-cta" aria-label="Get a quote for spray-on bedliner" data-quote-service="bedliner">Quote this service<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a></article>
+      </a><a href="./quote?service=bedliner" class="btn btn-secondary btn-sm service-direct-quote callout-cta" aria-label="Get a quote for spray-on bedliner" data-quote-service="bedliner">Quote this service<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a></article>
       <!-- Tonneau -->
-      <article class="service-offering"><a href="./services/tonneau.html" class="service-card reveal reveal-delay-2" aria-label="Tonneau Covers">
+      <article class="service-offering"><a href="./services/tonneau" class="service-card reveal reveal-delay-2" aria-label="Tonneau Covers">
         <figure class="service-media" data-image-need="card-tonneau" data-media-slot="tonneau"><img src="/api/media?slot=tonneau&amp;width=1200" srcset="/api/media?slot=tonneau&amp;width=768 768w, /api/media?slot=tonneau&amp;width=1200 1200w" sizes="(min-width: 1024px) 380px, (min-width: 768px) 46vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Tonneau cover"><figcaption>Illustrative image</figcaption></figure>
 
         <div class="service-card-body">
@@ -1332,9 +1308,9 @@
           <p class="service-card-desc">Soft fold, hard fold, retractable, and roll-up covers for all popular truck models. Installed from in-stock inventory where available.</p>
           <span class="service-card-arrow">Explore service<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></span>
         </div>
-      </a><a href="./quote.html?service=tonneau" class="btn btn-secondary btn-sm service-direct-quote callout-cta" aria-label="Get a quote for tonneau cover" data-quote-service="tonneau">Quote this service<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a></article>
+      </a><a href="./quote?service=tonneau" class="btn btn-secondary btn-sm service-direct-quote callout-cta" aria-label="Get a quote for tonneau cover" data-quote-service="tonneau">Quote this service<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a></article>
       <!-- Running Boards -->
-      <article class="service-offering"><a href="./services/running-boards.html" class="service-card reveal reveal-delay-3" aria-label="Running Boards & Steps">
+      <article class="service-offering"><a href="./services/running-boards" class="service-card reveal reveal-delay-3" aria-label="Running Boards & Steps">
         <figure class="service-media" data-image-need="card-running-boards" data-media-slot="running-boards"><img src="/api/media?slot=running-boards&amp;width=1200" srcset="/api/media?slot=running-boards&amp;width=768 768w, /api/media?slot=running-boards&amp;width=1200 1200w" sizes="(min-width: 1024px) 380px, (min-width: 768px) 46vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Running board"><figcaption>Illustrative image</figcaption></figure>
 
         <div class="service-card-body">
@@ -1343,9 +1319,9 @@
           <p class="service-card-desc">Steel, aluminum, and AMP Research electric running boards for trucks and SUVs. Powered steps deploy automatically on door open.</p>
           <span class="service-card-arrow">Explore service<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></span>
         </div>
-      </a><a href="./quote.html?service=boards" class="btn btn-secondary btn-sm service-direct-quote callout-cta" aria-label="Get a quote for running board" data-quote-service="boards">Quote this service<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a></article>
+      </a><a href="./quote?service=boards" class="btn btn-secondary btn-sm service-direct-quote callout-cta" aria-label="Get a quote for running board" data-quote-service="boards">Quote this service<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a></article>
       <!-- Ceramic -->
-      <article class="service-offering"><a href="./services/ceramic-coating.html" class="service-card reveal reveal-delay-1" aria-label="Ceramic Coating & PPF">
+      <article class="service-offering"><a href="./services/ceramic-coating" class="service-card reveal reveal-delay-1" aria-label="Ceramic Coating & PPF">
         <figure class="service-media" data-image-need="card-ceramic-coating" data-media-slot="ceramic-coating"><img src="/api/media?slot=ceramic-coating&amp;width=1200" srcset="/api/media?slot=ceramic-coating&amp;width=768 768w, /api/media?slot=ceramic-coating&amp;width=1200 1200w" sizes="(min-width: 1024px) 380px, (min-width: 768px) 46vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Ceramic coating"><figcaption>Illustrative image</figcaption></figure>
 
         <div class="service-card-body">
@@ -1354,9 +1330,9 @@
           <p class="service-card-desc">Professional-grade nano-ceramic protection and paint protection film. Locks in gloss, repels water, resists UV and chemical damage.</p>
           <span class="service-card-arrow">Explore service<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></span>
         </div>
-      </a><a href="./quote.html?service=ceramic" class="btn btn-secondary btn-sm service-direct-quote callout-cta" aria-label="Get a quote for ceramic coating" data-quote-service="ceramic">Quote this service<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a></article>
+      </a><a href="./quote?service=ceramic" class="btn btn-secondary btn-sm service-direct-quote callout-cta" aria-label="Get a quote for ceramic coating" data-quote-service="ceramic">Quote this service<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a></article>
       <!-- Undercoating -->
-      <article class="service-offering"><a href="./services/undercoating.html" class="service-card reveal reveal-delay-2" aria-label="Undercoating & Rust Protection">
+      <article class="service-offering"><a href="./services/undercoating" class="service-card reveal reveal-delay-2" aria-label="Undercoating & Rust Protection">
         <figure class="service-media" data-image-need="card-undercoating" data-media-slot="undercoating"><img src="/api/media?slot=undercoating&amp;width=1200" srcset="/api/media?slot=undercoating&amp;width=768 768w, /api/media?slot=undercoating&amp;width=1200 1200w" sizes="(min-width: 1024px) 380px, (min-width: 768px) 46vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Underbody protection"><figcaption>Illustrative image</figcaption></figure>
 
         <div class="service-card-body">
@@ -1365,9 +1341,9 @@
           <p class="service-card-desc">Full undercarriage coating to prevent rust, reduce road noise, and extend the life of your vehicle — especially vital in DMV winters.</p>
           <span class="service-card-arrow">Explore service<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></span>
         </div>
-      </a><a href="./quote.html?service=undercoating" class="btn btn-secondary btn-sm service-direct-quote callout-cta" aria-label="Get a quote for underbody protection" data-quote-service="undercoating">Quote this service<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a></article>
+      </a><a href="./quote?service=undercoating" class="btn btn-secondary btn-sm service-direct-quote callout-cta" aria-label="Get a quote for underbody protection" data-quote-service="undercoating">Quote this service<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a></article>
       <!-- Hitches -->
-      <article class="service-offering"><a href="./services/hitches.html" class="service-card reveal reveal-delay-3" aria-label="Hitches & Towing">
+      <article class="service-offering"><a href="./services/hitches" class="service-card reveal reveal-delay-3" aria-label="Hitches & Towing">
         <figure class="service-media" data-image-need="card-hitches" data-media-slot="hitches"><img src="/api/media?slot=hitches&amp;width=1200" srcset="/api/media?slot=hitches&amp;width=768 768w, /api/media?slot=hitches&amp;width=1200 1200w" sizes="(min-width: 1024px) 380px, (min-width: 768px) 46vw, 100vw" width="1200" height="800" loading="lazy" decoding="async" alt="Receiver hitch"><figcaption>Illustrative image</figcaption></figure>
 
         <div class="service-card-body">
@@ -1376,12 +1352,12 @@
           <p class="service-card-desc">Receiver hitches, fifth-wheel preps, gooseneck conversions, brake controllers, and wiring for trucks, SUVs, and vans.</p>
           <span class="service-card-arrow">Explore service<svg class="ui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></span>
         </div>
-      </a><a href="./quote.html?service=hitch" class="btn btn-secondary btn-sm service-direct-quote callout-cta" aria-label="Get a quote for receiver hitch" data-quote-service="hitch">Quote this service<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a></article>
+      </a><a href="./quote?service=hitch" class="btn btn-secondary btn-sm service-direct-quote callout-cta" aria-label="Get a quote for receiver hitch" data-quote-service="hitch">Quote this service<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a></article>
 
     </div>
 
     <div style="text-align: center; margin-top: var(--space-10);">
-      <a href="./services/index.html" class="btn btn-ghost btn-lg">View All Services</a>
+      <a href="./services" class="btn btn-ghost btn-lg">View All Services</a>
     </div>
   </div>
 </section>
@@ -1419,8 +1395,8 @@
     </div>
 
     <div class="reveal" style="text-align:center; display:flex; gap: var(--space-4); justify-content:center; flex-wrap:wrap;">
-      <a href="./services/industrial-coatings.html" class="btn btn-primary">Explore industrial</a>
-      <a href="./contact.html" class="btn btn-outline" style="border-color:var(--color-action); color:#fff;">Discuss your project</a>
+      <a href="./services/industrial-coatings" class="btn btn-primary">Explore industrial</a>
+      <a href="./contact" class="btn btn-outline" style="border-color:var(--color-action); color:#fff;">Discuss your project</a>
     </div>
   </div>
 </section>
@@ -1538,7 +1514,7 @@
           <svg class="home-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="home-faq-answer" role="region">
-          <div class="home-faq-answer-inner">Our shop is in Rockville, MD (12019 Nebel St) and we serve the entire DMV — Bethesda, Silver Spring, Gaithersburg, and surrounding Montgomery County, plus Northern Virginia and DC. See our <a href="/locations/rockville-md.html">location pages</a> for service-area details.</div>
+          <div class="home-faq-answer-inner">Our shop is in Rockville, MD (12019 Nebel St) and we serve the entire DMV — Bethesda, Silver Spring, Gaithersburg, and surrounding Montgomery County, plus Northern Virginia and DC. See our <a href="/locations/rockville-md">location pages</a> for service-area details.</div>
         </div>
       </div>
       <div class="home-faq-item">
@@ -1565,7 +1541,7 @@
           <svg class="home-faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="home-faq-answer" role="region">
-          <div class="home-faq-answer-inner">Absolutely. We work with commercial fleets (3+ units earn volume pricing, Net-30 terms, consolidated invoicing), dealer partners, municipal and county agencies, and federal entities. See <a href="/fleet.html">Fleet &amp; Commercial</a> and <a href="/dealer-government.html">Dealer &amp; Government</a> for specifics.</div>
+          <div class="home-faq-answer-inner">Absolutely. We work with commercial fleets (3+ units earn volume pricing, Net-30 terms, consolidated invoicing), dealer partners, municipal and county agencies, and federal entities. See <a href="/fleet">Fleet &amp; Commercial</a> and <a href="/dealer-government">Dealer &amp; Government</a> for specifics.</div>
         </div>
       </div>
       <div class="home-faq-item">
@@ -1598,22 +1574,22 @@
     </div>
 
     <div class="locations-grid">
-      <a href="./locations/rockville-md.html" class="location-card reveal reveal-delay-1" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1);">
+      <a href="./locations/rockville-md" class="location-card reveal reveal-delay-1" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1);">
         <span class="location-card-city" style="color:#fff;">Rockville</span>
         <span class="location-card-state" style="color:rgba(255,255,255,0.6);">Maryland</span>
         <span class="location-card-dist" style="color:rgba(255,255,255,0.6);">Our Home Base</span>
       </a>
-      <a href="./locations/bethesda-md.html" class="location-card reveal reveal-delay-2" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1);">
+      <a href="./locations/bethesda-md" class="location-card reveal reveal-delay-2" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1);">
         <span class="location-card-city" style="color:#fff;">Bethesda</span>
         <span class="location-card-state" style="color:rgba(255,255,255,0.6);">Maryland</span>
         <span class="location-card-dist" style="color:rgba(255,255,255,0.6);">~8 min drive</span>
       </a>
-      <a href="./locations/silver-spring-md.html" class="location-card reveal reveal-delay-3" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1);">
+      <a href="./locations/silver-spring-md" class="location-card reveal reveal-delay-3" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1);">
         <span class="location-card-city" style="color:#fff;">Silver Spring</span>
         <span class="location-card-state" style="color:rgba(255,255,255,0.6);">Maryland</span>
         <span class="location-card-dist" style="color:rgba(255,255,255,0.6);">~15 min drive</span>
       </a>
-      <a href="./locations/gaithersburg-md.html" class="location-card reveal reveal-delay-4" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1);">
+      <a href="./locations/gaithersburg-md" class="location-card reveal reveal-delay-4" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1);">
         <span class="location-card-city" style="color:#fff;">Gaithersburg</span>
         <span class="location-card-state" style="color:rgba(255,255,255,0.6);">Maryland</span>
         <span class="location-card-dist" style="color:rgba(255,255,255,0.6);">~12 min drive</span>
@@ -1630,7 +1606,7 @@
     <h2 id="cta-heading">Ready to book your install?</h2>
     <p>Call, quote online, or walk in Mon&ndash;Fri 9:30am&ndash;4:30pm.<br>Contact us for current availability.</p>
     <div class="cta-banner-actions">
-      <a href="./quote.html" class="btn btn-primary btn-lg">Request Installed Pricing<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+      <a href="./quote" class="btn btn-primary btn-lg">Request Installed Pricing<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
       <a href="tel:+13013041419" class="btn btn-outline btn-lg">Call Now — (301) 304-1419</a>
     </div>
   </div>
@@ -1644,7 +1620,7 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a href="./index.html" class="footer-brand-logo" aria-label="Capital Upfitters">
+        <a href="./" class="footer-brand-logo" aria-label="Capital Upfitters">
           <div class="nav-logo-mark"><svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3L4 10v8c0 8.3 5.9 16.1 14 18 8.1-1.9 14-9.7 14-18v-8L18 3z" fill="#fff"/></svg></div>
           <div class="footer-brand-name">Capital<span>Upfitters</span></div>
         </a>
@@ -1678,41 +1654,41 @@
       <div>
         <div class="footer-col-title">Services</div>
         <ul class="footer-links">
-          <li><a href="./services/bedliner.html">Spray-On Bedliners</a></li>
-          <li><a href="./services/hitches.html">Hitches & Towing</a></li>
-          <li><a href="./services/ceramic-coating.html">Ceramic Coating</a></li>
-          <li><a href="./services/undercoating.html">Undercoating</a></li>
-          <li><a href="./services/tonneau.html">Tonneau Covers</a></li>
-          <li><a href="./services/running-boards.html">Running Boards</a></li>
+          <li><a href="./services/bedliner">Spray-On Bedliners</a></li>
+          <li><a href="./services/hitches">Hitches & Towing</a></li>
+          <li><a href="./services/ceramic-coating">Ceramic Coating</a></li>
+          <li><a href="./services/undercoating">Undercoating</a></li>
+          <li><a href="./services/tonneau">Tonneau Covers</a></li>
+          <li><a href="./services/running-boards">Running Boards</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Business</div>
         <ul class="footer-links">
-          <li><a href="./fleet.html">Fleet Upfitting</a></li>
-          <li><a href="./dealer-government.html">Dealer Program</a></li>
-          <li><a href="./dealer-government.html#government">Government</a></li>
-          <li><a href="./gallery.html">Gallery</a></li>
-          <li><a href="./quote.html">Get a quote</a></li>
+          <li><a href="./fleet">Fleet Upfitting</a></li>
+          <li><a href="./dealer-government">Dealer Program</a></li>
+          <li><a href="./dealer-government#government">Government</a></li>
+          <li><a href="./gallery">Gallery</a></li>
+          <li><a href="./quote">Get a quote</a></li>
           <li><a href="https://upfit-portal-58190af9.base44.app" target="_blank" rel="noopener noreferrer">Upfit Portal</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-title">Locations</div>
         <ul class="footer-links">
-          <li><a href="./locations/rockville-md.html">Rockville, MD</a></li>
-          <li><a href="./locations/bethesda-md.html">Bethesda, MD</a></li>
-          <li><a href="./locations/silver-spring-md.html">Silver Spring, MD</a></li>
-          <li><a href="./locations/gaithersburg-md.html">Gaithersburg, MD</a></li>
-          <li><a href="./contact.html">Hours & Directions</a></li>
+          <li><a href="./locations/rockville-md">Rockville, MD</a></li>
+          <li><a href="./locations/bethesda-md">Bethesda, MD</a></li>
+          <li><a href="./locations/silver-spring-md">Silver Spring, MD</a></li>
+          <li><a href="./locations/gaithersburg-md">Gaithersburg, MD</a></li>
+          <li><a href="./contact">Hours & Directions</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <p class="footer-copyright">&copy; 2026 Capital Auto Upfitters & Protective Coatings. All rights reserved.</p>
       <nav class="footer-legal" aria-label="Legal links">
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/terms.html">Terms of Service</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
       </nav>
       <p class="footer-pplx"><a href="https://IVANKODevelopment.com" target="_blank" rel="noopener noreferrer">Built by IVANKODev</a></p>
     </div>
@@ -1734,7 +1710,7 @@
 
 <!-- Floating quote CTA -->
 <div class="float-cta" aria-hidden="true">
-  <a href="./quote.html" class="float-cta-btn">
+  <a href="./quote" class="float-cta-btn">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     Get a Quote
   </a>
@@ -1747,7 +1723,7 @@
 <!-- Mobile action bar (<=768px): Call / Text / Get a Quote -->
 <nav class="mobile-action-bar" aria-label="Quick actions">
   <a href="tel:+13013041419" class="mab-btn mab-call"><svg class="mab-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.24H6.6a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Call</span></a>
-  <a href="./quote.html" class="mab-btn mab-quote">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
+  <a href="./quote" class="mab-btn mab-quote">Get a quote<svg class="ui-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="/assets/ui-icons-v2.svg#arrow"></use></svg></a>
 </nav>
 </body>
 </html>

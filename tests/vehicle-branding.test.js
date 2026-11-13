@@ -23,7 +23,7 @@ function harness() {
   return {formEvents,documentEvents,clicks,coverage,elements};
 }
 test('branding retains canonical route, native lead bridge, media slot and approved gallery', () => {
-  assert.match(html, /rel="canonical" href="https:\/\/www.capitalupfitters.com\/services\/commercial-wraps.html"/);
+  assert.match(html, /rel="canonical" href="https:\/\/www.capitalupfitters.com\/services\/commercial-wraps"/);
   assert.match(html, /id="quote-fleet" data-cms-form="fleet"/);
   for (const field of ['Business Name','Contact Name','Business Email','Phone','Vehicle Count','Vehicle Types','Timeline','Message']) assert.ok(html.includes(`name="${field}"`));
   assert.match(html, /name="Vehicle Count" type="number" min="1" max="10000" step="1"/);

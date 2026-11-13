@@ -6,7 +6,7 @@ const vm = require('node:vm');
 const read = file => fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
 const html = read('services/ceramic-coating.html');
 test('ceramic page retains indexed route, managed media, real gallery and shared chrome', () => {
-  assert.match(html,/rel="canonical" href="https:\/\/www.capitalupfitters.com\/services\/ceramic-coating.html"/);
+  assert.match(html,/rel="canonical" href="https:\/\/www.capitalupfitters.com\/services\/ceramic-coating"/);
   assert.match(html,/<meta name="robots" content="index, follow">/);
   for (const id of ['main','hero-heading','benefits-heading','pricing-heading','process-heading','faq-heading','ceramic-video-heading','recent-work-heading']) assert.equal((html.match(new RegExp('id="'+id+'"','g'))||[]).length,1);
   assert.match(html,/data-media-slot="ceramic-coating"/);

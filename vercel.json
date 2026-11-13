@@ -66,6 +66,15 @@
           "value": "noindex, nofollow"
         }
       ]
+    },
+    {
+      "source": "/(quote|hitch-quote)(.html)?",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
     }
   ],
   "git": {

@@ -66,6 +66,9 @@
 
     if (ref || refDomain) {
       var src = ref + ' ' + refDomain;
+      // Classify AI hostnames before generic Google/Microsoft referrers.
+      if (/^(chatgpt\.com|chat\.openai\.com|openai\.com|perplexity\.ai|claude\.ai|gemini\.google\.com|copilot\.microsoft\.com)$/.test(refDomain)) return 'ChatGPT / AI Referral';
+      if (refDomain === 'search.brave.com') return 'Brave Search';
       if (/google\./.test(src))      return 'Google Organic';
       if (/bing\./.test(src))        return 'Bing Organic';
       if (/duckduckgo\./.test(src))  return 'DuckDuckGo Organic';

@@ -6,7 +6,7 @@ test('all 49 customer-facing pages retain routes and opt into pilot or rollout s
  for(const page of pages){const h=read(page);assert.match(h,/class="[^"]*(sitewide-page|truck-pilot|bedliner-pilot-body)/,page);assert.ok(/sitewide-rollout.css|truck-pilot.css/.test(h),page);assert.equal((h.match(/<h1\b/g)||[]).length,1,page);const ids=[...h.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size,page+' duplicate IDs');for(const [,json]of h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g))JSON.parse(json);}
 });
 test('fleet and project paths retain explicit audience selectors',()=>{
- const fleet=read('fleet.html');assert.match(fleet,/quote.html\?audience=fleet/);assert.match(fleet,/href="tel:\+13013041419"/);
+ const fleet=read('fleet.html');assert.match(fleet,/quote\?audience=fleet/);assert.match(fleet,/href="tel:\+13013041419"/);
  const project=read('services/industrial-coatings.html');assert.match(project,/audience=project/);
  const dealer=read('dealer-government.html');assert.match(dealer,/audience=dealer/);assert.match(dealer,/audience=government/);
 });

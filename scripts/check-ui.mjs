@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const read = path => readFileSync(join(root, path), 'utf8');
+const pageExists = target => existsSync(target) || existsSync(target + '.html') || existsSync(join(target, 'index.html'));
 const header = read('partials/header.html');
 const ids = new Set([...header.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]));
 assert.equal(ids.size, [...header.matchAll(/\bid="([^"]+)"/g)].length, 'Header IDs must be unique');
@@ -13,7 +14,7 @@ for (const [, id] of header.matchAll(/\baria-controls="([^"]+)"/g)) {
 }
 for (const [, href] of header.matchAll(/\bhref="(\.\/[^"#]*)(?:#[^"]*)?"/g)) {
   const target = resolve(root, href);
-  assert.ok(existsSync(target), `Navigation destination ${href} must exist`);
+  assert.ok(pageExists(target), `Navigation destination ${href} must exist`);
 }
 assert.ok(header.includes('<dialog'), 'Mobile navigation must use native modal focus containment');
 assert.ok(!header.includes('role="menu"'), 'Site links use disclosure navigation, not application menu roles');
@@ -24,7 +25,7 @@ const imageNeeds = read('docs/IMAGE-NEEDS.md');
 const cards = [...directory.matchAll(/<article class="service-offering" data-category="([^"]+)"><a href="(\.\/[^\"]+)" class="service-hub-card"/g)];
 assert.equal(cards.length, 15, 'All existing directory service destinations must remain available');
 for (const [, categories, href] of cards) {
-  assert.ok(existsSync(resolve(root, 'services', href)), `Service card ${href} must have a destination`);
+  assert.ok(pageExists(resolve(root, 'services', href)), `Service card ${href} must have a destination`);
   assert.ok(categories.split(/\s+/).includes('all'), `Service card ${href} must be visible in All services`);
 }
 const mediaConfig = JSON.parse(read('config/media.json'));

@@ -1,3 +1,5 @@
+# Public search crawlers, including Googlebot and OAI-SearchBot, inherit this group.
+# No separate training-crawler permission is added by this change.
 User-agent: *
 Allow: /
 Disallow: /assets/private/

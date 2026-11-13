@@ -8,7 +8,7 @@
     "sync-chrome": "node scripts/sync-chrome.mjs",
     "check-chrome": "node scripts/sync-chrome.mjs --check",
     "dev": "node --env-file-if-exists=.env.media.local scripts/dev-server.cjs",
-    "check": "npm test && npm run check-chrome && node --check site-nav.js && node --check services-directory.js && node --check media-client.js && node --check quote-assist.js && node --check admin/media-admin.js && node scripts/check-ui.mjs"
+    "check": "npm test && npm run check-chrome && node --check analytics.js && node --check attribution.js && node --check scripts/normalize-search.mjs && node --check site-nav.js && node --check services-directory.js && node --check media-client.js && node --check quote-assist.js && node --check admin/media-admin.js && node scripts/check-ui.mjs"
   },
   "devDependencies": {
     "playwright-core": "^1.48.0"

@@ -61,6 +61,6 @@ test('tab changes preserve service and attribution; history restores selected au
 });
 test('fleet primary CTA uses the canonical audience parameter', () => {
   const html = fs.readFileSync('fleet.html', 'utf8');
-  assert.match(html, /href="\.\/quote\.html\?audience=fleet"[^>]*>Get a Commercial Fleet Quote/);
+  assert.match(html, /href="\.\/quote\?audience=fleet"[^>]*>Get a Commercial Fleet Quote/);
   assert.doesNotMatch(html, /quote\.html\?type=commercial/);
 });

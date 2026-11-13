@@ -36,7 +36,7 @@ test('legacy product links map to real service tiles',()=>{
 test('six referral/product pages retain canonical URLs and use existing quote GET handoff',()=>{
   for(const slug of ['stealth-hitches','ecohitch','bakflip','retrax','amp-research','etrailer-installation']){
     const html=read('services/'+slug+'.html');
-    assert.match(html,new RegExp('rel="canonical" href="https://www.capitalupfitters.com/services/'+slug+'\\.html"'));
+    assert.match(html,new RegExp('rel="canonical" href="https://www.capitalupfitters.com/services/'+slug+'"'));
     assert.match(html,/class="partner-fitment-form" action="\.\.\/quote.html" method="get"/);
     assert.match(html,/name="product"/);
     assert.match(html,/name="purchase_status"/);
@@ -46,9 +46,9 @@ test('six referral/product pages retain canonical URLs and use existing quote GE
   }
 });
 test('new pages have sitemap entries and are discoverable from categories',()=>{
-  for(const slug of ['amp-research','etrailer-installation'])assert.ok(read('sitemap.xml').includes('/services/'+slug+'.html'));
-  assert.ok(read('services/running-boards.html').includes('./amp-research.html'));
-  assert.ok(read('services/hitches.html').includes('./etrailer-installation.html'));
+  for(const slug of ['amp-research','etrailer-installation'])assert.ok(read('sitemap.xml').includes('/services/'+slug+'</loc>'));
+  assert.ok(read('services/running-boards.html').includes('href="./amp-research"'));
+  assert.ok(read('services/hitches.html').includes('href="./etrailer-installation"'));
 });
 test('landing script passes actual campaign context without manufacturing referral sources',()=>{
   const appended=[];
