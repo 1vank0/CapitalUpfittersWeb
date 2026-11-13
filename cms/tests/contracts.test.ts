@@ -57,3 +57,9 @@ test('quote links preserve existing audiences and all service targets exist',()=
   const rootPackage=JSON.parse(readFileSync('../package.json','utf8'));
   assert.equal(rootPackage.dependencies.payload,undefined);
 });
+test('Neon preview requires complete private storage configuration and a valid branch endpoint',()=>{
+  const env={CMS_DEPLOYMENT_SCOPE:'preview',PAYLOAD_SECRET:'a'.repeat(32),CMS_SERVER_URL:'https://cms.example.com',CMS_DATABASE_URL:'postgres://fixture',CMS_STORAGE_PROVIDER:'neon',CMS_S3_BUCKET:'cms-media',CMS_S3_ENDPOINT:'https://br-test.storage.c-15.us-east-1.aws.neon.tech',CMS_S3_REGION:'us-east-1',CMS_S3_ACCESS_KEY_ID:'fixture',CMS_S3_SECRET_ACCESS_KEY:'fixture'};
+  assert.equal(runtimeConfig(env).s3,true);
+  assert.throws(()=>runtimeConfig({...env,CMS_S3_SECRET_ACCESS_KEY:''}));
+  assert.throws(()=>runtimeConfig({...env,CMS_S3_ENDPOINT:'https://evil.example.com'}));
+});

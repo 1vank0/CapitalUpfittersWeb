@@ -3,7 +3,7 @@ import sharp from 'sharp';
 import { APIError, type CollectionConfig } from 'payload';
 import { isEditor, mediaRead, editorField } from '../lib/access';
 export const Media: CollectionConfig = {
-  slug: 'media', admin: { useAsTitle: 'alt', group: 'Content', description: 'Only upload real job photos already cleared for public use. Blob originals and draft files are public by URL. Never upload private customer details, readable plates or raw camera files.' },
+  slug: 'media', admin: { useAsTitle: 'alt', group: 'Content', description: 'Only upload real job photos already cleared for public use. Files are private in Neon; Payload checks access before serving them. Never upload private customer details, readable plates or raw camera files.' },
   access: { read: mediaRead, create: isEditor, update: isEditor, delete: () => false },
   versions: { drafts: true, maxPerDoc: 20 },
   upload: {
@@ -30,7 +30,7 @@ export const Media: CollectionConfig = {
       }
       if (!req.file) throw new APIError('Upload a new JPG, PNG or WebP file. Remote-file import is disabled.',400);
       const record=args.data;
-      if (!record.rightsCleared || !record.privacyChecked || record.provenance !== 'real') throw new APIError('Before uploading, confirm real photography, permission for public use, and removal of plates and personal details. Draft files are not private storage.',400);
+      if (!record.rightsCleared || !record.privacyChecked || record.provenance !== 'real') throw new APIError('Before uploading, confirm real photography, permission for public use, and removal of plates and personal details. Draft files are accessible only to authenticated editors.',400);
       if (req.file.size > 3_000_000) throw new APIError('Use an image under 3 MB.',400);
       let metadata;
       try { metadata=await sharp(req.file.data,{limitInputPixels:40_000_000}).metadata(); } catch { throw new APIError('Use a readable JPG, PNG or WebP image.',400); }
@@ -40,7 +40,7 @@ export const Media: CollectionConfig = {
     }],
     beforeValidate: [({ data, originalDoc }) => {
       const record={...originalDoc,...data};
-      if (!record.rightsCleared || !record.privacyChecked || record.provenance!=='real') throw new APIError('Only rights-cleared real job photography belongs in this public asset library. Unpublish a record to remove it from the gallery; its asset URL remains public.',400);
+      if (!record.rightsCleared || !record.privacyChecked || record.provenance!=='real') throw new APIError('Only rights-cleared real job photography belongs in this public asset library. Unpublish a record to remove public access to it.',400);
       return data;
     }],
   },
@@ -49,7 +49,7 @@ export const Media: CollectionConfig = {
     {name:'job',type:'relationship',relationTo:'jobs',required:true},
     {name:'role',type:'select',options:['before','during','after','detail'],required:true},
     {name:'provenance',type:'select',options:['real'],required:true,label:'Real Capital Upfitters job photography'},
-    {name:'rightsCleared',type:'checkbox',required:true,label:'Approved for public website use, including draft file URLs'},
+    {name:'rightsCleared',type:'checkbox',required:true,label:'Approved for public website use'},
     {name:'privacyChecked',type:'checkbox',required:true,label:'Plates and personal identifying details removed'},
     {name:'sourceNote',type:'textarea',label:'Internal rights/source record',access:{read:editorField}},
   ],

@@ -242,7 +242,7 @@ export interface Job {
   _status?: ('draft' | 'published') | null;
 }
 /**
- * Only upload real job photos already cleared for public use. Blob originals and draft files are public by URL. Never upload private customer details, readable plates or raw camera files.
+ * Only upload real job photos already cleared for public use. Files are private in Neon; Payload checks access before serving them. Never upload private customer details, readable plates or raw camera files.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".

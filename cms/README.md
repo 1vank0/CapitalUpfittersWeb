@@ -38,10 +38,10 @@ Do not use the generic first-user form: public registration is blocked server-si
 1. Create a draft job, then upload its rights-cleared real before/during/after images.
 2. Publish each selected image, add job-specific notes/vehicle/date, confirm evidence and publish the job.
 3. Use draft mode for price or holiday edits. Explicit publish changes the isolated preview immediately; the static live website is still unchanged.
-4. Replace a photo by creating a new media record and repointing the job. Unpublishing a referenced photo hides that job from the public projection. Blob files already distributed publicly are not made private by unpublishing.
+4. Replace a photo by creating a new media record and repointing the job. Unpublishing a referenced photo hides that job from the public projection. Private Neon files are served only after Payload access checks.
 5. Reviews require a source URL and republication permission. No aggregate rating is inferred from selected testimonials.
 
-**All uploaded images must already be safe for public use, even drafts.** The Blob adapter uses public object URLs. Remove plates/customer details and obtain needed rights before uploading. Keep raw camera originals and sensitive material out of this CMS.
+**All uploaded images must be cleared for eventual public use.** Draft images stay private in Neon. Remove plates/customer details and obtain needed rights before uploading. Keep raw camera originals and sensitive material out of this CMS.
 
 ## Checks
 
@@ -55,7 +55,7 @@ Tests run against synthetic fixtures in a temporary SQLite database and temporar
 
 ## Hosted preview and release blockers
 
-1. **Approve dedicated infrastructure.** Select a separate PostgreSQL database and Blob store. Set `CMS_DATABASE_URL`, `CMS_BLOB_READ_WRITE_TOKEN`, `CMS_ASSET_ORIGIN`, `CMS_SERVER_URL` and private `PAYLOAD_SECRET` only after the required authorization. Generic `DATABASE_URL` and existing lead/media credentials are never read. No provider was provisioned or credential transferred.
+1. **Approve dedicated infrastructure.** Select a separate PostgreSQL database and private Neon bucket. Set `CMS_DATABASE_URL`, `CMS_S3_SECRET_ACCESS_KEY`, `CMS_S3_ENDPOINT`, `CMS_SERVER_URL` and private `PAYLOAD_SECRET` only after the required authorization. Generic `DATABASE_URL` and existing lead/media credentials are never read. The dedicated preview Neon database and private bucket are provisioned; credentials are server-only.
 2. **Generate/review the PostgreSQL migration** against that empty dedicated staging DB, then run it there. Postgres schema push is disabled. The local SQLite schema is not a production migration. No fabricated provider ID or migration has been substituted.
 3. **Deploy a separate preview project rooted at `cms/`**, with `CMS_DEPLOYMENT_SCOPE=preview` and access protection. Never merge this whole visual-pilot branch as a CMS release. Cherry-pick the CMS-only commit onto the intended integration branch. Review the static project's packaging/exclusions before carrying this subdirectory into its deployable source.
 4. Provision the initial approved admin and editor, configure mail recovery, and verify login/edit/draft/publish/restore on desktop and phone. The intended future same-domain `/admin` proxy requires a separately reviewed route change; existing `/admin/media` must remain intact until a controlled transition.
@@ -73,3 +73,6 @@ Production execution deliberately throws when `VERCEL_ENV=production`. Lifting t
 - https://github.com/payloadcms/payload (MIT; standard Next App Router wiring)
 
 The existing site is static HTML/JS plus Vercel serverless, not the Next.js site assumed by the plan. Keeping Payload separate avoids a framework rewrite, an accidental lead database migration, and contamination of the measurement-first release sequence.
+
+## Neon preview storage
+Use `@payloadcms/storage-s3` with the branch endpoint, path-style requests, and the storage-only credential. Bucket `cms-media` must stay PRIVATE. Set CMS_STORAGE_PROVIDER=neon plus all CMS_S3_* variables from .env.example. Credentials stay server-side. Payload streams media through its authenticated file route; signed downloads and direct client uploads are off. CMS_PUBLIC_READS_ENABLED=false blocks all anonymous media, including published records. When explicitly enabled later, only published, real, rights-cleared, privacy-checked media can be public. No Blob account is needed. Neon Free includes 5 GB object storage per project; no paid-plan change has been made.

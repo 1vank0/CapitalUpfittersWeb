@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { buildConfig } from 'payload';
 import { sqliteAdapter } from '@payloadcms/db-sqlite';
 import { postgresAdapter } from '@payloadcms/db-postgres';
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
+import { s3Storage } from '@payloadcms/storage-s3';
 import sharp from 'sharp';
 import { Users } from './collections/Users';
 import { Offers } from './collections/Offers';
@@ -25,7 +25,13 @@ export default buildConfig({
   db: runtime.databaseURL
     ? postgresAdapter({ pool: { connectionString: runtime.databaseURL }, push: false, migrationDir: path.resolve(dirname, 'migrations') })
     : sqliteAdapter({ client: { url: process.env.CMS_LOCAL_DATABASE || 'file:.data/content.db' }, push: true }),
-  plugins: [vercelBlobStorage({ enabled: Boolean(runtime.blobToken), alwaysInsertFields: true, collections: { media: { prefix: 'capital-content' } }, token: runtime.blobToken, clientUploads: false })],
+  plugins: [s3Storage({ enabled: runtime.s3, alwaysInsertFields: true,
+    bucket: process.env.CMS_S3_BUCKET || 'cms-media',
+    collections: { media: { prefix: 'capital-content' } },
+    clientUploads: false, signedDownloads: false,
+    config: { endpoint: process.env.CMS_S3_ENDPOINT, region: process.env.CMS_S3_REGION || 'us-east-1', forcePathStyle: true,
+      credentials: { accessKeyId: process.env.CMS_S3_ACCESS_KEY_ID || '', secretAccessKey: process.env.CMS_S3_SECRET_ACCESS_KEY || '' } },
+  })],
   upload: { limits: { fileSize: 3_000_000 }, abortOnLimit: true },
   typescript: { outputFile: path.resolve(dirname, 'payload-types.ts') },
   email: () => ({ name: 'disabled-staging-email', defaultFromAddress: 'disabled@example.invalid', defaultFromName: 'Staging', sendEmail: async () => { throw new Error('Email is not configured. Contact the administrator for account recovery.'); } }),
