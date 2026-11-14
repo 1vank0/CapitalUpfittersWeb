@@ -1360,7 +1360,11 @@ body.cu-p6-active { padding-bottom: 132px !important; }
               <option>Just pricing for now</option>
             </select>
           </div>
-          <div class="field full"><label for="f-notes">Anything else? (optional)</label><input id="f-notes" name="Message" placeholder="Fleet of 6 trucks, need them done in pairs&hellip;"></div>
+          <div class="field full">
+            <label for="f-notes">Anything else? (optional)</label>
+            <input id="f-notes" name="Message" placeholder="Tell us anything else we should know">
+            <small id="realtruck-build-hint" hidden>In RealTruck Builder, use Share to copy your saved build link. Paste it here or list the parts you want us to quote.</small>
+          </div>
         </div>
         <div id="retail-hidden-services"></div>
       </div>
@@ -2030,6 +2034,18 @@ const SERVICES = [
 }
 ];
 const MAX_SERVICES = 12;
+const fromRealTruckBuilder = new URLSearchParams(window.location.search).get('builder') === 'realtruck';
+if (fromRealTruckBuilder) {
+  SERVICES.filter(service => service.id === 'tonneau' || service.id === 'boards').forEach(service => {
+    service.base.push({
+      id: 'realtruck-build',
+      name: 'Quote the parts from my 3D build',
+      art: service.base[0].art,
+      desc: 'Share the build link or part numbers on the next step.',
+      info: 'We’ll use your build details to check fitment and quote installed pricing.'
+    });
+  });
+}
 const SERVICE_GROUPS = [
   {
     name:'Protection & Appearance',
@@ -2502,7 +2518,7 @@ $('#nextBtn').addEventListener('click', ()=>{
     var btn = document.createElement('button'); btn.type='submit'; btn.style.display='none';
     form.appendChild(btn); btn.click(); form.removeChild(btn);
   }
-  if (notesEl && buildDetails.length && notesEl.value !== '') notesEl.value = notesOrig;
+  if (notesEl) notesEl.value = notesOrig;
 });
 
 /* ============================================================
@@ -2748,6 +2764,14 @@ updateHitchFulfillment();
   const pMake  = params.get('make');
   const pModel = params.get('model');
   const pSvc   = params.get('service');
+
+  if (fromRealTruckBuilder) {
+    const notes = document.getElementById('f-notes');
+    notes.labels[0].textContent = 'RealTruck build link or part numbers (optional)';
+    notes.placeholder = 'Paste your saved build link or list part numbers';
+    notes.setAttribute('aria-describedby', 'realtruck-build-hint');
+    document.getElementById('realtruck-build-hint').hidden = false;
+  }
 
   function setValue(id, val) {
     const el = document.getElementById(id);
