@@ -86,12 +86,12 @@
     {
       "source": "/gallery",
       "destination": "/portfolio",
-      "permanentRedirect": true
+      "permanent": true
     },
     {
       "source": "/gallery/:path*",
       "destination": "/portfolio/:path*",
-      "permanentRedirect": true
+      "permanent": true
     }
   ]
 }
