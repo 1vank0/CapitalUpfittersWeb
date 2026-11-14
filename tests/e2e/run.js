@@ -190,7 +190,7 @@ async function realTruckQuoteFlow(page) {
   });
   await page.locator('#nextBtn').click();
   await page.getByRole('heading', { name: 'Quote request sent' }).waitFor({ state: 'visible' });
-  assert.deepEqual(payload.services, ['Tonneau Cover — Quote the parts from my 3D build']);
+  assert.equal(payload.services, 'Tonneau Cover — Quote the parts from my 3D build');
   assert.ok(payload.Message.includes(`Notes: ${buildLink}`));
   return true;
 }
