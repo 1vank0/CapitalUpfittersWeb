@@ -9,6 +9,7 @@ const { chromium } = require('playwright-core');
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
+const assert = require('node:assert/strict');
 
 const ROOT = path.resolve(__dirname, '../..');
 const BASE = 'http://127.0.0.1:8765';
@@ -20,6 +21,8 @@ const PAGES = [
   'fleet.html',
   'services/bedliner.html',
   'services/hitches.html',
+  'services/tonneau.html',
+  'services/running-boards.html',
   'services/index.html',
   'locations/rockville-md.html',
 ];
@@ -151,6 +154,47 @@ async function quoteFlow(page) {
   return { posted, thankYou, postBody: (postBody || '').slice(0, 200) };
 }
 
+async function realTruckQuoteFlow(page) {
+  // Python's static test server requires the .html suffix that Vercel strips.
+  await page.route(`${BASE}/quote?**`, async route => {
+    const url = new URL(route.request().url());
+    url.pathname = '/quote.html';
+    await route.fulfill({ response: await route.fetch({ url: url.href }) });
+  });
+  let payload;
+  await page.route('**/api/lead', async route => {
+    payload = route.request().postDataJSON();
+    await route.fulfill({ json: { ok: true, id: 'builder-e2e', delivery_mode: 'test' } });
+  });
+
+  await page.goto(`${BASE}/services/tonneau.html`, { waitUntil: 'domcontentloaded' });
+  const builder = page.locator('#realtruck-builder');
+  const external = builder.getByRole('link', { name: /Open 3D Builder/ });
+  assert.equal(await external.getAttribute('href'), 'https://realtruck.com/builder/');
+  assert.equal(await external.getAttribute('target'), '_blank');
+  await builder.getByRole('link', { name: 'Get Installed Pricing' }).click();
+  await page.locator('#vehSkip').click();
+  assert.equal(await page.locator('.tile[data-svc="tonneau"]').getAttribute('aria-checked'), 'true');
+  await page.getByRole('radio', { name: /Quote the parts from my 3D build/ }).click();
+  await page.locator('#nextBtn').click();
+
+  const buildLink = 'https://realtruck.com/builder/?build=test-configuration';
+  await page.getByLabel('RealTruck build link or part numbers (optional)').fill(buildLink);
+  await page.locator('#f-fname').fill('E2E');
+  await page.locator('#f-lname').fill('Tester');
+  await page.locator('#f-phone').fill('3015550199');
+  await page.locator('#f-email').fill('e2e@example.com');
+  await page.locator('#f-contact-pref').selectOption('email');
+  await page.locator('#quote-retail').evaluate(form => {
+    form.dataset.cuFormOpenedAt = String(Date.now() - 10000);
+  });
+  await page.locator('#nextBtn').click();
+  await page.getByRole('heading', { name: 'Quote request sent' }).waitFor({ state: 'visible' });
+  assert.deepEqual(payload.services, ['Tonneau Cover — Quote the parts from my 3D build']);
+  assert.ok(payload.Message.includes(`Notes: ${buildLink}`));
+  return true;
+}
+
 (async () => {
   const server = spawn('python3', ['-m', 'http.server', '8765'], { cwd: ROOT, stdio: 'ignore' });
   let failed = 0;
@@ -209,6 +253,12 @@ async function quoteFlow(page) {
       else console.log('ok quote flow', report.quote);
       await ctx.close();
     }
+
+    const builderContext = await browser.newContext({ viewport: { width: 390, height: 800 }, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
+    await builderContext.route(/^https:/, route => route.abort());
+    report.realTruckQuote = await realTruckQuoteFlow(await builderContext.newPage());
+    console.log('ok RealTruck quote handoff');
+    await builderContext.close();
 
     await browser.close();
   } finally {

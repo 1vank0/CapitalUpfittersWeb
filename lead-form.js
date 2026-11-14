@@ -239,7 +239,7 @@
   }
 
   function countUrls(text) {
-    var m = String(text || '').match(/https?:\/\/|www\.|[a-z0-9.-]+\.(com|net|org|io|co|us|biz)\b/gi);
+    var m = String(text || '').match(/https?:\/\/[^\s]+|(?:www\.)?[a-z0-9.-]+\.(com|net|org|io|co|us|biz)\b/gi);
     return m ? m.length : 0;
   }
 
