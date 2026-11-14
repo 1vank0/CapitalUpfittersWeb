@@ -23,7 +23,7 @@ assert.ok(header.includes('href="tel:+13013041419"'), 'The shop call action must
 const directory = read('services/index.html');
 const imageNeeds = read('docs/IMAGE-NEEDS.md');
 const cards = [...directory.matchAll(/<article class="service-offering" data-category="([^"]+)"><a href="(\.\/[^\"]+)" class="service-hub-card"/g)];
-assert.equal(cards.length, 16, 'All existing directory service destinations must remain available');
+assert.equal(cards.length, 17, 'All existing directory service destinations must remain available');
 for (const [, categories, href] of cards) {
   assert.ok(pageExists(resolve(root, 'services', href)), `Service card ${href} must have a destination`);
   assert.ok(categories.split(/\s+/).includes('all'), `Service card ${href} must be visible in All services`);
@@ -32,7 +32,7 @@ const mediaConfig = JSON.parse(read('config/media.json'));
 for (const [, slot] of directory.matchAll(/data-media-slot="([^"]+)"/g)) {
   assert.ok(Object.hasOwn(mediaConfig.slots, slot), `Image slot ${slot} must be managed by the backend`);
 }
-assert.equal([...directory.matchAll(/data-quote-service="/g)].length, 15, 'Every service card needs a direct quote action');
+assert.equal([...directory.matchAll(/data-quote-service="/g)].length, 16, 'Every service card needs a direct quote action');
 assert.ok(!directory.includes('/assets/img/generated-'), 'Service image file paths must not be hardcoded in HTML');
 for (const [, slot] of directory.matchAll(/data-image-need="([^"]+)"/g)) {
   assert.ok(imageNeeds.includes('`' + slot + '`'), `Directory image ${slot} needs a documented brief`);
