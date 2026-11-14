@@ -81,5 +81,17 @@
     "deploymentEnabled": {
       "redesign/ui-ux-polish-2026-11-02": true
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/gallery",
+      "destination": "/portfolio",
+      "permanentRedirect": true
+    },
+    {
+      "source": "/gallery/:path*",
+      "destination": "/portfolio/:path*",
+      "permanentRedirect": true
+    }
+  ]
 }

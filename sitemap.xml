@@ -39,7 +39,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.capitalupfitters.com/gallery</loc>
+    <loc>https://www.capitalupfitters.com/portfolio</loc>
     <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -258,6 +258,6 @@
   <url><loc>https://www.capitalupfitters.com/services/etrailer-installation</loc></url>
   <url><loc>https://www.capitalupfitters.com/services/amp-research</loc></url>
   <url><loc>https://www.capitalupfitters.com/services/wheels-tires</loc></url>
-  <url><loc>https://www.capitalupfitters.com/gallery/f150-patriot-liner</loc></url>
-  <url><loc>https://www.capitalupfitters.com/gallery/mcs-maverick-fleet</loc></url>
+  <url><loc>https://www.capitalupfitters.com/portfolio/f150-patriot-liner</loc></url>
+  <url><loc>https://www.capitalupfitters.com/portfolio/mcs-maverick-fleet</loc></url>
 </urlset>

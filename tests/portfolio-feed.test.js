@@ -5,25 +5,25 @@ const path = require('node:path');
 
 const ROOT = path.resolve(__dirname, '..');
 const read = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
-const pages = ['gallery.html'].concat(
+const pages = ['portfolio/index.html'].concat(
   fs.readdirSync(path.join(ROOT, 'services')).filter((f) => f.endsWith('.html')).map((f) => 'services/' + f)
 );
 const withFeed = pages.filter((f) => read(f).includes('data-gallery-feed='));
 
-test('gallery feed is wired into the gallery and service pages', () => {
-  assert.ok(withFeed.includes('gallery.html'));
+test('portfolio feed is wired into the portfolio and service pages', () => {
+  assert.ok(withFeed.includes('portfolio/index.html'));
   assert.ok(withFeed.length >= 12, 'expected gallery + service pages, got ' + withFeed.length);
 });
 
 test('every page with a feed target loads the script exactly once', () => {
   for (const f of withFeed) {
-    const n = (read(f).match(/<script src="\/gallery-feed\.js" defer><\/script>/g) || []).length;
+    const n = (read(f).match(/<script src="\/portfolio-feed.js" defer><\/script>/g) || []).length;
     assert.strictEqual(n, 1, f);
   }
 });
 
 test('service sections start hidden so empty feeds change nothing', () => {
-  for (const f of withFeed.filter((p) => p !== 'gallery.html')) {
+  for (const f of withFeed.filter((p) => p !== 'portfolio/index.html')) {
     const m = read(f).match(/<section[^>]*data-gallery-feed="section"[^>]*>/);
     assert.ok(m, f);
     assert.match(m[0], /\shidden[\s>]/, f);
@@ -33,17 +33,17 @@ test('service sections start hidden so empty feeds change nothing', () => {
 });
 
 test('gallery page contains only documented projects with genuine image assets', () => {
-  const html = read('gallery.html');
+  const html = read('portfolio/index.html');
   assert.strictEqual((html.match(/class="gallery-item"/g) || []).length, 2);
-  assert.ok(html.includes('/gallery/f150-patriot-liner'));
-  assert.ok(html.includes('/gallery/mcs-maverick-fleet'));
+  assert.ok(html.includes('/portfolio/f150-patriot-liner'));
+  assert.ok(html.includes('/portfolio/mcs-maverick-fleet'));
   assert.ok(!html.includes('gallery-placeholder'));
   assert.ok(!html.includes('coming soon'));
   assert.ok(!html.includes('CMS: Gallery Wire'));
 });
 
 test('feed script only adds, never injects markup or structured data', () => {
-  const js = read('gallery-feed.js');
+  const js = read('portfolio-feed.js');
   assert.ok(!/innerHTML|outerHTML|insertAdjacentHTML|document\.write|eval\(/.test(js));
   assert.ok(!/ld\+json/.test(js));
   assert.ok(!/textContent\s*=\s*['"]{2}/.test(js), 'must not clear containers');

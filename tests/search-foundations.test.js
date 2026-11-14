@@ -1,7 +1,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const pages=JSON.parse(read('config/sitewide-pages.json')),origin='https://www.capitalupfitters.com';
-const clean=p=>p.replace(/\/index\.html$/,'/').replace(/\.html$/,'').replace(/\/(services|blog)\/$/,'/$1');
+const clean=p=>p.replace(/\/index\.html$/,'/').replace(/\.html$/,'').replace(/\/(services|blog|portfolio)\/$/,'/$1');
 const nodes=h=>[...h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(m=>{const d=JSON.parse(m[1]);assert.equal(d['@context'],'https://schema.org');return d['@graph']||[d];});
 test('public canonicals and internal page links use final clean paths, with routes preserved',()=>{
  for(const page of pages){const h=read(page),canonical=h.match(/rel="canonical" href="([^"]+)"/);if(canonical)assert.equal(canonical[1],clean(origin+'/'+page),page);

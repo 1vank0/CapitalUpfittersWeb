@@ -57,10 +57,10 @@ async function setup(data) {
   let resolve;
   const pending = new Promise(r => { resolve=r; });
   const context = vm.createContext({document,window:{fetch:true},fetch:()=>pending,URL,setTimeout,clearTimeout});
-  const html=fs.readFileSync(path.join(root,'gallery.html'),'utf8');
+  const html=fs.readFileSync(path.join(root,'portfolio/index.html'),'utf8');
   const controller=html.slice(html.indexOf('// Gallery filter'),html.indexOf('</script>',html.indexOf('// Gallery filter')));
   vm.runInContext(controller,context);
-  vm.runInContext(fs.readFileSync(path.join(root,'gallery-feed.js'),'utf8'),context);
+  vm.runInContext(fs.readFileSync(path.join(root,'portfolio-feed.js'),'utf8'),context);
   resolve({ok:true,json:async()=>data});
   await new Promise(r => setImmediate(r));
   return {document,grid,staticItem,ids,context};

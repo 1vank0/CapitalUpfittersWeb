@@ -23,7 +23,7 @@ assert.ok(header.includes('href="tel:+13013041419"'), 'The shop call action must
 const directory = read('services/index.html');
 const imageNeeds = read('docs/IMAGE-NEEDS.md');
 const cards = [...directory.matchAll(/<article class="service-offering" data-category="([^"]+)"><a href="(\.\/[^\"]+)" class="service-hub-card"/g)];
-assert.equal(cards.length, 15, 'All existing directory service destinations must remain available');
+assert.equal(cards.length, 16, 'All existing directory service destinations must remain available');
 for (const [, categories, href] of cards) {
   assert.ok(pageExists(resolve(root, 'services', href)), `Service card ${href} must have a destination`);
   assert.ok(categories.split(/\s+/).includes('all'), `Service card ${href} must be visible in All services`);

@@ -30,7 +30,7 @@ test('branding retains canonical route, native lead bridge, media slot and appro
   assert.match(html, /name="services" value="Wraps &amp; Branding"/);
   assert.match(html, /data-media-slot="commercial-wraps"/);
   assert.match(html, /data-service="commercial-wraps"/);
-  for (const src of ['/lead-form.js','/attribution.js','/gallery-feed.js']) assert.ok(html.includes(`src="${src}"`));
+  for (const src of ['/lead-form.js','/attribution.js','/portfolio-feed.js']) assert.ok(html.includes(`src="${src}"`));
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
   assert.equal(ids.length, new Set(ids).size, 'IDs must be unique');
   for (const [,id] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(ids.includes(id),`anchor ${id} exists`);

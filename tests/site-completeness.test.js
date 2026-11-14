@@ -26,5 +26,5 @@ test('customer-facing internal page and fragment links resolve', () => {
 test('homepage advertises qualified liner coverage and identifies real image',()=> {
  const home=html.get(path.join(root,'index.html'));
  assert.ok(home.includes('Manufacturer limited warranty and six-month installation coverage'));
- assert.ok(home.includes('Real shop project · Ford F-150. Exterior view; see the gallery'));
+ assert.ok(home.includes('Real shop project · Ford F-150. Exterior view; see the portfolio'));
 });
